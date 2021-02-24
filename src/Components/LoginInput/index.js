@@ -5,7 +5,7 @@ const LoginInput = ({title, type}) => {
     
     return(
         <div>
-            <input placeholder = {title} style = {Style[type]}>
+            <input placeholder = {title} style = {Style[type]} type = {type}>
             </input>
         </div>
     )
