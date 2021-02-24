@@ -3,7 +3,9 @@ import colors from '../../Constants/colors';
 const Style={
     
     primary: {
+        position: 'relative',
         font: 'Open Sans',
+        fontSize:'24px',
         color: colors.secondary,
         style: 'normal',
         width: '150px',
@@ -12,12 +14,15 @@ const Style={
         borderRadius: '15px',
         border: `1px solid ${colors.primary}`,
         boxSizing: 'border-box',
-        size: '24px',
-        lineHeight: '20px'
+        lineHeight: '20px',
+        margin: '5px'
+
     },
     
     secondary: {
+        position: 'relative',
         font: 'Open Sans',
+        fontSize:'24px',
         color: colors.primary,
         style: 'normal',
         width: '150px',
@@ -26,8 +31,8 @@ const Style={
         borderRadius: '15px',
         border: `1px solid ${colors.primary}`,
         boxSizing: 'border-box',
-        size: '24px',
         lineHeight: '20px',
+        margin: '5px'
     }
 }
 
