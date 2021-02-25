@@ -1,14 +1,15 @@
-import React from 'react'
-import Style from './style'
+import React from 'react';
+import Style from './style';
 
 const RegisterInput = ({
     title,
     type,
+    setText,
 }) => {
 
     return(
         <div>
-            <input placeholder = {title} style = {Style[type]}></input>
+            <input placeholder = {title} style = {Style[type]} onChange={e => setText(e.target.value)}></input>
         </div>
     );
 }

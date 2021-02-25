@@ -1,6 +1,5 @@
 import React from 'react';
-import colors from '../../Constants/colors';
-import Style from '../../Components/TinyButton/style'
+import Style from '../../Components/TinyButton/style';
 
 const TinyButton = ({
     type,
@@ -8,7 +7,7 @@ const TinyButton = ({
 }) => {
   return (
       
-    <button style={Style[type]}>
+    <button style={Style[type]} onClick={() => console.log('Clicou!')}>
       <b>{title}</b>
     </button>
   );

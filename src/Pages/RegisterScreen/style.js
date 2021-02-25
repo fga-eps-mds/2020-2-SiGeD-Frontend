@@ -10,7 +10,7 @@ const Style = {
         display: 'flex',
         right: '150',
         bottom: '115',
-        background: '#FFFFFF',
+        background: colors.secondary,
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: "20px"
 
@@ -20,9 +20,11 @@ const Style = {
         position: 'absolute',
         width: '386px',
         height: '680px',
-        display: 'center',
-        background: '#222222',
+        background: colors.primary,
         borderRadius: '20px 0px 0px 20px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
 
     main: {
@@ -53,6 +55,27 @@ const Style = {
         font: 'Open-Sans',
         fontSize:'24px'
 
+    },
+
+    peopleIcon: {
+
+        color: colors.secondary,
+        position: 'absolute',
+        height: '180px',
+        width: '180px',
+        top: '88px'     
+    },
+
+    sidebarDiv: {
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        margin: '293px'
+    },
+
+    sidebarText: {
+        margin:'5px',
+        color: colors.secondary        
     }
 }
 
