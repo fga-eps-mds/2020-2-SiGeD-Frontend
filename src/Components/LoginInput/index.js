@@ -6,10 +6,10 @@ const LoginInput = ({title, type, icon, onChange, value}) => {
 
         return(
             <div style = {styles[type]} >
-                <div style = {styles["icon"]}>
+                <div style = {styles.icon}>
                     {icon}
                 </div>
-                <input placeholder = {title} style = {styles["input"]} type = {type} onChange={onChange} value={value}/>
+                <input placeholder = {title} style = {styles.input} type = {type} onChange={text=>onChange(text)} value={value||''}/>
             </div>
         )
 }

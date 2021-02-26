@@ -17,9 +17,9 @@ const LoginScreen = () => {
     }
 
     return(
-            <div style = {styles["background"]}>
-                <div style = {styles["center"]}>
-                    <h1 style = {styles["access"]}>Entrar</h1>
+            <div style = {styles.background}>
+                <div style = {styles.center}>
+                    <h1 style = {styles.access}>Entrar</h1>
 
                     <LoginInput 
                         title = {"Usuário"} 
