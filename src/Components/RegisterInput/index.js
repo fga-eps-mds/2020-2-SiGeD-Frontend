@@ -1,5 +1,5 @@
 import React from 'react';
-import Style from './style';
+import styles from './style';
 
 const RegisterInput = ({
     type,
@@ -9,9 +9,9 @@ const RegisterInput = ({
 }) => {
 
     return(
-        <div>
-            <p style={Style.text}>{title}:</p>
-            <input type={type} placeholder = {title} style = {Style.generic} onChange={e => setText(e.target.value) }
+        <div style={{width:'100%', margin:'0', padding: '0'}}>
+            <p style={styles.text}>{title}:</p>
+            <input type={type} placeholder = {title} style = {styles.generic} onChange={e => setText(e.target.value) }
             value={value}/>
 
         </div>

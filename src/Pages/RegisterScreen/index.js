@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TinyButton from '../../Components/TinyButton/';
-import Style from './style';
+import styles from './style';
 import RegisterInput from '../../Components/RegisterInput';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 
@@ -46,22 +46,22 @@ const RegisterScreen = () => {
 
 
     return (
-        <div style={Style.main}>
+        <div style={styles.main}>
 
-            <div style={Style.container}>
+            <div style={styles.container}>
 
-                <div style={Style.sidebar}>
-                    < IoPersonCircleOutline style={Style.peopleIcon} />
+                <div style={styles.sidebar}>
+                    < IoPersonCircleOutline style={styles.peopleIcon} />
 
-                    <div style={Style.sidebarDiv}>
-                        <h2 style={Style.sidebarText}>{cardRegister}</h2>
-                        <h2 style={Style.sidebarText}>{cardName}</h2>
-                        <h2 style={Style.sidebarText}>{cardEmail}</h2>
+                    <div style={styles.sidebarDiv}>
+                        <p style={styles.sidebarText}>{cardRegister}</p>
+                        <p style={styles.sidebarText}>{cardName}</p>
+                        <p style={styles.sidebarText}>{cardEmail}</p>
                     </div>
 
                 </div>
 
-                <div style={Style.row}>
+                <div style={styles.row}>
 
                         <RegisterInput type='text' title='Nome' setText={setInputName} value={inputName} />
 
@@ -74,16 +74,18 @@ const RegisterScreen = () => {
                         <RegisterInput type='password' title='Confirmar senha' 
                         setText={setInputConfirmPassword} value={inputConfirmPassword}/>
 
+                        <div style={styles.divButtom}>
+
+                            <TinyButton type='secondary' title='Cancelar' click={cancel}/>
+
+                            <TinyButton type='primary' title='Cadastrar' click={submit}/>
+
+                        </div>
+
                 </div>
 
 
-                <div style={{ position: 'absolute', right: '66px', bottom: '51px' }}>
-
-                    <TinyButton type='secondary' title='Cancelar' click={cancel}/>
-
-                    <TinyButton type='primary' title='Cadastrar' click={submit}/>
-
-                </div>
+ 
 
             </div>
 

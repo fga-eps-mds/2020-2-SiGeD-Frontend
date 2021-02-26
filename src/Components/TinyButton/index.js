@@ -1,5 +1,8 @@
 import React from 'react';
-import Style from '../../Components/TinyButton/style';
+import styles from './style';
+
+
+
 
 const TinyButton = ({
     type,
@@ -8,8 +11,8 @@ const TinyButton = ({
 }) => {
   return (
       
-    <button style={Style[type]} onClick={click}>
-      <b>{title}</b>
+    <button style={styles[type]} onClick={click}>
+      <b style={{fontSize: '1.5vw'}}>{title}</b>
     </button>
   );
 }

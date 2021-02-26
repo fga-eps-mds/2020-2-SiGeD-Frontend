@@ -1,39 +1,35 @@
 import colors from '../../Constants/colors';
 
-const Style={
+const styles={
     
     primary: {
-        position: 'relative',
         font: 'Open Sans',
-        fontSize:'24px',
+        fontSize:'100%',
         color: colors.secondary,
         style: 'normal',
-        width: '150px',
-        height: '40px',
+        width: '10vw',
+        height: '4vh',
         backgroundColor: colors.primary,
-        borderRadius: '15px',
-        border: `1px solid ${colors.primary}`,
+        borderRadius: '1vw',
+        border: `2% solid ${colors.primary}`,
         boxSizing: 'border-box',
-        lineHeight: '20px',
-        margin: '5px'
+        margin: '2%',
 
     },
     
     secondary: {
-        position: 'relative',
         font: 'Open Sans',
-        fontSize:'24px',
+        fontSize:'100%',
         color: colors.primary,
         style: 'normal',
-        width: '150px',
-        height: '40px',
+        width: '10vw',
+        height: '4vh',
         backgroundColor: colors.secondary,
-        borderRadius: '15px',
-        border: `1px solid ${colors.primary}`,
+        borderRadius: '1vw',
+        border: `2% solid ${colors.primary}`,
         boxSizing: 'border-box',
-        lineHeight: '20px',
-        margin: '5px'
+        margin: '2%'
     }
 }
 
-export default Style;
+export default styles;

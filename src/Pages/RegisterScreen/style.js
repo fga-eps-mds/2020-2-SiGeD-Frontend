@@ -1,75 +1,87 @@
 import colors from '../../Constants/colors';
 
-const Style = {
+const styles = {
 
     container: {
 
-        position: 'absolute',
-        width: '1141px',
-        height: '680px',
         display: 'flex',
-        right: '150',
-        bottom: '115',
         background: colors.secondary,
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        borderRadius: "20px"
+        borderRadius: "1.5vw",
+        justifyContent: 'space-between',
+        height: '70%',
+        width: '65%',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        overflow: 'hidden'
 
     },
 
     sidebar: {
-        position: 'absolute',
-        width: '386px',
-        height: '680px',
+
         background: colors.primary,
-        borderRadius: '20px 0px 0px 20px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        width:'30%',
+        height:'100%',
+        overflow: 'hidden'
     },
 
     main: {
 
-        position: '',
-        width: '100vw',
-        height: '100vh',
         backgroundColor: '#BFBFBF',
         alignItems: 'center',
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
-
+        height: '100vh',
+        width: '100vw',
+        aligncontent: 'flex-end'
     },
 
     row: {
-        content: '',
-        position: 'absolute',
-        right: '141px',
-        top: '60px',
-        display: 'table',
+
         clear: 'both',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        width: '70%',
+        height:'100%',
+        overflow: 'hidden'
+
     },
 
     peopleIcon: {
-
-        color: colors.secondary,
-        position: 'absolute',
-        height: '180px',
-        width: '180px',
-        top: '88px'     
+        height: '23vw',
+        width: '23vw',
+        marginTop: '5vh',
+        color: colors.secondary,   
     },
 
     sidebarDiv: {
         display:'flex',
         flexDirection:'column',
         alignItems:'center',
-        margin: '293px'
     },
 
     sidebarText: {
-        margin:'5px',
-        color: colors.secondary        
+        color: colors.secondary,
+        font: 'Open Sans',
+        fontSize: '2vw',
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+
+    divButtom: {
+        display: 'flex',
+        height: '100%',
+        width: '100%',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
+        
     }
 }
 
-export default Style;
+export default styles;

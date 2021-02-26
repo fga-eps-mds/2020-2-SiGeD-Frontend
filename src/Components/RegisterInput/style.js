@@ -1,22 +1,22 @@
-const Style = {
+const styles = {
 
     generic: {
-        position: 'relative',
+        display: 'flex',
         border: '2px solid #000000',
-        height:'50px',
-        width: '473px',
-        borderRadius: '15px',
-        fontSize:'24px',
-        textIndent: '10px'
-
+        borderRadius: '1.5vw',
+        fontSize:'1.3vw',
+        textIndent: '10px',
+        width: '80%',
+        height: '30%',
+        marginLeft: '10%',
     },
 
     text: {
-        margin: '5px',
+        marginLeft: '10%',
         font: 'Open-Sans',
-        fontSize:'24px'
+        fontSize:'1.3vw',
 
     },
 }
 
-export default Style;
+export default styles;
