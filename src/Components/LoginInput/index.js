@@ -1,28 +1,17 @@
 import React from 'react'
-import Style from './style'
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import styles from './style'
 
-const LoginInput = ({title, type, icon}) => {
-    if(icon === "FaLock"){
+const LoginInput = ({title, type, icon, onChange, value}) => {
+
+
         return(
-            <div style = {Style[type]} >
-                <div style = {Style["icon"]}>
-                    <FaLock />
+            <div style = {styles[type]} >
+                <div style = {styles["icon"]}>
+                    {icon}
                 </div>
-                <input placeholder = {title} style = {Style["input"]} type = {type}/>
+                <input placeholder = {title} style = {styles["input"]} type = {type} onChange={onChange} value={value}/>
             </div>
         )
-    }
-    else{
-        return(
-            <div style = {Style[type]} >
-                <div style = {Style["icon"]}>
-                    <FaUserAlt />
-                </div>
-                <input placeholder = {title} style = {Style["input"]} type = {type}/>
-            </div>
-        )
-    }
 }
 
 export default LoginInput;

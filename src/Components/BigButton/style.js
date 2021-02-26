@@ -1,6 +1,6 @@
 import colors from "../../Constants/colors"
 
-const Style = {
+const styles = {
     primary: {
         backgroundColor: colors.primary,
         color: colors.secundary,
@@ -32,4 +32,4 @@ const Style = {
     }
 }
 
-export default Style;
+export default styles;

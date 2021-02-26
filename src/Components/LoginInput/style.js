@@ -1,4 +1,4 @@
-const Style = {
+const styles = {
     user: {
         border: "1px solid #000000",
         boxSizing: 'border-box',
@@ -31,8 +31,8 @@ const Style = {
     },
 
     icon: {
-        padding: '0.2rem',
+        padding: '0.35rem',
     }
 }
 
-export default Style;
+export default styles;

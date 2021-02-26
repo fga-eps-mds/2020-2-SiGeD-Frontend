@@ -1,10 +1,13 @@
 import React from 'react'
-import Style from './style'
+import styles from './style'
 
-const BigButton = ({title, type}) => {
+const BigButton = ({title, type, changeButton}) => { 
+
     return(
         <div>
-            <button style = {Style[type]}>
+            <button style = {styles[type]} onClick={
+                () => changeButton()
+            }>
                 {title}
             </button>
         </div>
