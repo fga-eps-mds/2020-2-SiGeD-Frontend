@@ -2,14 +2,18 @@ import React from 'react';
 import Style from './style';
 
 const RegisterInput = ({
-    title,
     type,
+    title,
     setText,
+    value
 }) => {
 
     return(
         <div>
-            <input placeholder = {title} style = {Style[type]} onChange={e => setText(e.target.value)}></input>
+            <p style={Style.text}>{title}:</p>
+            <input type={type} placeholder = {title} style = {Style.generic} onChange={e => setText(e.target.value) }
+            value={value}/>
+
         </div>
     );
 }

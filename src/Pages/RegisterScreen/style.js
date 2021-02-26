@@ -50,13 +50,6 @@ const Style = {
         clear: 'both',
     },
 
-    text: {
-        margin: '5px',
-        font: 'Open-Sans',
-        fontSize:'24px'
-
-    },
-
     peopleIcon: {
 
         color: colors.secondary,

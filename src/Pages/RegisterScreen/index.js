@@ -6,19 +6,42 @@ import { IoPersonCircleOutline } from 'react-icons/io5';
 
 const RegisterScreen = () => {
 
-    const [inputName, setInputName] = useState('Nome');
-    const [inputEmail, setInputEmail] = useState('Email');
-    const [inputRegister, setInputRegister] = useState('Registro');
+    const [cardName, setCardName] = useState('');
+    const [cardEmail, setCardEmail] = useState('');
+    const [cardRegister, setCardRegister] = useState('');
+    const [inputName, setInputName] = useState('');
+    const [inputEmail, setInputEmail] = useState('');
+    const [inputRegister, setInputRegister] = useState('');
+    const [inputPassword, setInputPassword] = useState('');
+    const [inputConfirmPassword, setInputConfirmPassword] = useState('');
+    const submit=() => {
+        console.log(inputName, inputEmail, inputRegister, inputPassword, inputConfirmPassword)
+    }
+    const cancel=() => {
+        setInputEmail('')
+        setInputRegister('')
+        setInputName('')
+        setInputPassword('')
+        setInputConfirmPassword('')
+    }
 
     useEffect(() => {
 
         if(!inputName)
-            setInputName('Nome')
-        else if(!inputEmail)
-            setInputEmail('Email')
-        else if(!inputRegister)
-            setInputRegister('Registro')
+            setCardName('Nome')
+        else
+            setCardName(inputName)
+            
+        if(!inputEmail)
+            setCardEmail('Email')
+        else
+            setCardEmail(inputEmail);
 
+        if(!inputRegister)
+            setCardRegister('Registro')
+        else
+            setCardRegister(inputRegister);
+            
     }, [inputName , inputEmail, inputRegister])
 
 
@@ -31,48 +54,34 @@ const RegisterScreen = () => {
                     < IoPersonCircleOutline style={Style.peopleIcon} />
 
                     <div style={Style.sidebarDiv}>
-                        <h2 style={Style.sidebarText}>{inputRegister}</h2>
-                        <h2 style={Style.sidebarText}>{inputName}</h2>
-                        <h2 style={Style.sidebarText}>{inputEmail}</h2>
+                        <h2 style={Style.sidebarText}>{cardRegister}</h2>
+                        <h2 style={Style.sidebarText}>{cardName}</h2>
+                        <h2 style={Style.sidebarText}>{cardEmail}</h2>
                     </div>
 
                 </div>
 
                 <div style={Style.row}>
-                    <div>
-                        <p style={Style.text}>Nome:</p>
-                        <RegisterInput type='Name' title='Nome' setText={setInputName} />
-                    </div>
 
-                    <div>
-                        <p style={Style.text}>Email:</p>
-                        <RegisterInput type='Email' title='Email' setText={setInputEmail} />
+                        <RegisterInput type='text' title='Nome' setText={setInputName} value={inputName} />
 
-                    </div>
+                        <RegisterInput type='text' title='Email' setText={setInputEmail} value={inputEmail}/>
 
-                    <div>
-                        <p style={Style.text}>Matrícula:</p>
-                        <RegisterInput type='Register' title='Registro' setText={setInputRegister} />
-                    </div>
+                        <RegisterInput type='text' title='Registro' setText={setInputRegister} value={inputRegister}/>
 
-                    <div>
-                        <p style={Style.text}>Senha:</p>
-                        <RegisterInput type='Password' title='Senha' />
-                    </div>
+                        <RegisterInput type='password' title='Senha' setText={setInputPassword} value={inputPassword} />
 
-                    <div>
-                        <p style={Style.text}>Confirme sua senha:</p>
-                        <RegisterInput type='ConfirmPassword' title='Confirmar senha' />
-                    </div>
+                        <RegisterInput type='password' title='Confirmar senha' 
+                        setText={setInputConfirmPassword} value={inputConfirmPassword}/>
 
                 </div>
 
 
                 <div style={{ position: 'absolute', right: '66px', bottom: '51px' }}>
 
-                    <TinyButton type='secondary' title='Cancelar' />
+                    <TinyButton type='secondary' title='Cancelar' click={cancel}/>
 
-                    <TinyButton type='primary' title='Cadastrar' />
+                    <TinyButton type='primary' title='Cadastrar' click={submit}/>
 
                 </div>
 
