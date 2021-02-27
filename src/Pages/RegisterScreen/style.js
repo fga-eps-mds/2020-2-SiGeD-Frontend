@@ -13,7 +13,8 @@ const styles = {
         width: '65%',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginTop: '15vh'
 
     },
 
@@ -49,7 +50,7 @@ const styles = {
         alignItems: 'flex-start',
         width: '70%',
         height:'100%',
-        overflow: 'hidden'
+        overflow: 'hidden',
 
     },
 
