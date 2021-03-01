@@ -36,6 +36,7 @@ export const Title = styled.h1`
     font-weight: 400;
     font-size: 5vh;
 
+<<<<<<< HEAD
     @media(max-width: 425px){
         width: 25%;
     }
@@ -51,6 +52,15 @@ export const ContentBox = styled.div`
 
 export const Search = styled.div`
     float: left;
+=======
+        backgroundColor: 'white',
+        width: '65vw',
+        height: '70vh',
+        boxShadow: '0vw 0.2vw 0.2vw rgba(0, 0, 0, 0.25)',
+        borderRadius: '0.5vw',
+        display: 'flex',
+        flexDirection: 'column',
+>>>>>>> Add icon on input field and contentBox inside of container.
 
     @media(max-width: 425px){
         margin-top: -8%;
@@ -75,7 +85,16 @@ export const TableHeader = styled.div`
         visibility: hidden;
     }
 
+<<<<<<< HEAD
 `;
+=======
+        width: '65vw',
+        height: 'min-content',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+>>>>>>> Add icon on input field and contentBox inside of container.
 
 export const P = styled.div`
     color: ${colors.secondary};
@@ -84,10 +103,39 @@ export const P = styled.div`
     padding: 0;
     left: 0;
 
+<<<<<<< HEAD
     @media(max-width: 656px){
       font-size: 1.6vh;
     }
 `;
+=======
+    title: {
+        font: 'Open Sans',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '200%',
+        lineHeight: '3rem',
+        height: 'min-content',
+    },
+
+    contentBox: {
+        width: '90%',
+        height: '70%',
+        background: '#F7F7F7',
+        border: '1px solid #5E5E5E',
+        boxSizing: 'border-box',
+        borderRadius: '0.5rem',
+        margin: '0 auto',
+    },
+
+    search: {
+
+        display: 'flex',
+        flexDirection: 'row',
+        width: 'min-content',
+        alignItems: 'center',
+    } 
+>>>>>>> Add icon on input field and contentBox inside of container.
 
 export const Bar = styled.div`
     width: 0.25%;
