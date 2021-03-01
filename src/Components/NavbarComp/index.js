@@ -1,19 +1,19 @@
 import {Navbar, Nav} from 'react-bootstrap';
-import colors from '../../Constants/colors';
 import React from 'react'
 import logo from '../../Assets/logopcgo.png';
+import styles from './style';
+
+
 
 const NavbarComp = () => {
     return(
-        <>
-        <Navbar fixed = 'top' style = {{backgroundColor: colors.primary}}>
-            <Navbar.Brand href="#home"><img style = {{marginLeft: "2vh", height: "8vh"}} src={logo}/></Navbar.Brand>
+        <Navbar fixed = 'top' style = {styles.navbar}>
+            <Navbar.Brand href="#home"><img style = {styles.navbarLogo} src={logo} alt={'Polícia Civil de Goiás'}/></Navbar.Brand>
             <Nav className="ml-auto">
-            <Nav.Link style = {{fontSize: "3vh", marginRight: "2vh", color: colors.secondary}}>Login</Nav.Link>
-            <Nav.Link style = {{fontSize: "3vh", color: colors.secondary}}>Cadastro</Nav.Link>
+            <Nav.Link style = {styles.navbarText}>Login</Nav.Link>
+            <Nav.Link style = {styles.navbarText}>Cadastro</Nav.Link>
             </Nav>
         </Navbar>
-        </>
     )
 }
 
