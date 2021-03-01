@@ -1,3 +1,5 @@
+import { FaSistrix } from "react-icons/fa";
+
 const styles = {
 
   search: {
