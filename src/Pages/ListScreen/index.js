@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './style';
 import SearchInput from '../../Components/SearchInput';
+import { FaSistrix } from "react-icons/fa";
 
 const ListScreen = () => {
     const [word, setWord] = useState();
@@ -12,18 +13,24 @@ const ListScreen = () => {
 
                 <div style={styles.header}>
 
-
                     <h2 style={styles.title}>Usuários</h2>
 
-                    <SearchInput 
+                    <div style={styles.search}>
 
-                    type = 'text'
-                    value = {word}
-                    setWord = {(word) => setWord(word)}
-
-                    />
+                        <SearchInput 
+                        type = 'text'
+                        icon = {<FaSistrix/>}
+                        value = {word}
+                        setWord = {(word) => setWord(word)}
+                        />
+                    </div>
 
                 </div>
+
+                <div style={styles.contentBox}>
+
+                </div>
+
             </div>
         </div>
     )

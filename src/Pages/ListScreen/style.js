@@ -22,29 +22,47 @@ const styles = {
         boxShadow: '0vw 0.2vw 0.2vw rgba(0, 0, 0, 0.25)',
         borderRadius: '0.5vw',
         display: 'flex',
-
-
+        flexDirection: 'column',
 
     },
 
     header: {
 
         width: '65vw',
-        height: '70vh',
+        height: 'min-content',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        margin: '2%',
+        alignItems: 'center'
 
     },
 
     title: {
-        fontFamily: 'Open Sans',
+        font: 'Open Sans',
         fontStyle: 'normal',
         fontWeight: 'normal',
-        fontSize: '40px',
-        lineHeight: '54px',
-    }
+        fontSize: '200%',
+        lineHeight: '3rem',
+        height: 'min-content',
+    },
+
+    contentBox: {
+        width: '90%',
+        height: '70%',
+        background: '#F7F7F7',
+        border: '1px solid #5E5E5E',
+        boxSizing: 'border-box',
+        borderRadius: '0.5rem',
+        margin: '0 auto',
+    },
+
+    search: {
+
+        display: 'flex',
+        flexDirection: 'row',
+        width: 'min-content',
+        alignItems: 'center',
+    } 
 
 }
 
