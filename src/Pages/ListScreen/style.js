@@ -16,6 +16,7 @@ const styles = {
 
     container: {
 
+        marginTop: '15vh',
         backgroundColor: 'white',
         width: '65vw',
         height: '70vh',
@@ -32,7 +33,7 @@ const styles = {
         height: 'min-content',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: 'center'
 
     },
@@ -40,10 +41,12 @@ const styles = {
     title: {
         font: 'Open Sans',
         fontStyle: 'normal',
-        fontWeight: 'normal',
-        fontSize: '200%',
+        fontWeight: '400',
+        fontSize: '5vh',
         lineHeight: '3rem',
         height: 'min-content',
+        position: 'relative',
+        left: '3rem',
     },
 
     contentBox: {
@@ -54,6 +57,7 @@ const styles = {
         boxSizing: 'border-box',
         borderRadius: '0.5rem',
         margin: '0 auto',
+        overflow: 'hidden'
     },
 
     search: {
@@ -62,7 +66,42 @@ const styles = {
         flexDirection: 'row',
         width: 'min-content',
         alignItems: 'center',
-    } 
+        position: 'relative',
+        marginRight: '0',
+    },
+
+    header2: {
+
+        backgroundColor: colors.primary,
+        color: colors.secondary,
+        height: '20%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+
+    },
+    
+    p: {
+        color: colors.secondary,
+        fontWeight: '700',
+        fontSize: '1rem',
+    },
+
+    h1: {
+        fontWeight: '200',
+    },
+
+    dataContainer: {
+
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'center',
+        alignItems: 'flex-start'
+
+    
+    }
 
 }
 

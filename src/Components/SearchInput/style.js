@@ -7,23 +7,35 @@ const styles = {
         flexDirection: 'row',
         position: 'relative',
         alignItems: 'center',
-        left: '5.5vw',
+        left: '0',
+        marginRight: '4vw',
+        justifyContent: 'center'
     },
 
     icon: {
         position: 'absolute',
         right: '5%',
-        marginTop: '30px'
+        marginTop: '30px',
+        overflow: 'hidden',
+        fontSize: '20px',
+        backgroundColor: '#F6F6F6',
+        width: '3vw',
+        height: '4.5vh',
+        borderRadius: '1.5vw',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: '-4%'
 
     },
 
     generic: {
-        padding: '2% 2% 2% 2%',
+        padding: '2% 2% 2% 0',
         marginTop:'30px',
         display: 'flex',
         border: '2px solid #000000',
         borderRadius: '1.5vw',
-        fontSize:'1.3vw',
+        fontSize:'2vh',
         textIndent: '10px',
         width: '20vw',
         height: '5vh',
@@ -33,6 +45,7 @@ const styles = {
         border: '1px solid #5E5E5E',
         boxSizing: 'border-box',
         borderRadius: '10px',
+        overflow: 'hidden'
     }
 }
 
