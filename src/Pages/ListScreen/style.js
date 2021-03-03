@@ -36,7 +36,6 @@ export const Title = styled.h1`
     font-weight: 400;
     font-size: 5vh;
 
-<<<<<<< HEAD
     @media(max-width: 425px){
         width: 25%;
     }
@@ -52,15 +51,6 @@ export const ContentBox = styled.div`
 
 export const Search = styled.div`
     float: left;
-=======
-        backgroundColor: 'white',
-        width: '65vw',
-        height: '70vh',
-        boxShadow: '0vw 0.2vw 0.2vw rgba(0, 0, 0, 0.25)',
-        borderRadius: '0.5vw',
-        display: 'flex',
-        flexDirection: 'column',
->>>>>>> Add icon on input field and contentBox inside of container.
 
     @media(max-width: 425px){
         margin-top: -8%;
@@ -85,16 +75,7 @@ export const TableHeader = styled.div`
         visibility: hidden;
     }
 
-<<<<<<< HEAD
 `;
-=======
-        width: '65vw',
-        height: 'min-content',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center'
->>>>>>> Add icon on input field and contentBox inside of container.
 
 export const P = styled.div`
     color: ${colors.secondary};
@@ -134,6 +115,7 @@ export const P = styled.div`
         flexDirection: 'row',
         width: 'min-content',
         alignItems: 'center',
+<<<<<<< HEAD
     } 
 >>>>>>> Add icon on input field and contentBox inside of container.
 
@@ -171,5 +153,45 @@ export const Button = styled.div`
     @media(max-width: 435px){
         top: -8%;
         margin-top: -30%;
+=======
+        position: 'relative',
+        marginRight: '0',
+    },
+
+    header2: {
+
+        backgroundColor: colors.primary,
+        color: colors.secondary,
+        height: '20%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+
+    },
+    
+    p: {
+        color: colors.secondary,
+        fontWeight: '700',
+        fontSize: '1rem',
+    },
+
+    h1: {
+        fontWeight: '200',
+    },
+
+    dataContainer: {
+
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: '60%',
+        width: '100%'
+        
+
+    
+>>>>>>> [51] adjusts on user component and listing function.
     }
 `;
