@@ -2,10 +2,47 @@ import React, { useEffect, useState } from 'react';
 import styles from './style';
 import SearchInput from '../../Components/SearchInput';
 import { FaSistrix } from "react-icons/fa";
-import PersonalData from '../../Components/PersonalData'
+import PersonalData from '../../Components/PersonalData';
 
 const ListScreen = () => {
     const [word, setWord] = useState();
+    const [users, setUsers] = useState([{
+        "nome": "Joao",
+        "cpf": 123456789,
+        "telefone": 33896751,
+        "locacao": "Planaltina",
+        "atualizacao": "22/05/2020"
+    },
+
+    {
+        "nome": "Maria",
+        "cpf": 1234554321,
+        "telefone": 40028922,
+        "locacao": "aguas claras",
+        "atualizacao": "22/04/2014"
+    },
+
+    {
+        "nome": "Victor",
+        "cpf": 789123456,
+        "telefone": 33889712,
+        "locacao": "Asa Norte",
+        "atualizacao": "02/03/2020"
+    }]);
+
+    
+    // useEffect(() => {
+    //     getUsers();
+    // }, [])
+
+    // function getUsers () {
+
+    //     fetch(URL)
+    //         .then(response => response.json())
+    //             .then(data => {
+    //                 setUsers(data.users)
+    //             });
+    // }
 
 
     return (
@@ -44,18 +81,21 @@ const ListScreen = () => {
 
                     </div>
 
-                    <PersonalData/>
+                    <p>{console.log(users[0].name)}</p>
 
-                    {/* <div style={styles.dataContainer}>    
+                    <div style={styles.dataContainer}>    
                     {
-                        list.length === 0 ? <h1>. . .</h1>  : 
-                        list.map( person => { 
+                        users.length === 0 ? <h1>carregando . . .</h1>  : 
+                        users.map( user => { 
                         return(
-                            <personData person={person}/>
+
+                            <PersonalData user={user}/>
                         )
                         })
                     }
-                   </div>  */}
+                    {console.log(users.length)}
+                   </div>
+
 
                 </div>
 

@@ -97,8 +97,11 @@ const styles = {
 
         display: 'flex', 
         flexDirection: 'column', 
-        justifyContent: 'center',
-        alignItems: 'flex-start'
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: '60%',
+        width: '100%'
+        
 
     
     }

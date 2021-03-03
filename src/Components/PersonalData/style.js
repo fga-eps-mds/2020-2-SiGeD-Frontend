@@ -3,9 +3,17 @@ import colors from '../../Constants/colors';
 const styles = {
 
     personalbox: {
-        width: '50vw',
-        height: '50px',
+        width: '95%',
+        height: '5vh',
         backgroundColor: colors.secondary,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: '5%',
+        borderRadius: '10px',
+        justifyContent: 'space-around',
+       fontSize: '0.8vw',
+    
     },
 
 }
