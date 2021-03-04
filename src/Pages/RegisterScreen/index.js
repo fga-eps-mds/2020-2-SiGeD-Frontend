@@ -15,8 +15,25 @@ const RegisterScreen = () => {
   const [inputPassword, setInputPassword] = useState('');
   const [inputConfirmPassword, setInputConfirmPassword] = useState('');
   const submit = () => {
-    console.log(inputName, inputEmail, inputRegister, inputPassword, inputConfirmPassword);
-  };
+
+    async function postUser() {
+        try {
+            const response = await axios.post('http://localhost:3001/signUp', {
+                "name": inputName,
+                "email": inputEmail,
+                "enroll": inputRegister,
+                "pass": inputPassword	
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            } catch (error) {
+                console.error(error);
+            }
+    }
+
+    postUser()
+}
   const cancel = () => {
     setInputEmail('');
     setInputRegister('');
