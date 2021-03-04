@@ -1,13 +1,8 @@
 import React from 'react';
 import styles from './style';
 
-const ContainerLogin = () => {
-
-    return(
-        <div style = {styles}>
-        </div>
-    )
-
-}
+const ContainerLogin = () => (
+  <div style={styles} />
+);
 
 export default ContainerLogin;
