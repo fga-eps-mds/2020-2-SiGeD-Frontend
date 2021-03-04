@@ -8,13 +8,15 @@ const styles = {
     color: colors.secondary,
     style: 'normal',
     width: '10vw',
-    height: '4vh',
+    height: '100%',
     backgroundColor: colors.primary,
     borderRadius: '1vw',
     border: `2% solid ${colors.primary}`,
     boxSizing: 'border-box',
     margin: '2%',
-
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   secondary: {
@@ -23,12 +25,15 @@ const styles = {
     color: colors.primary,
     style: 'normal',
     width: '10vw',
-    height: '4vh',
+    height: '100%',
     backgroundColor: colors.secondary,
     borderRadius: '1vw',
     border: `2% solid ${colors.primary}`,
     boxSizing: 'border-box',
     margin: '2%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 };
 
