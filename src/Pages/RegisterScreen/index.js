@@ -3,6 +3,7 @@ import { IoPersonCircleOutline } from 'react-icons/io5';
 import TinyButton from '../../Components/TinyButton';
 import styles from './style';
 import RegisterInput from '../../Components/RegisterInput';
+import axios from 'axios';
 
 const RegisterScreen = () => {
   const [cardName, setCardName] = useState('');
