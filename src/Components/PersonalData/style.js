@@ -16,6 +16,12 @@ const styles = {
     
     },
 
+    quadro :{
+
+        width: '20%',
+
+    }
+
 }
 
 export default styles;

@@ -7,11 +7,21 @@ const PersonalData = ({
 }) => {
     return(
         <div style={styles.personalbox}>
-            <h1>{user.nome}</h1>
-            <h1>{user.cpf}</h1>
-            <h1>{user.telefone}</h1>
-            <h1>{user.locacao}</h1>
-            <h1>{user.atualizacao}</h1>
+
+            <div style={styles.quadro}>
+
+                <h1>{user.name}</h1>
+            </div>
+
+            <div style={styles.quadro}>
+
+                <h1>{user.email}</h1>
+            </div>
+
+            <div style={styles.quadro}>
+
+                <h1>{user.enroll}</h1>
+            </div>
         </div>
     )
 }

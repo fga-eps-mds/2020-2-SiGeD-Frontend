@@ -3,46 +3,32 @@ import styles from './style';
 import SearchInput from '../../Components/SearchInput';
 import { FaSistrix } from "react-icons/fa";
 import PersonalData from '../../Components/PersonalData';
+import axios from 'axios';
 
 const ListScreen = () => {
     const [word, setWord] = useState();
-    const [users, setUsers] = useState([{
-        "nome": "Joao",
-        "cpf": 123456789,
-        "telefone": 33896751,
-        "locacao": "Planaltina",
-        "atualizacao": "22/05/2020"
-    },
-
-    {
-        "nome": "Maria",
-        "cpf": 1234554321,
-        "telefone": 40028922,
-        "locacao": "aguas claras",
-        "atualizacao": "22/04/2014"
-    },
-
-    {
-        "nome": "Victor",
-        "cpf": 789123456,
-        "telefone": 33889712,
-        "locacao": "Asa Norte",
-        "atualizacao": "02/03/2020"
-    }]);
+    const [filterUsers, setFilterUsers] = useState([]);
+    const [users, setUsers] = useState([]);
 
     
-    // useEffect(() => {
-    //     getUsers();
-    // }, [])
+    useEffect(() => {
+        axios.get('http://localhost:3001/signUpGet')
+            .then( (response) => setUsers(response.data))
+    }, []);
 
-    // function getUsers () {
+    useEffect( () => {
 
-    //     fetch(URL)
-    //         .then(response => response.json())
-    //             .then(data => {
-    //                 setUsers(data.users)
-    //             });
-    // }
+        
+        setFilterUsers(users.filter( user => { return user.name.toLowerCase().includes(word?.toLowerCase())} ))
+
+    }, [word]);
+
+    useEffect( () => {
+
+        
+        setFilterUsers(users)
+
+    }, [users]);
 
 
     return (
@@ -81,19 +67,18 @@ const ListScreen = () => {
 
                     </div>
 
-                    <p>{console.log(users[0].name)}</p>
-
                     <div style={styles.dataContainer}>    
-                    {
-                        users.length === 0 ? <h1>carregando . . .</h1>  : 
-                        users.map( user => { 
+                    {   
+                        users.length === 0 ? <h1>Carregando...</h1> :
+                        filterUsers.length === 0 ? <h1>Sem resultados...</h1>  : 
+                        filterUsers.map( (user, index) => { 
                         return(
 
-                            <PersonalData user={user}/>
+                            <PersonalData user={user} key={index}/>
                         )
                         })
                     }
-                    {console.log(users.length)}
+                    
                    </div>
 
 
