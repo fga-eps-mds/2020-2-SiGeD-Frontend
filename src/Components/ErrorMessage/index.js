@@ -8,7 +8,7 @@ export function ErrorMessage({ input, title }) {
     case 'Nome':
       if (input && !ValidateName(input)) {
         return (
-          <div style={styles.text}>Credenciais Inválidas</div>
+          <p style={styles.text}>Credenciais Inválidas</p>
         );
       }
       break;
@@ -16,7 +16,7 @@ export function ErrorMessage({ input, title }) {
     case 'Email':
       if (input && !ValidateEmail(input)) {
         return (
-          <div style={styles.text}>Credenciais Inválidas</div>
+          <p style={styles.text}>Credenciais Inválidas</p>
         );
       }
       break;
@@ -24,7 +24,7 @@ export function ErrorMessage({ input, title }) {
     case 'Senha':
       if (input && !ValidatePassword(input)) {
         return (
-          <div style={styles.text}>Credenciais Inválidas</div>
+          <p style={styles.text}>Credenciais Inválidas</p>
         );
       }
       break;
@@ -39,7 +39,7 @@ export function ErrorMessage({ input, title }) {
 export const PassMatches = ({ pass, confPass }) => {
   if (confPass && !ConfirmPassword(pass, confPass)) {
     return (
-      <div style={styles.passwords}>Senhas não correspondem</div>
+      <p style={styles.passwords}>Senhas não correspondem</p>
     );
   }
   return '';

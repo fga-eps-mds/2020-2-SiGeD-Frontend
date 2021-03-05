@@ -13,7 +13,7 @@ const RegisterInput = ({
       {title}
       :
     </p>
-    <p style={styles.text}>
+    <div style={styles.text}>
       <input
         type={type}
         placeholder={title}
@@ -22,7 +22,7 @@ const RegisterInput = ({
         value={value}
       />
       <ErrorMessage input={value} title={title} />
-    </p>
+    </div>
   </div>
 );
 
