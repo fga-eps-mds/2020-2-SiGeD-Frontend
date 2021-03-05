@@ -9,11 +9,12 @@ const styles = {
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     borderRadius: '1.5vw',
     justifyContent: 'space-between',
-    height: '70%',
     width: '65%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     overflow: 'hidden',
+    marginTop: '15vh',
+    marginBottom: '10vh',
 
   },
 
@@ -24,7 +25,6 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     width: '30%',
-    height: '100%',
     overflow: 'hidden',
   },
 
@@ -34,11 +34,10 @@ const styles = {
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'wrap',
     justifyContent: 'center',
     height: '100vh',
     width: '100vw',
-    aligncontent: 'flex-end',
+    aligncontent: 'center',
   },
 
   row: {
@@ -54,10 +53,11 @@ const styles = {
   },
 
   peopleIcon: {
-    height: '23vw',
-    width: '23vw',
-    marginTop: '5vh',
+    height: '10vw',
+    width: '10vw',
+    marginTop: '20%',
     color: colors.secondary,
+    marginBottom: '8%',
   },
 
   sidebarDiv: {
@@ -69,7 +69,7 @@ const styles = {
   sidebarText: {
     color: colors.secondary,
     font: 'Open Sans',
-    fontSize: '2vw',
+    fontSize: '1.5vw',
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -80,8 +80,12 @@ const styles = {
     width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-
   },
+
+  divInputs: {
+    width: '100%',
+  },
+
 };
 
 export default styles;

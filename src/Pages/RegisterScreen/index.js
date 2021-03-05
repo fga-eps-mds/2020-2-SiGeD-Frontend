@@ -53,21 +53,24 @@ const RegisterScreen = () => {
 
         <div style={styles.row}>
 
-          <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
+          <div style={styles.divInputs}>
 
-          <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
+            <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
 
-          <RegisterInput type="text" title="Registro" setText={setInputRegister} value={inputRegister} />
+            <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
 
-          <RegisterInput type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
+            <RegisterInput type="text" title="Registro" setText={setInputRegister} value={inputRegister} />
 
-          <RegisterInput
-            type="password"
-            title="Confirmar senha"
-            setText={setInputConfirmPassword}
-            value={inputConfirmPassword}
-          />
+            <RegisterInput type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
 
+            <RegisterInput
+              type="password"
+              title="Confirmar senha"
+              setText={setInputConfirmPassword}
+              value={inputConfirmPassword}
+            />
+
+          </div>
           <div style={styles.divButtom}>
 
             <TinyButton type="secondary" title="Cancelar" click={cancel} />
