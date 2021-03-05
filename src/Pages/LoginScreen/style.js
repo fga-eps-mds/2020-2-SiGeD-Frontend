@@ -2,7 +2,7 @@ const styles = {
   background: {
     width: '100vw',
     height: '100vh',
-    backgroundColor: '#E9E9E9',
+    backgroundColor: '#BFBFBF',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -10,7 +10,7 @@ const styles = {
   },
 
   center: {
-    width: '30vw',
+    width: '55vh',
     height: '70vh',
     backgroundColor: 'white',
     display: 'flex',
@@ -20,6 +20,7 @@ const styles = {
     boxShadow: '0px 4px 4px rgba(0,0,0,0.25)',
     borderRadius: '8px',
     marginTop: '15vh',
+    marginBottom: '10vh',
 
   },
 

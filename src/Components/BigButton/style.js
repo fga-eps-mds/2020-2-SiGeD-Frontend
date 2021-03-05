@@ -14,13 +14,9 @@ const styles = {
     boxSizing: 'border-box',
     outline: '0',
     cursor: 'pointer',
-<<<<<<< HEAD
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-=======
-    marginBottom: '1vh',
->>>>>>> [53] adjusted icon and button position
   },
 
   secondary: {
