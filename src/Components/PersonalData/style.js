@@ -13,6 +13,7 @@ export const PersonalBox = styled.div`
     font-size: 0.8vw;
     overflow: hidden;
 
+<<<<<<< HEAD
     @media(max-width: 425px){
       width: 85%;
       height: 40%;
@@ -38,6 +39,29 @@ export const ImageUser = styled.div`
       width: 3vw;
       height: 10vh;
       margin-left: 0.5rem;
+=======
+    personalbox: {
+        width: '95%',
+        height: '10vh',
+        backgroundColor: colors.secondary,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: '1%',
+        borderRadius: '10px',
+        justifyContent: 'space-around',
+        fontSize: '0.8vw',
+        overflow: 'hidden',
+    
+    },
+
+    quadro :{
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        width: '20%',
+        height: 'min-content'
+>>>>>>> [51] Adjustment on PersonalData component format
 
     @media(max-width:425px){
       width: 50%;
