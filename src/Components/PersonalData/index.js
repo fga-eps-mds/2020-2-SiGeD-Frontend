@@ -55,7 +55,7 @@ const PersonalData = ({
 
             <div style={{width: '30%', flexDirection: 'row', height: '100%', jusitfyContent: 'center', display: 'flex', alignItems: 'center'}}>
                 <IoPersonCircleOutline size="3vw"/>
-                <p>{user.name}</p>
+                <p style={{marginLeft: '4%'}}>{user.name}</p>
             </div>
 
             <div style={{width: '15%', height: '100%', jusitfyContent: 'center', display: 'flex', alignItems: 'center'}}>
