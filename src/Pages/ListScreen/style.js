@@ -83,41 +83,10 @@ export const P = styled.div`
     font-size: 75%;
     padding: 0;
     left: 0;
-
-<<<<<<< HEAD
     @media(max-width: 656px){
       font-size: 1.6vh;
     }
 `;
-=======
-    title: {
-        font: 'Open Sans',
-        fontStyle: 'normal',
-        fontWeight: 'normal',
-        fontSize: '200%',
-        lineHeight: '3rem',
-        height: 'min-content',
-    },
-
-    contentBox: {
-        width: '90%',
-        height: '70%',
-        background: '#F7F7F7',
-        border: '1px solid #5E5E5E',
-        boxSizing: 'border-box',
-        borderRadius: '0.5rem',
-        margin: '0 auto',
-    },
-
-    search: {
-
-        display: 'flex',
-        flexDirection: 'row',
-        width: 'min-content',
-        alignItems: 'center',
-<<<<<<< HEAD
-    } 
->>>>>>> Add icon on input field and contentBox inside of container.
 
 export const Bar = styled.div`
     width: 0.25%;
@@ -178,16 +147,19 @@ export const Button = styled.div`
         padding: '0 5%',
     },
 
-    h1: {
-        fontWeight: '200',
+    barra: {
+        width: '0.25%',
+        height: '60%',
+        borderRadius: '5px',
+        backgroundColor: colors.secondary,
     },
 
     dataContainer: {
-
-        display: 'flex', 
+         
         flexDirection: 'column', 
         justifyContent: 'space-around',
         alignItems: 'center',
+<<<<<<< HEAD
         height: '90%',
         width: '100%'
 
@@ -195,6 +167,13 @@ export const Button = styled.div`
 <<<<<<< HEAD
 >>>>>>> [51] adjusts on user component and listing function.
 =======
+=======
+        height: '84%',
+        overflowX: 'hidden',
+        width: '96%',
+        overflow: 'scroll',
+        marginLeft: '4%',
+>>>>>>> [51] Finish list screen and add scroll in contentBox
     
 >>>>>>> [51] Adjustment on PersonalData component format
     }
