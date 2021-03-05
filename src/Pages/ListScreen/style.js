@@ -174,7 +174,8 @@ export const Button = styled.div`
     p: {
         color: colors.secondary,
         fontWeight: '700',
-        fontSize: '1rem',
+        fontSize: '75%',
+        padding: '0 5%',
     },
 
     h1: {
@@ -187,11 +188,14 @@ export const Button = styled.div`
         flexDirection: 'column', 
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: '60%',
+        height: '90%',
         width: '100%'
-        
 
     
+<<<<<<< HEAD
 >>>>>>> [51] adjusts on user component and listing function.
+=======
+    
+>>>>>>> [51] Adjustment on PersonalData component format
     }
 `;
