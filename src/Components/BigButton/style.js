@@ -3,9 +3,9 @@ import colors from '../../Constants/colors';
 const styles = {
   primary: {
     backgroundColor: colors.primary,
-    color: colors.secundary,
+    color: colors.secondary,
     fontWeight: 'bold',
-    width: '20vw',
+    width: '35vh',
     height: '5vh',
     borderRadius: 8,
     border: '1px solid white',
@@ -14,13 +14,16 @@ const styles = {
     boxSizing: 'border-box',
     outline: '0',
     cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   secondary: {
-    backgroundColor: colors.secundary,
+    backgroundColor: colors.secondary,
     color: colors.primary,
     fontWeight: 'bold',
-    width: '20vw',
+    width: '35vh',
     height: '5vh',
     borderRadius: 8,
     border: '1px solid white',
@@ -29,6 +32,9 @@ const styles = {
     boxSizing: 'border-box',
     outline: '0',
     cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 };
 
