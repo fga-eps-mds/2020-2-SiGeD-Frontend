@@ -86,7 +86,8 @@ const styles = {
     p: {
         color: colors.secondary,
         fontWeight: '700',
-        fontSize: '1rem',
+        fontSize: '75%',
+        padding: '0 5%',
     },
 
     h1: {
@@ -99,10 +100,10 @@ const styles = {
         flexDirection: 'column', 
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: '60%',
+        height: '90%',
         width: '100%'
-        
 
+    
     
     }
 
