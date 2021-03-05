@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './style';
+import { ErrorMessage } from '../ErrorMessage';
 
 const RegisterInput = ({
   type,
@@ -7,19 +8,21 @@ const RegisterInput = ({
   setText,
   value,
 }) => (
-  <div style={{ width: '100%', margin: '0', padding: '0' }}>
+  <div style={styles.container}>
     <p style={styles.text}>
       {title}
       :
     </p>
-    <input
-      type={type}
-      placeholder={title}
-      style={styles.generic}
-      onChange={(e) => setText(e.target.value)}
-      value={value}
-    />
-
+    <p style={styles.text}>
+      <input
+        type={type}
+        placeholder={title}
+        style={styles.generic}
+        onChange={(e) => setText(e.target.value)}
+        value={value}
+      />
+      <ErrorMessage input={value} title={title} />
+    </p>
   </div>
 );
 
