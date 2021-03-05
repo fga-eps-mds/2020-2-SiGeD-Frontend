@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
+import axios from 'axios';
 import TinyButton from '../../Components/TinyButton';
 import styles from './style';
 import RegisterInput from '../../Components/RegisterInput';
+import ValidateSignUp from '../../Components/Validations';
+import { PassMatches } from '../../Components/ErrorMessage';
 
 const RegisterScreen = () => {
   const [cardName, setCardName] = useState('');
@@ -13,9 +16,33 @@ const RegisterScreen = () => {
   const [inputRegister, setInputRegister] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [inputConfirmPassword, setInputConfirmPassword] = useState('');
+  const [valid, setValid] = useState('');
+
+  async function postUser() {
+    try {
+      await axios.post('http://localhost:3001/signUp', {
+        name: inputName,
+        email: inputEmail,
+        enroll: inputRegister,
+        pass: inputPassword,
+      })
+        .then((response) => {
+          setValid(response);
+          console.log(response, valid);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const submit = () => {
-    console.log(inputName, inputEmail, inputRegister, inputPassword, inputConfirmPassword);
+    if (ValidateSignUp(inputEmail, inputName, inputPassword, inputConfirmPassword)) {
+      postUser();
+    } else {
+      alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
+    }
   };
+
   const cancel = () => {
     setInputEmail('');
     setInputRegister('');
@@ -53,24 +80,22 @@ const RegisterScreen = () => {
 
         <div style={styles.row}>
 
-          <div style={styles.divInputs}>
+          <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
 
-            <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
+          <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
 
-            <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
+          <RegisterInput type="text" title="Registro" setText={setInputRegister} value={inputRegister} />
 
-            <RegisterInput type="text" title="Registro" setText={setInputRegister} value={inputRegister} />
+          <RegisterInput type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
 
-            <RegisterInput type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
+          <RegisterInput
+            type="password"
+            title="Confirmar senha"
+            setText={setInputConfirmPassword}
+            value={inputConfirmPassword}
+          />
+          <PassMatches pass={inputPassword} confPass={inputConfirmPassword} />
 
-            <RegisterInput
-              type="password"
-              title="Confirmar senha"
-              setText={setInputConfirmPassword}
-              value={inputConfirmPassword}
-            />
-
-          </div>
           <div style={styles.divButtom}>
 
             <TinyButton type="secondary" title="Cancelar" click={cancel} />
