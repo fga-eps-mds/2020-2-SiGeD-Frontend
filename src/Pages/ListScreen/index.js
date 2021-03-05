@@ -22,6 +22,7 @@ const ListScreen = () => {
         return user.name.toLowerCase().includes(word?.toLowerCase());
       })
     );
+    //eslint-disable-next-line
   }, [word]);
 
   useEffect(() => {
@@ -46,25 +47,25 @@ const ListScreen = () => {
 
         <div style={styles.contentBox}>
           <div style={styles.header2}>
-            <div style={{width: '29%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+            <div style={{...styles.title2, width: '29%'}}>
               <p style={styles.p}>Nome</p>
             </div>
               <div style={styles.barra}></div>
-            <div style={{width: '13%', flexDirection: 'row', height: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{...styles.title2, width: '13%'}}>
               <p style={styles.p}>CPF</p>
             </div>
               <div style={styles.barra}></div>
 
-            <div style={{width: '22%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+            <div style={{...styles.title2, width: '22%'}}>
               <p style={styles.p}>Telefone</p>
             </div>
                 <div style={styles.barra}></div>
 
-            <div style={{width: '15%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+            <div style={{...styles.title2, width: '15%'}}>
               <p style={styles.p}>Locação</p>
             </div>
                 <div style = {styles.barra}></div>
-            <div style={{width: '20%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+            <div style={{...styles.title2, width: '20%'}}>
               <p style={styles.p}>Ult. Atualização</p>
             </div>
           </div>

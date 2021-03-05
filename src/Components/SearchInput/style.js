@@ -1,5 +1,3 @@
-import { FaSistrix } from "react-icons/fa";
-
 const styles = {
 
     search: {
@@ -33,8 +31,6 @@ const styles = {
         padding: '2% 2% 2% 0',
         marginTop:'30px',
         display: 'flex',
-        border: '2px solid #000000',
-        borderRadius: '1.5vw',
         fontSize:'2vh',
         textIndent: '10px',
         width: '20vw',

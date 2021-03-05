@@ -1,4 +1,3 @@
-import { FaFileExcel } from 'react-icons/fa';
 import colors from '../../Constants/colors';
 
 const styles = {
@@ -108,7 +107,16 @@ const styles = {
         overflow: 'scroll',
         marginLeft: '4%',
     
-    }
+    },
+
+    title2 :{
+
+        flexDirection: 'row', 
+        height: '100%', 
+        justifyContent: 'center', 
+        display: 'flex', 
+        alignItems: 'center'
+    },
 
 }
 
