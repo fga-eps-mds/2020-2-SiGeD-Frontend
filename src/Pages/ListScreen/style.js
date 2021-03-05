@@ -90,20 +90,23 @@ const styles = {
         padding: '0 5%',
     },
 
-    h1: {
-        fontWeight: '200',
+    barra: {
+        width: '0.25%',
+        height: '60%',
+        borderRadius: '5px',
+        backgroundColor: colors.secondary,
     },
 
     dataContainer: {
-
-        display: 'flex', 
+         
         flexDirection: 'column', 
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: '90%',
-        width: '100%'
-
-    
+        height: '84%',
+        overflowX: 'hidden',
+        width: '96%',
+        overflow: 'scroll',
+        marginLeft: '4%',
     
     }
 

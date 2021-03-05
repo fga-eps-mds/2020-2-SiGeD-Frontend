@@ -46,25 +46,25 @@ const ListScreen = () => {
 
         <div style={styles.contentBox}>
           <div style={styles.header2}>
-            <div style={{width: '25%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+            <div style={{width: '29%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
               <p style={styles.p}>Nome</p>
             </div>
-              <h1 style={styles.h1}>|</h1>
-            <div style={{width: '10%', flexDirection: 'row', height: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <div style={styles.barra}></div>
+            <div style={{width: '13%', flexDirection: 'row', height: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
               <p style={styles.p}>CPF</p>
             </div>
-              <h1 style={styles.h1}>|</h1>
+              <div style={styles.barra}></div>
 
-            <div style={{width: '20%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+            <div style={{width: '22%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
               <p style={styles.p}>Telefone</p>
             </div>
-              <h1 style={styles.h1}>|</h1>
+                <div style={styles.barra}></div>
 
             <div style={{width: '15%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
               <p style={styles.p}>Locação</p>
             </div>
-              <h1 style={styles.h1}>|</h1>
-            <div style={{width: '15%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+                <div style = {styles.barra}></div>
+            <div style={{width: '20%', flexDirection: 'row', height: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
               <p style={styles.p}>Ult. Atualização</p>
             </div>
           </div>
