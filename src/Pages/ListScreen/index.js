@@ -28,6 +28,7 @@ const ListScreen = () => {
     setFilterUsers(
       users.filter((user) => user.name.toLowerCase().includes(word?.toLowerCase())),
     );
+    //eslint-disable-next-line
   }, [word]);
 
   useEffect(() => {

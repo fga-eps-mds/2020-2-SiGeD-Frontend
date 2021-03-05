@@ -84,7 +84,7 @@ export const P = styled.div`
     padding: 0;
     left: 0;
     @media(max-width: 656px){
-      font-size: 1.6vh;
+    font-size: 1.6vh;
     }
 `;
 
@@ -122,59 +122,4 @@ export const Button = styled.div`
     @media(max-width: 435px){
         top: -8%;
         margin-top: -30%;
-=======
-        position: 'relative',
-        marginRight: '0',
-    },
-
-    header2: {
-
-        backgroundColor: colors.primary,
-        color: colors.secondary,
-        height: '20%',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center'
-
-    },
-    
-    p: {
-        color: colors.secondary,
-        fontWeight: '700',
-        fontSize: '75%',
-        padding: '0 5%',
-    },
-
-    barra: {
-        width: '0.25%',
-        height: '60%',
-        borderRadius: '5px',
-        backgroundColor: colors.secondary,
-    },
-
-    dataContainer: {
-         
-        flexDirection: 'column', 
-        justifyContent: 'space-around',
-        alignItems: 'center',
-<<<<<<< HEAD
-        height: '90%',
-        width: '100%'
-
-    
-<<<<<<< HEAD
->>>>>>> [51] adjusts on user component and listing function.
-=======
-=======
-        height: '84%',
-        overflowX: 'hidden',
-        width: '96%',
-        overflow: 'scroll',
-        marginLeft: '4%',
->>>>>>> [51] Finish list screen and add scroll in contentBox
-    
->>>>>>> [51] Adjustment on PersonalData component format
-    }
 `;

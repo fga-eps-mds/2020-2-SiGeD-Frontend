@@ -1,5 +1,3 @@
-import { FaSistrix } from "react-icons/fa";
-
 const styles = {
 
   search: {
@@ -29,6 +27,7 @@ const styles = {
 
   },
 
+<<<<<<< HEAD
   generic: {
     padding: '2% 2% 2% 0',
     marginTop: '30px',
@@ -46,5 +45,24 @@ const styles = {
     overflow: 'hidden',
   },
 };
+=======
+    generic: {
+        padding: '2% 2% 2% 0',
+        marginTop:'30px',
+        display: 'flex',
+        fontSize:'2vh',
+        textIndent: '10px',
+        width: '20vw',
+        height: '5vh',
+        cursor: 'pointer',
+        outline: '0',
+        backgroundColor: '#F6F6F6',
+        border: '1px solid #5E5E5E',
+        boxSizing: 'border-box',
+        borderRadius: '10px',
+        overflow: 'hidden'
+    }
+}
+>>>>>>> [51] Fix styles line in ListScreen index
 
 export default styles;
