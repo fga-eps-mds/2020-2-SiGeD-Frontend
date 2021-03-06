@@ -28,6 +28,9 @@ const styles = {
   },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [51] finish adjustment for eslint and pull request
   generic: {
     padding: '2% 2% 2% 0',
     marginTop: '30px',
@@ -35,7 +38,11 @@ const styles = {
     fontSize: '2vh',
     textIndent: '10px',
     width: '20vw',
+<<<<<<< HEAD
     height: '6vh',
+=======
+    height: '5vh',
+>>>>>>> [51] finish adjustment for eslint and pull request
     cursor: 'pointer',
     outline: '0',
     backgroundColor: '#F6F6F6',
@@ -45,6 +52,7 @@ const styles = {
     overflow: 'hidden',
   },
 };
+<<<<<<< HEAD
 =======
     generic: {
         padding: '2% 2% 2% 0',
@@ -64,5 +72,7 @@ const styles = {
     }
 }
 >>>>>>> [51] Fix styles line in ListScreen index
+=======
+>>>>>>> [51] finish adjustment for eslint and pull request
 
 export default styles;
