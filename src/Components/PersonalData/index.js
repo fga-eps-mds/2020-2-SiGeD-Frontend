@@ -9,32 +9,32 @@ const PersonalData = ({
 }) => (
   <div style={styles.personalbox}>
 
-    <div style={{ ...styles.title2, width: '30%' }}>
+    <div style={{ ...styles.tableContent, width: '30%' }}>
       <IoPersonCircleOutline size="3vw" />
       <p style={{ marginLeft: '4%' }}>{user.name}</p>
     </div>
 
-    <div style={{ ...styles.title2, width: '15%' }}>
+    <div style={{ ...styles.tableContent, width: '15%' }}>
 
       <p>098765432</p>
     </div>
 
-    <div style={{ ...styles.title2, width: '25%' }}>
+    <div style={{ ...styles.tableContent, width: '25%' }}>
 
       <p>{user.email}</p>
     </div>
 
-    <div style={{ ...styles.title2, width: '15%' }}>
+    <div style={{ ...styles.tableContent, width: '15%' }}>
 
       <p>{user.enroll}</p>
     </div>
 
-    <div style={{ ...styles.title2, width: '5%' }}>
+    <div style={{ ...styles.tableContent, width: '5%' }}>
 
       <p>24/02</p>
     </div>
 
-    <div style={{ ...styles.title2, width: '5%' }}>
+    <div style={{ ...styles.tableContent, width: '5%' }}>
 
       <BsThreeDots size="1.5vw" />
     </div>

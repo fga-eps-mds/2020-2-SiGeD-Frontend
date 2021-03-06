@@ -17,16 +17,7 @@ const styles = {
 
   },
 
-  quadro: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    width: '20%',
-    height: 'min-content',
-
-  },
-
-  title2: {
+  tableContent: {
 
     height: '100%',
     jusitfyContent: 'center',

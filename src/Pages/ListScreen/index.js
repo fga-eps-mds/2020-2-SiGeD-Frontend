@@ -54,26 +54,26 @@ const ListScreen = () => {
         </div>
 
         <div style={styles.contentBox}>
-          <div style={styles.header2}>
-            <div style={{ ...styles.title2, width: '29%' }}>
+          <div style={styles.tableHeader}>
+            <div style={{ ...styles.tableTitle, width: '29%' }}>
               <p style={styles.p}>Nome</p>
             </div>
-            <div style={styles.barra} />
-            <div style={{ ...styles.title2, width: '13%' }}>
+            <div style={styles.bar} />
+            <div style={{ ...styles.tableTitle, width: '13%' }}>
               <p style={styles.p}>CPF</p>
             </div>
-            <div style={styles.barra} />
+            <div style={styles.bar} />
 
-            <div style={{ ...styles.title2, width: '22%' }}>
+            <div style={{ ...styles.tableTitle, width: '22%' }}>
               <p style={styles.p}>Telefone</p>
             </div>
-            <div style={styles.barra} />
+            <div style={styles.bar} />
 
-            <div style={{ ...styles.title2, width: '15%' }}>
+            <div style={{ ...styles.tableTitle, width: '15%' }}>
               <p style={styles.p}>Locação</p>
             </div>
-            <div style={styles.barra} />
-            <div style={{ ...styles.title2, width: '20%' }}>
+            <div style={styles.bar} />
+            <div style={{ ...styles.tableTitle, width: '20%' }}>
               <p style={styles.p}>Ult. Atualização</p>
             </div>
           </div>

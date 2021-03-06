@@ -69,7 +69,7 @@ const styles = {
     marginRight: '0',
   },
 
-  header2: {
+  tableHeader: {
 
     backgroundColor: colors.primary,
     color: colors.secondary,
@@ -89,7 +89,7 @@ const styles = {
     padding: '0 5%',
   },
 
-  barra: {
+  bar: {
     width: '0.25%',
     height: '60%',
     borderRadius: '5px',
@@ -109,7 +109,7 @@ const styles = {
 
   },
 
-  title2: {
+  tableTitle: {
 
     flexDirection: 'row',
     height: '100%',
