@@ -1,51 +1,45 @@
 import React from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
+import { BsThreeDots } from 'react-icons/bs';
 import styles from './style';
-import {BsThreeDots} from "react-icons/bs";
-
 
 const PersonalData = ({
-    user
+  user,
 
-}) => {
-    return(
-        <div style={styles.personalbox}>
+}) => (
+  <div style={styles.personalbox}>
 
-            <div style={{width: '30%', flexDirection: 'row', height: '100%', jusitfyContent: 'center', display: 'flex', alignItems: 'center'}}>
-                <IoPersonCircleOutline size="3vw"/>
-                <p style={{marginLeft: '4%'}}>{user.name}</p>
-            </div>
+    <div style={{ ...styles.title2, width: '30%' }}>
+      <IoPersonCircleOutline size="3vw" />
+      <p style={{ marginLeft: '4%' }}>{user.name}</p>
+    </div>
 
-            <div style={{width: '15%', height: '100%', jusitfyContent: 'center', display: 'flex', alignItems: 'center'}}>
+    <div style={{ ...styles.title2, width: '15%' }}>
 
-                <p>098765432</p>
-            </div>
+      <p>098765432</p>
+    </div>
 
-            <div style={{width: '25%', height: '100%', jusitfyContent: 'center', display: 'flex', alignItems: 'center'}}>
+    <div style={{ ...styles.title2, width: '25%' }}>
 
-                <p>{user.email}</p>
-            </div>
+      <p>{user.email}</p>
+    </div>
 
-            <div style={{width: '15%', height: '100%', jusitfyContent: 'center', display: 'flex', alignItems: 'center'}}>
+    <div style={{ ...styles.title2, width: '15%' }}>
 
-                <p>{user.enroll}</p>
-            </div>
+      <p>{user.enroll}</p>
+    </div>
 
-            <div style={{width: '5%', height: '100%', jusitfyContent: 'center', display: 'flex', alignItems: 'center'}}>
+    <div style={{ ...styles.title2, width: '5%' }}>
 
-                <p>24/02</p>
-            </div>
+      <p>24/02</p>
+    </div>
 
-            <div style={{width: '5%', height: '100%', jusitfyContent: 'center', display: 'flex', alignItems: 'center'}}>
+    <div style={{ ...styles.title2, width: '5%' }}>
 
-                <BsThreeDots size = '1.5vw'/>
-            </div>
+      <BsThreeDots size="1.5vw" />
+    </div>
 
-            
-
-        
-        </div>
-    )
-}
+  </div>
+);
 
 export default PersonalData;
