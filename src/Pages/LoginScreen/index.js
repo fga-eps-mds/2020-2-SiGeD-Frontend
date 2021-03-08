@@ -12,10 +12,6 @@ const LoginScreen = () => {
     console.log('Entrei', userReceived, passwordReceived);
   }
 
-  function register() {
-    console.log('Cadastrei');
-  }
-
   return (
     <div style={styles.background}>
       <div style={styles.center}>
@@ -38,7 +34,6 @@ const LoginScreen = () => {
         />
 
         <BigButton title="Entrar" type="primary" changeButton={login} />
-        <BigButton title="Cadastre-se" type="secondary" changeButton={register} />
       </div>
     </div>
   );
