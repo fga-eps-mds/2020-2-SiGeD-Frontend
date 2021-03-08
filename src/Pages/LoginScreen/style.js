@@ -11,7 +11,7 @@ const styles = {
 
   center: {
     width: '55vh',
-    height: '70vh',
+    height: '55vh',
     backgroundColor: 'white',
     display: 'flex',
     justifyContent: 'center',
@@ -33,6 +33,7 @@ const styles = {
     fontWeight: 200,
     letterSpacing: 0,
     marginBottom: '5vh',
+    marginTop: '5vh',
   },
 };
 
