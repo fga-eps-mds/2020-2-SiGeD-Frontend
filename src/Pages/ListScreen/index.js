@@ -4,6 +4,11 @@ import axios from 'axios';
 import styles from './style';
 import SearchInput from '../../Components/SearchInput';
 import PersonalData from '../../Components/PersonalData';
+import TinyButton from '../../Components/TinyButton';
+
+const novoUsuario = () => {
+  console.log('Novo Usuário');
+};
 
 const ListScreen = () => {
   const [word, setWord] = useState();
@@ -12,7 +17,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/signUpGet')
+      .get('http://localhost:3001/signUpGet', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNDBlMDAwMDBkNGMwMDAzZmQzMmJjYSIsImlhdCI6MTYxNTI1MzU4MywiZXhwIjoxNjE1MjUzODIzfQ.jeOGka-SCqxm9kKA5V_3m1dFvFGQdDUKwa493Uaq9oI' } })
       .then((response) => setUsers(response.data));
   }, []);
 
@@ -39,7 +44,7 @@ const ListScreen = () => {
 
   return (
     <div style={styles.main}>
-      <div style={styles.container}>
+      <div>
         <div style={styles.header}>
           <h2 style={styles.title}>Usuários</h2>
 
@@ -51,29 +56,30 @@ const ListScreen = () => {
               setWord={(value) => setWord(value)}
             />
           </div>
+          <TinyButton type="primary" title="Novo cliente" click={novoUsuario} />
         </div>
 
         <div style={styles.contentBox}>
           <div style={styles.tableHeader}>
-            <div style={{ ...styles.tableTitle, width: '29%' }}>
+            <div style={{ ...styles.tableTitle, width: '35%' }}>
               <p style={styles.p}>Nome</p>
             </div>
             <div style={styles.bar} />
-            <div style={{ ...styles.tableTitle, width: '13%' }}>
-              <p style={styles.p}>CPF</p>
+            <div style={{ ...styles.tableTitle, width: '25%' }}>
+              <p style={styles.p}>Email</p>
             </div>
             <div style={styles.bar} />
 
-            <div style={{ ...styles.tableTitle, width: '22%' }}>
-              <p style={styles.p}>Telefone</p>
-            </div>
-            <div style={styles.bar} />
-
-            <div style={{ ...styles.tableTitle, width: '15%' }}>
-              <p style={styles.p}>Locação</p>
-            </div>
-            <div style={styles.bar} />
             <div style={{ ...styles.tableTitle, width: '20%' }}>
+              <p style={styles.p}>Cargo</p>
+            </div>
+            <div style={styles.bar} />
+
+            <div style={{ ...styles.tableTitle, width: '20%' }}>
+              <p style={styles.p}>Setor</p>
+            </div>
+            <div style={styles.bar} />
+            <div style={{ ...styles.tableTitle, width: '25%' }}>
               <p style={styles.p}>Ult. Atualização</p>
             </div>
           </div>

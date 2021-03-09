@@ -28,7 +28,7 @@ const styles = {
     height: '8vh',
     fontSize: '5vh',
     textAlign: 'center',
-    fontFamily: 'Helvetica',
+    fontFamily: 'Open Sans',
     fontStyle: 'normal',
     fontWeight: 200,
     letterSpacing: 0,
