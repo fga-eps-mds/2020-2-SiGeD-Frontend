@@ -12,13 +12,13 @@ const ListCategories = () => {
 
   useEffect(async () => {
     await axios
-      .get('http://localhost:3003/categories')
+      .get('http://localhost:3003/category')
       .then((response) => setCategories(response.data));
   }, []);
 
   useEffect(() => {
     setFilterCategories(
-      categories.filter((categorie) => categorie.name.toLowerCase().includes(word?.toLowerCase())),
+      categories.filter((category) => category.name.toLowerCase().includes(word?.toLowerCase())),
     );
   }, [word]);
 
@@ -27,15 +27,14 @@ const ListCategories = () => {
   }, [categories]);
 
   const listCategories = () => {
-    console.log(filterCategories);
     if (categories.length === 0) {
       return <h1>Carregando...</h1>;
     }
     if (filterCategories.length === 0) {
       return <h1>Sem resultados...</h1>;
     }
-    return filterCategories.map((categorie) => (
-      <CategoriesData categorie={categorie} key={categorie.name} />
+    return filterCategories.map((category) => (
+      <CategoriesData category={category} />
     ));
   };
 
@@ -57,7 +56,7 @@ const ListCategories = () => {
 
         <div style={styles.contentBox}>
           <div style={styles.tableHeader}>
-            <div style={{ ...styles.tableTitle, width: '24%' }}>
+            <div style={{ ...styles.tableTitle, width: '25%' }}>
               <p style={styles.p}>Nome</p>
             </div>
             <div style={styles.bar} />
@@ -65,12 +64,12 @@ const ListCategories = () => {
               <p style={styles.p}>Descrição</p>
             </div>
             <div style={styles.bar} />
-            <div style={{ ...styles.tableTitle, width: '24%' }}>
+            <div style={{ ...styles.tableTitle, width: '25%' }}>
               <p style={styles.p}>Ult. Atualização</p>
             </div>
           </div>
 
-          <div style={styles.dataContainer}>
+          <div>
             {listCategories()}
           </div>
         </div>
