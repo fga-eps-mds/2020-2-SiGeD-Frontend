@@ -39,10 +39,14 @@ const styles = {
     textIndent: '10px',
     width: '20vw',
 <<<<<<< HEAD
+<<<<<<< HEAD
     height: '6vh',
 =======
     height: '5vh',
 >>>>>>> [51] finish adjustment for eslint and pull request
+=======
+    height: '6vh',
+>>>>>>> Fix the list screen and login screen and some components
     cursor: 'pointer',
     outline: '0',
     backgroundColor: '#F6F6F6',
