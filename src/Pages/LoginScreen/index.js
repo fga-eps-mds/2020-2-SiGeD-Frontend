@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import BigButton from '../../Components/BigButton';
 import LoginInput from '../../Components/LoginInput';
-import styles from './style';
+import { styles, Background, Center } from './style';
 
 const LoginScreen = () => {
   const [userReceived, setUserReceived] = useState();
@@ -13,8 +13,8 @@ const LoginScreen = () => {
   }
 
   return (
-    <div style={styles.background}>
-      <div style={styles.center}>
+    <Background>
+      <Center>
         <h1 style={styles.access}>Entrar</h1>
 
         <LoginInput
@@ -34,8 +34,8 @@ const LoginScreen = () => {
         />
 
         <BigButton title="Entrar" type="primary" changeButton={login} />
-      </div>
-    </div>
+      </Center>
+    </Background>
   );
 };
 

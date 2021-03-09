@@ -5,22 +5,25 @@ import logo from '../../Assets/logopcgo.png';
 import styles from './style';
 
 const NavbarComp = () => (
-  <Navbar fixed="top" style={styles.navbar}>
+  <Navbar expand="lg" variant="dark" clickfixed="top" style={styles.navbar}>
     <Navbar.Brand><img style={styles.navbarLogo} src={logo} alt="Polícia Civil de Goiás" /></Navbar.Brand>
-    <Nav className="ml-auto">
-      <Nav.Link as={Link} to="/" style={styles.navbarText}>
-        Login
-      </Nav.Link>
-      <Nav.Link as={Link} to="/cadastro" style={styles.navbarText}>
-        Cadastro
-      </Nav.Link>
-      <Nav.Link as={Link} to="/usuarios" style={styles.navbarText}>
-        Usuários
-      </Nav.Link>
-      <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="ml-auto">
+        <Nav.Link as={Link} to="/" style={styles.navbarText}>
+          Login
+        </Nav.Link>
+        <Nav.Link as={Link} to="/cadastro" style={styles.navbarText}>
+          Cadastro
+        </Nav.Link>
+        <Nav.Link as={Link} to="/usuarios" style={styles.navbarText}>
+          Usuários
+        </Nav.Link>
+        <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
         Novo cliente
       </Nav.Link>
-    </Nav>
+      </Nav>
+    </Navbar.Collapse>
   </Navbar>
 );
 
