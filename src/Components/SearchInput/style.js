@@ -34,7 +34,7 @@ const styles = {
     fontSize: '2vh',
     textIndent: '10px',
     width: '20vw',
-    height: '5vh',
+    height: '6vh',
     cursor: 'pointer',
     outline: '0',
     backgroundColor: '#F6F6F6',

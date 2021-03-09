@@ -10,19 +10,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-
-  },
-
-  container: {
-
-    marginTop: '15vh',
-    backgroundColor: 'white',
-    width: '65vw',
-    height: '70vh',
-    boxShadow: '0vw 0.2vw 0.2vw rgba(0, 0, 0, 0.25)',
-    borderRadius: '0.5vw',
-    display: 'flex',
-    flexDirection: 'column',
+    overflowY: 'scroll',
 
   },
 
@@ -46,17 +34,18 @@ const styles = {
     height: 'min-content',
     position: 'relative',
     left: '3rem',
+    marginBottom: '5rem',
   },
 
   contentBox: {
     width: '90%',
-    height: '70%',
-    background: '#F7F7F7',
-    border: '1px solid #5E5E5E',
+    height: '60vh',
+    background: '#BFBFBF',
+    border: '1px solid #BFBFBF',
     boxSizing: 'border-box',
     borderRadius: '0.5rem',
     margin: '0 auto',
-    overflow: 'hidden',
+    marginLeft: '3rem',
   },
 
   search: {
@@ -65,20 +54,21 @@ const styles = {
     flexDirection: 'row',
     width: 'min-content',
     alignItems: 'center',
-    position: 'relative',
-    marginRight: '0',
+    marginLeft: '-25rem',
+    marginTop: '2rem',
   },
 
   tableHeader: {
 
     backgroundColor: colors.primary,
     color: colors.secondary,
-    height: '20%',
+    height: '15%',
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    borderRadius: '10px 10px 0px 0px',
 
   },
 
@@ -86,7 +76,7 @@ const styles = {
     color: colors.secondary,
     fontWeight: '700',
     fontSize: '75%',
-    padding: '0 5%',
+    padding: '0 10%',
   },
 
   bar: {
@@ -102,10 +92,7 @@ const styles = {
     justifyContent: 'space-around',
     alignItems: 'center',
     height: '84%',
-    overflowX: 'hidden',
-    width: '96%',
-    overflow: 'scroll',
-    marginLeft: '4%',
+    width: '105%',
 
   },
 
@@ -117,7 +104,6 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
   },
-
 };
 
 export default styles;
