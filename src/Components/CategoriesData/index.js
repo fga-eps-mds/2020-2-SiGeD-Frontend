@@ -1,34 +1,22 @@
 import React from 'react';
-import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots } from 'react-icons/bs';
 import styles from './style';
 
-const CategoriesData = ({
-  categorie,
-
-}) => (
+const CategoriesData = ({ category }) => (
   <div style={styles.personalbox}>
 
-    <div style={{ ...styles.tableContent, width: '24%' }}>
-      <IoPersonCircleOutline size="3vw" />
-      <p style={{ marginLeft: '4%' }}>{categorie.name}</p>
+    <div style={{ ...styles.tableContent, width: '25%' }}>
+      <p style={{ ...styles.name, backgroundColor: category.color }}>{category.name}</p>
     </div>
 
     <div style={{ ...styles.tableContent, width: '50%' }}>
-
-      <p>Descrição...</p>
+      <p style={styles.p}>{ category.description }</p>
     </div>
 
-    <div style={{ ...styles.tableContent, width: '20%' }}>
-
-      <p>08/03</p>
+    <div style={{ ...styles.tableContent, width: '25%' }}>
+      <p style={styles.p}>{ category.updatedAt.slice(0, 10).replaceAll('-', '/') }</p>
+      <BsThreeDots style={styles.options} />
     </div>
-
-    <div style={{ ...styles.tableContent, width: '5%' }}>
-
-      <BsThreeDots size="1.5vw" />
-    </div>
-
   </div>
 );
 

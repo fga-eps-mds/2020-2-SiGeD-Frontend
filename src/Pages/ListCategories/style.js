@@ -1,123 +1,89 @@
 import colors from '../../Constants/colors';
 
 const styles = {
-
   main: {
-
     backgroundColor: '#BFBFBF',
     width: '100vw',
     height: '100vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-
   },
 
   container: {
-
-    marginTop: '15vh',
-    backgroundColor: 'white',
-    width: '65vw',
+    marginTop: '10vh',
+    width: '80vw',
     height: '70vh',
-    boxShadow: '0vw 0.2vw 0.2vw rgba(0, 0, 0, 0.25)',
-    borderRadius: '0.5vw',
     display: 'flex',
     flexDirection: 'column',
-
   },
 
   header: {
-
-    width: '65vw',
+    width: '80vw',
     height: 'min-content',
-    display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-
   },
 
   title: {
     font: 'Open Sans',
-    fontStyle: 'normal',
     fontWeight: '400',
-    fontSize: '5vh',
-    lineHeight: '3rem',
-    height: 'min-content',
-    position: 'relative',
-    left: '3rem',
+    fontSize: '3vh',
   },
 
+  // Toda a caixa
   contentBox: {
-    width: '90%',
-    height: '70%',
-    background: '#F7F7F7',
-    border: '1px solid #5E5E5E',
+    width: '100%',
+    height: '45%',
     boxSizing: 'border-box',
     borderRadius: '0.5rem',
     margin: '0 auto',
     overflow: 'hidden',
   },
 
+  // Campo de busca
   search: {
-
-    display: 'flex',
-    flexDirection: 'row',
     width: 'min-content',
     alignItems: 'center',
-    position: 'relative',
-    marginRight: '0',
+    margin: '1vw 0',
   },
 
+  // Caixa preta (nome, descrição e ultima atualização), toda ela
   tableHeader: {
-
     backgroundColor: colors.primary,
     color: colors.secondary,
-    height: '20%',
-    width: '100%',
+    height: '4.8vh',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-
   },
 
+  // Texto que esta contido na caixa preta
   p: {
     color: colors.secondary,
-    fontWeight: '700',
-    fontSize: '75%',
+    fontSize: '1.1vh',
+    textAlign: 'center',
     padding: '0 5%',
+    marginTop: '12px',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
+  // Barra que separa os titulos da caixa preta
   bar: {
-    width: '0.25%',
-    height: '60%',
-    borderRadius: '5px',
+    width: '0.05%',
+    height: '35%',
+    borderRadius: '3px',
+    marginTop: '1.5vh',
     backgroundColor: colors.secondary,
   },
 
-  dataContainer: {
-
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    height: '84%',
-    overflowX: 'hidden',
-    width: '96%',
-    overflow: 'scroll',
-    marginLeft: '4%',
-
-  },
-
+  // Cada item da caixa preta
   tableTitle: {
-
-    flexDirection: 'row',
-    height: '100%',
-    justifyContent: 'center',
     display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
   },
-
 };
 
 export default styles;
