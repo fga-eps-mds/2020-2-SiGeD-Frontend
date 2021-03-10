@@ -45,6 +45,7 @@ const styles = {
     width: 'min-content',
     alignItems: 'center',
     margin: '1vw 0',
+    clear: 'both',
   },
 
   // Caixa preta (nome, descrição e ultima atualização), toda ela
