@@ -34,7 +34,7 @@ const ListScreen = () => {
     if (filterUsers.length === 0) {
       return <h1>Sem resultados...</h1>;
     }
-    return filterUsers.map((user) => <PersonalData user={user} key={user.email} />);
+    return filterUsers.map((user) => <PersonalData user={user} key={user._id} />);
   };
 
   return (
