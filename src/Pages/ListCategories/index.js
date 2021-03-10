@@ -4,6 +4,11 @@ import axios from 'axios';
 import styles from './style';
 import SearchInput from '../../Components/SearchInput';
 import CategoriesData from '../../Components/CategoriesData';
+import SearchButton from '../../Components/SearchButton';
+
+const newCategory = () => {
+  console.log('work in progress...');
+};
 
 const ListCategories = () => {
   const [word, setWord] = useState();
@@ -33,6 +38,7 @@ const ListCategories = () => {
     if (filterCategories.length === 0) {
       return <h1>Sem resultados...</h1>;
     }
+
     return filterCategories.map((category) => (
       <CategoriesData category={category} />
     ));
@@ -43,15 +49,20 @@ const ListCategories = () => {
       <div style={styles.container}>
         <div style={styles.header}>
           <h2 style={styles.title}>Categorias</h2>
-
-          <div style={styles.search}>
-            <SearchInput
-              type="text"
-              icon={<FaSistrix />}
-              value={word}
-              setWord={(value) => setWord(value)}
-            />
+          <div style={styles.buttonSearchContainer}>
+            <div style={styles.search}>
+              <SearchInput
+                type="text"
+                icon={<FaSistrix />}
+                value={word}
+                setWord={(value) => setWord(value)}
+              />
+            </div>
+            <div style={styles.divButtom}>
+              <SearchButton title="Nova categoria" click={newCategory} />
+            </div>
           </div>
+
         </div>
 
         <div style={styles.contentBox}>
@@ -64,7 +75,7 @@ const ListCategories = () => {
               <p style={styles.p}>Descrição</p>
             </div>
             <div style={styles.bar} />
-            <div style={{ ...styles.tableTitle, width: '25%' }}>
+            <div style={{ ...styles.tableTitle, width: '20%' }}>
               <p style={styles.p}>Ult. Atualização</p>
             </div>
           </div>

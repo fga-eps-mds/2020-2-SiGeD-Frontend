@@ -84,6 +84,24 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  divButtom: {
+    float: 'right',
+    display: 'flex',
+    height: '18%',
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    fontWeight: 'bolder',
+    fontSize: '8px',
+    padding: '10px 15px',
+    borderRadius: '10px',
+  },
+
+  buttonSearchContainer: {
+    display: 'flex',
+    width: '100%%',
+  },
 };
 
 export default styles;

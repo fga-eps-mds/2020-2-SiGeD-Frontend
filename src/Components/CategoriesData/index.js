@@ -13,9 +13,12 @@ const CategoriesData = ({ category }) => (
       <p style={styles.p}>{ category.description }</p>
     </div>
 
-    <div style={{ ...styles.tableContent, width: '25%' }}>
+    <div style={{ ...styles.tableContent, width: '20%' }}>
       <p style={styles.p}>{ category.updatedAt.slice(0, 10).replaceAll('-', '/') }</p>
-      <BsThreeDots style={styles.options} />
+    </div>
+
+    <div style={{ ...styles.tableContent, width: '5%' }}>
+      <BsThreeDots />
     </div>
   </div>
 );
