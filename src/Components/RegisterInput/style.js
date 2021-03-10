@@ -1,3 +1,5 @@
+// import { Component } from "react";
+
 const styles = {
   container: {
     marginTop: '10px',
@@ -15,6 +17,8 @@ const styles = {
     height: '30%',
     marginLeft: '0%',
     marginBottom: '0%',
+    boxSizing: 'border-box',
+    outline: '0',
   },
   text: {
     flexDirection: 'column',
