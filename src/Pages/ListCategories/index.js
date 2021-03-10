@@ -4,16 +4,14 @@ import axios from 'axios';
 import styles from './style';
 import SearchInput from '../../Components/SearchInput';
 import CategoriesData from '../../Components/CategoriesData';
+import Modal from '../../Components/Modal';
 import SearchButton from '../../Components/SearchButton';
-
-const newCategory = () => {
-  console.log('work in progress...');
-};
 
 const ListCategories = () => {
   const [word, setWord] = useState();
   const [filterCategories, setFilterCategories] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [statusModal, setStatusModal] = useState(false);
 
   useEffect(async () => {
     await axios
@@ -38,7 +36,6 @@ const ListCategories = () => {
     if (filterCategories.length === 0) {
       return <h1>Sem resultados...</h1>;
     }
-
     return filterCategories.map((category) => (
       <CategoriesData category={category} />
     ));
@@ -59,7 +56,7 @@ const ListCategories = () => {
               />
             </div>
             <div style={styles.divButtom}>
-              <SearchButton title="Nova categoria" click={newCategory} />
+              <SearchButton title="Nova categoria" onClick={() => { setStatusModal(true); }} />
             </div>
           </div>
 
@@ -83,6 +80,8 @@ const ListCategories = () => {
           <div>
             {listCategories()}
           </div>
+
+          {statusModal ? <Modal /> : null}
         </div>
       </div>
     </div>
