@@ -21,19 +21,41 @@ const styles = {
     justifyContent: 'center',
   },
 
-  // Opções
-  options: {
-    fontSize: '1.5vh',
-    position: 'relative',
-    left: '200px',
-  },
-
   // Campo referente ao nome
   name: {
     marginTop: '12px',
-    borderRadius: '15px',
-    padding: '0.8vh',
+    borderRadius: '20px',
+    padding: '12px',
     color: colors.secondary,
+  },
+  // Caixa
+  box: {
+    backgroundColor: '#FFFFFF',
+    border: '1px solid black',
+    borderRadius: '12px',
+    display: 'inline-block',
+    position: 'fixed',
+  },
+  // Lista
+  ul: {
+    listStyleType: 'none',
+    paddingInlineStart: '0',
+    margin: '0',
+  },
+  // Item
+  li: {
+    margin: '1vh',
+  },
+  // Icones
+  icon: {
+    float: 'right',
+    margin: '0 1vh',
+  },
+  // Botões
+  button: {
+    border: 'none',
+    backgroundColor: '#FFFFFF',
+    fontSize: '1.3vh',
   },
 };
 

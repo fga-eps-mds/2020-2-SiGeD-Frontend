@@ -56,10 +56,9 @@ const ListCategories = () => {
               />
             </div>
             <div style={styles.divButtom}>
-              <SearchButton title="Nova categoria" onClick={() => { setStatusModal(true); }} />
+              <SearchButton title="Nova categoria" click={() => { setStatusModal(!statusModal); }} />
             </div>
           </div>
-
         </div>
 
         <div style={styles.contentBox}>
