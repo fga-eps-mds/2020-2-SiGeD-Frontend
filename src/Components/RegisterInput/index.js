@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style';
+import { Container, Text, InputRegister } from './style';
 import { ErrorMessage } from '../ErrorMessage';
 
 const RegisterInput = ({
@@ -8,22 +8,19 @@ const RegisterInput = ({
   setText,
   value,
 }) => (
-  <div style={styles.container}>
-    <p style={styles.text}>
+  <Container>
+    <Text>
       {title}
       :
-    </p>
-    <div style={styles.text}>
-      <input
+      <InputRegister
         type={type}
         placeholder={title}
-        style={styles.generic}
         onChange={(e) => setText(e.target.value)}
         value={value}
       />
       <ErrorMessage input={value} title={title} />
-    </div>
-  </div>
+    </Text>
+  </Container>
 );
 
 export default RegisterInput;

@@ -1,15 +1,14 @@
 import React from 'react';
-import styles from './style';
+import { Primary, Secondary } from './style';
 
 const TinyButton = ({
   type,
   title,
   click,
 }) => (
-
-  <button style={styles[type]} onClick={click}>
-    <b style={{ fontSize: '1.5vw' }}>{title}</b>
-  </button>
+  <>
+    {(type === 'primary') ? (<Primary onClick={click}>{title}</Primary>) : (<Secondary onClick={click}>{title}</Secondary>)}
+  </>
 );
 
 export default TinyButton;

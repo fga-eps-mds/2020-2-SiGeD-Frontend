@@ -1,32 +1,44 @@
-// import { Component } from "react";
+import styled from 'styled-components';
 
-const styles = {
-  container: {
-    marginTop: '10px',
-    width: '90%',
-    margin: '1',
-    padding: '1',
-  },
-  generic: {
-    display: 'flex',
-    border: '2px solid #000000',
-    borderRadius: '1.5vw',
-    fontSize: '1.3vw',
-    textIndent: '10px',
-    width: '95%',
-    height: '30%',
-    marginLeft: '0%',
-    marginBottom: '0%',
-    boxSizing: 'border-box',
-    outline: '0',
-  },
-  text: {
-    flexDirection: 'column',
-    marginLeft: '10%',
-    marginBottom: '1%',
-    font: 'Open-Sans',
-    fontSize: '1.3vw',
-  },
-};
+export const InputRegister = styled.input` 
 
-export default styles;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    border: 2px solid #000000;
+    border-radius: 1.5vw;
+    font-size: 100%;
+    text-indent: 10px;
+    box-sizing: border-box;
+    outline: 0;
+
+    @media(max-width: 720px){
+      width: 95%;
+      height: 80%;
+    }
+`;
+
+export const Container = styled.div`
+
+    width: 90%;
+    height: 25%;
+    justify-content: space-around;
+
+    @media(max-width: 720px){
+      height: 25%;
+  }
+`;
+
+export const Text = styled.div`
+
+    font: Open-Sans;
+    font-size: 1.3vw;
+    height: 50%;
+    flex-direction: column;
+
+    @media(max-width: 720px){
+      font-size: 4vw;
+      height: 60%;
+    
+  }
+`;

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TinyButton from '../../Components/TinyButton';
 import {
-  Main, Container, Sidebar, SidebarText, ColumnText, DivButtom, Icon,
+  Main, Container, Sidebar, SidebarText, ColumnText, DivButtom, Icon, RightBox,
 } from './style';
 import RegisterInput from '../../Components/RegisterInput';
 import ValidateSignUp from '../../Components/Validations';
@@ -84,24 +84,26 @@ const ClientRegisterScreen = () => {
           </SidebarText>
 
         </Sidebar>
+        <RightBox>
 
-        <ColumnText>
+          <ColumnText>
 
-          <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
+            <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
 
-          <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
+            <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
 
-          <RegisterInput type="text" title="CPF" setText={setInputCpf} value={inputCpf} />
+            <RegisterInput type="text" title="CPF" setText={setInputCpf} value={inputCpf} />
 
-          <RegisterInput type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
+            <RegisterInput type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
 
-          <RegisterInput
-            type="password"
-            title="Confirmar senha"
-            setText={setInputConfirmPassword}
-            value={inputConfirmPassword}
-          />
-          <PassMatches pass={inputPassword} confPass={inputConfirmPassword} />
+            <RegisterInput
+              type="password"
+              title="Confirmar senha"
+              setText={setInputConfirmPassword}
+              value={inputConfirmPassword}
+            />
+            <PassMatches pass={inputPassword} confPass={inputConfirmPassword} />
+          </ColumnText>
 
           <DivButtom>
 
@@ -111,7 +113,7 @@ const ClientRegisterScreen = () => {
 
           </DivButtom>
 
-        </ColumnText>
+        </RightBox>
 
       </Container>
 
