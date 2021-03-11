@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FaSistrix } from 'react-icons/fa';
 import axios from 'axios';
-import styles from './style';
+import {
+  Main, Container, Title, Search, ContentBox, TableHeader,
+  TableTitle, P, Bar, Header, Button,
+} from './style';
 import SearchInput from '../../Components/SearchInput';
 import CategoriesData from '../../Components/CategoriesData';
 import Modal from '../../Components/Modal';
-import SearchButton from '../../Components/SearchButton';
+import TinyButton from '../../Components/TinyButton';
 
 const ListCategories = () => {
   const [word, setWord] = useState();
@@ -27,6 +30,7 @@ const ListCategories = () => {
 
   useEffect(() => {
     setFilterCategories(categories);
+    setStatusModal(false);
   }, [categories]);
 
   const listCategories = () => {
@@ -42,48 +46,45 @@ const ListCategories = () => {
   };
 
   return (
-    <div style={styles.main}>
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <h2 style={styles.title}>Categorias</h2>
-          <div style={styles.buttonSearchContainer}>
-            <div style={styles.search}>
-              <SearchInput
-                type="text"
-                icon={<FaSistrix />}
-                value={word}
-                setWord={(value) => setWord(value)}
-              />
-            </div>
-            <div style={styles.divButtom}>
-              <SearchButton title="Nova categoria" click={() => { setStatusModal(!statusModal); }} />
-            </div>
-          </div>
-        </div>
+    <Main>
+      <Container>
+        <Title>Categorias</Title>
+        <Header>
+          <Search>
+            <SearchInput
+              type="text"
+              icon={<FaSistrix />}
+              value={word}
+              setWord={(value) => setWord(value)}
+            />
+          </Search>
+          <Button>
+            <TinyButton title="Nova Categoria" type="primary" click={() => setStatusModal(!statusModal)} />
+          </Button>
+        </Header>
 
-        <div style={styles.contentBox}>
-          <div style={styles.tableHeader}>
-            <div style={{ ...styles.tableTitle, width: '25%' }}>
-              <p style={styles.p}>Nome</p>
-            </div>
-            <div style={styles.bar} />
-            <div style={{ ...styles.tableTitle, width: '50%' }}>
-              <p style={styles.p}>Descrição</p>
-            </div>
-            <div style={styles.bar} />
-            <div style={{ ...styles.tableTitle, width: '20%' }}>
-              <p style={styles.p}>Ult. Atualização</p>
-            </div>
-          </div>
+        <ContentBox>
+          <TableHeader>
+            <TableTitle width={24}>
+              <P>Nome</P>
+            </TableTitle>
+            <Bar />
+            <TableTitle width={50}>
+              <P>Descrição</P>
+            </TableTitle>
+            <Bar />
+            <TableTitle width={24}>
+              <P>Ult. Atualização</P>
+            </TableTitle>
+            <TableTitle width={2} />
+          </TableHeader>
 
-          <div>
-            {listCategories()}
-          </div>
+          {listCategories()}
 
-          {statusModal ? <Modal /> : null}
-        </div>
-      </div>
-    </div>
+          {statusModal ? <Modal tipo="Nova " /> : null}
+        </ContentBox>
+      </Container>
+    </Main>
   );
 };
 

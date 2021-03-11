@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { BsThreeDots, BsPencil } from 'react-icons/bs';
+import { BsThreeDotsVertical, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
-import styles from './style';
+import {
+  Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button, P,
+} from './style';
 import Modal from '../Modal';
 
 const CategoriesData = ({ category }) => {
@@ -15,51 +17,47 @@ const CategoriesData = ({ category }) => {
 
   return (
     <div>
-      <div style={styles.personalbox}>
-        <div style={{ ...styles.tableContent, width: '25%' }}>
-          <p style={{ ...styles.name, backgroundColor: category.color }}>{category.name}</p>
-        </div>
+      <Personalbox>
+        <TableContent width={24}>
+          <Name color={category.color}>{ category.name }</Name>
+        </TableContent>
 
-        <div style={{ ...styles.tableContent, width: '50%' }}>
-          <p style={styles.p}>{ category.description }</p>
-        </div>
+        <TableContent width={50}>
+          <P>{ category.description }</P>
+        </TableContent>
 
-        <div style={{ ...styles.tableContent, width: '20%' }}>
-          <p style={styles.p}>{ category.updatedAt.slice(0, 10).replaceAll('-', '/') }</p>
-        </div>
+        <TableContent width={24}>
+          <P>{ category.updatedAt.slice(0, 10).replaceAll('-', '/') }</P>
+        </TableContent>
 
-        <div style={{ ...styles.tableContent, width: '5%' }}>
-          <BsThreeDots onClick={() => { setBoxState(!boxState); }} />
-        </div>
-      </div>
+        <TableContent width={2}>
+          <P><BsThreeDotsVertical onClick={() => { setBoxState(!boxState); }} /></P>
+        </TableContent>
+      </Personalbox>
 
       {boxState ? (
-        <div style={styles.box}>
-          <ul style={styles.ul}>
-            <li style={styles.li}>
-              <button style={styles.button} onClick={() => { toggleBox(); }}>
+        <Box>
+          <Ul>
+            <Li>
+              <Button onClick={() => { toggleBox(); }}>
                 Editar
-              </button>
-              <div style={styles.icon}>
+              </Button>
+              <Icon>
                 <BsPencil />
-              </div>
-            </li>
-            <li style={styles.li}>
-              <button style={styles.button}>
+              </Icon>
+            </Li>
+            <Li>
+              <Button>
                 Remover
-              </button>
-              <div style={styles.icon}>
+              </Button>
+              <Icon>
                 <FaRegTrashAlt />
-              </div>
-            </li>
-          </ul>
-        </div>
+              </Icon>
+            </Li>
+          </Ul>
+        </Box>
       ) : null}
-      {modalState ? (
-        <div>
-          <Modal tipo="Editar" />
-        </div>
-      ) : null}
+      {modalState ? <Modal tipo="Editar " nome={category.name} descricao={category.description} /> : null}
     </div>
   );
 };

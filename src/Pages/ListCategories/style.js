@@ -1,108 +1,79 @@
+import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
-const styles = {
-  main: {
-    backgroundColor: '#BFBFBF',
-    width: '100vw',
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+export const Main = styled.div`
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: #BFBFBF;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justifyContent: center;
+  alignItems: center;
+`;
 
-  container: {
-    marginTop: '10vh',
-    width: '80vw',
-    height: '70vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
+export const Container = styled.div`
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+`;
 
-  header: {
-    width: '80vw',
-    height: 'min-content',
-    justifyContent: 'space-between',
-  },
+export const Header = styled.div`
+  margin: 2vh 0;
+`;
 
-  title: {
-    font: 'Open Sans',
-    fontWeight: '400',
-    fontSize: '3vh',
-  },
+export const Title = styled.h2`
+  font: Open Sans;
+  font-weight: 400;
+  font-size: 3vh;
 
-  // Toda a caixa
-  contentBox: {
-    width: '100%',
-    height: '45%',
-    boxSizing: 'border-box',
-    borderRadius: '0.5rem',
-    margin: '0 auto',
-    overflow: 'hidden',
-  },
+`;
 
-  // Campo de busca
-  search: {
-    width: 'min-content',
-    alignItems: 'center',
-    margin: '1vw 0',
-    clear: 'both',
-  },
+export const ContentBox = styled.div`
+  width: 100%;
+  height: 45%;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  margin: 0 auto;
+  overflow: hidden;
 
-  // Caixa preta (nome, descrição e ultima atualização), toda ela
-  tableHeader: {
-    backgroundColor: colors.primary,
-    color: colors.secondary,
-    height: '4.8vh',
-    display: 'flex',
-    flexDirection: 'row',
-  },
+`;
 
-  // Texto que esta contido na caixa preta
-  p: {
-    color: colors.secondary,
-    fontSize: '1.1vh',
-    textAlign: 'center',
-    padding: '0 5%',
-    marginTop: '12px',
-    fontWeight: 'bold',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+export const Search = styled.div`
+  float: left;
+`;
 
-  // Barra que separa os titulos da caixa preta
-  bar: {
-    width: '0.05%',
-    height: '35%',
-    borderRadius: '3px',
-    marginTop: '1.5vh',
-    backgroundColor: colors.secondary,
-  },
+export const TableHeader = styled.div`
+  background-color: ${colors.primary};
+  color: colors.secondary;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
-  // Cada item da caixa preta
-  tableTitle: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+export const P = styled.div`
+  color: ${colors.secondary};
+  font-size: 1.2vh;
+`;
 
-  divButtom: {
-    float: 'right',
-    display: 'flex',
-    height: '18%',
-    width: '100%',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    fontWeight: 'bolder',
-    fontSize: '8px',
-    padding: '10px 15px',
-    borderRadius: '10px',
-  },
+export const Bar = styled.div`
+  width: 0.05%;
+  height: 35%;
+  border-radius: 3px;
+  background-color: ${colors.secondary};
+`;
 
-  buttonSearchContainer: {
-    display: 'flex',
-    width: '100%%',
-  },
-};
+export const TableTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: ${(props) => `${props.width}%`}
+`;
 
-export default styles;
+export const Button = styled.div`
+  float: right;
+`;
