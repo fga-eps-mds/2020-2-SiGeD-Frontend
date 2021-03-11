@@ -1,6 +1,13 @@
 import React from 'react';
 import styles from './style';
+import TinyButton from '../TinyButton';
 
+const cancel = () => {
+  console.log('cancelando...');
+};
+const submit = () => {
+  console.log('...');
+};
 const Modal = ({
   tipo,
 }) => (
@@ -25,6 +32,13 @@ const Modal = ({
           <form>
             <textarea style={styles.input} rows="6" cols="45" name="text" placeholder="Descrição" />
           </form>
+        </div>
+        <div style={styles.divButtom}>
+
+          <TinyButton type="secondary" title="Cancelar" click={cancel} />
+
+          <TinyButton type="primary" title="Cadastrar" click={submit} />
+
         </div>
       </div>
     </div>
