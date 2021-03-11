@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BsThreeDots } from 'react-icons/bs';
+import { BsThreeDots, BsPencil } from 'react-icons/bs';
+import { FaRegTrashAlt } from 'react-icons/fa';
 import styles from './style';
 import Modal from '../Modal';
 
@@ -33,9 +34,25 @@ const CategoriesData = ({ category }) => {
       </div>
 
       {boxState ? (
-        <div>
-          <button onClick={() => { toggleBox(); }}>Editar</button>
-          <button>Remover</button>
+        <div style={styles.box}>
+          <ul style={styles.ul}>
+            <li style={styles.li}>
+              <button style={styles.button} onClick={() => { toggleBox(); }}>
+                Editar
+              </button>
+              <div style={styles.icon}>
+                <BsPencil />
+              </div>
+            </li>
+            <li style={styles.li}>
+              <button style={styles.button}>
+                Remover
+              </button>
+              <div style={styles.icon}>
+                <FaRegTrashAlt />
+              </div>
+            </li>
+          </ul>
         </div>
       ) : null}
       {modalState ? (
