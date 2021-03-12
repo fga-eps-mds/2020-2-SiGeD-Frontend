@@ -4,7 +4,7 @@ import axios from 'axios';
 import TinyButton from '../../Components/TinyButton';
 import styles from './style';
 import RegisterInput from '../../Components/RegisterInput';
-import { validateSignUp } from  '../../Utils/validations'
+import { validateSignUp } from '../../Utils/validations';
 import { PassMatches } from '../../Components/ErrorMessage';
 
 const RegisterScreen = () => {
