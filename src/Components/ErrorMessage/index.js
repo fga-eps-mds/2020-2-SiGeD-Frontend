@@ -1,12 +1,12 @@
 import styles from './style';
 import {
-  ValidateName, ValidateEmail, ValidatePassword, ConfirmPassword,
-} from '../Validations';
+  validateName, validateEmail, validatePassword, confirmPassword,
+} from '../../Utils/validations';
 
 export function ErrorMessage({ input, title }) {
   switch (title) {
     case 'Nome':
-      if (input && !ValidateName(input)) {
+      if (input && !validateName(input)) {
         return (
           <p style={styles.text}>Credenciais Inválidas</p>
         );
@@ -14,7 +14,7 @@ export function ErrorMessage({ input, title }) {
       break;
 
     case 'Email':
-      if (input && !ValidateEmail(input)) {
+      if (input && !validateEmail(input)) {
         return (
           <p style={styles.text}>Credenciais Inválidas</p>
         );
@@ -22,7 +22,7 @@ export function ErrorMessage({ input, title }) {
       break;
 
     case 'Senha':
-      if (input && !ValidatePassword(input)) {
+      if (input && !validatePassword(input)) {
         return (
           <p style={styles.text}>Credenciais Inválidas</p>
         );
@@ -37,7 +37,7 @@ export function ErrorMessage({ input, title }) {
 }
 
 export const PassMatches = ({ pass, confPass }) => {
-  if (confPass && !ConfirmPassword(pass, confPass)) {
+  if (confPass && !confirmPassword(pass, confPass)) {
     return (
       <p style={styles.passwords}>Senhas não correspondem</p>
     );
