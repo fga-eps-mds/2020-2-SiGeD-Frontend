@@ -61,7 +61,7 @@ export const Sidebar = styled.div`
 export const RightBox = styled.div`
 
     width: 70%;
-    height: 80%;
+    height: 90%;
     background: ${colors.secondary};
     display: flex;
     flex-direction: column;
@@ -80,17 +80,17 @@ export const ColumnText = styled.div`
     width: 90%;
     height: 90%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
-    clear: both;
-    overflow-y: scroll;
     margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     @media(max-width: 720px){
         align-items: center;
         width: 90%;
         height: 80%;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-content: center;
     }
 `;

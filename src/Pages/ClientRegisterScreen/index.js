@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import RegisterInput from '../../Components/RegisterInput';
-import { validateClient } from '../../Utils/validations';
+import {
+  validateName, validatePhone, validateCity, validateCpf, validateEmail,
+} from '../../Utils/validations';
 
 const ClientRegisterScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -16,7 +19,7 @@ const ClientRegisterScreen = () => {
 
   const postClient = async () => {
     try {
-      await axios.post('http://localhost:3001/clientes/cadastro', {
+      await axios.post('http://localhost:3002/clients/create', {
         name: inputName,
         email: inputEmail,
         cpf: inputCpf,
@@ -35,11 +38,21 @@ const ClientRegisterScreen = () => {
   };
 
   const submit = () => {
-    if (validateClient(inputName, inputEmail, inputCpf, inputPhone,
-      inputCity, inputOffice, inputPoliceStation)) {
+    if (validateName(inputName) === false) {
+      alert('Nome inválido.');
+    } if (validateCpf(inputCpf) === false) {
+      alert('CPF inválido.');
+    } if (validateEmail(inputEmail) === false) {
+      alert('Email inválido.');
+    } if (validatePhone(inputPhone) === false) {
+      alert('telefone inválido.');
+    } if (validateCity(inputCity) === false) {
+      alert('Cidade invalida.');
+    } if (
+      validateName(inputName) && validateCpf(inputCpf) && validateEmail(inputEmail)
+      && validatePhone(inputPhone) && validateCity(inputCity)
+    ) {
       postClient();
-    } else {
-      alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
     }
   };
 
@@ -61,13 +74,31 @@ const ClientRegisterScreen = () => {
       submit={submit}
       buttonTitle="Cadastrar"
     >
-      <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
-      <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
+      <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
+      <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
       <RegisterInput type="text" title="CPF" setText={setInputCpf} value={inputCpf} />
       <RegisterInput type="text" title="Telefone" setText={setInputPhone} value={inputPhone} />
-      <RegisterInput type="text" title="Cidade" setText={setInputCity} value={inputCity} />
-      <RegisterInput type="text" title="Cargo" setText={setInputOffice} value={inputOffice} />
-      <RegisterInput type="text" title="Locação" setText={setInputPoliceStation} value={inputPoliceStation} />
+      <RegisterInput long type="text" title="Cidade" setText={setInputCity} value={inputCity} />
+      <Form.Group style={{ width: '45%' }}>
+        <Form.Label>Cargo:</Form.Label>
+        <Form.Control as="select" style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
+          <option>Policial</option>
+          <option>Enfermeira</option>
+          <option>Secretário</option>
+          <option>Servidora</option>
+          <option>Administrador</option>
+        </Form.Control>
+      </Form.Group>
+      <Form.Group style={{ width: '45%' }}>
+        <Form.Label>Local:</Form.Label>
+        <Form.Control as="select" style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
+          <option>DPSS</option>
+          <option>CASA</option>
+          <option>HOTEL</option>
+          <option>TCU</option>
+          <option>DPCM</option>
+        </Form.Control>
+      </Form.Group>
     </GenericRegisterScreen>
   );
 };
