@@ -12,7 +12,7 @@ const GenericRegisterScreen = ({
       <Sidebar>
         <Icon />
         <SidebarText>
-          {sidebarList.map((sidebarCardText) => <p key={Math.random()}>{sidebarCardText}</p>)}
+          {sidebarList.map((sidebarCardText, index) => <p key={index}>{sidebarCardText}</p>)}
         </SidebarText>
       </Sidebar>
       <RightSideContainer>
