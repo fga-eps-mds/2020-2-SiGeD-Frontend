@@ -1,15 +1,39 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   ModalBox, ModalContent, ModalCampos, ModalCampoNome, P, ModalCampoCor, ModalCampoDescricao,
-  ModalCampoBotao, ColorText, styles,
+  TextArea, ModalCampoBotao, ColorText, Input, ColorField,
 } from './style';
 import TinyButton from '../TinyButton';
 
 const Modal = ({ tipo, nome, descricao }) => {
   const [modalState, setModalState] = useState(true);
+  const [name, setName] = useState(nome);
+  const [description, setDescription] = useState(descricao);
+  const [color, setColor] = useState('#FFFFFF');
 
   const toggleState = () => {
     setModalState(!modalState);
+  };
+
+  const createCategory = async () => {
+    try {
+      await axios.post('http://localhost:3003/category/create', {
+        name,
+        description,
+        color,
+      })
+        .then((response) => {
+          console.log(response);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const submit = async () => {
+    await createCategory();
+    toggleState();
   };
 
   return (
@@ -25,19 +49,19 @@ const Modal = ({ tipo, nome, descricao }) => {
               <ModalCampos>
                 <ModalCampoNome>
                   <P>Nome:</P>
-                  <input style={styles.input} placeholder="Nome" value={nome} />
+                  <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
                 </ModalCampoNome>
                 <ModalCampoCor>
                   <ColorText>Cor:</ColorText>
-                  <input type="color" />
+                  <ColorField type="color" value={color} onChange={(e) => setColor(e.target.value)} />
                 </ModalCampoCor>
                 <ModalCampoDescricao>
                   <P>Descrição:</P>
-                  <textarea style={styles.input} rows="6" cols="45" name="text" placeholder="Descrição" value={descricao} />
+                  <TextArea rows="6" cols="45" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </ModalCampoDescricao>
                 <ModalCampoBotao>
                   <TinyButton type="secondary" title="Cancelar" click={toggleState} />
-                  <TinyButton type="primary" title="Cadastrar" />
+                  <TinyButton type="primary" title="Cadastrar" click={submit} />
                 </ModalCampoBotao>
               </ModalCampos>
             </ModalContent>

@@ -20,7 +20,7 @@ const ListCategories = () => {
     await axios
       .get('http://localhost:3003/category')
       .then((response) => setCategories(response.data));
-  }, []);
+  }, [categories]);
 
   useEffect(() => {
     setFilterCategories(
@@ -30,7 +30,6 @@ const ListCategories = () => {
 
   useEffect(() => {
     setFilterCategories(categories);
-    setStatusModal(false);
   }, [categories]);
 
   const listCategories = () => {
