@@ -6,11 +6,13 @@ import {
 } from './style';
 import TinyButton from '../TinyButton';
 
-const Modal = ({ tipo, nome, descricao }) => {
+const Modal = ({
+  tipo, nome, descricao, cor, id, getCategories,
+}) => {
   const [modalState, setModalState] = useState(true);
   const [name, setName] = useState(nome);
   const [description, setDescription] = useState(descricao);
-  const [color, setColor] = useState('#FFFFFF');
+  const [color, setColor] = useState(cor);
 
   const toggleState = () => {
     setModalState(!modalState);
@@ -31,8 +33,29 @@ const Modal = ({ tipo, nome, descricao }) => {
     }
   };
 
+  const updateCategory = async () => {
+    try {
+      await axios.put(`http://localhost:3003/category/update/${id}`, {
+        name,
+        description,
+        color,
+      })
+        .then((response) => {
+          console.log(response);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const submit = async () => {
-    await createCategory();
+    if (tipo === 'Nova ') {
+      await createCategory();
+    } else {
+      await updateCategory();
+    }
+    console.log(getCategories);
+    getCategories();
     toggleState();
   };
 

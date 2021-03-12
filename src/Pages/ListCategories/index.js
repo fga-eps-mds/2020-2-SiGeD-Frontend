@@ -16,11 +16,15 @@ const ListCategories = () => {
   const [categories, setCategories] = useState([]);
   const [statusModal, setStatusModal] = useState(false);
 
-  useEffect(async () => {
+  const getCategories = async () => {
     await axios
       .get('http://localhost:3003/category')
       .then((response) => setCategories(response.data));
-  }, [categories]);
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   useEffect(() => {
     setFilterCategories(
@@ -39,9 +43,14 @@ const ListCategories = () => {
     if (filterCategories.length === 0) {
       return <h1>Sem resultados...</h1>;
     }
-    return filterCategories.map((category) => (
-      <CategoriesData category={category} />
-    ));
+    return filterCategories.map((category) => {
+      if (category) {
+        // eslint-disable-line
+        const { _id } = category;
+        return <CategoriesData category={category} getCategories={getCategories} key={_id} />;
+      }
+      return null;
+    });
   };
 
   return (
@@ -80,7 +89,7 @@ const ListCategories = () => {
 
           {listCategories()}
 
-          {statusModal ? <Modal tipo="Nova " /> : null}
+          {statusModal ? <Modal tipo="Nova " nome="" cor="#000000" getCategories={getCategories} /> : null}
         </ContentBox>
       </Container>
     </Main>
