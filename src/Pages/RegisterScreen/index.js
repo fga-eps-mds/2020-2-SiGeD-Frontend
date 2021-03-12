@@ -4,7 +4,7 @@ import axios from 'axios';
 import TinyButton from '../../Components/TinyButton';
 import styles from './style';
 import RegisterInput from '../../Components/RegisterInput';
-import ValidateSignUp from '../../Components/Validations';
+import { validateSignUp } from  '../../Utils/validations'
 import { PassMatches } from '../../Components/ErrorMessage';
 
 const RegisterScreen = () => {
@@ -36,7 +36,7 @@ const RegisterScreen = () => {
   }
 
   const submit = () => {
-    if (ValidateSignUp(inputEmail, inputName, inputPassword, inputConfirmPassword)) {
+    if (validateSignUp(inputEmail, inputName, inputPassword, inputConfirmPassword)) {
       postUser();
     } else {
       alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
