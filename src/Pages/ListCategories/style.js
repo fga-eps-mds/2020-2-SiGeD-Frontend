@@ -78,3 +78,14 @@ export const TableTitle = styled.div`
 export const Button = styled.div`
   float: right;
 `;
+
+export const style = {
+  button: {
+    position: 'absolute',
+  },
+};
+
+export const Lista = styled.div`
+  overflow: auto;
+  margin-bottom: 
+`;

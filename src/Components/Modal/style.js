@@ -57,7 +57,7 @@ export const ModalCampoDescricao = styled.div`
   margin-top: 28px;
 `;
 // x
-export const ModalCampoBotao = styled.div`
+export const ModalCampoBotao = styled.text`
   display: flex;
   height: 100%;
   width: 100%;
