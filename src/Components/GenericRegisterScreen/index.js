@@ -1,7 +1,8 @@
 import React from 'react';
+import SidebarComponent from '../SidebarComponent';
 import TinyButton from '../TinyButton';
 import {
-  Main, Container, Sidebar, SidebarText, ColumnText, DivButtom, Icon, RightSideContainer,
+  Main, Container, ColumnText, DivButtom, RightSideContainer,
 } from './style';
 
 const GenericRegisterScreen = ({
@@ -9,12 +10,7 @@ const GenericRegisterScreen = ({
 }) => (
   <Main>
     <Container>
-      <Sidebar>
-        <Icon />
-        <SidebarText>
-          {sidebarList.map((sidebarCardText, index) => <p key={index}>{sidebarCardText}</p>)}
-        </SidebarText>
-      </Sidebar>
+      <SidebarComponent sidebarList={sidebarList} />
       <RightSideContainer>
         <ColumnText>
           {children}
