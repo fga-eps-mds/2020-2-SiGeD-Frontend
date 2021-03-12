@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { BsThreeDotsVertical, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import {
@@ -6,28 +7,45 @@ import {
 } from './style';
 import Modal from '../Modal';
 
-const CategoriesData = ({ category }) => {
+const CategoriesData = ({ category, getCategories }) => {
   const [boxState, setBoxState] = useState(false);
   const [modalState, setModalState] = useState(false);
-
+  // eslint-disable-line
+  const { _id } = category;
   const toggleBox = () => {
     setModalState(!modalState);
     setBoxState(!boxState);
+  };
+
+  const CategoryDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:3003/category/delete/${_id}`)
+        .then((response) => {
+          console.log(response);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const DeleteCategory = () => {
+    CategoryDelete();
+    getCategories();
   };
 
   return (
     <div>
       <Personalbox>
         <TableContent width={24}>
-          <Name color={category.color}>{ category.name }</Name>
+          <Name color={category.color}>{category.name}</Name>
         </TableContent>
 
         <TableContent width={50}>
-          <P>{ category.description }</P>
+          <P>{category.description}</P>
         </TableContent>
 
         <TableContent width={24}>
-          <P>{ category.updatedAt.slice(0, 10).replaceAll('-', '/') }</P>
+          <P>{category.updatedAt.slice(0, 10).replaceAll('-', '/')}</P>
         </TableContent>
 
         <TableContent width={2}>
@@ -47,7 +65,7 @@ const CategoriesData = ({ category }) => {
               </Icon>
             </Li>
             <Li>
-              <Button>
+              <Button onClick={DeleteCategory}>
                 Remover
               </Button>
               <Icon>
@@ -57,7 +75,7 @@ const CategoriesData = ({ category }) => {
           </Ul>
         </Box>
       ) : null}
-      {modalState ? <Modal tipo="Editar " nome={category.name} descricao={category.description} /> : null}
+      {modalState ? <Modal tipo="Editar " nome={category.name} descricao={category.description} cor={category.color} getCategories={getCategories} id={_id} /> : null}
     </div>
   );
 };
