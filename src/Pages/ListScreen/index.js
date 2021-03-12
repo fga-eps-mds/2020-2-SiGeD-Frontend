@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { FaSistrix } from 'react-icons/fa';
 import axios from 'axios';
-import styles from './style';
 import SearchInput from '../../Components/SearchInput';
 import PersonalData from '../../Components/PersonalData';
 import TinyButton from '../../Components/TinyButton';
+import {
+  Main, Container, Header, Title, Search, TableHeader, P, Bar,
+  DataContainer, TableTitle, Button,
+} from './style';
 
 const novoUsuario = () => {
   console.log('Novo Usuário');
@@ -17,7 +20,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/signUpGet', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNDBlMDAwMDBkNGMwMDAzZmQzMmJjYSIsImlhdCI6MTYxNTI1MzU4MywiZXhwIjoxNjE1MjUzODIzfQ.jeOGka-SCqxm9kKA5V_3m1dFvFGQdDUKwa493Uaq9oI' } })
+      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGE3YzkyZDZmZWFhMDAzZmQ2YTU4NCIsImlhdCI6MTYxNTUxMzY5MCwiZXhwIjoxNjE1NjAwMDkwfQ.IeeyBQYqrUOXsIAbFXgQxsgJ1niXh_LXu6g9o-GQfTc' } })
       .then((response) => setUsers(response.data));
   }, []);
 
@@ -34,62 +37,64 @@ const ListScreen = () => {
   const listUsers = () => {
     console.log(filterUsers);
     if (users.length === 0) {
-      return <h1>Carregando...</h1>;
+      return <h1 style={{ fontSize: '1.5rem', font: 'Open Sans' }}>Carregando...</h1>;
     }
     if (filterUsers.length === 0) {
-      return <h1>Sem resultados...</h1>;
+      return <h1 style={{ fontSize: '1.5rem', font: 'Open Sans' }}>Sem resultados...</h1>;
     }
     return filterUsers.map((user) => <PersonalData user={user} key={user._id} />);
   };
 
   return (
-    <div style={styles.main}>
-      <div>
-        <div style={styles.header}>
-          <h2 style={styles.title}>Usuários</h2>
-
-          <div style={styles.search}>
+    <Main>
+      <Container>
+        <Title>Usuários</Title>
+        <Header>
+          <Search>
             <SearchInput
               type="text"
               icon={<FaSistrix />}
               value={word}
               setWord={(value) => setWord(value)}
             />
-          </div>
-          <TinyButton type="primary" title="Novo cliente" click={novoUsuario} />
-        </div>
+          </Search>
+          <Button>
+            <TinyButton type="primary" title="Novo usuário" click={novoUsuario} />
+          </Button>
+        </Header>
 
-        <div style={styles.contentBox}>
-          <div style={styles.tableHeader}>
-            <div style={{ ...styles.tableTitle, width: '35%' }}>
-              <p style={styles.p}>Nome</p>
-            </div>
-            <div style={styles.bar} />
-            <div style={{ ...styles.tableTitle, width: '25%' }}>
-              <p style={styles.p}>Email</p>
-            </div>
-            <div style={styles.bar} />
+        {/* <ContentBox> */}
+        <TableHeader>
+          <TableTitle width={20}>
+            <P>Nome</P>
+          </TableTitle>
+          <Bar />
+          <TableTitle width={20}>
+            <P>Email</P>
+          </TableTitle>
+          <Bar />
 
-            <div style={{ ...styles.tableTitle, width: '20%' }}>
-              <p style={styles.p}>Cargo</p>
-            </div>
-            <div style={styles.bar} />
+          <TableTitle width={15}>
+            <P>Cargo</P>
+          </TableTitle>
+          <Bar />
 
-            <div style={{ ...styles.tableTitle, width: '20%' }}>
-              <p style={styles.p}>Setor</p>
-            </div>
-            <div style={styles.bar} />
-            <div style={{ ...styles.tableTitle, width: '25%' }}>
-              <p style={styles.p}>Ult. Atualização</p>
-            </div>
-          </div>
+          <TableTitle width={15}>
+            <P>Setor</P>
+          </TableTitle>
+          <Bar />
+          <TableTitle width={15}>
+            <P>Ult. Atualização</P>
+          </TableTitle>
+        </TableHeader>
 
-          <div style={styles.dataContainer}>
-            {listUsers()}
-          </div>
-        </div>
-      </div>
-    </div>
+        <DataContainer>
+          {listUsers()}
+        </DataContainer>
+
+        {/* </ContentBox> */}
+      </Container>
+    </Main>
   );
 };
 
