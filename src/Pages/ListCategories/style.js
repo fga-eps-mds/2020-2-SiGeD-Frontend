@@ -68,6 +68,7 @@ export const Bar = styled.div`
 `;
 
 export const TableTitle = styled.div`
+  fontSize: 12px;
   display: flex;
   flex-direction: row;
   justify-content: center;
