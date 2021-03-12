@@ -3,9 +3,10 @@ import axios from 'axios';
 import { BsThreeDotsVertical, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import {
-  Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button, P,
+  Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button, P, Teste,
 } from './style';
-import Modal from '../Modal';
+// import Modal from '../Modal';
+import ReactModal from '../ReactModal';
 
 const CategoriesData = ({ category, getCategories }) => {
   const [boxState, setBoxState] = useState(false);
@@ -13,8 +14,12 @@ const CategoriesData = ({ category, getCategories }) => {
   // eslint-disable-line
   const { _id } = category;
   const toggleBox = () => {
-    setModalState(!modalState);
+    setModalState(true);
+    console.log(modalState);
     setBoxState(!boxState);
+  };
+  const toggleModal = () => {
+    setModalState(!modalState);
   };
 
   const CategoryDelete = async () => {
@@ -34,7 +39,7 @@ const CategoriesData = ({ category, getCategories }) => {
   };
 
   return (
-    <div>
+    <Teste>
       <Personalbox>
         <TableContent width={24}>
           <Name color={category.color}>{category.name}</Name>
@@ -75,8 +80,8 @@ const CategoriesData = ({ category, getCategories }) => {
           </Ul>
         </Box>
       ) : null}
-      {modalState ? <Modal tipo="Editar " nome={category.name} descricao={category.description} cor={category.color} getCategories={getCategories} id={_id} /> : null}
-    </div>
+      {modalState ? <ReactModal tipo="Editar " toggleModal={toggleModal} /> : null}
+    </Teste>
   );
 };
 

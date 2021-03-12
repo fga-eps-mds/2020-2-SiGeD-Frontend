@@ -3,11 +3,11 @@ import { FaSistrix } from 'react-icons/fa';
 import axios from 'axios';
 import {
   Main, Container, Title, Search, ContentBox, TableHeader,
-  TableTitle, P, Bar, Header, Button,
+  TableTitle, P, Bar, Header, Button, Lista,
 } from './style';
 import SearchInput from '../../Components/SearchInput';
 import CategoriesData from '../../Components/CategoriesData';
-import Modal from '../../Components/Modal';
+import ReactModal from '../../Components/ReactModal';
 import TinyButton from '../../Components/TinyButton';
 
 const ListCategories = () => {
@@ -15,6 +15,10 @@ const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);
   const [categories, setCategories] = useState([]);
   const [statusModal, setStatusModal] = useState(false);
+
+  const toggleModal = () => {
+    setStatusModal(!statusModal);
+  };
 
   const getCategories = async () => {
     await axios
@@ -87,9 +91,11 @@ const ListCategories = () => {
             <TableTitle width={2} />
           </TableHeader>
 
-          {listCategories()}
+          <Lista>
+            {listCategories()}
+          </Lista>
 
-          {statusModal ? <Modal tipo="Nova " nome="" cor="#000000" getCategories={getCategories} /> : null}
+          {statusModal ? <ReactModal tipo="Nova " nome="" cor="#000000" getCategories={getCategories} toggleModal={toggleModal} /> : null}
         </ContentBox>
       </Container>
     </Main>

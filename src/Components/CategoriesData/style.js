@@ -44,8 +44,11 @@ export const Box = styled.div`
   background-color: #FFF;
   border: 1px solid black;
   border-radius: 12px;
-  display: inline-block;
-  position: fixed;
+  position: absolute;
+  width: 10vh;
+  right: 0;
+  top: 65%;
+  z-index: 1;
 `;
 
 export const Ul = styled.ul`
@@ -55,17 +58,22 @@ export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
-  margin: 1vh;
   list-style-type: none;
+  padding: 3px;
 `;
 
 export const Icon = styled.div`
   float: right;
-  margin: 0 1vh;
+  margin: 0 1%;
+  font-size: 80%;
 `;
 
 export const Button = styled.button`
   border: none;
   background-color: #FFF;
   font-size: 1.3vh;
+`;
+
+export const Teste = styled.div`
+  position: relative;
 `;
