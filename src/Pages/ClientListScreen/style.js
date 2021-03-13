@@ -1,109 +1,120 @@
+import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
-const styles = {
+export const Main = styled.div`
+    display: flex;
+    background-color: #bfbfbf;
+    width: 100vw;
+    height: 100%;
+    justify-content: center;
+    overflow: auto;
+`;
 
-  main: {
+export const Container = styled.div`
+    display: flex;
+    width: 90vw;
+    height: 100%;
+    flex-direction: column;
+    background-color: ${colors.background};
+    
+    @media(max-width: 425px){
+        margin-top: 0;
+    }
+`;
 
-    backgroundColor: '#BFBFBF',
-    width: '100vw',
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflowY: 'scroll',
+export const Header = styled.div`
+    margin: 2vh 0;
+    height: 100%;
+    @media(max-width: 425px){
+        margin-top: 0;
+        height: 4%;
+    }
+`;
 
-  },
+export const Title = styled.h1`
+    margin-top: 5%;
+    margin-bottom: 0%;
+    font: Open Sans;
+    font-weight: 400;
+    font-size: 5vh;
+    height: min-content;
+    @media(max-width: 425px){
+        width: 25%;
+    }
+`;
 
-  header: {
+export const Search = styled.div`
+    float: left;
+    @media(max-width: 425px){
+        margin-top: -8%;
+        left: 100%;
+    }
+`;
 
-    width: '65vw',
-    height: 'min-content',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+export const TableHeader = styled.div`
+    background-color: ${colors.primary};
+    color: ${colors.secondary};
+    height: 8vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px 10px 0px 0px;
+    
+    @media(max-width: 425px){
+        visibility: hidden;
+    }
+`;
 
-  },
+export const P = styled.div`
+    color: ${colors.secondary};
+    font-weight: 700;
+    font-size: 75%;
+    padding: 0;
+    left: 0;
+`;
 
-  title: {
-    font: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: '5vh',
-    lineHeight: '3rem',
-    height: 'min-content',
-    position: 'relative',
-    left: '3rem',
-    marginBottom: '5rem',
-  },
+export const Bar = styled.div`
+    width: 0.25%;
+    height: 60%;
+    border-radius: 5px;
+    background-color: ${colors.secondary};
+`;
 
-  contentBox: {
-    width: '90%',
-    height: '60vh',
-    background: '#BFBFBF',
-    border: '1px solid #BFBFBF',
-    boxSizing: 'border-box',
-    borderRadius: '0.5rem',
-    margin: '0 auto',
-    marginLeft: '3rem',
-  },
+export const DataContainer = styled.div`
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+    // overflow-y: scroll;
+`;
 
-  search: {
+export const ButtonDiv = styled.div`
+    float: right;
+    background-color: ${colors.primary};
+    color: ${colors.secondary};
+    border-radius: 10px;
+    width: 10%;
+    height: 3%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 
-    display: 'flex',
-    flexDirection: 'row',
-    width: 'min-content',
-    alignItems: 'center',
-    marginLeft: '-25rem',
-    marginTop: '2rem',
-  },
+    @media(max-width: 435px){
+        top: -8%;
+        margin-top: -30%;
+    }
+`;
 
-  tableHeader: {
-
-    backgroundColor: colors.primary,
-    color: colors.secondary,
-    height: '15%',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    borderRadius: '10px 10px 0px 0px',
-
-  },
-
-  p: {
-    color: colors.secondary,
-    fontWeight: '700',
-    fontSize: '75%',
-    padding: '0 10%',
-  },
-
-  bar: {
-    width: '0.25%',
-    height: '60%',
-    borderRadius: '5px',
-    backgroundColor: colors.secondary,
-  },
-
-  dataContainer: {
-
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    height: '84%',
-    width: '105%',
-
-  },
-
-  tableTitle: {
-
-    flexDirection: 'row',
-    height: '100%',
-    justifyContent: 'center',
-    display: 'flex',
-    alignItems: 'center',
-  },
-};
-
-export default styles;
+export const TableTitle = styled.div`
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: ${(props) => `${props.width}%`}
+`;

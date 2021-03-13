@@ -13,9 +13,8 @@ const ClientRegisterScreen = () => {
   const [inputCpf, setInputCpf] = useState('');
   const [inputPhone, setInputPhone] = useState('');
   const [inputCity, setInputCity] = useState('');
-  const [inputOffice, setInputOffice] = useState('');
-  const [inputPoliceStation, setInputPoliceStation] = useState('');
-  const [valid, setValid] = useState('');
+  const [officeOption, setOfficeOption] = useState('Policial');
+  const [policeStationOption, setPoliceStationOption] = useState('DPSS');
 
   const postClient = async () => {
     try {
@@ -25,12 +24,11 @@ const ClientRegisterScreen = () => {
         cpf: inputCpf,
         phone: inputPhone,
         city: inputCity,
-        office: inputOffice,
-        policeStation: inputPoliceStation,
+        office: officeOption,
+        policeStation: policeStationOption,
       })
         .then((response) => {
-          setValid(response);
-          console.log(response, valid);
+          console.log(response);
         });
     } catch (error) {
       console.error(error);
@@ -62,14 +60,14 @@ const ClientRegisterScreen = () => {
     setInputCpf('');
     setInputPhone('');
     setInputCity('');
-    setInputOffice('');
-    setInputPoliceStation('');
+    setOfficeOption('');
+    setPoliceStationOption('');
   };
 
   return (
     <GenericRegisterScreen
       sidebarList={[inputName, inputEmail, inputCpf, inputPhone,
-        inputCity, inputOffice, inputPoliceStation]}
+        inputCity, officeOption, policeStationOption]}
       cancel={cancel}
       submit={submit}
       buttonTitle="Cadastrar"
@@ -81,7 +79,11 @@ const ClientRegisterScreen = () => {
       <RegisterInput long type="text" title="Cidade" setText={setInputCity} value={inputCity} />
       <Form.Group style={{ width: '45%' }}>
         <Form.Label>Cargo:</Form.Label>
-        <Form.Control as="select" style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
+        <Form.Control
+          as="select"
+          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
+          onChange={(Option) => setOfficeOption(Option.target.value)}
+        >
           <option>Policial</option>
           <option>Enfermeira</option>
           <option>Secretário</option>
@@ -91,7 +93,11 @@ const ClientRegisterScreen = () => {
       </Form.Group>
       <Form.Group style={{ width: '45%' }}>
         <Form.Label>Local:</Form.Label>
-        <Form.Control as="select" style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
+        <Form.Control
+          as="select"
+          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
+          onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
+        >
           <option>DPSS</option>
           <option>CASA</option>
           <option>HOTEL</option>

@@ -11,6 +11,7 @@ export const Main = styled.div`
     justify-content: center;
     align-content: center;
     align-items: center;
+    overflow-y: scroll;
 
     @media(max-width: 720px){
     

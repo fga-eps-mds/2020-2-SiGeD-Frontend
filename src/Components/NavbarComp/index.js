@@ -20,6 +20,9 @@ const NavbarComp = () => (
       <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
         Novo cliente
       </Nav.Link>
+      <Nav.Link as={Link} to="/clientes" style={styles.navbarText}>
+        Clientes
+      </Nav.Link>
     </Nav>
   </Navbar>
 );

@@ -2,9 +2,12 @@ import React from 'react';
 import { Sidebar, SidebarText, Icon } from './style';
 
 const SidebarComponent = ({
-  sidebarList,
+  title, sidebarList,
 }) => (
   <Sidebar>
+    <p>
+      {title}
+    </p>
     <Icon />
     <SidebarText>
       {sidebarList.map((sidebarCardText) => <p>{sidebarCardText}</p>)}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
@@ -14,13 +14,9 @@ const ClientUpdateScreen = () => {
   const [inputCpf, setInputCpf] = useState('');
   const [inputPhone, setInputPhone] = useState('');
   const [inputCity, setInputCity] = useState('');
-  // const [inputOffice, setInputOffice] = useState('');
-  // const [inputPoliceStation, setInputPoliceStation] = useState('');
-  const [valid, setValid] = useState('');
   const [officeOption, setOfficeOption] = useState('');
   const [policeStationOption, setPoliceStationOption] = useState('');
-  // const { id } = useParams(URL);
-  const id = '6046d413fbbad2006a69c1b3';
+  const { id } = useParams();
 
   const getClient = async () => {
     try {
@@ -56,8 +52,7 @@ const ClientUpdateScreen = () => {
         policeStation: policeStationOption,
       })
         .then((response) => {
-          setValid(response);
-          console.log(response, valid);
+          console.log(response);
         });
     } catch (error) {
       console.error(error);

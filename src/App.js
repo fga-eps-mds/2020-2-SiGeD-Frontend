@@ -8,6 +8,7 @@ import ListCategories from './Pages/ListCategories';
 import NavbarComp from './Components/NavbarComp';
 import ClientUpdateScreen from './Pages/ClientUpdateScreen';
 import ClientListScreen from './Pages/ClientListScreen';
+import ClientProfileScreen from './Pages/ClientProfileScreen';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/categorias" component={ListCategories} />
         <Route path="/editar" component={ClientUpdateScreen} />
         <Route path="/clientes" component={ClientListScreen} />
+        <Route path="/perfil" component={ClientProfileScreen} />
       </Switch>
     </Router>
 
