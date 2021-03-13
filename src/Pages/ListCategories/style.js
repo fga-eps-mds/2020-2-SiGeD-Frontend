@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
 export const Main = styled.div`
-  background-color: red;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -19,16 +18,18 @@ export const Container = styled.div`
   width: 90vw;
   display: flex;
   flex-direction: column;
+  margin-top: 5%;
 `;
 
 export const Header = styled.div`
-  margin: 2vh 0;
+
 `;
 
 export const Title = styled.h2`
   font: Open Sans;
   font-weight: 400;
-  font-size: 3vh;
+  font-size: 4vh;
+  margin: 0;
 
 `;
 
@@ -37,7 +38,7 @@ export const ContentBox = styled.div`
   height: 45%;
   box-sizing: border-box;
   border-radius: 0.5rem;
-  margin: 0 auto;
+  margin: 1% auto;
   overflow: hidden;
 
 `;
@@ -57,7 +58,7 @@ export const TableHeader = styled.div`
 
 export const P = styled.div`
   color: ${colors.secondary};
-  font-size: 1.2vh;
+  font-size: 2vh;
 `;
 
 export const Bar = styled.div`
@@ -68,7 +69,6 @@ export const Bar = styled.div`
 `;
 
 export const TableTitle = styled.div`
-  fontSize: 12px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -76,16 +76,21 @@ export const TableTitle = styled.div`
 `;
 
 export const Button = styled.div`
-  float: right;
+`;
+
+export const List = styled.div`
+  height: 27vw;
+  padding: 5px;
+  overflow: auto;
 `;
 
 export const style = {
-  button: {
-    position: 'absolute',
+  buttonStyle: {
+    margin: '0',
+    float: 'right',
+    width: '15vw',
+    height: '5vh',
+    textAlign: 'center',
+    bottom: '0',
   },
 };
-
-export const Lista = styled.div`
-  overflow: auto;
-  margin-bottom: 
-`;

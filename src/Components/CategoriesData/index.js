@@ -3,9 +3,8 @@ import axios from 'axios';
 import { BsThreeDotsVertical, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import {
-  Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button, P, Teste,
+  Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button, P, Content,
 } from './style';
-// import Modal from '../Modal';
 import ReactModal from '../ReactModal';
 
 const CategoriesData = ({ category, getCategories }) => {
@@ -15,7 +14,6 @@ const CategoriesData = ({ category, getCategories }) => {
   const { _id } = category;
   const toggleBox = () => {
     setModalState(true);
-    console.log(modalState);
     setBoxState(!boxState);
   };
   const toggleModal = () => {
@@ -39,7 +37,7 @@ const CategoriesData = ({ category, getCategories }) => {
   };
 
   return (
-    <Teste>
+    <Content>
       <Personalbox>
         <TableContent width={24}>
           <Name color={category.color}>{category.name}</Name>
@@ -80,8 +78,8 @@ const CategoriesData = ({ category, getCategories }) => {
           </Ul>
         </Box>
       ) : null}
-      {modalState ? <ReactModal tipo="Editar " toggleModal={toggleModal} /> : null}
-    </Teste>
+      {modalState ? <ReactModal type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} toggleModal={toggleModal} id={_id} idColor={category.color} /> : null}
+    </Content>
   );
 };
 

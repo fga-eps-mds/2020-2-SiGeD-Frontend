@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import {
-  Titulo, ModalContent, modalStyle, P, DivButton, Input, DivNome, DivCor, CorPreview, TextArea,
+  Titulo, modalStyle, P, DivButton, Input, DivNome, DivCor,
+  TextArea, Linha, ModalContent, DivDescription,
 } from './style';
 import TinyButton from '../TinyButton';
 
 Modal.setAppElement('#root');
 const ReactModal = ({
-  tipo, nome, descricao, cor, id, getCategories, toggleModal,
+  type, idName, idDescription, idColor, id, getCategories, toggleModal,
 }) => {
-  const [name, setName] = useState(nome);
-  const [description, setDescription] = useState(descricao);
-  const [color, setColor] = useState(cor);
+  const [name, setName] = useState(idName);
+  const [description, setDescription] = useState(idDescription);
+  const [color, setColor] = useState(idColor);
 
   const createCategory = async () => {
     try {
@@ -45,7 +46,7 @@ const ReactModal = ({
   };
 
   const submit = async () => {
-    if (tipo === 'Nova ') {
+    if (type === 'Nova ') {
       await createCategory();
     } else {
       await updateCategory();
@@ -53,6 +54,12 @@ const ReactModal = ({
     console.log(getCategories);
     getCategories();
     toggleModal();
+  };
+
+  const style = {
+    buttonStyle: {
+      width: '15vh',
+    },
   };
 
   return (
@@ -64,21 +71,25 @@ const ReactModal = ({
       >
         <ModalContent>
           <Titulo>
-            {tipo}
+            {type}
             Categoria
           </Titulo>
-          <DivNome>
-            <P>Nome:</P>
-            <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
-          </DivNome>
-          <DivCor>
-            <P>Cor:</P>
-            <CorPreview type="color" value={color} onChange={(e) => setColor(e.target.value)} />
-          </DivCor>
-          <P>Descrição:</P>
-          <TextArea rows="5" cols="38" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
+          <Linha>
+            <DivNome>
+              <P>Nome:</P>
+              <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+            </DivNome>
+            <DivCor>
+              <P>Cor:</P>
+              <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+            </DivCor>
+          </Linha>
+          <DivDescription>
+            <P>Descrição:</P>
+            <TextArea rows="5" cols="30" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
+          </DivDescription>
           <DivButton>
-            <TinyButton type="secondary" title="Cancelar" click={toggleModal} />
+            <TinyButton style={style.buttonStyle} type="secondary" title="Cancelar" click={toggleModal} />
             <TinyButton type="primary" title="Cadastrar" click={submit} />
           </DivButton>
         </ModalContent>
