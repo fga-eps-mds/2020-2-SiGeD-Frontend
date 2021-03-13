@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// eslint ignore next line
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
@@ -49,7 +48,7 @@ const ClientProfileData = ({ client, getClients }) => {
       </TableContent>
 
       <TableContent width={15} justifyContent="center">
-        {format(new Date(client.updatedAt), 'dd/MM/yyyy')}
+        {/* {format(new Date(client.updatedAt), 'dd/MM/yyyy')} */}
       </TableContent>
 
       <TableContent width={5} justifyContent="center">
