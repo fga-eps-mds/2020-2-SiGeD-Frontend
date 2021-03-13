@@ -20,7 +20,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGE3YzkyZDZmZWFhMDAzZmQ2YTU4NCIsImlhdCI6MTYxNTUxMzY5MCwiZXhwIjoxNjE1NjAwMDkwfQ.IeeyBQYqrUOXsIAbFXgQxsgJ1niXh_LXu6g9o-GQfTc' } })
+      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGFkNTVmMjkxYjViMDA1NjI4NDYzZCIsImlhdCI6MTYxNTYwMjk0MCwiZXhwIjoxNjE1Njg5MzQwfQ.jSBL56DwQV_79EtLFn6riBO8JprBGki4ijje7YP6-Ek' } })
       .then((response) => setUsers(response.data));
   }, []);
 

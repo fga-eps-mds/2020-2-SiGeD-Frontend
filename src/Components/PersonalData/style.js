@@ -20,7 +20,6 @@ export const PersonalBox = styled.div`
       margin-bottom: 2vh;
       display: flex;
       flex-direction: row;
-      flex-wrap: wrap;
     }
 `;
 
@@ -28,7 +27,8 @@ export const P = styled.p`
 
     @media(max-width: 425px){
       font-size: 2vh;
-      font-weight: 900;
+      margin-bottom: 10%;
+      font-weight: 600;
     }
     font-size: 2vh;
 `;
@@ -40,10 +40,27 @@ export const ImageUser = styled.div`
       margin-left: 0.5rem;
 
     @media(max-width:425px){
-      width: 30%;
-      height: 40%;
+      width: 50%;
+      height: 50%;
+      margin-left: 10%;
     }
 
+`;
+
+export const TableContainer = styled.div`
+
+    @media(max-width: 425px){
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 20%;
+      margin-top: 10%;
+      margin-bottom: 5%;
+    }
+
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 `;
 
 export const TableContent = styled.div`
@@ -52,8 +69,6 @@ export const TableContent = styled.div`
       width: 40%;
       height: 10%;
       margin: '0 auto';
-      margin-bottom: 2vh;
-      display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       margin-left: 10%;
