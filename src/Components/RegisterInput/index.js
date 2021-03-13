@@ -7,7 +7,6 @@ const RegisterInput = ({
   title,
   setText,
   value,
-  long,
 }) => (
   <Container>
     <Text>

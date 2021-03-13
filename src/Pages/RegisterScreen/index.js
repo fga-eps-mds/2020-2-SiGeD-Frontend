@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import RegisterInput from '../../Components/RegisterInput';
+import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
 import { PassMatches } from '../../Components/ErrorMessage';
 
