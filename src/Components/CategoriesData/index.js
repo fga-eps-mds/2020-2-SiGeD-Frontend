@@ -10,8 +10,6 @@ import ReactModal from '../ReactModal';
 const CategoriesData = ({ category, getCategories }) => {
   const [boxState, setBoxState] = useState(false);
   const [modalState, setModalState] = useState(false);
-  // eslint-disable-line
-  const { _id } = category;
   const toggleBox = () => {
     setModalState(true);
     setBoxState(!boxState);
@@ -22,7 +20,7 @@ const CategoriesData = ({ category, getCategories }) => {
 
   const CategoryDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3003/category/delete/${_id}`)
+      await axios.delete(`http://localhost:3003/category/delete/${category._id}`)
         .then((response) => {
           console.log(response);
         });
@@ -78,7 +76,7 @@ const CategoriesData = ({ category, getCategories }) => {
           </Ul>
         </Box>
       ) : null}
-      {modalState ? <ReactModal type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} toggleModal={toggleModal} id={_id} idColor={category.color} /> : null}
+      {modalState ? <ReactModal type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} toggleModal={toggleModal} id={category._id} idColor={category.color} /> : null}
     </Content>
   );
 };

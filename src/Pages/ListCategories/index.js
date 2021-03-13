@@ -49,9 +49,13 @@ const ListCategories = () => {
     }
     return filterCategories.map((category) => {
       if (category) {
-        // eslint-disable-line
-        const { _id } = category;
-        return <CategoriesData category={category} getCategories={getCategories} key={_id} />;
+        return (
+          <CategoriesData
+            category={category}
+            getCategories={getCategories}
+            key={category._id}
+          />
+        );
       }
       return null;
     });
