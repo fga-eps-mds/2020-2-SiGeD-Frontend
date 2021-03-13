@@ -83,6 +83,10 @@ export const P = styled.div`
     font-size: 75%;
     padding: 0;
     left: 0;
+
+    @media(max-width: 656px){
+      font-size: 1.6vh;
+    }
 `;
 
 export const Bar = styled.div`
