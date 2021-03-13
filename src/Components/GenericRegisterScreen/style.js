@@ -11,14 +11,12 @@ export const Main = styled.div`
     justify-content: center;
     align-content: center;
     align-items: center;
-
     @media(max-width: 720px){
     
     }
 `;
 
 export const Container = styled.div`
-
     width: 65%;
     height: 60%;
     background: ${colors.secondary};
@@ -28,7 +26,6 @@ export const Container = styled.div`
     overflow: hidden;
     border-radius: 1.5vw;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
     @media(max-width: 720px){
         width: 100%;
         height: 100%;
@@ -96,7 +93,6 @@ export const ColumnText = styled.div`
 `;
 
 export const DivButtom = styled.div`
-
     width: 100%;
     height: 10%;
     display: flex;
@@ -105,7 +101,6 @@ export const DivButtom = styled.div`
     margin-right: 10%;
     margin-top: 5%;
     flex-direction: row;
-
     @media(max-width: 720px){
         height: 20%;
         flex-direction: column;
@@ -113,7 +108,6 @@ export const DivButtom = styled.div`
         align-items: center;
         align-content: space-around;
         margin-right: 0%;
-
         
     }
 `;

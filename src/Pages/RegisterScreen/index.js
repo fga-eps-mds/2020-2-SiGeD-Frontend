@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { IoPersonCircleOutline } from 'react-icons/io5';
+import React, { useState } from 'react';
 import axios from 'axios';
-import TinyButton from '../../Components/TinyButton';
-import styles from './style';
+import { Form } from 'react-bootstrap';
 import RegisterInput from '../../Components/RegisterInput';
 import { validateSignUp } from '../../Utils/validations';
 import { PassMatches } from '../../Components/ErrorMessage';
 
 const RegisterScreen = () => {
-  const [cardName, setCardName] = useState('');
-  const [cardEmail, setCardEmail] = useState('');
-  const [cardRegister, setCardRegister] = useState('');
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
-  const [inputRegister, setInputRegister] = useState('');
+  const [inputRole, setInputRole] = useState('');
+  const [inputSector, setInputSector] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [inputConfirmPassword, setInputConfirmPassword] = useState('');
   const [valid, setValid] = useState('');
@@ -23,7 +19,8 @@ const RegisterScreen = () => {
       await axios.post('http://localhost:3001/signUp', {
         name: inputName,
         email: inputEmail,
-        enroll: inputRegister,
+        role: inputRole,
+        sector: inputSector,
         pass: inputPassword,
       })
         .then((response) => {
@@ -44,71 +41,43 @@ const RegisterScreen = () => {
   };
 
   const cancel = () => {
-    setInputEmail('');
-    setInputRegister('');
     setInputName('');
+    setInputEmail('');
+    setInputRole('');
+    setInputSector('');
     setInputPassword('');
     setInputConfirmPassword('');
   };
 
-  useEffect(() => {
-    if (!inputName) setCardName('Nome');
-    else setCardName(inputName);
-
-    if (!inputEmail) setCardEmail('Email');
-    else setCardEmail(inputEmail);
-
-    if (!inputRegister) setCardRegister('Registro');
-    else setCardRegister(inputRegister);
-  }, [inputName, inputEmail, inputRegister]);
-
   return (
-    <div style={styles.main}>
-
-      <div style={styles.container}>
-
-        <div style={styles.sidebar}>
-          <IoPersonCircleOutline style={styles.peopleIcon} />
-
-          <div style={styles.sidebarDiv}>
-            <p style={styles.sidebarText}>{cardRegister}</p>
-            <p style={styles.sidebarText}>{cardName}</p>
-            <p style={styles.sidebarText}>{cardEmail}</p>
-          </div>
-
-        </div>
-
-        <div style={styles.row}>
-
-          <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
-
-          <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
-
-          <RegisterInput type="text" title="Registro" setText={setInputRegister} value={inputRegister} />
-
-          <RegisterInput type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
-
-          <RegisterInput
-            type="password"
-            title="Confirmar senha"
-            setText={setInputConfirmPassword}
-            value={inputConfirmPassword}
-          />
-          <PassMatches pass={inputPassword} confPass={inputConfirmPassword} />
-
-          <div style={styles.divButtom}>
-
-            <TinyButton type="secondary" title="Cancelar" click={cancel} />
-
-            <TinyButton type="primary" title="Cadastrar" click={submit} />
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
+    <GenericRegisterScreen
+      sidebarList={[inputName, inputEmail, inputRole, inputSector]}
+      cancel={cancel}
+      submit={submit}
+      buttonTitle="Cadastrar"
+    >
+      <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
+      <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
+      <Form.Group style={{ width: '37%', marginLeft: '9%' }}>
+        <Form.Label>Cargo:</Form.Label>
+        <Form.Control as="select" value={inputRole} style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
+          <option>Admin</option>
+          <option>Professional</option>
+          <option>Receptionist</option>
+        </Form.Control>
+      </Form.Group>
+      <Form.Group style={{ width: '37%', marginRight: '14%' }}>
+        <Form.Label>Setor:</Form.Label>
+        <Form.Control as="select" value={inputSector} style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
+          <option>Assistente Social</option>
+          <option>Policial</option>
+          <option>Familiar</option>
+        </Form.Control>
+      </Form.Group>
+      <RegisterInput long type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
+      <RegisterInput long type="password" title="Confirmar senha" setText={setInputConfirmPassword} value={inputConfirmPassword} />
+      <PassMatches pass={inputPassword} confPass={inputConfirmPassword} />
+    </GenericRegisterScreen>
   );
 };
 

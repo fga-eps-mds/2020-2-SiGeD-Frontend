@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
 export const Primary = styled.button`
-
     font: Open Sans;
     font-size: 100%;
     color: ${colors.secondary};
@@ -45,12 +44,10 @@ export const Secondary = styled.button`
     align-Items: center;
     justify-content: center;
     margin-right: 15px;
-
     @media(max-width: 720px){
       width: 80%;
       height: 100%;
       margin-right: 0px;
       margin-bottom: 5px;
     }
-
 `;
