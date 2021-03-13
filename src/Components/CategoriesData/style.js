@@ -11,7 +11,7 @@ export const Personalbox = styled.div`
   align-items: center;
   margin-top: 1vh;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: auto;
 `;
 
 export const TableContent = styled.div`
@@ -19,6 +19,7 @@ export const TableContent = styled.div`
   justify-content: center;
   width: ${(props) => `${props.width}%`};
   margin: 10px;
+  overflow: auto;
 `;
 
 export const P = styled.p`
@@ -26,7 +27,7 @@ export const P = styled.p`
   margin-block-end: 0;
   margin-block-start: 0;
 
-  @media(max-width: 500px) {
+  @media(max-width: 600px) {
     font-size: 1.3vh;
   }
 `;
@@ -74,6 +75,6 @@ export const Button = styled.button`
   font-size: 1.3vh;
 `;
 
-export const Teste = styled.div`
+export const Content = styled.div`
   position: relative;
 `;

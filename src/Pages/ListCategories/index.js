@@ -3,7 +3,7 @@ import { FaSistrix } from 'react-icons/fa';
 import axios from 'axios';
 import {
   Main, Container, Title, Search, ContentBox, TableHeader,
-  TableTitle, P, Bar, Header, Button, Lista,
+  TableTitle, P, Bar, Header, List, style,
 } from './style';
 import SearchInput from '../../Components/SearchInput';
 import CategoriesData from '../../Components/CategoriesData';
@@ -70,9 +70,7 @@ const ListCategories = () => {
               setWord={(value) => setWord(value)}
             />
           </Search>
-          <Button>
-            <TinyButton title="Nova Categoria" type="primary" click={() => setStatusModal(!statusModal)} />
-          </Button>
+          <TinyButton style={style.buttonStyle} title="Nova Categoria" type="primary" click={() => setStatusModal(!statusModal)} />
         </Header>
 
         <ContentBox>
@@ -90,14 +88,13 @@ const ListCategories = () => {
             </TableTitle>
             <TableTitle width={2} />
           </TableHeader>
-
-          <Lista>
+          <List>
             {listCategories()}
-          </Lista>
-
-          {statusModal ? <ReactModal tipo="Nova " nome="" cor="#000000" getCategories={getCategories} toggleModal={toggleModal} /> : null}
+          </List>
+          {statusModal ? <ReactModal type="Nova " idName="" idColor="#000000" getCategories={getCategories} toggleModal={toggleModal} /> : null}
         </ContentBox>
       </Container>
+
     </Main>
   );
 };
