@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { IoPersonCircleOutline } from 'react-icons/io5';
 import colors from '../../Constants/colors';
 
 export const Main = styled.div` 
@@ -138,7 +137,6 @@ export const SidebarText = styled.div`
 
     }
 `;
-
 
 export const InputLine = styled.div`
 
