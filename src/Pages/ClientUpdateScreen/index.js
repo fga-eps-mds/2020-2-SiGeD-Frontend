@@ -90,8 +90,9 @@ const ClientUpdateScreen = () => {
 
   return (
     <GenericRegisterScreen
-      sidebarList={[inputName, inputEmail, inputCpf, inputPhone,
+      sidebarList={[inputName, inputCpf,
         inputCity, officeOption, policeStationOption]}
+      sidebarFooter={[inputEmail, inputPhone]}
       cancel={cancel}
       submit={submit}
       buttonTitle="Editar"
@@ -108,7 +109,7 @@ const ClientUpdateScreen = () => {
           style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
           onChange={(Option) => setOfficeOption(Option.target.value)}
         >
-          <option>Policial</option>
+          <option>{officeOption}</option>
           <option>Enfermeira</option>
           <option>Secretário</option>
           <option>Servidora</option>
@@ -122,7 +123,7 @@ const ClientUpdateScreen = () => {
           style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
           onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
         >
-          <option>DPSS</option>
+          <option>{policeStationOption}</option>
           <option>CASA</option>
           <option>HOTEL</option>
           <option>TCU</option>

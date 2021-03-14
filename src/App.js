@@ -22,8 +22,9 @@ function App() {
         <Route path="/cliente" component={ClientRegisterScreen} />
         <Route path="/categorias" component={ListCategories} />
         <Route path="/editar" component={ClientUpdateScreen} />
+        <Route path="/editar/:id" component={ClientUpdateScreen} />
         <Route path="/clientes" component={ClientListScreen} />
-        <Route path="/perfil" component={ClientProfileScreen} />
+        <Route path="/perfil/:id" component={ClientProfileScreen} />
       </Switch>
     </Router>
 

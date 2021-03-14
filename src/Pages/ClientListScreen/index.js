@@ -6,7 +6,7 @@ import SearchInput from '../../Components/SearchInput';
 import ClientProfileData from '../../Components/ClientProfileData';
 import {
   Main, Container, Header, Title, Search, TableHeader, P, Bar,
-  DataContainer, ButtonDiv, TableTitle,
+  DataContainer, ButtonDiv, TableTitle, ContentBox,
 } from './style';
 
 const ClientListScreen = () => {
@@ -47,8 +47,8 @@ const ClientListScreen = () => {
   return (
     <Main>
       <Container>
-        <Title>Clientes</Title>
         <Header>
+          <Title>Clientes</Title>
           <Search>
             <SearchInput
               type="text"
@@ -58,41 +58,48 @@ const ClientListScreen = () => {
             />
           </Search>
           <ButtonDiv>
-            <Link to="/cliente" style={{ color: 'white', textDecorationLine: 'none' }}>
+            <Link
+              to="/cliente"
+              style={{
+                color: 'white',
+                textDecorationLine: 'none',
+                fontSize: '1.5vw',
+              }}
+            >
               Novo cliente
             </Link>
           </ButtonDiv>
         </Header>
 
-        {/* <ContentBox> */}
-        <TableHeader>
-          <TableTitle width={25}>
-            <P>Nome</P>
-          </TableTitle>
-          <Bar />
-          <TableTitle width={25}>
-            <P>Email</P>
-          </TableTitle>
-          <Bar />
+        <ContentBox>
+          <TableHeader>
+            <TableTitle width={30}>
+              <P>Nome</P>
+            </TableTitle>
+            <Bar />
+            <TableTitle width={20}>
+              <P>Email</P>
+            </TableTitle>
+            <Bar />
 
-          <TableTitle width={15}>
-            <P>CPF</P>
-          </TableTitle>
-          <Bar />
+            <TableTitle width={15}>
+              <P>CPF</P>
+            </TableTitle>
+            <Bar />
 
-          <TableTitle width={15}>
-            <P>Telefone</P>
-          </TableTitle>
-          <Bar />
-          <TableTitle width={19}>
-            <P>Ult. Atualização</P>
-          </TableTitle>
-        </TableHeader>
+            <TableTitle width={15}>
+              <P>Telefone</P>
+            </TableTitle>
+            <Bar />
+            <TableTitle width={19}>
+              <P>Ult. Atualização</P>
+            </TableTitle>
+          </TableHeader>
 
-        <DataContainer>
-          {listClients()}
-        </DataContainer>
-        {/* </ContentBox> */}
+          <DataContainer>
+            {listClients()}
+          </DataContainer>
+        </ContentBox>
       </Container>
     </Main>
   );

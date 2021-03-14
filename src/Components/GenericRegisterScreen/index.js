@@ -6,11 +6,22 @@ import {
 } from './style';
 
 const GenericRegisterScreen = ({
-  sidebarList, children, cancel, submit, buttonTitle,
+  sidebarList, children, cancel, submit, buttonTitle, sidebarFooter, visibility,
+  sidebarFooterHeight, sidebarTextHeight, mobileBackgroundColor, mobileIconColor,
+  sidebarTitleHeight,
 }) => (
   <Main>
     <Container>
-      <SidebarComponent sidebarList={sidebarList} />
+      <SidebarComponent
+        sidebarList={sidebarList}
+        sidebarFooter={sidebarFooter}
+        visibility={visibility}
+        mobileBackgroundColor={mobileBackgroundColor}
+        sidebarTextHeight={sidebarTextHeight}
+        sidebarFooterHeight={sidebarFooterHeight}
+        mobileIconColor={mobileIconColor}
+        sidebarTitleHeight={sidebarTitleHeight}
+      />
       <RightSideContainer>
         <ColumnText>
           {children}

@@ -10,13 +10,13 @@ export const Sidebar = styled.div`
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-
+    
     @media(max-width: 720px){
         width: 100%;
-        height: 20%;
-        background-color: ${colors.secondary};
+        height: 100%;
         align-content: center;
-        justify-content: center;
+        flex-direction: column;
+        display:flex;
    
     }
 `;
@@ -28,13 +28,20 @@ export const SidebarText = styled.div`
     flex-direction: column;
     align-items: center;
     @media(max-width: 720px){
-        visibility: hidden;
-        height: 0%;
+        font-size: 2vh;
     }
-    p {
-        font: Open Arial;
-        font-size: 1.5vw;
+`;
+
+export const SidebarCardText = styled.div`
+
+    color: ${colors.secondary};
+    font-size: 3vh;
+
+    @media(max-width: 720px){
+        font-size: 2vh;
+        margin-bottom: 0px;
     }
+
 `;
 
 export const Icon = styled(IoPersonCircleOutline)`
@@ -43,9 +50,8 @@ export const Icon = styled(IoPersonCircleOutline)`
     color: ${colors.secondary};
     margin-top: 10px;
     @media(max-width: 720px){
-        width: 100%;
-        height: 100%;
-        color: ${colors.primary};
+        height: 200%;
+        width: 15vh;
     }
 `;
 
@@ -56,10 +62,38 @@ export const SidebarFooter = styled.div`
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    font-size: 2vh;
 
     @media(max-width: 720px){
-        visibility: hidden;
-        height: 0%;
+        height: 100%;
+        font-size: 3vh;
+        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
     }
 
+`;
+
+export const FooterText = styled.div`
+
+    color: ${colors.secondary};
+    font-size: 2vh;
+
+    @media(max-width: 720px){
+        font-size: 2vh;
+    }
+
+`;
+
+export const SidebarTitle = styled.div`
+
+    color: ${colors.secondary};
+    margin-top: 10vh;
+    font-size: 30px;
+
+    @media(max-width: 720px){
+        margin-top: 7vh;
+        font-size: 3vh;
+    }
 `;

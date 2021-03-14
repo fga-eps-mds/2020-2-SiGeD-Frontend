@@ -4,16 +4,15 @@ import colors from '../../Constants/colors';
 export const ClientDataBox = styled.div`
 
     width: 100%;
-    height: 10vh;
+    height: 20%;
     background-color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 1%;
+    margin-top: 5px;
     border-radius: 10px;
     justify-content: space-around;
     font-size: 0.8vw;
-    overflow: hidden;
 
 `;
 
@@ -26,6 +25,7 @@ export const TableContent = styled.div`
     justify-content: ${(props) => `${props.justifyContent}`};
     align-items: center;
     background-color: ${colors.secondary};
+    border-radius: 10px;
 
 `;
 
@@ -37,7 +37,6 @@ export const Personalbox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 1vh;
   border-radius: 8px;
   overflow: auto;
 `;
@@ -64,7 +63,7 @@ export const Box = styled.div`
   background-color: #FFF;
   border: 1px solid black;
   border-radius: 12px;
-  position: absolute;
+  position: relative;
   width: 12vh;
   right: 0;
   top: 65%;

@@ -13,8 +13,8 @@ const ClientRegisterScreen = () => {
   const [inputCpf, setInputCpf] = useState('');
   const [inputPhone, setInputPhone] = useState('');
   const [inputCity, setInputCity] = useState('');
-  const [officeOption, setOfficeOption] = useState('Policial');
-  const [policeStationOption, setPoliceStationOption] = useState('DPSS');
+  const [officeOption, setOfficeOption] = useState('');
+  const [policeStationOption, setPoliceStationOption] = useState('');
 
   const postClient = async () => {
     try {
@@ -26,10 +26,7 @@ const ClientRegisterScreen = () => {
         city: inputCity,
         office: officeOption,
         policeStation: policeStationOption,
-      })
-        .then((response) => {
-          console.log(response);
-        });
+      });
     } catch (error) {
       console.error(error);
     }
@@ -66,8 +63,9 @@ const ClientRegisterScreen = () => {
 
   return (
     <GenericRegisterScreen
-      sidebarList={[inputName, inputEmail, inputCpf, inputPhone,
+      sidebarList={[inputName, inputCpf,
         inputCity, officeOption, policeStationOption]}
+      sidebarFooter={[inputEmail, inputPhone]}
       cancel={cancel}
       submit={submit}
       buttonTitle="Cadastrar"

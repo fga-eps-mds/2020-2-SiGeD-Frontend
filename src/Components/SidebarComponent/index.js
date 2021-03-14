@@ -1,17 +1,24 @@
 import React from 'react';
-import { Sidebar, SidebarText, Icon } from './style';
+import {
+  Sidebar, SidebarText, Icon, SidebarFooter,
+} from './style';
 
 const SidebarComponent = ({
-  title, sidebarList,
+  sidebarList, sidebarFooter,
 }) => (
   <Sidebar>
-    <p>
-      {title}
-    </p>
     <Icon />
     <SidebarText>
       {sidebarList.map((sidebarCardText) => <p>{sidebarCardText}</p>)}
     </SidebarText>
+    { sidebarFooter
+    && (
+    <SidebarFooter
+      style={{ marginTop: '3vh' }}
+    >
+      {sidebarFooter.map((sidebarCardFooterText) => <p style={{ fontSize: '2vh' }}>{sidebarCardFooterText}</p>)}
+    </SidebarFooter>
+    )}
   </Sidebar>
 );
 
