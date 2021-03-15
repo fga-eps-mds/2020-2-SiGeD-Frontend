@@ -26,7 +26,7 @@ const ReactModal = ({
           console.log(response);
         });
     } catch (error) {
-      console.error(error);
+      alert('Não foi possível criar a nova categoria, tente novamente.');
     }
   };
 
@@ -41,7 +41,7 @@ const ReactModal = ({
           console.log(response);
         });
     } catch (error) {
-      console.error(error);
+      alert('Não foi possível atualizar a categoria, tente novamente.');
     }
   };
 
@@ -66,7 +66,7 @@ const ReactModal = ({
     <div>
       <Modal
         style={modalStyle}
-        isOpen="true"
+        isOpen
         onRequestClose={() => toggleModal()}
       >
         <ModalContent>
