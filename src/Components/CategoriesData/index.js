@@ -25,7 +25,7 @@ const CategoriesData = ({ category, getCategories }) => {
           console.log(response);
         });
     } catch (error) {
-      console.error(error);
+      alert('Não foi possível deletar a categoria, tente novamente.');
     }
   };
 
