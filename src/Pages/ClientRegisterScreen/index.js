@@ -28,7 +28,8 @@ const ClientRegisterScreen = () => {
         policeStation: policeStationOption,
       });
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      alert(error);
     }
   };
 

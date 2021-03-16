@@ -22,7 +22,7 @@ const ClientListScreen = () => {
 
   useEffect(() => {
     getClients();
-  }, []);
+  }, [clients]);
 
   useEffect(() => {
     setFilterClients(
@@ -41,7 +41,13 @@ const ClientListScreen = () => {
     if (filterClients.length === 0) {
       return <h1 style={{ fontSize: '1.5rem', font: 'Open Sans' }}>Sem resultados...</h1>;
     }
-    return filterClients.map((client) => <ClientProfileData client={client} key={client.email} />);
+    return filterClients.map((client) => (
+      <ClientProfileData
+        client={client}
+        key={client.email}
+        getClients={getClients}
+      />
+    ));
   };
 
   return (
