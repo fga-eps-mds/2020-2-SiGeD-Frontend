@@ -14,6 +14,7 @@ const ReactModal = ({
   const [name, setName] = useState(idName);
   const [description, setDescription] = useState(idDescription);
   const [color, setColor] = useState(idColor);
+  let valid = true;
 
   const createCategory = async () => {
     try {
@@ -24,6 +25,10 @@ const ReactModal = ({
       })
         .then((response) => {
           console.log(response);
+          if (response.data.status) {
+            alert('Preencha todos os campos para poder criar uma nova categoria');
+            valid = false;
+          }
         });
     } catch (error) {
       alert('Não foi possível criar a nova categoria, tente novamente.');
@@ -39,6 +44,10 @@ const ReactModal = ({
       })
         .then((response) => {
           console.log(response);
+          if (response.data.status) {
+            alert('Preencha todos os campos para poder atualizar esta categoria');
+            valid = false;
+          }
         });
     } catch (error) {
       alert('Não foi possível atualizar a categoria, tente novamente.');
@@ -53,7 +62,9 @@ const ReactModal = ({
     }
     console.log(getCategories);
     getCategories();
-    toggleModal();
+    if (valid) {
+      toggleModal();
+    }
   };
 
   const style = {
