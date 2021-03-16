@@ -3,7 +3,11 @@ import styled from 'styled-components';
 export const InputRegister = styled.input` 
 
     width: 100%;
+<<<<<<< HEAD
     height: 100%;
+=======
+    height: 40%;
+>>>>>>> 1832b1a76805bd345d505c90f0ea427b95fd0eb5
     display: flex;
     border: 2px solid #000000;
     border-radius: 1.5vw;
@@ -13,32 +17,34 @@ export const InputRegister = styled.input`
     outline: 0;
 
     @media(max-width: 720px){
-      width: 95%;
-      height: 80%;
+      width: 100%;
+      height: 50%;
+      font-size: 80%;
     }
 `;
 
 export const Container = styled.div`
 
-    width: 90%;
-    height: 25%;
-    justify-content: space-around;
+    width: ${(props) => (props.long ? '100%' : '45%')};
+    height: 20%;
 
     @media(max-width: 720px){
-      height: 25%;
+      height: 20%;
   }
 `;
 
-export const Text = styled.div`
+export const Label = styled.div`
 
-    font: Open-Sans;
-    font-size: 1.3vw;
-    height: 50%;
-    flex-direction: column;
+    font-family: Arial;
+    font-size: 100%;
+    height: min-content;
+    align-items: center;
+    align-content:center;
+    justify-content: center;
 
     @media(max-width: 720px){
-      font-size: 4vw;
-      height: 60%;
+      font-size: 80%;
+      height: min-content;
     
   }
 `;

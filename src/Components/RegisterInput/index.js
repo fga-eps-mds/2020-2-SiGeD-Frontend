@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Text, InputRegister } from './style';
+import { Container, Label, InputRegister } from './style';
 import { ErrorMessage } from '../ErrorMessage';
 
 const RegisterInput = ({
@@ -7,19 +7,20 @@ const RegisterInput = ({
   title,
   setText,
   value,
+  long,
 }) => (
-  <Container>
-    <Text>
+  <Container long={long}>
+    <Label>
       {title}
       :
-      <InputRegister
-        type={type}
-        placeholder={title}
-        onChange={(e) => setText(e.target.value)}
-        value={value}
-      />
-      <ErrorMessage input={value} title={title} />
-    </Text>
+    </Label>
+    <InputRegister
+      type={type}
+      placeholder={title}
+      onChange={(e) => setText(e.target.value)}
+      value={value}
+    />
+    <ErrorMessage input={value} title={title} />
   </Container>
 );
 
