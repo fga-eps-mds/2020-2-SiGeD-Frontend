@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputRegister = styled.input` 
 
-    width: 95%;
+    width: 100%;
     height: 100%;
     display: flex;
     border: 2px solid #000000;

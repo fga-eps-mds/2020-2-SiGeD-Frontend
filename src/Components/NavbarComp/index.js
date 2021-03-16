@@ -20,8 +20,8 @@ const NavbarComp = () => (
           Usuários
         </Nav.Link>
         <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
-        Novo cliente
-      </Nav.Link>
+          Novo cliente
+        </Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
