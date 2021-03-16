@@ -1,21 +1,27 @@
 import React from 'react';
+import SidebarComponent from '../SidebarComponent';
 import TinyButton from '../TinyButton';
 import {
-  Main, Container, Sidebar, SidebarText, ColumnText, DivButtom, Icon,
-  RightSideContainer,
+  Main, Container, ColumnText, DivButtom, RightSideContainer,
 } from './style';
 
 const GenericRegisterScreen = ({
-  sidebarList, children, cancel, submit, buttonTitle,
+  sidebarList, children, cancel, submit, buttonTitle, sidebarFooter, visibility,
+  sidebarFooterHeight, sidebarTextHeight, mobileBackgroundColor, mobileIconColor,
+  sidebarTitleHeight,
 }) => (
   <Main>
     <Container>
-      <Sidebar>
-        <Icon />
-        <SidebarText>
-          {sidebarList.map((sidebarCardText) => <p>{sidebarCardText}</p>)}
-        </SidebarText>
-      </Sidebar>
+      <SidebarComponent
+        sidebarList={sidebarList}
+        sidebarFooter={sidebarFooter}
+        visibility={visibility}
+        mobileBackgroundColor={mobileBackgroundColor}
+        sidebarTextHeight={sidebarTextHeight}
+        sidebarFooterHeight={sidebarFooterHeight}
+        mobileIconColor={mobileIconColor}
+        sidebarTitleHeight={sidebarTitleHeight}
+      />
       <RightSideContainer>
         <ColumnText>
           {children}

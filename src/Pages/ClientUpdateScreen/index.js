@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import RegisterInput from '../../Components/RegisterInput';
 import {
-  validateName, validatePhone, validateCity, validateCpf, validateEmail,
+  validateName, validateCpf, validateEmail, validatePhone, validateCity,
 } from '../../Utils/validations';
 
-const ClientRegisterScreen = () => {
+const ClientUpdateScreen = () => {
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputCpf, setInputCpf] = useState('');
@@ -15,10 +16,33 @@ const ClientRegisterScreen = () => {
   const [inputCity, setInputCity] = useState('');
   const [officeOption, setOfficeOption] = useState('');
   const [policeStationOption, setPoliceStationOption] = useState('');
+  const { id } = useParams();
 
-  const postClient = async () => {
+  const getClient = async () => {
     try {
-      await axios.post('http://localhost:3002/clients/create', {
+      await axios.get(`http://localhost:3002/clients/${id}`)
+        .then((response) => {
+          const { data } = response;
+          setInputName(data.name);
+          setInputEmail(data.email);
+          setInputCpf(data.cpf);
+          setInputPhone(data.phone);
+          setInputCity(data.city);
+          setOfficeOption(data.office);
+          setPoliceStationOption(data.policeStation);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getClient();
+  }, []);
+
+  const updateClient = async () => {
+    try {
+      await axios.put(`http://localhost:3002/clients/update/${id}`, {
         name: inputName,
         email: inputEmail,
         cpf: inputCpf,
@@ -26,10 +50,12 @@ const ClientRegisterScreen = () => {
         city: inputCity,
         office: officeOption,
         policeStation: policeStationOption,
-      });
+      })
+        .then((response) => {
+          console.log(response);
+        });
     } catch (error) {
-      console.log(error);
-      alert(error);
+      console.error(error);
     }
   };
 
@@ -48,7 +74,7 @@ const ClientRegisterScreen = () => {
       validateName(inputName) && validateCpf(inputCpf) && validateEmail(inputEmail)
       && validatePhone(inputPhone) && validateCity(inputCity)
     ) {
-      postClient();
+      updateClient();
     }
   };
 
@@ -69,7 +95,7 @@ const ClientRegisterScreen = () => {
       sidebarFooter={[inputEmail, inputPhone]}
       cancel={cancel}
       submit={submit}
-      buttonTitle="Cadastrar"
+      buttonTitle="Editar"
     >
       <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
       <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
@@ -83,7 +109,7 @@ const ClientRegisterScreen = () => {
           style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
           onChange={(Option) => setOfficeOption(Option.target.value)}
         >
-          <option>Policial</option>
+          <option>{officeOption}</option>
           <option>Enfermeira</option>
           <option>Secretário</option>
           <option>Servidora</option>
@@ -97,7 +123,7 @@ const ClientRegisterScreen = () => {
           style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
           onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
         >
-          <option>DPSS</option>
+          <option>{policeStationOption}</option>
           <option>CASA</option>
           <option>HOTEL</option>
           <option>TCU</option>
@@ -108,4 +134,4 @@ const ClientRegisterScreen = () => {
   );
 };
 
-export default ClientRegisterScreen;
+export default ClientUpdateScreen;

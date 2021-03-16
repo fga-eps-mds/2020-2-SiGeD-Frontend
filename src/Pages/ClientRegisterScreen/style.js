@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { IoPersonCircleOutline } from 'react-icons/io5';
 import colors from '../../Constants/colors';
 
 export const Main = styled.div` 
@@ -11,6 +10,7 @@ export const Main = styled.div`
     justify-content: center;
     align-content: center;
     align-items: center;
+    overflow-y: scroll;
 
     @media(max-width: 720px){
     
@@ -61,7 +61,7 @@ export const Sidebar = styled.div`
 export const RightBox = styled.div`
 
     width: 70%;
-    height: 80%;
+    height: 90%;
     background: ${colors.secondary};
     display: flex;
     flex-direction: column;
@@ -80,17 +80,17 @@ export const ColumnText = styled.div`
     width: 90%;
     height: 90%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
-    clear: both;
-    overflow-y: scroll;
     margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     @media(max-width: 720px){
         align-items: center;
         width: 90%;
         height: 80%;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-content: center;
     }
 `;
@@ -135,21 +135,6 @@ export const SidebarText = styled.div`
         font: Open Arial;
         font-size: 1.5vw;
 
-    }
-`;
-
-export const Icon = styled(IoPersonCircleOutline)`
-
-    width: 100%;
-    height: 40%;
-    color: ${colors.secondary};
-    margin-top: 10px;
-
-    @media(max-width: 720px){
-        width: 100%;
-        height: 100%;
-
-        color: ${colors.primary};
     }
 `;
 
