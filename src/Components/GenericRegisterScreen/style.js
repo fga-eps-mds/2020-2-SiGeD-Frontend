@@ -43,13 +43,13 @@ export const RightSideContainer = styled.div`
     justify-content: flex-start;
     @media(max-width: 720px){
         width: 100%;
-        height: 80%;
+        height: 100%;
     }
 `;
 
 export const ColumnText = styled.div`
     width: 90%;
-    height: 100%;
+    height: 70%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -62,7 +62,6 @@ export const ColumnText = styled.div`
         height: 80%;
         justify-content: space-between;
         align-content: center;
-        margin-left: 10%;
     }
 `;
 
@@ -82,7 +81,7 @@ export const DivButtom = styled.div`
         justify-content: space-around;
         align-items: center;
         align-content: space-around;
-        margin-left: 6%;
+        margin-left: 10%;
     }
 `;
 

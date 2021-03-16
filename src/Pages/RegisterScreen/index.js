@@ -59,7 +59,7 @@ const RegisterScreen = () => {
     >
       <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
       <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
-      <Form.Group style={{ width: '42%', marginLeft: '0%' }}>
+      <Form.Group style={{ width: '45%' }}>
         <Form.Label>Cargo:</Form.Label>
         <Form.Control as="select" value={inputRole} style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
           <option>Admin</option>
@@ -67,7 +67,7 @@ const RegisterScreen = () => {
           <option>Receptionist</option>
         </Form.Control>
       </Form.Group>
-      <Form.Group style={{ width: '42%', marginRight: '15%' }}>
+      <Form.Group style={{ width: '45%' }}>
         <Form.Label>Setor:</Form.Label>
         <Form.Control as="select" value={inputSector} style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
           <option>Assistente Social</option>
