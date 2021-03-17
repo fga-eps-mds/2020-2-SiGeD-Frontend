@@ -16,7 +16,7 @@ export const Main = styled.div`
 
 export const Container = styled.div`
     width: 80%;
-    height: 80%;
+    height: 70%;
     background: ${colors.secondary};
     display: flex;
     flex-direction: row;
@@ -67,7 +67,7 @@ export const ColumnText = styled.div`
 
 export const DivButtom = styled.div`
     width: 100%;
-    height: 10%;
+    height: 5%;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
