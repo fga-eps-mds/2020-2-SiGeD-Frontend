@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { FaSistrix } from 'react-icons/fa';
 import axios from 'axios';
 import {
-  Main, Container, Title, Search, ContentBox, TableHeader,
-  TableTitle, P, Bar, Header, List, style,
+  TableHeader, TableTitle, P, Bar,
 } from './style';
-import SearchInput from '../../Components/SearchInput';
 import CategoriesData from '../../Components/CategoriesData';
 import ReactModal from '../../Components/ReactModal';
-import TinyButton from '../../Components/TinyButton';
+import GenericListScreen from '../../Components/GenericListScreen';
 
 const ListCategories = () => {
-  const [word, setWord] = useState();
   const [filterCategories, setFilterCategories] = useState([]);
   const [categories, setCategories] = useState([]);
   const [statusModal, setStatusModal] = useState(false);
+  const [word, setWord] = useState();
 
   const toggleModal = () => {
     setStatusModal(!statusModal);
@@ -62,44 +59,23 @@ const ListCategories = () => {
   };
 
   return (
-    <Main>
-      <Container>
-        <Title>Categorias</Title>
-        <Header>
-          <Search>
-            <SearchInput
-              type="text"
-              icon={<FaSistrix />}
-              value={word}
-              setWord={(value) => setWord(value)}
-            />
-          </Search>
-          <TinyButton style={style.buttonStyle} title="Nova Categoria" type="primary" click={() => setStatusModal(!statusModal)} />
-        </Header>
-
-        <ContentBox>
-          <TableHeader>
-            <TableTitle width={24}>
-              <P>Nome</P>
-            </TableTitle>
-            <Bar />
-            <TableTitle width={50}>
-              <P>Descrição</P>
-            </TableTitle>
-            <Bar />
-            <TableTitle width={24}>
-              <P>Ult. Atualização</P>
-            </TableTitle>
-            <TableTitle width={2} />
-          </TableHeader>
-          <List>
-            {listCategories()}
-          </List>
-          {statusModal ? <ReactModal type="Nova " idName="" idColor="#000000" getCategories={getCategories} toggleModal={toggleModal} /> : null}
-        </ContentBox>
-      </Container>
-
-    </Main>
+    <GenericListScreen ButtonTitle="Nova Cateoria" ButtonFunction={toggleModal} PageTitle="Categorias" SearchWord={word} setWord={setWord} ListType={listCategories()}>
+      <TableHeader>
+        <TableTitle width={24}>
+          <P>Nome</P>
+        </TableTitle>
+        <Bar />
+        <TableTitle width={50}>
+          <P>Descrição</P>
+        </TableTitle>
+        <Bar />
+        <TableTitle width={24}>
+          <P>Ult. Atualização</P>
+        </TableTitle>
+        <TableTitle width={2} />
+      </TableHeader>
+      { statusModal ? <ReactModal type="Nova " idName="" idColor="#000000" getCategories={getCategories} toggleModal={toggleModal} /> : null}
+    </GenericListScreen>
   );
 };
 
