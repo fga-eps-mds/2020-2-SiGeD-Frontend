@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import RegisterInput from '../../Components/RegisterInput';
 import {
   validateName, validatePhone, validateCity, validateCpf, validateEmail,
 } from '../../Utils/validations';
+import { apiClients } from '../../Services/Axios';
 
 const ClientRegisterScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -17,20 +17,19 @@ const ClientRegisterScreen = () => {
   const [policeStationOption, setPoliceStationOption] = useState('');
 
   const postClient = async () => {
-    try {
-      await axios.post('http://localhost:3002/clients/create', {
-        name: inputName,
-        email: inputEmail,
-        cpf: inputCpf,
-        phone: inputPhone,
-        city: inputCity,
-        office: officeOption,
-        policeStation: policeStationOption,
+    await apiClients.post('clients/create', {
+      name: inputName,
+      email: inputEmail,
+      cpf: inputCpf,
+      phone: inputPhone,
+      city: inputCity,
+      office: officeOption,
+      policeStation: policeStationOption,
+    })
+      .then((response) => { console.log(response); alert('Usuario criado.'); })
+      .catch((error) => {
+        console.error(`Não foi possivel cadastrar o cliente.${error}`);
       });
-    } catch (error) {
-      console.log(error);
-      alert(error);
-    }
   };
 
   const submit = () => {

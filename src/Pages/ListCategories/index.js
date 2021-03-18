@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { FaSistrix } from 'react-icons/fa';
 import {
   TableHeader, TableTitle, P, Bar,
 } from './style';
 import CategoriesData from '../../Components/CategoriesData';
 import ReactModal from '../../Components/ReactModal';
 import GenericListScreen from '../../Components/GenericListScreen';
+import TinyButton from '../../Components/TinyButton';
+import { apiDemands } from '../../Services/Axios';
 
 const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);
@@ -18,9 +20,11 @@ const ListCategories = () => {
   };
 
   const getCategories = async () => {
-    await axios
-      .get('http://localhost:3003/category')
-      .then((response) => setCategories(response.data));
+    await apiDemands.get('category')
+      .then((response) => setCategories(response.data))
+      .catch((err) => {
+        console.error(`Não foi possível listar as categorias.${err}`);
+      });
   };
 
   useEffect(() => {

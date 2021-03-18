@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import RegisterInput from '../../Components/RegisterInput';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
 import { PassMatches } from '../../Components/ErrorMessage';
+import { apiUsers } from '../../Services/Axios';
 
 const RegisterScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -13,25 +13,20 @@ const RegisterScreen = () => {
   const [inputSector, setInputSector] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [inputConfirmPassword, setInputConfirmPassword] = useState('');
-  const [valid, setValid] = useState('');
 
-  async function postUser() {
-    try {
-      await axios.post('http://localhost:3001/signUp', {
-        name: inputName,
-        email: inputEmail,
-        role: inputRole,
-        sector: inputSector,
-        pass: inputPassword,
-      })
-        .then((response) => {
-          setValid(response);
-          console.log(response, valid);
-        });
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const postUser = async () => {
+    await apiUsers.post('signup', {
+      name: inputName,
+      email: inputEmail,
+      role: inputRole,
+      sector: inputSector,
+      pass: inputPassword,
+    })
+      .then(alert('Usuario criado.'))
+      .catch((error) => {
+        console.error(`Não foi possivel cadastrar o cliente.${error}`);
+      });
+  };
 
   const submit = () => {
     if (validateSignUp(inputEmail, inputName, inputPassword, inputConfirmPassword)) {

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { FaSistrix } from 'react-icons/fa';
+import SearchInput from '../../Components/SearchInput';
 import ClientProfileData from '../../Components/ClientProfileData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
   TableHeader, P, Bar, TableTitle,
 } from './style';
+import { apiClients } from '../../Services/Axios';
 
 const ClientListScreen = () => {
   const [word, setWord] = useState();
@@ -12,9 +15,11 @@ const ClientListScreen = () => {
   const [clients, setClients] = useState([]);
 
   const getClients = async () => {
-    await axios
-      .get('http://localhost:3002/clients')
-      .then((response) => setClients(response.data));
+    await apiClients.get('clients')
+      .then((response) => setClients(response.data))
+      .catch((err) => {
+        console.error(`Não foi possível encontrar os dados dos clientes.${err}`);
+      });
   };
 
   useEffect(() => {

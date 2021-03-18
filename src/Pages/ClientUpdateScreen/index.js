@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import RegisterInput from '../../Components/RegisterInput';
 import {
   validateName, validateCpf, validateEmail, validatePhone, validateCity,
 } from '../../Utils/validations';
+import { apiClients } from '../../Services/Axios';
 
 const ClientUpdateScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -19,21 +19,20 @@ const ClientUpdateScreen = () => {
   const { id } = useParams();
 
   const getClient = async () => {
-    try {
-      await axios.get(`http://localhost:3002/clients/${id}`)
-        .then((response) => {
-          const { data } = response;
-          setInputName(data.name);
-          setInputEmail(data.email);
-          setInputCpf(data.cpf);
-          setInputPhone(data.phone);
-          setInputCity(data.city);
-          setOfficeOption(data.office);
-          setPoliceStationOption(data.policeStation);
-        });
-    } catch (error) {
-      console.error(error);
-    }
+    apiClients.get(`clients/${id}`)
+      .then((response) => {
+        const { data } = response;
+        setInputName(data.name);
+        setInputEmail(data.email);
+        setInputCpf(data.cpf);
+        setInputPhone(data.phone);
+        setInputCity(data.city);
+        setOfficeOption(data.office);
+        setPoliceStationOption(data.policeStation);
+      })
+      .catch((err) => {
+        console.error(`Não foi possível encontrar os dados do cliente.${err}`);
+      });
   };
 
   useEffect(() => {
@@ -41,22 +40,18 @@ const ClientUpdateScreen = () => {
   }, []);
 
   const updateClient = async () => {
-    try {
-      await axios.put(`http://localhost:3002/clients/update/${id}`, {
-        name: inputName,
-        email: inputEmail,
-        cpf: inputCpf,
-        phone: inputPhone,
-        city: inputCity,
-        office: officeOption,
-        policeStation: policeStationOption,
-      })
-        .then((response) => {
-          console.log(response);
-        });
-    } catch (error) {
-      console.error(error);
-    }
+    await apiClients.put(`/clients/update/${id}`, {
+      name: inputName,
+      email: inputEmail,
+      cpf: inputCpf,
+      phone: inputPhone,
+      city: inputCity,
+      office: officeOption,
+      policeStation: policeStationOption,
+    })
+      .catch((error) => {
+        console.error(`Não foi atualizar o cadastro do cliente.${error}`);
+      });
   };
 
   const submit = () => {
