@@ -59,7 +59,15 @@ const ListCategories = () => {
   };
 
   return (
-    <GenericListScreen ButtonTitle="Nova Cateoria" ButtonFunction={toggleModal} PageTitle="Categorias" SearchWord={word} setWord={setWord} ListType={listCategories()}>
+    <GenericListScreen
+      ButtonTitle="Nova Categoria"
+      ButtonFunction={toggleModal}
+      PageTitle="Categorias"
+      SearchWord={word}
+      setWord={setWord}
+      ListType={listCategories()}
+      redirectTo="/categorias"
+    >
       <TableHeader>
         <TableTitle width={24}>
           <P>Nome</P>

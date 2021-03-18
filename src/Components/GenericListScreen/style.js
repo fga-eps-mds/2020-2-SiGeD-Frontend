@@ -22,7 +22,9 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
 
 export const Title = styled.h2`

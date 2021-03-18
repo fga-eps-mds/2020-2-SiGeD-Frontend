@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import ClientProfileData from '../../Components/ClientProfileData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
@@ -20,7 +20,7 @@ const ClientListScreen = () => {
 
   useEffect(() => {
     getClients();
-  }, [clients]);
+  }, []);
 
   useEffect(() => {
     setFilterClients(
@@ -51,20 +51,11 @@ const ClientListScreen = () => {
   return (
     <GenericListScreen
       ButtonTitle="Novo Cliente"
-      ButtonFunction={() => {
-        <Link
-          to="/cliente"
-          style={{
-            color: 'white',
-            textDecorationLine: 'none',
-            fontSize: '1.5vw',
-          }}
-        />;
-      }}
       PageTitle="Clientes"
       SearchWord={word}
       setWord={setWord}
       ListType={listClients()}
+      redirectTo="/cliente"
     >
       <TableHeader>
         <TableTitle width={25}>

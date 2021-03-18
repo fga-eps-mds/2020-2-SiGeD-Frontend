@@ -25,6 +25,9 @@ const NavbarComp = () => (
         <Nav.Link as={Link} to="/clientes" style={styles.navbarText}>
           Clientes
         </Nav.Link>
+        <Nav.Link as={Link} to="/categorias" style={styles.navbarText}>
+          Categorias
+        </Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>

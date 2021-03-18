@@ -23,9 +23,12 @@ export const TableContent = styled.div`
 `;
 
 export const P = styled.p`
-  font-size: 1.5vh;
+  font-size: 2vh;
   margin-block-end: 0;
   margin-block-start: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @media(max-width: 600px) {
     font-size: 1.3vh;

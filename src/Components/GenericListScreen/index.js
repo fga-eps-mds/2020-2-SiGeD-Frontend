@@ -1,12 +1,14 @@
 import { FaSistrix } from 'react-icons/fa';
 import {
-  Main, Container, Title, Search, ContentBox, Header, style, List,
+  Main, Container, Title, Search, ContentBox, Header, List,
 } from './style';
 import SearchInput from '../SearchInput';
-import TinyButton from '../TinyButton';
+import RedirectListButton from '../RedirectButton';
 
 const GenericListScreen = ({
   ButtonTitle, ButtonFunction, PageTitle, children, setWord, SearchWord, ListType,
+  redirectTo,
+
 }) => (
   <Main>
     <Container>
@@ -20,7 +22,7 @@ const GenericListScreen = ({
             setWord={(value) => setWord(value)}
           />
         </Search>
-        <TinyButton style={style.buttonStyle} title={ButtonTitle} type="primary" click={ButtonFunction} />
+        <RedirectListButton title={ButtonTitle} redirectTo={redirectTo} click={ButtonFunction} />
       </Header>
 
       <ContentBox>
