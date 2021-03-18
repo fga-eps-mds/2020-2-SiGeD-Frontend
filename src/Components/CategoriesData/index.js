@@ -3,7 +3,7 @@ import axios from 'axios';
 import { BsThreeDotsVertical, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import {
-  Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button, P, Content,
+  Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button, P, Content, TableContainer,
 } from './style';
 import ReactModal from '../ReactModal';
 
@@ -37,21 +37,23 @@ const CategoriesData = ({ category, getCategories }) => {
   return (
     <Content>
       <Personalbox>
-        <TableContent width={24}>
-          <Name color={category.color}>{category.name}</Name>
-        </TableContent>
+        <TableContainer>
+          <TableContent width={24}>
+            <Name color={category.color}>{category.name}</Name>
+          </TableContent>
 
-        <TableContent width={50}>
-          <P>{category.description}</P>
-        </TableContent>
+          <TableContent width={50}>
+            <P>{category.description}</P>
+          </TableContent>
 
-        <TableContent width={24}>
-          <P>{category.updatedAt.slice(0, 10).replaceAll('-', '/')}</P>
-        </TableContent>
+          <TableContent width={24}>
+            <P>{category.updatedAt.slice(0, 10).replaceAll('-', '/')}</P>
+          </TableContent>
 
-        <TableContent width={2}>
-          <P><BsThreeDotsVertical onClick={() => { setBoxState(!boxState); }} /></P>
-        </TableContent>
+          <TableContent width={2}>
+            <P><BsThreeDotsVertical onClick={() => { setBoxState(!boxState); }} /></P>
+          </TableContent>
+        </TableContainer>
       </Personalbox>
 
       {boxState ? (

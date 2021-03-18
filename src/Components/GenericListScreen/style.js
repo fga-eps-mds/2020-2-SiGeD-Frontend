@@ -19,12 +19,22 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 5%;
+
+  @media(max-width: 750px){
+    margin-top: 20px;
+    height: 190vw;
+  }
 `;
 
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
+  @media(max-width: 750px){
+    margin-top: 0;
+    height: 4%;
+  }
 `;
 
 export const Title = styled.h2`
@@ -33,6 +43,9 @@ export const Title = styled.h2`
   font-size: 4vh;
   margin: 0;
 
+  @media(max-width: 750px){
+    width: 25%;
+  }
 `;
 
 export const ContentBox = styled.div`
@@ -43,10 +56,25 @@ export const ContentBox = styled.div`
   margin: 1% auto;
   overflow: hidden;
 
+  @media(max-width: 750px){
+    width: 100%;
+    height: 190vw;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    margin-top: 20px;
+    margin: 1% auto;
+    overflow: auto;
+  }
 `;
 
 export const Search = styled.div`
   float: left;
+
+  @media(max-width: 750px){
+    width: 100%;
+    margin-top: -8%;
+    left: 100%;
+  }
 `;
 
 export const TableHeader = styled.div`
@@ -56,11 +84,19 @@ export const TableHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media(max-width: 750px){
+    visibility: hidden;
+  }
 `;
 
 export const P = styled.div`
   color: ${colors.secondary};
   font-size: 2vh;
+
+  @media(max-width: 750px){
+    font-size: 1.6vh;
+  }
 `;
 
 export const Bar = styled.div`
@@ -77,13 +113,16 @@ export const TableTitle = styled.div`
   width: ${(props) => `${props.width}%`}
 `;
 
-export const Button = styled.div`
-`;
-
 export const List = styled.div`
   height: 27vw;
   padding: 5px;
   overflow: auto;
+
+  @media(max-width: 750px){
+    height: 190vw;
+    padding: 5px;
+    overflow: auto;
+  }
 `;
 
 export const style = {

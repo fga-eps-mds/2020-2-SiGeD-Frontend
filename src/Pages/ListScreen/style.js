@@ -6,7 +6,6 @@ export const Main = styled.div`
     background-color: ${colors.background};
     width: 100vw;
     justify-content: center;
-    overflow: auto;
 `;
 
 export const H1 = styled.h1`

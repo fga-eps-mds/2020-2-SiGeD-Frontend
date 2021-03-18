@@ -18,7 +18,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGFkNTVmMjkxYjViMDA1NjI4NDYzZCIsImlhdCI6MTYxNjAyMzEyMiwiZXhwIjoxNjE2MDIzMzYyfQ.Tv71Hx_CKwmK5S84obNTyQNLHZ_SlH7t20QvgNCnpGc' } })
+      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTM2MmJlZjUyMzA0MDAzZjMyZjc0MyIsImlhdCI6MTYxNjA3ODI2MywiZXhwIjoxNjE2MDc4NTAzfQ.rQ4wUDKqok_0EM8zIweNBYAFuEZD230WKWbeG5vlCMY' } })
       .then((response) => setUsers(response.data));
   }, []);
 

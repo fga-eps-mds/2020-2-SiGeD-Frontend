@@ -12,6 +12,15 @@ export const Personalbox = styled.div`
   margin-top: 1vh;
   border-radius: 8px;
   overflow: auto;
+
+  @media(max-width: 750px){
+    width: 85%;
+    height: 40%;
+    margin: 0 auto;
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: row;
+  }
 `;
 
 export const TableContent = styled.div`
@@ -20,6 +29,36 @@ export const TableContent = styled.div`
   width: ${(props) => `${props.width}%`};
   margin: 10px;
   overflow: auto;
+
+  @media(max-width: 750px){
+    width: 100%;
+    height: 4vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    word-break: break-all;
+    margin-top: 2%;
+  }
+`;
+
+export const TableContainer = styled.div`
+
+    @media(max-width: 750px){
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+      height: 100%;
+      margin-bottom: 0;
+      padding: 2vh;
+    }
+
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 `;
 
 export const P = styled.p`
@@ -30,8 +69,13 @@ export const P = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @media(max-width: 600px) {
-    font-size: 1.3vh;
+  @media(max-width: 750px){
+    font-size: 1.5vh;
+    font-weight: 900;
+    flex-wrap: wrap;
+    display:flex;
+    align-items: center;
+    margin-left: 1vw;
   }
 `;
 

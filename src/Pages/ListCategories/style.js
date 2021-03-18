@@ -8,11 +8,19 @@ export const TableHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media(max-width: 425px){
+    visibility: hidden;
+  }
 `;
 
 export const P = styled.div`
   color: ${colors.secondary};
   font-size: 2vh;
+
+  @media(max-width: 656px){
+    font-size: 1.6vh;
+  }
 `;
 
 export const Bar = styled.div`
@@ -27,7 +35,4 @@ export const TableTitle = styled.div`
   flex-direction: row;
   justify-content: center;
   width: ${(props) => `${props.width}%`}
-`;
-
-export const Button = styled.div`
 `;

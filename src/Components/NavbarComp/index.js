@@ -5,7 +5,7 @@ import logo from '../../Assets/logopcgo.png';
 import styles from './style';
 
 const NavbarComp = () => (
-  <Navbar expand="lg" variant="dark" clickfixed="top" style={styles.navbar}>
+  <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>
     <Navbar.Brand><img style={styles.navbarLogo} src={logo} alt="Polícia Civil de Goiás" /></Navbar.Brand>
     <Navbar.Toggle aria-controls="navbar-police" />
     <Navbar.Collapse id="navbar-police">
