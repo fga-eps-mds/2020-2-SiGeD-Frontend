@@ -9,6 +9,11 @@ export const Main = styled.div`
     overflow: auto;
 `;
 
+export const H1 = styled.h1`
+    font-size: '1.5rem';
+    font: 'Open Sans';
+`;
+
 export const Container = styled.div`
     display: flex;
     width: 90vw;
@@ -47,6 +52,7 @@ export const ContentBox = styled.div`
     box-sizing: border-box;
     border-radius: 0.5rem;
     margin: 0 auto;
+    background-color: black;
 `;
 
 export const Search = styled.div`
@@ -83,6 +89,7 @@ export const P = styled.div`
     font-size: 75%;
     padding: 0;
     left: 0;
+    width: 100%;
     @media(max-width: 656px){
     font-size: 1.6vh;
     }
@@ -114,12 +121,14 @@ export const TableTitle = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     width: ${(props) => `${props.width}%`}
+    
 `;
 
 export const Button = styled.div`
     float: right;
 
     @media(max-width: 435px){
-        top: -8%;
-        margin-top: -30%;
+        top: 20%;
+        margin-top: -10%;
+    }
 `;

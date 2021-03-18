@@ -26,9 +26,12 @@ export const PersonalBox = styled.div`
 export const P = styled.p`
 
     @media(max-width: 425px){
-      font-size: 2vh;
-      margin-bottom: 10%;
-      font-weight: 600;
+      font-size: 1.5vh;
+      font-weight: 900;
+      flex-wrap: wrap;
+      display:flex;
+      align-items: center;
+      margin-left: 1vw;
     }
     font-size: 2vh;
 `;
@@ -40,9 +43,11 @@ export const ImageUser = styled.div`
       margin-left: 0.5rem;
 
     @media(max-width:425px){
-      width: 50%;
-      height: 50%;
-      margin-left: 10%;
+      width: 30%;
+      padding: 2%;
+      height: 100%;
+      margin-left: 0;
+      background-color: ${colors.primary};
     }
 
 `;
@@ -53,9 +58,11 @@ export const TableContainer = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-left: 20%;
-      margin-top: 10%;
-      margin-bottom: 5%;
+      align-items: center;
+      width: 60%;
+      height: 100%;
+      margin-bottom: 0;
+      padding: 2vh;
     }
 
     display: flex;
@@ -66,13 +73,15 @@ export const TableContainer = styled.div`
 export const TableContent = styled.div`
 
     @media(max-width: 425px){
-      width: 40%;
-      height: 10%;
-      margin: '0 auto';
+      width: 100%;
+      height: 4vh;
+      display: flex;
+      justify-content: left;
+      align-items: center;
       flex-direction: row;
       flex-wrap: wrap;
-      margin-left: 10%;
-      margin-bottom: 0%;
+      word-break: break-all;
+      margin-top: 2%;
     }
 
     height: 100%;

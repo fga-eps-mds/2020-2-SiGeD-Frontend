@@ -5,13 +5,11 @@ import SearchInput from '../../Components/SearchInput';
 import PersonalData from '../../Components/PersonalData';
 import TinyButton from '../../Components/TinyButton';
 import {
-  Main, Container, Header, Title, Search, TableHeader, P, Bar,
+  Main, H1, Container, Header, Title, Search, TableHeader, P, Bar,
   DataContainer, TableTitle, Button,
 } from './style';
 
-const novoUsuario = () => {
-  console.log('Novo Usuário');
-};
+const novoUsuario = () => {};
 
 const ListScreen = () => {
   const [word, setWord] = useState();
@@ -20,7 +18,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGFkNTVmMjkxYjViMDA1NjI4NDYzZCIsImlhdCI6MTYxNTYwMjk0MCwiZXhwIjoxNjE1Njg5MzQwfQ.jSBL56DwQV_79EtLFn6riBO8JprBGki4ijje7YP6-Ek' } })
+      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGFkNTVmMjkxYjViMDA1NjI4NDYzZCIsImlhdCI6MTYxNjAyMzEyMiwiZXhwIjoxNjE2MDIzMzYyfQ.Tv71Hx_CKwmK5S84obNTyQNLHZ_SlH7t20QvgNCnpGc' } })
       .then((response) => setUsers(response.data));
   }, []);
 
@@ -37,10 +35,10 @@ const ListScreen = () => {
   const listUsers = () => {
     console.log(filterUsers);
     if (users.length === 0) {
-      return <h1 style={{ fontSize: '1.5rem', font: 'Open Sans' }}>Carregando...</h1>;
+      return <H1>Carregando...</H1>;
     }
     if (filterUsers.length === 0) {
-      return <h1 style={{ fontSize: '1.5rem', font: 'Open Sans' }}>Sem resultados...</h1>;
+      return <H1>Sem resultados...</H1>;
     }
     return filterUsers.map((user) => <PersonalData user={user} key={user._id} />);
   };
@@ -63,7 +61,6 @@ const ListScreen = () => {
           </Button>
         </Header>
 
-        {/* <ContentBox> */}
         <TableHeader>
           <TableTitle width={20}>
             <P>Nome</P>
@@ -91,8 +88,6 @@ const ListScreen = () => {
         <DataContainer>
           {listUsers()}
         </DataContainer>
-
-        {/* </ContentBox> */}
       </Container>
     </Main>
   );
