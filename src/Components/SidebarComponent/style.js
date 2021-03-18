@@ -5,12 +5,11 @@ import colors from '../../Constants/colors';
 export const Sidebar = styled.div`
     width: 30%;
     height: 100%;
-    background: #222222;
+    background: ${colors.primary};
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-
     @media(max-width: 720px){
         width: 100%;
         height: 20%;

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { FaSistrix } from 'react-icons/fa';
 import axios from 'axios';
-import styles from './style';
 import SearchInput from '../../Components/SearchInput';
 import PersonalData from '../../Components/PersonalData';
+import TinyButton from '../../Components/TinyButton';
+import {
+  Main, H1, Container, Header, Title, Search, TableHeader, P, Bar,
+  DataContainer, TableTitle, Button,
+} from './style';
+
+const novoUsuario = () => {};
 
 const ListScreen = () => {
   const [word, setWord] = useState();
@@ -12,7 +18,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/signUpGet')
+      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGFkNTVmMjkxYjViMDA1NjI4NDYzZCIsImlhdCI6MTYxNjAyMzEyMiwiZXhwIjoxNjE2MDIzMzYyfQ.Tv71Hx_CKwmK5S84obNTyQNLHZ_SlH7t20QvgNCnpGc' } })
       .then((response) => setUsers(response.data));
   }, []);
 
@@ -29,61 +35,61 @@ const ListScreen = () => {
   const listUsers = () => {
     console.log(filterUsers);
     if (users.length === 0) {
-      return <h1>Carregando...</h1>;
+      return <H1>Carregando...</H1>;
     }
     if (filterUsers.length === 0) {
-      return <h1>Sem resultados...</h1>;
+      return <H1>Sem resultados...</H1>;
     }
     return filterUsers.map((user) => <PersonalData user={user} key={user._id} />);
   };
 
   return (
-    <div style={styles.main}>
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <h2 style={styles.title}>Usuários</h2>
-
-          <div style={styles.search}>
+    <Main>
+      <Container>
+        <Title>Usuários</Title>
+        <Header>
+          <Search>
             <SearchInput
               type="text"
               icon={<FaSistrix />}
               value={word}
               setWord={(value) => setWord(value)}
             />
-          </div>
-        </div>
+          </Search>
+          <Button>
+            <TinyButton type="primary" title="Novo usuário" click={novoUsuario} />
+          </Button>
+        </Header>
 
-        <div style={styles.contentBox}>
-          <div style={styles.tableHeader}>
-            <div style={{ ...styles.tableTitle, width: '29%' }}>
-              <p style={styles.p}>Nome</p>
-            </div>
-            <div style={styles.bar} />
-            <div style={{ ...styles.tableTitle, width: '13%' }}>
-              <p style={styles.p}>CPF</p>
-            </div>
-            <div style={styles.bar} />
+        <TableHeader>
+          <TableTitle width={20}>
+            <P>Nome</P>
+          </TableTitle>
+          <Bar />
+          <TableTitle width={20}>
+            <P>Email</P>
+          </TableTitle>
+          <Bar />
 
-            <div style={{ ...styles.tableTitle, width: '22%' }}>
-              <p style={styles.p}>Telefone</p>
-            </div>
-            <div style={styles.bar} />
+          <TableTitle width={15}>
+            <P>Cargo</P>
+          </TableTitle>
+          <Bar />
 
-            <div style={{ ...styles.tableTitle, width: '15%' }}>
-              <p style={styles.p}>Locação</p>
-            </div>
-            <div style={styles.bar} />
-            <div style={{ ...styles.tableTitle, width: '20%' }}>
-              <p style={styles.p}>Ult. Atualização</p>
-            </div>
-          </div>
+          <TableTitle width={15}>
+            <P>Setor</P>
+          </TableTitle>
+          <Bar />
+          <TableTitle width={15}>
+            <P>Ult. Atualização</P>
+          </TableTitle>
+        </TableHeader>
 
-          <div style={styles.dataContainer}>
-            {listUsers()}
-          </div>
-        </div>
-      </div>
-    </div>
+        <DataContainer>
+          {listUsers()}
+        </DataContainer>
+      </Container>
+    </Main>
   );
 };
 

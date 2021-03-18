@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import BigButton from '../../Components/BigButton';
 import LoginInput from '../../Components/LoginInput';
-import styles from './style';
+import { styles, Background, Center } from './style';
 
 const LoginScreen = () => {
   const [userReceived, setUserReceived] = useState();
@@ -12,13 +12,9 @@ const LoginScreen = () => {
     console.log('Entrei', userReceived, passwordReceived);
   }
 
-  function register() {
-    console.log('Cadastrei');
-  }
-
   return (
-    <div style={styles.background}>
-      <div style={styles.center}>
+    <Background>
+      <Center>
         <h1 style={styles.access}>Entrar</h1>
 
         <LoginInput
@@ -38,9 +34,8 @@ const LoginScreen = () => {
         />
 
         <BigButton title="Entrar" type="primary" changeButton={login} />
-        <BigButton title="Cadastre-se" type="secondary" changeButton={register} />
-      </div>
-    </div>
+      </Center>
+    </Background>
   );
 };
 

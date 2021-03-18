@@ -1,45 +1,42 @@
 import React from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots } from 'react-icons/bs';
-import styles from './style';
+import { format } from 'date-fns';
+import {
+  PersonalBox, ImageUser, TableContent, P, TableContainer,
+} from './style';
 
-const PersonalData = ({
-  user,
+const PersonalData = ({ user }) => (
+  <PersonalBox>
+    <ImageUser>
+      <IoPersonCircleOutline size="100%" />
+    </ImageUser>
+    <TableContainer>
+      <TableContent width={20}>
+        <P>{user.name}</P>
+      </TableContent>
 
-}) => (
-  <div style={styles.personalbox}>
+      <TableContent width={20}>
+        <P>{user.email}</P>
+      </TableContent>
 
-    <div style={{ ...styles.tableContent, width: '30%' }}>
-      <IoPersonCircleOutline size="3vw" />
-      <p style={{ marginLeft: '4%' }}>{user.name}</p>
-    </div>
+      <TableContent width={25}>
+        <P>{user.role}</P>
+      </TableContent>
 
-    <div style={{ ...styles.tableContent, width: '15%' }}>
+      <TableContent width={15}>
+        <P>{user.sector}</P>
+      </TableContent>
 
-      <p>098765432</p>
-    </div>
+      <TableContent width={15}>
+        <P>{format(new Date(user.updatedAt), 'dd/MM/yyyy')}</P>
+      </TableContent>
 
-    <div style={{ ...styles.tableContent, width: '25%' }}>
-
-      <p>{user.email}</p>
-    </div>
-
-    <div style={{ ...styles.tableContent, width: '15%' }}>
-
-      <p>{user.enroll}</p>
-    </div>
-
-    <div style={{ ...styles.tableContent, width: '5%' }}>
-
-      <p>24/02</p>
-    </div>
-
-    <div style={{ ...styles.tableContent, width: '5%' }}>
-
-      <BsThreeDots size="1.5vw" />
-    </div>
-
-  </div>
+      <TableContent width={5} margin-bottom={0}>
+        <BsThreeDots size="1.5vw" />
+      </TableContent>
+    </TableContainer>
+  </PersonalBox>
 );
 
 export default PersonalData;
