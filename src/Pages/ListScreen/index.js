@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { FaSistrix } from 'react-icons/fa';
 import axios from 'axios';
-import SearchInput from '../../Components/SearchInput';
 import PersonalData from '../../Components/PersonalData';
-import TinyButton from '../../Components/TinyButton';
+import GenericListScreen from '../../Components/GenericListScreen';
 import {
-  Main, H1, Container, Header, Title, Search, TableHeader, P, Bar,
-  DataContainer, TableTitle, Button,
+  H1, TableHeader, P, Bar, TableTitle,
 } from './style';
 
-const novoUsuario = () => {};
+const novoUsuario = () => { };
 
 const ListScreen = () => {
   const [word, setWord] = useState();
@@ -44,52 +41,39 @@ const ListScreen = () => {
   };
 
   return (
-    <Main>
-      <Container>
-        <Title>Usuários</Title>
-        <Header>
-          <Search>
-            <SearchInput
-              type="text"
-              icon={<FaSistrix />}
-              value={word}
-              setWord={(value) => setWord(value)}
-            />
-          </Search>
-          <Button>
-            <TinyButton type="primary" title="Novo usuário" click={novoUsuario} />
-          </Button>
-        </Header>
+    <GenericListScreen
+      ButtonTitle="Novo Usuário"
+      ButtonFunction={novoUsuario}
+      PageTitle="Usuários"
+      SearchWord={word}
+      setWord={setWord}
+      ListType={listUsers()}
+      redirectTo="/usuarios"
+    >
+      <TableHeader>
+        <TableTitle width={20}>
+          <P>Nome</P>
+        </TableTitle>
+        <Bar />
+        <TableTitle width={20}>
+          <P>Email</P>
+        </TableTitle>
+        <Bar />
 
-        <TableHeader>
-          <TableTitle width={20}>
-            <P>Nome</P>
-          </TableTitle>
-          <Bar />
-          <TableTitle width={20}>
-            <P>Email</P>
-          </TableTitle>
-          <Bar />
+        <TableTitle width={15}>
+          <P>Cargo</P>
+        </TableTitle>
+        <Bar />
 
-          <TableTitle width={15}>
-            <P>Cargo</P>
-          </TableTitle>
-          <Bar />
-
-          <TableTitle width={15}>
-            <P>Setor</P>
-          </TableTitle>
-          <Bar />
-          <TableTitle width={15}>
-            <P>Ult. Atualização</P>
-          </TableTitle>
-        </TableHeader>
-
-        <DataContainer>
-          {listUsers()}
-        </DataContainer>
-      </Container>
-    </Main>
+        <TableTitle width={15}>
+          <P>Setor</P>
+        </TableTitle>
+        <Bar />
+        <TableTitle width={15}>
+          <P>Ult. Atualização</P>
+        </TableTitle>
+      </TableHeader>
+    </GenericListScreen>
   );
 };
 

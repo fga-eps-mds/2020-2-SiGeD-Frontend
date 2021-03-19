@@ -8,11 +8,19 @@ export const TableHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media(max-width: 750px){
+    visibility: hidden;
+  }
 `;
 
 export const P = styled.div`
   color: ${colors.secondary};
   font-size: 2vh;
+
+  @media(max-width: 750px){
+    font-size: 1.6vh;
+  }
 `;
 
 export const Bar = styled.div`
