@@ -36,7 +36,7 @@ const ClientUpdateScreen = () => {
   };
 
   useEffect(() => {
-    getClient(id);
+    getClient();
   }, []);
 
   const submit = () => {

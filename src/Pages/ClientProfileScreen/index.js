@@ -34,7 +34,7 @@ const ClientProfileScreen = () => {
   };
 
   useEffect(() => {
-    getClient(id);
+    getClient();
   }, []);
 
   return (
