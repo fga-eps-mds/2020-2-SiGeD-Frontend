@@ -4,10 +4,12 @@ import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 import axios from 'axios';
 import {
-  ClientDataBox, TableContent, Box, Ul, Li, Icon, Button,
-} from './style';
+  PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
+  TableContainer, ImageUser, DotContent,
+} from '../PersonData/style';
 
 const ClientProfileData = ({ client, getClients }) => {
   const [boxState, setBoxState] = useState(false);
@@ -29,38 +31,49 @@ const ClientProfileData = ({ client, getClients }) => {
   };
 
   return (
-    <ClientDataBox>
-      <TableContent
-        width={15}
-        justifycontent="flex-start"
-        as={Link}
-        to={`/perfil/${client._id}`}
-        id={client._id}
-        style={{ color: 'black', textDecorationLine: 'none' }}
-      >
-        <IoPersonCircleOutline size="4vw" />
-        {client.name}
-      </TableContent>
+    <Content>
+      <PersonDataBox>
+        <ImageUser>
+          <IoPersonCircleOutline size="100%" />
+        </ImageUser>
+        <TableContainer>
+          <TableContent
+            width={22}
+            justifycontent="center"
+            as={Link}
+            to={`/perfil/${client._id}`}
+            id={client._id}
+            style={{
+              color: 'black',
+              textDecorationLine: 'none',
+              marginRight: '1.5vw',
+            }}
+          >
+            <P>{client.name}</P>
+          </TableContent>
 
-      <TableContent width={22} justifycontent="center">
-        {client.email}
-      </TableContent>
+          <TableContent width={25} justifycontent="center">
+            <P>{client.email}</P>
+          </TableContent>
 
-      <TableContent width={15} justifycontent="center">
-        {client.cpf}
-      </TableContent>
+          <TableContent width={17} justifycontent="center">
+            <P>{client.cpf}</P>
+          </TableContent>
 
-      <TableContent width={10} justifycontent="center">
-        {client.phone}
-      </TableContent>
+          <TableContent width={15} justifycontent="center">
+            <P>{client.phone}</P>
+          </TableContent>
 
-      <TableContent width={15} justifycontent="center">
-        {/* {format(new Date(client.updatedAt), 'dd/MM/yyyy')} */}
-      </TableContent>
+          <TableContent width={15} justifycontent="center">
+            <P>{format(new Date(client.updatedAt), 'dd/MM/yyyy')}</P>
+          </TableContent>
 
-      <TableContent width={5} justifycontent="flex-end">
-        <BsThreeDots onClick={() => { setBoxState(!boxState); }} />
-      </TableContent>
+          <DotContent width={2} justifycontent="flex-end">
+            <P><BsThreeDots onClick={() => { setBoxState(!boxState); }} /></P>
+          </DotContent>
+        </TableContainer>
+      </PersonDataBox>
+
       {boxState ? (
         <Box>
           <Ul>
@@ -89,8 +102,7 @@ const ClientProfileData = ({ client, getClients }) => {
           </Ul>
         </Box>
       ) : null}
-
-    </ClientDataBox>
+    </Content>
   );
 };
 

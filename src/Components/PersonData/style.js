@@ -1,79 +1,80 @@
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
-export const Personalbox = styled.div`
-  width: 100%;
-  height: 10%;
-  font-size: 1vh;
-  background-color: ${colors.secondary};
+export const PersonDataBox = styled.div`
+width: 100%;
+height: 10%;
+font-size: 1vh;
+background-color: ${colors.secondary};
+display: flex;
+flex-direction: row;
+align-items: center;
+margin-top: 1vh;
+border-radius: 8px;
+overflow: auto;
+
+@media(max-width: 750px){
+  width: 85%;
+  height: 40%;
+  margin: 0 auto;
+  margin-bottom: 2vh;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  margin-top: 1vh;
-  border-radius: 8px;
-  overflow: auto;
-
-  @media(max-width: 750px){
-    width: 85%;
-    height: 40%;
-    margin: 0 auto;
-    margin-bottom: 2vh;
-    display: flex;
-    flex-direction: row;
-  }
+}
 `;
 
 export const TableContent = styled.div`
+display: flex;
+justify-content: center;
+width: ${(props) => `${props.width}%`};
+margin: 10px;
+overflow: auto;
+
+@media(max-width: 750px){
+  width: 100%;
+  height: 4vh;
   display: flex;
   justify-content: center;
-  width: ${(props) => `${props.width}%`};
-  margin: 10px;
-  overflow: auto;
-
-  @media(max-width: 750px){
-    width: 100%;
-    height: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    word-break: break-all;
-    margin-top: 2%;
-  }
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  word-break: break-all;
+  margin-top: 2%;
+}
 `;
 
 export const TableContainer = styled.div`
 
-    @media(max-width: 750px){
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      margin-bottom: 0;
-      padding: 2vh;
-    }
+@media(max-width: 750px){
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+  margin-bottom: 0;
+  padding: 2vh;
+}
 
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+display: flex;
+flex-direction: row;
+width: 100%;
 `;
 
 export const P = styled.p`
-  font-size: 2vh;
-  margin-block-end: 0;
-  margin-block-start: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+font-size: 2vh;
+margin-block-end: 0;
+margin-block-start: 0;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 
-  @media(max-width: 750px){
-    font-size: 1.5vh;
-    font-weight: 900;
-    align-items: center;
-    margin-left: 1vw;
-  }
+@media(max-width: 750px){
+  font-size: 2.5vh;
+  font-weight: 900;
+  align-items: center;
+  margin-left: 1vw;
+}
 `;
 
 export const Name = styled(P)`
@@ -95,7 +96,21 @@ export const Box = styled.div`
   z-index: 1;
 
   @media(max-width: 750px){
-    top: 19%;
+    top: 5%;
+  }
+`;
+
+export const ImageUser = styled.div`
+  width: 3vw;
+  height: 100%;
+  margin-left: 0.5rem;
+
+  @media(max-width:750px){
+    width: 30%;
+    padding: 2%;
+    height: 50vh;
+    margin-left: 0;
+    background-color: ${colors.primary};
   }
 `;
 
@@ -136,7 +151,7 @@ overflow: auto;
 @media(max-width: 750px){
   position: absolute;
   top: 5%;
-  right: 11%;
+  right: 15%;
   width: fit-content;
 }
 `;

@@ -1,52 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
-export const Main = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  background-color: #BFBFBF;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justifyContent: center;
-  alignItems: center;
-`;
-
-export const Container = styled.div`
-  width: 90vw;
-  display: flex;
-  flex-direction: column;
-  margin-top: 5%;
-`;
-
-export const Header = styled.div`
-
-`;
-
-export const Title = styled.h2`
-  font: Open Sans;
-  font-weight: 400;
-  font-size: 4vh;
-  margin: 0;
-
-`;
-
-export const ContentBox = styled.div`
-  width: 100%;
-  height: 45%;
-  box-sizing: border-box;
-  border-radius: 0.5rem;
-  margin: 1% auto;
-  overflow: hidden;
-
-`;
-
-export const Search = styled.div`
-  float: left;
-`;
-
 export const TableHeader = styled.div`
   background-color: ${colors.primary};
   color: colors.secondary;
@@ -54,11 +8,18 @@ export const TableHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media(max-width: 750px){
+    visibility: hidden;
+  }
 `;
 
 export const P = styled.div`
   color: ${colors.secondary};
   font-size: 2vh;
+  @media(max-width: 750px){
+    font-size: 1.6vh;
+  }
 `;
 
 export const Bar = styled.div`
@@ -74,23 +35,3 @@ export const TableTitle = styled.div`
   justify-content: center;
   width: ${(props) => `${props.width}%`}
 `;
-
-export const Button = styled.div`
-`;
-
-export const List = styled.div`
-  height: 27vw;
-  padding: 5px;
-  overflow: auto;
-`;
-
-export const style = {
-  buttonStyle: {
-    margin: '0',
-    float: 'right',
-    width: '15vw',
-    height: '5vh',
-    textAlign: 'center',
-    bottom: '0',
-  },
-};

@@ -61,7 +61,7 @@ export const DivButton = styled.div`
   margin-top: 1%;
   width: 80%;
 
-  @media(max-width: 1200px) {
+  @media(max-width: 750px) {
     flex-direction: column;
     float: right;
   }
@@ -96,9 +96,9 @@ export const modalStyle = {
   content: {
     position: 'absolute',
     top: '30%',
-    left: '35%',
-    right: '35%',
-    bottom: '30%',
+    left: '10vw',
+    right: '10vw',
+    height: 'max-content',
     background: '#fff',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
