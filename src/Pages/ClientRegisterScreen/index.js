@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import RegisterInput from '../../Components/RegisterInput';
-import {
-  validateName, validatePhone, validateCity, validateCpf, validateEmail,
-} from '../../Utils/validations';
+import { validateFields } from '../../Utils/validations';
+import { postClient } from '../../Services/Axios/clientServices';
 
 const ClientRegisterScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -16,36 +14,19 @@ const ClientRegisterScreen = () => {
   const [officeOption, setOfficeOption] = useState('');
   const [policeStationOption, setPoliceStationOption] = useState('');
 
-  const postClient = async () => {
-    try {
-      await axios.post('http://localhost:3002/clients/create', {
-        name: inputName,
-        email: inputEmail,
-        cpf: inputCpf,
-        phone: inputPhone,
-        city: inputCity,
-        office: officeOption,
-        policeStation: policeStationOption,
-      });
-    } catch (error) {
-      console.log(error);
-      alert(error);
-    }
-  };
-
   const submit = () => {
-    if (validateName(inputName) === false) {
-      alert('Nome inválido.');
-    } if (validateCpf(inputCpf) === false) {
-      alert('CPF inválido.');
-    } if (validateEmail(inputEmail) === false) {
-      alert('Email inválido.');
-    } if (validatePhone(inputPhone) === false) {
-      alert('telefone inválido.');
-    } if (validateCity(inputCity) === false) {
-      alert('Cidade invalida.');
+    const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
+      inputCity, 'Cadastro do cliente realizado com sucesso!');
+
+    if (!message) {
+      postClient(
+        inputName, inputEmail, inputCpf, inputPhone,
+        inputCity, officeOption, policeStationOption,
+      );
     }
-    postClient();
+    postClient(
+      inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
+    );
     setInputName('');
     setInputCpf('');
     setInputEmail('');
@@ -53,7 +34,6 @@ const ClientRegisterScreen = () => {
     setInputCity('');
     setOfficeOption('');
     setPoliceStationOption('');
-    alert('Cliente criado com sucesso!');
   };
 
   const cancel = () => {

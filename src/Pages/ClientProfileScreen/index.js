@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import ProfileSidebarComponent from '../../Components/ProfileSidebarComponent';
 import {
   Main, RightBox,
 } from './style';
+import { getClients } from '../../Services/Axios/clientServices';
 
 const ClientProfileScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -16,26 +16,22 @@ const ClientProfileScreen = () => {
   const [policeStationOption, setPoliceStationOption] = useState('');
   const { id } = useParams();
 
-  const getClient = async () => {
-    try {
-      await axios.get(`http://localhost:3002/clients/${id}`)
-        .then((response) => {
-          const { data } = response;
-          setInputName(data.name);
-          setInputEmail(data.email);
-          setInputCpf(data.cpf);
-          setInputPhone(data.phone);
-          setInputCity(data.city);
-          setOfficeOption(data.office);
-          setPoliceStationOption(data.policeStation);
-        });
-    } catch (error) {
-      console.error(error);
-    }
+  const getClientFromApi = async () => {
+    getClients(`clients/${id}`)
+      .then((response) => {
+        const { data } = response;
+        setInputName(data.name);
+        setInputEmail(data.email);
+        setInputCpf(data.cpf);
+        setInputPhone(data.phone);
+        setInputCity(data.city);
+        setOfficeOption(data.office);
+        setPoliceStationOption(data.policeStation);
+      });
   };
 
   useEffect(() => {
-    getClient();
+    getClientFromApi();
   }, []);
 
   return (

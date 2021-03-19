@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import PersonalData from '../../Components/PersonalData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
   H1, TableHeader, P, Bar, TableTitle,
 } from './style';
+import { getUser } from '../../Services/Axios/userServices';
 
 const novoUsuario = () => { };
 
@@ -13,11 +13,17 @@ const ListScreen = () => {
   const [filterUsers, setFilterUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
+  const getUsers = async () => {
+    await getUser('users')
+      .then((response) => setUsers(response.data))
+      .catch((err) => {
+        console.error(`Não foi possível encontrar os dados dos clientes.${err}`);
+      });
+  };
+
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTM2NTUxOTQ0OGVlMDA1NTQzZWUzZSIsImlhdCI6MTYxNjEzOTcyMSwiZXhwIjoxNjE2MTM5OTYxfQ.Zgl5ALv_6aRj1_17XIhtMSwgEAXqQShw6zS2T2hxlq8' } })
-      .then((response) => setUsers(response.data));
-  }, []);
+    getUsers();
+  }, [users]);
 
   useEffect(() => {
     setFilterUsers(

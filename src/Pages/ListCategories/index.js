@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import {
   TableHeader, TableTitle, P, Bar,
 } from './style';
 import CategoriesData from '../../Components/CategoriesData';
 import ReactModal from '../../Components/ReactModal';
 import GenericListScreen from '../../Components/GenericListScreen';
+import { getCategories } from '../../Services/Axios/demandsServices';
 
 const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);
@@ -17,15 +17,17 @@ const ListCategories = () => {
     setStatusModal(!statusModal);
   };
 
-  const getCategories = async () => {
-    await axios
-      .get('http://localhost:3003/category')
-      .then((response) => setCategories(response.data));
+  const listCategorie = async () => {
+    await getCategories()
+      .then((response) => setCategories(response.data))
+      .catch((err) => {
+        console.error(`Não foi possível listar as categorias.${err}`);
+      });
   };
 
   useEffect(() => {
-    getCategories();
-  }, []);
+    listCategorie();
+  }, [categories]);
 
   useEffect(() => {
     setFilterCategories(
@@ -37,25 +39,20 @@ const ListCategories = () => {
     setFilterCategories(categories);
   }, [categories]);
 
-  const listCategories = () => {
-    if (categories.length === 0) {
-      return <h1>Sem resultado</h1>;
-    }
-    if (filterCategories.length === 0) {
+  const renderCategories = () => {
+    if (categories?.length === 0) {
       return <h1>Sem resultados</h1>;
     }
-    return filterCategories.map((category) => {
-      if (category) {
-        return (
-          <CategoriesData
-            category={category}
-            getCategories={getCategories}
-            key={category._id}
-          />
-        );
-      }
-      return null;
-    });
+    if (filterCategories?.length === 0) {
+      return <h1>Sem resultados</h1>;
+    }
+    return filterCategories?.map((category) => (
+      <CategoriesData
+        category={category}
+        getCategories={listCategorie}
+        key={category._id}
+      />
+    ));
   };
 
   return (
@@ -65,7 +62,7 @@ const ListCategories = () => {
       PageTitle="Categorias"
       SearchWord={word}
       setWord={setWord}
-      ListType={listCategories()}
+      ListType={renderCategories()}
       redirectTo="/categorias"
     >
       <TableHeader>

@@ -46,3 +46,27 @@ export const validateSignUp = (email, name, pass1, pass2) => {
   }
   return false;
 };
+
+export const validateFields = (inputName, inputEmail, inputCpf, inputPhone,
+  inputCity, successMessage) => {
+  let message;
+
+  if (validateName(inputName) === false) {
+    message.push('Nome inválido.');
+  } if (validateCpf(inputCpf) === false) {
+    message.push('CPF inválido.');
+  } if (validateEmail(inputEmail) === false) {
+    message.push('Email inválido.');
+  } if (validatePhone(inputPhone) === false) {
+    message.push('telefone inválido.');
+  } if (validateCity(inputCity) === false) {
+    message.push('Cidade invalida.');
+  }
+  if (!message) {
+    alert(successMessage);
+  } else {
+    alert(message);
+  }
+
+  return message;
+};

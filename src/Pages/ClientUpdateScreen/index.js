@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import RegisterInput from '../../Components/RegisterInput';
-import {
-  validateName, validateCpf, validateEmail, validatePhone, validateCity,
-} from '../../Utils/validations';
+import { validateFields } from '../../Utils/validations';
+import { getClients, updateClient } from '../../Services/Axios/clientServices';
 
 const ClientUpdateScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -18,63 +16,33 @@ const ClientUpdateScreen = () => {
   const [policeStationOption, setPoliceStationOption] = useState('');
   const { id } = useParams();
 
-  const getClient = async () => {
-    try {
-      await axios.get(`http://localhost:3002/clients/${id}`)
-        .then((response) => {
-          const { data } = response;
-          setInputName(data.name);
-          setInputEmail(data.email);
-          setInputCpf(data.cpf);
-          setInputPhone(data.phone);
-          setInputCity(data.city);
-          setOfficeOption(data.office);
-          setPoliceStationOption(data.policeStation);
-        });
-    } catch (error) {
-      console.error(error);
-    }
+  const getClientFromApi = async () => {
+    getClients(`clients/${id}`)
+      .then((response) => {
+        const { data } = response;
+        setInputName(data.name);
+        setInputEmail(data.email);
+        setInputCpf(data.cpf);
+        setInputPhone(data.phone);
+        setInputCity(data.city);
+        setOfficeOption(data.office);
+        setPoliceStationOption(data.policeStation);
+      });
   };
 
   useEffect(() => {
-    getClient();
+    getClientFromApi();
   }, []);
 
-  const updateClient = async () => {
-    try {
-      await axios.put(`http://localhost:3002/clients/update/${id}`, {
-        name: inputName,
-        email: inputEmail,
-        cpf: inputCpf,
-        phone: inputPhone,
-        city: inputCity,
-        office: officeOption,
-        policeStation: policeStationOption,
-      })
-        .then((response) => {
-          console.log(response);
-        });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const submit = () => {
-    if (validateName(inputName) === false) {
-      alert('Nome inválido.');
-    } if (validateCpf(inputCpf) === false) {
-      alert('CPF inválido.');
-    } if (validateEmail(inputEmail) === false) {
-      alert('Email inválido.');
-    } if (validatePhone(inputPhone) === false) {
-      alert('telefone inválido.');
-    } if (validateCity(inputCity) === false) {
-      alert('Cidade invalida.');
-    } if (
-      validateName(inputName) && validateCpf(inputCpf) && validateEmail(inputEmail)
-      && validatePhone(inputPhone) && validateCity(inputCity)
-    ) {
-      updateClient();
+    const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
+      inputCity, 'Cadastrado do cliente atualizado com sucesso!');
+
+    if (!message) {
+      updateClient(
+        inputName, inputEmail, inputCpf, inputPhone,
+        inputCity, officeOption, policeStationOption, id,
+      );
     }
   };
 

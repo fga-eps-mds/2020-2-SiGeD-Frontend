@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import axios from 'axios';
 import {
   Titulo, modalStyle, P, DivButton, Input, DivNome, DivCor,
   TextArea, Linha, ModalContent, DivDescription,
 } from './style';
 import TinyButton from '../TinyButton';
+import { createCategory, updateCategory } from '../../Services/Axios/demandsServices';
 
 Modal.setAppElement('#root');
 const ReactModal = ({
@@ -14,51 +14,19 @@ const ReactModal = ({
   const [name, setName] = useState(idName);
   const [description, setDescription] = useState(idDescription);
   const [color, setColor] = useState(idColor);
-  let valid = true;
+  const [valid, setValid] = useState(true);
 
-  const createCategory = async () => {
-    try {
-      await axios.post('http://localhost:3003/category/create', {
-        name,
-        description,
-        color,
-      })
-        .then((response) => {
-          console.log(response);
-          if (response.data.status) {
-            alert('Preencha todos os campos para poder criar uma nova categoria');
-            valid = false;
-          }
-        });
-    } catch (error) {
-      alert('Não foi possível criar a nova categoria, tente novamente.');
+  useEffect(() => {
+    if (!name && !description && !color) {
+      setValid(false);
     }
-  };
-
-  const updateCategory = async () => {
-    try {
-      await axios.put(`http://localhost:3003/category/update/${id}`, {
-        name,
-        description,
-        color,
-      })
-        .then((response) => {
-          console.log(response);
-          if (response.data.status) {
-            alert('Preencha todos os campos para poder atualizar esta categoria');
-            valid = false;
-          }
-        });
-    } catch (error) {
-      alert('Não foi possível atualizar a categoria, tente novamente.');
-    }
-  };
+  }, [name, description, color]);
 
   const submit = async () => {
     if (type === 'Nova ') {
-      await createCategory();
+      await createCategory(name, description, color);
     } else {
-      await updateCategory();
+      await updateCategory(name, description, color, id);
     }
     getCategories();
     if (valid) {
