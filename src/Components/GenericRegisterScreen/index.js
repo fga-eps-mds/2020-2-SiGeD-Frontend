@@ -28,7 +28,7 @@ const GenericRegisterScreen = ({
         </ColumnText>
         <DivButtom>
           <TinyButton type="secondary" title="Cancelar" click={cancel} />
-          <TinyButton type="primary" title={buttonTitle} click={submit} />
+          <TinyButton type="primary" title={buttonTitle} click={() => submit()} />
         </DivButtom>
       </RightSideContainer>
     </Container>

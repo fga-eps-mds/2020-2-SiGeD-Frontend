@@ -44,12 +44,16 @@ const ClientRegisterScreen = () => {
       alert('telefone inválido.');
     } if (validateCity(inputCity) === false) {
       alert('Cidade invalida.');
-    } if (
-      validateName(inputName) && validateCpf(inputCpf) && validateEmail(inputEmail)
-      && validatePhone(inputPhone) && validateCity(inputCity)
-    ) {
-      postClient();
     }
+    postClient();
+    setInputName('');
+    setInputCpf('');
+    setInputEmail('');
+    setInputPhone('');
+    setInputCity('');
+    setOfficeOption('');
+    setPoliceStationOption('');
+    alert('Cliente criado com sucesso!');
   };
 
   const cancel = () => {

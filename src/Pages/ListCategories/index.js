@@ -39,10 +39,10 @@ const ListCategories = () => {
 
   const listCategories = () => {
     if (categories.length === 0) {
-      return <h1>Carregando...</h1>;
+      return <h1>Sem resultado</h1>;
     }
     if (filterCategories.length === 0) {
-      return <h1>Sem resultados...</h1>;
+      return <h1>Sem resultados</h1>;
     }
     return filterCategories.map((category) => {
       if (category) {

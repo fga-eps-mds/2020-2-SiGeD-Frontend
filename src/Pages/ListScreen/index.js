@@ -32,10 +32,10 @@ const ListScreen = () => {
   const listUsers = () => {
     console.log(filterUsers);
     if (users.length === 0) {
-      return <H1>Carregando...</H1>;
+      return <H1>Sem resultados</H1>;
     }
     if (filterUsers.length === 0) {
-      return <H1>Sem resultados...</H1>;
+      return <H1>Sem resultados</H1>;
     }
     return filterUsers.map((user) => <PersonalData user={user} key={user._id} />);
   };
