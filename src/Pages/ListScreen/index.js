@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { FaSistrix } from 'react-icons/fa';
-import SearchInput from '../../Components/SearchInput';
 import PersonalData from '../../Components/PersonalData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {

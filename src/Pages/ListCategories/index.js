@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FaSistrix } from 'react-icons/fa';
 import {
   TableHeader, TableTitle, P, Bar,
 } from './style';
 import CategoriesData from '../../Components/CategoriesData';
 import ReactModal from '../../Components/ReactModal';
 import GenericListScreen from '../../Components/GenericListScreen';
-import TinyButton from '../../Components/TinyButton';
 import { getCategories } from '../../Services/Axios/demandsServices';
 
 const ListCategories = () => {
