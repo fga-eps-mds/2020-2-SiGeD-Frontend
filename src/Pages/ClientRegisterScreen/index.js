@@ -16,7 +16,7 @@ const ClientRegisterScreen = () => {
 
   const submit = () => {
     const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
-      inputCity, 'Cadastrado do cliente realizado com sucesso!');
+      inputCity, 'Cadastro do cliente realizado com sucesso!');
 
     if (!message) {
       postClient(
@@ -34,7 +34,6 @@ const ClientRegisterScreen = () => {
     setInputCity('');
     setOfficeOption('');
     setPoliceStationOption('');
-    alert('Cliente criado com sucesso!');
   };
 
   const cancel = () => {
