@@ -9,9 +9,9 @@ export const Main = styled.div`
   background-color: #BFBFBF;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justifyContent: center;
-  alignItems: center;
+  @media(max-width: 750px){
+    height: max-content;
+  }
 `;
 
 export const Container = styled.div`
@@ -21,8 +21,8 @@ export const Container = styled.div`
   margin-top: 5%;
 
   @media(max-width: 750px){
-    margin-top: 20px;
-    height: 190vw;
+    height: 100vh;
+    margin-top: 0%;
   }
 `;
 
@@ -32,8 +32,11 @@ export const Header = styled.div`
   align-items: flex-end;
 
   @media(max-width: 750px){
-    margin-top: 0;
-    height: 4%;
+    height: max-content;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
   }
 `;
 
@@ -42,10 +45,24 @@ export const Title = styled.h2`
   font-weight: 400;
   font-size: 4vh;
   margin: 0;
+  margin-bottom: 7vh;
 
   @media(max-width: 750px){
     width: 25%;
+    margin-top: 10vh;
+    margin-bottom: 1vh;
   }
+`;
+
+export const ButtonDiv = styled.div`
+  float: right;
+
+  @media(max-width: 750px){
+    width: 50%;
+    height: 100%;
+    float: none;
+    margin-left: 10px;
+}
 `;
 
 export const ContentBox = styled.div`
@@ -58,7 +75,7 @@ export const ContentBox = styled.div`
 
   @media(max-width: 750px){
     width: 100%;
-    height: 190vw;
+    height: max-content;
     box-sizing: border-box;
     border-radius: 0.5rem;
     margin-top: 20px;
@@ -71,9 +88,7 @@ export const Search = styled.div`
   float: left;
 
   @media(max-width: 750px){
-    width: 100%;
-    margin-top: -8%;
-    left: 100%;
+    width: 50%;
   }
 `;
 
@@ -114,24 +129,13 @@ export const TableTitle = styled.div`
 `;
 
 export const List = styled.div`
-  height: 27vw;
+  height: 50vh;
   padding: 5px;
   overflow: auto;
 
   @media(max-width: 750px){
-    height: 190vw;
+    height: max-content;
     padding: 5px;
     overflow: auto;
   }
 `;
-
-export const style = {
-  buttonStyle: {
-    margin: '0',
-    float: 'right',
-    width: '15vw',
-    height: '5vh',
-    textAlign: 'center',
-    bottom: '0',
-  },
-};

@@ -1,6 +1,6 @@
 import { FaSistrix } from 'react-icons/fa';
 import {
-  Main, Container, Title, Search, ContentBox, Header, List,
+  Main, Container, Title, Search, ContentBox, Header, List, ButtonDiv,
 } from './style';
 import SearchInput from '../SearchInput';
 import RedirectListButton from '../RedirectButton';
@@ -22,7 +22,9 @@ const GenericListScreen = ({
             setWord={(value) => setWord(value)}
           />
         </Search>
-        <RedirectListButton title={ButtonTitle} redirectTo={redirectTo} click={ButtonFunction} />
+        <ButtonDiv>
+          <RedirectListButton title={ButtonTitle} redirectTo={redirectTo} click={ButtonFunction} />
+        </ButtonDiv>
       </Header>
 
       <ContentBox>

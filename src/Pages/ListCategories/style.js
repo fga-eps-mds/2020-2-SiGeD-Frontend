@@ -9,7 +9,7 @@ export const TableHeader = styled.div`
   flex-direction: row;
   align-items: center;
 
-  @media(max-width: 425px){
+  @media(max-width: 750px){
     visibility: hidden;
   }
 `;
@@ -18,7 +18,7 @@ export const P = styled.div`
   color: ${colors.secondary};
   font-size: 2vh;
 
-  @media(max-width: 656px){
+  @media(max-width: 750px){
     font-size: 1.6vh;
   }
 `;
