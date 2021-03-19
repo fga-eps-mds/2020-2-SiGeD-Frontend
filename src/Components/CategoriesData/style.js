@@ -32,9 +32,9 @@ export const TableContent = styled.div`
 
   @media(max-width: 750px){
     width: 100%;
-    height: 4vh;
+    height: max-content;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
@@ -50,7 +50,6 @@ export const TableContainer = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 60%;
       height: 100%;
       margin-bottom: 0;
       padding: 2vh;
@@ -72,8 +71,6 @@ export const P = styled.p`
   @media(max-width: 750px){
     font-size: 1.5vh;
     font-weight: 900;
-    flex-wrap: wrap;
-    display:flex;
     align-items: center;
     margin-left: 1vw;
   }
@@ -97,6 +94,10 @@ export const Box = styled.div`
   right: 0;
   top: 65%;
   z-index: 1;
+
+  @media(max-width: 750px){
+    top: 19%;
+  }
 `;
 
 export const Ul = styled.ul`
@@ -124,4 +125,19 @@ export const Button = styled.button`
 
 export const Content = styled.div`
   position: relative;
+`;
+
+export const DotContent = styled.div`
+display: flex;
+justify-content: center;
+width: ${(props) => `${props.width}%`};
+margin: 10px;
+overflow: auto;
+
+@media(max-width: 750px){
+  position: absolute;
+  top: 5%;
+  right: 11%;
+  width: fit-content;
+}
 `;

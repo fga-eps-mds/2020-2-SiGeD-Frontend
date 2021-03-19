@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
-export const ClientDataBox = styled.div`
+export const PersonDataBox = styled.div`
 width: 100%;
 height: 10%;
 font-size: 1vh;
@@ -34,7 +34,7 @@ overflow: auto;
   width: 100%;
   height: 4vh;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
@@ -70,10 +70,8 @@ overflow: hidden;
 text-overflow: ellipsis;
 
 @media(max-width: 750px){
-  font-size: 1.5vh;
+  font-size: 2.5vh;
   font-weight: 900;
-  flex-wrap: wrap;
-  display:flex;
   align-items: center;
   margin-left: 1vw;
 }
@@ -97,6 +95,10 @@ export const Box = styled.div`
   right: 0;
   top: 65%;
   z-index: 1;
+
+  @media(max-width: 750px){
+    top: 5%;
+  }
 `;
 
 export const ImageUser = styled.div`
@@ -107,7 +109,7 @@ export const ImageUser = styled.div`
   @media(max-width:750px){
     width: 30%;
     padding: 2%;
-    height: 100%;
+    height: 50vh;
     margin-left: 0;
     background-color: ${colors.primary};
   }
@@ -138,4 +140,19 @@ export const Button = styled.button`
 
 export const Content = styled.div`
   position: relative;
+`;
+
+export const DotContent = styled.div`
+display: flex;
+justify-content: center;
+width: ${(props) => `${props.width}%`};
+margin: 10px;
+overflow: auto;
+
+@media(max-width: 750px){
+  position: absolute;
+  top: 5%;
+  right: 15%;
+  width: fit-content;
+}
 `;

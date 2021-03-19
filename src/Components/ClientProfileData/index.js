@@ -4,10 +4,12 @@ import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 import axios from 'axios';
 import {
-  ClientDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P, TableContainer, ImageUser,
-} from './style';
+  PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
+  TableContainer, ImageUser, DotContent,
+} from '../PersonData/style';
 
 const ClientProfileData = ({ client, getClients }) => {
   const [boxState, setBoxState] = useState(false);
@@ -30,11 +32,11 @@ const ClientProfileData = ({ client, getClients }) => {
 
   return (
     <Content>
-      <ClientDataBox>
+      <PersonDataBox>
+        <ImageUser>
+          <IoPersonCircleOutline size="100%" />
+        </ImageUser>
         <TableContainer>
-          <ImageUser>
-            <IoPersonCircleOutline size="3vw" />
-          </ImageUser>
           <TableContent
             width={22}
             justifycontent="center"
@@ -63,14 +65,14 @@ const ClientProfileData = ({ client, getClients }) => {
           </TableContent>
 
           <TableContent width={15} justifycontent="center">
-            {/* {format(new Date(client.updatedAt), 'dd/MM/yyyy')} */}
+            <P>{format(new Date(client.updatedAt), 'dd/MM/yyyy')}</P>
           </TableContent>
 
-          <TableContent width={2} justifycontent="flex-end">
+          <DotContent width={2} justifycontent="flex-end">
             <P><BsThreeDots onClick={() => { setBoxState(!boxState); }} /></P>
-          </TableContent>
+          </DotContent>
         </TableContainer>
-      </ClientDataBox>
+      </PersonDataBox>
 
       {boxState ? (
         <Box>
@@ -91,7 +93,7 @@ const ClientProfileData = ({ client, getClients }) => {
             </Li>
             <Li>
               <Button onClick={DeactivateClient}>
-                Remover
+                Desativar
               </Button>
               <Icon>
                 <FaRegTrashAlt />

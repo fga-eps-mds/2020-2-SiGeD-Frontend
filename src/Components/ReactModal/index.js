@@ -69,7 +69,7 @@ const ReactModal = ({
 
   const style = {
     buttonStyle: {
-      width: '15vh',
+      width: '20vh',
     },
   };
 
@@ -101,7 +101,7 @@ const ReactModal = ({
           </DivDescription>
           <DivButton>
             <TinyButton style={style.buttonStyle} type="secondary" title="Cancelar" click={toggleModal} />
-            <TinyButton type="primary" title="Cadastrar" click={submit} />
+            <TinyButton style={style.buttonStyle} type="primary" title="Cadastrar" click={submit} />
           </DivButton>
         </ModalContent>
       </Modal>

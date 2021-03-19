@@ -7,17 +7,17 @@ const RedirectListButton = ({
   title,
   redirectTo,
 }) => (
-  <Button onClick={click}>
-    <Link
-      to={redirectTo}
-      style={{
-        color: 'white',
-        textDecorationLine: 'none',
-        fontSize: '1.5vw',
-      }}
-    >
-      {title}
-    </Link>
+  <Button
+    as={Link}
+    style={{
+      color: 'white',
+      textDecorationLine: 'none',
+      fontSize: '100%',
+    }}
+    to={redirectTo}
+    onClick={click}
+  >
+    {title}
   </Button>
 );
 

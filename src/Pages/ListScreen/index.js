@@ -15,7 +15,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTM2MmJlZjUyMzA0MDAzZjMyZjc0MyIsImlhdCI6MTYxNjA3ODI2MywiZXhwIjoxNjE2MDc4NTAzfQ.rQ4wUDKqok_0EM8zIweNBYAFuEZD230WKWbeG5vlCMY' } })
+      .get('http://localhost:3001/users', { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTM2NTUxOTQ0OGVlMDA1NTQzZWUzZSIsImlhdCI6MTYxNjEzOTcyMSwiZXhwIjoxNjE2MTM5OTYxfQ.Zgl5ALv_6aRj1_17XIhtMSwgEAXqQShw6zS2T2hxlq8' } })
       .then((response) => setUsers(response.data));
   }, []);
 
@@ -51,16 +51,16 @@ const ListScreen = () => {
       redirectTo="/usuarios"
     >
       <TableHeader>
-        <TableTitle width={20}>
+        <TableTitle width={25}>
           <P>Nome</P>
         </TableTitle>
         <Bar />
-        <TableTitle width={20}>
+        <TableTitle width={25}>
           <P>Email</P>
         </TableTitle>
         <Bar />
 
-        <TableTitle width={15}>
+        <TableTitle width={20}>
           <P>Cargo</P>
         </TableTitle>
         <Bar />

@@ -3,7 +3,8 @@ import axios from 'axios';
 import { BsThreeDotsVertical, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import {
-  Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button, P, Content, TableContainer,
+  Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button,
+  P, Content, TableContainer, DotContent,
 } from './style';
 import ReactModal from '../ReactModal';
 
@@ -50,9 +51,9 @@ const CategoriesData = ({ category, getCategories }) => {
             <P>{category.updatedAt.slice(0, 10).replaceAll('-', '/')}</P>
           </TableContent>
 
-          <TableContent width={2}>
+          <DotContent width={2}>
             <P><BsThreeDotsVertical onClick={() => { setBoxState(!boxState); }} /></P>
-          </TableContent>
+          </DotContent>
         </TableContainer>
       </Personalbox>
 

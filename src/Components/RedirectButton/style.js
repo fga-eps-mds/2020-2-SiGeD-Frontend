@@ -5,9 +5,9 @@ import colors from '../../Constants/colors';
 const Button = styled.button`
 
     font: Open Sans;
-    font-size: 100%;
+    font-size: 3vh;
     color: ${colors.secondary};
-    width: 100%;
+    width: 105%;
     height: 100%;
     background-color: ${colors.primary};
     border-radius: 1vw;
@@ -17,14 +17,11 @@ const Button = styled.button`
     align-items: center;
     justify-content: center;
     float: right;
-    text-decoration-line: none,
-    font-size: 5vh;
+    text-decoration-line: none;
 
     @media(max-width: 750px){
-      width: 100%;
-      height: 100%;
-      text-decoration-line: none,
       border-radius: 40vw;
+      width: 100%;
     }
 
 `;
