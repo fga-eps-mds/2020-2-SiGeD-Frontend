@@ -1,21 +1,20 @@
-import { apiUsers } from './baseService';
+import { APIUsers } from './baseService/index';
 
-// eslint-disable-next-line import/prefer-default-export
-export async function getUser() {
+export async function getUser(url) {
   try {
-    const response = await apiUsers.get('users');
-    console.log(response.data);
-    console.log('chegou aqui!');
+    const response = await APIUsers.get(url);
+    return response;
   } catch (error) {
-    console.error(`Não foi possível listar as categorias.${error}`);
+    console.error(error);
   }
+  return null;
 }
 
 export async function postUser(
   inputName, inputEmail, inputRole, inputSector, inputPassword,
 ) {
   try {
-    await apiUsers.post('signup', {
+    await APIUsers.post('signup', {
       name: inputName,
       email: inputEmail,
       role: inputRole,

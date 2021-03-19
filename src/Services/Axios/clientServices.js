@@ -1,24 +1,13 @@
-import { apiClients } from './baseService';
+import { APIClients } from './baseService/index';
 
-// eslint-disable-next-line import/prefer-default-export
-export async function gotClients() {
+export async function gotClients(url) {
   try {
-    const response = await apiClients.get('clients');
-    return response.data;
+    const response = await APIClients.get(url);
+    return response;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
   return null;
-}
-
-// eslint-disable-next-line import/prefer-default-export
-export async function gotClient(id) {
-  try {
-    const response = await apiClients.get(`clients/${id}`);
-    console.log(response.data);
-  } catch (error) {
-    console.log(error);
-  }
 }
 
 // eslint-disable-next-line import/prefer-default-export
@@ -26,7 +15,7 @@ export async function postClient(
   inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
 ) {
   try {
-    await apiClients.post('clients/create', {
+    await APIClients.post('clients/create', {
       name: inputName,
       email: inputEmail,
       cpf: inputCpf,
@@ -35,9 +24,24 @@ export async function postClient(
       office: officeOption,
       policeStation: policeStationOption,
     });
-    // console.log(inputName);
-    alert('Usuario criado.');
   } catch (error) {
     console.error(`Não foi possivel cadastrar o cliente.${error}`);
   }
 }
+
+export const updateClient = async (
+  inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption, id,
+) => {
+  await APIClients.put(`/clients/update/${id}`, {
+    name: inputName,
+    email: inputEmail,
+    cpf: inputCpf,
+    phone: inputPhone,
+    city: inputCity,
+    office: officeOption,
+    policeStation: policeStationOption,
+  })
+    .catch((error) => {
+      console.error(`Não foi atualizar o cadastro do cliente.${error}`);
+    });
+};

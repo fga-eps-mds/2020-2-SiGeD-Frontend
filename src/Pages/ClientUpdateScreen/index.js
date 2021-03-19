@@ -6,8 +6,7 @@ import RegisterInput from '../../Components/RegisterInput';
 import {
   validateName, validateCpf, validateEmail, validatePhone, validateCity,
 } from '../../Utils/validations';
-import { apiClients } from '../../Services/Axios/baseService';
-// import { getClient } from '../../Services/Axios/clientServices';
+import { gotClients, updateClient } from '../../Services/Axios/clientServices';
 
 const ClientUpdateScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -20,7 +19,7 @@ const ClientUpdateScreen = () => {
   const { id } = useParams();
 
   const getClient = async () => {
-    apiClients.get(`clients/${id}`)
+    gotClients(`clients/${id}`)
       .then((response) => {
         const { data } = response;
         setInputName(data.name);
@@ -37,41 +36,30 @@ const ClientUpdateScreen = () => {
   };
 
   useEffect(() => {
-    getClient();
-    // gotClient(id);
+    getClient(id);
   }, []);
 
-  const updateClient = async () => {
-    await apiClients.put(`/clients/update/${id}`, {
-      name: inputName,
-      email: inputEmail,
-      cpf: inputCpf,
-      phone: inputPhone,
-      city: inputCity,
-      office: officeOption,
-      policeStation: policeStationOption,
-    })
-      .catch((error) => {
-        console.error(`Não foi atualizar o cadastro do cliente.${error}`);
-      });
-  };
-
   const submit = () => {
+    let message;
     if (validateName(inputName) === false) {
-      alert('Nome inválido.');
+      message.push('Nome inválido.');
     } if (validateCpf(inputCpf) === false) {
-      alert('CPF inválido.');
+      message.push('CPF inválido.');
     } if (validateEmail(inputEmail) === false) {
-      alert('Email inválido.');
+      message.push('Email inválido.');
     } if (validatePhone(inputPhone) === false) {
-      alert('telefone inválido.');
+      message.push('telefone inválido.');
     } if (validateCity(inputCity) === false) {
-      alert('Cidade invalida.');
-    } if (
-      validateName(inputName) && validateCpf(inputCpf) && validateEmail(inputEmail)
-      && validatePhone(inputPhone) && validateCity(inputCity)
-    ) {
-      updateClient();
+      message.push('Cidade invalida.');
+    }
+    if (!message) {
+      alert('Cadastrado do cliente atualizado com sucesso!');
+      updateClient(
+        inputName, inputEmail, inputCpf, inputPhone,
+        inputCity, officeOption, policeStationOption, id,
+      );
+    } else {
+      alert(message);
     }
   };
 

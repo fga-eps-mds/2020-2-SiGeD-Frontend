@@ -7,8 +7,7 @@ import GenericListScreen from '../../Components/GenericListScreen';
 import {
   TableHeader, P, Bar, TableTitle,
 } from './style';
-import { apiClients } from '../../Services/Axios/baseService';
-// import { gotClients } from '../../Services/Axios/clientServices';
+import { gotClients } from '../../Services/Axios/clientServices';
 
 const ClientListScreen = () => {
   const [word, setWord] = useState();
@@ -16,7 +15,7 @@ const ClientListScreen = () => {
   const [clients, setClients] = useState([]);
 
   const getClients = async () => {
-    await apiClients.get('clients')
+    await gotClients('clients')
       .then((response) => setClients(response.data))
       .catch((err) => {
         console.error(`Não foi possível encontrar os dados dos clientes.${err}`);

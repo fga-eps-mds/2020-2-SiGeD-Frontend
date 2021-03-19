@@ -6,8 +6,7 @@ import GenericListScreen from '../../Components/GenericListScreen';
 import {
   H1, TableHeader, P, Bar, TableTitle,
 } from './style';
-import { apiUsers } from '../../Services/Axios/baseService';
-// import { getUser } from '../../Services/Axios/userServices';
+import { getUser } from '../../Services/Axios/userServices';
 
 const novoUsuario = () => { };
 
@@ -16,17 +15,17 @@ const ListScreen = () => {
   const [filterUsers, setFilterUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
-  // useEffect(() => {
-  //   getUser();
-  // }, [word]);
-
-  useEffect(() => {
-    apiUsers.get('users')
+  const getUsers = async () => {
+    await getUser('users')
       .then((response) => setUsers(response.data))
       .catch((err) => {
-        console.error(`Não foi possível listar as categorias.${err}`);
+        console.error(`Não foi possível encontrar os dados dos clientes.${err}`);
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, [users]);
 
   useEffect(() => {
     setFilterUsers(

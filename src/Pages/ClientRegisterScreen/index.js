@@ -17,16 +17,25 @@ const ClientRegisterScreen = () => {
   const [policeStationOption, setPoliceStationOption] = useState('');
 
   const submit = () => {
+    let message;
     if (validateName(inputName) === false) {
-      alert('Nome inválido.');
+      message.push('Nome inválido.');
     } if (validateCpf(inputCpf) === false) {
-      alert('CPF inválido.');
+      message.push('CPF inválido.');
     } if (validateEmail(inputEmail) === false) {
-      alert('Email inválido.');
+      message.push('Email inválido.');
     } if (validatePhone(inputPhone) === false) {
-      alert('telefone inválido.');
+      message.push('telefone inválido.');
     } if (validateCity(inputCity) === false) {
-      alert('Cidade invalida.');
+      message.push('Cidade invalida.');
+    }
+    if (!message) {
+      alert('Cliente cadastrado com sucesso!');
+      postClient(
+        inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
+      );
+    } else {
+      alert(message);
     }
     postClient(
       inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,

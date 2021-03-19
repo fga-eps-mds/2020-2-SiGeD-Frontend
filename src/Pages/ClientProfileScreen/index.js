@@ -4,8 +4,7 @@ import ProfileSidebarComponent from '../../Components/ProfileSidebarComponent';
 import {
   Main, RightBox,
 } from './style';
-import { apiClients } from '../../Services/Axios/baseService';
-import { gotClient } from '../../Services/Axios/clientServices';
+import { gotClients } from '../../Services/Axios/clientServices';
 
 const ClientProfileScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -18,7 +17,7 @@ const ClientProfileScreen = () => {
   const { id } = useParams();
 
   const getClient = async () => {
-    apiClients.get(`clients/${id}`)
+    gotClients(`clients/${id}`)
       .then((response) => {
         const { data } = response;
         setInputName(data.name);
@@ -35,8 +34,7 @@ const ClientProfileScreen = () => {
   };
 
   useEffect(() => {
-    getClient();
-    gotClient(id);
+    getClient(id);
   }, []);
 
   return (
