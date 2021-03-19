@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import RegisterInput from '../../Components/RegisterInput';
-import {
-  validateName, validatePhone, validateCity, validateCpf, validateEmail,
-} from '../../Utils/validations';
+import { validateFields } from '../../Utils/validations';
 import { postClient } from '../../Services/Axios/clientServices';
 
 const ClientRegisterScreen = () => {
@@ -17,23 +15,15 @@ const ClientRegisterScreen = () => {
   const [policeStationOption, setPoliceStationOption] = useState('');
 
   const submit = () => {
-    let message;
-    if (validateName(inputName) === false) {
-      message.push('Nome inválido.');
-    } if (validateCpf(inputCpf) === false) {
-      message.push('CPF inválido.');
-    } if (validateEmail(inputEmail) === false) {
-      message.push('Email inválido.');
-    } if (validatePhone(inputPhone) === false) {
-      message.push('telefone inválido.');
-    } if (validateCity(inputCity) === false) {
-      message.push('Cidade invalida.');
-    }
+    const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
+      inputCity);
+
     if (!message) {
-      alert('Cliente cadastrado com sucesso!');
       postClient(
-        inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
+        inputName, inputEmail, inputCpf, inputPhone,
+        inputCity, officeOption, policeStationOption,
       );
+      alert('Cadastrado do cliente atualizado com sucesso!');
     } else {
       alert(message);
     }

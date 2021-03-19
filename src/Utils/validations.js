@@ -46,3 +46,22 @@ export const validateSignUp = (email, name, pass1, pass2) => {
   }
   return false;
 };
+
+export const validateFields = (inputName, inputEmail, inputCpf, inputPhone,
+  inputCity) => {
+  let message;
+
+  if (validateName(inputName) === false) {
+    message.push('Nome inválido.');
+  } if (validateCpf(inputCpf) === false) {
+    message.push('CPF inválido.');
+  } if (validateEmail(inputEmail) === false) {
+    message.push('Email inválido.');
+  } if (validatePhone(inputPhone) === false) {
+    message.push('telefone inválido.');
+  } if (validateCity(inputCity) === false) {
+    message.push('Cidade invalida.');
+  }
+
+  return message;
+};
