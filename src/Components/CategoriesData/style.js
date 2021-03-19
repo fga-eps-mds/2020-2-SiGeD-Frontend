@@ -84,7 +84,6 @@ export const Name = styled(P)`
   background-color: ${(props) => `${props.color}`};
 `;
 
-// Caixa de opcoes
 export const Box = styled.div`
   background-color: #FFF;
   border: 1px solid black;

@@ -30,7 +30,6 @@ const ListScreen = () => {
   }, [users]);
 
   const listUsers = () => {
-    console.log(filterUsers);
     if (users.length === 0) {
       return <H1>Sem resultados</H1>;
     }

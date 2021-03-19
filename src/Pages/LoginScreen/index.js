@@ -8,9 +8,7 @@ const LoginScreen = () => {
   const [userReceived, setUserReceived] = useState();
   const [passwordReceived, setPasswordReceived] = useState();
 
-  function login() {
-    console.log('Entrei', userReceived, passwordReceived);
-  }
+  function login() { }
 
   return (
     <Background>

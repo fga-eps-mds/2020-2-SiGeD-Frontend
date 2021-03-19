@@ -60,7 +60,6 @@ const ReactModal = ({
     } else {
       await updateCategory();
     }
-    console.log(getCategories);
     getCategories();
     if (valid) {
       toggleModal();

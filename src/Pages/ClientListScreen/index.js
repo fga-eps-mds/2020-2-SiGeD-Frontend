@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
 import ClientProfileData from '../../Components/ClientProfileData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {

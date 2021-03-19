@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// x
+
 export const ModalBox = styled.div`
   display: flex;
   position: fixed;
@@ -14,20 +14,20 @@ export const ModalBox = styled.div`
   box-sizing: border-box;
   box-shadow: 5px 5px 5px black;
 `;
-// x
+
 export const ModalContent = styled.div`
   margin: 90px 50px;
   font: Open Sans;
 `;
-// x
+
 export const ModalCampos = styled.div`
   margin-top: 28px;
 `;
-// x
+
 export const ModalCampoNome = styled.div`
   display: inline-block;
 `;
-// x
+
 export const P = styled.p`
   margin: 10px;
   font-size: 1.8vh;
@@ -39,12 +39,12 @@ export const Input = styled.input`
   text-indent: 10px;
   font-size: 18px;
 `;
-// x
+
 export const ModalCampoCor = styled.div`
   display: inline-block;
   float: right;
 `;
-// x
+
 export const CorPreview = styled.div`
   border-radius: 100%;
   height: 50px;
@@ -52,11 +52,11 @@ export const CorPreview = styled.div`
   bottom: 20px;
   position: relative;
 `;
-// x
+
 export const ModalCampoDescricao = styled.div`
   margin-top: 28px;
 `;
-// x
+
 export const ModalCampoBotao = styled.text`
   display: flex;
   height: 100%;
@@ -64,7 +64,7 @@ export const ModalCampoBotao = styled.text`
   justify-content: flex-end;
   align-items: flex-end;
 `;
-// x
+
 export const ColorText = styled(P)`
   position: relative;
   right: 70px;

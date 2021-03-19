@@ -51,9 +51,7 @@ const PersonalData = ({ user }) => {
           <Ul>
             <Li>
               <Button>
-                {/* <Link> */}
                 Editar
-                {/* </Link> */}
               </Button>
               <Icon>
                 <BsPencil />
