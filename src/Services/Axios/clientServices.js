@@ -1,6 +1,6 @@
 import { APIClients } from './baseService/index';
 
-export async function gotClients(url) {
+export async function getClients(url) {
   try {
     const response = await APIClients.get(url);
     return response;
@@ -10,7 +10,6 @@ export async function gotClients(url) {
   return null;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export async function postClient(
   inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
 ) {

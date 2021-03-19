@@ -4,7 +4,6 @@ import RegisterInput from '../../Components/RegisterInput';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
 import { PassMatches } from '../../Components/ErrorMessage';
-// import { apiUsers } from '../../Services/Axios/baseService';
 import { postUser } from '../../Services/Axios/userServices';
 
 const RegisterScreen = () => {

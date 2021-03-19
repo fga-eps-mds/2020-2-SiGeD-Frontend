@@ -16,16 +16,13 @@ const ClientRegisterScreen = () => {
 
   const submit = () => {
     const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
-      inputCity);
+      inputCity, 'Cadastrado do cliente realizado com sucesso!');
 
     if (!message) {
       postClient(
         inputName, inputEmail, inputCpf, inputPhone,
         inputCity, officeOption, policeStationOption,
       );
-      alert('Cadastrado do cliente atualizado com sucesso!');
-    } else {
-      alert(message);
     }
     postClient(
       inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,

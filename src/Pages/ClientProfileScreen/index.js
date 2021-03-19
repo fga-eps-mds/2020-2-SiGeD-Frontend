@@ -4,7 +4,7 @@ import ProfileSidebarComponent from '../../Components/ProfileSidebarComponent';
 import {
   Main, RightBox,
 } from './style';
-import { gotClients } from '../../Services/Axios/clientServices';
+import { getClients } from '../../Services/Axios/clientServices';
 
 const ClientProfileScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -16,8 +16,8 @@ const ClientProfileScreen = () => {
   const [policeStationOption, setPoliceStationOption] = useState('');
   const { id } = useParams();
 
-  const getClient = async () => {
-    gotClients(`clients/${id}`)
+  const getClientFromApi = async () => {
+    getClients(`clients/${id}`)
       .then((response) => {
         const { data } = response;
         setInputName(data.name);
@@ -27,14 +27,11 @@ const ClientProfileScreen = () => {
         setInputCity(data.city);
         setOfficeOption(data.office);
         setPoliceStationOption(data.policeStation);
-      })
-      .catch((err) => {
-        console.error(`Não foi possível encontrar os dados do cliente.${err}`);
       });
   };
 
   useEffect(() => {
-    getClient();
+    getClientFromApi();
   }, []);
 
   return (

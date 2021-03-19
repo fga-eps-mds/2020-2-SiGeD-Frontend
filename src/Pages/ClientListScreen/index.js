@@ -7,23 +7,20 @@ import GenericListScreen from '../../Components/GenericListScreen';
 import {
   TableHeader, P, Bar, TableTitle,
 } from './style';
-import { gotClients } from '../../Services/Axios/clientServices';
+import { getClients } from '../../Services/Axios/clientServices';
 
 const ClientListScreen = () => {
   const [word, setWord] = useState();
   const [filterClients, setFilterClients] = useState([]);
   const [clients, setClients] = useState([]);
 
-  const getClients = async () => {
-    await gotClients('clients')
-      .then((response) => setClients(response.data))
-      .catch((err) => {
-        console.error(`Não foi possível encontrar os dados dos clientes.${err}`);
-      });
+  const getClientsFromApi = async () => {
+    await getClients('clients')
+      .then((response) => setClients(response.data));
   };
 
   useEffect(() => {
-    getClients();
+    getClientsFromApi();
   }, []);
 
   useEffect(() => {
@@ -37,13 +34,13 @@ const ClientListScreen = () => {
   }, [clients]);
 
   const listClients = () => {
-    if (clients.length === 0) {
+    if (clients?.length === 0) {
       return <h1 style={{ fontSize: '1.5rem', font: 'Open Sans' }}>Sem resultados</h1>;
     }
-    if (filterClients.length === 0) {
+    if (filterClients?.length === 0) {
       return <h1 style={{ fontSize: '1.5rem', font: 'Open Sans' }}>Sem resultados</h1>;
     }
-    return filterClients.map((client) => (
+    return filterClients?.map((client) => (
       <ClientProfileData
         client={client}
         key={client.email}

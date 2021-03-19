@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import RegisterInput from '../../Components/RegisterInput';
 import { validateFields } from '../../Utils/validations';
-import { gotClients, updateClient } from '../../Services/Axios/clientServices';
+import { getClients, updateClient } from '../../Services/Axios/clientServices';
 
 const ClientUpdateScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -16,8 +16,8 @@ const ClientUpdateScreen = () => {
   const [policeStationOption, setPoliceStationOption] = useState('');
   const { id } = useParams();
 
-  const getClient = async () => {
-    gotClients(`clients/${id}`)
+  const getClientFromApi = async () => {
+    getClients(`clients/${id}`)
       .then((response) => {
         const { data } = response;
         setInputName(data.name);
@@ -27,28 +27,22 @@ const ClientUpdateScreen = () => {
         setInputCity(data.city);
         setOfficeOption(data.office);
         setPoliceStationOption(data.policeStation);
-      })
-      .catch((err) => {
-        console.error(`Não foi possível encontrar os dados do cliente.${err}`);
       });
   };
 
   useEffect(() => {
-    getClient();
+    getClientFromApi();
   }, []);
 
   const submit = () => {
     const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
-      inputCity);
+      inputCity, 'Cadastrado do cliente atualizado com sucesso!');
 
     if (!message) {
       updateClient(
         inputName, inputEmail, inputCpf, inputPhone,
         inputCity, officeOption, policeStationOption, id,
       );
-      alert('Cadastrado do cliente atualizado com sucesso!');
-    } else {
-      alert(message);
     }
   };
 

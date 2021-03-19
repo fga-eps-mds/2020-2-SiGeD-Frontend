@@ -10,7 +10,6 @@ export async function getCategories() {
   return null;
 }
 
-// Está no ReacModal
 export async function createCategory(name, description, color) {
   try {
     const response = await APIDemands.post('category/create', {

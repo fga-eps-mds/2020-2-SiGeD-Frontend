@@ -48,7 +48,7 @@ export const validateSignUp = (email, name, pass1, pass2) => {
 };
 
 export const validateFields = (inputName, inputEmail, inputCpf, inputPhone,
-  inputCity) => {
+  inputCity, successMessage) => {
   let message;
 
   if (validateName(inputName) === false) {
@@ -61,6 +61,11 @@ export const validateFields = (inputName, inputEmail, inputCpf, inputPhone,
     message.push('telefone inválido.');
   } if (validateCity(inputCity) === false) {
     message.push('Cidade invalida.');
+  }
+  if (!message) {
+    alert(successMessage);
+  } else {
+    alert(message);
   }
 
   return message;
