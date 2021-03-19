@@ -6,7 +6,8 @@ import RegisterInput from '../../Components/RegisterInput';
 import {
   validateName, validateCpf, validateEmail, validatePhone, validateCity,
 } from '../../Utils/validations';
-import { apiClients } from '../../Services/Axios';
+import { apiClients } from '../../Services/Axios/baseService';
+// import { getClient } from '../../Services/Axios/clientServices';
 
 const ClientUpdateScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -37,6 +38,7 @@ const ClientUpdateScreen = () => {
 
   useEffect(() => {
     getClient();
+    // gotClient(id);
   }, []);
 
   const updateClient = async () => {

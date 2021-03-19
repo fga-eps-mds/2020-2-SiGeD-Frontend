@@ -6,7 +6,8 @@ import GenericListScreen from '../../Components/GenericListScreen';
 import {
   H1, TableHeader, P, Bar, TableTitle,
 } from './style';
-import { apiUsers } from '../../Services/Axios';
+import { apiUsers } from '../../Services/Axios/baseService';
+// import { getUser } from '../../Services/Axios/userServices';
 
 const novoUsuario = () => { };
 
@@ -14,6 +15,10 @@ const ListScreen = () => {
   const [word, setWord] = useState();
   const [filterUsers, setFilterUsers] = useState([]);
   const [users, setUsers] = useState([]);
+
+  // useEffect(() => {
+  //   getUser();
+  // }, [word]);
 
   useEffect(() => {
     apiUsers.get('users')

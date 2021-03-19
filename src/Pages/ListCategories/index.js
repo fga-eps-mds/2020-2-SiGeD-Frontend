@@ -7,7 +7,10 @@ import CategoriesData from '../../Components/CategoriesData';
 import ReactModal from '../../Components/ReactModal';
 import GenericListScreen from '../../Components/GenericListScreen';
 import TinyButton from '../../Components/TinyButton';
-import { apiDemands } from '../../Services/Axios';
+import { apiDemands } from '../../Services/Axios/baseService';
+// import {
+//   getCategories, createCategory, updateCategory,
+// } from '../../Services/Axios/demandsServices';
 
 const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);

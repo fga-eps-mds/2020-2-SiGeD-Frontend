@@ -5,7 +5,7 @@ import RegisterInput from '../../Components/RegisterInput';
 import {
   validateName, validatePhone, validateCity, validateCpf, validateEmail,
 } from '../../Utils/validations';
-import { apiClients } from '../../Services/Axios';
+import { postClient } from '../../Services/Axios/clientServices';
 
 const ClientRegisterScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -15,22 +15,6 @@ const ClientRegisterScreen = () => {
   const [inputCity, setInputCity] = useState('');
   const [officeOption, setOfficeOption] = useState('');
   const [policeStationOption, setPoliceStationOption] = useState('');
-
-  const postClient = async () => {
-    await apiClients.post('clients/create', {
-      name: inputName,
-      email: inputEmail,
-      cpf: inputCpf,
-      phone: inputPhone,
-      city: inputCity,
-      office: officeOption,
-      policeStation: policeStationOption,
-    })
-      .then((response) => { console.log(response); alert('Usuario criado.'); })
-      .catch((error) => {
-        console.error(`Não foi possivel cadastrar o cliente.${error}`);
-      });
-  };
 
   const submit = () => {
     if (validateName(inputName) === false) {
@@ -44,7 +28,9 @@ const ClientRegisterScreen = () => {
     } if (validateCity(inputCity) === false) {
       alert('Cidade invalida.');
     }
-    postClient();
+    postClient(
+      inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
+    );
     setInputName('');
     setInputCpf('');
     setInputEmail('');
