@@ -16,10 +16,16 @@ const RegisterScreen = () => {
 
   const submit = () => {
     if (validateSignUp(inputEmail, inputName, inputPassword, inputConfirmPassword)) {
-      postUser();
+      postUser(inputName, inputEmail, inputRole, inputSector, inputPassword);
     } else {
       alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
     }
+    setInputName('');
+    setInputEmail('');
+    setInputRole('');
+    setInputSector('');
+    setInputPassword('');
+    setInputConfirmPassword('');
   };
 
   const cancel = () => {
@@ -42,15 +48,25 @@ const RegisterScreen = () => {
       <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
       <Form.Group style={{ width: '45%' }}>
         <Form.Label>Cargo:</Form.Label>
-        <Form.Control as="select" value={inputRole} style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
-          <option>Admin</option>
-          <option>Professional</option>
-          <option>Receptionist</option>
+        <Form.Control
+          as="select"
+          value={inputRole}
+          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
+          onChange={(Option) => setInputRole(Option.target.value)}
+        >
+          <option>admin</option>
+          <option>professional</option>
+          <option>receptionist</option>
         </Form.Control>
       </Form.Group>
       <Form.Group style={{ width: '45%' }}>
         <Form.Label>Setor:</Form.Label>
-        <Form.Control as="select" value={inputSector} style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
+        <Form.Control
+          as="select"
+          value={inputSector}
+          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
+          onChange={(Option) => setInputSector(Option.target.value)}
+        >
           <option>Assistente Social</option>
           <option>Policial</option>
           <option>Familiar</option>
