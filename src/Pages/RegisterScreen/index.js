@@ -22,6 +22,7 @@ const RegisterScreen = () => {
         inputRegisterUserRole,
         inputRegisterUserSector,
         inputRegisterUserPassword);
+      
     } else {
       alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
     }
