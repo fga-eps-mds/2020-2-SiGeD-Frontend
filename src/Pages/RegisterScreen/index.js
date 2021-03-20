@@ -6,13 +6,12 @@ import { postUser } from '../../Services/Axios/userServices';
 import UserForms from '../../Components/UserForms';
 
 const RegisterScreen = () => {
-  const history = useHistory();
-  const [inputRegisterUserName, setRegisterUserInputName] = useState('');
-  const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
-  const [inputRegisterUserRole, setRegisterUserInputRole] = useState('');
-  const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
-  const [inputRegisterUserPassword, setRegisterUserInputPassword] = useState('');
-  const [inputRegisterUserConfirmPassword, setRegisterUserInputConfirmPassword] = useState('');
+  const [inputName, setInputName] = useState('');
+  const [inputEmail, setInputEmail] = useState('');
+  const [inputRole, setInputRole] = useState('admin');
+  const [inputSector, setInputSector] = useState('Assistente Social');
+  const [inputPassword, setInputPassword] = useState('');
+  const [inputConfirmPassword, setInputConfirmPassword] = useState('');
 
   const submit = () => {
     if (validateSignUp(inputRegisterUserEmail,
