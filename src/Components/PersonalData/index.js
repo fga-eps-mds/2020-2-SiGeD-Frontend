@@ -2,15 +2,32 @@ import React, { useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-// import { Link } from 'react-router-dom';
+import axios from 'axios';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser,
 } from '../PersonData/style';
 
-const PersonalData = ({ user }) => {
+const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
+
+  const DeleteUser = async () => {
+    try {
+      await axios.delete(`http://localhost:3001/users/delete/${user._id}`)
+        .then((response) => {
+          console.log(response);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const ClickDeleteUser = () => {
+    DeleteUser();
+    getUsers();
+  };
 
   return (
 
@@ -51,14 +68,20 @@ const PersonalData = ({ user }) => {
           <Ul>
             <Li>
               <Button>
-                Editar
+                <Link
+                  to={`/users/update/${user._id}`}
+                  id={user._id}
+                  style={{ color: 'black', textDecorationLine: 'none' }}
+                >
+                  Editar
+                </Link>
               </Button>
               <Icon>
                 <BsPencil />
               </Icon>
             </Li>
             <Li>
-              <Button>
+              <Button onClick={ClickDeleteUser}>
                 Desativar
               </Button>
               <Icon>
