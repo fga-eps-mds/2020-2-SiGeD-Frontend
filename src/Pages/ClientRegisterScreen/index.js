@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import RegisterInput from '../../Components/RegisterInput';
 import { validateFields } from '../../Utils/validations';
 import { postClient } from '../../Services/Axios/clientServices';
 
 const ClientRegisterScreen = () => {
+  const history = useHistory();
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputCpf, setInputCpf] = useState('');
   const [inputPhone, setInputPhone] = useState('');
   const [inputCity, setInputCity] = useState('');
-  const [officeOption, setOfficeOption] = useState('');
-  const [policeStationOption, setPoliceStationOption] = useState('');
+  const [officeOption, setOfficeOption] = useState('Policial');
+  const [policeStationOption, setPoliceStationOption] = useState('DPSS');
 
   const submit = () => {
     const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
@@ -32,8 +34,9 @@ const ClientRegisterScreen = () => {
     setInputEmail('');
     setInputPhone('');
     setInputCity('');
-    setOfficeOption('');
-    setPoliceStationOption('');
+    setOfficeOption('Policial');
+    setPoliceStationOption('DPSS');
+    return history.push('/clientes');
   };
 
   const cancel = () => {
@@ -42,8 +45,8 @@ const ClientRegisterScreen = () => {
     setInputCpf('');
     setInputPhone('');
     setInputCity('');
-    setOfficeOption('');
-    setPoliceStationOption('');
+    setOfficeOption('Policial');
+    setPoliceStationOption('DPSS');
   };
 
   return (
@@ -64,8 +67,9 @@ const ClientRegisterScreen = () => {
         <Form.Label>Cargo:</Form.Label>
         <Form.Control
           as="select"
+          value={officeOption}
           style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-          onChange={(Option) => setOfficeOption(Option.target.value)}
+          onChange={(option) => setOfficeOption(option.target.value)}
         >
           <option>Policial</option>
           <option>Enfermeira</option>
@@ -78,6 +82,7 @@ const ClientRegisterScreen = () => {
         <Form.Label>Local:</Form.Label>
         <Form.Control
           as="select"
+          value={policeStationOption}
           style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
           onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
         >
