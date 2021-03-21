@@ -2,7 +2,7 @@ import React from 'react';
 import SidebarComponent from '../SidebarComponent';
 import TinyButton from '../TinyButton';
 import {
-  Main, Container, ColumnText, DivButtom, RightSideContainer,
+  Main, Container, DivButtom, RightSideContainer,
 } from './style';
 
 const GenericRegisterScreen = ({
@@ -23,9 +23,7 @@ const GenericRegisterScreen = ({
         sidebarTitleHeight={sidebarTitleHeight}
       />
       <RightSideContainer>
-        <ColumnText>
-          {children}
-        </ColumnText>
+        {children}
         <DivButtom>
           <TinyButton type="secondary" title="Cancelar" click={cancel} />
           <TinyButton type="primary" title={buttonTitle} click={() => submit()} />
