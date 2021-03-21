@@ -15,7 +15,7 @@ const PersonalData = ({ user, getUsers }) => {
 
   const DeleteUser = async () => {
     try {
-      await axios.delete(`http://localhost:3001/users/delete/${user._id}`)
+      await axios.delete(`http://localhost:3001/users/delete/${user._id}`, { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTYzYmZhZmEzY2NkMDAzZjk0YzhlNiIsImlhdCI6MTYxNjI4NDkyNywiZXhwIjoxNjE2Mjg1MTY3fQ.drnidky5v_hVqDZaVYY4qxHqXxLj209UiXjwlaBsNJA' } })
         .then((response) => {
           console.log(response);
         });
@@ -69,7 +69,7 @@ const PersonalData = ({ user, getUsers }) => {
             <Li>
               <Button>
                 <Link
-                  to={`/users/update/${user._id}`}
+                  to={`/usuarios/editar/${user._id}`}
                   id={user._id}
                   style={{ color: 'black', textDecorationLine: 'none' }}
                 >

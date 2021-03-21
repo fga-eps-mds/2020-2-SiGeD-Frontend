@@ -23,7 +23,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     getUsers();
-  }, [users]);
+  }, []);
 
   useEffect(() => {
     setFilterUsers(
@@ -59,7 +59,7 @@ const ListScreen = () => {
       SearchWord={word}
       setWord={setWord}
       ListType={listUsers()}
-      redirectTo="/usuarios"
+      redirectTo="/cadastro"
     >
       <TableHeader>
         <TableTitle width={25}>
