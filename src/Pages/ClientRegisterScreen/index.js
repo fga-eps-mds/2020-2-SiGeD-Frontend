@@ -13,8 +13,8 @@ const ClientRegisterScreen = () => {
   const [inputCpf, setInputCpf] = useState('');
   const [inputPhone, setInputPhone] = useState('');
   const [inputCity, setInputCity] = useState('');
-  const [officeOption, setOfficeOption] = useState('Policial');
-  const [policeStationOption, setPoliceStationOption] = useState('DPSS');
+  const [officeOption, setOfficeOption] = useState('');
+  const [policeStationOption, setPoliceStationOption] = useState('');
 
   const submit = () => {
     const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
