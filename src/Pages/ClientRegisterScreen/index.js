@@ -34,8 +34,8 @@ const ClientRegisterScreen = () => {
     setInputEmail('');
     setInputPhone('');
     setInputCity('');
-    setOfficeOption('Policial');
-    setPoliceStationOption('DPSS');
+    setOfficeOption('');
+    setPoliceStationOption('');
     return history.push('/clientes');
   };
 
@@ -45,8 +45,8 @@ const ClientRegisterScreen = () => {
     setInputCpf('');
     setInputPhone('');
     setInputCity('');
-    setOfficeOption('Policial');
-    setPoliceStationOption('DPSS');
+    setOfficeOption('');
+    setPoliceStationOption('');
   };
 
   return (
@@ -67,9 +67,8 @@ const ClientRegisterScreen = () => {
         <Form.Label>Cargo:</Form.Label>
         <Form.Control
           as="select"
-          value={officeOption}
           style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-          onChange={(option) => setOfficeOption(option.target.value)}
+          onChange={(Option) => setOfficeOption(Option.target.value)}
         >
           <option>Policial</option>
           <option>Enfermeira</option>
@@ -82,7 +81,6 @@ const ClientRegisterScreen = () => {
         <Form.Label>Local:</Form.Label>
         <Form.Control
           as="select"
-          value={policeStationOption}
           style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
           onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
         >

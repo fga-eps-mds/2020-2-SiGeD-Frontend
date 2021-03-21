@@ -11,8 +11,8 @@ const RegisterScreen = () => {
   const history = useHistory();
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
-  const [inputRole, setInputRole] = useState('Admin');
-  const [inputSector, setInputSector] = useState('Assistente Social');
+  const [inputRole, setInputRole] = useState('');
+  const [inputSector, setInputSector] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [inputConfirmPassword, setInputConfirmPassword] = useState('');
 
@@ -28,8 +28,8 @@ const RegisterScreen = () => {
   const cancel = () => {
     setInputName('');
     setInputEmail('');
-    setInputRole('Admin');
-    setInputSector('Assistente Social');
+    setInputRole('');
+    setInputSector('');
     setInputPassword('');
     setInputConfirmPassword('');
   };
@@ -45,12 +45,7 @@ const RegisterScreen = () => {
       <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
       <Form.Group style={{ width: '45%' }}>
         <Form.Label>Cargo:</Form.Label>
-        <Form.Control
-          as="select"
-          value={inputRole}
-          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-          onChange={(role) => setInputRole(role.target.value)}
-        >
+        <Form.Control as="select" value={inputRole} style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
           <option>Admin</option>
           <option>Professional</option>
           <option>Receptionist</option>
@@ -58,12 +53,7 @@ const RegisterScreen = () => {
       </Form.Group>
       <Form.Group style={{ width: '45%' }}>
         <Form.Label>Setor:</Form.Label>
-        <Form.Control
-          as="select"
-          value={inputSector}
-          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-          onChange={(sector) => setInputSector(sector.target.value)}
-        >
+        <Form.Control as="select" value={inputSector} style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}>
           <option>Assistente Social</option>
           <option>Policial</option>
           <option>Familiar</option>
