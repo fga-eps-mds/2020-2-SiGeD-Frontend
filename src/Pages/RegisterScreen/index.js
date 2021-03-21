@@ -8,10 +8,11 @@ import UserForms from '../../Components/UserForms';
 const RegisterScreen = () => {
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
-  const [inputRole, setInputRole] = useState('admin');
+  const [inputRole, setInputRole] = useState('Administrador(a)');
   const [inputSector, setInputSector] = useState('Assistente Social');
   const [inputPassword, setInputPassword] = useState('');
   const [inputConfirmPassword, setInputConfirmPassword] = useState('');
+  const [englishRole, setEnglishRole] = useState('admin');
 
   const submit = () => {
     if (validateSignUp(inputRegisterUserEmail,
@@ -34,6 +35,16 @@ const RegisterScreen = () => {
     setRegisterUserInputConfirmPassword('');
     return undefined;
   };
+
+  useEffect(() => {
+    if (inputRole === 'Administrador(a)') {
+      setEnglishRole('admin');
+    } else if (inputRole === 'Recepcionista') {
+      setEnglishRole('receptionist');
+    } else if (inputRole === 'Servidor(a)') {
+      setEnglishRole('professional');
+    }
+  }, [inputRole]);
 
   const cancel = () => {
     setRegisterUserInputName('');
