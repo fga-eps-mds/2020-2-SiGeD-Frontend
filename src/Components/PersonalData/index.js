@@ -15,7 +15,7 @@ const PersonalData = ({ user, getUsers }) => {
 
   const DeleteUser = async () => {
     try {
-      await axios.delete(`http://localhost:3001/users/delete/${user._id}`, { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTYzYmZhZmEzY2NkMDAzZjk0YzhlNiIsImlhdCI6MTYxNjI4NDkyNywiZXhwIjoxNjE2Mjg1MTY3fQ.drnidky5v_hVqDZaVYY4qxHqXxLj209UiXjwlaBsNJA' } })
+      await axios.delete(`http://localhost:3001/users/delete/${user._id}`, { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTYzNTMyNGRjZTQ0MDA1NTk3ZmE1NCIsImlhdCI6MTYxNjI5MjY4MywiZXhwIjoxNjE2MjkyOTIzfQ.D-SGHQnrBRTUhIhniqzS0NrUFfvi4wY-ufjqbMcn61k' } })
         .then((response) => {
           console.log(response);
         });

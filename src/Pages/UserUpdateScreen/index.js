@@ -17,7 +17,7 @@ const UserUpdateScreen = () => {
 
   const getUser = async () => {
     try {
-      await axios.get(`http://localhost:3001/users/${id}`, { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTYzYmZhZmEzY2NkMDAzZjk0YzhlNiIsImlhdCI6MTYxNjI5MDI0NywiZXhwIjoxNjE2MjkwNDg3fQ.uLy5oNMdPfrn2LZxqv67u9-dKDqRdzcbqFDqMLLlg1g' } })
+      await axios.get(`http://localhost:3001/users/${id}`, { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTYzNTMyNGRjZTQ0MDA1NTk3ZmE1NCIsImlhdCI6MTYxNjI5MjY4MywiZXhwIjoxNjE2MjkyOTIzfQ.D-SGHQnrBRTUhIhniqzS0NrUFfvi4wY-ufjqbMcn61k' } })
         .then((response) => {
           const { data } = response;
           setInputName(data.name);
@@ -38,7 +38,7 @@ const UserUpdateScreen = () => {
 
   const updateUser = async () => {
     try {
-      await axios.put(`http://localhost:3001/users/update/${id}`, { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTYzYmZhZmEzY2NkMDAzZjk0YzhlNiIsImlhdCI6MTYxNjI5MDI0NywiZXhwIjoxNjE2MjkwNDg3fQ.uLy5oNMdPfrn2LZxqv67u9-dKDqRdzcbqFDqMLLlg1g' } }, {
+      await axios.put(`http://localhost:3001/users/update/${id}`, { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTYzNTMyNGRjZTQ0MDA1NTk3ZmE1NCIsImlhdCI6MTYxNjI5MjY4MywiZXhwIjoxNjE2MjkyOTIzfQ.D-SGHQnrBRTUhIhniqzS0NrUFfvi4wY-ufjqbMcn61k' } }, {
         name: inputName,
         email: inputEmail,
         role: inputRole,
