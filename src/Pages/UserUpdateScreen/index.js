@@ -71,7 +71,7 @@ const UserUpdateScreen = () => {
       sidebarList={[inputName, inputEmail, inputRole, inputSector]}
       cancel={cancel}
       submit={submit}
-      buttonTitle="Cadastrar"
+      buttonTitle="Atualizar"
     >
       <UserForms
         setInputName={setInputName}

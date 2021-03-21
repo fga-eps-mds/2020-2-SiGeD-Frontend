@@ -5,56 +5,66 @@ import { postUser } from '../../Services/Axios/userServices';
 import UserForms from '../../Components/UserForms';
 
 const RegisterScreen = () => {
-  const [inputName, setInputName] = useState('');
-  const [inputEmail, setInputEmail] = useState('');
-  const [inputRole, setInputRole] = useState('');
-  const [inputSector, setInputSector] = useState('');
-  const [inputPassword, setInputPassword] = useState('');
-  const [inputConfirmPassword, setInputConfirmPassword] = useState('');
+  const [inputRegisterUserName, setRegisterUserInputName] = useState('');
+  const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
+  const [inputRegisterUserRole, setRegisterUserInputRole] = useState('');
+  const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
+  const [inputRegisterUserPassword, setRegisterUserInputPassword] = useState('');
+  const [inputRegisterUserConfirmPassword, setRegisterUserInputConfirmPassword] = useState('');
 
   const submit = () => {
-    if (validateSignUp(inputEmail, inputName, inputPassword, inputConfirmPassword)) {
-      postUser(inputName, inputEmail, inputRole, inputSector, inputPassword);
+    if (validateSignUp(inputRegisterUserEmail,
+      inputRegisterUserName,
+      inputRegisterUserPassword,
+      inputRegisterUserConfirmPassword)) {
+      postUser(inputRegisterUserName,
+        inputRegisterUserEmail,
+        inputRegisterUserRole,
+        inputRegisterUserSector,
+        inputRegisterUserPassword);
     } else {
       alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
     }
-    setInputName('');
-    setInputEmail('');
-    setInputRole('');
-    setInputSector('');
-    setInputPassword('');
-    setInputConfirmPassword('');
+    setRegisterUserInputName('');
+    setRegisterUserInputEmail('');
+    setRegisterUserInputRole('');
+    setRegisterUserInputSector('');
+    setRegisterUserInputPassword('');
+    setRegisterUserInputConfirmPassword('');
   };
 
   const cancel = () => {
-    setInputName('');
-    setInputEmail('');
-    setInputRole('');
-    setInputSector('');
-    setInputPassword('');
-    setInputConfirmPassword('');
+    setRegisterUserInputName('');
+    setRegisterUserInputEmail('');
+    setRegisterUserInputRole('');
+    setRegisterUserInputSector('');
+    setRegisterUserInputPassword('');
+    setRegisterUserInputConfirmPassword('');
   };
 
   return (
     <GenericRegisterScreen
-      sidebarList={[inputName, inputEmail, inputRole, inputSector]}
+      sidebarList={[inputRegisterUserName,
+        inputRegisterUserEmail,
+        inputRegisterUserRole,
+        inputRegisterUserSector]}
       cancel={cancel}
       submit={submit}
       buttonTitle="Cadastrar"
     >
       <UserForms
-        setInputName={setInputName}
-        inputName={inputName}
-        setInputEmail={setInputEmail}
-        inputEmail={inputEmail}
-        setInputRole={setInputRole}
-        inputRole={inputRole}
-        setInputSector={setInputSector}
-        inputSector={inputSector}
-        setInputPassword={setInputPassword}
-        inputPassword={inputPassword}
-        setInputConfirmPassword={setInputConfirmPassword}
-        inputConfirmPassword={inputConfirmPassword}
+        setInputName={setRegisterUserInputName}
+        inputName={inputRegisterUserName}
+        setInputEmail={setRegisterUserInputEmail}
+        inputEmail={inputRegisterUserEmail}
+        setInputRole={setRegisterUserInputRole}
+        inputRole={inputRegisterUserRole}
+        setInputSector={setRegisterUserInputSector}
+        inputSector={inputRegisterUserSector}
+        setInputPassword={setRegisterUserInputPassword}
+        inputPassword={inputRegisterUserPassword}
+        setInputConfirmPassword={setRegisterUserInputConfirmPassword}
+        inputConfirmPassword={inputRegisterUserConfirmPassword}
       />
     </GenericRegisterScreen>
   );
