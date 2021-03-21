@@ -5,26 +5,30 @@ import { postClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
 
 const ClientRegisterScreen = () => {
-  const [inputName, setRegisterClientInputName] = useState('');
-  const [inputEmail, setRegisterClientInputEmail] = useState('');
-  const [inputCpf, setRegisterClientInputCpf] = useState('');
-  const [inputPhone, setRegisterClientInputPhone] = useState('');
-  const [inputCity, setRegisterClientInputCity] = useState('');
+  const [registerClientInputName, setRegisterClientInputName] = useState('');
+  const [registerClientInputEmail, setRegisterClientInputEmail] = useState('');
+  const [registerClientInputCpf, setRegisterClientInputCpf] = useState('');
+  const [registerClientInputPhone, setRegisterClientInputPhone] = useState('');
+  const [registerClientInputCity, setRegisterClientInputCity] = useState('');
   const [officeOption, setOfficeOption] = useState('');
   const [policeStationOption, setPoliceStationOption] = useState('');
 
   const submit = () => {
-    const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
-      inputCity, 'Cadastro do cliente realizado com sucesso!');
+    const message = validateFields(registerClientInputName,
+      registerClientInputEmail, registerClientInputCpf,
+      registerClientInputPhone,
+      registerClientInputCity, 'Cadastro do cliente realizado com sucesso!');
 
     if (!message) {
       postClient(
-        inputName, inputEmail, inputCpf, inputPhone,
-        inputCity, officeOption, policeStationOption,
+        registerClientInputName, registerClientInputEmail,
+        registerClientInputCpf, registerClientInputPhone,
+        registerClientInputCity, officeOption, policeStationOption,
       );
     }
     postClient(
-      inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
+      registerClientInputName, registerClientInputEmail, registerClientInputCpf,
+      registerClientInputPhone, registerClientInputCity, officeOption, policeStationOption,
     );
     setRegisterClientInputName('');
     setRegisterClientInputCpf('');
@@ -47,24 +51,24 @@ const ClientRegisterScreen = () => {
 
   return (
     <GenericRegisterScreen
-      sidebarList={[inputName, inputCpf,
-        inputCity, officeOption, policeStationOption]}
-      sidebarFooter={[inputEmail, inputPhone]}
+      sidebarList={[registerClientInputName, registerClientInputCpf,
+        registerClientInputCity, officeOption, policeStationOption]}
+      sidebarFooter={[registerClientInputEmail, registerClientInputPhone]}
       cancel={cancel}
       submit={submit}
       buttonTitle="Cadastrar"
     >
       <ClientForms
         setInputName={setRegisterClientInputName}
-        inputName={inputName}
+        inputName={registerClientInputName}
         setInputEmail={setRegisterClientInputEmail}
-        inputEmail={inputEmail}
+        inputEmail={registerClientInputEmail}
         setInputCpf={setRegisterClientInputCpf}
-        inputCpf={inputCpf}
+        inputCpf={registerClientInputCpf}
         setInputPhone={setRegisterClientInputPhone}
-        inputPhone={inputPhone}
+        inputPhone={registerClientInputPhone}
         setInputCity={setRegisterClientInputCity}
-        inputCity={inputCity}
+        inputCity={registerClientInputCity}
         setOfficeOption={setOfficeOption}
         setPoliceStationOption={setPoliceStationOption}
       />

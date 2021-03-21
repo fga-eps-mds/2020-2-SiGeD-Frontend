@@ -26,3 +26,28 @@ export async function postUser(
     console.error(`Não foi possivel cadastrar o cliente.${error}`);
   }
 }
+
+export const updateUser = async (
+  inputName, inputEmail, inputRole, inputSector, inputPassword, id,
+) => {
+  try {
+    await APIUsers.put(`/users/update/${id}`, {
+      name: inputName,
+      email: inputEmail,
+      role: inputRole,
+      sector: inputSector,
+      pass: inputPassword,
+    });
+    alert('Usuario atualizado');
+  } catch (error) {
+    console.error(`Não foi atualizar o cadastro do cliente.${error}`);
+  }
+};
+
+export async function deleteUser(id) {
+  try {
+    await APIUsers.delete(`/users/delete/${id}`);
+  } catch (error) {
+    console.error(error);
+  }
+}

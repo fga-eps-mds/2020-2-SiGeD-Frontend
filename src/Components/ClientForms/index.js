@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 import RegisterInput from '../RegisterInput';
 import ClientFormsColumnText from './Style';
 
-const ClientForms = (
+const ClientForms = ({
   setInputName,
   inputName,
   setInputEmail,
@@ -16,7 +16,7 @@ const ClientForms = (
   inputCity,
   setOfficeOption,
   setPoliceStationOption,
-) => (
+}) => (
   <ClientFormsColumnText>
     <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
     <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
@@ -30,7 +30,6 @@ const ClientForms = (
         style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
         onChange={(Option) => setOfficeOption(Option.target.value)}
       >
-        <option>Policial</option>
         <option>Enfermeira</option>
         <option>Secretário</option>
         <option>Servidora</option>
@@ -44,7 +43,6 @@ const ClientForms = (
         style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
         onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
       >
-        <option>DPSS</option>
         <option>CASA</option>
         <option>HOTEL</option>
         <option>TCU</option>

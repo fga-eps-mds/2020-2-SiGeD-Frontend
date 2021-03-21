@@ -4,7 +4,7 @@ import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-import axios from 'axios';
+import { deleteUser } from '../../Services/Axios/userServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser,
@@ -13,19 +13,9 @@ import {
 const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
 
-  const DeleteUser = async () => {
-    try {
-      await axios.delete(`http://localhost:3001/users/delete/${user._id}`, { headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNTYzNTMyNGRjZTQ0MDA1NTk3ZmE1NCIsImlhdCI6MTYxNjI5MjY4MywiZXhwIjoxNjE2MjkyOTIzfQ.D-SGHQnrBRTUhIhniqzS0NrUFfvi4wY-ufjqbMcn61k' } })
-        .then((response) => {
-          console.log(response);
-        });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const ClickDeleteUser = () => {
-    DeleteUser();
+    console.log(user._id);
+    deleteUser(user._id);
     getUsers();
   };
 
