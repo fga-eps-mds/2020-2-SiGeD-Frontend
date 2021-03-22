@@ -14,7 +14,7 @@ export async function postClient(
   inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
 ) {
   try {
-    await APIClients.post('clients/create', {
+    const response = await APIClients.post('clients/create', {
       name: inputName,
       email: inputEmail,
       cpf: inputCpf,
@@ -23,9 +23,11 @@ export async function postClient(
       office: officeOption,
       policeStation: policeStationOption,
     });
+    return response;
   } catch (error) {
     console.error(`Não foi possivel cadastrar o cliente.${error}`);
   }
+  return null;
 }
 
 export const updateClient = async (

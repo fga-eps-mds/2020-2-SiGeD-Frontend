@@ -62,7 +62,7 @@ export const validateFields = (inputName, inputEmail, inputCpf, inputPhone,
   } if (validateCity(inputCity) === false) {
     message.push('Cidade invalida.');
   }
-  if (!message) {
+  if (!message.length) {
     alert(successMessage);
   } else {
     alert(message);

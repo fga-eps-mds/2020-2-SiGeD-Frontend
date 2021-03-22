@@ -15,24 +15,20 @@ const ClientRegisterScreen = () => {
   const [officeOption, setOfficeOption] = useState('');
   const [policeStationOption, setPoliceStationOption] = useState('');
 
-  const submit = () => {
+  const submit = async () => {
     const message = validateFields(registerClientInputName,
       registerClientInputEmail, registerClientInputCpf,
       registerClientInputPhone,
       registerClientInputCity, 'Cadastro do cliente realizado com sucesso!');
 
-    if (!message) {
-      postClient(
+    if (!message.length) {
+      const data = await postClient(
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
         registerClientInputCity, officeOption, policeStationOption,
-      );
-      return history.push('/clientes');
+      ).then((response) => response.data);
+      return history.push(`/perfil/${data._id}`);
     }
-    postClient(
-      registerClientInputName, registerClientInputEmail, registerClientInputCpf,
-      registerClientInputPhone, registerClientInputCity, officeOption, policeStationOption,
-    );
     setRegisterClientInputName('');
     setRegisterClientInputCpf('');
     setRegisterClientInputEmail('');
