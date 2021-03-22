@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
 import { postClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
 
 const ClientRegisterScreen = () => {
+  const history = useHistory();
   const [registerClientInputName, setRegisterClientInputName] = useState('');
   const [registerClientInputEmail, setRegisterClientInputEmail] = useState('');
   const [registerClientInputCpf, setRegisterClientInputCpf] = useState('');
@@ -25,6 +27,7 @@ const ClientRegisterScreen = () => {
         registerClientInputCpf, registerClientInputPhone,
         registerClientInputCity, officeOption, policeStationOption,
       );
+      return history.push('/clientes');
     }
     postClient(
       registerClientInputName, registerClientInputEmail, registerClientInputCpf,
@@ -37,6 +40,7 @@ const ClientRegisterScreen = () => {
     setRegisterClientInputCity('');
     setOfficeOption('');
     setPoliceStationOption('');
+    return undefined;
   };
 
   const cancel = () => {
