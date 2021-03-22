@@ -49,7 +49,7 @@ export const validateSignUp = (email, name, pass1, pass2) => {
 
 export const validateFields = (inputName, inputEmail, inputCpf, inputPhone,
   inputCity, successMessage) => {
-  let message;
+  const message = [];
 
   if (validateName(inputName) === false) {
     message.push('Nome inválido.');
