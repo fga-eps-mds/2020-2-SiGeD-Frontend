@@ -23,7 +23,7 @@ export async function postUser(
     });
     alert('Usuario criado');
   } catch (error) {
-    console.error(`Não foi possivel cadastrar o cliente.${error}`);
+    console.error(`An unexpected error ocourred while regestering a new user.${error}`);
   }
 }
 
@@ -40,7 +40,7 @@ export const updateUser = async (
     });
     alert('Usuario atualizado');
   } catch (error) {
-    console.error(`Não foi atualizar o cadastro do cliente.${error}`);
+    console.error(`An unexpected error ocourred while updating the user data.${error}`);
   }
 };
 

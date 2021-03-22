@@ -6,7 +6,7 @@ import {
 } from './style';
 import { getUser } from '../../Services/Axios/userServices';
 
-const novoUsuario = () => { };
+const newUser = () => { };
 
 const ListScreen = () => {
   const [word, setWord] = useState();
@@ -17,7 +17,7 @@ const ListScreen = () => {
     await getUser('users')
       .then((response) => setUsers(response.data))
       .catch((err) => {
-        console.error(`Não foi possível encontrar os dados dos clientes.${err}`);
+        console.error(`An unexpected error ocourred while getting users.${err}`);
       });
   };
 
@@ -54,7 +54,7 @@ const ListScreen = () => {
   return (
     <GenericListScreen
       ButtonTitle="Novo Usuário"
-      ButtonFunction={novoUsuario}
+      ButtonFunction={newUser}
       PageTitle="Usuários"
       SearchWord={word}
       setWord={setWord}
