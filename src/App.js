@@ -10,25 +10,35 @@ import ClientUpdateScreen from './Pages/ClientUpdateScreen';
 import ClientListScreen from './Pages/ClientListScreen';
 import ClientProfileScreen from './Pages/ClientProfileScreen';
 import UserUpdateScreen from './Pages/UserUpdateScreen';
+import UserProvider, { useProfileUser } from './Context';
 
 function App() {
+  const { token } = useProfileUser();
+
   return (
-
-    <Router>
-      <NavbarComp />
-      <Switch>
-        <Route path="/" exact component={LoginScreen} />
-        <Route path="/cadastro" component={RegisterScreen} />
-        <Route path="/usuarios/editar/:id" component={UserUpdateScreen} />
-        <Route path="/usuarios" component={ListScreen} />
-        <Route path="/cliente" component={ClientRegisterScreen} />
-        <Route path="/categorias" component={ListCategories} />
-        <Route path="/editar/:id" component={ClientUpdateScreen} />
-        <Route path="/clientes" component={ClientListScreen} />
-        <Route path="/perfil/:id" component={ClientProfileScreen} />
-      </Switch>
-    </Router>
-
+    <UserProvider>
+      <Router>
+        <NavbarComp />
+        {!token
+          ? (
+            <Switch>
+              <Route path="/" exact component={LoginScreen} />
+            </Switch>
+          )
+          : (
+            <Switch>
+              <Route path="/cadastro" component={RegisterScreen} />
+              <Route path="/usuarios/editar/:id" component={UserUpdateScreen} />
+              <Route path="/usuarios" component={ListScreen} />
+              <Route path="/cliente" component={ClientRegisterScreen} />
+              <Route path="/categorias" component={ListCategories} />
+              <Route path="/editar/:id" component={ClientUpdateScreen} />
+              <Route path="/clientes" component={ClientListScreen} />
+              <Route path="/perfil/:id" component={ClientProfileScreen} />
+            </Switch>
+          )}
+      </Router>
+    </UserProvider>
   );
 }
 
