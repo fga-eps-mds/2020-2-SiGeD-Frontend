@@ -9,6 +9,7 @@ import NavbarComp from './Components/NavbarComp';
 import ClientUpdateScreen from './Pages/ClientUpdateScreen';
 import ClientListScreen from './Pages/ClientListScreen';
 import ClientProfileScreen from './Pages/ClientProfileScreen';
+import UserUpdateScreen from './Pages/UserUpdateScreen';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={LoginScreen} />
         <Route path="/cadastro" component={RegisterScreen} />
+        <Route path="/usuarios/editar/:id" component={UserUpdateScreen} />
         <Route path="/usuarios" component={ListScreen} />
         <Route path="/cliente" component={ClientRegisterScreen} />
         <Route path="/categorias" component={ListCategories} />

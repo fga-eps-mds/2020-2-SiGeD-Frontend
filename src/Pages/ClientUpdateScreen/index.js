@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Form } from 'react-bootstrap';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
-import RegisterInput from '../../Components/RegisterInput';
 import { validateFields } from '../../Utils/validations';
 import { getClients, updateClient } from '../../Services/Axios/clientServices';
+import ClientForms from '../../Components/ClientForms';
 
 const ClientUpdateScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -65,39 +64,20 @@ const ClientUpdateScreen = () => {
       submit={submit}
       buttonTitle="Editar"
     >
-      <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
-      <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
-      <RegisterInput type="text" title="CPF" setText={setInputCpf} value={inputCpf} />
-      <RegisterInput type="text" title="Telefone" setText={setInputPhone} value={inputPhone} />
-      <RegisterInput long type="text" title="Cidade" setText={setInputCity} value={inputCity} />
-      <Form.Group style={{ width: '45%' }}>
-        <Form.Label>Cargo:</Form.Label>
-        <Form.Control
-          as="select"
-          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-          onChange={(Option) => setOfficeOption(Option.target.value)}
-        >
-          <option>{officeOption}</option>
-          <option>Enfermeira</option>
-          <option>Secretário</option>
-          <option>Servidora</option>
-          <option>Administrador</option>
-        </Form.Control>
-      </Form.Group>
-      <Form.Group style={{ width: '45%' }}>
-        <Form.Label>Local:</Form.Label>
-        <Form.Control
-          as="select"
-          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-          onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
-        >
-          <option>{policeStationOption}</option>
-          <option>CASA</option>
-          <option>HOTEL</option>
-          <option>TCU</option>
-          <option>DPCM</option>
-        </Form.Control>
-      </Form.Group>
+      <ClientForms
+        setInputName={setInputName}
+        inputName={inputName}
+        setInputEmail={setInputEmail}
+        inputEmail={inputEmail}
+        setInputCpf={setInputCpf}
+        inputCpf={inputCpf}
+        setInputPhone={setInputPhone}
+        inputPhone={inputPhone}
+        setInputCity={setInputCity}
+        inputCity={inputCity}
+        setOfficeOption={setOfficeOption}
+        setPoliceStationOption={setPoliceStationOption}
+      />
     </GenericRegisterScreen>
   );
 };

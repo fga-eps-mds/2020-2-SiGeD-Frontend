@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-// import { Link } from 'react-router-dom';
+import { deleteUser } from '../../Services/Axios/userServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser,
 } from '../PersonData/style';
 
-const PersonalData = ({ user }) => {
+const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
+
+  const ClickDeleteUser = () => {
+    console.log(user._id);
+    deleteUser(user._id);
+    getUsers();
+  };
 
   return (
 
@@ -51,14 +58,20 @@ const PersonalData = ({ user }) => {
           <Ul>
             <Li>
               <Button>
-                Editar
+                <Link
+                  to={`/usuarios/editar/${user._id}`}
+                  id={user._id}
+                  style={{ color: 'black', textDecorationLine: 'none' }}
+                >
+                  Editar
+                </Link>
               </Button>
               <Icon>
                 <BsPencil />
               </Icon>
             </Li>
             <Li>
-              <Button>
+              <Button onClick={ClickDeleteUser}>
                 Desativar
               </Button>
               <Icon>

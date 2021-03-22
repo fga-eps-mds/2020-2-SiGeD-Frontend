@@ -23,7 +23,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     getUsers();
-  }, [users]);
+  }, []);
 
   useEffect(() => {
     setFilterUsers(
@@ -36,13 +36,19 @@ const ListScreen = () => {
   }, [users]);
 
   const listUsers = () => {
-    if (users.length === 0) {
+    if (users?.length === 0) {
       return <H1>Sem resultados</H1>;
     }
-    if (filterUsers.length === 0) {
+    if (filterUsers?.length === 0) {
       return <H1>Sem resultados</H1>;
     }
-    return filterUsers.map((user) => <PersonalData user={user} key={user._id} />);
+    return filterUsers?.map((user) => (
+      <PersonalData
+        user={user}
+        key={user._id}
+        getUsers={getUsers}
+      />
+    ));
   };
 
   return (
@@ -53,7 +59,7 @@ const ListScreen = () => {
       SearchWord={word}
       setWord={setWord}
       ListType={listUsers()}
-      redirectTo="/usuarios"
+      redirectTo="/cadastro"
     >
       <TableHeader>
         <TableTitle width={25}>
