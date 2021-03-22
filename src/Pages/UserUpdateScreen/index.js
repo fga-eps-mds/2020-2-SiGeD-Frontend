@@ -22,8 +22,6 @@ const UserUpdateScreen = () => {
         setInputEmail(data.email);
         setInputRole(data.role);
         setInputSector(data.sector);
-        setInputPassword(data.pass);
-        setInputConfirmPassword(data.pass);
       });
   };
 
