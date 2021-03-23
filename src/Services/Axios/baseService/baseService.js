@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BaseUrlUsers, BaseUrlClients, BaseUrlDemands } from '../../../Constants/baseUrl';
 
-const token = 'token';
+const token = '';
 
 export const APIUsers = axios.create({
   baseURL: BaseUrlUsers,
