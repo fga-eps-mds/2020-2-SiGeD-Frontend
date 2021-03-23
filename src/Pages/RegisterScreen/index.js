@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
@@ -6,12 +6,13 @@ import { postUser } from '../../Services/Axios/userServices';
 import UserForms from '../../Components/UserForms';
 
 const RegisterScreen = () => {
-  const [inputName, setInputName] = useState('');
-  const [inputEmail, setInputEmail] = useState('');
-  const [inputRole, setInputRole] = useState('Administrador(a)');
-  const [inputSector, setInputSector] = useState('Assistente Social');
-  const [inputPassword, setInputPassword] = useState('');
-  const [inputConfirmPassword, setInputConfirmPassword] = useState('');
+  const history = useHistory();
+  const [inputRegisterUserName, setRegisterUserInputName] = useState('');
+  const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
+  const [inputRegisterUserRole, setRegisterUserInputRole] = useState('Administrador(a)');
+  const [inputRegisterUserSector, setRegisterUserInputSector] = useState('Assistência Social');
+  const [inputRegisterUserPassword, setRegisterUserInputPassword] = useState('');
+  const [inputRegisterUserConfirmPassword, setRegisterUserInputConfirmPassword] = useState('');
   const [englishRole, setEnglishRole] = useState('admin');
 
   const submit = () => {
@@ -21,7 +22,7 @@ const RegisterScreen = () => {
       inputRegisterUserConfirmPassword)) {
       postUser(inputRegisterUserName,
         inputRegisterUserEmail,
-        inputRegisterUserRole,
+        englishRole,
         inputRegisterUserSector,
         inputRegisterUserPassword);
       return history.push('/usuarios');
@@ -37,14 +38,14 @@ const RegisterScreen = () => {
   };
 
   useEffect(() => {
-    if (inputRole === 'Administrador(a)') {
+    if (inputRegisterUserRole === 'Administrador(a)') {
       setEnglishRole('admin');
-    } else if (inputRole === 'Recepcionista') {
+    } else if (inputRegisterUserRole === 'Recepcionista') {
       setEnglishRole('receptionist');
-    } else if (inputRole === 'Servidor(a)') {
+    } else if (inputRegisterUserRole === 'Servidor(a)') {
       setEnglishRole('professional');
     }
-  }, [inputRole]);
+  }, [inputRegisterUserRole]);
 
   const cancel = () => {
     setRegisterUserInputName('');

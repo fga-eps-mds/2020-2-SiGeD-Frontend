@@ -6,11 +6,12 @@ import { postClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
 
 const ClientRegisterScreen = () => {
-  const [inputName, setInputName] = useState('');
-  const [inputEmail, setInputEmail] = useState('');
-  const [inputCpf, setInputCpf] = useState('');
-  const [inputPhone, setInputPhone] = useState('');
-  const [inputCity, setInputCity] = useState('');
+  const history = useHistory();
+  const [registerClientInputName, setRegisterClientInputName] = useState('');
+  const [registerClientInputEmail, setRegisterClientInputEmail] = useState('');
+  const [registerClientInputCpf, setRegisterClientInputCpf] = useState('');
+  const [registerClientInputPhone, setRegisterClientInputPhone] = useState('');
+  const [registerClientInputCity, setRegisterClientInputCity] = useState('');
   const [officeOption, setOfficeOption] = useState('Policial');
   const [policeStationOption, setPoliceStationOption] = useState('DPSS');
 

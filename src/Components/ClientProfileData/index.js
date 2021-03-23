@@ -4,22 +4,36 @@ import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
+import axios from 'axios';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser, DotContent,
 } from '../PersonData/style';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import colors from '../../Constants/colors';
 =======
 import { clientDeactivate } from '../../Services/Axios/clientServices';
 >>>>>>> [109] adjustment to dropdown arrow position.
+=======
+>>>>>>> Improve code smells.
 
 const ClientProfileData = ({ client, getClients }) => {
   const [boxState, setBoxState] = useState(false);
-  const id = client._id;
 
-  const Deactivate = () => {
-    clientDeactivate(id);
+  const ClientDeactivate = async () => {
+    try {
+      await axios.put(`http://localhost:3002/clients/deactivate/${client._id}`)
+        .then((response) => {
+          console.log(response);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const DeactivateClient = () => {
+    ClientDeactivate();
     getClients();
   };
 
@@ -85,7 +99,7 @@ const ClientProfileData = ({ client, getClients }) => {
               </Icon>
             </Li>
             <Li>
-              <Button onClick={Deactivate()}>
+              <Button onClick={DeactivateClient}>
                 Desativar
               </Button>
               <Icon>

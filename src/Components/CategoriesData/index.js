@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { BsThreeDotsVertical, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import {
@@ -6,12 +7,10 @@ import {
   P, Content, TableContainer, DotContent,
 } from './style';
 import ReactModal from '../ReactModal';
-import { CategoryDelete } from '../../Services/Axios/demandsServices';
 
 const CategoriesData = ({ category, getCategories }) => {
   const [boxState, setBoxState] = useState(false);
   const [modalState, setModalState] = useState(false);
-  const categoryId = category._id;
   const toggleBox = () => {
     setModalState(true);
     setBoxState(!boxState);
@@ -20,8 +19,19 @@ const CategoriesData = ({ category, getCategories }) => {
     setModalState(!modalState);
   };
 
+  const CategoryDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:3003/category/delete/${category._id}`)
+        .then((response) => {
+          console.log(response);
+        });
+    } catch (error) {
+      alert('Não foi possível deletar a categoria, tente novamente.');
+    }
+  };
+
   const DeleteCategory = () => {
-    CategoryDelete(categoryId);
+    CategoryDelete();
     getCategories();
   };
 
