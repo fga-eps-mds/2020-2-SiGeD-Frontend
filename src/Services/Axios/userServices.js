@@ -54,7 +54,7 @@ export const updateUser = async (
     });
     alert('Usuario atualizado');
   } catch (error) {
-    console.error(`An unexpected error ocourred while updating the user data.${error}`);
+    console.error(`An unexpected error occurred while updating the user data.${error}`);
   }
 };
 
