@@ -41,3 +41,12 @@ export async function updateCategory(name, description, color, id) {
     alert('Não foi possível atualizar a categoria, tente novamente.');
   }
 }
+
+export async function CategoryDelete(categoryId) {
+  try {
+    const response = await APIDemands.delete(`http://localhost:3003/category/delete/${categoryId}`);
+    console.log(response);
+  } catch (error) {
+    alert(`Não foi possível deletar a categoria, tente novamente.${error}`);
+  }
+}

@@ -46,3 +46,12 @@ export const updateClient = async (
       console.error(`An unexpected error ocourred while updating the client data.${error}`);
     });
 };
+
+export async function clientDeactivate(id) {
+  try {
+    const response = await APIClients.put(`http://localhost:3002/clients/deactivate/${id}`);
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}

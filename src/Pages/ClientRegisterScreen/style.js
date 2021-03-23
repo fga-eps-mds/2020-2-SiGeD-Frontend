@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form } from 'react-bootstrap';
 import colors from '../../Constants/colors';
 
 export const Main = styled.div` 
@@ -124,6 +125,7 @@ export const SidebarText = styled.div`
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    height: calc(1.5em + 0.75rem + 2px);
 
     @media(max-width: 720px){
         visibility: hidden;
@@ -141,6 +143,29 @@ export const InputLine = styled.div`
 
     width: 100%;
     height: 10%;
+
+    @media(max-width: 720px){
+    
+    }
+`;
+
+export const Dropdown = styled(Form.Control)`
+
+    box-sizing: border-box;
+    border-radius: 1.5vw;
+    border: 0px solid #000000;
+    box-shadow: none !important;
+    display: block;
+    width: 98%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    outline: none;
 
     @media(max-width: 720px){
     
