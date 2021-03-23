@@ -9,11 +9,10 @@ import { useProfileUser } from '../../Context';
 const LoginScreen = () => {
   const [emailReceived, setEmailReceived] = useState();
   const [passwordReceived, setPasswordReceived] = useState();
-  const { setToken, token } = useProfileUser();
+  const { setToken } = useProfileUser();
 
   function login() {
     loginUser(emailReceived, passwordReceived, setToken);
-    console.log(token);
   }
 
   return (

@@ -35,6 +35,7 @@ export async function loginUser(
       email: inputEmail,
       pass: inputPassword,
     });
+    APIUsers.defaults.headers = { 'x-access-token': response.data.token };
     setToken(response.data.token);
   } catch (error) {
     console.error(`Não foi possivel fazer login.${error}`);
