@@ -25,32 +25,32 @@ const NavbarComp = () => {
       <Navbar.Brand>
         <h1 style={styles.navbarText}>Logo</h1>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="navbar-police" />
-      <Navbar.Collapse id="navbar-police">
-        <Nav className="ml-auto">
-          <Nav.Link as={Link} to="/" style={styles.navbarText}>
-            Login
-          </Nav.Link>
-          <Nav.Link as={Link} to="/cadastro" style={styles.navbarText}>
-            Cadastro
-          </Nav.Link>
-          <Nav.Link as={Link} to="/usuarios" style={styles.navbarText}>
-            Usuários
-          </Nav.Link>
-          <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
-            Novo cliente
-          </Nav.Link>
-          <Nav.Link as={Link} to="/clientes" style={styles.navbarText}>
-            Clientes
-          </Nav.Link>
-          <Nav.Link as={Link} to="/categorias" style={styles.navbarText}>
-            Categorias
-          </Nav.Link>
-          <Navbar.Brand as={Link} to="/" onClick={logoutUser}>
-            <FiLogOut />
-          </Navbar.Brand>
-        </Nav>
-      </Navbar.Collapse>
+      { token && <Navbar.Toggle aria-controls="navbar-police" />}
+      { token
+        && (
+          <Navbar.Collapse id="navbar-police">
+            <Nav className="ml-auto">
+              <Nav.Link as={Link} to="/cadastro" style={styles.navbarText}>
+                Cadastro
+              </Nav.Link>
+              <Nav.Link as={Link} to="/usuarios" style={styles.navbarText}>
+                Usuários
+              </Nav.Link>
+              <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
+                Novo cliente
+              </Nav.Link>
+              <Nav.Link as={Link} to="/clientes" style={styles.navbarText}>
+                Clientes
+              </Nav.Link>
+              <Nav.Link as={Link} to="/categorias" style={styles.navbarText}>
+                Categorias
+              </Nav.Link>
+              <Navbar.Brand as={Link} to="/" onClick={logoutUser}>
+                <FiLogOut />
+              </Navbar.Brand>
+            </Nav>
+          </Navbar.Collapse>
+        )}
     </Navbar>
   );
 };
