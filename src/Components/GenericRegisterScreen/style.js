@@ -17,7 +17,7 @@ export const Main = styled.div`
 export const Container = styled.div`
     width: 80%;
     height: 70%;
-    background: ${colors.secondary};
+    background: ${colors.background};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -36,7 +36,7 @@ export const Container = styled.div`
 export const RightSideContainer = styled.div`
     width: 100%;
     height: 100%;
-    background: ${colors.secondary};
+    background: ${colors.background};
     display: flex;
     flex-direction: column;
     align-items: center;

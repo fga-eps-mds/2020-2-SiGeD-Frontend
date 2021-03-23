@@ -1,7 +1,9 @@
+import colors from '../../Constants/colors';
+
 const styles = {
   text: {
     fontWeight: 'bold',
-    color: 'red',
+    color: colors.alertMessages,
     fontSize: '10px',
     height: '0vh',
     margin: '5px 5px 5px 5px',
@@ -9,7 +11,7 @@ const styles = {
 
   passwords: {
     fontWeight: 'bold',
-    color: 'red',
+    color: colors.alertMessages,
     fontSize: '10px',
     height: '0vh',
     margin: '5px 5px 5px 5px',

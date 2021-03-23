@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
 export const Primary = styled.button`
-    font: Open Sans;
+    font: Montserrat;
     font-size: 100%;
     color: ${colors.secondary};
     width: 10vw;
     height: 100%;
     background-color: ${colors.primary};
-    border-radius: 1vw;
-    border: 2% solid ${colors.primary};
+    border-radius: 15px;
+    border: 1px solid ${colors.primary};
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -31,13 +31,13 @@ export const Primary = styled.button`
 
 export const Secondary = styled.button`
 
-    font: Open Sans;
+    font: Montserrat;
     font-size: 100%;
-    color: ${colors.primary};
+    color: ${colors.text};
     width: 10vw;
     height: 100%;
     background-color: ${colors.secondary};
-    border-radius: 1vw;
+    border-radius: 15px;
     border: 2% solid ${colors.primary};
     box-sizing: border-box;
     display: flex;

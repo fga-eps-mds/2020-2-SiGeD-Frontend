@@ -3,7 +3,7 @@ import colors from '../../Constants/colors';
 
 const Button = styled.button`
 
-    font: Open Sans;
+    font: Montserrat;
     font-size: 3vh;
     color: ${colors.secondary};
     width: 105%;

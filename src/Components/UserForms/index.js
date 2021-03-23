@@ -29,9 +29,9 @@ const UserForms = ({
         style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
         onChange={(Option) => setInputRole(Option.target.value)}
       >
-        <option>admin</option>
-        <option>professional</option>
-        <option>receptionist</option>
+        <option>Admin</option>
+        <option>Professional</option>
+        <option>Receptionist</option>
       </Form.Control>
     </Form.Group>
     <Form.Group style={{ width: '45%' }}>

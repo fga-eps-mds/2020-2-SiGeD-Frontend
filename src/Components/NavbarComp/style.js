@@ -8,13 +8,15 @@ const styles = {
   },
 
   navbar: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.navHeaders,
   },
 
   navbarText: {
+    fontFamily: 'Montserrat',
     fontSize: '2vh',
     marginRight: '2vh',
-    color: colors.secondary,
+    color: colors.text,
+    fontWeight: 'bold',
   },
 
 };

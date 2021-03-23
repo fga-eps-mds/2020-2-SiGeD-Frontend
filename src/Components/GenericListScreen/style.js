@@ -41,7 +41,7 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.h2`
-  font: Open Sans;
+  font: Montserrat;
   font-weight: 400;
   font-size: 4vh;
   margin: 0;
@@ -56,6 +56,9 @@ export const Title = styled.h2`
 
 export const ButtonDiv = styled.div`
   float: right;
+  width: 150px;
+  height: 50px;
+  border-radius: 15px;
 
   @media(max-width: 750px){
     width: 50%;
@@ -93,8 +96,8 @@ export const Search = styled.div`
 `;
 
 export const TableHeader = styled.div`
-  background-color: ${colors.primary};
-  color: colors.secondary;
+  background-color: ${colors.navHeaders};
+  color: ${colors.secondary};
   height: 5vh;
   display: flex;
   flex-direction: row;
