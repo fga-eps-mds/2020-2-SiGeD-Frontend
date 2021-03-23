@@ -34,6 +34,7 @@ export const Input = styled.input`
 `;
 
 export const TextArea = styled.textarea`
+  font-family: Montserrat;
   border: 2px solid black;
   border-radius: 12px;
   text-indent: 3px;

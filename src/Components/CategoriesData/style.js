@@ -67,7 +67,7 @@ export const P = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
+  font-family: 'Montserrat';
   @media(max-width: 750px){
     font-size: 1.5vh;
     font-weight: 900;

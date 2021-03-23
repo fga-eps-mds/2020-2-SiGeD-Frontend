@@ -11,6 +11,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    fontFamily: 'Montserrat',
   },
 
   password: {
@@ -25,6 +26,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    fontFamily: 'Montserrat',
   },
 
   input: {

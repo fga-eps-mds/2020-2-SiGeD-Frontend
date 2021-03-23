@@ -5,7 +5,7 @@ export const Main = styled.div`
 
     width: 100vw;
     height: 100vh;
-    background-color: #BFBFBF;
+    background-color: ${colors.background};
     display: flex;
     justify-content: center;
     align-content: center;
@@ -119,7 +119,6 @@ export const DivButtom = styled.div`
 `;
 
 export const SidebarText = styled.div`
-
     color: ${colors.secondary};
     display: flex;
     flex-wrap: wrap;
@@ -132,7 +131,7 @@ export const SidebarText = styled.div`
     }
 
     p {
-        font: Open Arial;
+        font-family: 'Montserrat';
         font-size: 1.5vw;
 
     }

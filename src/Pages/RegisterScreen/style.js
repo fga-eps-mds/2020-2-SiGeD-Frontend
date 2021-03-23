@@ -5,7 +5,7 @@ import colors from '../../Constants/colors';
 export const Main = styled.div` 
     width: 100vw;
     height: 100vh;
-    background-color: #BFBFBF;
+    background-color: ${colors.background};
     display: flex;
     justify-content: center;
     align-content: center;
@@ -114,7 +114,7 @@ export const SidebarText = styled.div`
         height: 0%;
     }
     p {
-        font: Open Arial;
+        font-family: 'Montserrat';
         font-size: 1.5vw;
     }
 `;

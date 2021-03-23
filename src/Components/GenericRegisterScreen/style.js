@@ -4,7 +4,7 @@ import colors from '../../Constants/colors';
 export const Main = styled.div` 
     width: 100vw;
     height: 100vh;
-    background-color: #BFBFBF;
+    background-color: ${colors.background};
     display: flex;
     justify-content: center;
     align-content: center;
@@ -56,6 +56,7 @@ export const ColumnText = styled.div`
     margin-top: 10px;
     flex-wrap: wrap;
     justify-content: space-between;
+    font-family: 'Montserrat';
     @media(max-width: 720px){
         align-items: center;
         width: 90%;

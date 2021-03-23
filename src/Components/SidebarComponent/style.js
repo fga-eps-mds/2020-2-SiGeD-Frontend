@@ -25,12 +25,13 @@ export const SidebarText = styled.div`
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    font-family: Montserrat;
     @media(max-width: 720px){
         visibility: hidden;
         height: 0%;
     }
     p {
-        font: Open Arial;
+        font-family: 'Montserrat';
         font-size: 1.5vw;
     }
 `;

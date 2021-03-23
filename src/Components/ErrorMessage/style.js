@@ -2,6 +2,7 @@ import colors from '../../Constants/colors';
 
 const styles = {
   text: {
+    fontFamily: 'Montserrat',
     fontWeight: 'bold',
     color: colors.alertMessages,
     fontSize: '10px',
@@ -10,6 +11,7 @@ const styles = {
   },
 
   passwords: {
+    fontFamily: 'Montserrat',
     fontWeight: 'bold',
     color: colors.alertMessages,
     fontSize: '10px',

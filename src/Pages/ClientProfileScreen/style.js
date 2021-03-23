@@ -117,7 +117,7 @@ export const DemandsList = styled.div`
 
     width: 80%;
     height: 90%;
-    background-color: #BFBFBF;
+    background-color: ${colors.background};
     display: flex;
     flex-direction: column;
     align-items: center;

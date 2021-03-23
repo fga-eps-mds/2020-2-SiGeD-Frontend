@@ -11,6 +11,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
+    fontFamily: 'Montserrat',
   },
 
   generic: {

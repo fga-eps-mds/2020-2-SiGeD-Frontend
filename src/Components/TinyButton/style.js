@@ -15,7 +15,7 @@ export const Primary = styled.button`
     align-items: center;
     justify-content: center;
     margin-right: 15px;
-
+    font-family: Montserrat;
     p {
       
     }
@@ -44,6 +44,7 @@ export const Secondary = styled.button`
     align-Items: center;
     justify-content: center;
     margin-right: 15px;
+    font-family: Montserrat;
     @media(max-width: 720px){
       width: 80%;
       height: 100%;

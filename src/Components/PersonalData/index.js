@@ -9,6 +9,7 @@ import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser,
 } from '../PersonData/style';
+import colors from '../../Constants/colors';
 
 const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
@@ -61,7 +62,7 @@ const PersonalData = ({ user, getUsers }) => {
                 <Link
                   to={`/usuarios/editar/${user._id}`}
                   id={user._id}
-                  style={{ color: 'black', textDecorationLine: 'none' }}
+                  style={{ color: colors.text, textDecorationLine: 'none', fontFamily: 'Montserrat' }}
                 >
                   Editar
                 </Link>

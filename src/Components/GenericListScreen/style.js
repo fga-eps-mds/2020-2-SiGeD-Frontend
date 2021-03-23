@@ -6,7 +6,7 @@ export const Main = styled.div`
   justify-content: center;
   align-content: center;
   align-items: center;
-  background-color: #BFBFBF;
+  background-color: ${colors.background};
   width: 100vw;
   height: 100vh;
   @media(max-width: 750px){
@@ -41,7 +41,7 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.h2`
-  font: Montserrat;
+  font-family: 'Montserrat';
   font-weight: 400;
   font-size: 4vh;
   margin: 0;
