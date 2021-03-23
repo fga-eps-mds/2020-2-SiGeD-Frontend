@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
 import { postClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
 
 const ClientRegisterScreen = () => {
+  const history = useHistory();
   const [registerClientInputName, setRegisterClientInputName] = useState('');
   const [registerClientInputEmail, setRegisterClientInputEmail] = useState('');
   const [registerClientInputCpf, setRegisterClientInputCpf] = useState('');
@@ -13,23 +15,20 @@ const ClientRegisterScreen = () => {
   const [officeOption, setOfficeOption] = useState('');
   const [policeStationOption, setPoliceStationOption] = useState('');
 
-  const submit = () => {
+  const submit = async () => {
     const message = validateFields(registerClientInputName,
       registerClientInputEmail, registerClientInputCpf,
       registerClientInputPhone,
       registerClientInputCity, 'Cadastro do cliente realizado com sucesso!');
 
-    if (!message) {
-      postClient(
+    if (!message.length) {
+      const data = await postClient(
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
         registerClientInputCity, officeOption, policeStationOption,
-      );
+      ).then((response) => response.data);
+      return history.push(`/perfil/${data._id}`);
     }
-    postClient(
-      registerClientInputName, registerClientInputEmail, registerClientInputCpf,
-      registerClientInputPhone, registerClientInputCity, officeOption, policeStationOption,
-    );
     setRegisterClientInputName('');
     setRegisterClientInputCpf('');
     setRegisterClientInputEmail('');
@@ -37,6 +36,7 @@ const ClientRegisterScreen = () => {
     setRegisterClientInputCity('');
     setOfficeOption('');
     setPoliceStationOption('');
+    return undefined;
   };
 
   const cancel = () => {

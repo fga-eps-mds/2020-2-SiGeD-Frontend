@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
 import { postUser } from '../../Services/Axios/userServices';
 import UserForms from '../../Components/UserForms';
 
 const RegisterScreen = () => {
+  const history = useHistory();
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
   const [inputRegisterUserRole, setRegisterUserInputRole] = useState('');
@@ -22,15 +24,16 @@ const RegisterScreen = () => {
         inputRegisterUserRole,
         inputRegisterUserSector,
         inputRegisterUserPassword);
-    } else {
-      alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
+      return history.push('/usuarios');
     }
+    alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
     setRegisterUserInputName('');
     setRegisterUserInputEmail('');
     setRegisterUserInputRole('');
     setRegisterUserInputSector('');
     setRegisterUserInputPassword('');
     setRegisterUserInputConfirmPassword('');
+    return undefined;
   };
 
   const cancel = () => {
