@@ -20,8 +20,8 @@ const ListCategories = () => {
   const listCategorie = async () => {
     await getCategories()
       .then((response) => setCategories(response.data))
-      .catch((err) => {
-        console.error(`Não foi possível listar as categorias.${err}`);
+      .catch((error) => {
+        console.error(`An unexpected error ocourred while getting categories.${error}`);
       });
   };
 

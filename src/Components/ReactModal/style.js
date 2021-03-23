@@ -4,7 +4,7 @@ export const ModalContent = styled.div`
   margin: 5% 3%;
 `;
 
-export const Titulo = styled.h1`
+export const Title = styled.h1`
   font-size: 150%;
 
   @media(max-width: 800px) {
@@ -41,14 +41,14 @@ export const TextArea = styled.textarea`
   width: 90%;
 `;
 
-export const DivNome = styled.div`
+export const DivName = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-right: 10%;
 `;
 
-export const DivCor = styled.div`
+export const DivColor = styled.div`
   margin-right: 10%;
   @media(max-width: 800px) {
     margin-top: 5%;
@@ -75,7 +75,7 @@ export const DivDescription = styled.div`
 
 `;
 
-export const Linha = styled.div`
+export const Line = styled.div`
   display: flex;
   justify-content: space-between;
 

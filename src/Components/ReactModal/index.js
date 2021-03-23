@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import {
-  Titulo, modalStyle, P, DivButton, Input, DivNome, DivCor,
-  TextArea, Linha, ModalContent, DivDescription,
+  Title, modalStyle, P, DivButton, Input, DivName, DivColor,
+  TextArea, Line, ModalContent, DivDescription,
 } from './style';
 import TinyButton from '../TinyButton';
 import { createCategory, updateCategory } from '../../Services/Axios/demandsServices';
@@ -48,20 +48,20 @@ const ReactModal = ({
         onRequestClose={() => toggleModal()}
       >
         <ModalContent>
-          <Titulo>
+          <Title>
             {type}
             Categoria
-          </Titulo>
-          <Linha>
-            <DivNome>
+          </Title>
+          <Line>
+            <DivName>
               <P>Nome:</P>
               <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
-            </DivNome>
-            <DivCor>
+            </DivName>
+            <DivColor>
               <P>Cor:</P>
               <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
-            </DivCor>
-          </Linha>
+            </DivColor>
+          </Line>
           <DivDescription>
             <P>Descrição:</P>
             <TextArea rows="5" cols="30" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />

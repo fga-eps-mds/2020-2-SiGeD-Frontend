@@ -5,7 +5,7 @@ export async function getCategories() {
     const response = await APIDemands.get('category');
     return response;
   } catch (error) {
-    console.error(`Não foi possível listar as categorias.${error}`);
+    console.error(`An unexpected error ocourred while getting categories.${error}`);
   }
   return null;
 }

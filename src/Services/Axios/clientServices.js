@@ -25,7 +25,7 @@ export async function postClient(
     });
     return response;
   } catch (error) {
-    console.error(`Não foi possivel cadastrar o cliente.${error}`);
+    console.error(`An unexpected error ocourred while creating a new client.${error}`);
   }
   return null;
 }
@@ -43,6 +43,6 @@ export const updateClient = async (
     policeStation: policeStationOption,
   })
     .catch((error) => {
-      console.error(`Não foi atualizar o cadastro do cliente.${error}`);
+      console.error(`An unexpected error ocourred while updating the client data.${error}`);
     });
 };
