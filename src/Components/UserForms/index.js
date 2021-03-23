@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import RegisterInput from '../RegisterInput';
 import { PassMatches } from '../ErrorMessage';
-import UserFormsColumnText from './Style';
+import { UserFormsColumnText, Dropdown } from './Style';
 
 const UserForms = ({
   setInputName,
@@ -23,29 +23,39 @@ const UserForms = ({
     <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
     <Form.Group style={{ width: '45%' }}>
       <Form.Label>Cargo:</Form.Label>
-      <Form.Control
-        as="select"
-        value={inputRole}
-        style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-        onChange={(Option) => setInputRole(Option.target.value)}
+      <div style={{
+        boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
+      }}
       >
-        <option>Admin</option>
-        <option>Professional</option>
-        <option>Receptionist</option>
-      </Form.Control>
+        <Dropdown
+          as="select"
+          value={inputRole}
+          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '0px solid #000000' }}
+          onChange={(Option) => setInputRole(Option.target.value)}
+        >
+          <option>Administrador(a)</option>
+          <option>Profissional</option>
+          <option>Recepcionista</option>
+        </Dropdown>
+      </div>
     </Form.Group>
     <Form.Group style={{ width: '45%' }}>
       <Form.Label>Setor:</Form.Label>
-      <Form.Control
-        as="select"
-        value={inputSector}
-        style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-        onChange={(Option) => setInputSector(Option.target.value)}
+      <div style={{
+        boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
+      }}
       >
-        <option>Policial</option>
-        <option>Familiar</option>
-        <option>Assistente Social</option>
-      </Form.Control>
+        <Dropdown
+          as="select"
+          value={inputSector}
+          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '0px solid #000000' }}
+          onChange={(Option) => setInputSector(Option.target.value)}
+        >
+          <option>Assistência Social</option>
+          <option>Policial</option>
+          <option>Familiar</option>
+        </Dropdown>
+      </div>
     </Form.Group>
     <RegisterInput long type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
     <RegisterInput long type="password" title="Confirmar senha" setText={setInputConfirmPassword} value={inputConfirmPassword} />

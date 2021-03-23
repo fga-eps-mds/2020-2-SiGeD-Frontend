@@ -12,8 +12,8 @@ const ClientRegisterScreen = () => {
   const [registerClientInputCpf, setRegisterClientInputCpf] = useState('');
   const [registerClientInputPhone, setRegisterClientInputPhone] = useState('');
   const [registerClientInputCity, setRegisterClientInputCity] = useState('');
-  const [officeOption, setOfficeOption] = useState('');
-  const [policeStationOption, setPoliceStationOption] = useState('');
+  const [officeOption, setOfficeOption] = useState('Policial');
+  const [policeStationOption, setPoliceStationOption] = useState('DPSS');
 
   const submit = async () => {
     const message = validateFields(registerClientInputName,

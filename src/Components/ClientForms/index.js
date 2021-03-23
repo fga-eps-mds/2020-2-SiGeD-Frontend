@@ -2,6 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import RegisterInput from '../RegisterInput';
 import ClientFormsColumnText from './Style';
+import { Dropdown } from '../UserForms/Style';
 
 const ClientForms = ({
   setInputName,
@@ -25,29 +26,38 @@ const ClientForms = ({
     <RegisterInput long type="text" title="Cidade" setText={setInputCity} value={inputCity} />
     <Form.Group style={{ width: '45%' }}>
       <Form.Label>Cargo:</Form.Label>
-      <Form.Control
-        as="select"
-        style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-        onChange={(Option) => setOfficeOption(Option.target.value)}
+      <div style={{
+        boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
+      }}
       >
-        <option>Enfermeira</option>
-        <option>Secretário</option>
-        <option>Servidora</option>
-        <option>Administrador</option>
-      </Form.Control>
+        <Dropdown
+          as="select"
+          onChange={(Option) => setOfficeOption(Option.target.value)}
+        >
+          <option>Policial</option>
+          <option>Enfermeiro(a)</option>
+          <option>Secretário(a)</option>
+          <option>Servidor(a)</option>
+          <option>Administrador(a)</option>
+        </Dropdown>
+      </div>
     </Form.Group>
     <Form.Group style={{ width: '45%' }}>
       <Form.Label>Local:</Form.Label>
-      <Form.Control
-        as="select"
-        style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000' }}
-        onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
+      <div style={{
+        boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
+      }}
       >
-        <option>CASA</option>
-        <option>HOTEL</option>
-        <option>TCU</option>
-        <option>DPCM</option>
-      </Form.Control>
+        <Dropdown
+          as="select"
+          onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
+        >
+          <option>DPSS</option>
+          <option>CASA</option>
+          <option>TCU</option>
+          <option>DPCM</option>
+        </Dropdown>
+      </div>
     </Form.Group>
   </ClientFormsColumnText>
 );
