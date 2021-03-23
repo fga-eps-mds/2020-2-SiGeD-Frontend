@@ -8,9 +8,11 @@ import ClientUpdateScreen from '../Pages/ClientUpdateScreen';
 import ClientListScreen from '../Pages/ClientListScreen';
 import ClientProfileScreen from '../Pages/ClientProfileScreen';
 import UserUpdateScreen from '../Pages/UserUpdateScreen';
+import NavbarComp from '../Components/NavbarComp';
 
 const OtherRoutes = () => (
   <Router>
+    <NavbarComp />
     <Route path="/" exact component={ClientListScreen} />
     <Route path="/cadastro" component={RegisterScreen} />
     <Route path="/usuarios/editar/:id" component={UserUpdateScreen} />
