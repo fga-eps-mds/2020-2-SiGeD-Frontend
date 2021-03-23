@@ -9,14 +9,7 @@ import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser, DotContent,
 } from '../PersonData/style';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import colors from '../../Constants/colors';
-=======
-import { clientDeactivate } from '../../Services/Axios/clientServices';
->>>>>>> [109] adjustment to dropdown arrow position.
-=======
->>>>>>> Improve code smells.
 
 const ClientProfileData = ({ client, getClients }) => {
   const [boxState, setBoxState] = useState(false);

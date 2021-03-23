@@ -27,12 +27,6 @@ const UserForms = ({
         boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
       }}
       >
-<<<<<<< HEAD
-        <option>Admin</option>
-        <option>Professional</option>
-        <option>Receptionist</option>
-      </Form.Control>
-=======
         <Dropdown
           as="select"
           value={inputRole}
@@ -44,7 +38,6 @@ const UserForms = ({
           <option>Recepcionista</option>
         </Dropdown>
       </div>
->>>>>>> Improve code smells.
     </Form.Group>
     <Form.Group style={{ width: '45%' }}>
       <Form.Label>Setor:</Form.Label>
