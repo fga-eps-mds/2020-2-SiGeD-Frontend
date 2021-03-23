@@ -42,7 +42,7 @@ const RegisterScreen = () => {
       setEnglishRole('admin');
     } else if (inputRegisterUserRole === 'Recepcionista') {
       setEnglishRole('receptionist');
-    } else if (inputRegisterUserRole === 'Servidor(a)') {
+    } else if (inputRegisterUserRole === 'Profissional') {
       setEnglishRole('professional');
     }
   }, [inputRegisterUserRole]);

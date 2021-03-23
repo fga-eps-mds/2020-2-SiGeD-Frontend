@@ -5,7 +5,7 @@ import colors from '../../Constants/colors';
 export const Sidebar = styled.div`
     width: 30%;
     height: 100%;
-    background: ${colors.primary};
+    background: ${colors.navHeaders};
     display: flex;
     flex-direction: column;
     align-items: center;
