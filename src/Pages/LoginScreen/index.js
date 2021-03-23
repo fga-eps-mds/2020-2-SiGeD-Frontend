@@ -3,12 +3,17 @@ import { FaUserAlt, FaLock } from 'react-icons/fa';
 import BigButton from '../../Components/BigButton';
 import LoginInput from '../../Components/LoginInput';
 import { styles, Background, Center } from './style';
+import { loginUser } from '../../Services/Axios/userServices';
+import { useProfileUser } from '../../Context';
 
 const LoginScreen = () => {
-  const [userReceived, setUserReceived] = useState();
+  const [emailReceived, setEmailReceived] = useState();
   const [passwordReceived, setPasswordReceived] = useState();
+  const { setToken } = useProfileUser();
 
-  function login() { }
+  function login() {
+    loginUser(emailReceived, passwordReceived, setToken);
+  }
 
   return (
     <Background>
@@ -19,8 +24,8 @@ const LoginScreen = () => {
           title="Usuário"
           type="user"
           icon={<FaUserAlt />}
-          onChange={(nameUser) => setUserReceived(nameUser.target.value)}
-          value={userReceived}
+          onChange={(email) => setEmailReceived(email.target.value)}
+          value={emailReceived}
         />
 
         <LoginInput

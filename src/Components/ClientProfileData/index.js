@@ -16,10 +16,7 @@ const ClientProfileData = ({ client, getClients }) => {
 
   const ClientDeactivate = async () => {
     try {
-      await axios.put(`http://localhost:3002/clients/deactivate/${client._id}`)
-        .then((response) => {
-          console.log(response);
-        });
+      await axios.put(`http://localhost:3002/clients/deactivate/${client._id}`);
     } catch (error) {
       console.error(error);
     }

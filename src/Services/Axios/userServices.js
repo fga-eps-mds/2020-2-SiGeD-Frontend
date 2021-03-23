@@ -23,7 +23,22 @@ export async function postUser(
     });
     alert('Usuario criado');
   } catch (error) {
-    console.error(`An unexpected error ocourred while regestering a new user.${error}`);
+    console.error(`An unexpected error ocourred while registering a new user.${error}`);
+  }
+}
+
+export async function loginUser(
+  inputEmail, inputPassword, setToken,
+) {
+  try {
+    const response = await APIUsers.post('login', {
+      email: inputEmail,
+      pass: inputPassword,
+    });
+    APIUsers.defaults.headers = { 'x-access-token': response.data.token };
+    setToken(response.data.token);
+  } catch (error) {
+    console.error(`Não foi possivel fazer login.${error}`);
   }
 }
 
@@ -40,7 +55,7 @@ export const updateUser = async (
     });
     alert('Usuario atualizado');
   } catch (error) {
-    console.error(`An unexpected error ocourred while updating the user data.${error}`);
+    console.error(`An unexpected error occurred while updating the user data.${error}`);
   }
 };
 

@@ -9,16 +9,20 @@ const SidebarComponent = ({
   <Sidebar>
     <Icon />
     <SidebarText>
-      {sidebarList.map((sidebarCardText) => <p>{sidebarCardText}</p>)}
+      {sidebarList.map((sidebarCardText, index) => <p key={index}>{sidebarCardText}</p>)}
     </SidebarText>
     { sidebarFooter
-    && (
-    <SidebarFooter
-      style={{ marginTop: '3vh' }}
-    >
-      {sidebarFooter.map((sidebarCardFooterText) => <p style={{ fontSize: '2vh' }}>{sidebarCardFooterText}</p>)}
-    </SidebarFooter>
-    )}
+        && (
+          <SidebarFooter
+            style={{ marginTop: '3vh' }}
+          >
+            {sidebarFooter.map((sidebarCardFooterText, index) => (
+              <p style={{ fontSize: '2vh' }} key={index}>
+                {sidebarCardFooterText}
+              </p>
+            ))}
+          </SidebarFooter>
+        )}
   </Sidebar>
 );
 

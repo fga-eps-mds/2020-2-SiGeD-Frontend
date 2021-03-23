@@ -13,10 +13,6 @@ const ListCategories = () => {
   const [statusModal, setStatusModal] = useState(false);
   const [word, setWord] = useState();
 
-  const toggleModal = () => {
-    setStatusModal(!statusModal);
-  };
-
   const listCategorie = async () => {
     await getCategories()
       .then((response) => setCategories(response.data))
@@ -27,7 +23,12 @@ const ListCategories = () => {
 
   useEffect(() => {
     listCategorie();
-  }, [categories]);
+  }, []);
+
+  const toggleModal = () => {
+    setStatusModal(!statusModal);
+    listCategorie();
+  };
 
   useEffect(() => {
     setFilterCategories(
