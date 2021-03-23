@@ -5,7 +5,7 @@ import colors from '../../Constants/colors';
 export const Main = styled.div` 
     width: 100vw;
     height: 100vh;
-    background-color: #BFBFBF;
+    background-color: ${colors.background};
     display: flex;
     justify-content: center;
     align-content: center;
@@ -37,7 +37,7 @@ export const Container = styled.div`
 export const Sidebar = styled.div`
     width: 30%;
     height: 100%;
-    background: ${colors.primary};
+    background: ${colors.navHeaders};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +48,6 @@ export const Sidebar = styled.div`
         background-color: ${colors.secondary};
         align-content: center;
         justify-content: center;
-   
     }
 `;
 
@@ -115,7 +114,7 @@ export const SidebarText = styled.div`
         height: 0%;
     }
     p {
-        font: Open Arial;
+        font-family: 'Montserrat';
         font-size: 1.5vw;
     }
 `;
@@ -128,7 +127,7 @@ export const Icon = styled(IoPersonCircleOutline)`
     @media(max-width: 720px){
         width: 100%;
         height: 100%;
-        color: ${colors.primary};
+        color: #000000;
     }
 `;
 

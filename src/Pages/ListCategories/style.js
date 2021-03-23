@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
 export const TableHeader = styled.div`
-  background-color: ${colors.primary};
+  background-color: ${colors.navHeaders};
   color: colors.secondary;
   height: 5vh;
   display: flex;

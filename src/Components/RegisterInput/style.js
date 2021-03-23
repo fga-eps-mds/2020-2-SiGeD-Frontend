@@ -31,7 +31,7 @@ export const Container = styled.div`
 
 export const Label = styled.div`
 
-    font-family: Arial;
+    font-family: Montserrat;
     font-size: 100%;
     height: min-content;
     align-items: center;

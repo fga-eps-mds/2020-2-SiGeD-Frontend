@@ -68,7 +68,7 @@ margin-block-start: 0;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
-
+font-family: Montserrat;
 @media(max-width: 750px){
   font-size: 2.5vh;
   font-weight: 900;
@@ -81,6 +81,7 @@ export const Name = styled(P)`
   border-radius: 12px;
   padding: 2%;
   text-align: center;
+  font-family: Montserrat;
   color: ${colors.secondary};
   background-color: ${(props) => `${props.color}`};
 `;

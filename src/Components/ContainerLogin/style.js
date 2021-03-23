@@ -2,6 +2,7 @@ import colors from '../../Constants/colors';
 
 const styles = {
   primary: {
+    fontFamily: 'Montserrat',
     backgroundColor: colors.primary,
     color: colors.secondary,
     fontWeight: 'bold',
@@ -20,6 +21,7 @@ const styles = {
   },
 
   secondary: {
+    fontFamily: 'Montserrat',
     backgroundColor: colors.secondary,
     color: colors.primary,
     fontWeight: 'bold',

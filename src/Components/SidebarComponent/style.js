@@ -5,7 +5,7 @@ import colors from '../../Constants/colors';
 export const Sidebar = styled.div`
     width: 30%;
     height: 100%;
-    background: ${colors.primary};
+    background: ${colors.navHeaders};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +16,6 @@ export const Sidebar = styled.div`
         background-color: ${colors.secondary};
         align-content: center;
         justify-content: center;
-   
     }
 `;
 
@@ -26,12 +25,13 @@ export const SidebarText = styled.div`
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    font-family: Montserrat;
     @media(max-width: 720px){
         visibility: hidden;
         height: 0%;
     }
     p {
-        font: Open Arial;
+        font-family: 'Montserrat';
         font-size: 1.5vw;
     }
 `;
@@ -44,7 +44,7 @@ export const Icon = styled(IoPersonCircleOutline)`
     @media(max-width: 720px){
         width: 100%;
         height: 100%;
-        color: ${colors.primary};
+        color: ${colors.text};
     }
 `;
 

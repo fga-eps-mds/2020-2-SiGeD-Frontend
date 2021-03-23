@@ -1,8 +1,8 @@
 const styles = {
   user: {
-    border: '1px solid #000000',
+    border: '2px solid #1F3541',
     boxSizing: 'border-box',
-    borderRadius: '7px',
+    borderRadius: '15px',
     width: '77%',
     height: '5vh',
     margin: '6px',
@@ -11,12 +11,13 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    fontFamily: 'Montserrat',
   },
 
   password: {
-    border: '1px solid #000000',
+    border: '2px solid #1F3541',
     boxSizing: 'border-box',
-    borderRadius: '7px',
+    borderRadius: '15px',
     width: '77%',
     height: '5vh',
     margin: '5px 0px 40px 0px',
@@ -25,6 +26,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    fontFamily: 'Montserrat',
   },
 
   input: {

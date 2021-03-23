@@ -9,6 +9,7 @@ import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser, DotContent,
 } from '../PersonData/style';
+import colors from '../../Constants/colors';
 
 const ClientProfileData = ({ client, getClients }) => {
   const [boxState, setBoxState] = useState(false);
@@ -43,7 +44,7 @@ const ClientProfileData = ({ client, getClients }) => {
             to={`/perfil/${client._id}`}
             id={client._id}
             style={{
-              color: 'black',
+              color: colors.text,
               textDecorationLine: 'none',
               marginRight: '1.5vw',
             }}
@@ -81,7 +82,7 @@ const ClientProfileData = ({ client, getClients }) => {
                 <Link
                   to={`/editar/${client._id}`}
                   id={client._id}
-                  style={{ color: 'black', textDecorationLine: 'none' }}
+                  style={{ color: colors.text, textDecorationLine: 'none' }}
                 >
                   Editar
                 </Link>

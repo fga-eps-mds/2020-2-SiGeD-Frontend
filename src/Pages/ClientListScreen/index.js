@@ -32,10 +32,10 @@ const ClientListScreen = () => {
 
   const listClients = () => {
     if (clients?.length === 0) {
-      return <h1 style={{ fontSize: '1.5rem', font: 'Open Sans' }}>Sem resultados</h1>;
+      return <h1 style={{ fontSize: '1.5rem', font: 'Montserrat' }}>Sem resultados</h1>;
     }
     if (filterClients?.length === 0) {
-      return <h1 style={{ fontSize: '1.5rem', font: 'Open Sans' }}>Sem resultados</h1>;
+      return <h1 style={{ fontSize: '1.5rem', font: 'Montserrat' }}>Sem resultados</h1>;
     }
     return filterClients?.map((client) => (
       <ClientProfileData

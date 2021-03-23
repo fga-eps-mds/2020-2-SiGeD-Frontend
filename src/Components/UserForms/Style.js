@@ -9,6 +9,7 @@ const UserFormsColumnText = styled.div`
     margin-top: 10px;
     flex-wrap: wrap;
     justify-content: space-between;
+    font-family: Montserrat;
     @media(max-width: 720px){
         align-items: center;
         width: 90%;

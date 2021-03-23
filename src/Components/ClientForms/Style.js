@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ClientFormsColumnText = styled.div`
+    font-family: 'Montserrat';
     width: 90%;
     height: 70%;
     display: flex;

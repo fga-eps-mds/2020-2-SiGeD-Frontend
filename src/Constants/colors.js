@@ -1,7 +1,10 @@
 const colors = {
-  primary: '#000000',
+  primary: '#5289B5',
   secondary: '#FFFFFF',
-  background: '#BFBFBF',
+  background: '#F6F6F6',
+  navHeaders: '#1F3541',
+  alertMessages: '#FF0000',
+  text: '#000000',
 };
 
 export default colors;
