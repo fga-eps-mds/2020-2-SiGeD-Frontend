@@ -17,7 +17,6 @@ export async function createCategory(name, description, color) {
       description,
       color,
     });
-    console.log(response.data);
     if (response.data.status) {
       alert('Preencha todos os campos para poder criar uma nova categoria');
     }
@@ -33,7 +32,6 @@ export async function updateCategory(name, description, color, id) {
       description,
       color,
     });
-    console.log(response.data);
     if (response.data.status) {
       alert('Preencha todos os campos para poder criar uma nova categoria');
     }

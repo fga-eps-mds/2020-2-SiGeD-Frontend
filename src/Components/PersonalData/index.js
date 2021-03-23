@@ -15,7 +15,6 @@ const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
 
   const ClickDeleteUser = () => {
-    console.log(user._id);
     deleteUser(user._id);
     getUsers();
   };

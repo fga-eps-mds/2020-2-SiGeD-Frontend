@@ -23,7 +23,6 @@ const UserProvider = ({ children }) => {
     if (token) {
       localStorage.setItem('@App:token', token);
     }
-    console.log(token);
   }, [token]);
 
   return (

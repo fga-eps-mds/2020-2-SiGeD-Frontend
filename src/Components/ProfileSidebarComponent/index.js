@@ -16,7 +16,11 @@ const SidebarComponent = ({
     )}
     <Icon />
     <SidebarText>
-      {sidebarList.map((sidebarCardText) => <SidebarCardText>{sidebarCardText}</SidebarCardText>)}
+      {sidebarList.map((sidebarCardText, index) => (
+        <SidebarCardText key={index}>
+          {sidebarCardText}
+        </SidebarCardText>
+      ))}
     </SidebarText>
     { sidebarFooter
     && (
