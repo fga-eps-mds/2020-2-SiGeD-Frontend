@@ -5,7 +5,7 @@ import {
 } from './Style';
 import CategoriesData from '../../Components/CategoriesData';
 import GenericListScreen from '../../Components/GenericListScreen';
-import { getCategories } from '../../Services/Axios/demandsServices';
+import { getCategories, createCategory } from '../../Services/Axios/demandsServices';
 
 const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);
@@ -56,10 +56,18 @@ const ListCategories = () => {
     ));
   };
 
+  const submit = async () => {
+    await createCategory(name, description, color);
+    getCategories();
+    if (valid) {
+      handleClose();
+    }
+  };
+
   return (
     <GenericListScreen
       ButtonTitle="Nova Categoria"
-      ButtonFunction={toggleModal}
+      ButtonFunction={handleShow}
       PageTitle="Categorias"
       SearchWord={word}
       setWord={setWord}
