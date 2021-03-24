@@ -6,10 +6,19 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "date": "^1.0.2",
+    "date-fns": "^2.19.0",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.5.0",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
+    "react-media": "^1.10.0",
+    "react-modal": "^3.12.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "styled-components": "^5.2.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -35,5 +44,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
   }
 }

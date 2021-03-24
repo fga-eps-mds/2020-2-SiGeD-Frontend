@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Frontend
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL3-blue.svg)](https://opensource.org/licenses/gpl-3.0.html)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esse repositório tem o propósito de apresentar um interface web simples e intuitiva do projeto [`NomeDoProjeto`](https://github.com/fga-eps-mds/2020-2-G4). 
 
-## Available Scripts
+## Como contribuir?
 
-In the project directory, you can run:
+Gostaria de contribuir com nosso projeto? Acesse o nosso [guia de contribuição](https://fga-eps-mds.github.io/2020-2-G4/CONTRIBUTING/) onde são explicados todos os passos.
+Caso reste duvidas você também pode entrar em contato conosco criando uma issue.
 
-### `yarn start`
+## Documentação
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A documentação do projeto pode ser acessada pelo nosso site em https://fga-eps-mds.github.io/2020-2-G4/ ou você pode acessar pela [NomeDoProjeto Documentação](https://fga-eps-mds.github.io/2020-2-G4/home/)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Como rodar?
 
-### `yarn test`
+Para rodar o Frontend é preciso usar o seguinte comando usando o docker.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+docker-compose up
+```
+O frontend estará rodando na [porta 3000](http://localhost:3000).
 
-### `yarn build`
+ Esta aplicação faz conexão e é dependente das APIs para funcionar corretamente. As APIs correspondentes são:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [API de Clientes](https://github.com/fga-eps-mds/2020-2-G4-Clients)
+- [API de Usuários](https://github.com/fga-eps-mds/2020-2-G4-Users)
+- [API de Demandas](https://github.com/fga-eps-mds/2020-2-G4-Demands)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
