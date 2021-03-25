@@ -15,8 +15,10 @@ const ModalComp = ({
   const [valid, setValid] = useState(true);
 
   useEffect(() => {
-    if (!name && !description && !color) {
+    if (!name || !description || !color) {
       setValid(false);
+    } else {
+      setValid(true);
     }
   }, [name, description, color]);
 

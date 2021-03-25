@@ -76,7 +76,7 @@ const CategoriesData = ({ category, getCategories }) => {
           </Ul>
         </Box>
       ) : null}
-      <ModalComp show={modalState} type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} handleClose={toggleModal} id={category._id} idColor={category.color} />
+      { modalState ? <ModalComp show={modalState} type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} handleClose={toggleModal} id={category._id} idColor={category.color} /> : null }
     </Content>
   );
 };
