@@ -20,7 +20,7 @@ export const Primary = styled.button`
       
     }
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
       width: 80%;
       height: 100%;
       margin-right: 0px;
@@ -45,7 +45,7 @@ export const Secondary = styled.button`
     justify-content: center;
     margin-right: 15px;
     font-family: Montserrat;
-    @media(max-width: 720px){
+    @media(max-width: 750px){
       width: 80%;
       height: 100%;
       margin-right: 0px;

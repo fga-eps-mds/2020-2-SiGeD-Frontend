@@ -10,7 +10,7 @@ export const Sidebar = styled.div`
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         width: 100%;
         height: 20%;
         background-color: ${colors.secondary};
@@ -26,7 +26,7 @@ export const SidebarText = styled.div`
     flex-direction: column;
     align-items: center;
     font-family: Montserrat;
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         visibility: hidden;
         height: 0%;
     }
@@ -41,7 +41,7 @@ export const Icon = styled(IoPersonCircleOutline)`
     height: 40%;
     color: ${colors.secondary};
     margin-top: 10px;
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         width: 100%;
         height: 100%;
         color: ${colors.text};
@@ -56,7 +56,7 @@ export const SidebarFooter = styled.div`
     flex-direction: column;
     align-items: center;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         visibility: hidden;
         height: 0%;
     }

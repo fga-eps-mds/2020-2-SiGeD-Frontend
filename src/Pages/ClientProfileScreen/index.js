@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ProfileSidebarComponent from '../../Components/ProfileSidebarComponent';
 import {
   Main, RightBox,
-} from './style';
+} from './Style';
 import { getClients } from '../../Services/Axios/clientServices';
 
 const ClientProfileScreen = () => {

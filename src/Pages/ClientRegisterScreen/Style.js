@@ -13,7 +13,7 @@ export const Main = styled.div`
     align-items: center;
     overflow-y: scroll;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
     
     }
 `;
@@ -30,7 +30,7 @@ export const Container = styled.div`
     border-radius: 1.5vw;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         width: 100%;
         height: 100%;
         flex-direction: column;
@@ -49,7 +49,7 @@ export const Sidebar = styled.div`
     align-items: center;
     overflow: hidden;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         width: 100%;
         height: 20%;
         background-color: ${colors.secondary};
@@ -69,7 +69,7 @@ export const RightBox = styled.div`
     align-items: center;
     justify-content: flex-start;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         width: 100%;
         height: 80%;
 
@@ -87,7 +87,7 @@ export const ColumnText = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         align-items: center;
         width: 90%;
         height: 80%;
@@ -107,7 +107,7 @@ export const DivButtom = styled.div`
     margin-top: 5%;
     flex-direction: row;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         height: 20%;
         flex-direction: column;
         justify-content: space-around;
@@ -127,7 +127,7 @@ export const SidebarText = styled.div`
     align-items: center;
     height: calc(1.5em + 0.75rem + 2px);
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         visibility: hidden;
         height: 0%;
     }
@@ -144,7 +144,7 @@ export const InputLine = styled.div`
     width: 100%;
     height: 10%;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
     
     }
 `;
@@ -167,7 +167,7 @@ export const Dropdown = styled(Form.Control)`
     background-clip: padding-box;
     outline: none;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
     
     }
 `;

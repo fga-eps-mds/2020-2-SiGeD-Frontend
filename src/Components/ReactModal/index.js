@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import {
   Title, modalStyle, P, DivButton, Input, DivName, DivColor,
   TextArea, Line, ModalContent, DivDescription,
-} from './style';
+} from './Style';
 import TinyButton from '../TinyButton';
 import { createCategory, updateCategory } from '../../Services/Axios/demandsServices';
 

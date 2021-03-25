@@ -1,5 +1,5 @@
 import React from 'react';
-import { Primary, Secondary } from './style';
+import { Primary, Secondary } from './Style';
 
 const TinyButton = ({
   type,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Label, InputRegister } from './style';
+import { Container, Label, InputRegister } from './Style';
 import { ErrorMessage } from '../ErrorMessage';
 
 const RegisterInput = ({

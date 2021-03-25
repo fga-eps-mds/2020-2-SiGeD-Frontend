@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Sidebar, SidebarText, Icon, SidebarFooter,
-} from './style';
+} from './Style';
 
 const SidebarComponent = ({
   sidebarList, sidebarFooter,

@@ -2,7 +2,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
-import styles from './style';
+import styles from './Style';
 import { useProfileUser } from '../../Context';
 import { APIUsers } from '../../Services/Axios/baseService';
 

@@ -1,7 +1,7 @@
 import { FaSistrix } from 'react-icons/fa';
 import {
   Main, Container, Title, Search, ContentBox, Header, List, ButtonDiv,
-} from './style';
+} from './Style';
 import SearchInput from '../SearchInput';
 import RedirectListButton from '../RedirectButton';
 

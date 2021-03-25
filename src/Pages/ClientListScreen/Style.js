@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
-export const H1 = styled.h1`
-    font-size: '1.5rem';
-    font: 'Montserrat';
-`;
-
 export const TableHeader = styled.div`
   background-color: ${colors.navHeaders};
-  color: colors.secondary;
+  color: ${colors.secondary};
   height: 5vh;
   display: flex;
   flex-direction: row;

@@ -49,7 +49,7 @@ export const Background = styled.div`
   align-items: center;
   flex-direction: column;
 
-  @media(max-width: 425px){
+  @media(max-width: 750px){
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -74,7 +74,7 @@ export const Center = styled.div`
     margin-top: 15vh;
     margin-bottom: 10vh;
 
-    @media(max-width: 425px){
+    @media(max-width: 750px){
     width: 100vw;
     box-shadow: 0;
     border-radius: 0;
