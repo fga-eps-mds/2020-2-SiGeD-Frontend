@@ -14,6 +14,12 @@ import colors from '../../Constants/colors';
 const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
 
+  const closeBox = () => {
+    if (boxState) {
+      setBoxState(false);
+    }
+  };
+
   const ClickDeleteUser = () => {
     deleteUser(user._id);
     getUsers();
@@ -21,7 +27,7 @@ const PersonalData = ({ user, getUsers }) => {
 
   return (
 
-    <Content>
+    <Content onMouseLeave={closeBox} onClick={closeBox}>
       <PersonDataBox>
         <ImageUser>
           <IoPersonCircleOutline size="100%" />
@@ -47,9 +53,9 @@ const PersonalData = ({ user, getUsers }) => {
             <P>{format(new Date(user.updatedAt), 'dd/MM/yyyy')}</P>
           </TableContent>
 
-          <TableContent width={5} margin-bottom={0}>
+          <DotContent width={2} justifycontent="flex-end">
             <P><BsThreeDots onClick={() => { setBoxState(!boxState); }} /></P>
-          </TableContent>
+          </DotContent>
         </TableContainer>
       </PersonDataBox>
 
@@ -67,14 +73,20 @@ const PersonalData = ({ user, getUsers }) => {
                 </Link>
               </Button>
               <Icon>
-                <BsPencil />
+                <Link
+                  to={`/usuarios/editar/${user._id}`}
+                  id={user._id}
+                  style={{ color: colors.text, textDecorationLine: 'none', fontFamily: 'Montserrat' }}
+                >
+                  <BsPencil />
+                </Link>
               </Icon>
             </Li>
             <Li>
               <Button onClick={ClickDeleteUser}>
                 Desativar
               </Button>
-              <Icon>
+              <Icon onClick={ClickDeleteUser}>
                 <FaRegTrashAlt />
               </Icon>
             </Li>

@@ -14,6 +14,12 @@ import colors from '../../Constants/colors';
 const ClientProfileData = ({ client, getClients }) => {
   const [boxState, setBoxState] = useState(false);
 
+  const closeBox = () => {
+    if (boxState) {
+      setBoxState(false);
+    }
+  };
+
   const ClientDeactivate = async () => {
     try {
       await axios.put(`http://localhost:3002/clients/deactivate/${client._id}`);
@@ -29,7 +35,7 @@ const ClientProfileData = ({ client, getClients }) => {
   };
 
   return (
-    <Content>
+    <Content onMouseLeave={closeBox} onClick={closeBox}>
       <PersonDataBox>
         <ImageUser>
           <IoPersonCircleOutline size="100%" />
@@ -86,14 +92,20 @@ const ClientProfileData = ({ client, getClients }) => {
                 </Link>
               </Button>
               <Icon>
-                <BsPencil />
+                <Link
+                  to={`/editar/${client._id}`}
+                  id={client._id}
+                  style={{ color: colors.text, textDecorationLine: 'none' }}
+                >
+                  <BsPencil />
+                </Link>
               </Icon>
             </Li>
             <Li>
               <Button onClick={DeactivateClient}>
                 Desativar
               </Button>
-              <Icon>
+              <Icon onClick={DeactivateClient}>
                 <FaRegTrashAlt />
               </Icon>
             </Li>
