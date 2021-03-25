@@ -6,10 +6,12 @@ const RedirectListButton = ({
   click,
   title,
   redirectTo,
+  style,
 }) => (
   <Button
     as={Link}
     style={{
+      ...style,
       color: 'white',
       textDecorationLine: 'none',
       fontSize: '100%',
