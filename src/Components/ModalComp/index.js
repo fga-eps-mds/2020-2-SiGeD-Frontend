@@ -55,7 +55,7 @@ const ModalComp = ({
           </DivName>
           <DivColor>
             <P1>Cor:</P1>
-            <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+            <input height="5vh" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
           </DivColor>
         </Line>
         <DivDescription>
