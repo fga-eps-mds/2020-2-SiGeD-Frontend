@@ -36,6 +36,7 @@ const ReactModal = ({
 
   const style = {
     buttonStyle: {
+      backgroundColor: 'red',
       width: '20vh',
     },
   };

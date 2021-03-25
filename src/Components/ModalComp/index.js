@@ -34,13 +34,11 @@ const ModalComp = ({
 
   return (
     <Modal show={show} onHide={handleClose} centered>
-      <Modal.Header>
-        <Modal.Title>
+      <Modal.Body>
+        <Title>
           {type}
           Categoria
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+        </Title>
         <Line>
           <DivName>
             <P1>Nome:</P1>
@@ -48,18 +46,18 @@ const ModalComp = ({
           </DivName>
           <DivColor>
             <P1>Cor:</P1>
-            <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+            <input height="5vh" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
           </DivColor>
         </Line>
         <DivDescription>
           <P1>Descrição:</P1>
           <TextArea rows="5" cols="30" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
         </DivDescription>
+        <Footer>
+          <TinyButton type="secondary" title="Cancelar" click={handleClose} />
+          <TinyButton type="primary" title="Cadastrar" click={submit} />
+        </Footer>
       </Modal.Body>
-      <Modal.Footer>
-        <TinyButton type="secondary" title="Cancelar" click={handleClose} />
-        <TinyButton type="primary" title="Cadastrar" click={submit} />
-      </Modal.Footer>
     </Modal>
   );
 };
