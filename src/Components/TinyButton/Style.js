@@ -5,7 +5,7 @@ export const Primary = styled.button`
     font: Montserrat;
     font-size: 100%;
     color: ${colors.secondary};
-    width: 10vw;
+    width: 20%;
     height: 100%;
     background-color: ${colors.primary};
     border-radius: 15px;
@@ -34,7 +34,7 @@ export const Secondary = styled.button`
     font: Montserrat;
     font-size: 100%;
     color: ${colors.text};
-    width: 10vw;
+    width: 20%;
     height: 100%;
     background-color: ${colors.secondary};
     border-radius: 15px;
