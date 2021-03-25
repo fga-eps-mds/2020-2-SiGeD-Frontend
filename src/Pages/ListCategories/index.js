@@ -13,9 +13,7 @@ const ListCategories = () => {
   const [word, setWord] = useState();
   const [statusModal, setStatusModal] = useState(false);
 
-  const toggleModal = () => setStatusModal(!statusModal);
-
-  const listCategorie = async () => {
+  const listCategories = async () => {
     await getCategories()
       .then((response) => setCategories(response.data))
       .catch((error) => {
@@ -24,12 +22,12 @@ const ListCategories = () => {
   };
 
   useEffect(() => {
-    listCategorie();
+    listCategories();
   }, []);
 
   const toggleModal = () => {
     setStatusModal(!statusModal);
-    listCategorie();
+    listCategories();
   };
 
   useEffect(() => {
@@ -52,7 +50,7 @@ const ListCategories = () => {
     return filterCategories?.map((category) => (
       <CategoriesData
         category={category}
-        getCategories={listCategorie}
+        getCategories={listCategories}
         key={category._id}
       />
     ));

@@ -25,7 +25,7 @@ export const TextArea = styled.textarea`
   font-size: 90%;
   width: 90%;
 
-  @media(max-width: 750px){
+  @media(max-width: 750px) {
     width: 100%;
   }
 `;

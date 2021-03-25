@@ -32,6 +32,13 @@ const ModalComp = ({
     }
   };
 
+  const buttonName = () => {
+    if (type === 'Nova ') {
+      return 'Cadastrar';
+    }
+    return 'Salvar';
+  };
+
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Body>
@@ -55,7 +62,7 @@ const ModalComp = ({
         </DivDescription>
         <Footer>
           <TinyButton type="secondary" title="Cancelar" click={handleClose} />
-          <TinyButton type="primary" title="Cadastrar" click={submit} />
+          <TinyButton type="primary" title={buttonName()} click={submit} />
         </Footer>
       </Modal.Body>
     </Modal>
