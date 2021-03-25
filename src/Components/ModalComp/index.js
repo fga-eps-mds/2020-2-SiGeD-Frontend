@@ -6,9 +6,9 @@ import {
 import { createCategory, updateCategory } from '../../Services/Axios/demandsServices';
 import TinyButton from '../TinyButton';
 
-const ModalComp = (
-  type, idName, idDescription, idColor, id, getCategories, toggleModal,
-) => {
+const ModalComp = ({
+  show, type, idName, idDescription, idColor, id, getCategories, handleClose,
+}) => {
   const [name, setName] = useState(idName);
   const [description, setDescription] = useState(idDescription);
   const [color, setColor] = useState(idColor);
@@ -28,18 +28,14 @@ const ModalComp = (
     }
     getCategories();
     if (valid) {
-      toggleModal();
+      handleClose();
     }
   };
+
   return (
-    <Modal
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-      show
-    >
+    <Modal show={show} onHide={handleClose} centered>
       <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title>
           {type}
           Categoria
         </Modal.Title>
@@ -61,7 +57,7 @@ const ModalComp = (
         </DivDescription>
       </Modal.Body>
       <Modal.Footer>
-        <TinyButton type="secondary" title="Cancelar" click={toggleModal} />
+        <TinyButton type="secondary" title="Cancelar" click={handleClose} />
         <TinyButton type="primary" title="Cadastrar" click={submit} />
       </Modal.Footer>
     </Modal>

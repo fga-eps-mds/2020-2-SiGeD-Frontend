@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import ModalComp from '../../Components/ModalComp';
 import {
   TableHeader, TableTitle, P, Bar,
 } from './Style';
 import CategoriesData from '../../Components/CategoriesData';
 import GenericListScreen from '../../Components/GenericListScreen';
-import { getCategories, createCategory } from '../../Services/Axios/demandsServices';
-import TinyButton from '../../Components/TinyButton';
+import { getCategories } from '../../Services/Axios/demandsServices';
 
 const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);
   const [categories, setCategories] = useState([]);
   const [word, setWord] = useState();
-  const [show, setShow] = useState(false);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [color, setColor] = useState('#000000');
-  const [valid, setValid] = useState(true);
+  const [statusModal, setStatusModal] = useState(false);
+
+  const toggleModal = () => setStatusModal(!statusModal);
 
   const listCategorie = async () => {
     await getCategories()
@@ -61,18 +58,10 @@ const ListCategories = () => {
     ));
   };
 
-  const submit = async () => {
-    await createCategory(name, description, color);
-    getCategories();
-    if (valid) {
-      handleClose();
-    }
-  };
-
   return (
     <GenericListScreen
       ButtonTitle="Nova Categoria"
-      ButtonFunction={handleShow}
+      ButtonFunction={toggleModal}
       PageTitle="Categorias"
       SearchWord={word}
       setWord={setWord}
@@ -93,31 +82,7 @@ const ListCategories = () => {
         </TableTitle>
         <TableTitle width={2} />
       </TableHeader>
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header>
-          <Modal.Title>Nova Categoria</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Line>
-            <DivName>
-              <P1>Nome:</P1>
-              <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
-            </DivName>
-            <DivColor>
-              <P1>Cor:</P1>
-              <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
-            </DivColor>
-          </Line>
-          <DivDescription>
-            <P1>Descrição:</P1>
-            <TextArea rows="5" cols="30" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
-          </DivDescription>
-        </Modal.Body>
-        <Modal.Footer>
-          <TinyButton type="secondary" title="Cancelar" click={handleClose} />
-          <TinyButton type="primary" title="Cadastrar" click={submit} />
-        </Modal.Footer>
-      </Modal>
+      <ModalComp show={statusModal} type="Nova " idName="" idDescription="" idColor="#000000" getCategories={getCategories} handleClose={toggleModal} />
     </GenericListScreen>
   );
 };
