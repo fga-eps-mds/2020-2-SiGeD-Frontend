@@ -19,6 +19,7 @@ const ClientProfileData = ({ client, getClients }) => {
       await axios.put(`http://localhost:3002/clients/deactivate/${client._id}`);
     } catch (error) {
       console.error(error);
+      alert('Não foi possivel desativar o usuario');
     }
   };
 

@@ -35,10 +35,15 @@ export async function loginUser(
       email: inputEmail,
       pass: inputPassword,
     });
-    APIUsers.defaults.headers = { 'x-access-token': response.data.token };
-    setToken(response.data.token);
+    if (response.data.message) {
+      alert('Email e/ou senha inválidos.');
+    } else {
+      APIUsers.defaults.headers = { 'x-access-token': response.data.token };
+      setToken(response.data.token);
+    }
   } catch (error) {
-    console.error(`Não foi possivel fazer login.${error}`);
+    alert('Não foi possivel fazer login. Tente novamente mais tarde.');
+    console.error(error);
   }
 }
 
@@ -55,6 +60,7 @@ export const updateUser = async (
     });
     alert('Usuario atualizado');
   } catch (error) {
+    alert('Não foi possivel atualizar o usuário. Tente novamente mais tarde.');
     console.error(`An unexpected error occurred while updating the user data.${error}`);
   }
 };
@@ -63,6 +69,7 @@ export async function deleteUser(id) {
   try {
     await APIUsers.delete(`/users/delete/${id}`);
   } catch (error) {
+    alert(`Não foi possivel deletar o usuário.\n${error}`);
     console.error(error);
   }
 }

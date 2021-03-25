@@ -17,7 +17,7 @@ const ListScreen = () => {
     await getUser('users')
       .then((response) => setUsers(response.data))
       .catch((err) => {
-        console.error(`An unexpected error ocourred while getting users.${err}`);
+        console.error(`An unexpected error ocourred while getting users. ${err}`);
       });
   };
 
