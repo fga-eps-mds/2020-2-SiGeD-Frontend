@@ -47,15 +47,6 @@ export const DivColor = styled.div`
 export const P1 = styled.p`
   display: inline-block;
   margin: 2% 1%;
-
-  @media(max-width: 1000px) {
-    font-size: 80%;
-  }
-`;
-
-export const P1 = styled.p`
-  display: inline-block;
-  margin: 2% 1%;
   
   @media(max-width: 750px) {
     margin-top: 5%;
