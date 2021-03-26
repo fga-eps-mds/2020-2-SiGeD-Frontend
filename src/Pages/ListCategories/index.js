@@ -26,7 +26,7 @@ const ListCategories = () => {
   useEffect(() => {
     listCategories();
   }, []);
-  
+
   useEffect(() => {
     setFilterCategories(
       categories.filter((category) => category.name.toLowerCase().includes(word?.toLowerCase())),
