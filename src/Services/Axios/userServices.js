@@ -7,7 +7,7 @@ export async function getUser(url) {
   } catch (error) {
     console.error(error);
   }
-  return null;
+  return false;
 }
 
 export async function postUser(

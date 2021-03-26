@@ -8,7 +8,7 @@ export async function getCategories() {
     alert('Não foi possível carregar as categorias já criadas, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while getting categories.${error}`);
   }
-  return null;
+  return false;
 }
 
 export async function createCategory(name, description, color) {
