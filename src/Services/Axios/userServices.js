@@ -21,7 +21,7 @@ export async function postUser(
       sector: inputSector,
       pass: inputPassword,
     });
-    alert('Usuario criado');
+    alert('Usuario cadastrado com sucesso.');
   } catch (error) {
     console.error(`An unexpected error ocourred while registering a new user.${error}`);
   }

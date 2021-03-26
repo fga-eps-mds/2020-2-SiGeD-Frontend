@@ -13,10 +13,7 @@ const ClientListScreen = () => {
 
   const getClientsFromApi = async () => {
     await getClients('clients')
-      .then((response) => setClients(response.data))
-      .catch((err) => {
-        console.error(err);
-      });
+      .then((response) => setClients(response.data));
   };
 
   useEffect(() => {

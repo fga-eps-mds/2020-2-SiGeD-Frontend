@@ -8,7 +8,7 @@ export async function getClients(url) {
     alert('Não foi possível obter a lista de clientes, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while retrieving the clients list.${error}`);
   }
-  return null;
+  return false;
 }
 
 export async function postClient(
