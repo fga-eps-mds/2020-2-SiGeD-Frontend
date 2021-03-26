@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   TableHeader, TableTitle, P, Bar,
-} from './style';
+} from './Style';
 import CategoriesData from '../../Components/CategoriesData';
 import ReactModal from '../../Components/ReactModal';
 import GenericListScreen from '../../Components/GenericListScreen';

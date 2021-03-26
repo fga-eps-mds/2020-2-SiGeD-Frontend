@@ -100,7 +100,7 @@ export const Box = styled.div`
 `;
 
 export const Ul = styled.ul`
-  listStyleType: none;
+  list-style-type: none;
   padding-inline-start: 0;
   margin: 0;
 `;

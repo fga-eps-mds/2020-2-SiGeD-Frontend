@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import BigButton from '../../Components/BigButton';
 import LoginInput from '../../Components/LoginInput';
-import { styles, Background, Center } from './style';
+import { styles, Background, Center } from './Style';
 import { loginUser } from '../../Services/Axios/userServices';
 import { useProfileUser } from '../../Context';
 

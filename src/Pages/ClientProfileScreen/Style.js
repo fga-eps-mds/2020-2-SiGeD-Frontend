@@ -11,7 +11,7 @@ export const Main = styled.div`
     justify-content: flex-start;
     align-items: center;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         flex-direction: column;
         margin-top: 8vh;
     }
@@ -27,7 +27,7 @@ export const RightBox = styled.div`
     align-items: center;
     flex-direction: column;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         width: 100%;
         height: 80%;
     }
@@ -69,7 +69,7 @@ export const TableHeader = styled.div`
     align-items: center;
     border-radius: 10px 10px 0px 0px;
     
-    @media(max-width: 425px){
+    @media(max-width: 750px){
         visibility: hidden;
     }
 `;
@@ -91,14 +91,14 @@ export const P = styled.div`
     font-size: 75%;
     padding: 0;
     left: 0;
-    @media(max-width: 656px){
+    @media(max-width: 750px){
       font-size: 1.6vh;
     }
 `;
 
 export const Header = styled.div`
     margin: 2vh 0;
-    @media(max-width: 425px){
+    @media(max-width: 750px){
         margin-top: 0;
         height: 4%;
     }
@@ -128,7 +128,7 @@ export const DemandsList = styled.div`
 
 export const Search = styled.div`
     float: left;
-    @media(max-width: 425px){
+    @media(max-width: 750px){
         margin-top: -8%;
         left: 100%;
     }

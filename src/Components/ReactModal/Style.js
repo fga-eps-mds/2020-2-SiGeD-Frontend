@@ -7,7 +7,7 @@ export const ModalContent = styled.div`
 export const Title = styled.h1`
   font-size: 150%;
 
-  @media(max-width: 800px) {
+  @media(max-width: 750px) {
     font-size: 120%;
   }
 `;
@@ -16,7 +16,7 @@ export const P = styled.p`
   display: inline-block;
   margin: 2% 1%;
 
-  @media(max-width: 1000px) {
+  @media(max-width: 750px) {
     font-size: 80%;
   }
 `;
@@ -27,7 +27,7 @@ export const Input = styled.input`
   text-indent: 3px;
   font-size: 90%;
 
-  @media(max-width: 1000px) {
+  @media(max-width: 750px) {
     width: 80%;
     height: 50%;
   }
@@ -51,7 +51,7 @@ export const DivName = styled.div`
 
 export const DivColor = styled.div`
   margin-right: 10%;
-  @media(max-width: 800px) {
+  @media(max-width: 750px) {
     margin-top: 5%;
   }
 `;
@@ -80,7 +80,7 @@ export const Line = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media(max-width: 800px) {
+  @media(max-width: 750px) {
     flex-direction: column;
   }
 `;

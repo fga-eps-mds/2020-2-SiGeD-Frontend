@@ -12,7 +12,7 @@ export const InputRegister = styled.input`
     box-sizing: border-box;
     outline: 0;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
       width: 100%;
       height: 50%;
       font-size: 80%;
@@ -24,7 +24,7 @@ export const Container = styled.div`
     width: ${(props) => (props.long ? '100%' : '45%')};
     height: 20%;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
       height: 20%;
   }
 `;
@@ -38,7 +38,7 @@ export const Label = styled.div`
     align-content:center;
     justify-content: center;
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
       font-size: 80%;
       height: min-content;
     

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style';
+import styles from './Style';
 
 const BigButton = ({ title, type, changeButton }) => (
   <div>
