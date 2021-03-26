@@ -1,7 +1,7 @@
 import { Modal } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import {
-  Line, DivName, DivColor, DivDescription, Input, P1, TextArea,
+  Line, DivName, DivColor, DivDescription, P1, Input, TextArea, Footer, Title,
 } from './Style';
 import { createCategory, updateCategory } from '../../Services/Axios/demandsServices';
 import TinyButton from '../TinyButton';

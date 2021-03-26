@@ -53,6 +53,15 @@ export const P1 = styled.p`
   }
 `;
 
+export const P1 = styled.p`
+  display: inline-block;
+  margin: 2% 1%;
+  
+  @media(max-width: 750px) {
+    margin-top: 5%;
+  }
+`;
+
 export const Input = styled.input`
   border: 2px solid black;
   border-radius: 12px;
