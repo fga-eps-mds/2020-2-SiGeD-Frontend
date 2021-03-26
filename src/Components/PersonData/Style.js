@@ -91,13 +91,14 @@ export const Box = styled.div`
   border: 1px solid black;
   border-radius: 12px;
   position: absolute;
-  width: 10vh;
+  width: 15vh;
   right: 0;
   top: 65%;
   z-index: 1;
 
   @media(max-width: 750px){
-    top: 5%;
+    top: 15%;
+    width: 10vh;
   }
 `;
 
@@ -135,7 +136,11 @@ export const Icon = styled.div`
 export const Button = styled.button`
   border: none;
   background-color: #FFF;
-  font-size: 1.3vh;
+  font-size: 1.5vh;
+
+  @media(max-width: 750px){
+    font-size: 1.3vh;
+  }
 `;
 
 export const Content = styled.div`
