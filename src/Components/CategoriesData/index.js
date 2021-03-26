@@ -6,7 +6,7 @@ import {
   Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button,
   P, Content, TableContainer, DotContent,
 } from './Style';
-import ReactModal from '../ReactModal';
+import ModalComp from '../ModalComp';
 
 const CategoriesData = ({ category, getCategories }) => {
   const [boxState, setBoxState] = useState(false);
@@ -76,7 +76,7 @@ const CategoriesData = ({ category, getCategories }) => {
           </Ul>
         </Box>
       ) : null}
-      {modalState ? <ReactModal type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} toggleModal={toggleModal} id={category._id} idColor={category.color} /> : null}
+      { modalState ? <ModalComp show={modalState} type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} handleClose={toggleModal} id={category._id} idColor={category.color} /> : null }
     </Content>
   );
 };

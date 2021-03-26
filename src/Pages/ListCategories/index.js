@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import ModalComp from '../../Components/ModalComp';
 import {
   TableHeader, TableTitle, P, Bar,
 } from './Style';
 import CategoriesData from '../../Components/CategoriesData';
-import ReactModal from '../../Components/ReactModal';
 import GenericListScreen from '../../Components/GenericListScreen';
 import { getCategories } from '../../Services/Axios/demandsServices';
 
 const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [statusModal, setStatusModal] = useState(false);
   const [word, setWord] = useState();
+  const [statusModal, setStatusModal] = useState(false);
 
-  const listCategorie = async () => {
+  const listCategories = async () => {
     await getCategories()
       .then((response) => setCategories(response.data))
       .catch((error) => {
@@ -22,12 +22,12 @@ const ListCategories = () => {
   };
 
   useEffect(() => {
-    listCategorie();
+    listCategories();
   }, []);
 
   const toggleModal = () => {
     setStatusModal(!statusModal);
-    listCategorie();
+    listCategories();
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const ListCategories = () => {
     return filterCategories?.map((category) => (
       <CategoriesData
         category={category}
-        getCategories={listCategorie}
+        getCategories={listCategories}
         key={category._id}
       />
     ));
@@ -80,7 +80,7 @@ const ListCategories = () => {
         </TableTitle>
         <TableTitle width={2} />
       </TableHeader>
-      { statusModal ? <ReactModal type="Nova " idName="" idColor="#000000" getCategories={getCategories} toggleModal={toggleModal} /> : null}
+      { statusModal ? <ModalComp show={statusModal} type="Nova " idName="" idDescription="" idColor="#000000" getCategories={getCategories} handleClose={toggleModal} /> : null }
     </GenericListScreen>
   );
 };
