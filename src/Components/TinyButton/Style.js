@@ -5,7 +5,7 @@ export const Primary = styled.button`
     font: Montserrat;
     font-size: 100%;
     color: ${colors.secondary};
-    width: 10vw;
+    width: 20%;
     height: 100%;
     background-color: ${colors.primary};
     border-radius: 15px;
@@ -20,7 +20,7 @@ export const Primary = styled.button`
       
     }
 
-    @media(max-width: 720px){
+    @media(max-width: 750px){
       width: 80%;
       height: 100%;
       margin-right: 0px;
@@ -34,7 +34,7 @@ export const Secondary = styled.button`
     font: Montserrat;
     font-size: 100%;
     color: ${colors.text};
-    width: 10vw;
+    width: 20%;
     height: 100%;
     background-color: ${colors.secondary};
     border-radius: 15px;
@@ -45,7 +45,7 @@ export const Secondary = styled.button`
     justify-content: center;
     margin-right: 15px;
     font-family: Montserrat;
-    @media(max-width: 720px){
+    @media(max-width: 750px){
       width: 80%;
       height: 100%;
       margin-right: 0px;

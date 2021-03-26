@@ -8,7 +8,7 @@ import axios from 'axios';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser, DotContent,
-} from '../PersonData/style';
+} from '../PersonData/Style';
 import colors from '../../Constants/colors';
 
 const ClientProfileData = ({ client, getClients }) => {

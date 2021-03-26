@@ -1,5 +1,5 @@
 import React from 'react';
-import { Primary, Secondary } from './style';
+import { Primary, Secondary } from './Style';
 
 const TinyButton = ({
   type,
@@ -9,7 +9,7 @@ const TinyButton = ({
 }) => (
 
   <>
-    {(type === 'primary') ? (<Primary onClick={click} style={{ ...style }}>{title}</Primary>) : (<Secondary onClick={click} style={{ ...style }}>{title}</Secondary>)}
+    {(type === 'primary') ? (<Primary onClick={click} style={style}>{title}</Primary>) : (<Secondary onClick={click} style={style}>{title}</Secondary>)}
   </>
 
 );

@@ -3,7 +3,7 @@ import PersonalData from '../../Components/PersonalData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
   H1, TableHeader, P, Bar, TableTitle,
-} from './style';
+} from './Style';
 import { getUser } from '../../Services/Axios/userServices';
 
 const newUser = () => { };

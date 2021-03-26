@@ -7,11 +7,11 @@ export const UserFormsColumnText = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin-top: 10px;
+    margin-top: 5%;
     flex-wrap: wrap;
     justify-content: space-between;
     font-family: Montserrat;
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         align-items: center;
         width: 90%;
         height: 80%;
@@ -37,8 +37,4 @@ export const Dropdown = styled(Form.Control)`
     background-color: #fff;
     background-clip: padding-box;
     outline: none;
-
-    @media(max-width: 720px){
-    
-    }
 `;

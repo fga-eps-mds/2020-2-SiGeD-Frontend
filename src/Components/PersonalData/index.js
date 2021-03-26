@@ -8,7 +8,7 @@ import { deleteUser } from '../../Services/Axios/userServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser,
-} from '../PersonData/style';
+} from '../PersonData/Style';
 import colors from '../../Constants/colors';
 
 const PersonalData = ({ user, getUsers }) => {

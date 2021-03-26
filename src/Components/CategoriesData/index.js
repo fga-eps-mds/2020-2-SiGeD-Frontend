@@ -5,7 +5,7 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import {
   Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button,
   P, Content, TableContainer, DotContent,
-} from './style';
+} from './Style';
 import ReactModal from '../ReactModal';
 
 const CategoriesData = ({ category, getCategories }) => {

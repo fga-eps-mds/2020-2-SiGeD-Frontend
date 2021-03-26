@@ -3,7 +3,7 @@ import ClientProfileData from '../../Components/ClientProfileData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
   TableHeader, P, Bar, TableTitle,
-} from './style';
+} from './Style';
 import { getClients } from '../../Services/Axios/clientServices';
 
 const ClientListScreen = () => {
