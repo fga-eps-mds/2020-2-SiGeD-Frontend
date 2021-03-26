@@ -14,8 +14,6 @@ export async function getClients(url) {
 export async function postClient(
   inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
 ) {
-  console.log(inputName, inputEmail, inputCpf,
-    inputPhone, inputCity, officeOption, policeStationOption);
   try {
     const response = await APIClients.post('clients/create', {
       name: inputName,
