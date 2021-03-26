@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 import { deleteUser } from '../../Services/Axios/userServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
-  TableContainer, ImageUser,
+  TableContainer, ImageUser, DotContent
 } from '../PersonData/Style';
 import colors from '../../Constants/colors';
 
