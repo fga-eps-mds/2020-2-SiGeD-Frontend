@@ -9,7 +9,7 @@ const TinyButton = ({
 }) => (
 
   <>
-    {(type === 'primary') ? (<Primary onClick={click} style={{ ...style }}>{title}</Primary>) : (<Secondary onClick={click} style={{ ...style }}>{title}</Secondary>)}
+    {(type === 'primary') ? (<Primary onClick={click} style={style}>{title}</Primary>) : (<Secondary onClick={click} style={style}>{title}</Secondary>)}
   </>
 
 );

@@ -68,12 +68,12 @@ export const ColumnText = styled.div`
 
 export const DivButtom = styled.div`
     width: 100%;
-    height: 5%;
+    height: 7%;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     margin-right: 10%;
-    margin-top: 10%;
+    margin-top: 8%;
     margin-bottom: 3%;
     flex-direction: row;
     @media(max-width: 750px){

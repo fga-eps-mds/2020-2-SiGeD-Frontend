@@ -7,7 +7,7 @@ export const UserFormsColumnText = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin-top: 10px;
+    margin-top: 5%;
     flex-wrap: wrap;
     justify-content: space-between;
     font-family: Montserrat;

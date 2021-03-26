@@ -19,6 +19,7 @@ const styles = {
     width: '80%',
     display: 'flex',
     border: 'none',
+    height: '90%',
   },
 
   icon: {
