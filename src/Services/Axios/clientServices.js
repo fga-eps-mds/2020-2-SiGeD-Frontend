@@ -5,9 +5,10 @@ export async function getClients(url) {
     const response = await APIClients.get(url);
     return response;
   } catch (error) {
-    console.error(error);
+    alert('Não foi possível obter a lista de clientes, tente novamente mais tarde.');
+    console.error(`An unexpected error ocourred while retrieving the clients list.${error}`);
   }
-  return null;
+  return false;
 }
 
 export async function postClient(
@@ -25,6 +26,7 @@ export async function postClient(
     });
     return response;
   } catch (error) {
+    alert('Não foi possivel criar o cliente. Tente novamente mais tarde');
     console.error(`An unexpected error ocourred while creating a new client.${error}`);
   }
   return null;
@@ -43,6 +45,7 @@ export const updateClient = async (
     policeStation: policeStationOption,
   })
     .catch((error) => {
+      alert('Não foi possivel atualizar o cliente. Tente novamente mais tarde');
       console.error(`An unexpected error ocourred while updating the client data.${error}`);
     });
 };

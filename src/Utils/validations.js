@@ -48,24 +48,19 @@ export const validateSignUp = (email, name, pass1, pass2) => {
 };
 
 export const validateFields = (inputName, inputEmail, inputCpf, inputPhone,
-  inputCity, successMessage) => {
+  inputCity) => {
   const message = [];
 
   if (validateName(inputName) === false) {
     message.push('Nome inválido.');
   } if (validateCpf(inputCpf) === false) {
-    message.push('CPF inválido.');
+    message.push('CPF inválido. Utilize somente os digitos.');
   } if (validateEmail(inputEmail) === false) {
     message.push('Email inválido.');
   } if (validatePhone(inputPhone) === false) {
-    message.push('telefone inválido.');
+    message.push('Telefone inválido. Minimo de 8 digitos');
   } if (validateCity(inputCity) === false) {
     message.push('Cidade invalida.');
-  }
-  if (!message.length) {
-    alert(successMessage);
-  } else {
-    alert(message);
   }
 
   return message;

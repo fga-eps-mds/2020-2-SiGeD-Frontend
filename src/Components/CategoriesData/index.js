@@ -23,7 +23,7 @@ const CategoriesData = ({ category, getCategories }) => {
     try {
       await axios.delete(`http://localhost:3003/category/delete/${category._id}`);
     } catch (error) {
-      alert('Não foi possível deletar a categoria, tente novamente.');
+      alert('Não foi possível deletar a categoria, tente novamente mais tarde.');
     }
   };
 

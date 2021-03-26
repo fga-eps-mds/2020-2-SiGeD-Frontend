@@ -15,7 +15,8 @@ const NavbarComp = () => {
       setToken(localStorage.getItem('@App:token'));
       APIUsers.defaults.headers = null;
     } catch (error) {
-      console.error(`Não foi possivel fazer logout.${error}`);
+      alert('Não foi possivel realizar o logout.');
+      console.error(error);
     }
   };
 
