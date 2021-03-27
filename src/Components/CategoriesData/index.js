@@ -19,6 +19,12 @@ const CategoriesData = ({ category, getCategories }) => {
     setModalState(!modalState);
   };
 
+  const closeBox = () => {
+    if (boxState) {
+      setBoxState(false);
+    }
+  };
+
   const CategoryDelete = async () => {
     try {
       await axios.delete(`http://localhost:3003/category/delete/${category._id}`);
@@ -33,7 +39,7 @@ const CategoriesData = ({ category, getCategories }) => {
   };
 
   return (
-    <Content>
+    <Content onMouseLeave={closeBox} onClick={closeBox}>
       <Personalbox>
         <TableContainer>
           <TableContent width={24}>
@@ -61,7 +67,7 @@ const CategoriesData = ({ category, getCategories }) => {
               <Button onClick={() => { toggleBox(); }}>
                 Editar
               </Button>
-              <Icon>
+              <Icon onClick={() => { toggleBox(); }}>
                 <BsPencil />
               </Icon>
             </Li>
@@ -69,14 +75,14 @@ const CategoriesData = ({ category, getCategories }) => {
               <Button onClick={DeleteCategory}>
                 Remover
               </Button>
-              <Icon>
+              <Icon onClick={DeleteCategory}>
                 <FaRegTrashAlt />
               </Icon>
             </Li>
           </Ul>
         </Box>
       ) : null}
-      { modalState ? <ModalComp show={modalState} type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} handleClose={toggleModal} id={category._id} idColor={category.color} /> : null }
+      {modalState ? <ModalComp show={modalState} type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} handleClose={toggleModal} id={category._id} idColor={category.color} /> : null}
     </Content>
   );
 };
