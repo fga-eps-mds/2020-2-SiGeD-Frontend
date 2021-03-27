@@ -8,6 +8,7 @@ import ClientUpdateScreen from '../Pages/ClientUpdateScreen';
 import ClientListScreen from '../Pages/ClientListScreen';
 import ClientProfileScreen from '../Pages/ClientProfileScreen';
 import UserUpdateScreen from '../Pages/UserUpdateScreen';
+import CreateDemandScreen from '../Pages/CreateDemandScreen';
 import NavbarComp from '../Components/NavbarComp';
 
 const OtherRoutes = () => (
@@ -22,6 +23,7 @@ const OtherRoutes = () => (
     <Route path="/editar/:id" component={ClientUpdateScreen} />
     <Route path="/clientes" component={ClientListScreen} />
     <Route path="/perfil/:id" component={ClientProfileScreen} />
+    <Route path="/demandas/criar" component={CreateDemandScreen} />
   </Router>
 );
 
