@@ -19,7 +19,7 @@ const ListCategories = () => {
   const toggleModal = () => setStatusModal(!statusModal);
 
   const listCategories = async () => {
-    await getCategories()
+    await getCategories('category')
       .then((response) => setCategories(response.data))
       .catch((error) => {
         console.error(`An unexpected error ocourred while getting categories.${error}`);
