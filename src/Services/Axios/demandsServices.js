@@ -95,9 +95,15 @@ export async function updateDemand(name, description, color, id) {
 }
 
 export async function closeDemand(id) {
+<<<<<<< HEAD
   try {
     await APIDemands.put(`demand/close/${id}`);
   } catch (error) {
+=======
+  try{
+    const response = await APIDemands.put(`demand/close/${id}`);
+  }catch(error) {
+>>>>>>> [151] Create routes to connect demands API to frontend
     alert('Não foi possível encerrar a demanda, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while closing an already created demand.${error}`);
   }
