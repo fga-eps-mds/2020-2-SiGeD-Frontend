@@ -8,7 +8,7 @@ import {
 import ModalComp from '../ModalComp';
 
 const DataList = ({
-  content, getContent, axiosDelete, color, type,
+  content, getContent, axiosDelete, updateContent, backgroundColor, color, type,
 }) => {
   const [optionsMenuState, setOptionsMenuState] = useState(false);
   const [modalState, setModalState] = useState(false);
@@ -38,7 +38,7 @@ const DataList = ({
       <Personalbox>
         <TableContainer>
           <TableContent width={24}>
-            <Name color={color}>{content.name}</Name>
+            <Name backgroundColor={backgroundColor} color={color}>{content.name}</Name>
           </TableContent>
 
           <TableContent width={50}>
@@ -69,17 +69,17 @@ const DataList = ({
               </Icon>
             </Li>
             <Li>
-              <Button onClick={deleteContent}>
+              <Button color="red" onClick={deleteContent}>
                 Remover
               </Button>
-              <Icon onClick={deleteContent}>
+              <Icon color="red" onClick={deleteContent}>
                 <FaRegTrashAlt />
               </Icon>
             </Li>
           </Ul>
         </Box>
       ) : null}
-      {modalState ? <ModalComp show={modalState} type={type} operation="Editar " idName={content.name} idDescription={content.description} getContent={getContent} handleClose={toggleModal} id={content._id} idColor={color} /> : null}
+      {modalState ? <ModalComp show={modalState} type={type} operation="Editar " idName={content.name} idDescription={content.description} getContent={getContent} updateContent={updateContent} handleClose={toggleModal} id={content._id} idColor={backgroundColor} /> : null}
     </Content>
   );
 };

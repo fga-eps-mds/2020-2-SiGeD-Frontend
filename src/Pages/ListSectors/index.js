@@ -50,8 +50,11 @@ const ListSectors = () => {
       <DataList
         content={sector}
         getContent={listSectors}
+        backgroundColor={undefined}
         color="black"
         axiosDelete={deleteSector}
+        updateContent={updateSectors}
+        type="Setor"
       />
     ));
   };
@@ -80,7 +83,7 @@ const ListSectors = () => {
         </TableTitle>
         <TableTitle width={2} />
       </TableHeader>
-      { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={getSectors} handleClose={toggleModal} createContent={postSectors} updateContent={updateSectors} /> : null }
+      { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={getSectors} handleClose={toggleModal} createContent={postSectors} /> : null }
     </GenericListScreen>
   );
 };

@@ -37,6 +37,9 @@ const NavbarComp = () => {
               <Nav.Link as={Link} to="/usuarios" style={styles.navbarText}>
                 Usuários
               </Nav.Link>
+              <Nav.Link as={Link} to="/setores" style={styles.navbarText}>
+                Setores
+              </Nav.Link>
               <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
                 Novo cliente
               </Nav.Link>

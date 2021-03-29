@@ -39,7 +39,6 @@ export const TableContent = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     word-break: break-all;
-    margin-top: 2%;
   }
 `;
 
@@ -70,7 +69,6 @@ export const P = styled.p`
   font-family: 'Montserrat';
   @media(max-width: 750px){
     font-size: 1.5vh;
-    font-weight: 900;
     align-items: center;
     margin-left: 1vw;
   }
@@ -80,8 +78,13 @@ export const Name = styled(P)`
   border-radius: 12px;
   padding: 2%;
   text-align: center;
-  color: ${colors.secondary};
-  background-color: ${(props) => `${props.color}`};
+  color: ${(props) => `${props.color}`};
+  background-color: ${(props) => `${props.backgroundColor}`};
+  
+  @media(max-width: 750px){
+    font-weight: 900;
+    font-size: 2vh;
+  }
 `;
 
 export const Box = styled.div`
@@ -115,12 +118,14 @@ export const Icon = styled.div`
   float: right;
   margin: 0 1%;
   font-size: 80%;
+  color: ${(props) => `${props.color}`};
 `;
 
 export const Button = styled.button`
   border: none;
   background-color: #FFF;
   font-size: 1.5vh;
+  color: ${(props) => `${props.color}`};
 
   @media(max-width: 750px){
     font-size: 1.3vh;
