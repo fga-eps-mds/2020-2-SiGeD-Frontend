@@ -8,7 +8,6 @@ import ClientUpdateScreen from '../Pages/ClientUpdateScreen';
 import ClientListScreen from '../Pages/ClientListScreen';
 import ClientProfileScreen from '../Pages/ClientProfileScreen';
 import UserUpdateScreen from '../Pages/UserUpdateScreen';
-import CreateDemandScreen from '../Pages/CreateDemandScreen';
 import NavbarComp from '../Components/NavbarComp';
 import ListSectors from '../Pages/ListSectors';
 import CreateDemandsScreen from '../Pages/CreateDemandsScreen';
