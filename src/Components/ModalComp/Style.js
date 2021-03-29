@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Line = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: ${(props) => `${props.flexDirection}`};
 
   @media(max-width: 800px) {
     flex-direction: column;
@@ -14,7 +15,6 @@ export const DivDescription = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 2vh;
-
 `;
 
 export const TextArea = styled.textarea`
@@ -23,11 +23,8 @@ export const TextArea = styled.textarea`
   border-radius: 12px;
   text-indent: 3px;
   font-size: 90%;
-  width: 90%;
-
-  @media(max-width: 750px) {
-    width: 100%;
-  }
+  width: 100%;
+  outline: none;
 `;
 
 export const DivName = styled.div`
@@ -58,6 +55,8 @@ export const Input = styled.input`
   border-radius: 12px;
   text-indent: 3px;
   font-size: 90%;
+  width: ${(props) => `${props.Input}`};
+  outline: none;
 
   @media(max-width: 1000px) {
     width: 100%;

@@ -27,6 +27,8 @@ const ModalComp = ({
   }, [name, description, color]);
 
   const submit = async () => {
+    // Criar
+    console.log(color);
     if (operation === 'Nova ') {
       if (color) {
         await createContent(name, description, color);
@@ -55,27 +57,25 @@ const ModalComp = ({
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Body>
         {type === 'Categoria' ? <Title>Nova Categoria</Title> : <Title>Novo Setor</Title>}
-        <Line>
-          {type === 'Categoria' ? (
-            <div>
-              <DivName>
-                <P1>Nome:</P1>
-                <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
-              </DivName>
-              <DivColor>
-                <P1>Cor:</P1>
-                <input height="5vh" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
-              </DivColor>
-            </div>
-          ) : (
-            <div>
-              <DivName>
-                <P1>Nome:</P1>
-                <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
-              </DivName>
-            </div>
-          )}
-        </Line>
+        {type === 'Categoria' ? (
+          <Line flexDirection="row">
+            <DivName>
+              <P1>Nome:</P1>
+              <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+            </DivName>
+            <DivColor>
+              <P1>Cor:</P1>
+              <input height="5vh" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+            </DivColor>
+          </Line>
+        ) : (
+          <Line flexDirection="column">
+            <DivName>
+              <P1>Nome:</P1>
+              <Input width="100%" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+            </DivName>
+          </Line>
+        )}
         <DivDescription>
           <P1>Descrição:</P1>
           <TextArea rows="5" cols="30" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
