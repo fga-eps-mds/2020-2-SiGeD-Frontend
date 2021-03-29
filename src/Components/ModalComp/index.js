@@ -27,6 +27,8 @@ const ModalComp = ({
   }, [name, description, color]);
 
   const submit = async () => {
+    // Criar
+    console.log(color);
     if (operation === 'Nova ') {
       if (color) {
         await createContent(name, description, color);
