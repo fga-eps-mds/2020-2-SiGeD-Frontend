@@ -42,3 +42,12 @@ export async function updateCategory(name, description, color, id) {
     console.error(`An unexpected error ocourred while updating an already created category.${error}`);
   }
 }
+
+export const deleteCategory = async (id) => {
+  try {
+    await APIDemands.delete(`/category/delete/${id}`);
+  } catch (error) {
+    alert(`Não foi possivel deletar a categoria.\n${error}`);
+    console.error(error);
+  }
+};

@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import {
   Line, DivName, DivColor, DivDescription, P1, Input, TextArea, Footer, Title,
 } from './Style';
-import { createCategory, updateCategory } from '../../Services/Axios/demandsServices';
 import TinyButton from '../TinyButton';
 
 const ModalComp = ({
-  show, type, idName, idDescription, idColor, id, getCategories, handleClose,
+  show, operation, idName, idDescription, idColor, id, getContent, handleClose, type,
+  createContent, updateContent,
 }) => {
   const [name, setName] = useState(idName);
   const [description, setDescription] = useState(idDescription);
@@ -15,27 +15,37 @@ const ModalComp = ({
   const [valid, setValid] = useState(true);
 
   useEffect(() => {
-    if (!name || !description || !color) {
-      setValid(false);
+    if (!name || !description) {
+      if (type === 'Categoria' && !color) {
+        setValid(false);
+      } else {
+        setValid(false);
+      }
     } else {
       setValid(true);
     }
   }, [name, description, color]);
 
   const submit = async () => {
-    if (type === 'Nova ') {
-      await createCategory(name, description, color);
+    if (operation === 'Nova ') {
+      if (color) {
+        await createContent(name, description, color);
+      } else {
+        await createContent(name, description);
+      }
+    } else if (color) {
+      await updateContent(name, description, color, id);
     } else {
-      await updateCategory(name, description, color, id);
+      await updateContent(name, description, id);
     }
-    getCategories();
+    getContent();
     if (valid) {
       handleClose();
     }
   };
 
   const buttonName = () => {
-    if (type === 'Nova ') {
+    if (operation === 'Nova ') {
       return 'Cadastrar';
     }
     return 'Salvar';
@@ -44,19 +54,27 @@ const ModalComp = ({
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Body>
-        <Title>
-          {type}
-          Categoria
-        </Title>
+        {type === 'Categoria' ? <Title>Nova Categoria</Title> : <Title>Novo Setor</Title>}
         <Line>
-          <DivName>
-            <P1>Nome:</P1>
-            <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
-          </DivName>
-          <DivColor>
-            <P1>Cor:</P1>
-            <input height="5vh" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
-          </DivColor>
+          {type === 'Categoria' ? (
+            <div>
+              <DivName>
+                <P1>Nome:</P1>
+                <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+              </DivName>
+              <DivColor>
+                <P1>Cor:</P1>
+                <input height="5vh" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+              </DivColor>
+            </div>
+          ) : (
+            <div>
+              <DivName>
+                <P1>Nome:</P1>
+                <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+              </DivName>
+            </div>
+          )}
         </Line>
         <DivDescription>
           <P1>Descrição:</P1>
