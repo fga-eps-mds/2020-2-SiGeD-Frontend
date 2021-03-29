@@ -8,6 +8,7 @@ import {
   getCategories, createCategory, updateCategory, deleteCategory,
 } from '../../Services/Axios/demandsServices';
 import DataList from '../../Components/DataList';
+import colors from '../../Constants/colors';
 
 const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);
@@ -50,8 +51,11 @@ const ListCategories = () => {
       <DataList
         content={category}
         getContent={listCategories}
-        color={category.color}
+        backgroundColor={category.color}
+        color={colors.secondary}
         axiosDelete={deleteCategory}
+        updateContent={updateCategory}
+        type="Categoria"
       />
     ));
   };
@@ -80,7 +84,7 @@ const ListCategories = () => {
         </TableTitle>
         <TableTitle width={2} />
       </TableHeader>
-      { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getCategories={getCategories} handleClose={toggleModal} createContent={createCategory} updateContent={updateCategory} /> : null }
+      { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={getCategories} handleClose={toggleModal} createContent={createCategory} /> : null }
     </GenericListScreen>
   );
 };

@@ -21,8 +21,8 @@ export async function postSectors(
     });
     return response;
   } catch (error) {
-    alert('Não foi possivel criar o cliente. Tente novamente mais tarde');
-    console.error(`An unexpected error ocourred while creating a new client.${error}`);
+    alert('Não foi possivel criar o setor. Tente novamente mais tarde');
+    console.error(`An unexpected error ocourred while creating a new sector.${error}`);
   }
   return null;
 }
@@ -30,14 +30,18 @@ export async function postSectors(
 export const updateSectors = async (
   inputName, inputDescription, id,
 ) => {
-  await APISectors.put(`/sector/update/${id}`, {
-    name: inputName,
-    description: inputDescription,
-  })
-    .catch((error) => {
-      alert('Não foi possivel atualizar o cliente. Tente novamente mais tarde');
-      console.error(`An unexpected error ocourred while updating the client data.${error}`);
-    });
+  try {
+    await APISectors.put(`/sector/update/${id}`, {
+      name: inputName,
+      description: inputDescription,
+    })
+      .catch((error) => {
+        alert('Não foi possivel atualizar o setor. Tente novamente mais tarde');
+        console.error(`An unexpected error ocourred while updating the sector data.${error}`);
+      });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const deleteSector = async (id) => {
