@@ -2,7 +2,7 @@ name: CD
 
 on:
   push:
-    branches: [ development ] 
+    branches: [ deploy ] 
 
 jobs:
   deploy:
@@ -19,5 +19,6 @@ jobs:
           cd 2020-2-G4-Frontend
           docker-compose down
           git pull origin development
+          cp homolog.urls.js src/Constants/baseUrl.js
           docker-compose up --build -d
 
