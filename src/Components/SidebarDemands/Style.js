@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
-export const SidebarDemands = styled.div`
+const SidebarDemands = styled.div`
   width: 30%;
   height: 100%;
   font-size: 1rem;
@@ -14,3 +14,5 @@ export const SidebarDemands = styled.div`
       
   }
 `;
+
+export default SidebarDemands;

@@ -1,10 +1,12 @@
 import React from 'react';
 import {
-  Main, RightBox, InputField, DescriptionField, FieldsDiv, P, Footer, Title, InputDiv,
+  Main, InputField, DescriptionField, FieldsDiv, P, Footer, Title, InputDiv,
   InputsDiv, DescriptionDiv,
 } from './Style';
 import TinyButton from '../../Components/TinyButton';
-import SearchInput from '../../Components/SearchInput';
+import SectorDropdown from '../../Components/SectorDropdown';
+import CategoryDiv from '../../Components/AddCategoryComponent';
+import RightBoxComponent from '../../Components/RightBoxComponent';
 
 const CreateDemandsScreen = () => {
   const teste = 'Yukio';
@@ -40,9 +42,11 @@ const CreateDemandsScreen = () => {
           <TinyButton type="primary" title="Cadastrar" />
         </Footer>
       </FieldsDiv>
-      <RightBox>
-        <SearchInput />
-      </RightBox>
+      {/* Começa aki */}
+      <RightBoxComponent>
+        <SectorDropdown />
+        <CategoryDiv />
+      </RightBoxComponent>
     </Main>
   );
 };

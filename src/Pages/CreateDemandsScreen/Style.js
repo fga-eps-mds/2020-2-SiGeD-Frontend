@@ -1,3 +1,4 @@
+import { IoPersonCircleOutline } from 'react-icons/io5';
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
@@ -10,6 +11,7 @@ export const Main = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    overflow: hidden;
 
     @media(max-width: 750px){
         flex-direction: column;
@@ -26,11 +28,41 @@ export const RightBox = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+    color: white;
 
     @media(max-width: 750px){
         width: 100%;
         height: 80%;
     }
+`;
+
+export const Line = styled.div` 
+
+    width: 80%;
+    height: 1px;
+    background-color: ${colors.primary};
+`;
+
+export const ContentBox = styled.div`
+
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20%;
+    align-items: center;
+`;
+
+export const NameDiv = styled.div`
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+
 `;
 
 export const DescriptionField = styled.textarea`
@@ -63,7 +95,7 @@ export const FieldsDiv = styled.div`
   height: 95%;
   margin-left: 2%;
   margin-right: 2%;
-  dysplay:flex;
+  display: flex;
   flex-direction: column;
   width: 65%;
 `;
@@ -121,4 +153,14 @@ export const DescriptionDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 5vh;
+`;
+
+export const PersonIcon = styled(IoPersonCircleOutline)`
+    width: 30%;
+    height: 60%;
+    color: white;
+
+    @media(max-width: 750px){
+        
+    }
 `;
