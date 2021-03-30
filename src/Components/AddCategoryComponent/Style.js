@@ -8,6 +8,7 @@ export const AddCategory = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-left: 5vw;
 `;
 
 export const AddIcon = styled(IoAddCircle)`
@@ -18,4 +19,27 @@ export const AddIcon = styled(IoAddCircle)`
     @media(max-width: 750px){
         
     }
+`;
+
+export const CategoriesBox = styled.div`
+  background-color: #FFFFFF;
+  border: 2px solid black;
+  border-radius: 12px;
+  position: absolute;
+  width: 25vw;
+  right: 3%;
+  margin-top: 8vh;
+  z-index: 1;
+`;
+
+export const List = styled.div`
+  height: 50vh;
+  padding: 5px;
+  overflow: auto;
+
+  @media(max-width: 750px){
+    height: max-content;
+    padding: 5px;
+    overflow: auto;
+  }
 `;
