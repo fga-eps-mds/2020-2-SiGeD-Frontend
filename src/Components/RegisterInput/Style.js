@@ -6,7 +6,7 @@ export const InputRegister = styled.input`
     height: 40%;
     display: flex;
     border: 2px solid #000000;
-    border-radius: 1.5vw;
+    border-radius: 9px;
     font-size: 100%;
     text-indent: 10px;
     box-sizing: border-box;
