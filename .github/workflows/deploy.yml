@@ -16,6 +16,8 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.KEY }}
         script: |
-          mkdir teste
-          cd teste
-          touch funfou
+          cd 2020-2-G4-Frontend
+          docker-compose down
+          git pull origin development
+          docker-compose up --build -d
+
