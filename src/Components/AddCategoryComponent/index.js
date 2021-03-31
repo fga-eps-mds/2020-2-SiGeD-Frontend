@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   AddCategory, AddIcon, CategoriesBox, List,
 } from './Style';
 import { getCategories } from '../../Services/Axios/demandsServices';
-import CategoriesToAdd from '../CatgoriesToAdd';
+import CategoriesToAdd from '../CategoriesToAdd';
 
 const CategoryDiv = () => {
   const [statusBox, setStatusBox] = useState(false);
@@ -17,14 +17,18 @@ const CategoryDiv = () => {
       });
   };
 
+  useEffect(() => {
+    listCategories();
+    console.log(categories);
+  }, [statusBox]);
+
   const renderCategories = () => {
-    if (categories?.length === 0) {
+    if (categories?.length > 0) {
       return <h1 style={{ color: 'black' }}>Ainda não há categorias cadastradas</h1>;
     }
     return categories?.map((category) => (
       <CategoriesToAdd
         category={category}
-        getCategories={listCategories}
         key={category._id}
       />
     ));
@@ -37,9 +41,10 @@ const CategoryDiv = () => {
     <AddCategory>
       <p style={{ marginBottom: '0px' }}>Categorias:</p>
       <AddIcon onClick={toggleBox} />
-      {statusBox ? (
+      {(statusBox && true) ? (
         <CategoriesBox>
           <List>
+            <p style={{ color: 'black' }}>Lista de categorias:</p>
             {renderCategories}
           </List>
         </CategoriesBox>

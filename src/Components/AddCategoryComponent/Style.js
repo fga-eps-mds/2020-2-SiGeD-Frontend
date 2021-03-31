@@ -27,15 +27,19 @@ export const CategoriesBox = styled.div`
   border-radius: 12px;
   position: absolute;
   width: 25vw;
+  height: 40vh;
   right: 3%;
-  margin-top: 8vh;
+  margin-top: 35%;
   z-index: 1;
 `;
 
 export const List = styled.div`
-  height: 50vh;
+  height: 100%;
   padding: 5px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media(max-width: 750px){
     height: max-content;
