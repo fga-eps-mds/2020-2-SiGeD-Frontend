@@ -23,7 +23,7 @@ const CategoryDiv = () => {
   }, [statusBox]);
 
   const renderCategories = () => {
-    if (categories?.length > 0) {
+    if (categories?.length === 0) {
       return <h1 style={{ color: 'black' }}>Ainda não há categorias cadastradas</h1>;
     }
     return categories?.map((category) => (
@@ -45,7 +45,7 @@ const CategoryDiv = () => {
         <CategoriesBox>
           <List>
             <p style={{ color: 'black' }}>Lista de categorias:</p>
-            {renderCategories}
+            {renderCategories()}
           </List>
         </CategoriesBox>
       ) : null}
