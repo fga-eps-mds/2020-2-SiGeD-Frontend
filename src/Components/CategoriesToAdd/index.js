@@ -5,12 +5,10 @@ import {
 
 const CategoriesToAdd = ({ category }) => (
   <Demandbox>
-    <Tag style={{ backgroundColor: category.color }}>
-      <p>
-        {category.name}
-      </p>
-    </Tag>
     <Line />
+    <Tag style={{ backgroundColor: category.color }}>
+      {category.name}
+    </Tag>
   </Demandbox>
 );
 

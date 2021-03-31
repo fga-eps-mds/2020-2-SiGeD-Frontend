@@ -31,12 +31,13 @@ export const CategoriesBox = styled.div`
   right: 3%;
   margin-top: 35%;
   z-index: 1;
+  overflow: hidden;
 `;
 
 export const List = styled.div`
   height: 100%;
   padding: 5px;
-  overflow: auto;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
