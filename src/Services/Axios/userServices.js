@@ -1,4 +1,4 @@
-import { APIUsers } from './baseService/index';
+import { APIUsers, APIDemands, APIClients } from './baseService/index';
 
 export async function getUser(url) {
   try {
@@ -39,6 +39,8 @@ export async function loginUser(
       alert('Email e/ou senha inválidos.');
     } else {
       APIUsers.defaults.headers = { 'x-access-token': response.data.token };
+      APIClients.defaults.headers = { 'x-access-token': response.data.token };
+      APIDemands.defaults.headers = { 'x-access-token': response.data.token };
       setToken(response.data.token);
     }
   } catch (error) {
