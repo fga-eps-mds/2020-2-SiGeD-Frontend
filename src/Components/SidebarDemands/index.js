@@ -1,5 +1,5 @@
 import React from 'react';
-import { SidebarDemands } from './Style';
+import SidebarDemands from './Style';
 
 const DemandData = () => {
   const teste = 'teste';
