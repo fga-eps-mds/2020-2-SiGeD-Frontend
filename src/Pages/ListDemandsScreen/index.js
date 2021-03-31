@@ -1,78 +1,109 @@
-import { Form } from 'react-bootstrap';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSistrix } from 'react-icons/fa';
 import colors from '../../Constants/colors';
 import {
   Main, Container, Title, Search, ContentBox, Header, List,
 } from '../../Components/GenericListScreen/Style';
 import SearchInput from '../../Components/SearchInput';
-import { Dropdown } from '../../Components/UserForms/Style';
+import DropdownComponent from '../../Components/DropdownComponent';
+// import DemandData from '../../Components/DemandData';
+import { getDemands } from '../../Services/Axios/demandsServices';
 
 const ListDemandsScreen = ({
-  PageTitle, children, setWord, SearchWord, ListType,
-}) => (
-  <Main>
-    <Container>
-      <Title>{PageTitle}</Title>
-      <Header>
-        <Search style={{ width: '30%' }}>
-          <SearchInput
-            type="text"
-            icon={<FaSistrix />}
-            value={SearchWord}
-            setWord={(value) => setWord(value)}
-            style={{ width: '100%' }}
-          />
-        </Search>
-        <Form.Group style={{
-          width: '30%', marginTop: '5%', justifyContent: 'space-between', display: 'flex',
-        }}
-        >
-          <Form.Label>Setor:</Form.Label>
+  setWord, SearchWord, ListType,
+}) => {
+  const [DemandsList, setDemandsList] = useState([]);
+
+  const getDemandsFromApi = async () => {
+    await getDemands('demand')
+      .then((response) => setDemandsList(response.data));
+  };
+
+  console.log(DemandsList);
+
+  useEffect(() => {
+    getDemandsFromApi();
+  }, []);
+
+  return (
+    <Main>
+      <Container>
+        <Title>Demandas</Title>
+        <Header>
+          <Search style={{ width: '30%' }}>
+            <SearchInput
+              type="text"
+              icon={<FaSistrix />}
+              value={SearchWord}
+              setWord={(value) => setWord(value)}
+              style={{ width: '100%' }}
+            />
+          </Search>
           <div style={{
-            boxSizing: 'border-box', borderRadius: '10px', border: `1px solid ${colors.text}`, display: 'flex', width: '50%',
+            width: '30%', marginTop: '5%', justifyContent: 'space-between', display: 'flex',
           }}
           >
-            <Dropdown
-              as="select"
-              textcolor="black"
-              onChange={(Option) => Option.target.value}
-              style={{ color: 'black', backgroundColor: 'white' }}
-            >
-              <option style={{ backgroundColor: `${colors.backgroundColor}`, width: '100%' }}>Administrador(a)</option>
-              <option style={{ backgroundColor: `${colors.backgroundColor}`, width: '100%' }}>Profissional</option>
-              <option style={{ backgroundColor: `${colors.backgroundColor}`, width: '100%' }}>Recepcionista</option>
-            </Dropdown>
+            <div>
+              <p>Setor:</p>
+              <div style={{
+                boxSizing: 'border-box', borderRadius: '10px', border: `1px solid ${colors.text}`, display: 'flex', width: '100%',
+              }}
+              >
+                <DropdownComponent
+                  textColor="black"
+                  OnChangeFunction={(Option) => console.log(Option.target.value)}
+                  style={{
+                    color: 'black',
+                    backgroundColor: 'white',
+                    height: '5vh',
+                  }}
+                  optionStyle={{
+                    backgroundColor: `${colors.backgroundColor}`,
+                    width: '100%',
+                  }}
+                  optionList={['option1', 'option2', 'option3']}
+                />
+              </div>
+            </div>
+
+            <div>
+
+              <p>Label:</p>
+              <div style={{
+                boxSizing: 'border-box', borderRadius: '10px', border: `1px solid ${colors.text}`, display: 'flex', width: '100%',
+              }}
+              >
+                <DropdownComponent
+                  textColor="black"
+                  OnChangeFunction={(Option) => console.log(Option.target.value)}
+                  style={{
+                    color: 'black',
+                    backgroundColor: 'white',
+                    height: '5vh',
+                  }}
+                  optionStyle={{
+                    backgroundColor: `${colors.backgroundColor}`,
+                    width: '100%',
+                  }}
+                  optionList={['option1', 'option2', 'option3']}
+                />
+              </div>
+            </div>
           </div>
+        </Header>
 
-          <Form.Label>Label:</Form.Label>
-          <div style={{
-            boxSizing: 'border-box', borderRadius: '10px', border: `1px solid ${colors.text}`, display: 'flex', width: '50%',
-          }}
-          >
-            <Dropdown
-              as="select"
-              textcolor="black"
-              onChange={(Option) => Option.target.value}
-              style={{ color: 'black', backgroundColor: 'white' }}
-            >
-              <option style={{ backgroundColor: `${colors.backgroundColor}`, width: '100%' }}>Porte de Arma</option>
-              <option style={{ backgroundColor: `${colors.backgroundColor}`, width: '100%' }}>Perneta</option>
-              <option style={{ backgroundColor: `${colors.backgroundColor}`, width: '100%' }}>Sem braço</option>
-            </Dropdown>
-          </div>
-        </Form.Group>
-      </Header>
+        <ContentBox>
+          {/* { DemandsList.map((DemandsListItem, index) => (
+            <DemandData demand={DemandsListItem} key={index} />
+          ))} */}
+          <List>
+            {ListType}
+          </List>
+        </ContentBox>
+      </Container>
 
-      <ContentBox>
-        {children}
-        <List>
-          {ListType}
-        </List>
-      </ContentBox>
-    </Container>
-
-  </Main>
-);
+    </Main>
+  );
+};
 
 export default ListDemandsScreen;
