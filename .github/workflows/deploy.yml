@@ -1,0 +1,24 @@
+name: CD
+
+on:
+  push:
+    branches: [ development ] 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Deploy to Digital Ocean
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.KEY }}
+        script: |
+          cd 2020-2-G4-Frontend
+          docker-compose down
+          git pull origin development
+          cp homolog.urls.js src/Constants/baseUrl.js
+          docker-compose up --build -d
+
