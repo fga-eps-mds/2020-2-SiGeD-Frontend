@@ -28,7 +28,7 @@ const OtherRoutes = () => (
     <Route path="/perfil/:id" component={ClientProfileScreen} />
     <Route path="/setores" component={ListSectors} />
     <Route path="/demandas/criar" component={CreateDemandsScreen} />
-    <Route path="/demandas/:id" component={ViewDemandsScreen} />
+    <Route path="/visualizar/:id" component={ViewDemandsScreen} />
     <Route path="/demandas" component={ListDemandsScreen} />
   </Router>
 );

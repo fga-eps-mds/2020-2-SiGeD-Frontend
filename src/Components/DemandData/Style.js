@@ -8,6 +8,7 @@ export const DemandCard = styled.div`
     border-radius: 15px;
     border: 1.5px solid black;
     margin: 1.5% 1.5% 1.5% 0;
+    textDecorationLine: 'none'
 
     @media(max-width: 750px){
         width: 100%;

@@ -32,7 +32,14 @@ const DemandData = ({ demand }) => {
     <>
       { category && client
       && (
-      <DemandCard>
+      <DemandCard
+        as={Link}
+        to={`/visualizar/${demand._id}`}
+        style={{
+          textDecorationLine: 'none',
+          color: colors.text,
+        }}
+      >
         <DemandTitle>
           {demand.name}
         </DemandTitle>
@@ -41,7 +48,11 @@ const DemandData = ({ demand }) => {
           <Link
             to={`/perfil/${demand.clientID}`}
             id={demand.clientID}
-            style={{ color: colors.primary, textDecorationLine: 'none', fontWeight: 'bold' }}
+            style={{
+              color: colors.primary,
+              textDecorationLine: 'none',
+              fontWeight: 'bold',
+            }}
           >
             {client.name}
           </Link>
