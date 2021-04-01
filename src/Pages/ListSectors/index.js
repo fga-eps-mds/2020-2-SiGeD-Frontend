@@ -27,7 +27,7 @@ const ListSectors = () => {
 
   useEffect(() => {
     listSectors();
-  }, []);
+  }, [sectors]);
 
   useEffect(() => {
     setFilterSectors(

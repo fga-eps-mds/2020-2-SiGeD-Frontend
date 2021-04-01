@@ -4,7 +4,9 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import { APIClients, APIUsers, APIDemands } from '../Services/Axios/baseService';
+import {
+  APIClients, APIUsers, APIDemands, APISectors,
+} from '../Services/Axios/baseService';
 
 const UserContext = createContext();
 
@@ -18,6 +20,7 @@ const UserProvider = ({ children }) => {
       APIUsers.defaults.headers = { 'x-access-token': localToken };
       APIClients.defaults.headers = { 'x-access-token': localToken };
       APIDemands.defaults.headers = { 'x-access-token': localToken };
+      APISectors.defaults.headers = { 'x-access-token': localToken };
     }
   }, []);
 
