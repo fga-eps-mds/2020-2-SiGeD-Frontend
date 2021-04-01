@@ -6,7 +6,7 @@ import {
 } from './Style';
 
 const DemandsDescription = ({
-  name, setName, process, setProcess, description, setDescription, submit,
+  name, setName, process, setProcess, description, setDescription, submit, cancel,
 }) => (
 
   <FieldsDiv>
@@ -34,7 +34,7 @@ const DemandsDescription = ({
       <DescriptionField rows="5" cols="30" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
     </DescriptionDiv>
     <Footer>
-      <TinyButton type="secondary" title="Cancelar" />
+      <TinyButton type="secondary" title="Cancelar" click={cancel} />
       <TinyButton type="primary" title="Cadastrar" click={submit} />
     </Footer>
   </FieldsDiv>

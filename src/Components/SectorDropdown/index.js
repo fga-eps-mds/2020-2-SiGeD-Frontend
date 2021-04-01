@@ -3,7 +3,7 @@ import colors from '../../Constants/colors';
 import { Dropdown } from '../UserForms/Style';
 import RightBoxInputs from './Style';
 
-const SectorDropdown = () => (
+const SectorDropdown = ({ sector, setSector }) => (
 
   <RightBoxInputs>
     <Form.Group style={{ width: '80%', marginTop: '5%', marginRight: '10%' }}>
@@ -16,6 +16,8 @@ const SectorDropdown = () => (
           textcolor="white"
           as="select"
           style={{ color: 'white' }}
+          value={sector}
+          onChange={(Option) => setSector(Option.target.value)}
         >
           <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Administrador(a)</option>
           <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Profissional</option>
