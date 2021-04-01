@@ -46,7 +46,7 @@ const CategoryDiv = ({ selectedCategories, pushCategory }) => {
       {(statusBox && true) ? (
         <CategoriesBox>
           <List>
-            <p style={{ color: 'black' }}>Lista de categorias:</p>
+            <p style={{ color: 'black', marginBottom: '0px' }}>Lista de categorias:</p>
             {renderCategories()}
           </List>
         </CategoriesBox>

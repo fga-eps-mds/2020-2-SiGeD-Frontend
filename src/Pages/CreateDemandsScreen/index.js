@@ -17,10 +17,14 @@ const CreateDemandsScreen = () => {
   const [valid, setValid] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [clients, setClients] = useState([]);
+  const currentUser = 'marcelino';
+  const [sector, setSector] = useState('');
+  // const [selectedClient, setSelectedClient] = useState();
 
   const getClientsFromApi = async () => {
     await getClients('clients')
       .then((response) => setClients(response.data));
+    // .then((response) => setSelectedClient(response.data[0]));
   };
 
   useEffect(() => {
@@ -45,12 +49,19 @@ const CreateDemandsScreen = () => {
 
   const submit = () => {
     if (valid) {
-      createDemand(name, description, process, selectedCategories);
+      createDemand(name, description, process, selectedCategories, currentUser, sector);
       alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
       setName('');
     }
+  };
+
+  const cancel = () => {
+    setName('');
+    setProcess('');
+    setDescription('');
+    setSelectedCategories([]);
   };
 
   return (
@@ -63,13 +74,17 @@ const CreateDemandsScreen = () => {
         description={description}
         setDescription={setDescription}
         submit={submit}
+        cancel={cancel}
       />
       {/* Começa aki */}
       <RightBoxComponent>
         <UserDropdown
           clients={clients}
         />
-        <SectorDropdown />
+        <SectorDropdown
+          setSector={setSector}
+          sector={sector}
+        />
         <CategoryDiv
           selectedCategories={selectedCategories}
           pushCategory={pushCategory}

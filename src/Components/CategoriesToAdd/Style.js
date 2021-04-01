@@ -3,7 +3,7 @@ import colors from '../../Constants/colors';
 
 export const Demandbox = styled.div`
   width: 100%;
-  height: 15%;
+  height: 30%;
   font-size: 1vh;
   background-color: transparent;
   display: flex;

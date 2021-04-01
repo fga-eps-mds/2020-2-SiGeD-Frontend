@@ -27,9 +27,9 @@ export const CategoriesBox = styled.div`
   border-radius: 12px;
   position: absolute;
   width: 25vw;
-  height: 40vh;
+  height: 20vh;
   right: 3%;
-  margin-top: 35%;
+  margin-top: 20%;
   z-index: 1;
   overflow: hidden;
 `;
