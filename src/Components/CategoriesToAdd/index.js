@@ -3,10 +3,14 @@ import {
   Demandbox, Line, Tag,
 } from './Style';
 
-const CategoriesToAdd = ({ category }) => (
+const CategoriesToAdd = ({ category, pushCategory }) => (
+
   <Demandbox>
     <Line />
-    <Tag style={{ backgroundColor: category.color }}>
+    <Tag
+      style={{ backgroundColor: category.color }}
+      onClick={() => pushCategory(category)}
+    >
       {category.name}
     </Tag>
   </Demandbox>

@@ -24,7 +24,7 @@ const DemandsDescription = ({
         <P>
           Preocesso:
         </P>
-        <InputField placeholder="Nº do processo" value={process} onchange={(e) => setProcess(e.target.value)} />
+        <InputField placeholder="Nº do processo" value={process} onChange={(e) => setProcess(e.target.value)} />
       </InputDiv>
     </InputsDiv>
     <DescriptionDiv>

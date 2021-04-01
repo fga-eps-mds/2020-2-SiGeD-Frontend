@@ -5,7 +5,7 @@ import {
 import { getCategories } from '../../Services/Axios/demandsServices';
 import CategoriesToAdd from '../CategoriesToAdd';
 
-const CategoryDiv = () => {
+const CategoryDiv = ({ selectedCategories, pushCategory }) => {
   const [statusBox, setStatusBox] = useState(false);
   const [categories, setCategories] = useState([]);
 
@@ -24,12 +24,14 @@ const CategoryDiv = () => {
 
   const renderCategories = () => {
     if (categories?.length === 0) {
-      return <h1 style={{ color: 'black' }}>Ainda não há categorias cadastradas</h1>;
+      return <p style={{ color: 'black', fontSize: '1rem' }}>Ainda não há categorias cadastradas</p>;
     }
     return categories?.map((category) => (
       <CategoriesToAdd
         category={category}
         key={category._id}
+        selectedCategories={selectedCategories}
+        pushCategory={pushCategory}
       />
     ));
   };

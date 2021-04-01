@@ -6,12 +6,30 @@ import RightBoxComponent from '../../Components/RightBoxComponent';
 import { createDemand } from '../../Services/Axios/demandsServices';
 import { validateProcess } from '../../Utils/validations';
 import DemandsDescription from '../../Components/DemandsDescription';
+import SelectedCategories from '../../Components/SelectedCategories';
+import UserDropdown from '../../Components/UserDropdown';
+import { getClients } from '../../Services/Axios/clientServices';
 
 const CreateDemandsScreen = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [process, setProcess] = useState('');
   const [valid, setValid] = useState(true);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [clients, setClients] = useState([]);
+
+  const getClientsFromApi = async () => {
+    await getClients('clients')
+      .then((response) => setClients(response.data));
+  };
+
+  useEffect(() => {
+    getClientsFromApi();
+  }, []);
+
+  const pushCategory = (category) => {
+    setSelectedCategories([...selectedCategories, category]);
+  };
 
   useEffect(() => {
     if (!name || !description || !validateProcess(process)) {
@@ -21,9 +39,13 @@ const CreateDemandsScreen = () => {
     }
   }, [name, description, process]);
 
+  useEffect(() => {
+    console.log(selectedCategories);
+  }, [selectedCategories]);
+
   const submit = () => {
     if (valid) {
-      createDemand(name, description, process);
+      createDemand(name, description, process, selectedCategories);
       alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
@@ -44,8 +66,17 @@ const CreateDemandsScreen = () => {
       />
       {/* Começa aki */}
       <RightBoxComponent>
+        <UserDropdown
+          clients={clients}
+        />
         <SectorDropdown />
-        <CategoryDiv />
+        <CategoryDiv
+          selectedCategories={selectedCategories}
+          pushCategory={pushCategory}
+        />
+        <SelectedCategories
+          selectedCategories={selectedCategories}
+        />
       </RightBoxComponent>
     </Main>
   );
