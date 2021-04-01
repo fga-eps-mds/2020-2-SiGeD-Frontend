@@ -11,6 +11,7 @@ export const Main = styled.div`
   height: 100vh;
   @media(max-width: 750px){
     height: max-content;
+    background-color: ${colors.secondary};
   }
 `;
 
@@ -75,9 +76,10 @@ export const ScreenContentBox = styled.div`
 
 export const ScreenSearch = styled.div`
   float: left;
+  width: 35%;
 
   @media(max-width: 750px){
-    width: 50%;
+    width: 100%;
   }
 `;
 

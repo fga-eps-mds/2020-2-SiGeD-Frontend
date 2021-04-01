@@ -41,7 +41,7 @@ const DemandData = ({ demand }) => {
           <Link
             to={`/perfil/${demand.clientID}`}
             id={demand.clientID}
-            style={{ color: colors.text, textDecorationLine: 'none' }}
+            style={{ color: colors.primary, textDecorationLine: 'none', fontWeight: 'bold' }}
           >
             {client.name}
           </Link>
@@ -61,7 +61,6 @@ const DemandData = ({ demand }) => {
         </div>
         <CategoryField>
           <CategoryName color={category.color}>{category.name}</CategoryName>
-          Categoria
         </CategoryField>
       </DemandCard>
       )}

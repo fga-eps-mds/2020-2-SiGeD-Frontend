@@ -6,9 +6,12 @@ export const DemandCard = styled.div`
     width: 30%;
     background-color: ${colors.secondary};
     border-radius: 15px;
-    margin-top: 1%;
     border: 1.5px solid black;
-    margin: 1.5%;
+    margin: 1.5% 1.5% 1.5% 0;
+
+    @media(max-width: 750px){
+        width: 100%;
+    }
 `;
 
 export const DemandTitle = styled.div`
@@ -49,13 +52,13 @@ export const DemandCreatedAt = styled.div`
 export const CategoryField = styled.div`
     height: 40%;
     margin-left: 1vw;
-    background-color: purple;
+    background-color: ${colors.backgroundColor};
     
 `;
 
 export const CategoryName = styled.p`
   border-radius: 12px;
-  padding: 2%;
+  padding: 1%;
   text-align: center;
   color: ${colors.secondary};
   background-color: ${(props) => `${props.color}`};
@@ -66,6 +69,8 @@ export const CategoryName = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: 'Montserrat';
+  width: 35%;
+  margin: 3% 0 3% 0;
   @media(max-width: 750px){
     font-size: 1.5vh;
     font-weight: 900;

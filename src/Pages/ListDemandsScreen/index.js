@@ -7,7 +7,9 @@ import SearchInput from '../../Components/SearchInput';
 import DemandData from '../../Components/DemandData';
 import { getDemands } from '../../Services/Axios/demandsServices';
 
-const ListDemandsScreen = ({ SearchWord, setWord }) => {
+const ListDemandsScreen = () => {
+  const [word, setWord] = useState();
+  const [filterDemands, setFilterDemands] = useState([]);
   const [DemandsList, setDemandsList] = useState([]);
 
   const getDemandsFromApi = async () => {
@@ -19,13 +21,28 @@ const ListDemandsScreen = ({ SearchWord, setWord }) => {
     getDemandsFromApi();
   }, []);
 
+  useEffect(() => {
+    setFilterDemands(
+      DemandsList.filter(
+        (Demand) => Demand.name.toLowerCase().includes(word?.toLowerCase()),
+      ),
+    );
+  }, [word]);
+
+  useEffect(() => {
+    setFilterDemands(DemandsList);
+  }, [DemandsList]);
+
   const ListDemands = () => {
-    if (DemandsList?.length) {
-      return DemandsList.map((DemandsListItem, index) => (
-        <DemandData demand={DemandsListItem} key={index} />
-      ));
+    if (DemandsList?.length === 0) {
+      return <h1 style={{ fontSize: '1.5rem', font: 'Montserrat' }}>Sem resultados</h1>;
     }
-    return null;
+    if (filterDemands?.length === 0) {
+      return <h1 style={{ fontSize: '1.5rem', font: 'Montserrat' }}>Sem resultados</h1>;
+    }
+    return filterDemands?.map((DemandsListItem, index) => (
+      <DemandData demand={DemandsListItem} key={index} />
+    ));
   };
 
   return (
@@ -33,11 +50,11 @@ const ListDemandsScreen = ({ SearchWord, setWord }) => {
       <ScreenContainer>
         <ScreenTitle>Demandas</ScreenTitle>
         <ScreenHeader>
-          <ScreenSearch style={{ width: '30%' }}>
+          <ScreenSearch>
             <SearchInput
               type="text"
               icon={<FaSistrix />}
-              value={SearchWord}
+              value={word}
               setWord={(value) => setWord(value)}
               style={{ width: '100%' }}
             />
