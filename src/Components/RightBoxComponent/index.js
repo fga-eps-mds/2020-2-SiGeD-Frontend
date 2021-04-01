@@ -16,9 +16,12 @@ const RightBoxComponent = ({ children }) => (
     </ContentBox>
     <>
       {children[0]}
-    </>
-    <>
+
       {children[1]}
+
+      {children[2]}
+
+      {children[3]}
     </>
   </RightBox>
 );

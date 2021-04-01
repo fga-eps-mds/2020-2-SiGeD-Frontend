@@ -64,7 +64,7 @@ export const DescriptionField = styled.textarea`
 
 export const InputField = styled.input`
   border: 2px solid black;
-  border-radius: 12px;
+  border-radius: 8px;
   text-indent: 3px;
   font-size: 90%;
   outline: none;
