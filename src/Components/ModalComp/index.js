@@ -18,8 +18,6 @@ const ModalComp = ({
     if (!name || !description) {
       if (type === 'Categoria' && !color) {
         setValid(false);
-      } else {
-        setValid(false);
       }
     } else {
       setValid(true);
