@@ -38,17 +38,25 @@ export const NameDiv = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    font-size: 120%;
     text-align: center;
-    margin-bottom: 3px;
+    font-size: 120%;
     font-weight: bold;
 `;
 
 export const PersonIcon = styled(IoPersonCircleOutline)`
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     color: white;
+    @media(max-width: 750px){
+        
+    }
+`;
+
+export const P = styled.div`
+    margin-top: 20%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
     @media(max-width: 750px){
         
     }

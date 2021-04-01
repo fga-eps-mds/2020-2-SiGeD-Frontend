@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Main = styled.div`
-    height: 100%;
+    height: 100vh;
     width: 100%
     background-color: red;
     display: flex;
+    overflow: hidden;
 `;
 
 export const CardsContainer = styled.div`

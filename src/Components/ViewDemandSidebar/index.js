@@ -1,18 +1,22 @@
 import React from 'react';
 import {
-  RightBox, ContentBox, NameDiv, Line, PersonIcon,
+  RightBox, ContentBox, NameDiv, Line, PersonIcon, P,
 } from './Style';
 
-const ViewDemandSidebar = ({ children }) => (
+const ViewDemandSidebar = ({ children, clientName, userName }) => (
   <RightBox>
     <ContentBox>
       <NameDiv>
         <PersonIcon />
-        <p>
-          Ayrton Senna Adalberto Silva
-        </p>
+        <P>
+          { clientName }
+        </P>
       </NameDiv>
       <Line />
+      <P>
+        Criado por:
+        { userName }
+      </P>
     </ContentBox>
     <>
       {children}
