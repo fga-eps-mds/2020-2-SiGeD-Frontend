@@ -63,18 +63,18 @@ const DataList = ({
             <Li>
               <Button onClick={() => { toggleMenu(); }}>
                 Editar
+                <Icon onClick={() => { toggleMenu(); }}>
+                  <BsPencil />
+                </Icon>
               </Button>
-              <Icon onClick={() => { toggleMenu(); }}>
-                <BsPencil />
-              </Icon>
             </Li>
             <Li>
               <Button color="red" onClick={deleteContent}>
                 Remover
+                <Icon color="red">
+                  <FaRegTrashAlt />
+                </Icon>
               </Button>
-              <Icon color="red" onClick={deleteContent}>
-                <FaRegTrashAlt />
-              </Icon>
             </Li>
           </Ul>
         </Box>

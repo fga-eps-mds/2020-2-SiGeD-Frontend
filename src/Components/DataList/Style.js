@@ -115,8 +115,6 @@ export const Li = styled.li`
 `;
 
 export const Icon = styled.div`
-  float: right;
-  margin: 0 1%;
   font-size: 80%;
   color: ${(props) => `${props.color}`};
 `;
@@ -126,6 +124,9 @@ export const Button = styled.button`
   background-color: #FFF;
   font-size: 1.5vh;
   color: ${(props) => `${props.color}`};
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 
   @media(max-width: 750px){
     font-size: 1.3vh;

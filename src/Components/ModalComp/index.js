@@ -28,7 +28,6 @@ const ModalComp = ({
 
   const submit = async () => {
     // Criar
-    console.log(color);
     if (operation === 'Nova ') {
       if (color) {
         await createContent(name, description, color);
@@ -40,8 +39,9 @@ const ModalComp = ({
     } else {
       await updateContent(name, description, id);
     }
-    getContent();
+
     if (valid) {
+      getContent();
       handleClose();
     }
   };
