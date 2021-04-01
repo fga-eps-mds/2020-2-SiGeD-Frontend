@@ -40,14 +40,12 @@ const ListSectors = () => {
   }, [sectors]);
 
   const renderSectors = () => {
-    if (sectors?.length === 0) {
+    if (sectors?.length === 0 || filterSectors?.length === 0) {
       return <h1>Sem resultados</h1>;
     }
-    if (filterSectors?.length === 0) {
-      return <h1>Sem resultados</h1>;
-    }
-    return filterSectors?.map((sector) => (
+    return filterSectors?.map((sector, idx) => (
       <DataList
+        key={idx}
         content={sector}
         getContent={listSectors}
         backgroundColor={undefined}
