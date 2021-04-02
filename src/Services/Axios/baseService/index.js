@@ -1,3 +1,7 @@
-import { APIUsers, APIClients, APIDemands } from './baseService';
+import {
+  APIUsers, APIClients, APIDemands, APISectors,
+} from './baseService';
 
-export { APIUsers, APIClients, APIDemands };
+export {
+  APIUsers, APIClients, APIDemands, APISectors,
+};

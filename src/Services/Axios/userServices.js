@@ -1,4 +1,6 @@
-import { APIUsers, APIDemands, APIClients } from './baseService/index';
+import {
+  APIUsers, APIDemands, APIClients, APISectors,
+} from './baseService/index';
 
 export async function getUser(url) {
   try {
@@ -41,6 +43,7 @@ export async function loginUser(
       APIUsers.defaults.headers = { 'x-access-token': response.data.token };
       APIClients.defaults.headers = { 'x-access-token': response.data.token };
       APIDemands.defaults.headers = { 'x-access-token': response.data.token };
+      APISectors.defaults.headers = { 'x-access-token': response.data.token };
       setToken(response.data.token);
     }
   } catch (error) {

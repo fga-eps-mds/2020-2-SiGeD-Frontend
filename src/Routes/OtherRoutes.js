@@ -9,6 +9,7 @@ import ClientListScreen from '../Pages/ClientListScreen';
 import ClientProfileScreen from '../Pages/ClientProfileScreen';
 import UserUpdateScreen from '../Pages/UserUpdateScreen';
 import NavbarComp from '../Components/NavbarComp';
+import ListSectors from '../Pages/ListSectors';
 
 const OtherRoutes = () => (
   <Router>
@@ -22,6 +23,7 @@ const OtherRoutes = () => (
     <Route path="/editar/:id" component={ClientUpdateScreen} />
     <Route path="/clientes" component={ClientListScreen} />
     <Route path="/perfil/:id" component={ClientProfileScreen} />
+    <Route path="/setores" component={ListSectors} />
   </Router>
 );
 

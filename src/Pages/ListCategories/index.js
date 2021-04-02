@@ -3,9 +3,12 @@ import ModalComp from '../../Components/ModalComp';
 import {
   TableHeader, TableTitle, P, Bar,
 } from './Style';
-import CategoriesData from '../../Components/CategoriesData';
 import GenericListScreen from '../../Components/GenericListScreen';
-import { getCategories } from '../../Services/Axios/demandsServices';
+import {
+  getCategories, createCategory, updateCategory, deleteCategory,
+} from '../../Services/Axios/demandsServices';
+import DataList from '../../Components/DataList';
+import colors from '../../Constants/colors';
 
 const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);
@@ -45,10 +48,14 @@ const ListCategories = () => {
       return <h1>Sem resultados</h1>;
     }
     return filterCategories?.map((category) => (
-      <CategoriesData
-        category={category}
-        getCategories={listCategories}
-        key={category._id}
+      <DataList
+        content={category}
+        getContent={listCategories}
+        backgroundColor={category.color}
+        color={colors.secondary}
+        axiosDelete={deleteCategory}
+        updateContent={updateCategory}
+        type="Categoria"
       />
     ));
   };
@@ -77,7 +84,7 @@ const ListCategories = () => {
         </TableTitle>
         <TableTitle width={2} />
       </TableHeader>
-      { statusModal ? <ModalComp show={statusModal} type="Nova " idName="" idDescription="" idColor="#000000" getCategories={getCategories} handleClose={toggleModal} /> : null }
+      { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null }
     </GenericListScreen>
   );
 };
