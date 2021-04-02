@@ -54,7 +54,7 @@ const ViewDemandSidebar = ({
           Setor:
         </p>
         <DropdownComponent
-          OnChangeFunction={(Option) => console.log(Option.target.value)}
+          OnChangeFunction={(Option) => (Option.target.value)}
           style={{
             display: 'flex',
             color: `${colors.secondary}`,
@@ -68,7 +68,6 @@ const ViewDemandSidebar = ({
           }}
           optionStyle={{
             backgroundColor: `${colors.navHeaders}`,
-            width: '100%',
           }}
           optionList={['option1', 'option2', 'option3']}
         />
