@@ -1,4 +1,5 @@
 import { IoPersonCircleOutline } from 'react-icons/io5';
+import { BsPlusCircle, BsDashCircle } from 'react-icons/bs';
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
@@ -13,6 +14,37 @@ export const RightBox = styled.div`
     @media(max-width: 750px){
         width: 100%;
         height: max-content;
+        border-radius: 0px 0px 15px 15px;
+    }
+`;
+
+export const PlusButton = styled(BsPlusCircle)`
+    visibility: hidden;
+    @media(max-width: 750px){
+        visibility: visible;
+        height: 25px;
+        width: 25px;
+    }
+`;
+
+export const LessButton = styled(BsDashCircle)`
+    visibility: hidden;
+    @media(max-width: 750px){
+        visibility: visible;
+        height: 25px;
+        width: 25px;
+    }
+`;
+
+export const ButtonsDiv = styled.div`
+    visibility: hidden;
+    height: 0%;    
+    @media(max-width: 750px){
+        display: flex;
+        visibility: visible;
+        height: max-content;
+        width: 100%;
+        justify-content: flex-end;
     }
 `;
 
@@ -34,6 +66,10 @@ export const Line = styled.div`
     height: 1px;
     background-color: ${colors.primary};
     padding-bottom: 0.5%;
+    @media(max-width: 750px){
+        visibility: hidden;
+        height: 0px;
+    }
 `;
 
 export const CreatedBy = styled.div`
@@ -48,9 +84,6 @@ export const UserIcon = styled(IoPersonCircleOutline)`
     height: 60px;
     color: white;
     justify-content: flex-start;
-    @media(max-width: 750px){
-        
-    }
 `;
 
 export const UserName = styled.div`
@@ -72,11 +105,12 @@ export const ContentBox = styled.div`
     height: 25%;
     display: flex;
     flex-direction: column;
-    margin-top: 10vh;
+    margin-top: 5vh;
     align-items: center;
     padding: 5%;
     @media(max-width: 750px){
         margin-top: 5vh;
+        height: min-content;
     }
 `;
 
@@ -95,9 +129,6 @@ export const PersonIcon = styled(IoPersonCircleOutline)`
     width: 100px;
     height: 100px;
     color: white;
-    @media(max-width: 750px){
-        
-    }
 `;
 
 export const P = styled.div`

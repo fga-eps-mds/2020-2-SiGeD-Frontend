@@ -12,7 +12,7 @@ const SendDemandModal = () => {
   return (
     <>
       <ForwardDiv onClick={handleShow}>
-        <p style={{ marginRight: '5px' }}>
+        <p style={{ marginRight: '5px', marginBottom: '0px' }}>
           Encaminhar
         </p>
         <ForwardIcon

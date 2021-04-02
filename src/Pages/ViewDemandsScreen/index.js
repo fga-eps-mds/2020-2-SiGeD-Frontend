@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { getDemands, getCategories } from '../../Services/Axios/demandsServices';
 import ViewDemandSidebar from '../../Components/ViewDemandSidebar';
 import ViewDemandCard from '../../Components/ViewDemandCard';
-import SectorDropdown from '../../Components/SectorDropdown';
 import { Main, CardsContainer } from './Style';
 import { getClients } from '../../Services/Axios/clientServices';
 import { getUser } from '../../Services/Axios/userServices';
@@ -23,16 +22,19 @@ const ViewDemandsScreen = () => {
   const getClientApi = async () => {
     await getClients(`clients/${demand.clientID}`)
       .then((response) => setClient(response.data));
+    console.log(client);
   };
 
   const getUserApi = async () => {
     await getUser(`users/${demand.userID}`)
       .then((response) => { setUser(response.data); });
+    console.log(user);
   };
 
   const getCategoryApi = async () => {
     await getCategories(`/category/${demand.categoryID}`)
       .then((response) => setCategory(response.data));
+    console.log(category);
   };
 
   useEffect(() => {
@@ -55,11 +57,7 @@ const ViewDemandsScreen = () => {
             demand={demand}
           />
         </CardsContainer>
-        <ViewDemandSidebar clientName={client.name} userName={user.name} category={category}>
-          <div style={{ width: '100%' }}>
-            <SectorDropdown />
-          </div>
-        </ViewDemandSidebar>
+        <ViewDemandSidebar clientName={client.name} userName={user.name} category={category} />
       </Main>
       )}
     </>

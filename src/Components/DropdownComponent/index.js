@@ -1,11 +1,10 @@
 import Dropdown from './Style';
 
 const DropdownComponent = ({
-  textColor, OnChangeFunction, style, optionStyle, optionList,
+  OnChangeFunction, style, optionStyle, optionList,
 }) => (
   <Dropdown
     as="select"
-    textcolor={textColor}
     onChange={OnChangeFunction}
     style={style}
   >

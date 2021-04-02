@@ -9,6 +9,10 @@ export const Card = styled.div`
     border: 1.5px solid black;
     padding: 3%;
     justify-content: center;
+    @media(max-width: 750px){
+        border-radius: 15px 15px 0px 0px;
+        width: 100%;
+    }
 `;
 
 export const TopSide = styled.div`

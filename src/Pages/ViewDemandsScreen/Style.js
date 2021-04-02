@@ -20,5 +20,6 @@ export const CardsContainer = styled.div`
     display: flex;
     @media(max-width: 750px){
         width: 100%;
+        height: min-content;
     }
 `;

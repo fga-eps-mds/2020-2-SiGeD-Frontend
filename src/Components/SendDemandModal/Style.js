@@ -12,6 +12,6 @@ export const ForwardDiv = styled.div`
 `;
 
 export const ForwardIcon = styled(BiPaperPlane)`
-    height: max-content;
-    width: max-content;
+    height: 25px;
+    width: 25px;
 `;
