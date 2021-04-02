@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SelectSearch, { fuzzySearch } from 'react-select-search';
 import { UserSearchDiv, Label } from './Style';
 
-const UserDropdown = ({ clients }) => {
-  let options = [];
-
-  useEffect(() => {
-    options = clients.map((client, index) => ({
-      name: client.name,
-      value: index,
-    }));
-    console.log(options);
-  }, []);
+const UserDropdown = ({ clients, setClientID }) => {
+  const options = clients.map((client) => ({
+    name: client.name,
+    value: client._id,
+  }));
 
   return (
     <UserSearchDiv>
@@ -24,6 +19,7 @@ const UserDropdown = ({ clients }) => {
         filterOptions={fuzzySearch}
         emptyMessage="Nenhum cliente encontrado"
         placeholder="Selecione um cliente"
+        onChange={(value) => setClientID(value)}
       />
 
     </UserSearchDiv>

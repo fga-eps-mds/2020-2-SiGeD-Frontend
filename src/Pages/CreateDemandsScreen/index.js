@@ -17,19 +17,32 @@ const CreateDemandsScreen = () => {
   const [valid, setValid] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [clients, setClients] = useState([]);
-  const currentUser = 'marcelino';
-  const [sector, setSector] = useState('');
-  // const [selectedClient, setSelectedClient] = useState();
+  const userID = '605cfd4dfdcb2a006d7b0cb3';
+  const [sectorID, setSectorID] = useState('');
+  const [categoriesIDs, setCategoriesIDs] = useState([]);
+  const [clientID, setClientID] = useState('');
 
   const getClientsFromApi = async () => {
     await getClients('clients')
       .then((response) => setClients(response.data));
-    // .then((response) => setSelectedClient(response.data[0]));
   };
 
   useEffect(() => {
     getClientsFromApi();
   }, []);
+
+  useEffect(() => {
+    console.log(clientID, 'AKI');
+  }, [clientID]);
+
+  useEffect(() => {
+    const IDs = selectedCategories?.map((selectedCategory) => ({
+      id: selectedCategory._id,
+    }));
+    console.log(IDs, 'Categorias');
+
+    setCategoriesIDs(IDs);
+  }, [selectedCategories]);
 
   const pushCategory = (category) => {
     setSelectedCategories([...selectedCategories, category]);
@@ -49,7 +62,7 @@ const CreateDemandsScreen = () => {
 
   const submit = () => {
     if (valid) {
-      createDemand(name, description, process, selectedCategories, currentUser, sector);
+      createDemand(name, description, process, categoriesIDs, userID, sectorID, clientID);
       alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
@@ -62,6 +75,7 @@ const CreateDemandsScreen = () => {
     setProcess('');
     setDescription('');
     setSelectedCategories([]);
+    setClientID('');
   };
 
   return (
@@ -80,10 +94,11 @@ const CreateDemandsScreen = () => {
       <RightBoxComponent>
         <UserDropdown
           clients={clients}
+          setClientID={setClientID}
         />
         <SectorDropdown
-          setSector={setSector}
-          sector={sector}
+          setSector={setSectorID}
+          sector={sectorID}
         />
         <CategoryDiv
           selectedCategories={selectedCategories}
