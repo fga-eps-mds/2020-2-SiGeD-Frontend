@@ -6,7 +6,7 @@ import {
 const SelectedCategories = ({ selectedCategories }) => {
   const renderSelectedCategories = () => {
     if (selectedCategories?.length === 0) {
-      return <h4 style={{ color: 'white' }}>Ainda não há categorias selecionadas...</h4>;
+      return <p style={{ color: 'white', marginLeft: '10%' }}>Ainda não há categorias selecionadas...</p>;
     }
     return selectedCategories?.map((selectedCategory) => (
       <Tag

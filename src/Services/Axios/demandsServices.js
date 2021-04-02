@@ -62,12 +62,15 @@ export async function getDemands(url) {
   return false;
 }
 
-export async function createDemand(name, description, process) {
+export async function createDemand(name, description, process, categoriesIDs, sectorID, userID) {
   try {
     const response = await APIDemands.post('demand/create', {
       name,
       description,
       process,
+      categoriesIDs,
+      sectorID,
+      userID,
     });
     if (response.data.status) {
       alert('Preencha todos os campos para poder criar uma nova categoria');
@@ -78,12 +81,17 @@ export async function createDemand(name, description, process) {
   }
 }
 
-export async function updateDemand(name, description, process, id) {
+export async function updateDemand(
+  name, description, process, categoriesIDs, sectorID, userID, id,
+) {
   try {
     const response = await APIDemands.put(`demand/update/${id}`, {
       name,
       description,
       process,
+      categoriesIDs,
+      sectorID,
+      userID,
     });
     if (response.data.status) {
       alert('Preencha todos os campos para poder editar uma categoria');

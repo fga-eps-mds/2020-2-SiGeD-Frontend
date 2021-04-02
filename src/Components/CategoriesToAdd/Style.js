@@ -3,12 +3,12 @@ import colors from '../../Constants/colors';
 
 export const Demandbox = styled.div`
   width: 100%;
-  height: 30%;
-  font-size: 1vh;
+  height: 100%;
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 
   @media(max-width: 750px){
     width: 85%;
@@ -22,15 +22,14 @@ export const Demandbox = styled.div`
 
 export const Tag = styled.div`
 
-  width: 40%;
-  height: 50%;
+  width: 60%;
+  height: 100%;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
-  margin-left: 10%;
+  font-size: 100%;
 
 `;
 
