@@ -62,12 +62,7 @@ const ListDemandsScreen = () => {
         </ScreenHeader>
 
         <ScreenContentBox>
-          <ScreenList style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            flexDirection: 'row',
-          }}
-          >
+          <ScreenList>
             {ListDemands()}
           </ScreenList>
         </ScreenContentBox>

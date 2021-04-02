@@ -6,7 +6,7 @@ import RightBoxInputs from './Style';
 const SectorDropdown = () => (
 
   <RightBoxInputs>
-    <Form.Group style={{ width: '80%', marginTop: '5%' }}>
+    <Form.Group style={{ width: '80%', marginTop: '5%', marginRight: '10%' }}>
       <Form.Label><p style={{ fontSize: '1.5rem' }}>Setor:</p></Form.Label>
       <div style={{
         boxSizing: 'border-box', borderRadius: '10px', border: '1px solid #ffffff', justifyContent: 'flex-start', display: 'flex',
@@ -16,7 +16,6 @@ const SectorDropdown = () => (
           textcolor="white"
           as="select"
           style={{ color: 'white' }}
-          value="Teste"
         >
           <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Administrador(a)</option>
           <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Profissional</option>

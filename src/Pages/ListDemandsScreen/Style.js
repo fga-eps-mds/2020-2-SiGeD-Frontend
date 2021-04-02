@@ -87,10 +87,13 @@ export const ScreenList = styled.div`
   height: 50vh;
   padding: 5px;
   overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 
   @media(max-width: 750px){
     height: max-content;
-    padding: 5px;
     overflow: auto;
+    flex-direction: column;
   }
 `;

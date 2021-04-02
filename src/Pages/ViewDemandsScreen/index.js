@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getDemands } from '../../Services/Axios/demandsServices';
+import { getDemands, getCategories } from '../../Services/Axios/demandsServices';
 import ViewDemandSidebar from '../../Components/ViewDemandSidebar';
 import ViewDemandCard from '../../Components/ViewDemandCard';
 import SectorDropdown from '../../Components/SectorDropdown';
@@ -11,6 +11,7 @@ import { getUser } from '../../Services/Axios/userServices';
 const ViewDemandsScreen = () => {
   const [client, setClient] = useState('');
   const [demand, setDemand] = useState('');
+  const [category, setCategory] = useState([]);
   const [user, setUser] = useState('');
   const { id } = useParams();
 
@@ -29,10 +30,16 @@ const ViewDemandsScreen = () => {
       .then((response) => { setUser(response.data); });
   };
 
+  const getCategoryApi = async () => {
+    await getCategories(`/category/${demand.categoryID}`)
+      .then((response) => setCategory(response.data));
+  };
+
   useEffect(() => {
     if (demand) {
       getClientApi();
       getUserApi();
+      getCategoryApi();
     } else {
       getDemandApi();
     }
@@ -40,7 +47,7 @@ const ViewDemandsScreen = () => {
 
   return (
     <>
-      { demand && client && user
+      { demand && client && user && category
       && (
       <Main>
         <CardsContainer>
@@ -48,7 +55,7 @@ const ViewDemandsScreen = () => {
             demand={demand}
           />
         </CardsContainer>
-        <ViewDemandSidebar clientName={client.name} userName={user.name}>
+        <ViewDemandSidebar clientName={client.name} userName={user.name} category={category}>
           <div style={{ width: '100%' }}>
             <SectorDropdown />
           </div>

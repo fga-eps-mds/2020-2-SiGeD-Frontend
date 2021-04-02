@@ -12,7 +12,20 @@ export const RightBox = styled.div`
     color: white;
     @media(max-width: 750px){
         width: 100%;
-        height: 80%;
+        height: max-content;
+    }
+`;
+
+export const MobileHeader = styled.div`
+    visibility: hidden;
+    color: ${colors.secondary};
+    height: 0%;
+    @media(max-width: 750px){
+        visibility: visible;
+        height: min-content;
+        justify-content: flex-start;
+        font-size: 120%;
+        width: 100%;
     }
 `;
 
@@ -20,6 +33,38 @@ export const Line = styled.div`
     width: 80%;
     height: 1px;
     background-color: ${colors.primary};
+    padding-bottom: 0.5%;
+`;
+
+export const CreatedBy = styled.div`
+    height: max-content;
+    width: 100%;
+    font-size: 100%;
+    padding-top: 2%;
+`;
+
+export const UserIcon = styled(IoPersonCircleOutline)`
+    width: 60px;
+    height: 60px;
+    color: white;
+    justify-content: flex-start;
+    @media(max-width: 750px){
+        
+    }
+`;
+
+export const UserName = styled.div`
+    text-align: center;
+    display: flex;
+    height: max-content;
+    padding-right: 3%;
+    align-items: center;
+`;
+
+export const UserP = styled.p`
+    text-align: center;
+    padding-left: 2%;
+    margin-top: 5%;
 `;
 
 export const ContentBox = styled.div`
@@ -30,6 +75,9 @@ export const ContentBox = styled.div`
     margin-top: 10vh;
     align-items: center;
     padding: 5%;
+    @media(max-width: 750px){
+        margin-top: 5vh;
+    }
 `;
 
 export const NameDiv = styled.div`
@@ -58,6 +106,35 @@ export const P = styled.div`
     height: 100%;
     text-align: center;
     @media(max-width: 750px){
-        
+        margin-top: 8vh;
+    }
+`;
+
+export const CategoryField = styled.div`
+    width: 40%;
+    height: 40%;
+    margin-right: 50%;
+`;
+
+export const CategoryName = styled.div`
+    border-radius: 12px;
+    padding: 1%;
+    text-align: center;
+    color: ${colors.secondary};
+    font-size: 2vh;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Montserrat';
+    width: 70%%;
+    height: 70%
+    margin: 3% 0 3% 0;
+    @media(max-width: 750px){
+        font-size: 80%;
+        font-weight: 900;
+        align-items: center;
+        margin-left: 1vw;
     }
 `;

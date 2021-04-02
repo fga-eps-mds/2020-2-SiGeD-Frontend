@@ -22,6 +22,10 @@ export const DemandName = styled.div`
     height: max-content;
     text-align: left;
     font-size: 30px;
+    @media(max-width: 750px){
+        font-size: 25px;
+        width: 80%;
+    }
 `;
 
 export const EditIcon = styled.div`
@@ -35,6 +39,9 @@ export const DemandDescription = styled.div`
     width: 70%;
     text-align: left;
     margin-top: 2%;
+    @media(max-width: 750px){
+        font-size: 18px;
+    }
 `;
 
 export const BottomSide = styled.div`
@@ -48,10 +55,16 @@ export const ProcessNumber = styled.div`
     font-size: 20px;
     width: 70%;
     text-align: left;
+    @media(max-width: 750px){
+        font-size: 18px;
+    }
 `;
 
 export const CreatedAt = styled.div`
     text-align: right;
     font-size: 20px;
+    @media(max-width: 750px){
+        font-size: 18px;
+    }
 
 `;

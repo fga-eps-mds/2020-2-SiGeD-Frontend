@@ -6,6 +6,10 @@ export const Main = styled.div`
     background-color: red;
     display: flex;
     overflow: hidden;
+    @media(max-width: 750px){
+        overflow: auto;
+        flex-direction: column;
+    }
 `;
 
 export const CardsContainer = styled.div`
@@ -14,5 +18,7 @@ export const CardsContainer = styled.div`
     height: 100%;
     justify-content: center;
     display: flex;
-
+    @media(max-width: 750px){
+        width: 100%;
+    }
 `;
