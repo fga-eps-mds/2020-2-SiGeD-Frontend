@@ -9,9 +9,9 @@ export const UserSearchDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5%;
-  @media(max-width: 750px){
 
+  @media(max-width: 750px){
+    height: 30%;
   }
 `;
 

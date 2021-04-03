@@ -3,13 +3,13 @@ import styled from 'styled-components';
 const RightBoxInputs = styled.div`
   display: flex;
   width: 100%;
-  height: 15%;
+  height: 10%;
   flex-direction: column;
   align-items: center;
-  margin-top: 20%;
+
   @media(max-width: 750px){
-    margin-top: 13vh;
-}
+    height: 30%;
+  }
 `;
 
 export default RightBoxInputs;

@@ -10,10 +10,11 @@ export const SelectedBox = styled.div`
   justify-content: flex-start;
   flex-wrap: wrap;
   overflow-y: auto;
-  margin-left: 8%;
+  align-content: flex-start;
 
   @media(max-width: 750px){
     flex: auto;
+    margin-left: 0px;
   }
 `;
 
@@ -31,6 +32,20 @@ export const Tag = styled.div`
   margin-bottom: 5%;
 
   @media(max-width: 750px){
-    width 120px;
+    height: 30%;
+  }
+
+`;
+
+export const Word = styled.p`
+
+  font-size: 1rem;
+  background-color: transparent;
+  color: white;
+  margin-left: 10%;
+
+  @media(max-width: 750px){
+    color: black;
+    margin-left: 9%;
   }
 `;

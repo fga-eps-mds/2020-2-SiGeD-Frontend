@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
 import {
-  SelectedBox, Tag,
+  SelectedBox, Tag, Word,
 } from './Style';
 
 const SelectedCategories = ({ selectedCategories }) => {
   const renderSelectedCategories = () => {
     if (selectedCategories?.length === 0) {
-      return <p style={{ color: 'white', marginLeft: '10%' }}>Ainda não há categorias selecionadas...</p>;
+      return <Word>Ainda não há categorias selecionadas...</Word>;
     }
     return selectedCategories?.map((selectedCategory) => (
-      <>
-        <Tag
-          style={{ backgroundColor: selectedCategory.color }}
-        >
-          {selectedCategory.name}
-        </Tag>
-      </>
+      <Tag
+        style={{ backgroundColor: selectedCategory.color }}
+      >
+        {selectedCategory.name}
+      </Tag>
     ));
   };
 

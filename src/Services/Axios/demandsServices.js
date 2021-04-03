@@ -56,48 +56,53 @@ export async function getDemands(url) {
     const response = await APIDemands.get(url);
     return response;
   } catch (error) {
-    alert('Não foi possível carregar as categorias já criadas, tente novamente mais tarde.');
+    alert('Não foi possível carregar as demandas já criadas, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while getting demands.${error}`);
   }
   return false;
 }
 
-export async function createDemand(name, description, process, categoriesIDs, sectorID, userID) {
+export async function createDemand(
+  name, description, process, categoryID, sectorID, userID, clientID,
+) {
   try {
+    console.log(name, description, process, categoryID, userID, sectorID, clientID, 'axios teste');
     const response = await APIDemands.post('demand/create', {
       name,
       description,
       process,
-      categoriesIDs,
+      categoryID,
       sectorID,
       userID,
+      clientID,
     });
     if (response.data.status) {
       alert('Preencha todos os campos para poder criar uma nova categoria');
     }
   } catch (error) {
-    alert('Não foi possível criar a nova categoria, tente novamente mais tarde.');
+    alert('Não foi possível criar a nova demanda, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while creating a new demand.${error}`);
   }
 }
 
 export async function updateDemand(
-  name, description, process, categoriesIDs, sectorID, userID, id,
+  name, description, process, categoryID, sectorID, userID, clientID, id,
 ) {
   try {
     const response = await APIDemands.put(`demand/update/${id}`, {
       name,
       description,
       process,
-      categoriesIDs,
+      categoryID,
       sectorID,
       userID,
+      clientID,
     });
     if (response.data.status) {
       alert('Preencha todos os campos para poder editar uma categoria');
     }
   } catch (error) {
-    alert('Não foi possível atualizar a categoria, tente novamente mais tarde.');
+    alert('Não foi possível atualizar a demanda, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while updating an already created demand.${error}`);
   }
 }

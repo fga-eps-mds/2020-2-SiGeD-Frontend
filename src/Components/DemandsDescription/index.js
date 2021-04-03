@@ -2,26 +2,26 @@ import React from 'react';
 import TinyButton from '../TinyButton';
 import {
   InputField, DescriptionField, FieldsDiv, P, Footer, Title, InputDiv,
-  InputsDiv, DescriptionDiv,
+  InputsDiv, DescriptionDiv, CenterDiv,
 } from './Style';
 
 const DemandsDescription = ({
-  name, setName, process, setProcess, description, setDescription, submit, cancel, centerDiv,
+  name, setName, process, setProcess, description, setDescription, submit, cancel,
 }) => (
 
   <FieldsDiv>
-    <centerDiv>
+    <CenterDiv>
       <Title>
         Nova Demanda
       </Title>
       <InputsDiv>
-        <InputDiv width="60vw">
+        <InputDiv width="60%">
           <P>
             Nome:
           </P>
           <InputField placeholder="nome" value={name} onChange={(e) => setName(e.target.value)} />
         </InputDiv>
-        <InputDiv width="30vw">
+        <InputDiv width="30%">
           <P>
             Processo:
           </P>
@@ -38,7 +38,7 @@ const DemandsDescription = ({
         <TinyButton type="secondary" title="Cancelar" click={cancel} />
         <TinyButton type="primary" title="Cadastrar" click={submit} />
       </Footer>
-    </centerDiv>
+    </CenterDiv>
   </FieldsDiv>
 );
 

@@ -22,6 +22,8 @@ const CreateDemandsScreen = () => {
   const [sectorID, setSectorID] = useState('');
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientID, setClientID] = useState('');
+  const [clientName, setClientName] = useState('');
+  const [CategoryID, setCategoryID] = useState(''); // temporário
 
   const getClientsFromApi = async () => {
     await getClients('clients')
@@ -33,20 +35,21 @@ const CreateDemandsScreen = () => {
   }, []);
 
   useEffect(() => {
-    console.log(clientID, 'AKI');
+    console.log(clientID, 'Ids dos clientes');
   }, [clientID]);
 
   useEffect(() => {
     const IDs = selectedCategories?.map((selectedCategory) => ({
       id: selectedCategory._id,
     }));
-    console.log(IDs, 'Categorias');
+    console.log(IDs, 'Ids das Categorias');
 
     setCategoriesIDs(IDs);
   }, [selectedCategories]);
 
   const pushCategory = (category) => {
     setSelectedCategories([...selectedCategories, category]);
+    console.log(selectedCategories, 'categorias selecionadas');
   };
 
   useEffect(() => {
@@ -58,12 +61,14 @@ const CreateDemandsScreen = () => {
   }, [name, description, process]);
 
   useEffect(() => {
-    console.log(selectedCategories);
-  }, [selectedCategories]);
+    setCategoryID(categoriesIDs[0]?.id);
+    console.log(CategoryID, 'id da categoria a ser enviada');
+  }, [categoriesIDs]);
 
   const submit = () => {
+    console.log(name, description, process, CategoryID, userID, sectorID, clientID);
     if (valid) {
-      createDemand(name, description, process, categoriesIDs, userID, sectorID, clientID);
+      createDemand(name, description, process, CategoryID, sectorID, userID, clientID);
       alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
@@ -92,10 +97,13 @@ const CreateDemandsScreen = () => {
         cancel={cancel}
       />
       {/* Começa aki */}
-      <RightBoxComponent>
+      <RightBoxComponent
+        clientName={clientName}
+      >
         <UserDropdown
           clients={clients}
           setClientID={setClientID}
+          setClientName={setClientName}
         />
         <SectorDropdown
           setSector={setSectorID}

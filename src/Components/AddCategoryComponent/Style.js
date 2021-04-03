@@ -3,15 +3,13 @@ import styled from 'styled-components';
 
 export const AddCategory = styled.div`
   display: flex;
-  width: 90%;
+  width: 100%;
   height: 5%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-left: 5vw;
 
   @media(max-width: 750px){
-    margin-top: 7 %;
     padding: 8%;
   }
 `;
@@ -33,12 +31,13 @@ export const CategoriesBox = styled.div`
   border: 2px solid black;
   border-radius: 12px;
   position: absolute;
-  width: 25vw;
+  width: 26vw;
   height: 20vh;
   right: 3%;
   margin-top: 22vh;
   z-index: 1;
   overflow: hidden;
+  margin-right: 3%;
 
   @media(max-width: 750px){
     width: 90%;
@@ -64,11 +63,12 @@ export const List = styled.div`
 
 export const P = styled.p`
   color: white;
-  margin-bottom: 0;
-  margin-left: -4%;
+  margin-bottom: 0px;
   font-size: 1.5rem;
+  margin-left: 10%;
   @media(max-width: 750px){
     font-size: 120%;
     color: black;
+    margin-left: 3%;
   }
 `;
