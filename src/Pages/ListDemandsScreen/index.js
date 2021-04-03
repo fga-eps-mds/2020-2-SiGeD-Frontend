@@ -10,11 +10,11 @@ import { getDemands } from '../../Services/Axios/demandsServices';
 const ListDemandsScreen = () => {
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
-  const [DemandsList, setDemandsList] = useState([]);
+  const [demands, setDemands] = useState([]);
 
   const getDemandsFromApi = async () => {
     await getDemands('demand')
-      .then((response) => setDemandsList(response.data));
+      .then((response) => setDemands(response.data));
   };
 
   useEffect(() => {
@@ -23,25 +23,26 @@ const ListDemandsScreen = () => {
 
   useEffect(() => {
     setFilterDemands(
-      DemandsList.filter(
-        (Demand) => Demand.name.toLowerCase().includes(word?.toLowerCase()),
-      ),
+      demands.filter((demand) => demand.name.toLowerCase().includes(word?.toLowerCase())),
     );
   }, [word]);
 
   useEffect(() => {
-    setFilterDemands(DemandsList);
-  }, [DemandsList]);
+    setFilterDemands(demands);
+  }, [demands]);
 
-  const ListDemands = () => {
-    if (DemandsList?.length === 0) {
-      return <h1 style={{ fontSize: '1.5rem', font: 'Montserrat' }}>Sem resultados</h1>;
+  const listDemands = () => {
+    if (demands?.length === 0) {
+      return <h1>Sem resultados</h1>;
     }
     if (filterDemands?.length === 0) {
-      return <h1 style={{ fontSize: '1.5rem', font: 'Montserrat' }}>Sem resultados</h1>;
+      return <h1>Sem resultados</h1>;
     }
-    return filterDemands?.map((DemandsListItem, index) => (
-      <DemandData demand={DemandsListItem} key={index} />
+    return filterDemands?.map((demand) => (
+      <DemandData
+        demand={demand}
+        key={demand._id}
+      />
     ));
   };
 
@@ -63,7 +64,7 @@ const ListDemandsScreen = () => {
 
         <ScreenContentBox>
           <ScreenList>
-            {ListDemands()}
+            {listDemands()}
           </ScreenList>
         </ScreenContentBox>
       </ScreenContainer>
