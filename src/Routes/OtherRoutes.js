@@ -10,6 +10,9 @@ import ClientProfileScreen from '../Pages/ClientProfileScreen';
 import UserUpdateScreen from '../Pages/UserUpdateScreen';
 import NavbarComp from '../Components/NavbarComp';
 import ListSectors from '../Pages/ListSectors';
+import CreateDemandsScreen from '../Pages/CreateDemandsScreen';
+import ViewDemandsScreen from '../Pages/ViewDemandsScreen';
+import ListDemandsScreen from '../Pages/ListDemandsScreen';
 
 const OtherRoutes = () => (
   <Router>
@@ -24,6 +27,9 @@ const OtherRoutes = () => (
     <Route path="/clientes" component={ClientListScreen} />
     <Route path="/perfil/:id" component={ClientProfileScreen} />
     <Route path="/setores" component={ListSectors} />
+    <Route path="/demandas/criar" component={CreateDemandsScreen} />
+    <Route path="/visualizar/:id" component={ViewDemandsScreen} />
+    <Route path="/demandas" component={ListDemandsScreen} />
   </Router>
 );
 

@@ -34,7 +34,7 @@ export const Dropdown = styled(Form.Control)`
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
+    background-color: transparent;
     background-clip: padding-box;
     outline: none;
 `;

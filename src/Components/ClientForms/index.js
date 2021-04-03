@@ -27,7 +27,7 @@ const ClientForms = ({
     <Form.Group style={{ width: '45%' }}>
       <Form.Label>Cargo:</Form.Label>
       <div style={{
-        boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
+        boxSizing: 'border-box', borderRadius: '9px', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
       }}
       >
         <Dropdown
@@ -45,7 +45,7 @@ const ClientForms = ({
     <Form.Group style={{ width: '45%' }}>
       <Form.Label>Local:</Form.Label>
       <div style={{
-        boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
+        boxSizing: 'border-box', borderRadius: '9px', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
       }}
       >
         <Dropdown

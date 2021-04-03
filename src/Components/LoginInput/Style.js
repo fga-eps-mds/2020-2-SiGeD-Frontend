@@ -2,7 +2,7 @@ const styles = {
   user: {
     border: '2px solid #1F3541',
     boxSizing: 'border-box',
-    borderRadius: '15px',
+    borderRadius: '10px',
     width: '77%',
     height: '5vh',
     margin: '6px',
@@ -17,7 +17,7 @@ const styles = {
   password: {
     border: '2px solid #1F3541',
     boxSizing: 'border-box',
-    borderRadius: '15px',
+    borderRadius: '10px',
     width: '77%',
     height: '5vh',
     margin: '5px 0px 40px 0px',

@@ -7,6 +7,7 @@ export async function getUser(url) {
     const response = await APIUsers.get(url);
     return response;
   } catch (error) {
+    alert('Não foi possível carregar o usuário, tente novamente mais tarde.');
     console.error(error);
   }
   return false;
