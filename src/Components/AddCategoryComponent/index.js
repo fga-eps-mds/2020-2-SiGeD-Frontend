@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  AddCategory, AddIcon, CategoriesBox, List,
+  AddCategory, AddIcon, CategoriesBox, List, P,
 } from './Style';
 import { getCategories } from '../../Services/Axios/demandsServices';
 import CategoriesToAdd from '../CategoriesToAdd';
@@ -41,12 +41,12 @@ const CategoryDiv = ({ selectedCategories, pushCategory }) => {
   };
   return (
     <AddCategory>
-      <p style={{ marginBottom: '0px' }}>Categorias:</p>
+      <P>Categorias:</P>
       <AddIcon onClick={toggleBox} />
       {(statusBox && true) ? (
         <CategoriesBox>
           <List>
-            <p style={{ color: 'black', marginBottom: '0px' }}>Lista de categorias:</p>
+            <P>Lista de categorias:</P>
             {renderCategories()}
           </List>
         </CategoriesBox>

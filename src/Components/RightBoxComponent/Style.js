@@ -13,6 +13,8 @@ export const RightBox = styled.div`
     color: white;
 
     @media(max-width: 750px){
+        margin-top: -48%;
+        background-color: ${colors.secondary};
         width: 100%;
         height: 80%;
     }
@@ -33,6 +35,10 @@ export const ContentBox = styled.div`
     flex-direction: column;
     margin-top: 20%;
     align-items: center;
+
+    @media(max-width: 750px){
+        display: none;
+    }
 `;
 
 export const NameDiv = styled.div`
@@ -53,6 +59,6 @@ export const PersonIcon = styled(IoPersonCircleOutline)`
     color: white;
 
     @media(max-width: 750px){
-        
+        display: none;
     }
 `;

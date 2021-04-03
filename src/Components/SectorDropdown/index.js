@@ -1,31 +1,51 @@
-import { Form } from 'react-bootstrap';
-import colors from '../../Constants/colors';
-import { Dropdown } from '../UserForms/Style';
+import React from 'react';
+import Select from 'react-select';
 import RightBoxInputs from './Style';
+import { Label } from '../UserDropdown/Style';
 
-const SectorDropdown = ({ sector, setSector }) => (
+const SectorDropdown = () => {
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ];
 
-  <RightBoxInputs>
-    <Form.Group style={{ width: '80%', marginTop: '5%', marginRight: '10%' }}>
-      <Form.Label><p style={{ fontSize: '1.5rem' }}>Setor:</p></Form.Label>
-      <div style={{
-        boxSizing: 'border-box', borderRadius: '10px', border: '1px solid #ffffff', justifyContent: 'flex-start', display: 'flex',
-      }}
-      >
-        <Dropdown
-          textcolor="white"
-          as="select"
-          style={{ color: 'white' }}
-          value={sector}
-          onChange={(Option) => setSector(Option.target.value)}
-        >
-          <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Administrador(a)</option>
-          <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Profissional</option>
-          <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Recepcionista</option>
-        </Dropdown>
-      </div>
-    </Form.Group>
-  </RightBoxInputs>
-);
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px dotted pink',
+      color: state.isSelected ? 'black' : 'black',
+      padding: '5%',
+    }),
+    control: () => ({
+      color: 'white',
+      display: 'flex',
+      borderRadius: '10px',
+      border: '1px solid #FFFFFF',
+      width: '25vw',
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+      const color = 'white';
+      return {
+        ...provided, opacity, transition, color,
+      };
+    },
+  };
+
+  return (
+    <RightBoxInputs>
+      <Label>
+        Setor:
+      </Label>
+      <Select
+        placeholder="Setor"
+        styles={customStyles}
+        options={options}
+      />
+    </RightBoxInputs>
+  );
+};
 
 export default SectorDropdown;

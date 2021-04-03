@@ -10,7 +10,6 @@ export const UserSearchDiv = styled.div`
   justify-content: center;
   align-items: center;
   margin: 5%;
-
   @media(max-width: 750px){
 
   }
@@ -21,4 +20,8 @@ export const Label = styled.p`
     font-size: 1.5rem;
     align-self: flex-start;
 
+    @media(max-width: 750px){
+      font-size: 120%;
+      color: black;
+    }
 `;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Main from './Style';
+import { Main, Footer } from './Style';
 import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
 import RightBoxComponent from '../../Components/RightBoxComponent';
@@ -9,6 +9,7 @@ import DemandsDescription from '../../Components/DemandsDescription';
 import SelectedCategories from '../../Components/SelectedCategories';
 import UserDropdown from '../../Components/UserDropdown';
 import { getClients } from '../../Services/Axios/clientServices';
+import TinyButton from '../../Components/TinyButton';
 
 const CreateDemandsScreen = () => {
   const [name, setName] = useState('');
@@ -108,6 +109,10 @@ const CreateDemandsScreen = () => {
           selectedCategories={selectedCategories}
         />
       </RightBoxComponent>
+      <Footer>
+        <TinyButton type="secondary" title="Cancelar" click={cancel} />
+        <TinyButton type="primary" title="Cadastrar" click={submit} />
+      </Footer>
     </Main>
   );
 };
