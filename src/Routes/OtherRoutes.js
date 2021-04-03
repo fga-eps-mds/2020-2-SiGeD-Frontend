@@ -30,7 +30,6 @@ const OtherRoutes = () => (
     <Route path="/demandas/criar" component={CreateDemandsScreen} />
     <Route path="/visualizar/:id" component={ViewDemandsScreen} />
     <Route path="/demandas" component={ListDemandsScreen} />
-    <Route path="/demandas/criar" component={CreateDemandScreen} />
   </Router>
 );
 

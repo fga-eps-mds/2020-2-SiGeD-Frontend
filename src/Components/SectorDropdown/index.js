@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import RightBoxInputs from './Style';
-import { Label } from '../UserDropdown/Style';  
+import { Label } from '../UserDropdown/Style';
 
-const SectorDropdown = () => {
+const SectorDropdown = ({ setSector }) => {
+  const [id, setId] = useState('');
   const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
+    { value: 'DPSS', label: 'DPSS' },
+    { value: 'Clinica', label: 'Clinica' },
+    { value: 'Especial', label: 'Especial' },
   ];
+
+  useEffect(() => {
+    setSector(id.label);
+  }, [id]);
 
   const customStyles = {
     option: (provided, state) => ({
@@ -43,6 +48,7 @@ const SectorDropdown = () => {
         placeholder="Setor"
         styles={customStyles}
         options={options}
+        onChange={(value) => setId(value)}
       />
     </RightBoxInputs>
   );
