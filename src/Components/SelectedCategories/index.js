@@ -9,11 +9,13 @@ const SelectedCategories = ({ selectedCategories }) => {
       return <p style={{ color: 'white', marginLeft: '10%' }}>Ainda não há categorias selecionadas...</p>;
     }
     return selectedCategories?.map((selectedCategory) => (
-      <Tag
-        style={{ backgroundColor: selectedCategory.color }}
-      >
-        {selectedCategory.name}
-      </Tag>
+      <>
+        <Tag
+          style={{ backgroundColor: selectedCategory.color }}
+        >
+          {selectedCategory.name}
+        </Tag>
+      </>
     ));
   };
 

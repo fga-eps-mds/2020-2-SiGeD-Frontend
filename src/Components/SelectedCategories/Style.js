@@ -10,9 +10,10 @@ export const SelectedBox = styled.div`
   justify-content: flex-start;
   flex-wrap: wrap;
   overflow-y: auto;
+  margin-left: 8%;
 
   @media(max-width: 750px){
-
+    flex: auto;
   }
 `;
 
@@ -29,4 +30,7 @@ export const Tag = styled.div`
   margin-left: 5%;
   margin-bottom: 5%;
 
+  @media(max-width: 750px){
+    width 120px;
+  }
 `;

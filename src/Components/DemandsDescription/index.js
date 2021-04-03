@@ -6,37 +6,39 @@ import {
 } from './Style';
 
 const DemandsDescription = ({
-  name, setName, process, setProcess, description, setDescription, submit, cancel,
+  name, setName, process, setProcess, description, setDescription, submit, cancel, centerDiv,
 }) => (
 
   <FieldsDiv>
-    <Title>
-      Nova Demanda
-    </Title>
-    <InputsDiv>
-      <InputDiv width="60vw">
+    <centerDiv>
+      <Title>
+        Nova Demanda
+      </Title>
+      <InputsDiv>
+        <InputDiv width="60vw">
+          <P>
+            Nome:
+          </P>
+          <InputField placeholder="nome" value={name} onChange={(e) => setName(e.target.value)} />
+        </InputDiv>
+        <InputDiv width="30vw">
+          <P>
+            Processo:
+          </P>
+          <InputField placeholder="Nº do processo" value={process} onChange={(e) => setProcess(e.target.value)} />
+        </InputDiv>
+      </InputsDiv>
+      <DescriptionDiv>
         <P>
-          Nome:
+          Descrição:
         </P>
-        <InputField placeholder="nome" value={name} onChange={(e) => setName(e.target.value)} />
-      </InputDiv>
-      <InputDiv width="30vw">
-        <P>
-          Preocesso:
-        </P>
-        <InputField placeholder="Nº do processo" value={process} onChange={(e) => setProcess(e.target.value)} />
-      </InputDiv>
-    </InputsDiv>
-    <DescriptionDiv>
-      <P>
-        Descrição:
-      </P>
-      <DescriptionField rows="5" cols="30" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
-    </DescriptionDiv>
-    <Footer>
-      <TinyButton type="secondary" title="Cancelar" click={cancel} />
-      <TinyButton type="primary" title="Cadastrar" click={submit} />
-    </Footer>
+        <DescriptionField rows="5" cols="30" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
+      </DescriptionDiv>
+      <Footer>
+        <TinyButton type="secondary" title="Cancelar" click={cancel} />
+        <TinyButton type="primary" title="Cadastrar" click={submit} />
+      </Footer>
+    </centerDiv>
   </FieldsDiv>
 );
 

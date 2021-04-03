@@ -1,0 +1,19 @@
+.css-b8ldur-Input {
+    color: white !important;
+}
+
+.css-1okebmr-indicatorSeparator {
+    display: none;
+}
+
+@media(max-width: 750px){
+    .css-1hfqp3c-Control{
+    color: black !important;
+    border: 2px solid #000000 !important;
+    width: 80vw !important;
+    }
+
+    .css-alp1fr-singleValue{
+    color: #000000 !important; 
+    }
+}
