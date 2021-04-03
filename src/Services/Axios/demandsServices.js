@@ -66,7 +66,6 @@ export async function createDemand(
   name, description, process, categoryID, sectorID, userID, clientID,
 ) {
   try {
-    console.log(name, description, process, categoryID, userID, sectorID, clientID, 'axios teste');
     const response = await APIDemands.post('demand/create', {
       name,
       description,

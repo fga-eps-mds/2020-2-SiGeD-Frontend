@@ -49,7 +49,7 @@ export const CategoriesBox = styled.div`
 export const List = styled.div`
   height: 100%;
   padding: 5px;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,4 +71,20 @@ export const P = styled.p`
     color: black;
     margin-left: 3%;
   }
+`;
+
+export const P2 = styled.p`
+  color: #5289B5;
+  margin-bottom: 0px;
+  font-size: 100%;
+  margin-left: 10%;
+`;
+
+export const CreateCategory = styled.div`
+  margin-right: 10%;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
