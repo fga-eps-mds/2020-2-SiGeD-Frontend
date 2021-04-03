@@ -8,13 +8,12 @@ export const Main = styled.div`
     background-color: ${colors.secondary};
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    overflow:hidden;
+    overflow: hidden;
 
     @media(max-width: 750px){
         flex-direction: column;
-        margin-top: 8vh;
+        overflow: auto;
+
     }
 
 `;
@@ -30,20 +29,21 @@ export const Label = styled.p`
 export const SearchDiv = styled.div`
     display: contents;
     padding: 5%;
-    heigth: 20%;
+    height: 20%;
 `;
 
 export const Footer = styled.div`
   display: none;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 4vh;
+  height: 0%;
   width: 100%;
 
   @media(max-width: 750px) {
-    margin-top: -15%;
+    margin-top: 2%;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    height: 10%;
   }
 `;

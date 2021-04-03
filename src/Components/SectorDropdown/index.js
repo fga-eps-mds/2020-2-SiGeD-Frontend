@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import RightBoxInputs from './Style';
-import { Label } from '../UserDropdown/Style';
+import { Label } from '../UserDropdown/Style';  
 
 const SectorDropdown = () => {
   const options = [

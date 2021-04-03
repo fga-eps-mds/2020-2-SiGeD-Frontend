@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { UserSearchDiv, Label } from './Style';
 import './input.css';
 
-const UserDropdown = ({ clients, setClientID }) => {
+const UserDropdown = ({ clients, setClientID, setClientName }) => {
+  const [id, setId] = useState('');
   const options = clients?.map((client) => ({
     label: client.name,
     value: client._id,
   }));
+
+  useEffect(() => {
+    setClientID(id.value);
+    setClientName(id.label);
+  }, [id]);
 
   const customStyles = {
     option: (provided, state) => ({
@@ -42,7 +48,7 @@ const UserDropdown = ({ clients, setClientID }) => {
         placeholder="Cliente"
         styles={customStyles}
         options={options}
-        onChange={(value) => setClientID(value)}
+        onChange={(e) => setId(e)}
       />
     </UserSearchDiv>
   );

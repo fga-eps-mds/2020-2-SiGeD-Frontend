@@ -13,7 +13,6 @@ export const RightBox = styled.div`
     color: white;
 
     @media(max-width: 750px){
-        margin-top: -48%;
         background-color: ${colors.secondary};
         width: 100%;
         height: 80%;
@@ -48,17 +47,33 @@ export const NameDiv = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
 
 
 `;
 
 export const PersonIcon = styled(IoPersonCircleOutline)`
     width: 30%;
-    height: 60%;
+    height: 100%;
     color: white;
 
     @media(max-width: 750px){
         display: none;
     }
+`;
+
+export const Name = styled.p` 
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 25px;
+    width: max-content;
+    margin-right: 5%;
+`;
+
+export const CenterName = styled.div` 
+    width: 70%;
+    height: 100%;
+    margin-left: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
