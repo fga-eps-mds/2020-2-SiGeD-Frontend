@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { BsPencil } from 'react-icons/bs';
 import {
-  AddCategory, AddIcon, CategoriesBox, List, P,
+  AddCategory, AddIcon, CategoriesBox, List, P, CreateCategory, P2,
 } from './Style';
 import { getCategories } from '../../Services/Axios/demandsServices';
 import CategoriesToAdd from '../CategoriesToAdd';
+import ModalComp from '../ModalComp';
 
 const CategoryDiv = ({ selectedCategories, pushCategory }) => {
   const [statusBox, setStatusBox] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [modalState, setModalState] = useState(false);
+
+  const toggleModal = () => {
+    setModalState(!modalState);
+  };
 
   const listCategories = async () => {
     await getCategories('category')
@@ -19,8 +26,7 @@ const CategoryDiv = ({ selectedCategories, pushCategory }) => {
 
   useEffect(() => {
     listCategories();
-    console.log(categories);
-  }, [statusBox]);
+  }, [statusBox, modalState]);
 
   const renderCategories = () => {
     if (categories?.length === 0) {
@@ -46,11 +52,15 @@ const CategoryDiv = ({ selectedCategories, pushCategory }) => {
       {(statusBox && true) ? (
         <CategoriesBox>
           <List>
-            <P>Lista de categorias:</P>
+            <CreateCategory>
+              <P2>Criar nova categoria</P2>
+              <BsPencil color="#5289B5" onClick={toggleModal} />
+            </CreateCategory>
             {renderCategories()}
           </List>
         </CategoriesBox>
       ) : null}
+      { modalState ? <ModalComp show={modalState} type="Nova " idName="" idDescription="" idColor="#000000" getCategories={getCategories} handleClose={toggleModal} /> : null }
     </AddCategory>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   SelectedBox, Tag, Word,
 } from './Style';
@@ -11,15 +11,12 @@ const SelectedCategories = ({ selectedCategories }) => {
     return selectedCategories?.map((selectedCategory) => (
       <Tag
         style={{ backgroundColor: selectedCategory.color }}
+        key={selectedCategory._id}
       >
         {selectedCategory.name}
       </Tag>
     ));
   };
-
-  useEffect(() => {
-    console.log(selectedCategories);
-  }, [selectedCategories]);
 
   return (
     <SelectedBox>

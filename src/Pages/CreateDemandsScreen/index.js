@@ -35,25 +35,29 @@ const CreateDemandsScreen = () => {
   }, []);
 
   useEffect(() => {
-    console.log(clientID, 'Ids dos clientes');
-  }, [clientID]);
-
-  useEffect(() => {
     const IDs = selectedCategories?.map((selectedCategory) => ({
       id: selectedCategory._id,
     }));
-    console.log(IDs, 'Ids das Categorias');
-
     setCategoriesIDs(IDs);
   }, [selectedCategories]);
 
   const pushCategory = (category) => {
-    setSelectedCategories([...selectedCategories, category]);
-    console.log(selectedCategories, 'categorias selecionadas');
+    let alreadySelected = false;
+    for (let c = 0; c < selectedCategories.length; c += 1) {
+      if (category._id === selectedCategories[c]._id) {
+        alreadySelected = true;
+      }
+    }
+    if (!alreadySelected) {
+      setSelectedCategories([...selectedCategories, category]);
+    } else {
+      alert('A categoria escolhida ja foi selecionada');
+    }
   };
 
   useEffect(() => {
-    if (!name || !description || !validateProcess(process)) {
+    if (!name || !description || !validateProcess(process)
+    || !sectorID || !clientID || categoriesIDs.length === 0) {
       setValid(false);
     } else {
       setValid(true);
@@ -62,17 +66,22 @@ const CreateDemandsScreen = () => {
 
   useEffect(() => {
     setCategoryID(categoriesIDs[0]?.id);
-    console.log(CategoryID, 'id da categoria a ser enviada');
   }, [categoriesIDs]);
 
   const submit = () => {
-    console.log(name, description, process, CategoryID, userID, sectorID, clientID);
     if (valid) {
       createDemand(name, description, process, CategoryID, sectorID, userID, clientID);
       alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
       setName('');
+      setSelectedCategories([]);
+      setSectorID('');
+      setClientID('');
+      setCategoryID('');
+      setCategoriesIDs([]);
+    } else {
+      alert('Preencha todos os campos antes de cadastrar uma nova demanda');
     }
   };
 
@@ -82,6 +91,9 @@ const CreateDemandsScreen = () => {
     setDescription('');
     setSelectedCategories([]);
     setClientID('');
+    setSectorID('');
+    setCategoryID('');
+    setCategoriesIDs([]);
   };
 
   return (
