@@ -3,7 +3,7 @@ import { BsPencil } from 'react-icons/bs';
 import {
   AddCategory, AddIcon, CategoriesBox, List, P, CreateCategory, P2,
 } from './Style';
-import { getCategories } from '../../Services/Axios/demandsServices';
+import { getCategories, createCategory } from '../../Services/Axios/demandsServices';
 import CategoriesToAdd from '../CategoriesToAdd';
 import ModalComp from '../ModalComp';
 
@@ -60,7 +60,7 @@ const CategoryDiv = ({ selectedCategories, pushCategory }) => {
           </List>
         </CategoriesBox>
       ) : null}
-      { modalState ? <ModalComp show={modalState} type="Nova " idName="" idDescription="" idColor="#000000" getCategories={getCategories} handleClose={toggleModal} /> : null }
+      { modalState ? <ModalComp show={modalState} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null }
     </AddCategory>
   );
 };

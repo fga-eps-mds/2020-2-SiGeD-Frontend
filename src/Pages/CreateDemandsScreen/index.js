@@ -10,8 +10,12 @@ import SelectedCategories from '../../Components/SelectedCategories';
 import UserDropdown from '../../Components/UserDropdown';
 import { getClients } from '../../Services/Axios/clientServices';
 import TinyButton from '../../Components/TinyButton';
+import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 
 const CreateDemandsScreen = () => {
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [process, setProcess] = useState('');
@@ -62,10 +66,13 @@ const CreateDemandsScreen = () => {
     } else {
       setValid(true);
     }
-  }, [name, description, process]);
+  }, [name, description, process, sectorID, selectedCategories, clientID]);
 
   useEffect(() => {
     setCategoryID(categoriesIDs[0]?.id);
+    while (categoriesIDs === undefined) {
+      setCategoryID(categoriesIDs[0]?.id);
+    }
   }, [categoriesIDs]);
 
   const submit = () => {
@@ -105,7 +112,7 @@ const CreateDemandsScreen = () => {
         setProcess={setProcess}
         description={description}
         setDescription={setDescription}
-        submit={submit}
+        submit={handleShow}
         cancel={cancel}
       />
       {/* Começa aki */}
@@ -131,8 +138,13 @@ const CreateDemandsScreen = () => {
       </RightBoxComponent>
       <Footer>
         <TinyButton type="secondary" title="Cancelar" click={cancel} />
-        <TinyButton type="primary" title="Cadastrar" click={submit} />
+        <TinyButton type="primary" title="Cadastrar" click={handleShow} />
       </Footer>
+      <ConfirmDemandModal
+        show={show}
+        handleClose={handleClose}
+        submit={submit}
+      />
     </Main>
   );
 };
