@@ -12,13 +12,14 @@ import { getClients } from '../../Services/Axios/clientServices';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 
-const CreateDemandsScreen = () => {
+const UpdateDemandsScreen = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [process, setProcess] = useState('');
+  const [valid, setValid] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [clients, setClients] = useState([]);
   const userID = '605cfd4dfdcb2a006d7b0cb3';
@@ -26,7 +27,7 @@ const CreateDemandsScreen = () => {
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientID, setClientID] = useState('');
   const [clientName, setClientName] = useState('');
-  const [categoryID, setCategoryID] = useState(''); // temporário
+  const [CategoryID, setCategoryID] = useState(''); // temporário
 
   const getClientsFromApi = async () => {
     await getClients('clients')
@@ -58,24 +59,22 @@ const CreateDemandsScreen = () => {
     }
   };
 
-  const validateInputs = () => {
+  useEffect(() => {
     if (!name || !description || !validateProcess(process)
-    || !sectorID || !clientID || categoryID === undefined) {
-      return false;
+    || !sectorID || !clientID || categoriesIDs.length === 0) {
+      setValid(false);
+    } else {
+      setValid(true);
     }
-    return true;
-  };
+  }, [name, description, process, sectorID, selectedCategories, clientID]);
 
   useEffect(() => {
-    console.log(categoriesIDs[0]?.id, 'teste');
     setCategoryID(categoriesIDs[0]?.id);
-    console.log(categoryID);
   }, [categoriesIDs]);
 
   const submit = () => {
-    console.log(name, description, process, categoryID, sectorID, userID, clientID, 'submit');
-    if (validateInputs()) {
-      createDemand(name, description, process, categoryID, sectorID, userID, clientID);
+    if (valid) {
+      createDemand(name, description, process, CategoryID, sectorID, userID, clientID);
       alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
@@ -147,4 +146,4 @@ const CreateDemandsScreen = () => {
   );
 };
 
-export default CreateDemandsScreen;
+export default UpdateDemandsScreen;

@@ -14,13 +14,11 @@ const DemandData = ({ demand }) => {
   const [category, setCategory] = useState([]);
 
   const getClientApi = async () => {
-    console.log(demand.clientID, 'yukio client');
     await getClients(`/clients/${demand.clientID}`)
       .then((response) => setClient(response.data));
   };
 
   const getCategoryApi = async () => {
-    console.log(demand.categoryID, 'yukio demanda');
     await getCategories(`/category/${demand.categoryID}`)
       .then((response) => setCategory(response.data));
   };
