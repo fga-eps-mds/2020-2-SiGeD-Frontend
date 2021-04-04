@@ -70,9 +70,6 @@ const CreateDemandsScreen = () => {
 
   useEffect(() => {
     setCategoryID(categoriesIDs[0]?.id);
-    while (categoriesIDs === undefined) {
-      setCategoryID(categoriesIDs[0]?.id);
-    }
   }, [categoriesIDs]);
 
   const submit = () => {

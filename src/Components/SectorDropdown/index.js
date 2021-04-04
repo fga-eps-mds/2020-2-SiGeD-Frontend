@@ -16,10 +16,10 @@ const SectorDropdown = ({ setSector }) => {
   }, [id]);
 
   const customStyles = {
-    option: (provided, state) => ({
+    option: (provided) => ({
       ...provided,
       borderBottom: '1px dotted pink',
-      color: state.isSelected ? 'black' : 'black',
+      color: 'black',
       padding: '5%',
     }),
     control: () => ({
