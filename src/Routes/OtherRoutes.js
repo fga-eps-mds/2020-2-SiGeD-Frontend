@@ -13,23 +13,25 @@ import ListSectors from '../Pages/ListSectors';
 import CreateDemandsScreen from '../Pages/CreateDemandsScreen';
 import ViewDemandsScreen from '../Pages/ViewDemandsScreen';
 import ListDemandsScreen from '../Pages/ListDemandsScreen';
+import UpdateDemandsScreen from '../Pages/UpdateDemandScreen';
 
 const OtherRoutes = () => (
   <Router>
     <NavbarComp />
     <Route path="/" exact component={ClientListScreen} />
-    <Route path="/cadastro" component={RegisterScreen} />
-    <Route path="/usuarios/editar/:id" component={UserUpdateScreen} />
-    <Route path="/usuarios" component={ListScreen} />
-    <Route path="/cliente" component={ClientRegisterScreen} />
-    <Route path="/categorias" component={ListCategories} />
-    <Route path="/editar/:id" component={ClientUpdateScreen} />
-    <Route path="/clientes" component={ClientListScreen} />
-    <Route path="/perfil/:id" component={ClientProfileScreen} />
-    <Route path="/setores" component={ListSectors} />
-    <Route path="/demanda" component={CreateDemandsScreen} />
-    <Route path="/visualizar/:id" component={ViewDemandsScreen} />
-    <Route path="/demandas" component={ListDemandsScreen} />
+    <Route path="/cadastro" exact component={RegisterScreen} />
+    <Route path="/usuarios/editar/:id" exact component={UserUpdateScreen} />
+    <Route path="/usuarios" exact component={ListScreen} />
+    <Route path="/cliente" exact component={ClientRegisterScreen} />
+    <Route path="/categorias" exact component={ListCategories} />
+    <Route path="/editar/:id" exact component={ClientUpdateScreen} />
+    <Route path="/clientes" exact component={ClientListScreen} />
+    <Route path="/perfil/:id" exact component={ClientProfileScreen} />
+    <Route path="/setores" exact component={ListSectors} />
+    <Route path="/demanda" exact component={CreateDemandsScreen} />
+    <Route path="/visualizar/:id" exact component={ViewDemandsScreen} />
+    <Route path="/demandas" exact component={ListDemandsScreen} />
+    <Route path="/demandas/editar/:id" exact component={UpdateDemandsScreen} />
   </Router>
 );
 
