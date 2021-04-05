@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Main, Footer } from './Style';
 import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
 import RightBoxComponent from '../../Components/RightBoxComponent';
-import { createDemand } from '../../Services/Axios/demandsServices';
+import { updateDemand, getDemands } from '../../Services/Axios/demandsServices';
+import { getClients } from '../../Services/Axios/clientServices';
 import { validateProcess } from '../../Utils/validations';
 import DemandsDescription from '../../Components/DemandsDescription';
 import SelectedCategories from '../../Components/SelectedCategories';
-import UserDropdown from '../../Components/UserDropdown';
-import { getClients } from '../../Services/Axios/clientServices';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 
@@ -21,21 +21,43 @@ const UpdateDemandsScreen = () => {
   const [process, setProcess] = useState('');
   const [valid, setValid] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [clients, setClients] = useState([]);
-  const userID = '605cfd4dfdcb2a006d7b0cb3';
-  const [sectorID, setSectorID] = useState('');
-  const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientID, setClientID] = useState('');
+  const [userID, setUserID] = useState('');
+  const [sectorID, setSectorID] = useState('');
+  const [categoriesIDs, setCategoriesIDs] = useState(['']);
   const [clientName, setClientName] = useState('');
   const [CategoryID, setCategoryID] = useState(''); // temporário
+  const { id } = useParams();
 
-  const getClientsFromApi = async () => {
-    await getClients('clients')
-      .then((response) => setClients(response.data));
+  const getClientFromApi = async (idd) => {
+    console.log(idd, 'teste');
+    getClients(`clients/${idd}`)
+      .then((responsee) => {
+        const { client } = responsee;
+        console.log(client, 'arrumar');
+        setClientName(client.name);
+      });
+  };
+
+  const getDemandsFromApi = async () => {
+    await getDemands(`demand/${id}`)
+      .then((response) => {
+        const { data } = response;
+        setName(data.name);
+        setDescription(data.description);
+        setProcess(data.process);
+        setSectorID(data.sectorID);
+        setCategoriesIDs(data.categoryID);
+        setCategoryID(data.categoryID);
+        setClientID(data.clientID);
+        setUserID(data.userID);
+        getClientFromApi(data.clientID);
+        // setClientName(data.userID.name);
+      });
   };
 
   useEffect(() => {
-    getClientsFromApi();
+    getDemandsFromApi();
   }, []);
 
   useEffect(() => {
@@ -61,7 +83,7 @@ const UpdateDemandsScreen = () => {
 
   useEffect(() => {
     if (!name || !description || !validateProcess(process)
-    || !sectorID || !clientID || categoriesIDs.length === 0) {
+      || !sectorID || !clientID || categoriesIDs.length === 0) {
       setValid(false);
     } else {
       setValid(true);
@@ -74,14 +96,15 @@ const UpdateDemandsScreen = () => {
 
   const submit = () => {
     if (valid) {
-      createDemand(name, description, process, CategoryID, sectorID, userID, clientID);
+      updateDemand(
+        name, description, process, CategoryID, sectorID, userID, clientID, id,
+      );
       alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
       setName('');
       setSelectedCategories([]);
       setSectorID('');
-      setClientID('');
       setCategoryID('');
       setCategoriesIDs([]);
     } else {
@@ -94,7 +117,6 @@ const UpdateDemandsScreen = () => {
     setProcess('');
     setDescription('');
     setSelectedCategories([]);
-    setClientID('');
     setSectorID('');
     setCategoryID('');
     setCategoriesIDs([]);
@@ -116,11 +138,7 @@ const UpdateDemandsScreen = () => {
       <RightBoxComponent
         clientName={clientName}
       >
-        <UserDropdown
-          clients={clients}
-          setClientID={setClientID}
-          setClientName={setClientName}
-        />
+        <div display="none" />
         <SectorDropdown
           setSector={setSectorID}
           sector={sectorID}
