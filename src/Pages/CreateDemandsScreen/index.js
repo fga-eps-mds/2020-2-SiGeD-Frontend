@@ -67,7 +67,7 @@ const CreateDemandsScreen = () => {
   };
 
   useEffect(() => {
-    console.log(categoriesIDs[0]?.id, 'teste');
+    console.log(categoriesIDs, 'teste');
     setCategoryID(categoriesIDs[0]?.id);
     console.log(categoryID);
   }, [categoriesIDs]);

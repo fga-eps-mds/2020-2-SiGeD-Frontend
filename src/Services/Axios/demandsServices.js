@@ -96,6 +96,7 @@ export async function updateDemand(
       sectorID,
       userID,
       clientID,
+
     });
     if (response.data.status) {
       alert('Preencha todos os campos para poder editar uma categoria');
