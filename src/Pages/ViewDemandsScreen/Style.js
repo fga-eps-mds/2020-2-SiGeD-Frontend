@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
     height: 100vh;
-    width: 100%
-    background-color: red;
+    width: 100%;
     display: flex;
-    overflow: hidden;
+    overflow: auto;
     @media(max-width: 750px){
         overflow: auto;
         flex-direction: column;

@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
+import Timeline from '@material-ui/lab/Timeline';
+import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
+import TimelineItem from '@material-ui/lab/TimelineItem';
+import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
+import TimelineConnector from '@material-ui/lab/TimelineConnector';
+import TimelineContent from '@material-ui/lab/TimelineContent';
+import TimelineDot from '@material-ui/lab/TimelineDot';
 import { getDemands, getCategories } from '../../Services/Axios/demandsServices';
 import ViewDemandSidebar from '../../Components/ViewDemandSidebar';
 import ViewDemandCard from '../../Components/ViewDemandCard';
+import UpdateCard from '../../Components/UpdateCard';
 import TinyButton from '../../Components/TinyButton';
 import CloseDemandModal from '../../Components/CloseDemandModal';
 import {
@@ -52,6 +61,56 @@ const ViewDemandsScreen = () => {
     }
   }, [demand]);
 
+  const exibeAtualizacoes = () => {
+    let list = demand.sectorHistory;
+    list = list.concat(demand.updateList);
+    list.sort((a, b) => {
+      if (a.updatedAt > b.updatedAt) {
+        return 1;
+      }
+      if (a.updatedAt < b.updatedAt) {
+        return -1;
+      }
+      return 0;
+    });
+    return list.map((valor) => {
+      if (valor.userName) {
+        // atualizacao
+        return (
+          <TimelineItem style={{ marginLeft: '8%' }}>
+            <TimelineOppositeContent style={{ display: 'none' }} />
+            <TimelineSeparator>
+              <TimelineDot style={{ backgroundColor: colors.primary }} />
+              <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
+            </TimelineSeparator>
+            <TimelineContent>
+              <UpdateCard demand={valor} />
+            </TimelineContent>
+          </TimelineItem>
+        );
+      }
+      // setor
+      return (
+        <TimelineItem style={{ marginLeft: '8%' }}>
+          <TimelineOppositeContent style={{ display: 'none' }} />
+          <TimelineSeparator>
+            <TimelineDot style={{ backgroundColor: colors.primary }} />
+            <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
+          </TimelineSeparator>
+          <TimelineContent>
+            <div style={{ display: 'flex', width: 'max-content' }}>
+              <p>
+                Setor:
+                {valor.sectorID}
+              </p>
+              <p style={{ marginLeft: '50%' }}>{ format(new Date(valor.createdAt), 'dd/MM/yyyy') }</p>
+            </div>
+          </TimelineContent>
+        </TimelineItem>
+      );
+    });
+  };
+
   return (
     <>
       { demand && client && user && category
@@ -67,6 +126,11 @@ const ViewDemandsScreen = () => {
             <ViewDemandCard
               demand={demand}
             />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Timeline>
+              { exibeAtualizacoes() }
+            </Timeline>
           </div>
           <ButtonDiv>
             <TinyButton
