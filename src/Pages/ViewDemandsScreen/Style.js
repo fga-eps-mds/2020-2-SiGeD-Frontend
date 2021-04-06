@@ -60,3 +60,12 @@ export const MobileTimeline = styled.div`
         width: 100%;
     }
 `;
+
+export const ForwardedDemandDiv = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    @media(max-width: 750px){
+        flex-direction: column;
+    }
+`;

@@ -6,28 +6,35 @@ import colors from '../../Constants/colors';
 import {
   Card, TopSide, DemandName, EditIcon,
   DemandDescription, BottomSide, CreatedAt, UserIcon,
+  LockIcon, TrashIcon, IconsContainer,
 } from './Style';
 
 const UpdateCard = ({ demand }) => (
   <Card>
     <TopSide>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', width: '70%' }}>
         <UserIcon />
         <DemandName>
           {demand.userName}
         </DemandName>
       </div>
-      <EditIcon>
-        <Link
-          to="/"
-          id={demand._id}
-          style={{ color: colors.primary, textDecorationLine: 'none' }}
-        >
+      <IconsContainer>
+        <LockIcon>
           <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
-          <BsPencil style={{ marginRight: '10px' }} />
+        </LockIcon>
+        <EditIcon>
+          <Link
+            to="/"
+            id={demand._id}
+            style={{ color: colors.primary, textDecorationLine: 'none' }}
+          >
+            <BsPencil style={{ marginRight: '10px' }} />
+          </Link>
+        </EditIcon>
+        <TrashIcon>
           <BiTrash style={{ marginRight: '5px', color: 'red' }} />
-        </Link>
-      </EditIcon>
+        </TrashIcon>
+      </IconsContainer>
     </TopSide>
     <BottomSide>
       <DemandDescription>

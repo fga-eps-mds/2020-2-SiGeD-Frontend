@@ -27,7 +27,7 @@ const NewUpdateCard = ({
           rowsMax={4}
           rowsMin={3}
           aria-label="maximum height"
-          placeholder=" Insira atualização de demanda."
+          placeholder=" Insira uma atualização de demanda."
           defaultValue=""
           onChange={(e) => setDescription(e.target.value)}
           value={description}

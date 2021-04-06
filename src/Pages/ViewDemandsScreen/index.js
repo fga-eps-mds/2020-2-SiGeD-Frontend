@@ -6,6 +6,7 @@ import {
   TimelineConnector, TimelineContent, TimelineDot,
 } from '@material-ui/lab';
 import { getDemands, getCategories } from '../../Services/Axios/demandsServices';
+import { getSectors } from '../../Services/Axios/sectorServices';
 import ViewDemandSidebar from '../../Components/ViewDemandSidebar';
 import ViewDemandCard from '../../Components/ViewDemandCard';
 import UpdateCard from '../../Components/UpdateCard';
@@ -14,6 +15,7 @@ import TinyButton from '../../Components/TinyButton';
 import CloseDemandModal from '../../Components/CloseDemandModal';
 import {
   Main, CardsContainer, MobileButtonDiv, ButtonDiv, TimelineDiv, MobileTimeline,
+  ForwardedDemandDiv,
 } from './Style';
 import { getClients } from '../../Services/Axios/clientServices';
 import { getUser } from '../../Services/Axios/userServices';
@@ -27,6 +29,8 @@ const ViewDemandsScreen = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const [sectorsResponse, setSectorsResponse] = useState([]);
+  const [flag, setFlag] = useState(false);
   const { id } = useParams();
 
   const getDemandApi = async () => {
@@ -49,11 +53,21 @@ const ViewDemandsScreen = () => {
       .then((response) => setCategory(response.data));
   };
 
+  const getSectorsApi = async () => {
+    await getSectors()
+      .then((response) => setSectorsResponse(response.data))
+      .catch((err) => {
+        console.error(`An unexpected error ocourred while getting sectors. ${err}`);
+      });
+  };
+
   useEffect(() => {
-    if (demand) {
+    if (demand && !flag) {
       getClientApi();
       getUserApi();
       getCategoryApi();
+      getSectorsApi();
+      setFlag(true);
     } else {
       getDemandApi();
     }
@@ -94,14 +108,14 @@ const ViewDemandsScreen = () => {
             <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
           </TimelineSeparator>
           <TimelineContent>
-            <div style={{ display: 'flex', width: 'max-content' }}>
-              <p style={{ whiteSpace: 'nowrap' }}>
+            <ForwardedDemandDiv>
+              <p>
                 Setor:
                 {' '}
                 {value.sectorID}
               </p>
-              <p style={{ marginLeft: '50%' }}>{ format(new Date(value.createdAt), 'dd/MM/yyyy') }</p>
-            </div>
+              <p style={{ marginRight: '12%' }}>{ format(new Date(value.createdAt), 'dd/MM/yyyy') }</p>
+            </ForwardedDemandDiv>
           </TimelineContent>
         </TimelineItem>
       );
@@ -166,13 +180,14 @@ const ViewDemandsScreen = () => {
           demand={demand}
           getDemandApi={getDemandApi}
           showUpdates={showUpdates}
+          sectorsResponse={sectorsResponse}
         />
         <MobileTimeline>
           <Timeline>
             { showUpdates() }
           </Timeline>
           <div style={{ width: '90%', marginLeft: '5%' }}>
-            <NewUpdateCard demand={demand} userName={user.name} />
+            <NewUpdateCard demand={demand} userName={user.name} getDemandApi={getDemandApi} />
           </div>
         </MobileTimeline>
         <MobileButtonDiv>

@@ -118,7 +118,6 @@ export async function updateDemandSector(sectorID, id) {
 }
 
 export async function forwardDemand(sectorID, id) {
-  console.log(sectorID);
   try {
     const response = await APIDemands.put(`demand/forward/${id}`, {
       sectorID,

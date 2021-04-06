@@ -34,9 +34,7 @@ export const BottomSide = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
     }
-    
 `;
 
 export const TextareaComp = styled(TextareaAutosize)`

@@ -26,12 +26,13 @@ export const TopSide = styled.div`
 
 export const DemandName = styled.div`
     height: max-content;
-    white-space: nowrap;
     margin-left: 5%;
     text-align: left;
-    font-size: 22px;
+    font-size: 100%;
     font-weight: bold;
     margin-top: 4%;
+    align-text: left;
+    align-content: left;
     @media(max-width: 750px){
         font-size: 100%;
         width: 80%;
@@ -40,9 +41,39 @@ export const DemandName = styled.div`
     }
 `;
 
+export const IconsContainer = styled.div`
+  float: right;
+  width: max-content;
+  @media(max-width: 750px){
+    margin-right: 2%;
+    margin-top: 2%;
+}
+`;
+
 export const EditIcon = styled.div`
   float: right;
-  font-size: 150%;
+  font-size: 100%;
+  width: 30%;
+  margin-left: 5%;
+  margin-right: 5%;
+  @media(max-width: 750px){
+    font-size: 100%;
+}
+`;
+
+export const LockIcon = styled.div`
+  float: right;
+  font-size: 100%;
+  width: 30%;
+  @media(max-width: 750px){
+    font-size: 100%;
+}
+`;
+
+export const TrashIcon = styled.div`
+  float: right;
+  font-size: 100%;
+  width: 30%;
   @media(max-width: 750px){
     font-size: 100%;
 }
@@ -54,8 +85,10 @@ export const DemandDescription = styled.div`
     text-align: left;
     margin-top: 2%;
     padding-left: 8%;
+    padding-right: 5%;
     @media(max-width: 750px){
         font-size: 18px;
+        width:100%;
     }
 `;
 
@@ -63,6 +96,10 @@ export const BottomSide = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    @media(max-width: 750px){
+        flex-direction: column;
+        justify-content: center;
+    }
 `;
 
 export const CreatedAt = styled.div`
@@ -72,6 +109,7 @@ export const CreatedAt = styled.div`
     height: min-content;
     @media(max-width: 750px){
         font-size: 18px;
+        margin-right: 2%;
     }
 `;
 

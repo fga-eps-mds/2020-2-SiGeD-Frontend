@@ -13,7 +13,6 @@ const SendDemandModal = ({
   const handleShow = () => setShow(true);
 
   const submit = () => {
-    console.log('submit');
     forwardDemand(sectorOption, demand._id);
     getDemandApi();
   };
