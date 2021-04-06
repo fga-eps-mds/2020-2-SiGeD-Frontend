@@ -11,10 +11,10 @@ import DropdownComponent from '../DropdownComponent';
 import colors from '../../Constants/colors';
 
 const ViewDemandSidebar = ({
-  clientName, userName, category,
+  clientName, userName, category, demand, getDemandApi, showUpdates,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
-
+  const [sectorOption, setSectorOption] = useState('');
   return (
     <RightBox>
       <ContentBox>
@@ -54,7 +54,7 @@ const ViewDemandSidebar = ({
           Setor:
         </p>
         <DropdownComponent
-          OnChangeFunction={(Option) => (Option.target.value)}
+          OnChangeFunction={(Option) => setSectorOption(Option.target.value)}
           style={{
             display: 'flex',
             color: `${colors.secondary}`,
@@ -82,7 +82,12 @@ const ViewDemandSidebar = ({
             marginTop: '10%',
           }}
         >
-          <SendDemandModal />
+          <SendDemandModal
+            sectorOption={sectorOption}
+            getDemandApi={getDemandApi}
+            showUpdates={showUpdates}
+            demand={demand}
+          />
         </div>
       )}
         { sidebarState

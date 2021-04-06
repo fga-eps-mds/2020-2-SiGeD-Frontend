@@ -12,8 +12,8 @@ export const Card = styled.div`
     margin-bottom: 2%;
     justify-content: center;
     @media(max-width: 750px){
-        border-radius: 15px 15px 0px 0px;
         width: 100%;
+        padding: 0;
     }
 `;
 
@@ -21,25 +21,31 @@ export const TopSide = styled.div`
     height: max-content;
     display: flex;
     justify-content: space-between;
+    width: 100%;
 `;
 
 export const DemandName = styled.div`
     height: max-content;
-    width: max-content;
     white-space: nowrap;
     margin-left: 5%;
     text-align: left;
-    font-size: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 4%;
     @media(max-width: 750px){
-        font-size: 25px;
+        font-size: 100%;
         width: 80%;
+        white-space: normal;
+
     }
 `;
 
 export const EditIcon = styled.div`
   float: right;
-  margin: 0 1%;
   font-size: 150%;
+  @media(max-width: 750px){
+    font-size: 100%;
+}
 `;
 
 export const DemandDescription = styled.div`
@@ -57,15 +63,6 @@ export const BottomSide = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-`;
-
-export const ProcessNumber = styled.div`
-    font-size: 20px;
-    width: 70%;
-    text-align: left;
-    @media(max-width: 750px){
-        font-size: 18px;
-    }
 `;
 
 export const CreatedAt = styled.div`

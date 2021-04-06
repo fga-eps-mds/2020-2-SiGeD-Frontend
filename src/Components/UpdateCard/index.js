@@ -11,7 +11,7 @@ import {
 const UpdateCard = ({ demand }) => (
   <Card>
     <TopSide>
-      <div style={{ display: 'flex', justifyContent: 'space-between', width: 'max-content' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <UserIcon />
         <DemandName>
           {demand.userName}
@@ -23,9 +23,9 @@ const UpdateCard = ({ demand }) => (
           id={demand._id}
           style={{ color: colors.primary, textDecorationLine: 'none' }}
         >
-          <BiLockAlt style={{ paddingRight: '3%', color: 'black' }} />
-          <BsPencil style={{ paddingRight: '3%' }} />
-          <BiTrash style={{ color: 'red' }} />
+          <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
+          <BsPencil style={{ marginRight: '10px' }} />
+          <BiTrash style={{ marginRight: '5px', color: 'red' }} />
         </Link>
       </EditIcon>
     </TopSide>

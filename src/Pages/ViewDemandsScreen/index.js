@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
-import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
+import {
+  Timeline, TimelineOppositeContent, TimelineItem, TimelineSeparator,
+  TimelineConnector, TimelineContent, TimelineDot,
+} from '@material-ui/lab';
 import { getDemands, getCategories } from '../../Services/Axios/demandsServices';
 import ViewDemandSidebar from '../../Components/ViewDemandSidebar';
 import ViewDemandCard from '../../Components/ViewDemandCard';
 import UpdateCard from '../../Components/UpdateCard';
+import NewUpdateCard from '../../Components/NewUpdateCard';
 import TinyButton from '../../Components/TinyButton';
 import CloseDemandModal from '../../Components/CloseDemandModal';
 import {
-  Main, CardsContainer, MobileButtonDiv, ButtonDiv,
+  Main, CardsContainer, MobileButtonDiv, ButtonDiv, TimelineDiv, MobileTimeline,
 } from './Style';
 import { getClients } from '../../Services/Axios/clientServices';
 import { getUser } from '../../Services/Axios/userServices';
@@ -61,7 +59,7 @@ const ViewDemandsScreen = () => {
     }
   }, [demand]);
 
-  const exibeAtualizacoes = () => {
+  const showUpdates = () => {
     let list = demand.sectorHistory;
     list = list.concat(demand.updateList);
     list.sort((a, b) => {
@@ -73,9 +71,8 @@ const ViewDemandsScreen = () => {
       }
       return 0;
     });
-    return list.map((valor) => {
-      if (valor.userName) {
-        // atualizacao
+    return list.map((value) => {
+      if (value.userName) {
         return (
           <TimelineItem style={{ marginLeft: '8%' }}>
             <TimelineOppositeContent style={{ display: 'none' }} />
@@ -84,12 +81,11 @@ const ViewDemandsScreen = () => {
               <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
             </TimelineSeparator>
             <TimelineContent>
-              <UpdateCard demand={valor} />
+              <UpdateCard demand={value} />
             </TimelineContent>
           </TimelineItem>
         );
       }
-      // setor
       return (
         <TimelineItem style={{ marginLeft: '8%' }}>
           <TimelineOppositeContent style={{ display: 'none' }} />
@@ -99,11 +95,12 @@ const ViewDemandsScreen = () => {
           </TimelineSeparator>
           <TimelineContent>
             <div style={{ display: 'flex', width: 'max-content' }}>
-              <p>
+              <p style={{ whiteSpace: 'nowrap' }}>
                 Setor:
-                {valor.sectorID}
+                {' '}
+                {value.sectorID}
               </p>
-              <p style={{ marginLeft: '50%' }}>{ format(new Date(valor.createdAt), 'dd/MM/yyyy') }</p>
+              <p style={{ marginLeft: '50%' }}>{ format(new Date(value.createdAt), 'dd/MM/yyyy') }</p>
             </div>
           </TimelineContent>
         </TimelineItem>
@@ -127,11 +124,19 @@ const ViewDemandsScreen = () => {
               demand={demand}
             />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <TimelineDiv>
             <Timeline>
-              { exibeAtualizacoes() }
+              { showUpdates() }
             </Timeline>
-          </div>
+            <div style={{ width: '90%', marginLeft: '8%' }}>
+              <NewUpdateCard
+                demand={demand}
+                userName={user.name}
+                showUpdates={showUpdates}
+                getDemandApi={getDemandApi}
+              />
+            </div>
+          </TimelineDiv>
           <ButtonDiv>
             <TinyButton
               type="primary"
@@ -154,7 +159,22 @@ const ViewDemandsScreen = () => {
             />
           </ButtonDiv>
         </CardsContainer>
-        <ViewDemandSidebar clientName={client.name} userName={user.name} category={category} />
+        <ViewDemandSidebar
+          clientName={client.name}
+          userName={user.name}
+          category={category}
+          demand={demand}
+          getDemandApi={getDemandApi}
+          showUpdates={showUpdates}
+        />
+        <MobileTimeline>
+          <Timeline>
+            { showUpdates() }
+          </Timeline>
+          <div style={{ width: '90%', marginLeft: '5%' }}>
+            <NewUpdateCard demand={demand} userName={user.name} />
+          </div>
+        </MobileTimeline>
         <MobileButtonDiv>
           <TinyButton
             type="primary"

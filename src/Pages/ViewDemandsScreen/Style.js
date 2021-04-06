@@ -42,3 +42,21 @@ export const MobileButtonDiv = styled.div`
         display: flex;
     }
 `;
+
+export const TimelineDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @media(max-width: 750px){
+        display: none;
+    }
+`;
+
+export const MobileTimeline = styled.div`
+    display: none;
+    @media(max-width: 750px){
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+`;
