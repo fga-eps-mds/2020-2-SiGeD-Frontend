@@ -38,16 +38,18 @@ export const TableTitle = styled.div`
 `;
 
 export const Dropdown = styled.div`
-float: right;
 width: 200px;
 height: 50px;
 border-radius: 15px;
-margin-left: 60%;
+margin-right: 45%;
+margin-left: 15px;
 
 @media(max-width: 750px){
   width: 70%;
-  height: 100%;
+  height: 50px;
   float: none;
-  margin-left: 20px;
+  margin-right: 0%;
+  margin-left: 5%;
+  justify-self: center;
 }
 `;

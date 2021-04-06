@@ -4,7 +4,7 @@ const styles = {
     boxSizing: 'border-box',
     borderRadius: '7px',
     width: '100%',
-    height: '5vh',
+    height: '50px',
     outline: '0',
     display: 'flex',
     flexDirection: 'row',

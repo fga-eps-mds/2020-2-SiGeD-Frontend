@@ -27,16 +27,20 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 
   @media(max-width: 750px){
     height: max-content;
-    width: 100%;
+    width: 85%;
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    // justify-self: center;
+    align-self: center;
   }
 `;
 
@@ -89,6 +93,7 @@ export const ContentBox = styled.div`
 
 export const Search = styled.div`
   float: left;
+  height: 50px;
 
   @media(max-width: 750px){
     width: 50%;

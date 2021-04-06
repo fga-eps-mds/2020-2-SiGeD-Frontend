@@ -12,9 +12,11 @@ const ClientListScreen = () => {
   const [word, setWord] = useState();
   const [filterClients, setFilterClients] = useState([]);
   const [clients, setClients] = useState([]);
+  const [active, setActive] = useState('Ativos');
+  const [query, setQuery] = useState(true);
 
   const getClientsFromApi = async () => {
-    await getClients('clients')
+    await getClients(`clients?active=${query}`)
       .then((response) => setClients(response.data));
   };
 
@@ -27,6 +29,18 @@ const ClientListScreen = () => {
       clients.filter((client) => client.name.toLowerCase().includes(word?.toLowerCase())),
     );
   }, [word]);
+
+  useEffect(() => {
+    if (active === 'Desativos') {
+      setQuery(false);
+    } else {
+      setQuery(true);
+    }
+  }, [active]);
+
+  useEffect(() => {
+    getClientsFromApi();
+  }, [query]);
 
   useEffect(() => {
     setFilterClients(clients);
@@ -59,7 +73,7 @@ const ClientListScreen = () => {
     >
       <Dropdown>
         <DropdownComponent
-          OnChangeFunction={(Option) => (Option.target.value)}
+          OnChangeFunction={(Option) => setActive(Option.target.value)}
           style={{
             display: 'flex',
             color: `${colors.text}`,
@@ -69,6 +83,7 @@ const ClientListScreen = () => {
             boxSizing: 'border-box',
             borderRadius: '8px',
             border: '1px solid black',
+            justifyContent: 'center',
           }}
           optionStyle={{
             backgroundColor: `${colors.secondary}`,
