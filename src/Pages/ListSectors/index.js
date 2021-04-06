@@ -67,6 +67,7 @@ const ListSectors = () => {
       ListType={renderSectors()}
       redirectTo="/setores"
     >
+      <div style={{ display: 'none' }} />
       <TableHeader>
         <TableTitle width={24}>
           <P>Nome</P>

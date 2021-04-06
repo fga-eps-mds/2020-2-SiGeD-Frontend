@@ -36,3 +36,18 @@ export const TableTitle = styled.div`
   justify-content: center;
   width: ${(props) => `${props.width}%`}
 `;
+
+export const Dropdown = styled.div`
+float: right;
+width: 200px;
+height: 50px;
+border-radius: 15px;
+margin-left: 60%;
+
+@media(max-width: 750px){
+  width: 70%;
+  height: 100%;
+  float: none;
+  margin-left: 20px;
+}
+`;

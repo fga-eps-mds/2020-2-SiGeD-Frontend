@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import ClientProfileData from '../../Components/ClientProfileData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
-  TableHeader, P, Bar, TableTitle,
+  TableHeader, P, Bar, TableTitle, Dropdown,
 } from './Style';
 import { getClients } from '../../Services/Axios/clientServices';
+import DropdownComponent from '../../Components/DropdownComponent';
+import colors from '../../Constants/colors';
 
 const ClientListScreen = () => {
   const [word, setWord] = useState();
@@ -55,6 +57,25 @@ const ClientListScreen = () => {
       ListType={listClients()}
       redirectTo="/cliente"
     >
+      <Dropdown>
+        <DropdownComponent
+          OnChangeFunction={(Option) => (Option.target.value)}
+          style={{
+            display: 'flex',
+            color: `${colors.text}`,
+            width: '80%',
+            height: '100%',
+            alignItems: 'center',
+            boxSizing: 'border-box',
+            borderRadius: '8px',
+            border: '1px solid black',
+          }}
+          optionStyle={{
+            backgroundColor: `${colors.secondary}`,
+          }}
+          optionList={['Ativos', 'Desativos']}
+        />
+      </Dropdown>
       <TableHeader>
         <TableTitle width={25}>
           <P>Nome</P>
@@ -64,12 +85,10 @@ const ClientListScreen = () => {
           <P>Email</P>
         </TableTitle>
         <Bar />
-
         <TableTitle width={15}>
           <P>CPF</P>
         </TableTitle>
         <Bar />
-
         <TableTitle width={15}>
           <P>Telefone</P>
         </TableTitle>

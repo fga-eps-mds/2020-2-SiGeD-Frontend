@@ -70,6 +70,7 @@ const ListCategories = () => {
       ListType={renderCategories()}
       redirectTo="/categorias"
     >
+      <div style={{ display: 'none' }} />
       <TableHeader>
         <TableTitle width={24}>
           <P>Nome</P>

@@ -61,6 +61,7 @@ const ListScreen = () => {
       ListType={listUsers()}
       redirectTo="/cadastro"
     >
+      <div style={{ display: 'none' }} />
       <TableHeader>
         <TableTitle width={25}>
           <P>Nome</P>

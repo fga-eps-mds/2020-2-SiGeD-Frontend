@@ -22,13 +22,14 @@ const GenericListScreen = ({
             setWord={(value) => setWord(value)}
           />
         </Search>
+        {children[0]}
         <ButtonDiv>
           <RedirectListButton title={ButtonTitle} redirectTo={redirectTo} click={ButtonFunction} />
         </ButtonDiv>
       </Header>
 
       <ContentBox>
-        {children}
+        {children[1]}
         <List>
           {ListType}
         </List>

@@ -19,6 +19,7 @@ const Button = styled.button`
     text-decoration-line: none;
 
     @media(max-width: 750px){
+      text-align: center;
       border-radius: 40vw;
       width: 100%;
     }
