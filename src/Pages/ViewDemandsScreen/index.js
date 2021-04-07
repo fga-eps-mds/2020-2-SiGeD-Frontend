@@ -85,23 +85,23 @@ const ViewDemandsScreen = () => {
       }
       return 0;
     });
-    return list.map((value) => {
+    return list.map((value, index) => {
       if (value.userName) {
         return (
-          <TimelineItem style={{ marginLeft: '8%' }}>
+          <TimelineItem style={{ marginLeft: '8%' }} key={index}>
             <TimelineOppositeContent style={{ display: 'none' }} />
             <TimelineSeparator>
               <TimelineDot style={{ backgroundColor: colors.primary }} />
               <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
             </TimelineSeparator>
-            <TimelineContent>
+            <TimelineContent style={{ width: '100%' }}>
               <UpdateCard demand={value} />
             </TimelineContent>
           </TimelineItem>
         );
       }
       return (
-        <TimelineItem style={{ marginLeft: '8%' }}>
+        <TimelineItem style={{ marginLeft: '8%' }} key={index}>
           <TimelineOppositeContent style={{ display: 'none' }} />
           <TimelineSeparator>
             <TimelineDot style={{ backgroundColor: colors.primary }} />

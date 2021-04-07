@@ -86,6 +86,7 @@ export const DemandDescription = styled.div`
     margin-top: 2%;
     padding-left: 8%;
     padding-right: 5%;
+    word-wrap: break-word;
     @media(max-width: 750px){
         font-size: 18px;
         width:100%;
@@ -99,6 +100,7 @@ export const BottomSide = styled.div`
     @media(max-width: 750px){
         flex-direction: column;
         justify-content: center;
+        width: 100%;
     }
 `;
 

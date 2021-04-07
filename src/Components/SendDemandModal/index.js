@@ -12,6 +12,14 @@ const SendDemandModal = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const forwardDemandFunct = () => {
+    if (demand.sectorHistory[demand.sectorHistory.length - 1].sectorID === sectorOption) {
+      alert('A demanda não pode ser encaminhada para o setor atual dela.');
+    } else {
+      handleShow();
+    }
+  };
+
   const submit = () => {
     forwardDemand(sectorOption, demand._id);
     getDemandApi();
@@ -19,7 +27,7 @@ const SendDemandModal = ({
 
   return (
     <>
-      <ForwardDiv onClick={handleShow}>
+      <ForwardDiv onClick={forwardDemandFunct}>
         <p style={{ marginRight: '5px', marginBottom: '0px' }}>
           Encaminhar
         </p>
