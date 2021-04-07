@@ -41,15 +41,12 @@ export const Dropdown = styled.div`
 width: 200px;
 height: 50px;
 border-radius: 15px;
-margin-right: 45%;
-margin-left: 15px;
 
 @media(max-width: 750px){
-  width: 70%;
+  width: 60%;
   height: 50px;
   float: none;
-  margin-right: 0%;
-  margin-left: 5%;
   justify-self: center;
+  margin-left: 5%;
 }
 `;

@@ -36,10 +36,10 @@ export const Header = styled.div`
   @media(max-width: 750px){
     height: max-content;
     width: 85%;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    // justify-self: center;
+    justify-self: center;
     align-self: center;
   }
 `;
@@ -145,5 +145,19 @@ export const List = styled.div`
     height: max-content;
     padding: 5px;
     overflow: auto;
+  }
+`;
+
+export const DropDiv = styled.div`
+  display: flex;
+  width: 475px;
+  justify-content: space-between;
+  align-items: center;
+
+  @media(max-width: 750px){
+    height: max-content;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
