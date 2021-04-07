@@ -31,7 +31,7 @@ export async function postUser(
 }
 
 export async function loginUser(
-  inputEmail, inputPassword,
+  inputEmail, inputPassword, setToken, setRole, redirectUser,
 ) {
   try {
     const response = await APIUsers.post('login', {
@@ -45,6 +45,9 @@ export async function loginUser(
       APIClients.defaults.headers = { 'x-access-token': response.data.token };
       APIDemands.defaults.headers = { 'x-access-token': response.data.token };
       APISectors.defaults.headers = { 'x-access-token': response.data.token };
+      setToken(response.data.token);
+      setRole(response.data.user.role);
+      redirectUser();
     }
     return response.data;
   } catch (error) {

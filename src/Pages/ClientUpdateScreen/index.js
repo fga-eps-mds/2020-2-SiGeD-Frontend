@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
 import { getClients, updateClient } from '../../Services/Axios/clientServices';
@@ -54,6 +54,10 @@ const ClientUpdateScreen = () => {
     setOfficeOption('');
     setPoliceStationOption('');
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <GenericRegisterScreen
