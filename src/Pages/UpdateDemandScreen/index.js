@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import { Main, Footer } from './Style';
 import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
@@ -109,6 +109,10 @@ const UpdateDemandsScreen = () => {
     setSectorID('');
     setCategoriesIDs([]);
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <Main>

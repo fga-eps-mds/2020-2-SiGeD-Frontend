@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaSistrix } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import ProfileSidebarComponent from '../../Components/ProfileSidebarComponent';
 import { getDemands } from '../../Services/Axios/demandsServices';
 import ClientDemandData from '../../Components/ClientDemandData';
@@ -101,6 +101,9 @@ const ClientProfileScreen = () => {
       return <></>;
     });
   };
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <>

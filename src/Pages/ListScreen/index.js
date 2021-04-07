@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import PersonalData from '../../Components/PersonalData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
@@ -48,6 +49,10 @@ const ListScreen = () => {
       />
     ));
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <GenericListScreen

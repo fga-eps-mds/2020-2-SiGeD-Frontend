@@ -149,6 +149,10 @@ const ViewDemandsScreen = () => {
     });
   };
 
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <>
       { demand && client && userDemand
