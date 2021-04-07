@@ -26,7 +26,6 @@ const CreateDemandsScreen = () => {
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientID, setClientID] = useState('');
   const [clientName, setClientName] = useState('');
-  const [categoryID, setCategoryID] = useState(''); // temporário
 
   const getClientsFromApi = async () => {
     await getClients('clients')
@@ -38,9 +37,7 @@ const CreateDemandsScreen = () => {
   }, []);
 
   useEffect(() => {
-    const IDs = selectedCategories?.map((selectedCategory) => ({
-      id: selectedCategory._id,
-    }));
+    const IDs = selectedCategories?.map((selectedCategory) => selectedCategory._id);
     setCategoriesIDs(IDs);
   }, [selectedCategories]);
 
@@ -60,22 +57,16 @@ const CreateDemandsScreen = () => {
 
   const validateInputs = () => {
     if (!name || !description || !validateProcess(process)
-    || !sectorID || !clientID || categoryID === undefined) {
+      || !sectorID || !clientID || categoriesIDs === undefined) {
       return false;
     }
     return true;
   };
 
-  useEffect(() => {
-    console.log(categoriesIDs, 'teste');
-    setCategoryID(categoriesIDs[0]?.id);
-    console.log(categoryID);
-  }, [categoriesIDs]);
-
   const submit = () => {
-    console.log(name, description, process, categoryID, sectorID, userID, clientID, 'submit');
+    console.log(name, description, process, categoriesIDs, sectorID, userID, clientID, 'submit');
     if (validateInputs()) {
-      createDemand(name, description, process, categoryID, sectorID, userID, clientID);
+      createDemand(name, description, process, categoriesIDs, sectorID, userID, clientID);
       alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
@@ -83,7 +74,6 @@ const CreateDemandsScreen = () => {
       setSelectedCategories([]);
       setSectorID('');
       setClientID('');
-      setCategoryID('');
       setCategoriesIDs([]);
     } else {
       alert('Preencha todos os campos antes de cadastrar uma nova demanda');
@@ -97,7 +87,6 @@ const CreateDemandsScreen = () => {
     setSelectedCategories([]);
     setClientID('');
     setSectorID('');
-    setCategoryID('');
     setCategoriesIDs([]);
   };
 
