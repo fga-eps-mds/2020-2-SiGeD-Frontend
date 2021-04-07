@@ -26,8 +26,9 @@ export const CardsContainer = styled.div`
 
 export const ButtonDiv = styled.div`
     display: flex;
-    width: 40%;
+    width: 25%;
     margin: 5%;
+    padding-bottom: 5%;
     @media(max-width: 750px){
         width: 90%;
         display: none;
@@ -58,6 +59,7 @@ export const MobileTimeline = styled.div`
         display: flex;
         flex-direction: column;
         width: 100%;
+        padding-bottom: 5%;
     }
 `;
 

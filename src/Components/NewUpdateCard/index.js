@@ -55,6 +55,7 @@ const NewUpdateCard = ({
           click={submit}
           style={{
             width: 'max-content',
+            padding: '0% 3% 0 3%',
           }}
         />
       </BottomSide>
