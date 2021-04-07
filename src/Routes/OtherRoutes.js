@@ -14,11 +14,11 @@ import CreateDemandsScreen from '../Pages/CreateDemandsScreen';
 import ViewDemandsScreen from '../Pages/ViewDemandsScreen';
 import ListDemandsScreen from '../Pages/ListDemandsScreen';
 import UpdateDemandsScreen from '../Pages/UpdateDemandScreen';
+import LoginScreen from '../Pages/LoginScreen';
 
 const OtherRoutes = () => (
   <Router>
     <NavbarComp />
-    <Route path="/" exact component={ClientListScreen} />
     <Route path="/cadastro" exact component={RegisterScreen} />
     <Route path="/usuarios/editar/:id" exact component={UserUpdateScreen} />
     <Route path="/usuarios" exact component={ListScreen} />
@@ -32,6 +32,8 @@ const OtherRoutes = () => (
     <Route path="/visualizar/:id" exact component={ViewDemandsScreen} />
     <Route path="/demandas" exact component={ListDemandsScreen} />
     <Route path="/demandas/editar/:id" exact component={UpdateDemandsScreen} />
+    <Route path="/" exact component={ClientListScreen} />
+    <Route path="/login" exact component={LoginScreen} />
   </Router>
 );
 

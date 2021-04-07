@@ -31,7 +31,7 @@ export async function postUser(
 }
 
 export async function loginUser(
-  inputEmail, inputPassword, setToken,
+  inputEmail, inputPassword, setToken, setRole, redirectUser,
 ) {
   try {
     const response = await APIUsers.post('login', {
@@ -46,6 +46,8 @@ export async function loginUser(
       APIDemands.defaults.headers = { 'x-access-token': response.data.token };
       APISectors.defaults.headers = { 'x-access-token': response.data.token };
       setToken(response.data.token);
+      setRole(response.data.user.role);
+      redirectUser();
     }
   } catch (error) {
     alert('Não foi possivel fazer login. Tente novamente mais tarde.');

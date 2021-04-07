@@ -12,10 +12,13 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [token, setToken] = useState();
+  const [role, setRole] = useState();
 
   useEffect(() => {
     const localToken = localStorage.getItem('@App:token');
-    if (!token && localToken) {
+    const localRole = localStorage.getItem('userRole');
+    if (!token && localToken && localRole) {
+      setRole(localRole);
       setToken(localToken);
       APIUsers.defaults.headers = { 'x-access-token': localToken };
       APIClients.defaults.headers = { 'x-access-token': localToken };
@@ -27,12 +30,20 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       localStorage.setItem('@App:token', token);
+      localStorage.setItem('userRole', role);
     }
   }, [token]);
 
   return (
-    <UserContext.Provider value={{ token, setToken }}>
-      { children }
+    <UserContext.Provider
+      value={{
+        token,
+        setToken,
+        role,
+        setRole,
+      }}
+    >
+      { children}
     </UserContext.Provider>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { FaSistrix } from 'react-icons/fa';
 import {
   Main, ScreenContainer, ScreenTitle, ScreenSearch, ScreenContentBox, ScreenHeader, ScreenList,
@@ -45,6 +46,10 @@ const ListDemandsScreen = () => {
       />
     ));
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <Main>

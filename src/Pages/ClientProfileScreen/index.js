@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import ProfileSidebarComponent from '../../Components/ProfileSidebarComponent';
 import {
   Main, RightBox,
@@ -33,6 +33,10 @@ const ClientProfileScreen = () => {
   useEffect(() => {
     getClientFromApi();
   }, []);
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <Main>

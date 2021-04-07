@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import ModalComp from '../../Components/ModalComp';
 import {
   TableHeader, TableTitle, P, Bar,
@@ -56,6 +57,10 @@ const ListSectors = () => {
       />
     ));
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <GenericListScreen

@@ -7,6 +7,7 @@ export async function getCategories(url) {
   } catch (error) {
     alert('Não foi possível carregar as categorias já criadas, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while getting categories.${error}`);
+    localStorage.clear();
   }
   return false;
 }
@@ -24,6 +25,7 @@ export async function createCategory(name, description, color) {
   } catch (error) {
     alert('Não foi possível criar a nova categoria, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while creating a new category.${error}`);
+    localStorage.clear();
   }
 }
 
@@ -40,6 +42,7 @@ export async function updateCategory(name, description, color, id) {
   } catch (error) {
     alert('Não foi possível atualizar a categoria, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while updating an already created category.${error}`);
+    localStorage.clear();
   }
 }
 
@@ -49,6 +52,7 @@ export const deleteCategory = async (id) => {
   } catch (error) {
     alert(`Não foi possivel deletar a categoria.\n${error}`);
     console.error(error);
+    localStorage.clear();
   }
 };
 export async function getDemands(url) {
@@ -58,6 +62,7 @@ export async function getDemands(url) {
   } catch (error) {
     alert('Não foi possível carregar as demandas já criadas, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while getting demands.${error}`);
+    localStorage.clear();
   }
   return false;
 }
@@ -81,6 +86,7 @@ export async function createDemand(
   } catch (error) {
     alert('Não foi possível criar a nova demanda, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while creating a new demand.${error}`);
+    localStorage.clear();
   }
 }
 

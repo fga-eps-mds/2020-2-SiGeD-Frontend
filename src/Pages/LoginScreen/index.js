@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import BigButton from '../../Components/BigButton';
 import LoginInput from '../../Components/LoginInput';
@@ -9,10 +10,18 @@ import { useProfileUser } from '../../Context';
 const LoginScreen = () => {
   const [emailReceived, setEmailReceived] = useState();
   const [passwordReceived, setPasswordReceived] = useState();
-  const { setToken } = useProfileUser();
+  const { setToken, setRole } = useProfileUser();
+  const history = useHistory();
 
+  function redirectUser() {
+    history.push('/');
+  }
   function login() {
-    loginUser(emailReceived, passwordReceived, setToken);
+    loginUser(emailReceived, passwordReceived, setToken, setRole, redirectUser);
+  }
+
+  if (localStorage.getItem('@App:token')) {
+    return <Redirect to="/" />;
   }
 
   return (

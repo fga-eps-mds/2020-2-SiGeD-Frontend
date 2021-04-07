@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import ModalComp from '../../Components/ModalComp';
 import {
   TableHeader, TableTitle, P, Bar,
@@ -60,6 +61,10 @@ const ListCategories = () => {
     ));
   };
 
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <GenericListScreen
       ButtonTitle="Nova Categoria"
@@ -84,7 +89,7 @@ const ListCategories = () => {
         </TableTitle>
         <TableTitle width={2} />
       </TableHeader>
-      { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null }
+      { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null}
     </GenericListScreen>
   );
 };

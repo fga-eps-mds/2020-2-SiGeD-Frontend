@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import { getDemands, getCategories } from '../../Services/Axios/demandsServices';
 import ViewDemandSidebar from '../../Components/ViewDemandSidebar';
 import ViewDemandCard from '../../Components/ViewDemandCard';
@@ -51,6 +51,10 @@ const ViewDemandsScreen = () => {
       getDemandApi();
     }
   }, [demand]);
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <>

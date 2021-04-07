@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
 import { getUser, updateUser } from '../../Services/Axios/userServices';
@@ -40,6 +40,10 @@ const UserUpdateScreen = () => {
   const cancel = () => {
     getUser();
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <GenericRegisterScreen
