@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { FaSistrix } from 'react-icons/fa';
 import {
-  Main, ScreenContainer, ScreenTitle, ScreenSearch, ScreenContentBox, ScreenHeader, ScreenList,
+  Main, ScreenContainer, ScreenTitle, ScreenSearch, ScreenContentBox,
+  ScreenHeader, ScreenList, Dropdown,
 } from './Style';
 import SearchInput from '../../Components/SearchInput';
 import DemandData from '../../Components/DemandData';
 import { getDemands } from '../../Services/Axios/demandsServices';
+import DropdownComponent from '../../Components/DropdownComponent';
+import colors from '../../Constants/colors';
 
 const ListDemandsScreen = () => {
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [demands, setDemands] = useState([]);
+  const [active, setActive] = useState('Ativos');
+  const [query, setQuery] = useState(true);
 
   const getDemandsFromApi = async () => {
-    await getDemands('demand')
+    await getDemands(`demand?open=${query}`)
       .then((response) => setDemands(response.data));
   };
 
@@ -26,6 +31,18 @@ const ListDemandsScreen = () => {
       demands.filter((demand) => demand.name.toLowerCase().includes(word?.toLowerCase())),
     );
   }, [word]);
+
+  useEffect(() => {
+    if (active === 'Desativos') {
+      setQuery(false);
+    } else {
+      setQuery(true);
+    }
+  }, [active]);
+
+  useEffect(() => {
+    getDemandsFromApi();
+  }, [query]);
 
   useEffect(() => {
     setFilterDemands(demands);
@@ -60,6 +77,26 @@ const ListDemandsScreen = () => {
               style={{ width: '100%' }}
             />
           </ScreenSearch>
+          <Dropdown>
+            <DropdownComponent
+              OnChangeFunction={(Option) => setActive(Option.target.value)}
+              style={{
+                display: 'flex',
+                color: `${colors.text}`,
+                width: '100%',
+                height: '100%',
+                alignItems: 'center',
+                boxSizing: 'border-box',
+                borderRadius: '8px',
+                border: '1px solid black',
+                justifyContent: 'center',
+              }}
+              optionStyle={{
+                backgroundColor: `${colors.secondary}`,
+              }}
+              optionList={['Ativos', 'Desativos']}
+            />
+          </Dropdown>
         </ScreenHeader>
 
         <ScreenContentBox>
