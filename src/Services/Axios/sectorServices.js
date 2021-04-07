@@ -40,7 +40,7 @@ export const updateSectors = async (
         console.error(`An unexpected error ocourred while updating the sector data.${error}`);
       });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

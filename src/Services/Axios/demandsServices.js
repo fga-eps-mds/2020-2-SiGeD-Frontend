@@ -102,3 +102,47 @@ export async function closeDemand(id) {
     console.error(`An unexpected error ocourred while closing an already created demand.${error}`);
   }
 }
+
+export async function updateDemandSector(sectorID, id) {
+  try {
+    const response = await APIDemands.put(`demand/sectorupdate/${id}`, {
+      sectorID,
+    });
+    if (response.data.status) {
+      alert('Selecione um dos setores disponíveis');
+    }
+  } catch (error) {
+    alert('Não foi possível atualizar o setor da demanda, tente novamente mais tarde.');
+    console.error(`An unexpected error occurred while updating a demand's sector.${error}`);
+  }
+}
+
+export async function forwardDemand(sectorID, id) {
+  try {
+    const response = await APIDemands.put(`demand/forward/${id}`, {
+      sectorID,
+    });
+    if (response.data.status) {
+      alert('Não foi possível encaminhar a demanda');
+    }
+  } catch (error) {
+    alert('Não foi possível encaminhar a demanda para o setor desejado, tente novamente mais tarde.');
+    console.error(`An unexpected error occurred while forwarding a demand to another sector.${error}`);
+  }
+}
+
+export async function createDemandUpdate(userName, description, visibilityRestriction, id) {
+  try {
+    const response = await APIDemands.put(`demand/create-demand-update/${id}`, {
+      userName,
+      description,
+      visibilityRestriction,
+    });
+    if (response.data.status) {
+      alert('Preencha o campo de descrição da atualização para ser possível o envio.');
+    }
+  } catch (error) {
+    alert('Não foi possível enviar a atualização da demanda, tente novamente mais tarde.');
+    console.error(`An unexpected error occurred while sending a demand update.${error}`);
+  }
+}

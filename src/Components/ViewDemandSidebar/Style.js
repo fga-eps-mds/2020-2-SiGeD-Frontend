@@ -10,8 +10,11 @@ export const RightBox = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: absolute;
+    right: 0;
     color: white;
     @media(max-width: 750px){
+        position: relative;
         width: 100%;
         height: max-content;
         border-radius: 0px 0px 15px 15px;

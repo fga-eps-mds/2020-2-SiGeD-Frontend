@@ -9,6 +9,7 @@ export const ForwardDiv = styled.div`
     display: flex;
     justify-content: space-between;
     width: min-content;
+    cursor: pointer;
 `;
 
 export const ForwardIcon = styled(BiPaperPlane)`
