@@ -18,7 +18,8 @@ jobs:
         script: |
           cd 2020-2-G4-Frontend
           docker-compose down
-          git pull origin development
+          git checkout src/Constants/baseUrl.js
+          git pull origin development -f
           cp homolog.urls.js src/Constants/baseUrl.js
           docker-compose up --build -d
 
