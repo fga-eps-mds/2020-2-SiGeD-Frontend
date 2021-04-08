@@ -26,6 +26,8 @@ const ViewDemandsScreen = () => {
   const [demand, setDemand] = useState('');
   const [category, setCategory] = useState([]);
   const [user, setUser] = useState('');
+  const [buttonColor, setButtonColor] = useState('');
+  const [buttonTitle, setButtonTitle] = useState('');
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -61,12 +63,23 @@ const ViewDemandsScreen = () => {
       });
   };
 
+  const setButtons = async () => {
+    if (demand.open === true) {
+      setButtonColor(colors.alertMessages);
+      setButtonTitle('Fechar demanda');
+    } else {
+      setButtonColor(colors.primary);
+      setButtonTitle('Reabrir demanda');
+    }
+  };
+
   useEffect(() => {
     if (demand && !flag) {
       getClientApi();
       getUserApi();
       getCategoryApi();
       getSectorsApi();
+      setButtons();
       setFlag(true);
     } else {
       getDemandApi();
@@ -154,12 +167,12 @@ const ViewDemandsScreen = () => {
           <ButtonDiv>
             <TinyButton
               type="primary"
-              title="Fechar Demanda"
+              title={buttonTitle}
               click={handleShow}
               style={{
-                backgroundColor: `${colors.alertMessages}`,
+                backgroundColor: buttonColor,
                 color: `${colors.secondary}`,
-                border: `1px solid ${colors.alertMessages}`,
+                border: `1px solid ${buttonColor}`,
                 height: 'min-content',
                 width: '100%',
                 display: 'flex',
@@ -167,6 +180,7 @@ const ViewDemandsScreen = () => {
               }}
             />
             <CloseDemandModal
+              demand={demand}
               id={id}
               show={show}
               handleClose={handleClose}
@@ -193,12 +207,12 @@ const ViewDemandsScreen = () => {
         <MobileButtonDiv>
           <TinyButton
             type="primary"
-            title="Fechar Demanda"
+            title={buttonTitle}
             click={handleShow}
             style={{
-              backgroundColor: `${colors.alertMessages}`,
+              backgroundColor: buttonColor,
               color: `${colors.secondary}`,
-              border: `1px solid ${colors.alertMessages}`,
+              border: `1px solid ${buttonColor}`,
               height: 'min-content',
               width: '100%',
               display: 'flex',
@@ -206,6 +220,7 @@ const ViewDemandsScreen = () => {
             }}
           />
           <CloseDemandModal
+            demand={demand}
             id={id}
             show={show}
             handleClose={handleClose}
