@@ -13,14 +13,13 @@ import colors from '../../Constants/colors';
 
 const ClientProfileData = ({ client, query }) => {
   const [boxState, setBoxState] = useState(false);
-  const [text, settext] = useState('Desativar');
+  const [text, setText] = useState('Desativar');
 
   useEffect(() => {
     if (query === true) {
-      settext('Desativar');
-    }
-    else {
-      settext('Ativar');
+      setText('Desativar');
+    } else {
+      setText('Ativar');
     }
   }, [query]);
 
