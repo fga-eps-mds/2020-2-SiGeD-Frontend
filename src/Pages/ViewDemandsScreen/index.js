@@ -113,6 +113,13 @@ const ViewDemandsScreen = () => {
           </TimelineItem>
         );
       }
+
+      const sectorName = sectorsResponse?.filter((sectorByID) => {
+        console.log('  ');
+        return sectorByID._id === value.sectorID;
+      });
+
+      console.log('retorno:', sectorName[0]?.name);
       return (
         <TimelineItem style={{ marginLeft: '8%' }} key={index}>
           <TimelineOppositeContent style={{ display: 'none' }} />
@@ -125,7 +132,7 @@ const ViewDemandsScreen = () => {
               <p>
                 Setor:
                 {' '}
-                {value.sectorID}
+                {sectorName[0]?.name}
               </p>
               <p style={{ marginRight: '12%' }}>{ format(new Date(value.createdAt), 'dd/MM/yyyy') }</p>
             </ForwardedDemandDiv>
