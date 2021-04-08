@@ -98,7 +98,6 @@ const ListDemandsScreen = () => {
             />
           </Dropdown>
         </ScreenHeader>
-
         <ScreenContentBox>
           <ScreenList>
             {listDemands()}

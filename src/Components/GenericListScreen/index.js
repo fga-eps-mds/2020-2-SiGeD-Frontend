@@ -11,6 +11,7 @@ const GenericListScreen = ({
 
 }) => (
   <Main>
+    {console.log(children)}
     <Container>
       <Title>{PageTitle}</Title>
       <Header>
@@ -23,7 +24,7 @@ const GenericListScreen = ({
               setWord={(value) => setWord(value)}
             />
           </Search>
-          {children[0]}
+          {children[1]}
         </DropDiv>
         <ButtonDiv>
           <RedirectListButton title={ButtonTitle} redirectTo={redirectTo} click={ButtonFunction} />
@@ -31,7 +32,7 @@ const GenericListScreen = ({
       </Header>
 
       <ContentBox>
-        {children[1]}
+        {children[0]}
         <List>
           {ListType}
         </List>

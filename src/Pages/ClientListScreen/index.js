@@ -71,26 +71,6 @@ const ClientListScreen = () => {
       ListType={listClients()}
       redirectTo="/cliente"
     >
-      <Dropdown>
-        <DropdownComponent
-          OnChangeFunction={(Option) => setActive(Option.target.value)}
-          style={{
-            display: 'flex',
-            color: `${colors.text}`,
-            width: '100%',
-            height: '100%',
-            alignItems: 'center',
-            boxSizing: 'border-box',
-            borderRadius: '8px',
-            border: '1px solid black',
-            justifyContent: 'center',
-          }}
-          optionStyle={{
-            backgroundColor: `${colors.secondary}`,
-          }}
-          optionList={['Ativos', 'Desativos']}
-        />
-      </Dropdown>
       <TableHeader>
         <TableTitle width={25}>
           <P>Nome</P>
@@ -112,6 +92,26 @@ const ClientListScreen = () => {
           <P>Ult. Atualização</P>
         </TableTitle>
       </TableHeader>
+      <Dropdown>
+        <DropdownComponent
+          OnChangeFunction={(Option) => setActive(Option.target.value)}
+          style={{
+            display: 'flex',
+            color: `${colors.text}`,
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            boxSizing: 'border-box',
+            borderRadius: '8px',
+            border: '1px solid black',
+            justifyContent: 'center',
+          }}
+          optionStyle={{
+            backgroundColor: `${colors.secondary}`,
+          }}
+          optionList={['Ativos', 'Desativos']}
+        />
+      </Dropdown>
     </GenericListScreen>
   );
 };

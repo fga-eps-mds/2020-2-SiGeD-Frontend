@@ -70,7 +70,6 @@ const ListCategories = () => {
       ListType={renderCategories()}
       redirectTo="/categorias"
     >
-      <div style={{ display: 'none' }} />
       <TableHeader>
         <TableTitle width={24}>
           <P>Nome</P>
@@ -86,6 +85,7 @@ const ListCategories = () => {
         <TableTitle width={2} />
       </TableHeader>
       { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null }
+      <div style={{ display: 'none' }} />
     </GenericListScreen>
   );
 };
