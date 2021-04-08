@@ -11,7 +11,7 @@ const NavbarComp = () => {
 
   const logoutUser = () => {
     try {
-      localStorage.removeItem('@App:token', token);
+      localStorage.clear();
       setToken(localStorage.getItem('@App:token'));
       APIUsers.defaults.headers = null;
     } catch (error) {
