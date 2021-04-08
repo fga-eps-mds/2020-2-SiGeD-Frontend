@@ -19,82 +19,67 @@ export const APISectors = axios.create({
   baseURL: BaseUrlSectors,
 });
 
-APIUsers.interceptors.request.use((config) => {
-  try {
-    const token = localStorage.getItem('@App:token');
-
-    if (token) {
-      /* eslint-disable */
-      config.headers.Authorization = `Bearer ${token}`;
-      /* eslint-enable */
-      console.log(token);
-    } else {
-      console.log(token);
-      localStorage.clear();
-    }
-    return config;
-  } catch (err) {
-    console.log(err);
-    return config;
+APIUsers.interceptors.response.use(async (response) => response, (error) => {
+  if (error.response.status === 401 || error.response.status === 500) {
+    localStorage.clear();
+    window.location.reload();
   }
+  return Promise.reject(error);
 });
 
-APIClients.interceptors.request.use((config) => {
+APIClients.interceptors.response.use(async (response) => {
   try {
-    const token = localStorage.getItem('@App:token');
-
-    if (token) {
-      /* eslint-disable */
-      config.headers.Authorization = `Bearer ${token}`;
-      /* eslint-enable */
-      console.log(token);
-    } else {
-      console.log(token);
+    const authToken = await response.status;
+    if (authToken === 500 || authToken === 401) {
       localStorage.clear();
+      window.location.reload();
     }
-    return config;
+    return response;
   } catch (err) {
-    console.log(err);
-    return config;
+    return response;
   }
+}, (error) => {
+  if (error.response.status === 401 || error.response.status === 500) {
+    localStorage.clear();
+    window.location.reload();
+  }
+  return Promise.reject(error);
 });
 
-APIDemands.interceptors.request.use((config) => {
+APIDemands.interceptors.response.use(async (response) => {
   try {
-    const token = localStorage.getItem('@App:token');
-
-    if (token) {
-      /* eslint-disable */
-      config.headers.Authorization = `Bearer ${token}`;
-      /* eslint-enable */
-      console.log(token);
-    } else {
-      console.log(token);
+    const authToken = await response.status;
+    if (authToken === 500 || authToken === 401) {
       localStorage.clear();
+      window.location.reload();
     }
-    return config;
+    return response;
   } catch (err) {
-    console.log(err);
-    return config;
+    return response;
   }
+}, (error) => {
+  if (error.response.status === 401 || error.response.status === 500) {
+    localStorage.clear();
+    window.location.reload();
+  }
+  return Promise.reject(error);
 });
 
-APISectors.interceptors.request.use((config) => {
+APISectors.interceptors.response.use(async (response) => {
   try {
-    const token = localStorage.getItem('@App:token');
-
-    if (token) {
-      /* eslint-disable */
-      config.headers.Authorization = `Bearer ${token}`;
-      /* eslint-enable */
-      console.log(token);
-    } else {
-      console.log(token);
+    const authToken = await response.status;
+    if (authToken === 500 || authToken === 401) {
       localStorage.clear();
+      window.location.reload();
     }
-    return config;
+    return response;
   } catch (err) {
-    console.log(err);
-    return config;
+    return response;
   }
+}, (error) => {
+  if (error.response.status === 401 || error.response.status === 500) {
+    localStorage.clear();
+    window.location.reload();
+  }
+  return Promise.reject(error);
 });

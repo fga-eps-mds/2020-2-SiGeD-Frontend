@@ -7,7 +7,11 @@ export async function getUser(url) {
     const response = await APIUsers.get(url);
     return response;
   } catch (error) {
-    alert('Não foi possível carregar o usuário, tente novamente mais tarde.');
+    if (error.response.status === 401 || error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else {
+      alert('Não foi possível carregar o usuário, tente novamente mais tarde.');
+    }
     console.error(error);
   }
   return false;
@@ -26,7 +30,11 @@ export async function postUser(
     });
     alert('Usuario cadastrado com sucesso.');
   } catch (error) {
-    console.error(`An unexpected error ocourred while registering a new user.${error}`);
+    if (error.response.status === 401 || error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else {
+      console.error(`An unexpected error ocourred while registering a new user.${error}`);
+    }
   }
 }
 
@@ -70,7 +78,11 @@ export const updateUser = async (
     });
     alert('Usuario atualizado');
   } catch (error) {
-    alert('Não foi possivel atualizar o usuário. Tente novamente mais tarde.');
+    if (error.response.status === 401 || error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else {
+      alert('Não foi possivel atualizar o usuário. Tente novamente mais tarde.');
+    }
     console.error(`An unexpected error occurred while updating the user data.${error}`);
   }
 };
@@ -79,7 +91,11 @@ export async function deleteUser(id) {
   try {
     await APIUsers.delete(`/users/delete/${id}`);
   } catch (error) {
-    alert(`Não foi possivel deletar o usuário.\n${error}`);
+    if (error.response.status === 401 || error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else {
+      alert(`Não foi possivel deletar o usuário.\n${error}`);
+    }
     console.error(error);
   }
 }
