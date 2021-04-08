@@ -71,20 +71,13 @@ const ListDemandsScreen = () => {
     if (filterDemands?.length === 0) {
       return <h1>Sem resultados</h1>;
     }
-    return filterDemands?.map((demand) => {
-      const sector = filterSector?.filter(
-        (listSector) => (listSector.name === sectorActive ? listSector : false),
-      );
-      if (demand.sectorHistory[demand.sectorHistory.length - 1].sectorID !== sector[0]?._id) {
-        return false;
-      }
-      return (
-        <DemandData
-          demand={demand}
-          key={demand._id}
-        />
-      );
-    });
+    return filterDemands?.map((demand) => (
+      <DemandData
+        onClick={console.log(demand)}
+        demand={demand}
+        key={demand._id}
+      />
+    ));
   };
 
   return (

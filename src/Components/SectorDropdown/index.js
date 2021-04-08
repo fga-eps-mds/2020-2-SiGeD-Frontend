@@ -3,13 +3,15 @@ import Select from 'react-select';
 import RightBoxInputs from './Style';
 import { Label } from '../UserDropdown/Style';
 
-const SectorDropdown = ({ setSector }) => {
+const SectorDropdown = ({ setSector, sectorID }) => {
   const [id, setId] = useState('');
   const options = [
     { value: 'DPSS', label: 'DPSS' },
     { value: 'Clinica', label: 'Clinica' },
     { value: 'Especial', label: 'Especial' },
   ];
+
+  const index = () => options.findIndex((val) => val.value === sectorID);
 
   useEffect(() => {
     setSector(id.label);
@@ -45,6 +47,7 @@ const SectorDropdown = ({ setSector }) => {
         Setor:
       </Label>
       <Select
+        defaultValue={options[index]}
         placeholder="Setor"
         styles={customStyles}
         options={options}
