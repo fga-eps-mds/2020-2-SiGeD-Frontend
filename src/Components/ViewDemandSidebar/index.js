@@ -14,22 +14,22 @@ const ViewDemandSidebar = ({
   clientName, userName, category, demand, getDemandApi, showUpdates, sectorsResponse,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
+  const [flag, setFlag] = useState(false);
 
   const actualSector = sectorsResponse?.filter(
     (sectorByID) => sectorByID._id
     === demand.sectorHistory[demand.sectorHistory.length - 1].sectorID,
   );
 
-  // O useState não tá pegando o actualSector preenchido
-
-  console.log('actual:', actualSector[0]?.name);
   const [sectorOption, setSectorOption] = useState(actualSector[0]?.name);
 
   const sectorsList = () => sectorsResponse.map((sector) => sector.name);
 
   useEffect(() => {
-    console.log('secOpt:', sectorOption);
-    setSectorOption(actualSector[0]?.name);
+    if (actualSector[0] && !flag) {
+      setSectorOption(actualSector[0]?.name);
+      setFlag(true);
+    }
   }, [actualSector]);
 
   return (

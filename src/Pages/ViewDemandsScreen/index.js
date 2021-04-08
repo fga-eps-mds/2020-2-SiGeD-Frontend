@@ -84,7 +84,7 @@ const ViewDemandsScreen = () => {
     } else {
       getDemandApi();
     }
-  }, [demand]);
+  }, [demand && flag]);
 
   const showUpdates = () => {
     let list = demand.sectorHistory;
@@ -114,12 +114,8 @@ const ViewDemandsScreen = () => {
         );
       }
 
-      const sectorName = sectorsResponse?.filter((sectorByID) => {
-        console.log('  ');
-        return sectorByID._id === value.sectorID;
-      });
+      const sectorName = sectorsResponse?.filter((sectorByID) => sectorByID._id === value.sectorID);
 
-      console.log('retorno:', sectorName[0]?.name);
       return (
         <TimelineItem style={{ marginLeft: '8%' }} key={index}>
           <TimelineOppositeContent style={{ display: 'none' }} />
