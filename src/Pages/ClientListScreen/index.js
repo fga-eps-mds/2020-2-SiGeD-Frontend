@@ -22,7 +22,7 @@ const ClientListScreen = () => {
 
   useEffect(() => {
     getClientsFromApi();
-  }, []);
+  }, [clients]);
 
   useEffect(() => {
     setFilterClients(
@@ -58,6 +58,7 @@ const ClientListScreen = () => {
         client={client}
         key={client.email}
         getClients={getClients}
+        query={query}
       />
     ));
   };

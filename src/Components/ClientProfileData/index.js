@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-import axios from 'axios';
+import { toggleStatus } from '../../Services/Axios/clientServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser, DotContent,
 } from '../PersonData/Style';
 import colors from '../../Constants/colors';
 
-const ClientProfileData = ({ client, getClients }) => {
+const ClientProfileData = ({ client, query }) => {
   const [boxState, setBoxState] = useState(false);
+  const [text, settext] = useState('Desativar');
+
+  useEffect(() => {
+    if (query === true) {
+      settext('Desativar');
+    }
+    else {
+      settext('Ativar');
+    }
+  }, [query]);
 
   const closeBox = () => {
     if (boxState) {
@@ -20,18 +30,8 @@ const ClientProfileData = ({ client, getClients }) => {
     }
   };
 
-  const ClientDeactivate = async () => {
-    try {
-      await axios.put(`http://localhost:3002/clients/deactivate/${client._id}`);
-    } catch (error) {
-      console.error(error);
-      alert('Não foi possivel desativar o usuario, tente novamente mais tarde.');
-    }
-  };
-
   const DeactivateClient = () => {
-    ClientDeactivate();
-    getClients();
+    toggleStatus(client._id);
   };
 
   return (
@@ -103,7 +103,7 @@ const ClientProfileData = ({ client, getClients }) => {
             </Li>
             <Li>
               <Button onClick={DeactivateClient}>
-                Desativar
+                {text}
               </Button>
               <Icon onClick={DeactivateClient}>
                 <FaRegTrashAlt />
