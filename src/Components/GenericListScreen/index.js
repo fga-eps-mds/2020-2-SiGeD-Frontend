@@ -11,7 +11,6 @@ const GenericListScreen = ({
 
 }) => (
   <Main>
-    {console.log(children)}
     <Container>
       <Title>{PageTitle}</Title>
       <Header>

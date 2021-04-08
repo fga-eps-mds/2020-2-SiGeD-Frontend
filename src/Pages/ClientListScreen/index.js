@@ -31,7 +31,7 @@ const ClientListScreen = () => {
   }, [word]);
 
   useEffect(() => {
-    if (active === 'Desativos') {
+    if (active === 'Inativos') {
       setQuery(false);
     } else {
       setQuery(true);
@@ -109,7 +109,7 @@ const ClientListScreen = () => {
           optionStyle={{
             backgroundColor: `${colors.secondary}`,
           }}
-          optionList={['Ativos', 'Desativos']}
+          optionList={['Ativos', 'Inativos']}
         />
       </Dropdown>
     </GenericListScreen>

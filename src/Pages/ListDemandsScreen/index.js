@@ -33,7 +33,7 @@ const ListDemandsScreen = () => {
   }, [word]);
 
   useEffect(() => {
-    if (active === 'Desativos') {
+    if (active === 'Inativos') {
       setQuery(false);
     } else {
       setQuery(true);
@@ -94,7 +94,7 @@ const ListDemandsScreen = () => {
               optionStyle={{
                 backgroundColor: `${colors.secondary}`,
               }}
-              optionList={['Ativos', 'Desativos']}
+              optionList={['Ativos', 'Inativos']}
             />
           </Dropdown>
         </ScreenHeader>
