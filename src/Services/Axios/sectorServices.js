@@ -11,17 +11,6 @@ export async function getSectors() {
   return false;
 }
 
-export async function getSector(id) {
-  try {
-    const response = await APISectors.get(`sector/${id}`);
-    return response;
-  } catch (error) {
-    alert('Não foi possível obter o setor pelo id, tente novamente mais tarde.');
-    console.error(`An unexpected error ocourred while retrieving the sector by id.${error}`);
-  }
-  return false;
-}
-
 export async function postSectors(
   inputName, inputDescription,
 ) {
