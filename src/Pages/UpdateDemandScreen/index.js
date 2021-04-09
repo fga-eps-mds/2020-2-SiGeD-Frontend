@@ -92,7 +92,7 @@ const UpdateDemandsScreen = () => {
       updateDemand(
         name, description, process, categoriesIDs, sectorID, userID, clientID, id,
       );
-      alert('Demanda criada com sucesso!');
+      alert('Demanda editada com sucesso!');
       setProcess('');
       setDescription('');
       setName('');
