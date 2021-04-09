@@ -49,3 +49,12 @@ export const updateClient = async (
       console.error(`An unexpected error ocourred while updating the client data.${error}`);
     });
 };
+
+export const toggleStatus = async (id) => {
+  try {
+    await APIClients.put(`/clients/toggleStatus/${id}`);
+  } catch (error) {
+    console.error(error);
+    alert('Não foi possivel desativar/reativar o cliente, tente novamente mais tarde.');
+  }
+};
