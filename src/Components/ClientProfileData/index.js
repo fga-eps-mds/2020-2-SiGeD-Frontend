@@ -21,7 +21,7 @@ const ClientProfileData = ({ client, query }) => {
     if (query === true) {
       setText('Desativar');
       setTextColor(`${colors.alertMessages}`);
-      setIcon(<FaRegTrashAlt />);
+      setIcon(<FaRegTrashAlt color="red" />);
     } else {
       setText('Ativar');
       setTextColor(`${colors.navHeaders}`);
