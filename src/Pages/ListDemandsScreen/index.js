@@ -17,7 +17,7 @@ const ListDemandsScreen = () => {
   const [filterSector, setFilterSector] = useState([]);
   const [demands, setDemands] = useState([]);
   const [sectors, setSectors] = useState([]);
-  const [sectorActive, setSectorActive] = useState([]);
+  const [sectorActive, setSectorActive] = useState('');
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
 
@@ -72,8 +72,7 @@ const ListDemandsScreen = () => {
       const sector = filterSector?.filter(
         (listSector) => (listSector.name === sectorActive ? listSector : false),
       );
-      console.log(sector);
-      if (demand.sectorID !== sector[0]?._id) {
+      if (demand.sectorHistory[demand.sectorHistory.length - 1].sectorID !== sector[0]?._id) {
         return false;
       }
       return (
