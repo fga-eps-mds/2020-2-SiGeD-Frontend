@@ -84,7 +84,7 @@ const ViewDemandsScreen = () => {
     } else {
       getDemandApi();
     }
-  }, [demand && flag]);
+  }, [demand]);
 
   const showUpdates = () => {
     let list = demand.sectorHistory;
