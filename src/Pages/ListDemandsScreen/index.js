@@ -73,7 +73,6 @@ const ListDemandsScreen = () => {
     }
     return filterDemands?.map((demand) => (
       <DemandData
-        onClick={console.log(demand)}
         demand={demand}
         key={demand._id}
       />

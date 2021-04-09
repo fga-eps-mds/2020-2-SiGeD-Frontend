@@ -64,7 +64,6 @@ const CreateDemandsScreen = () => {
   };
 
   const submit = () => {
-    console.log(name, description, process, categoriesIDs, sectorID, userID, clientID, 'submit');
     if (validateInputs()) {
       createDemand(name, description, process, categoriesIDs, sectorID, userID, clientID);
       alert('Demanda criada com sucesso!');

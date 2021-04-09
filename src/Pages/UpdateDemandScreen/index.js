@@ -57,9 +57,7 @@ const UpdateDemandsScreen = () => {
   // Aprimorar
   useEffect(() => {
     const IDs = selectedCategories?.map((selectedCategory) => selectedCategory._id);
-    console.log(IDs, 'AKI poca');
     setCategoriesIDs(IDs);
-    console.log(categoriesIDs, 'porque');
   }, [selectedCategories]);
 
   const pushCategory = (category) => {
@@ -85,20 +83,11 @@ const UpdateDemandsScreen = () => {
   };
 
   const submit = () => {
-    console.log('nome:', name, 'description:', description, 'process:', process,
-      'categoriesIDs:', categoriesIDs, 'sectorID:', sectorID, 'userID:', userID,
-      'clientID:', clientID, id);
     if (validateInputs()) {
       updateDemand(
         name, description, process, categoriesIDs, sectorID, userID, clientID, id,
       );
       alert('Demanda editada com sucesso!');
-      setProcess('');
-      setDescription('');
-      setName('');
-      setSelectedCategories([]);
-      setSectorID('');
-      setCategoriesIDs([]);
     } else {
       alert('Preencha todos os campos antes de cadastrar uma nova demanda');
     }
