@@ -4,28 +4,28 @@ import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
 import { postUser } from '../../Services/Axios/userServices';
 import UserForms from '../../Components/UserForms';
+import { useProfileUser } from '../../Context';
 
 const RegisterScreen = () => {
+  const { user } = useProfileUser();
   const history = useHistory();
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
   const [inputRegisterUserRole, setRegisterUserInputRole] = useState('Administrador(a)');
-  const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
+  const [inputRegisterUserSector, setRegisterUserInputSector] = useState('Assistência Social');
   const [inputRegisterUserPassword, setRegisterUserInputPassword] = useState('');
   const [inputRegisterUserConfirmPassword, setRegisterUserInputConfirmPassword] = useState('');
-  const [sectors, setSectors] = useState([]);
   const [englishRole, setEnglishRole] = useState('admin');
 
-  const submit = async () => {
+  const submit = () => {
     if (validateSignUp(inputRegisterUserEmail,
       inputRegisterUserName,
       inputRegisterUserPassword,
       inputRegisterUserConfirmPassword)) {
-      const userSectorID = sectors?.find((sector) => sector.name === inputRegisterUserSector)._id;
       postUser(inputRegisterUserName,
         inputRegisterUserEmail,
         englishRole,
-        userSectorID,
+        inputRegisterUserSector,
         inputRegisterUserPassword);
       return history.push('/usuarios');
     }
@@ -61,34 +61,42 @@ const RegisterScreen = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-
   return (
-    <GenericRegisterScreen
-      sidebarList={[inputRegisterUserName,
-        inputRegisterUserEmail,
-        inputRegisterUserRole,
-        inputRegisterUserSector]}
-      cancel={cancel}
-      submit={submit}
-      buttonTitle="Cadastrar"
-    >
-      <UserForms
-        setInputName={setRegisterUserInputName}
-        inputName={inputRegisterUserName}
-        setInputEmail={setRegisterUserInputEmail}
-        inputEmail={inputRegisterUserEmail}
-        setInputRole={setRegisterUserInputRole}
-        inputRole={inputRegisterUserRole}
-        setInputSector={setRegisterUserInputSector}
-        sectors={sectors}
-        setSectors={setSectors}
-        inputSector={inputRegisterUserSector}
-        setInputPassword={setRegisterUserInputPassword}
-        inputPassword={inputRegisterUserPassword}
-        setInputConfirmPassword={setRegisterUserInputConfirmPassword}
-        inputConfirmPassword={inputRegisterUserConfirmPassword}
-      />
-    </GenericRegisterScreen>
+    <>
+      {user ? (
+        <>
+          {user.role === 'admin'
+            ? (
+              <GenericRegisterScreen
+                sidebarList={[inputRegisterUserName,
+                  inputRegisterUserEmail,
+                  inputRegisterUserRole,
+                  inputRegisterUserSector]}
+                cancel={cancel}
+                submit={submit}
+                buttonTitle="Cadastrar"
+              >
+                <UserForms
+                  setInputName={setRegisterUserInputName}
+                  inputName={inputRegisterUserName}
+                  setInputEmail={setRegisterUserInputEmail}
+                  inputEmail={inputRegisterUserEmail}
+                  setInputRole={setRegisterUserInputRole}
+                  inputRole={inputRegisterUserRole}
+                  setInputSector={setRegisterUserInputSector}
+                  inputSector={inputRegisterUserSector}
+                  setInputPassword={setRegisterUserInputPassword}
+                  inputPassword={inputRegisterUserPassword}
+                  setInputConfirmPassword={setRegisterUserInputConfirmPassword}
+                  inputConfirmPassword={inputRegisterUserConfirmPassword}
+                />
+              </GenericRegisterScreen>
+            )
+            : <Redirect to="/nao-autorizado" />}
+        </>
+      )
+        : <h1>Carregando...</h1>}
+    </>
   );
 };
 

@@ -61,35 +61,36 @@ const ListSectors = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-
-  return (
-    <GenericListScreen
-      ButtonTitle="Novo setor"
-      ButtonFunction={toggleModal}
-      PageTitle="Setor"
-      SearchWord={word}
-      setWord={setWord}
-      ListType={renderSectors()}
-      redirectTo="/setores"
-    >
-      <TableHeader>
-        <TableTitle width={24}>
-          <P>Nome</P>
-        </TableTitle>
-        <Bar />
-        <TableTitle width={50}>
-          <P>Descrição</P>
-        </TableTitle>
-        <Bar />
-        <TableTitle width={24}>
-          <P>Ult. Atualização</P>
-        </TableTitle>
-        <TableTitle width={2} />
-      </TableHeader>
-      { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listSectors} handleClose={toggleModal} createContent={postSectors} /> : null }
-      <div style={{ display: 'none' }} />
-    </GenericListScreen>
-  );
+  if (localStorage.getItem('userRole') === 'admin') {
+    return (
+      <GenericListScreen
+        ButtonTitle="Novo setor"
+        ButtonFunction={toggleModal}
+        PageTitle="Setor"
+        SearchWord={word}
+        setWord={setWord}
+        ListType={renderSectors()}
+        redirectTo="/setores"
+      >
+        <TableHeader>
+          <TableTitle width={24}>
+            <P>Nome</P>
+          </TableTitle>
+          <Bar />
+          <TableTitle width={50}>
+            <P>Descrição</P>
+          </TableTitle>
+          <Bar />
+          <TableTitle width={24}>
+            <P>Ult. Atualização</P>
+          </TableTitle>
+          <TableTitle width={2} />
+        </TableHeader>
+        { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listSectors} handleClose={toggleModal} createContent={postSectors} /> : null}
+      </GenericListScreen>
+    );
+  }
+  return <Redirect to="/nao-autorizado" />;
 };
 
 export default ListSectors;

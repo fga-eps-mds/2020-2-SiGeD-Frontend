@@ -15,6 +15,7 @@ import ViewDemandsScreen from '../Pages/ViewDemandsScreen';
 import ListDemandsScreen from '../Pages/ListDemandsScreen';
 import UpdateDemandsScreen from '../Pages/UpdateDemandScreen';
 import LoginScreen from '../Pages/LoginScreen';
+import UnauthorizedScreen from '../Pages/Unauthorized';
 
 const OtherRoutes = () => (
   <Router>
@@ -34,6 +35,7 @@ const OtherRoutes = () => (
     <Route path="/demandas/editar/:id" exact component={UpdateDemandsScreen} />
     <Route path="/" exact component={ClientListScreen} />
     <Route path="/login" exact component={LoginScreen} />
+    <Route path="/nao-autorizado" exact component={UnauthorizedScreen} />
   </Router>
 );
 
