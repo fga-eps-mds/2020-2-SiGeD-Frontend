@@ -82,6 +82,7 @@ const ListSectors = () => {
         <TableTitle width={2} />
       </TableHeader>
       { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listSectors} handleClose={toggleModal} createContent={postSectors} /> : null }
+      <div style={{ display: 'none' }} />
     </GenericListScreen>
   );
 };

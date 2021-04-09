@@ -27,16 +27,20 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 
   @media(max-width: 750px){
     height: max-content;
-    width: 100%;
-    justify-content: center;
+    width: 85%;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    justify-self: center;
+    align-self: center;
   }
 `;
 
@@ -89,6 +93,7 @@ export const ContentBox = styled.div`
 
 export const Search = styled.div`
   float: left;
+  height: 50px;
 
   @media(max-width: 750px){
     width: 50%;
@@ -140,5 +145,19 @@ export const List = styled.div`
     height: max-content;
     padding: 5px;
     overflow: auto;
+  }
+`;
+
+export const DropDiv = styled.div`
+  display: flex;
+  width: 475px;
+  justify-content: space-between;
+  align-items: center;
+
+  @media(max-width: 750px){
+    height: max-content;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
   }
 `;

@@ -85,6 +85,7 @@ const ListCategories = () => {
         <TableTitle width={2} />
       </TableHeader>
       { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null }
+      <div style={{ display: 'none' }} />
     </GenericListScreen>
   );
 };

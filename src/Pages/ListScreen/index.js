@@ -84,6 +84,7 @@ const ListScreen = () => {
           <P>Ult. Atualização</P>
         </TableTitle>
       </TableHeader>
+      <div style={{ display: 'none' }} />
     </GenericListScreen>
   );
 };

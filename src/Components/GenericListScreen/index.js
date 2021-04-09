@@ -1,6 +1,6 @@
 import { FaSistrix } from 'react-icons/fa';
 import {
-  Main, Container, Title, Search, ContentBox, Header, List, ButtonDiv,
+  Main, Container, Title, Search, ContentBox, Header, List, ButtonDiv, DropDiv,
 } from './Style';
 import SearchInput from '../SearchInput';
 import RedirectListButton from '../RedirectButton';
@@ -14,27 +14,29 @@ const GenericListScreen = ({
     <Container>
       <Title>{PageTitle}</Title>
       <Header>
-        <Search>
-          <SearchInput
-            type="text"
-            icon={<FaSistrix />}
-            value={SearchWord}
-            setWord={(value) => setWord(value)}
-          />
-        </Search>
+        <DropDiv>
+          <Search>
+            <SearchInput
+              type="text"
+              icon={<FaSistrix />}
+              value={SearchWord}
+              setWord={(value) => setWord(value)}
+            />
+          </Search>
+          {children[1]}
+        </DropDiv>
         <ButtonDiv>
           <RedirectListButton title={ButtonTitle} redirectTo={redirectTo} click={ButtonFunction} />
         </ButtonDiv>
       </Header>
 
       <ContentBox>
-        {children}
+        {children[0]}
         <List>
           {ListType}
         </List>
       </ContentBox>
     </Container>
-
   </Main>
 );
 
