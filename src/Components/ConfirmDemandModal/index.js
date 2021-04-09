@@ -3,13 +3,17 @@ import React from 'react';
 import colors from '../../Constants/colors';
 import TinyButton from '../TinyButton';
 
-const ConfirmDemandModal = ({ show, handleClose, submit }) => (
+const ConfirmDemandModal = ({
+  show, handleClose, submit, actionName,
+}) => (
   <Modal show={show} onHide={handleClose}>
     <Modal.Header closeButton>
       <Modal.Title>Alerta</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      Você tem certeza que deseja criar essa demanda?
+      Você tem certeza que deseja
+      {actionName}
+      essa demanda?
     </Modal.Body>
     <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
       <TinyButton

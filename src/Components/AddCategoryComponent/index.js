@@ -7,7 +7,7 @@ import { getCategories, createCategory } from '../../Services/Axios/demandsServi
 import CategoriesToAdd from '../CategoriesToAdd';
 import ModalComp from '../ModalComp';
 
-const CategoryDiv = ({ selectedCategories, pushCategory }) => {
+const CategoryDiv = ({ pushCategory }) => {
   const [statusBox, setStatusBox] = useState(false);
   const [categories, setCategories] = useState([]);
   const [modalState, setModalState] = useState(false);
@@ -36,7 +36,6 @@ const CategoryDiv = ({ selectedCategories, pushCategory }) => {
       <CategoriesToAdd
         category={category}
         key={category._id}
-        selectedCategories={selectedCategories}
         pushCategory={pushCategory}
       />
     ));

@@ -101,6 +101,7 @@ const CreateDemandsScreen = () => {
         setDescription={setDescription}
         submit={handleShow}
         cancel={cancel}
+        buttomName="Cadastrar"
       />
       {/* Começa aki */}
       <RightBoxComponent
@@ -116,7 +117,6 @@ const CreateDemandsScreen = () => {
           sector={sectorID}
         />
         <CategoryDiv
-          selectedCategories={selectedCategories}
           pushCategory={pushCategory}
         />
         <SelectedCategories
@@ -131,6 +131,7 @@ const CreateDemandsScreen = () => {
         show={show}
         handleClose={handleClose}
         submit={submit}
+        actionName=" criar "
       />
     </Main>
   );

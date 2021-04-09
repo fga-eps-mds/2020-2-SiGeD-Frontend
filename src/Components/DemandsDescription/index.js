@@ -6,7 +6,7 @@ import {
 } from './Style';
 
 const DemandsDescription = ({
-  name, setName, process, setProcess, description, setDescription, submit, cancel,
+  name, setName, process, setProcess, description, setDescription, submit, cancel, buttomName,
 }) => (
 
   <FieldsDiv>
@@ -36,7 +36,7 @@ const DemandsDescription = ({
       </DescriptionDiv>
       <Footer>
         <TinyButton type="secondary" title="Cancelar" click={cancel} />
-        <TinyButton type="primary" title="Cadastrar" click={submit} />
+        <TinyButton type="primary" title={buttomName} click={submit} />
       </Footer>
     </CenterDiv>
   </FieldsDiv>

@@ -10,8 +10,18 @@ const SectorDropdown = ({ setSector, sectorID }) => {
     { value: 'Clinica', label: 'Clinica' },
     { value: 'Especial', label: 'Especial' },
   ];
+  const [index, setIndex] = useState();
 
-  const index = () => options.findIndex((val) => val.value === sectorID);
+  useEffect(() => {
+    let l = 0;
+    options.map((x) => {
+      if (x.value === sectorID) {
+        l = x;
+      }
+      return 0;
+    });
+    setIndex(l);
+  }, [sectorID]);
 
   useEffect(() => {
     setSector(id.label);
@@ -40,7 +50,6 @@ const SectorDropdown = ({ setSector, sectorID }) => {
       };
     },
   };
-
   return (
     <RightBoxInputs>
       <Label>
