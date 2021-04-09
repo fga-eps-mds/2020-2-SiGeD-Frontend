@@ -9,7 +9,7 @@ import {
 import colors from '../../Constants/colors';
 
 const NewUpdateCard = ({
-  demand, userName, getDemandApi,
+  demand, userName, getDemandApi, changeState, setChangeState,
 }) => {
   const [description, setDescription] = useState('');
   const [visibilityRestriction, setVisibilityRestriction] = useState(false);
@@ -51,7 +51,7 @@ const NewUpdateCard = ({
         <TinyButton
           type="primary"
           title="Adicionar Atualização"
-          click={submit}
+          click={() => { submit(); setChangeState(!changeState); }}
           style={{
             width: 'max-content',
             padding: '0% 3% 0 3%',

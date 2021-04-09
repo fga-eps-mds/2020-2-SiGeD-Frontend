@@ -33,6 +33,7 @@ const ViewDemandsScreen = () => {
   const handleClose = () => setShow(false);
   const [sectorsResponse, setSectorsResponse] = useState([]);
   const [flag, setFlag] = useState(false);
+  const [changeState, setChangeState] = useState(false);
   const { id } = useParams();
 
   const getDemandApi = async () => {
@@ -84,7 +85,11 @@ const ViewDemandsScreen = () => {
     } else {
       getDemandApi();
     }
-  }, [demand]);
+  }, [demand && flag]);
+
+  useEffect(() => {
+    getDemandApi();
+  }, [changeState]);
 
   const showUpdates = () => {
     let list = demand.sectorHistory;
@@ -164,6 +169,8 @@ const ViewDemandsScreen = () => {
                 userName={user.name}
                 showUpdates={showUpdates}
                 getDemandApi={getDemandApi}
+                setChangeState={setChangeState}
+                changeState={changeState}
               />
             </div>
           </TimelineDiv>
@@ -198,13 +205,21 @@ const ViewDemandsScreen = () => {
           getDemandApi={getDemandApi}
           showUpdates={showUpdates}
           sectorsResponse={sectorsResponse}
+          changeState={changeState}
+          setChangeState={setChangeState}
         />
         <MobileTimeline>
           <Timeline>
             { showUpdates() }
           </Timeline>
           <div style={{ width: '90%', marginLeft: '5%' }}>
-            <NewUpdateCard demand={demand} userName={user.name} getDemandApi={getDemandApi} />
+            <NewUpdateCard
+              demand={demand}
+              userName={user.name}
+              getDemandApi={getDemandApi}
+              changeState={changeState}
+              setChangeState={setChangeState}
+            />
           </div>
         </MobileTimeline>
         <MobileButtonDiv>

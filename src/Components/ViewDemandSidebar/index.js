@@ -12,6 +12,7 @@ import colors from '../../Constants/colors';
 
 const ViewDemandSidebar = ({
   clientName, userName, category, demand, getDemandApi, showUpdates, sectorsResponse,
+  changeState, setChangeState,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
   const [flag, setFlag] = useState(false);
@@ -106,6 +107,8 @@ const ViewDemandSidebar = ({
             showUpdates={showUpdates}
             demand={demand}
             sectorsResponse={sectorsResponse}
+            setChangeState={setChangeState}
+            changeState={changeState}
           />
         </div>
       )}
