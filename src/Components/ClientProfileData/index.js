@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
-import { BsThreeDots, BsPencil } from 'react-icons/bs';
+import { BsThreeDots, BsPencil, BsPersonCheckFill } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -14,12 +14,18 @@ import colors from '../../Constants/colors';
 const ClientProfileData = ({ client, query }) => {
   const [boxState, setBoxState] = useState(false);
   const [text, setText] = useState('Desativar');
+  const [textColor, setTextColor] = useState('');
+  const [icon, setIcon] = useState('');
 
   useEffect(() => {
     if (query === true) {
       setText('Desativar');
+      setTextColor(`${colors.alertMessages}`);
+      setIcon(<FaRegTrashAlt />);
     } else {
       setText('Ativar');
+      setTextColor(`${colors.navHeaders}`);
+      setIcon(<BsPersonCheckFill />);
     }
   }, [query]);
 
@@ -101,11 +107,11 @@ const ClientProfileData = ({ client, query }) => {
               </Icon>
             </Li>
             <Li>
-              <Button onClick={DeactivateClient}>
+              <Button onClick={DeactivateClient} style={{ color: textColor }}>
                 {text}
               </Button>
               <Icon onClick={DeactivateClient}>
-                <FaRegTrashAlt />
+                {icon}
               </Icon>
             </Li>
           </Ul>
