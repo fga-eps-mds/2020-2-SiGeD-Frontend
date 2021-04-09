@@ -14,7 +14,7 @@ const ListDemandsScreen = () => {
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [demands, setDemands] = useState([]);
-  const [active, setActive] = useState('Ativos');
+  const [active, setActive] = useState('Ativas');
   const [query, setQuery] = useState(true);
 
   const getDemandsFromApi = async () => {
@@ -33,7 +33,7 @@ const ListDemandsScreen = () => {
   }, [word]);
 
   useEffect(() => {
-    if (active === 'Inativos') {
+    if (active === 'Inativas') {
       setQuery(false);
     } else {
       setQuery(true);
@@ -94,7 +94,7 @@ const ListDemandsScreen = () => {
               optionStyle={{
                 backgroundColor: `${colors.secondary}`,
               }}
-              optionList={['Ativos', 'Inativos']}
+              optionList={['Ativas', 'Inativas']}
             />
           </Dropdown>
         </ScreenHeader>

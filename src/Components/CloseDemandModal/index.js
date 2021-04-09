@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { toggleDemand } from '../../Services/Axios/demandsServices';
 import colors from '../../Constants/colors';
 import TinyButton from '../TinyButton';
+import RedirectListButton from '../RedirectButton';
 
 const CloseDemandModal = ({
   demand, id, show, handleClose,
@@ -32,20 +33,22 @@ const CloseDemandModal = ({
       </Modal.Body>
       <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
         <TinyButton
+          click={handleClose}
           type="primary"
           title="Cancelar"
-          click={handleClose}
           style={{
             backgroundColor: colors.alertMessages,
             borderColor: colors.alertMessages,
           }}
         />
-        <TinyButton
+        <RedirectListButton
+          redirectTo="/demandas"
           type="primary"
           title="Confirmar"
           click={() => { toggleDemand(id); handleClose(); }}
           style={{
             backgroundColor: colors.primary,
+            width: '20%',
           }}
         />
       </Modal.Footer>
