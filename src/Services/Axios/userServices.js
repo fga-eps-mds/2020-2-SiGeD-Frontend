@@ -7,9 +7,9 @@ export async function getUser(url) {
     const response = await APIUsers.get(url);
     return response;
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possível carregar o usuário, tente novamente mais tarde.');
     }
     console.error(error);
@@ -29,9 +29,9 @@ export async function postUser(
       pass: inputPassword,
     });
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       console.error(`An unexpected error ocourred while registering a new user.${error}`);
     }
   }
@@ -52,9 +52,8 @@ export async function loginUser(
       APIClients.defaults.headers = { 'x-access-token': response.data.token };
       APIDemands.defaults.headers = { 'x-access-token': response.data.token };
       APISectors.defaults.headers = { 'x-access-token': response.data.token };
-      setToken(response.data.token);
-      console.log(response.data.user.role);
       setRole(response.data.user.role);
+      setToken(response.data.token);
       redirectUser();
     }
     return response.data;
@@ -77,9 +76,9 @@ export const updateUser = async (
       pass: inputPassword,
     });
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possivel atualizar o usuário. Tente novamente mais tarde.');
     }
     console.error(`An unexpected error occurred while updating the user data.${error}`);
@@ -90,9 +89,9 @@ export async function deleteUser(id) {
   try {
     await APIUsers.delete(`/users/delete/${id}`);
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert(`Não foi possivel deletar o usuário.\n${error}`);
     }
     console.error(error);
