@@ -118,7 +118,7 @@ const ListDemandsScreen = () => {
               optionStyle={{
                 backgroundColor: `${colors.secondary}`,
               }}
-              optionList={['Ativos', 'Inativos']}
+              optionList={['Ativas', 'Inativas']}
             />
             <DropdownComponent
               OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
