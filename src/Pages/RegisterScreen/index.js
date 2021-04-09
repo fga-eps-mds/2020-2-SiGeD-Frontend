@@ -56,36 +56,40 @@ const RegisterScreen = () => {
     setRegisterUserInputConfirmPassword('');
   };
 
+  console.log(localStorage.getItem('userRole'), localStorage.getItem('@App:token'));
+
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-
-  return (
-    <GenericRegisterScreen
-      sidebarList={[inputRegisterUserName,
-        inputRegisterUserEmail,
-        inputRegisterUserRole,
-        inputRegisterUserSector]}
-      cancel={cancel}
-      submit={submit}
-      buttonTitle="Cadastrar"
-    >
-      <UserForms
-        setInputName={setRegisterUserInputName}
-        inputName={inputRegisterUserName}
-        setInputEmail={setRegisterUserInputEmail}
-        inputEmail={inputRegisterUserEmail}
-        setInputRole={setRegisterUserInputRole}
-        inputRole={inputRegisterUserRole}
-        setInputSector={setRegisterUserInputSector}
-        inputSector={inputRegisterUserSector}
-        setInputPassword={setRegisterUserInputPassword}
-        inputPassword={inputRegisterUserPassword}
-        setInputConfirmPassword={setRegisterUserInputConfirmPassword}
-        inputConfirmPassword={inputRegisterUserConfirmPassword}
-      />
-    </GenericRegisterScreen>
-  );
+  if (localStorage.getItem('userRole') === 'admin') {
+    return (
+      <GenericRegisterScreen
+        sidebarList={[inputRegisterUserName,
+          inputRegisterUserEmail,
+          inputRegisterUserRole,
+          inputRegisterUserSector]}
+        cancel={cancel}
+        submit={submit}
+        buttonTitle="Cadastrar"
+      >
+        <UserForms
+          setInputName={setRegisterUserInputName}
+          inputName={inputRegisterUserName}
+          setInputEmail={setRegisterUserInputEmail}
+          inputEmail={inputRegisterUserEmail}
+          setInputRole={setRegisterUserInputRole}
+          inputRole={inputRegisterUserRole}
+          setInputSector={setRegisterUserInputSector}
+          inputSector={inputRegisterUserSector}
+          setInputPassword={setRegisterUserInputPassword}
+          inputPassword={inputRegisterUserPassword}
+          setInputConfirmPassword={setRegisterUserInputConfirmPassword}
+          inputConfirmPassword={inputRegisterUserConfirmPassword}
+        />
+      </GenericRegisterScreen>
+    );
+  }
+  return <Redirect to="/nao-autorizado" />;
 };
 
 export default RegisterScreen;

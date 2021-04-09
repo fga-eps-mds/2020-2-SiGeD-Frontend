@@ -44,30 +44,32 @@ const UserUpdateScreen = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-
-  return (
-    <GenericRegisterScreen
-      sidebarList={[inputName, inputEmail, inputRole, inputSector]}
-      cancel={cancel}
-      submit={submit}
-      buttonTitle="Atualizar"
-    >
-      <UserForms
-        setInputName={setInputName}
-        inputName={inputName}
-        setInputEmail={setInputEmail}
-        inputEmail={inputEmail}
-        setInputRole={setInputRole}
-        inputRole={inputRole}
-        setInputSector={setInputSector}
-        inputSector={inputSector}
-        setInputPassword={setInputPassword}
-        inputPassword={inputPassword}
-        setInputConfirmPassword={setInputConfirmPassword}
-        inputConfirmPassword={inputConfirmPassword}
-      />
-    </GenericRegisterScreen>
-  );
+  if (localStorage.getItem('userRole') === 'admin') {
+    return (
+      <GenericRegisterScreen
+        sidebarList={[inputName, inputEmail, inputRole, inputSector]}
+        cancel={cancel}
+        submit={submit}
+        buttonTitle="Atualizar"
+      >
+        <UserForms
+          setInputName={setInputName}
+          inputName={inputName}
+          setInputEmail={setInputEmail}
+          inputEmail={inputEmail}
+          setInputRole={setInputRole}
+          inputRole={inputRole}
+          setInputSector={setInputSector}
+          inputSector={inputSector}
+          setInputPassword={setInputPassword}
+          inputPassword={inputPassword}
+          setInputConfirmPassword={setInputConfirmPassword}
+          inputConfirmPassword={inputConfirmPassword}
+        />
+      </GenericRegisterScreen>
+    );
+  }
+  return <Redirect to="/nao-autorizado" />;
 };
 
 export default UserUpdateScreen;
