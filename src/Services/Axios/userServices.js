@@ -53,6 +53,7 @@ export async function loginUser(
       APIDemands.defaults.headers = { 'x-access-token': response.data.token };
       APISectors.defaults.headers = { 'x-access-token': response.data.token };
       setToken(response.data.token);
+      console.log(response.data.user.role);
       setRole(response.data.user.role);
       redirectUser();
     }

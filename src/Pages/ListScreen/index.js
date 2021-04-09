@@ -53,43 +53,44 @@ const ListScreen = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
+  if (localStorage.getItem('userRole') === 'admin') {
+    return (
+      <GenericListScreen
+        ButtonTitle="Novo Usuário"
+        ButtonFunction={newUser}
+        PageTitle="Usuários"
+        SearchWord={word}
+        setWord={setWord}
+        ListType={listUsers()}
+        redirectTo="/cadastro"
+      >
+        <TableHeader>
+          <TableTitle width={25}>
+            <P>Nome</P>
+          </TableTitle>
+          <Bar />
+          <TableTitle width={25}>
+            <P>Email</P>
+          </TableTitle>
+          <Bar />
 
-  return (
-    <GenericListScreen
-      ButtonTitle="Novo Usuário"
-      ButtonFunction={newUser}
-      PageTitle="Usuários"
-      SearchWord={word}
-      setWord={setWord}
-      ListType={listUsers()}
-      redirectTo="/cadastro"
-    >
-      <TableHeader>
-        <TableTitle width={25}>
-          <P>Nome</P>
-        </TableTitle>
-        <Bar />
-        <TableTitle width={25}>
-          <P>Email</P>
-        </TableTitle>
-        <Bar />
+          <TableTitle width={20}>
+            <P>Cargo</P>
+          </TableTitle>
+          <Bar />
 
-        <TableTitle width={20}>
-          <P>Cargo</P>
-        </TableTitle>
-        <Bar />
-
-        <TableTitle width={15}>
-          <P>Setor</P>
-        </TableTitle>
-        <Bar />
-        <TableTitle width={15}>
-          <P>Ult. Atualização</P>
-        </TableTitle>
-      </TableHeader>
-      <div style={{ display: 'none' }} />
-    </GenericListScreen>
-  );
+          <TableTitle width={15}>
+            <P>Setor</P>
+          </TableTitle>
+          <Bar />
+          <TableTitle width={15}>
+            <P>Ult. Atualização</P>
+          </TableTitle>
+        </TableHeader>
+      </GenericListScreen>
+    );
+  }
+  return <Redirect to="/nao-autorizado" />;
 };
 
 export default ListScreen;
