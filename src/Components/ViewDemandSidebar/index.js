@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   RightBox, ContentBox, NameDiv, Line,
   CreatedBy, UserIcon, PersonIcon, P,
@@ -12,13 +12,26 @@ import colors from '../../Constants/colors';
 
 const ViewDemandSidebar = ({
   clientName, userName, category, demand, getDemandApi, showUpdates, sectorsResponse,
+  changeState, setChangeState,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
-  const [sectorOption, setSectorOption] = useState(
-    demand.sectorHistory[demand.sectorHistory.length - 1].sectorID,
+  const [flag, setFlag] = useState(false);
+
+  const actualSector = sectorsResponse?.filter(
+    (sectorByID) => sectorByID._id
+    === demand.sectorHistory[demand.sectorHistory.length - 1].sectorID,
   );
 
+  const [sectorOption, setSectorOption] = useState(actualSector[0]?.name);
+
   const sectorsList = () => sectorsResponse.map((sector) => sector.name);
+
+  useEffect(() => {
+    if (actualSector[0] && !flag) {
+      setSectorOption(actualSector[0]?.name);
+      setFlag(true);
+    }
+  }, [actualSector]);
 
   return (
     <RightBox>
@@ -93,6 +106,9 @@ const ViewDemandSidebar = ({
             getDemandApi={getDemandApi}
             showUpdates={showUpdates}
             demand={demand}
+            sectorsResponse={sectorsResponse}
+            setChangeState={setChangeState}
+            changeState={changeState}
           />
         </div>
       )}

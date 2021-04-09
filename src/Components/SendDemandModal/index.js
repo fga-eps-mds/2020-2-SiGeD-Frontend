@@ -6,14 +6,19 @@ import TinyButton from '../TinyButton';
 import { ForwardDiv, ForwardIcon } from './Style';
 
 const SendDemandModal = ({
-  sectorOption, demand, getDemandApi,
+  sectorOption, demand, getDemandApi, sectorsResponse, changeState, setChangeState,
 }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const sectorOptionByID = sectorsResponse?.filter(
+    (sectorByID) => sectorByID.name === sectorOption,
+  );
+
   const forwardDemandFunct = () => {
-    if (demand.sectorHistory[demand.sectorHistory.length - 1].sectorID === sectorOption) {
+    if (demand.sectorHistory[demand.sectorHistory.length - 1].sectorID
+      === sectorOptionByID[0]?._id) {
       alert('A demanda não pode ser encaminhada para o setor atual dela.');
     } else {
       handleShow();
@@ -21,8 +26,9 @@ const SendDemandModal = ({
   };
 
   const submit = () => {
-    forwardDemand(sectorOption, demand._id);
+    forwardDemand(sectorOptionByID[0]?._id, demand._id);
     getDemandApi();
+    setChangeState(!changeState);
   };
 
   return (
