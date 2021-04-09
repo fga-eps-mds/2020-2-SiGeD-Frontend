@@ -20,7 +20,7 @@ export const APISectors = axios.create({
 });
 
 APIUsers.interceptors.response.use(async (response) => response, (error) => {
-  if (error.response.status === 401 || error.response.status === 500) {
+  if (error.response.status === 500) {
     localStorage.clear();
     window.location.reload();
   }
@@ -39,7 +39,7 @@ APIClients.interceptors.response.use(async (response) => {
     return response;
   }
 }, (error) => {
-  if (error.response.status === 401 || error.response.status === 500) {
+  if (error.response.status === 500) {
     localStorage.clear();
     window.location.reload();
   }
@@ -58,7 +58,7 @@ APIDemands.interceptors.response.use(async (response) => {
     return response;
   }
 }, (error) => {
-  if (error.response.status === 401 || error.response.status === 500) {
+  if (error.response.status === 500) {
     localStorage.clear();
     window.location.reload();
   }
@@ -77,7 +77,7 @@ APISectors.interceptors.response.use(async (response) => {
     return response;
   }
 }, (error) => {
-  if (error.response.status === 401 || error.response.status === 500) {
+  if (error.response.status === 500) {
     localStorage.clear();
     window.location.reload();
   }

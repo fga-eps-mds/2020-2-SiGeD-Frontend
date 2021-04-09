@@ -5,9 +5,9 @@ export async function getSectors() {
     const response = await APISectors.get('sector');
     return response;
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possível obter a lista de setores, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while retrieving the sectors list.${error}`);
@@ -36,9 +36,9 @@ export async function postSectors(
     });
     return response;
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possivel criar o setor. Tente novamente mais tarde');
     }
     console.error(`An unexpected error ocourred while creating a new sector.${error}`);
@@ -59,7 +59,7 @@ export const updateSectors = async (
         console.error(`An unexpected error ocourred while updating the sector data.${error}`);
       });
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
     }
     console.log(error);
@@ -70,9 +70,9 @@ export const deleteSector = async (id) => {
   try {
     await APISectors.delete(`/sector/delete/${id}`);
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert(`Não foi possivel deletar o setor.\n${error}`);
     }
     console.error(error);

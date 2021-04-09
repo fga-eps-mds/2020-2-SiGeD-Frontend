@@ -5,9 +5,9 @@ export async function getCategories(url) {
     const response = await APIDemands.get(url);
     return response;
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possível carregar as categorias já criadas, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while getting categories.${error}`);
@@ -26,9 +26,9 @@ export async function createCategory(name, description, color) {
       alert('Preencha todos os campos para poder criar uma nova categoria');
     }
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possível criar a nova categoria, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while creating a new category.${error}`);
@@ -46,9 +46,9 @@ export async function updateCategory(name, description, color, id) {
       alert('Preencha todos os campos para poder editar uma categoria');
     }
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possível atualizar a categoria, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while updating an already created category.${error}`);
@@ -59,9 +59,9 @@ export const deleteCategory = async (id) => {
   try {
     await APIDemands.delete(`/category/delete/${id}`);
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert(`Não foi possivel deletar a categoria.\n${error}`);
     }
     console.error(error);
@@ -72,9 +72,9 @@ export async function getDemands(url) {
     const response = await APIDemands.get(url);
     return response;
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possível carregar as demandas já criadas, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while getting demands.${error}`);
@@ -99,9 +99,9 @@ export async function createDemand(
       alert('Preencha todos os campos para poder criar uma nova categoria');
     }
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possível criar a nova demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while creating a new demand.${error}`);
@@ -126,9 +126,9 @@ export async function updateDemand(
       alert('Preencha todos os campos para poder editar uma categoria');
     }
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possível atualizar a demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while updating an already created demand.${error}`);
@@ -139,9 +139,9 @@ export async function toggleDemand(id) {
   try {
     await APIDemands.put(`demand/toggle/${id}`);
   } catch (error) {
-    if (error.response.status === 401 || error.response.status === 500) {
+    if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else {
+    } else if (error.response.status !== 401) {
       alert('Não foi possível encerrar a demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while closing an already created demand.${error}`);
