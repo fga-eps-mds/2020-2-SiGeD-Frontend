@@ -99,9 +99,11 @@ export const ScreenList = styled.div`
 `;
 
 export const Dropdown = styled.div`
-width: 200px;
+width: 450px;
 height: 50px;
 border-radius: 15px;
+display: flex;
+justify-content: space-between;
 
 @media(max-width: 750px){
   width: 60%;

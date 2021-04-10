@@ -7,23 +7,35 @@ import {
 import SearchInput from '../../Components/SearchInput';
 import DemandData from '../../Components/DemandData';
 import { getDemands } from '../../Services/Axios/demandsServices';
+import { getSectors } from '../../Services/Axios/sectorServices';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
 
 const ListDemandsScreen = () => {
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
+  const [filterSector, setFilterSector] = useState([]);
   const [demands, setDemands] = useState([]);
-  const [active, setActive] = useState('Ativas');
+  const [sectors, setSectors] = useState([]);
+  const [sectorActive, setSectorActive] = useState('');
+  const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
 
   const getDemandsFromApi = async () => {
     await getDemands(`demand?open=${query}`)
       .then((response) => setDemands(response.data));
   };
+  const getSectorsFromApi = async () => {
+    await getSectors()
+      .then((response) => {
+        setSectors(response.data);
+        setSectorActive(response.data[0].name);
+      });
+  };
 
   useEffect(() => {
     getDemandsFromApi();
+    getSectorsFromApi();
   }, []);
 
   useEffect(() => {
@@ -48,6 +60,10 @@ const ListDemandsScreen = () => {
     setFilterDemands(demands);
   }, [demands]);
 
+  useEffect(() => {
+    setFilterSector(sectors);
+  }, [sectors]);
+
   const listDemands = () => {
     if (demands?.length === 0) {
       return <h1>Sem resultados</h1>;
@@ -55,12 +71,20 @@ const ListDemandsScreen = () => {
     if (filterDemands?.length === 0) {
       return <h1>Sem resultados</h1>;
     }
-    return filterDemands?.map((demand) => (
-      <DemandData
-        demand={demand}
-        key={demand._id}
-      />
-    ));
+    return filterDemands?.map((demand) => {
+      const sector = filterSector?.filter(
+        (listSector) => (listSector.name === sectorActive ? listSector : false),
+      );
+      if (demand.sectorHistory[demand.sectorHistory.length - 1].sectorID !== sector[0]?._id) {
+        return false;
+      }
+      return (
+        <DemandData
+          demand={demand}
+          key={demand._id}
+        />
+      );
+    });
   };
 
   return (
@@ -83,7 +107,7 @@ const ListDemandsScreen = () => {
               style={{
                 display: 'flex',
                 color: `${colors.text}`,
-                width: '100%',
+                width: '45%',
                 height: '100%',
                 alignItems: 'center',
                 boxSizing: 'border-box',
@@ -95,6 +119,24 @@ const ListDemandsScreen = () => {
                 backgroundColor: `${colors.secondary}`,
               }}
               optionList={['Ativas', 'Inativas']}
+            />
+            <DropdownComponent
+              OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
+              style={{
+                display: 'flex',
+                color: `${colors.text}`,
+                width: '45%',
+                height: '100%',
+                alignItems: 'center',
+                boxSizing: 'border-box',
+                borderRadius: '8px',
+                border: '1px solid black',
+                justifyContent: 'center',
+              }}
+              optionStyle={{
+                backgroundColor: `${colors.secondary}`,
+              }}
+              optionList={filterSector?.map((sector) => sector.name)}
             />
           </Dropdown>
         </ScreenHeader>
