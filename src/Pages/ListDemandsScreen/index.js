@@ -23,13 +23,13 @@ const ListDemandsScreen = () => {
 
   const getDemandsFromApi = async () => {
     await getDemands(`demand?open=${query}`)
-      .then((response) => setDemands(response.data));
+      .then((response) => setDemands(response?.data));
   };
   const getSectorsFromApi = async () => {
     await getSectors()
       .then((response) => {
-        setSectors(response.data);
-        setSectorActive(response.data[0].name);
+        setSectors(response?.data);
+        setSectorActive(response.data ? response?.data[0]?.name : '');
       });
   };
 
@@ -40,7 +40,7 @@ const ListDemandsScreen = () => {
 
   useEffect(() => {
     setFilterDemands(
-      demands.filter((demand) => demand.name.toLowerCase().includes(word?.toLowerCase())),
+      demands?.filter((demand) => demand.name.toLowerCase().includes(word?.toLowerCase())),
     );
   }, [word]);
 

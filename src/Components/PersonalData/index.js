@@ -10,6 +10,7 @@ import {
   TableContainer, ImageUser, DotContent,
 } from '../PersonData/Style';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
@@ -82,14 +83,17 @@ const PersonalData = ({ user, getUsers }) => {
                 </Link>
               </Icon>
             </Li>
-            <Li>
-              <Button onClick={ClickDeleteUser}>
-                Desativar
-              </Button>
-              <Icon onClick={ClickDeleteUser}>
-                <FaRegTrashAlt />
-              </Icon>
-            </Li>
+            { !(useProfileUser().user._id !== user._id)
+              || (
+              <Li>
+                <Button onClick={ClickDeleteUser}>
+                  Desativar
+                </Button>
+                <Icon onClick={ClickDeleteUser}>
+                  <FaRegTrashAlt />
+                </Icon>
+              </Li>
+              )}
           </Ul>
         </Box>
       ) : null}

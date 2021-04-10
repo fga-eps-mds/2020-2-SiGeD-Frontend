@@ -9,7 +9,7 @@ const DropdownComponent = ({
     style={style}
     value={value}
   >
-    {optionList.map((optionListItem, index) => (
+    {optionList?.map((optionListItem, index) => (
       <option style={optionStyle} key={index}>
         {optionListItem}
       </option>
