@@ -107,9 +107,9 @@ export async function updateDemand(
   }
 }
 
-export async function closeDemand(id) {
+export async function toggleDemand(id) {
   try {
-    await APIDemands.put(`demand/close/${id}`);
+    await APIDemands.put(`demand/toggle/${id}`);
   } catch (error) {
     alert('Não foi possível encerrar a demanda, tente novamente mais tarde.');
     console.error(`An unexpected error ocourred while closing an already created demand.${error}`);
