@@ -21,14 +21,13 @@ export const UserFormsColumnText = styled.div`
 `;
 
 export const Dropdown = styled(Form.Control)`
-
     box-sizing: border-box;
     border-radius: 1.5vw;
     border: 0px solid #000000;
     box-shadow: none !important;
     display: block;
     width: 98%;
-    height: calc(1.5em + 0.75rem + 2px);
+    height: 100%;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;

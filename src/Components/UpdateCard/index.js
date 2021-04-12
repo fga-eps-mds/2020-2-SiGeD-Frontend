@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import moment from 'moment-timezone';
 import { Link } from 'react-router-dom';
 import { BsPencil } from 'react-icons/bs';
 import { BiTrash, BiLockAlt } from 'react-icons/bi';
@@ -41,7 +41,7 @@ const UpdateCard = ({ demand }) => (
         {demand.description}
       </DemandDescription>
       <CreatedAt>
-        { format(new Date(demand.updatedAt), 'dd/MM/yyyy')}
+        { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY HH:mm:ss')}
       </CreatedAt>
     </BottomSide>
   </Card>

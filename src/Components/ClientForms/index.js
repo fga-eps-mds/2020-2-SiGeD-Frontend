@@ -17,15 +17,17 @@ const ClientForms = ({
   inputCity,
   setOfficeOption,
   setPoliceStationOption,
+  policeStationOption,
 }) => (
   <ClientFormsColumnText>
     <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
     <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
     <RegisterInput type="text" title="CPF" setText={setInputCpf} value={inputCpf} />
-    <RegisterInput type="text" title="Telefone" setText={setInputPhone} value={inputPhone} />
-    <RegisterInput long type="text" title="Cidade" setText={setInputCity} value={inputCity} />
+    <RegisterInput type="text" title="Endereco" setText={setInputCity} value={inputCity} />
+    <RegisterInput type="text" title="Telefone principal" setText={setInputPhone} value={inputPhone} />
+    <RegisterInput type="text" title="Telefone secundario" setText={setInputPhone} value={inputPhone} />
     <Form.Group style={{ width: '45%' }}>
-      <Form.Label>Cargo:</Form.Label>
+      <Form.Label style={{ margin: '0' }}>Cargo:</Form.Label>
       <div style={{
         boxSizing: 'border-box', borderRadius: '9px', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
       }}
@@ -42,23 +44,7 @@ const ClientForms = ({
         </Dropdown>
       </div>
     </Form.Group>
-    <Form.Group style={{ width: '45%' }}>
-      <Form.Label>Local:</Form.Label>
-      <div style={{
-        boxSizing: 'border-box', borderRadius: '9px', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
-      }}
-      >
-        <Dropdown
-          as="select"
-          onChange={(policeOption) => setPoliceStationOption(policeOption.target.value)}
-        >
-          <option>DPSS</option>
-          <option>CASA</option>
-          <option>TCU</option>
-          <option>DPCM</option>
-        </Dropdown>
-      </div>
-    </Form.Group>
+    <RegisterInput type="text" title="Lotação" setText={setPoliceStationOption} value={policeStationOption} />
   </ClientFormsColumnText>
 );
 export default ClientForms;

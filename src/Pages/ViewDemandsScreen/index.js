@@ -67,7 +67,7 @@ const ViewDemandsScreen = () => {
   const setButtons = async () => {
     if (demand.open === true) {
       setButtonColor(colors.alertMessages);
-      setButtonTitle('Fechar demanda');
+      setButtonTitle('Concluir demanda');
     } else {
       setButtonColor(colors.primary);
       setButtonTitle('Reabrir demanda');
