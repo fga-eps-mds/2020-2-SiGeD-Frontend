@@ -80,6 +80,7 @@ const ListDemandsScreen = () => {
       }
       return (
         <DemandData
+          sector={sector}
           demand={demand}
           key={demand._id}
         />

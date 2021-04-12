@@ -10,22 +10,23 @@ const ClientRegisterScreen = () => {
   const [registerClientInputName, setRegisterClientInputName] = useState('');
   const [registerClientInputEmail, setRegisterClientInputEmail] = useState('');
   const [registerClientInputCpf, setRegisterClientInputCpf] = useState('');
-  const [registerClientInputPhone, setRegisterClientInputPhone] = useState('');
   const [registerClientInputAddress, setRegisterClientInputAddress] = useState('');
-  const [policeStationOption, setPoliceStationOption] = useState('');
+  const [registerClientInputPhone, setRegisterClientInputPhone] = useState('');
+  const [registerClientInputSecondaryPhone, setregisterClientInputSecondaryPhone] = useState('');
   const [officeOption, setOfficeOption] = useState('Policial');
+  const [registerLocation, setRegisterLocation] = useState('');
 
   const submit = async () => {
     const message = validateFields(registerClientInputName,
       registerClientInputEmail, registerClientInputCpf,
-      registerClientInputPhone,
-      registerClientInputAddress);
+      registerClientInputPhone, registerClientInputSecondaryPhone);
 
     if (!message.length) {
       const data = await postClient(
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
-        registerClientInputAddress, officeOption, policeStationOption,
+        registerClientInputSecondaryPhone, registerClientInputAddress,
+        officeOption, registerLocation,
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }
@@ -34,9 +35,10 @@ const ClientRegisterScreen = () => {
     setRegisterClientInputCpf('');
     setRegisterClientInputEmail('');
     setRegisterClientInputPhone('');
+    setregisterClientInputSecondaryPhone('');
     setRegisterClientInputAddress('');
     setOfficeOption('');
-    setPoliceStationOption('');
+    setRegisterLocation('');
     return undefined;
   };
 
@@ -47,13 +49,13 @@ const ClientRegisterScreen = () => {
     setRegisterClientInputPhone('');
     setRegisterClientInputAddress('');
     setOfficeOption('');
-    setPoliceStationOption('');
+    setRegisterLocation('');
   };
 
   return (
     <GenericRegisterScreen
       sidebarList={[registerClientInputName, registerClientInputCpf,
-        registerClientInputAddress, officeOption, policeStationOption]}
+        registerClientInputAddress, officeOption, registerLocation]}
       sidebarFooter={[registerClientInputEmail, registerClientInputPhone]}
       cancel={cancel}
       submit={submit}
@@ -68,11 +70,13 @@ const ClientRegisterScreen = () => {
         inputCpf={registerClientInputCpf}
         setInputPhone={setRegisterClientInputPhone}
         inputPhone={registerClientInputPhone}
-        setInputCity={setRegisterClientInputAddress}
-        inputCity={registerClientInputAddress}
+        setInputSecondaryPhone={setregisterClientInputSecondaryPhone}
+        secondaryPhone={registerClientInputSecondaryPhone}
+        setInputAddress={setRegisterClientInputAddress}
+        inputAddress={registerClientInputAddress}
         setOfficeOption={setOfficeOption}
-        setPoliceStationOption={setPoliceStationOption}
-        policeStationOption={policeStationOption}
+        setLocationOption={setRegisterLocation}
+        locationOption={registerLocation}
       />
     </GenericRegisterScreen>
   );

@@ -13,19 +13,21 @@ const ClientForms = ({
   inputCpf,
   setInputPhone,
   inputPhone,
-  setInputCity,
-  inputCity,
+  setInputSecondaryPhone,
+  secondaryPhone,
+  setInputAddress,
+  inputAddress,
   setOfficeOption,
-  setPoliceStationOption,
-  policeStationOption,
+  setLocationOption,
+  locationOption,
 }) => (
   <ClientFormsColumnText>
     <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
     <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
     <RegisterInput type="text" title="CPF" setText={setInputCpf} value={inputCpf} />
-    <RegisterInput type="text" title="Endereco" setText={setInputCity} value={inputCity} />
+    <RegisterInput type="text" title="Endereco" setText={setInputAddress} value={inputAddress} />
     <RegisterInput type="text" title="Telefone principal" setText={setInputPhone} value={inputPhone} />
-    <RegisterInput type="text" title="Telefone secundario" setText={setInputPhone} value={inputPhone} />
+    <RegisterInput type="text" title="Telefone secundario" setText={setInputSecondaryPhone} value={secondaryPhone} />
     <Form.Group style={{ width: '45%' }}>
       <Form.Label style={{ margin: '0' }}>Cargo:</Form.Label>
       <div style={{
@@ -44,7 +46,7 @@ const ClientForms = ({
         </Dropdown>
       </div>
     </Form.Group>
-    <RegisterInput type="text" title="Lotação" setText={setPoliceStationOption} value={policeStationOption} />
+    <RegisterInput type="text" title="Lotação" setText={setLocationOption} value={locationOption} />
   </ClientFormsColumnText>
 );
 export default ClientForms;

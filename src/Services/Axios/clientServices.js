@@ -12,17 +12,21 @@ export async function getClients(url) {
 }
 
 export async function postClient(
-  inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
+  inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
+  inputAddress, officeOption, inputLocation,
 ) {
+  console.log(inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
+    inputAddress, officeOption, inputLocation);
   try {
     const response = await APIClients.post('clients/create', {
       name: inputName,
       email: inputEmail,
       cpf: inputCpf,
       phone: inputPhone,
-      city: inputCity,
+      secondaryPhone: inputSecondaryPhone,
+      address: inputAddress,
       office: officeOption,
-      policeStation: policeStationOption,
+      location: inputLocation,
     });
     return response;
   } catch (error) {
