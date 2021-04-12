@@ -6,7 +6,7 @@ import {
 } from './Style';
 import SearchInput from '../../Components/SearchInput';
 import DemandData from '../../Components/DemandData';
-import { getDemands } from '../../Services/Axios/demandsServices';
+import { getDemands, getCategories } from '../../Services/Axios/demandsServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
