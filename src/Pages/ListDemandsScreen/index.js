@@ -20,7 +20,6 @@ const ListDemandsScreen = () => {
   const [sectorActive, setSectorActive] = useState('');
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
-
   const getDemandsFromApi = async () => {
     await getDemandsWithClientsNames(`clientsNames?open=${query}`)
       .then((response) => setDemands(response.data));
