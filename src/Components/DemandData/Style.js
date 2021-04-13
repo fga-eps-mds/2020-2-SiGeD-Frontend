@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
 export const DemandCard = styled.div`
-    height: max-content;
+    height: min-content;
     width: 30%;
     background-color: ${colors.secondary};
     border-radius: 15px;
@@ -12,17 +12,17 @@ export const DemandCard = styled.div`
     @media(max-width: 750px){
         width: 100%;
     }
-
 `;
 
 export const DemandTitle = styled.div`
-    height: 50%;
+    height: min-content;
     width: 100%;
     font-size: 2.5vh;
     text-align: center;
     font-weight: bold;
     border-radius: 15px;
     margin-top: 5%;
+    padding: 5px;
 `;
 
 export const ClientName = styled.div`
@@ -54,6 +54,8 @@ export const CategoryField = styled.div`
     height: 40%;
     margin-left: 1vw;
     background-color: ${colors.backgroundColor};
+    display: flex;
+    flex-wrap: wrap;
     
 `;
 
@@ -64,14 +66,12 @@ export const CategoryName = styled.p`
   color: ${colors.secondary};
   background-color: ${(props) => `${props.color}`};
   font-size: 2vh;
-  margin-block-end: 0;
-  margin-block-start: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: 'Montserrat';
-  width: 35%;
-  margin: 3% 0 3% 0;
+  width: 42%;
+  margin: 1.5% 3% 3% 3%;
   @media(max-width: 750px){
     font-size: 1.5vh;
     font-weight: 900;
