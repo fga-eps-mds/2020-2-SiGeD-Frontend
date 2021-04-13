@@ -20,27 +20,26 @@ const ListDemandsScreen = () => {
   const [sectorActive, setSectorActive] = useState('');
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
-
   const getDemandsFromApi = async () => {
     await getDemands(`demand?open=${query}`)
-      .then((response) => setDemands(response?.data));
+      .then((response) => setDemands(response.data));
   };
   const getSectorsFromApi = async () => {
     await getSectors()
       .then((response) => {
-        setSectors(response?.data);
-        setSectorActive(response.data ? response?.data[0]?.name : '');
+        setSectors(response.data);
+        setSectorActive(response.data[0].name);
       });
   };
 
   useEffect(() => {
-    getDemandsFromApi();
     getSectorsFromApi();
+    getDemandsFromApi();
   }, []);
 
   useEffect(() => {
     setFilterDemands(
-      demands?.filter((demand) => demand.name.toLowerCase().includes(word?.toLowerCase())),
+      demands.filter((demand) => demand.name.toLowerCase().includes(word?.toLowerCase())),
     );
   }, [word]);
 
@@ -83,6 +82,7 @@ const ListDemandsScreen = () => {
           sector={sector}
           demand={demand}
           key={demand._id}
+          sectors={sectors}
         />
       );
     });
