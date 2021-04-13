@@ -7,30 +7,28 @@ import {
 } from './Style';
 import colors from '../../Constants/colors';
 import { getClients } from '../../Services/Axios/clientServices';
-import { getCategories } from '../../Services/Axios/demandsServices';
 
-const DemandData = ({ demand, sector }) => {
+const DemandData = ({ demand, sectors }) => {
   const [client, setClient] = useState([]);
-  const [category, setCategory] = useState([]);
+  const sectorName = sectors?.filter((sectorByID) => (sectorByID._id
+    === demand.sectorHistory[demand.sectorHistory.length - 1].sectorID));
 
   const getClientApi = async () => {
     await getClients(`/clients/${demand.clientID}`)
       .then((response) => setClient(response.data));
   };
 
-  const getCategoryApi = async () => {
-    await getCategories(`/category/${demand.categoryID}`)
-      .then((response) => setCategory(response.data));
-  };
+  const renderDemandCategories = () => (demand.categoryID?.map((category) => (
+    <CategoryName color={category.color}>{category.name}</CategoryName>
+  )));
 
   useEffect(() => {
     getClientApi();
-    getCategoryApi();
   }, []);
 
   return (
     <>
-      { category && client
+      { client
       && (
       <DemandCard
         as={Link}
@@ -59,7 +57,7 @@ const DemandData = ({ demand, sector }) => {
         </ClientName>
         <SectorName>
           Setor:
-          { sector[0]?.name }
+          {sectorName[0]?.name}
         </SectorName>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <ProcessNumber>
@@ -71,7 +69,7 @@ const DemandData = ({ demand, sector }) => {
           </DemandCreatedAt>
         </div>
         <CategoryField>
-          <CategoryName color={category.color}>{category.name}</CategoryName>
+          {renderDemandCategories()}
         </CategoryField>
       </DemandCard>
       )}
