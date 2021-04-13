@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SelectedBox = styled.div`
   width: 90%;
-  height: 30%;
+  height: 20%;
   font-size: 1rem;
   background-color: transparent;
   display: flex;

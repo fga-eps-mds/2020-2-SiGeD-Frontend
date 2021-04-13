@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const UserSearchDiv = styled.div`
   width: 100%;
-  height: 10%;
+  height: 15%;
   font-size: 1rem;
   background-color: transparent;
   display: flex;

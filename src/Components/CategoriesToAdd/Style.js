@@ -17,7 +17,6 @@ export const Demandbox = styled.div`
     margin-bottom: 2vh;
     display: flex;
     flex-direction: column;
-    margin-top: -3%;
   }
 `;
 
