@@ -32,6 +32,7 @@ const OtherRoutes = () => (
     <Route path="/visualizar/:id" exact component={ViewDemandsScreen} />
     <Route path="/demandas" exact component={ListDemandsScreen} />
     <Route path="/demandas/editar/:id" exact component={UpdateDemandsScreen} />
+
   </Router>
 );
 

@@ -66,11 +66,6 @@ export const validateFields = (inputName, inputEmail, inputCpf, inputPhone,
   return message;
 };
 
-export const validateProcess = (process) => {
-  const regex = /^[0-9]+$/;
-  return regex.test(process);
-};
-
 export const validateOpen = (open) => {
   const regex = /^(true|false)$/;
   return regex.test(open);

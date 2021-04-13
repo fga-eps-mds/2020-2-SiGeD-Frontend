@@ -4,7 +4,6 @@ import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
 import RightBoxComponent from '../../Components/RightBoxComponent';
 import { createDemand } from '../../Services/Axios/demandsServices';
-import { validateProcess } from '../../Utils/validations';
 import DemandsDescription from '../../Components/DemandsDescription';
 import SelectedCategories from '../../Components/SelectedCategories';
 import UserDropdown from '../../Components/UserDropdown';
@@ -43,11 +42,11 @@ const CreateDemandsScreen = () => {
 
   const pushCategory = (category) => {
     let alreadySelected = false;
-    for (let c = 0; c < selectedCategories.length; c += 1) {
-      if (category._id === selectedCategories[c]._id) {
+    selectedCategories.forEach((passCategory) => {
+      if (category._id === passCategory._id) {
         alreadySelected = true;
       }
-    }
+    });
     if (!alreadySelected) {
       setSelectedCategories([...selectedCategories, category]);
     } else {
@@ -56,8 +55,7 @@ const CreateDemandsScreen = () => {
   };
 
   const validateInputs = () => {
-    if (!name || !description || !validateProcess(process)
-      || !sectorID || !clientID || categoriesIDs === undefined) {
+    if (!name || !description || !sectorID || !clientID || categoriesIDs === undefined) {
       return false;
     }
     return true;
@@ -102,7 +100,6 @@ const CreateDemandsScreen = () => {
         cancel={cancel}
         buttomName="Cadastrar"
       />
-      {/* Começa aki */}
       <RightBoxComponent
         clientName={clientName}
       >

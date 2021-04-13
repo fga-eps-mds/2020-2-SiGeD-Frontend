@@ -6,7 +6,6 @@ import CategoryDiv from '../../Components/AddCategoryComponent';
 import RightBoxComponent from '../../Components/RightBoxComponent';
 import { updateDemand, getDemands } from '../../Services/Axios/demandsServices';
 import { getClients } from '../../Services/Axios/clientServices';
-import { validateProcess } from '../../Utils/validations';
 import DemandsDescription from '../../Components/DemandsDescription';
 import SelectedCategories from '../../Components/SelectedCategories';
 import TinyButton from '../../Components/TinyButton';
@@ -25,6 +24,7 @@ const UpdateDemandsScreen = () => {
   const [sectorID, setSectorID] = useState('');
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientName, setClientName] = useState('');
+  const [sectorName, setSectorName] = useState('');
   const { id } = useParams();
 
   const getClientFromApi = async (client) => {
@@ -42,9 +42,10 @@ const UpdateDemandsScreen = () => {
         setName(data?.name);
         setDescription(data?.description);
         setProcess(data?.process);
-        setSectorID(data?.sectorID);
+        setSectorID(data?.sectorHistory[0]._id);
         setSelectedCategories(data?.categoryID);
         setClientID(data?.clientID);
+        setSectorName(data?.sectorHistory[0].sectorID);
         setUserID(data?.userID);
         getClientFromApi(data?.clientID);
       });
@@ -54,7 +55,6 @@ const UpdateDemandsScreen = () => {
     getDemandsFromApi();
   }, []);
 
-  // Aprimorar
   useEffect(() => {
     const IDs = selectedCategories?.map((selectedCategory) => selectedCategory._id);
     setCategoriesIDs(IDs);
@@ -62,11 +62,11 @@ const UpdateDemandsScreen = () => {
 
   const pushCategory = (category) => {
     let alreadySelected = false;
-    for (let c = 0; c < selectedCategories.length; c += 1) {
-      if (category._id === selectedCategories[c]._id) {
+    selectedCategories.forEach((passCategory) => {
+      if (category._id === passCategory._id) {
         alreadySelected = true;
       }
-    }
+    });
     if (!alreadySelected) {
       setSelectedCategories([...selectedCategories, category]);
     } else {
@@ -75,8 +75,7 @@ const UpdateDemandsScreen = () => {
   };
 
   const validateInputs = () => {
-    if (!name || !description || !validateProcess(process)
-      || !sectorID || !clientID || categoriesIDs === undefined) {
+    if (!name || !description || !sectorID || !clientID || categoriesIDs === undefined) {
       return false;
     }
     return true;
@@ -115,7 +114,6 @@ const UpdateDemandsScreen = () => {
         cancel={cancel}
         buttomName="Editar"
       />
-      {/* Começa aki */}
       <RightBoxComponent
         clientName={clientName}
       >
@@ -123,6 +121,7 @@ const UpdateDemandsScreen = () => {
         <SectorDropdown
           setSector={setSectorID}
           sectorID={sectorID}
+          sectorName={sectorName}
         />
         <CategoryDiv
           selectedCategories={selectedCategories}
