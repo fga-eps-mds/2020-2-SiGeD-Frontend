@@ -29,7 +29,10 @@ export const Tag = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: 100%;
+  text-align: center;
+  word-break: break-word;
 
 `;
 

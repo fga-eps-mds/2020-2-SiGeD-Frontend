@@ -21,18 +21,19 @@ export const SelectedBox = styled.div`
 export const Tag = styled.div`
 
   width: 40%;
-  height: 15%;
+  height: min-content;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: 1rem;
   margin-left: 5%;
   margin-bottom: 5%;
 
   @media(max-width: 750px){
-    height: 30%;
+    word-break: break-word;
   }
 
 `;
