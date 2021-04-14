@@ -7,10 +7,10 @@ const ClientFormsColumnText = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin-top: 10px;
+    margin-top: 5%;
     flex-wrap: wrap;
     justify-content: space-between;
-    @media(max-width: 720px){
+    @media(max-width: 750px){
         align-items: center;
         width: 90%;
         height: 80%;

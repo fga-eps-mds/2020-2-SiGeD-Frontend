@@ -1,0 +1,21 @@
+name: Release
+
+on: 
+  pull_request:
+   types: [ closed ]
+    
+jobs:
+  release:
+    if: github.event.pull_request.merged == true && !contains(github.event.pull_request.labels.*.name, 'Not a Release')
+    runs-on: "ubuntu-latest"
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create env file
+      run: |
+          touch ./scripts/.env
+          echo TOKEN=${{ secrets.ACCESS_TOKEN }} >> ./scripts/.env
+          echo RELEASE_MINOR=${{ contains(github.event.pull_request.labels.*.name, 'Minor Release') }} >> ./scripts/.env
+  
+    - name: Create Release
+      run: cd scripts && yarn install && node release.js

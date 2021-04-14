@@ -24,13 +24,13 @@ const UserForms = ({
     <Form.Group style={{ width: '45%' }}>
       <Form.Label>Cargo:</Form.Label>
       <div style={{
-        boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
+        boxSizing: 'border-box', borderRadius: '9px', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
       }}
       >
         <Dropdown
           as="select"
           value={inputRole}
-          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '0px solid #000000' }}
+          style={{ boxSizing: 'border-box', borderRadius: '9px', border: '0px solid #000000' }}
           onChange={(Option) => setInputRole(Option.target.value)}
         >
           <option>Administrador(a)</option>
@@ -42,13 +42,13 @@ const UserForms = ({
     <Form.Group style={{ width: '45%' }}>
       <Form.Label>Setor:</Form.Label>
       <div style={{
-        boxSizing: 'border-box', borderRadius: '1.5vw', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
+        boxSizing: 'border-box', borderRadius: '9px', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
       }}
       >
         <Dropdown
           as="select"
           value={inputSector}
-          style={{ boxSizing: 'border-box', borderRadius: '1.5vw', border: '0px solid #000000' }}
+          style={{ boxSizing: 'border-box', borderRadius: '9px', border: '0px solid #000000' }}
           onChange={(Option) => setInputSector(Option.target.value)}
         >
           <option>Assistência Social</option>

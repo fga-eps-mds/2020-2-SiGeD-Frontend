@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import ModalComp from '../../Components/ModalComp';
 import {
   TableHeader, TableTitle, P, Bar,
-} from './style';
-import CategoriesData from '../../Components/CategoriesData';
-import ReactModal from '../../Components/ReactModal';
+} from './Style';
 import GenericListScreen from '../../Components/GenericListScreen';
-import { getCategories } from '../../Services/Axios/demandsServices';
+import {
+  getCategories, createCategory, updateCategory, deleteCategory,
+} from '../../Services/Axios/demandsServices';
+import DataList from '../../Components/DataList';
+import colors from '../../Constants/colors';
 
 const ListCategories = () => {
   const [filterCategories, setFilterCategories] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [statusModal, setStatusModal] = useState(false);
   const [word, setWord] = useState();
+  const [statusModal, setStatusModal] = useState(false);
 
-  const listCategorie = async () => {
-    await getCategories()
+  const toggleModal = () => setStatusModal(!statusModal);
+
+  const listCategories = async () => {
+    await getCategories('category')
       .then((response) => setCategories(response.data))
       .catch((error) => {
         console.error(`An unexpected error ocourred while getting categories.${error}`);
@@ -22,13 +27,8 @@ const ListCategories = () => {
   };
 
   useEffect(() => {
-    listCategorie();
+    listCategories();
   }, []);
-
-  const toggleModal = () => {
-    setStatusModal(!statusModal);
-    listCategorie();
-  };
 
   useEffect(() => {
     setFilterCategories(
@@ -48,10 +48,14 @@ const ListCategories = () => {
       return <h1>Sem resultados</h1>;
     }
     return filterCategories?.map((category) => (
-      <CategoriesData
-        category={category}
-        getCategories={listCategorie}
-        key={category._id}
+      <DataList
+        content={category}
+        getContent={listCategories}
+        backgroundColor={category.color}
+        color={colors.secondary}
+        axiosDelete={deleteCategory}
+        updateContent={updateCategory}
+        type="Categoria"
       />
     ));
   };
@@ -80,7 +84,8 @@ const ListCategories = () => {
         </TableTitle>
         <TableTitle width={2} />
       </TableHeader>
-      { statusModal ? <ReactModal type="Nova " idName="" idColor="#000000" getCategories={getCategories} toggleModal={toggleModal} /> : null}
+      { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null }
+      <div style={{ display: 'none' }} />
     </GenericListScreen>
   );
 };

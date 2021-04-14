@@ -1,3 +1,5 @@
+name: CI
+
 on: [push, pull_request]
 
 jobs:
@@ -11,4 +13,4 @@ jobs:
       run: yarn install
 
     - name: ESLint check
-      run: npx eslint . --ext .js
+      run: npx eslint ./src --ext .js

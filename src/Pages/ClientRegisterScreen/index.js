@@ -19,7 +19,7 @@ const ClientRegisterScreen = () => {
     const message = validateFields(registerClientInputName,
       registerClientInputEmail, registerClientInputCpf,
       registerClientInputPhone,
-      registerClientInputCity, 'Cadastro do cliente realizado com sucesso!');
+      registerClientInputCity);
 
     if (!message.length) {
       const data = await postClient(
@@ -29,6 +29,7 @@ const ClientRegisterScreen = () => {
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }
+    alert(message.join('\n'));
     setRegisterClientInputName('');
     setRegisterClientInputCpf('');
     setRegisterClientInputEmail('');

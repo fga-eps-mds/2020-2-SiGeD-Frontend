@@ -1,34 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
-import { BsThreeDots, BsPencil } from 'react-icons/bs';
+import { BsThreeDots, BsPencil, BsPersonCheckFill } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-import axios from 'axios';
+import { toggleStatus } from '../../Services/Axios/clientServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser, DotContent,
-} from '../PersonData/style';
+} from '../PersonData/Style';
 import colors from '../../Constants/colors';
 
-const ClientProfileData = ({ client, getClients }) => {
+const ClientProfileData = ({ client, query }) => {
   const [boxState, setBoxState] = useState(false);
+  const [text, setText] = useState('Desativar');
+  const [textColor, setTextColor] = useState('');
+  const [icon, setIcon] = useState('');
 
-  const ClientDeactivate = async () => {
-    try {
-      await axios.put(`http://localhost:3002/clients/deactivate/${client._id}`);
-    } catch (error) {
-      console.error(error);
+  useEffect(() => {
+    if (query === true) {
+      setText('Desativar');
+      setTextColor(`${colors.alertMessages}`);
+      setIcon(<FaRegTrashAlt color="red" />);
+    } else {
+      setText('Ativar');
+      setTextColor(`${colors.navHeaders}`);
+      setIcon(<BsPersonCheckFill />);
+    }
+  }, [query]);
+
+  const closeBox = () => {
+    if (boxState) {
+      setBoxState(false);
     }
   };
 
   const DeactivateClient = () => {
-    ClientDeactivate();
-    getClients();
+    toggleStatus(client._id);
   };
 
   return (
-    <Content>
+    <Content onMouseLeave={closeBox} onClick={closeBox}>
       <PersonDataBox>
         <ImageUser>
           <IoPersonCircleOutline size="100%" />
@@ -85,15 +97,21 @@ const ClientProfileData = ({ client, getClients }) => {
                 </Link>
               </Button>
               <Icon>
-                <BsPencil />
+                <Link
+                  to={`/editar/${client._id}`}
+                  id={client._id}
+                  style={{ color: colors.text, textDecorationLine: 'none' }}
+                >
+                  <BsPencil />
+                </Link>
               </Icon>
             </Li>
             <Li>
-              <Button onClick={DeactivateClient}>
-                Desativar
+              <Button onClick={DeactivateClient} style={{ color: textColor }}>
+                {text}
               </Button>
-              <Icon>
-                <FaRegTrashAlt />
+              <Icon onClick={DeactivateClient}>
+                {icon}
               </Icon>
             </Li>
           </Ul>

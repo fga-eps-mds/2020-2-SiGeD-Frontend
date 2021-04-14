@@ -2,29 +2,45 @@ import React, { useEffect, useState } from 'react';
 import ClientProfileData from '../../Components/ClientProfileData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
-  TableHeader, P, Bar, TableTitle,
-} from './style';
+  TableHeader, P, Bar, TableTitle, Dropdown,
+} from './Style';
 import { getClients } from '../../Services/Axios/clientServices';
+import DropdownComponent from '../../Components/DropdownComponent';
+import colors from '../../Constants/colors';
 
 const ClientListScreen = () => {
   const [word, setWord] = useState();
   const [filterClients, setFilterClients] = useState([]);
   const [clients, setClients] = useState([]);
+  const [active, setActive] = useState('Ativos');
+  const [query, setQuery] = useState(true);
 
   const getClientsFromApi = async () => {
-    await getClients('clients')
+    await getClients(`clients?active=${query}`)
       .then((response) => setClients(response.data));
   };
 
   useEffect(() => {
     getClientsFromApi();
-  }, []);
+  }, [clients]);
 
   useEffect(() => {
     setFilterClients(
       clients.filter((client) => client.name.toLowerCase().includes(word?.toLowerCase())),
     );
   }, [word]);
+
+  useEffect(() => {
+    if (active === 'Inativos') {
+      setQuery(false);
+    } else {
+      setQuery(true);
+    }
+  }, [active]);
+
+  useEffect(() => {
+    getClientsFromApi();
+  }, [query]);
 
   useEffect(() => {
     setFilterClients(clients);
@@ -42,6 +58,7 @@ const ClientListScreen = () => {
         client={client}
         key={client.email}
         getClients={getClients}
+        query={query}
       />
     ));
   };
@@ -64,12 +81,10 @@ const ClientListScreen = () => {
           <P>Email</P>
         </TableTitle>
         <Bar />
-
         <TableTitle width={15}>
           <P>CPF</P>
         </TableTitle>
         <Bar />
-
         <TableTitle width={15}>
           <P>Telefone</P>
         </TableTitle>
@@ -78,6 +93,26 @@ const ClientListScreen = () => {
           <P>Ult. Atualização</P>
         </TableTitle>
       </TableHeader>
+      <Dropdown>
+        <DropdownComponent
+          OnChangeFunction={(Option) => setActive(Option.target.value)}
+          style={{
+            display: 'flex',
+            color: `${colors.text}`,
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            boxSizing: 'border-box',
+            borderRadius: '8px',
+            border: '1px solid black',
+            justifyContent: 'center',
+          }}
+          optionStyle={{
+            backgroundColor: `${colors.secondary}`,
+          }}
+          optionList={['Ativos', 'Inativos']}
+        />
+      </Dropdown>
     </GenericListScreen>
   );
 };

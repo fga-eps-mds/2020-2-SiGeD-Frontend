@@ -15,7 +15,7 @@ const UserUpdateScreen = () => {
   const { id } = useParams();
 
   const getUserFromApi = async () => {
-    getUser(`users/${id}`)
+    await getUser(`users/${id}`)
       .then((response) => {
         const { data } = response;
         setInputName(data.name);

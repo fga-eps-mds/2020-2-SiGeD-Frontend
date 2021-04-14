@@ -3,7 +3,7 @@ import PersonalData from '../../Components/PersonalData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
   H1, TableHeader, P, Bar, TableTitle,
-} from './style';
+} from './Style';
 import { getUser } from '../../Services/Axios/userServices';
 
 const newUser = () => { };
@@ -17,7 +17,7 @@ const ListScreen = () => {
     await getUser('users')
       .then((response) => setUsers(response.data))
       .catch((err) => {
-        console.error(`An unexpected error ocourred while getting users.${err}`);
+        console.error(`An unexpected error ocourred while getting users. ${err}`);
       });
   };
 
@@ -84,6 +84,7 @@ const ListScreen = () => {
           <P>Ult. Atualização</P>
         </TableTitle>
       </TableHeader>
+      <div style={{ display: 'none' }} />
     </GenericListScreen>
   );
 };

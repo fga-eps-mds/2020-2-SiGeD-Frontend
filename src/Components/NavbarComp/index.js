@@ -2,7 +2,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
-import styles from './style';
+import styles from './Style';
 import { useProfileUser } from '../../Context';
 import { APIUsers } from '../../Services/Axios/baseService';
 
@@ -15,7 +15,8 @@ const NavbarComp = () => {
       setToken(localStorage.getItem('@App:token'));
       APIUsers.defaults.headers = null;
     } catch (error) {
-      console.error(`Não foi possivel fazer logout.${error}`);
+      alert('Não foi possivel realizar o logout.');
+      console.error(error);
     }
   };
 
@@ -36,6 +37,9 @@ const NavbarComp = () => {
               <Nav.Link as={Link} to="/usuarios" style={styles.navbarText}>
                 Usuários
               </Nav.Link>
+              <Nav.Link as={Link} to="/setores" style={styles.navbarText}>
+                Setores
+              </Nav.Link>
               <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
                 Novo cliente
               </Nav.Link>
@@ -44,6 +48,12 @@ const NavbarComp = () => {
               </Nav.Link>
               <Nav.Link as={Link} to="/categorias" style={styles.navbarText}>
                 Categorias
+              </Nav.Link>
+              <Nav.Link as={Link} to="/demanda" style={styles.navbarText}>
+                Criar Demandas
+              </Nav.Link>
+              <Nav.Link as={Link} to="/demandas" style={styles.navbarText}>
+                Demandas
               </Nav.Link>
               <Navbar.Brand as={Link} to="/" onClick={logoutUser}>
                 <FiLogOut />
