@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Main, Footer } from './Style';
 import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
 import RightBoxComponent from '../../Components/RightBoxComponent';
-import { createDemand } from '../../Services/Axios/demandsServices';
+import { updateDemand, getDemands } from '../../Services/Axios/demandsServices';
+import { getClients } from '../../Services/Axios/clientServices';
 import DemandsDescription from '../../Components/DemandsDescription';
 import SelectedCategories from '../../Components/SelectedCategories';
-import UserDropdown from '../../Components/UserDropdown';
-import { getClients } from '../../Services/Axios/clientServices';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 
-const CreateDemandsScreen = () => {
+const UpdateDemandsScreen = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -19,20 +19,40 @@ const CreateDemandsScreen = () => {
   const [description, setDescription] = useState('');
   const [process, setProcess] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [clients, setClients] = useState([]);
-  const userID = '605cfd4dfdcb2a006d7b0cb3';
+  const [clientID, setClientID] = useState('');
+  const [userID, setUserID] = useState('');
   const [sectorID, setSectorID] = useState('');
   const [categoriesIDs, setCategoriesIDs] = useState([]);
-  const [clientID, setClientID] = useState('');
   const [clientName, setClientName] = useState('');
+  const [sectorName, setSectorName] = useState('');
+  const { id } = useParams();
 
-  const getClientsFromApi = async () => {
-    await getClients('clients')
-      .then((response) => setClients(response.data));
+  const getClientFromApi = async (client) => {
+    await getClients(`clients/${client}`)
+      .then((response) => {
+        const { data } = response;
+        setClientName(data?.name);
+      });
+  };
+
+  const getDemandsFromApi = async () => {
+    await getDemands(`demand/${id}`)
+      .then((response) => {
+        const { data } = response;
+        setName(data?.name);
+        setDescription(data?.description);
+        setProcess(data?.process);
+        setSectorID(data?.sectorHistory[0]._id);
+        setSelectedCategories(data?.categoryID);
+        setClientID(data?.clientID);
+        setSectorName(data?.sectorHistory[0].sectorID);
+        setUserID(data?.userID);
+        getClientFromApi(data?.clientID);
+      });
   };
 
   useEffect(() => {
-    getClientsFromApi();
+    getDemandsFromApi();
   }, []);
 
   useEffect(() => {
@@ -63,15 +83,10 @@ const CreateDemandsScreen = () => {
 
   const submit = () => {
     if (validateInputs()) {
-      createDemand(name, description, process, categoriesIDs, sectorID, userID, clientID);
-      alert('Demanda criada com sucesso!');
-      setProcess('');
-      setDescription('');
-      setName('');
-      setSelectedCategories([]);
-      setSectorID('');
-      setClientID('');
-      setCategoriesIDs([]);
+      updateDemand(
+        name, description, process, categoriesIDs, sectorID, userID, clientID, id,
+      );
+      alert('Demanda editada com sucesso!');
     } else {
       alert('Preencha todos os campos antes de cadastrar uma nova demanda');
     }
@@ -82,7 +97,6 @@ const CreateDemandsScreen = () => {
     setProcess('');
     setDescription('');
     setSelectedCategories([]);
-    setClientID('');
     setSectorID('');
     setCategoriesIDs([]);
   };
@@ -98,21 +112,19 @@ const CreateDemandsScreen = () => {
         setDescription={setDescription}
         submit={handleShow}
         cancel={cancel}
-        buttomName="Cadastrar"
+        buttomName="Editar"
       />
       <RightBoxComponent
         clientName={clientName}
       >
-        <UserDropdown
-          clients={clients}
-          setClientID={setClientID}
-          setClientName={setClientName}
-        />
+        <div display="none" />
         <SectorDropdown
           setSector={setSectorID}
-          sector={sectorID}
+          sectorID={sectorID}
+          sectorName={sectorName}
         />
         <CategoryDiv
+          selectedCategories={selectedCategories}
           pushCategory={pushCategory}
         />
         <SelectedCategories
@@ -121,16 +133,16 @@ const CreateDemandsScreen = () => {
       </RightBoxComponent>
       <Footer>
         <TinyButton type="secondary" title="Cancelar" click={cancel} />
-        <TinyButton type="primary" title="Cadastrar" click={handleShow} />
+        <TinyButton type="primary" title="Editar" click={handleShow} />
       </Footer>
       <ConfirmDemandModal
         show={show}
         handleClose={handleClose}
         submit={submit}
-        actionName=" criar "
+        actionName=" editar "
       />
     </Main>
   );
 };
 
-export default CreateDemandsScreen;
+export default UpdateDemandsScreen;

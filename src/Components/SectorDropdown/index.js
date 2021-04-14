@@ -1,29 +1,55 @@
-import { Form } from 'react-bootstrap';
-import colors from '../../Constants/colors';
-import { Dropdown } from '../UserForms/Style';
+import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
 import RightBoxInputs from './Style';
+import { Label } from '../UserDropdown/Style';
+import customStyles from './dropdownStyle';
+import { getSectors } from '../../Services/Axios/sectorServices';
 
-const SectorDropdown = () => (
+const SectorDropdown = ({ setSector, sectorName }) => {
+  const [id, setId] = useState('');
+  const [placeholder, setPlaceholder] = useState(sectorName);
+  const [listOfSectors, setListOfSectors] = useState([]);
 
-  <RightBoxInputs>
-    <Form.Group style={{ width: '80%', marginTop: '5%', marginRight: '10%' }}>
-      <Form.Label><p style={{ fontSize: '1.5rem' }}>Setor:</p></Form.Label>
-      <div style={{
-        boxSizing: 'border-box', borderRadius: '10px', border: '1px solid #ffffff', justifyContent: 'flex-start', display: 'flex',
-      }}
-      >
-        <Dropdown
-          textcolor="white"
-          as="select"
-          style={{ color: 'white' }}
-        >
-          <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Administrador(a)</option>
-          <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Profissional</option>
-          <option style={{ backgroundColor: `${colors.navHeaders}`, width: '100%' }}>Recepcionista</option>
-        </Dropdown>
-      </div>
-    </Form.Group>
-  </RightBoxInputs>
-);
+  const listSectors = async () => {
+    await getSectors()
+      .then((response) => setListOfSectors(response.data))
+      .catch((error) => {
+        console.error(`An unexpected error ocourred while getting sectors.${error}`);
+      });
+  };
+
+  useEffect(() => {
+    listSectors();
+  }, []);
+
+  useEffect(() => {
+    if (sectorName) {
+      setPlaceholder(sectorName);
+    }
+  }, [sectorName]);
+
+  const options = listOfSectors?.map((sector) => ({
+    label: sector.name,
+    value: sector._id,
+  }));
+
+  useEffect(() => {
+    setSector(id.label);
+  }, [id]);
+
+  return (
+    <RightBoxInputs>
+      <Label>
+        Setor:
+      </Label>
+      <Select
+        placeholder={placeholder}
+        styles={customStyles}
+        options={options}
+        onChange={(value) => setId(value)}
+      />
+    </RightBoxInputs>
+  );
+};
 
 export default SectorDropdown;

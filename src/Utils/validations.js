@@ -65,3 +65,8 @@ export const validateFields = (inputName, inputEmail, inputCpf, inputPhone,
 
   return message;
 };
+
+export const validateOpen = (open) => {
+  const regex = /^(true|false)$/;
+  return regex.test(open);
+};

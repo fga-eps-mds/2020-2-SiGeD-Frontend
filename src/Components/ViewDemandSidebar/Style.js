@@ -162,8 +162,8 @@ export const CategoryName = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: 'Montserrat';
-    width: 70%%;
-    height: 70%
+    width: 70%;
+    height: 70%;
     margin: 3% 0 3% 0;
     @media(max-width: 750px){
         font-size: 80%;

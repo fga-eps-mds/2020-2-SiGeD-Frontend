@@ -29,7 +29,7 @@ export async function postClient(
     alert('Não foi possivel criar o cliente. Tente novamente mais tarde');
     console.error(`An unexpected error ocourred while creating a new client.${error}`);
   }
-  return null;
+  return false;
 }
 
 export const updateClient = async (

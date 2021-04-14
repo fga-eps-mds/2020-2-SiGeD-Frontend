@@ -6,10 +6,10 @@ const RightBoxInputs = styled.div`
   height: 15%;
   flex-direction: column;
   align-items: center;
-  margin-top: 20%;
+
   @media(max-width: 750px){
-    margin-top: 13vh;
-}
+    height: 30%;
+  }
 `;
 
 export default RightBoxInputs;
