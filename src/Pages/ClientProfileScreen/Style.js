@@ -174,9 +174,13 @@ export const TableTitle = styled.div`
 `;
 
 export const List = styled.div`
+  display: flex;
   height: 50vh;
   padding: 5px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   @media(max-width: 750px){
     height: max-content;
