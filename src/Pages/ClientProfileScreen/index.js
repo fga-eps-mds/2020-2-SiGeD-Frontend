@@ -88,7 +88,7 @@ const ClientProfileScreen = () => {
           />
         );
       }
-      return <h1>Sem demandas cadastradas</h1>;
+      return <></>;
     });
   };
 
