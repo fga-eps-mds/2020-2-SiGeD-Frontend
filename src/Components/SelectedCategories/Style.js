@@ -31,9 +31,10 @@ export const Tag = styled.div`
   font-size: 1rem;
   margin-left: 5%;
   margin-bottom: 5%;
+  word-break: break-word;
 
   @media(max-width: 750px){
-    word-break: break-word;
+    
   }
 
 `;

@@ -18,7 +18,8 @@ export const AddIcon = styled(IoAddCircle)`
     width: 40%;
     height: 40%;
     color: white;
-
+    cursor: pointer;
+    
     @media(max-width: 750px){
       color: black;
       width: auto;
