@@ -1,29 +1,21 @@
 name: Release
 
-on:
-
-  push:
-    branches: [ development ]
+on: 
+  pull_request:
+   types: [ closed ]
     
 jobs:
-  pre-release:
-    name: "Release"
+  release:
+    if: github.event.pull_request.merged == true && !contains(github.event.pull_request.labels.*.name, 'Not a Release')
     runs-on: "ubuntu-latest"
-    
+
     steps:
-      - uses: actions/checkout@v2
-      - run: mkdir -p /tmp/sonar/
-      - run: curl --location --request GET "${{ secrets.FRONTEND_URL }}" > /tmp/sonar/frontend_sonar.json
-      - uses: actions/upload-artifact@v2
-        with:
-          name: frontend_sonar.json
-          path: /tmp/sonar/frontend_sonar.json
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.ACCESS_TOKEN }}"
-          automatic_release_tag: "latest"
-          title: "Release"
-          prerelease: False
-          files: |
-            /tmp/sonar/frontend_sonar.json
-            
+    - uses: actions/checkout@v2
+    - name: Create env file
+      run: |
+          touch ./scripts/.env
+          echo TOKEN=${{ secrets.ACCESS_TOKEN }} >> ./scripts/.env
+          echo RELEASE_MINOR=${{ contains(github.event.pull_request.labels.*.name, 'Minor Release') }} >> ./scripts/.env
+  
+    - name: Create Release
+      run: cd scripts && yarn install && node release.js
