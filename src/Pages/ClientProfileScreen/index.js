@@ -3,7 +3,7 @@ import { FaSistrix } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import ProfileSidebarComponent from '../../Components/ProfileSidebarComponent';
 import { getDemands } from '../../Services/Axios/demandsServices';
-import DemandData from '../../Components/DemandData';
+import ClientDemandData from '../../Components/ClientDemandData';
 import SearchInput from '../../Components/SearchInput';
 import RedirectListButton from '../../Components/RedirectButton';
 import {
@@ -11,8 +11,10 @@ import {
   Header, List, ButtonDiv, DropDiv,
 } from './Style';
 import { getClients } from '../../Services/Axios/clientServices';
+import { getSectors } from '../../Services/Axios/sectorServices';
 
 const ClientProfileScreen = () => {
+  const [sectors, setSectors] = useState([]);
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputCpf, setInputCpf] = useState('');
@@ -46,7 +48,15 @@ const ClientProfileScreen = () => {
       });
   };
 
+  const getSectorsFromApi = async () => {
+    await getSectors()
+      .then((response) => {
+        setSectors(response.data);
+      });
+  };
+
   useEffect(() => {
+    getSectorsFromApi();
     getClientFromApi();
     getDemandsFromApi();
   }, []);
@@ -71,13 +81,14 @@ const ClientProfileScreen = () => {
     return filterDemands?.map((demand) => {
       if (demand.clientID === client._id) {
         return (
-          <DemandData
-          demand={demand}
-          key={demand._id}
-          sectors={sectors}
-        />
-        )
+          <ClientDemandData
+            demand={demand}
+            key={demand._id}
+            sectors={sectors}
+          />
+        );
       }
+      return <h1>Sem demandas cadastradas</h1>;
     });
   };
 
@@ -85,46 +96,46 @@ const ClientProfileScreen = () => {
     <>
       { demands && client
         && (
-        <Main>
-          <ProfileSidebarComponent
-            sidebarTitle="Perfil do Cliente"
-            sidebarList={[inputName, inputCpf,
-              inputCity, officeOption, policeStationOption]}
-            sidebarFooter={[inputEmail, inputPhone]}
-          />
-          <RightBox>
-            <RightBoxMain>
-              <Container>
-                <Title>Prontuário</Title>
-                <Header>
-                  <DropDiv>
-                    <Search>
-                      <SearchInput
-                        type="text"
-                        icon={<FaSistrix />}
-                        value={word}
-                        setWord={(value) => setWord(value)}
+          <Main>
+            <ProfileSidebarComponent
+              sidebarTitle="Perfil do Cliente"
+              sidebarList={[inputName, inputCpf,
+                inputCity, officeOption, policeStationOption]}
+              sidebarFooter={[inputEmail, inputPhone]}
+            />
+            <RightBox>
+              <RightBoxMain>
+                <Container>
+                  <Title>Prontuário</Title>
+                  <Header>
+                    <DropDiv>
+                      <Search>
+                        <SearchInput
+                          type="text"
+                          icon={<FaSistrix />}
+                          value={word}
+                          setWord={(value) => setWord(value)}
+                        />
+                      </Search>
+                    </DropDiv>
+                    <ButtonDiv>
+                      <RedirectListButton
+                        title="Nova Demanda"
+                        redirectTo="/demanda"
+                        style={{ height: '100%', fontSize: '100%' }}
                       />
-                    </Search>
-                  </DropDiv>
-                  <ButtonDiv>
-                    <RedirectListButton
-                      title="Nova Demanda"
-                      redirectTo="/demanda"
-                      style={{ height: '100%', fontSize: '100%' }}
-                    />
-                  </ButtonDiv>
-                </Header>
+                    </ButtonDiv>
+                  </Header>
 
-                <ContentBox>
-                  <List>
-                    {listDemandsForProfile()}
-                  </List>
-                </ContentBox>
-              </Container>
-            </RightBoxMain>
-          </RightBox>
-        </Main>
+                  <ContentBox>
+                    <List>
+                      {listDemandsForProfile()}
+                    </List>
+                  </ContentBox>
+                </Container>
+              </RightBoxMain>
+            </RightBox>
+          </Main>
         )}
     </>
   );
