@@ -36,6 +36,7 @@ export const SectorName = styled.div`
     height: 10%;
     width: 100%;
     margin-left: 1vw;
+    margin-bottom: 1.5%;
 `;
 
 export const ProcessNumber = styled.div`
