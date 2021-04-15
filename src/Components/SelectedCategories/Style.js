@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const SelectedBox = styled.div`
-  width: 90%;
-  height: 20%;
+  width: 100%;
+  height: 200px;
   font-size: 1rem;
   background-color: transparent;
   display: flex;
