@@ -9,7 +9,6 @@ import {
 import ModalComp from '../ModalComp';
 
 const CategoriesData = ({ category, getCategories }) => {
-
   const [boxState, setBoxState] = useState(false);
   const [modalState, setModalState] = useState(false);
   const toggleBox = () => {

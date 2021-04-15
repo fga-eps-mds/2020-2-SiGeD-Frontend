@@ -8,8 +8,10 @@ import {
 import { getClients } from '../../Services/Axios/clientServices';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const ClientListScreen = () => {
+  const { token } = useProfileUser();
   const [word, setWord] = useState();
   const [filterClients, setFilterClients] = useState([]);
   const [clients, setClients] = useState([]);
@@ -23,7 +25,7 @@ const ClientListScreen = () => {
 
   useEffect(() => {
     getClientsFromApi();
-  }, [clients]);
+  }, [token]);
 
   useEffect(() => {
     setFilterClients(
