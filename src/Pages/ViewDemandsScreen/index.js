@@ -45,8 +45,8 @@ const ViewDemandsScreen = () => {
       .then((response) => setClient(response?.data));
   };
 
-  const getUserApi = async () => {
-    await getUser(`users/${demand?.userID}`)
+  const getUserApi = async (paramUserID) => {
+    await getUser(`users/${paramUserID}`)
       .then((response) => { setUser(response?.data); });
   };
 
