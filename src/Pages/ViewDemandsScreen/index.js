@@ -5,7 +5,7 @@ import {
   Timeline, TimelineOppositeContent, TimelineItem, TimelineSeparator,
   TimelineConnector, TimelineContent, TimelineDot,
 } from '@material-ui/lab';
-import { getDemands, getCategories } from '../../Services/Axios/demandsServices';
+import { getDemands } from '../../Services/Axios/demandsServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import ViewDemandSidebar from '../../Components/ViewDemandSidebar';
 import ViewDemandCard from '../../Components/ViewDemandCard';
@@ -24,7 +24,6 @@ import colors from '../../Constants/colors';
 const ViewDemandsScreen = () => {
   const [client, setClient] = useState('');
   const [demand, setDemand] = useState('');
-  const [category, setCategory] = useState([]);
   const [user, setUser] = useState('');
   const [buttonColor, setButtonColor] = useState('');
   const [buttonTitle, setButtonTitle] = useState('');
@@ -36,24 +35,29 @@ const ViewDemandsScreen = () => {
   const [changeState, setChangeState] = useState(false);
   const { id } = useParams();
 
-  const getDemandApi = async () => {
-    await getDemands(`demand/${id}`)
-      .then((response) => setDemand(response.data));
-  };
+  // const getDemandApi = async () => {
+  //   await getDemands(`demand/${id}`)
+  //     .then((response) => setDemand(response.data));
+  // };
 
-  const getClientApi = async () => {
-    await getClients(`clients/${demand.clientID}`)
-      .then((response) => setClient(response.data));
+  const getClientApi = async (clientID) => {
+    await getClients(`clients/${clientID}`)
+      .then((response) => setClient(response?.data));
   };
 
   const getUserApi = async () => {
-    await getUser(`users/${demand.userID}`)
-      .then((response) => { setUser(response.data); });
+    await getUser(`users/${demand?.userID}`)
+      .then((response) => { setUser(response?.data); });
   };
 
-  const getCategoryApi = async () => {
-    await getCategories(`/category/${demand.categoryID}`)
-      .then((response) => setCategory(response.data));
+  const getDemandApi = async () => {
+    await getDemands(`demand/${id}`)
+      .then((response) => {
+        const { data } = response;
+        setDemand(data);
+        getClientApi(data?.clientID);
+        getUserApi(data?.userID);
+      });
   };
 
   const getSectorsApi = async () => {
@@ -65,7 +69,7 @@ const ViewDemandsScreen = () => {
   };
 
   const setButtons = async () => {
-    if (demand.open === true) {
+    if (demand?.open === true) {
       setButtonColor(colors.alertMessages);
       setButtonTitle('Fechar demanda');
     } else {
@@ -76,9 +80,8 @@ const ViewDemandsScreen = () => {
 
   useEffect(() => {
     if (demand && !flag) {
-      getClientApi();
+      getClientApi(demand?.clientID);
       getUserApi();
-      getCategoryApi();
       getSectorsApi();
       setButtons();
       setFlag(true);
@@ -90,6 +93,8 @@ const ViewDemandsScreen = () => {
   useEffect(() => {
     getDemandApi();
   }, [changeState]);
+
+  console.log(demand, 'AKI', user, 'AKI', client);
 
   const showUpdates = () => {
     let list = demand.sectorHistory;
@@ -145,7 +150,7 @@ const ViewDemandsScreen = () => {
 
   return (
     <>
-      { demand && client && user && category
+      { demand && client && user
       && (
       <Main>
         <CardsContainer>
@@ -200,7 +205,7 @@ const ViewDemandsScreen = () => {
         <ViewDemandSidebar
           clientName={client.name}
           userName={user.name}
-          category={category}
+          selectedCategories={demand.categoryID}
           demand={demand}
           getDemandApi={getDemandApi}
           showUpdates={showUpdates}

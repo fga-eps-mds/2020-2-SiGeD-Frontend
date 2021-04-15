@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import {
   RightBox, ContentBox, NameDiv, Line,
   CreatedBy, UserIcon, PersonIcon, P,
-  UserName, UserP, CategoryName,
+  UserName, UserP, SelectionBox,
   CategoryField, MobileHeader,
   PlusButton, LessButton, ButtonsDiv,
 } from './Style';
 import SendDemandModal from '../SendDemandModal';
 import DropdownComponent from '../DropdownComponent';
+import SelectedCategories from '../SelectedCategories';
 import colors from '../../Constants/colors';
 
 const ViewDemandSidebar = ({
-  clientName, userName, category, demand, getDemandApi, showUpdates, sectorsResponse,
+  clientName, userName, selectedCategories, demand, getDemandApi, showUpdates, sectorsResponse,
   changeState, setChangeState,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
@@ -19,7 +20,7 @@ const ViewDemandSidebar = ({
 
   const actualSector = sectorsResponse?.filter(
     (sectorByID) => sectorByID._id
-    === demand.sectorHistory[demand.sectorHistory.length - 1].sectorID,
+      === demand.sectorHistory[demand.sectorHistory.length - 1].sectorID,
   );
 
   const [sectorOption, setSectorOption] = useState(actualSector[0]?.name);
@@ -33,12 +34,26 @@ const ViewDemandSidebar = ({
     }
   }, [actualSector]);
 
+  // const renderSelectedCategories = () => {
+  //   if (selectedCategories?.length === 0) {
+  //     return <P>Carregando...</P>;
+  //   }
+  //   return selectedCategories?.map((selectedCategory) => (
+  //     <CategoryName
+  //       style={{ backgroundColor: selectedCategory.color }}
+  //       key={selectedCategory._id}
+  //     >
+  //       {selectedCategory.name}
+  //     </CategoryName>
+  //   ));
+  // };
+
   return (
     <RightBox>
       <ContentBox>
         <ButtonsDiv>
-          { sidebarState && <LessButton onClick={() => setSidebarState(false)} />}
-          { !sidebarState && <PlusButton onClick={() => setSidebarState(true)} />}
+          {sidebarState && <LessButton onClick={() => setSidebarState(false)} />}
+          {!sidebarState && <PlusButton onClick={() => setSidebarState(true)} />}
         </ButtonsDiv>
         <MobileHeader>
           Cliente:
@@ -46,18 +61,18 @@ const ViewDemandSidebar = ({
         <NameDiv>
           <PersonIcon />
           <P>
-            { clientName }
+            {clientName}
           </P>
         </NameDiv>
         <Line />
-        { sidebarState
+        {sidebarState
           && (
             <CreatedBy>
               <p>Criado por:</p>
               <UserName>
                 <UserIcon />
                 <UserP>
-                  { userName }
+                  {userName}
                 </UserP>
               </UserName>
             </CreatedBy>
@@ -90,40 +105,40 @@ const ViewDemandSidebar = ({
           optionList={sectorsList()}
           value={sectorOption}
         />
-        { sidebarState
-      && (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            paddingRight: '3%',
-            width: '100%',
-            marginTop: '10%',
-          }}
-        >
-          <SendDemandModal
-            sectorOption={sectorOption}
-            getDemandApi={getDemandApi}
-            showUpdates={showUpdates}
-            demand={demand}
-            sectorsResponse={sectorsResponse}
-            setChangeState={setChangeState}
-            changeState={changeState}
-          />
-        </div>
-      )}
-        { sidebarState
-              && (
-              <CategoryField>
-                <p>
-                  Categoria:
-                </p>
-                <CategoryName style={{ backgroundColor: category.color }}>
-                  {category.name}
-                </CategoryName>
-              </CategoryField>
-              )}
+        {sidebarState
+          && (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                paddingRight: '3%',
+                width: '100%',
+                marginTop: '10%',
+              }}
+            >
+              <SendDemandModal
+                sectorOption={sectorOption}
+                getDemandApi={getDemandApi}
+                showUpdates={showUpdates}
+                demand={demand}
+                sectorsResponse={sectorsResponse}
+                setChangeState={setChangeState}
+                changeState={changeState}
+              />
+            </div>
+          )}
       </ContentBox>
+      <SelectionBox>
+        {sidebarState
+          && (
+            <CategoryField>
+              <p>
+                Categoria:
+              </p>
+              <SelectedCategories selectedCategories={selectedCategories} />
+            </CategoryField>
+          )}
+      </SelectionBox>
     </RightBox>
   );
 };
