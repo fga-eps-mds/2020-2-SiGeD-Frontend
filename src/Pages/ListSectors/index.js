@@ -9,8 +9,10 @@ import {
   getSectors, postSectors, updateSectors, deleteSector,
 } from '../../Services/Axios/sectorServices';
 import DataList from '../../Components/DataList';
+import { useProfileUser } from '../../Context';
 
 const ListSectors = () => {
+  const { user } = useProfileUser();
   const [filterSectors, setFilterSectors] = useState([]);
   const [sectors, setSectors] = useState([]);
   const [word, setWord] = useState();
@@ -61,7 +63,7 @@ const ListSectors = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-  if (localStorage.getItem('userRole') === 'admin') {
+  if (user.role === 'admin') {
     return (
       <GenericListScreen
         ButtonTitle="Novo setor"
