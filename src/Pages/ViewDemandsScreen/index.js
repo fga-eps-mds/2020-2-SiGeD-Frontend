@@ -80,8 +80,6 @@ const ViewDemandsScreen = () => {
 
   useEffect(() => {
     if (demand && !flag) {
-      getClientApi(demand?.clientID);
-      getUserApi();
       getSectorsApi();
       setButtons();
       setFlag(true);
