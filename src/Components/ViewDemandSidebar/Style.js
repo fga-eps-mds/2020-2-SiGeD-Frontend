@@ -119,13 +119,13 @@ export const ContentBox = styled.div`
 
 export const SelectionBox = styled.div`
     width: 100%;
-    height: 70%;
     display: flex;
+    margin-top: 8%;
     flex-direction: column;
     align-items: center;
     padding: 5%;
     @media(max-width: 750px){
-        margin-top: 5vh;
+        margin-top: 0;
         height: min-content;
     }
 `;

@@ -113,7 +113,7 @@ const ViewDemandSidebar = ({
                 justifyContent: 'flex-end',
                 paddingRight: '3%',
                 width: '100%',
-                marginTop: '10%',
+                marginTop: '5%',
               }}
             >
               <SendDemandModal

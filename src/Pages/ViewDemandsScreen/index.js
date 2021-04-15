@@ -92,8 +92,6 @@ const ViewDemandsScreen = () => {
     getDemandApi();
   }, [changeState]);
 
-  console.log(demand, 'AKI', user, 'AKI', client);
-
   const showUpdates = () => {
     let list = demand.sectorHistory;
     list = list.concat(demand.updateList);
