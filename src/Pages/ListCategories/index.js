@@ -10,8 +10,10 @@ import {
 } from '../../Services/Axios/demandsServices';
 import DataList from '../../Components/DataList';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const ListCategories = () => {
+  const { token } = useProfileUser();
   const [filterCategories, setFilterCategories] = useState([]);
   const [categories, setCategories] = useState([]);
   const [word, setWord] = useState();
@@ -29,7 +31,7 @@ const ListCategories = () => {
 
   useEffect(() => {
     listCategories();
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     setFilterCategories(

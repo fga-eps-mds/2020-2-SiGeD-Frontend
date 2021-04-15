@@ -4,8 +4,10 @@ import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
 import { postUser } from '../../Services/Axios/userServices';
 import UserForms from '../../Components/UserForms';
+import { useProfileUser } from '../../Context';
 
 const RegisterScreen = () => {
+  const { user } = useProfileUser();
   const history = useHistory();
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
@@ -61,7 +63,7 @@ const RegisterScreen = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-  if (localStorage.getItem('userRole') === 'admin') {
+  if (user.role === 'admin') {
     return (
       <GenericRegisterScreen
         sidebarList={[inputRegisterUserName,

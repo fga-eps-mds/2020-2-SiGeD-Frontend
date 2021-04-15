@@ -6,10 +6,12 @@ import {
   H1, TableHeader, P, Bar, TableTitle,
 } from './Style';
 import { getUser } from '../../Services/Axios/userServices';
+import { useProfileUser } from '../../Context';
 
 const newUser = () => { };
 
 const ListScreen = () => {
+  const { user } = useProfileUser();
   const [word, setWord] = useState();
   const [filterUsers, setFilterUsers] = useState([]);
   const [users, setUsers] = useState([]);
@@ -28,7 +30,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     setFilterUsers(
-      users.filter((user) => user.name.toLowerCase().includes(word?.toLowerCase())),
+      users.filter((User) => User.name.toLowerCase().includes(word?.toLowerCase())),
     );
   }, [word]);
 
@@ -43,10 +45,10 @@ const ListScreen = () => {
     if (filterUsers?.length === 0) {
       return <H1>Sem resultados</H1>;
     }
-    return filterUsers?.map((user) => (
+    return filterUsers?.map((User) => (
       <PersonalData
-        user={user}
-        key={user._id}
+        user={User}
+        key={User._id}
         getUsers={getUsers}
       />
     ));
@@ -55,7 +57,7 @@ const ListScreen = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-  if (localStorage.getItem('userRole') === 'admin') {
+  if (user.role === 'admin') {
     return (
       <GenericListScreen
         ButtonTitle="Novo Usuário"
