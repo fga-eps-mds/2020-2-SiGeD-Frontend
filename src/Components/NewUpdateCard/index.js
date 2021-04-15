@@ -15,7 +15,7 @@ const NewUpdateCard = ({
   const [visibilityRestriction, setVisibilityRestriction] = useState(false);
 
   const submit = () => {
-    createDemandUpdate(user.name, user._id, description, visibilityRestriction, demand._id);
+    createDemandUpdate(user.name, user.sector, description, visibilityRestriction, demand._id);
     getDemandApi();
     setDescription('');
   };

@@ -10,12 +10,7 @@ import {
 } from './Style';
 
 const UpdateCard = ({ demand, sector }) => {
-  console.log(sector);
-  console.log(demand);
   const sectorName = sector?.filter((sectorByID) => sectorByID?._id === demand.userSector);
-
-  console.log(sectorName);
-
   return (
     <Card>
       <TopSide>
@@ -23,7 +18,9 @@ const UpdateCard = ({ demand, sector }) => {
           <UserIcon />
           <DemandName>
             {demand.userName}
-            {sectorName.name}
+            (
+            {sectorName[0]?.name}
+            )
           </DemandName>
         </div>
         <IconsContainer>
