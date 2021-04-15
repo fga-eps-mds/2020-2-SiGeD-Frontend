@@ -7,9 +7,10 @@ import ClientDemandData from '../../Components/ClientDemandData';
 import SearchInput from '../../Components/SearchInput';
 import RedirectListButton from '../../Components/RedirectButton';
 import {
-  Main, RightBox, RightBoxMain, Container, Title, Search, ContentBox,
-  Header, List, ButtonDiv, DropDiv,
+  Main, RightBox, RightBoxMain, TitleH, SearchDiv,
+  HeaderDiv, ListDiv, ButtonContainer,
 } from './Style';
+import { DropDiv, ContentBox, Container } from '../../Components/GenericListScreen/Style';
 import { getClients } from '../../Services/Axios/clientServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 
@@ -98,7 +99,7 @@ const ClientProfileScreen = () => {
         && (
           <Main>
             <ProfileSidebarComponent
-              sidebarTitle="Perfil do Cliente"
+              sidebarTitleH="Perfil do Cliente"
               sidebarList={[inputName, inputCpf,
                 inputCity, officeOption, policeStationOption]}
               sidebarFooter={[inputEmail, inputPhone]}
@@ -106,31 +107,31 @@ const ClientProfileScreen = () => {
             <RightBox>
               <RightBoxMain>
                 <Container>
-                  <Title>Prontuário</Title>
-                  <Header>
+                  <TitleH>Prontuário</TitleH>
+                  <HeaderDiv>
                     <DropDiv>
-                      <Search>
+                      <SearchDiv>
                         <SearchInput
                           type="text"
                           icon={<FaSistrix />}
                           value={word}
                           setWord={(value) => setWord(value)}
                         />
-                      </Search>
+                      </SearchDiv>
                     </DropDiv>
-                    <ButtonDiv>
+                    <ButtonContainer>
                       <RedirectListButton
                         title="Nova Demanda"
                         redirectTo="/demanda"
                         style={{ height: '100%', fontSize: '100%' }}
                       />
-                    </ButtonDiv>
-                  </Header>
+                    </ButtonContainer>
+                  </HeaderDiv>
 
                   <ContentBox>
-                    <List>
+                    <ListDiv>
                       {listDemandsForProfile()}
-                    </List>
+                    </ListDiv>
                   </ContentBox>
                 </Container>
               </RightBoxMain>
