@@ -6,7 +6,7 @@ import {
 } from './Style';
 import SearchInput from '../../Components/SearchInput';
 import DemandData from '../../Components/DemandData';
-import { getDemands } from '../../Services/Axios/demandsServices';
+import { getDemandsWithClientsNames } from '../../Services/Axios/demandsServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
@@ -21,7 +21,7 @@ const ListDemandsScreen = () => {
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
   const getDemandsFromApi = async () => {
-    await getDemands(`demand?open=${query}`)
+    await getDemandsWithClientsNames()
       .then((response) => setDemands(response.data));
   };
   const getSectorsFromApi = async () => {
@@ -39,7 +39,9 @@ const ListDemandsScreen = () => {
 
   useEffect(() => {
     setFilterDemands(
-      demands.filter((demand) => demand.name.toLowerCase().includes(word?.toLowerCase())),
+      demands.filter((demand) => demand.name.toLowerCase().includes(word?.toLowerCase())
+        || demand.clientName.toLowerCase().includes(word?.toLowerCase())
+        || demand.process.toLowerCase().includes(word?.toLowerCase())),
     );
   }, [word]);
 

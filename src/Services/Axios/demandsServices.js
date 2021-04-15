@@ -166,3 +166,14 @@ export async function createDemandUpdate(
     console.error(`An unexpected error occurred while sending a demand update.${error}`);
   }
 }
+
+export async function getDemandsWithClientsNames() {
+  try {
+    const response = await APIDemands.get('clientsNames');
+    return response;
+  } catch (error) {
+    alert('Não foi possível carregar as categorias já criadas com os nomes dos clientes, tente novamente mais tarde.');
+    console.error(`An unexpected error ocourred while getting demands with clients names.${error}`);
+  }
+  return false;
+}
