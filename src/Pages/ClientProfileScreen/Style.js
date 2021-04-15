@@ -100,10 +100,9 @@ export const ButtonDiv = styled.div`
   border-radius: 15px;
 
   @media(max-width: 750px){
-    width: 50%;
-    height: 50px;
+    width: 100%;
+    height: 30px;
     float: none;
-    margin-left: 10px;
 }
 `;
 
