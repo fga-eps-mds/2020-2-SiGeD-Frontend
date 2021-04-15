@@ -21,8 +21,7 @@ export const DemandTitle = styled.div`
     text-align: center;
     font-weight: bold;
     border-radius: 15px;
-    margin-top: 5%;
-    padding: 5px;
+    padding: 5%;
 `;
 
 export const ClientName = styled.div`

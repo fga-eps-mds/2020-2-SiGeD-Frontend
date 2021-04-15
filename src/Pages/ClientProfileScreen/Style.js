@@ -46,19 +46,7 @@ export const RightBoxMain = styled.div`
   }
 `;
 
-export const Container = styled.div`
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  margin-top: 5%;
-
-  @media(max-width: 750px){
-    height: 100vh;
-    margin-top: 0%;
-  }
-`;
-
-export const Header = styled.div`
+export const HeaderDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -78,7 +66,7 @@ export const Header = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const TitleH = styled.h2`
   font-family: 'Montserrat';
   font-weight: 400;
   font-size: 4vh;
@@ -93,7 +81,7 @@ export const Title = styled.h2`
   }
 `;
 
-export const ButtonDiv = styled.div`
+export const ButtonContainer = styled.div`
   float: right;
   width: 150px;
   height: 50px;
@@ -106,26 +94,7 @@ export const ButtonDiv = styled.div`
 }
 `;
 
-export const ContentBox = styled.div`
-  width: 100%;
-  height: 45%;
-  box-sizing: border-box;
-  border-radius: 0.5rem;
-  margin: 1% auto;
-  overflow: hidden;
-
-  @media(max-width: 750px){
-    width: 100%;
-    height: max-content;
-    box-sizing: border-box;
-    border-radius: 0.5rem;
-    margin-top: 20px;
-    margin: 1% auto;
-    overflow: auto;
-  }
-`;
-
-export const Search = styled.div`
+export const SearchDiv = styled.div`
   float: left;
   height: 50px;
 
@@ -136,43 +105,7 @@ export const Search = styled.div`
   }
 `;
 
-export const TableHeader = styled.div`
-  background-color: ${colors.navHeaders};
-  color: ${colors.secondary};
-  height: 5vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  @media(max-width: 750px){
-    visibility: hidden;
-  }
-`;
-
-export const P = styled.div`
-  color: ${colors.secondary};
-  font-size: 2vh;
-
-  @media(max-width: 750px){
-    font-size: 1.6vh;
-  }
-`;
-
-export const Bar = styled.div`
-  width: 0.05%;
-  height: 35%;
-  border-radius: 3px;
-  background-color: ${colors.secondary};
-`;
-
-export const TableTitle = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: ${(props) => `${props.width}%`}
-`;
-
-export const List = styled.div`
+export const ListDiv = styled.div`
   display: flex;
   height: 50vh;
   padding: 5px;
@@ -185,19 +118,5 @@ export const List = styled.div`
     height: max-content;
     padding: 5px;
     overflow: auto;
-  }
-`;
-
-export const DropDiv = styled.div`
-  display: flex;
-  width: 475px;
-  justify-content: space-between;
-  align-items: center;
-
-  @media(max-width: 750px){
-    height: max-content;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
   }
 `;
