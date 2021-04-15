@@ -9,43 +9,52 @@ import {
   LockIcon, TrashIcon, IconsContainer,
 } from './Style';
 
-const UpdateCard = ({ demand }) => (
-  <Card>
-    <TopSide>
-      <div style={{ display: 'flex', width: '70%' }}>
-        <UserIcon />
-        <DemandName>
-          {demand.userName}
-        </DemandName>
-      </div>
-      <IconsContainer>
-        <LockIcon>
-          <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
-        </LockIcon>
-        <EditIcon>
-          <Link
-            to="/"
-            id={demand._id}
-            style={{ color: colors.primary, textDecorationLine: 'none' }}
-          >
-            <BsPencil style={{ marginRight: '10px' }} />
-          </Link>
-        </EditIcon>
-        <TrashIcon>
-          <BiTrash style={{ marginRight: '5px', color: 'red' }} />
-        </TrashIcon>
-      </IconsContainer>
-    </TopSide>
-    <BottomSide>
-      <DemandDescription>
-        {demand.description}
-      </DemandDescription>
-      <CreatedAt>
-        { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY HH:mm:ss')}
-      </CreatedAt>
-    </BottomSide>
-  </Card>
+const UpdateCard = ({ demand, sector }) => {
+  console.log(sector);
+  console.log(demand);
+  const sectorName = sector?.filter((sectorByID) => sectorByID?._id === demand.userSector);
 
-);
+  console.log(sectorName);
+
+  return (
+    <Card>
+      <TopSide>
+        <div style={{ display: 'flex', width: '70%' }}>
+          <UserIcon />
+          <DemandName>
+            {demand.userName}
+            {sectorName.name}
+          </DemandName>
+        </div>
+        <IconsContainer>
+          <LockIcon>
+            <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
+          </LockIcon>
+          <EditIcon>
+            <Link
+              to="/"
+              id={demand._id}
+              style={{ color: colors.primary, textDecorationLine: 'none' }}
+            >
+              <BsPencil style={{ marginRight: '10px' }} />
+            </Link>
+          </EditIcon>
+          <TrashIcon>
+            <BiTrash style={{ marginRight: '5px', color: 'red' }} />
+          </TrashIcon>
+        </IconsContainer>
+      </TopSide>
+      <BottomSide>
+        <DemandDescription>
+          {demand.description}
+        </DemandDescription>
+        <CreatedAt>
+          { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY HH:mm:ss')}
+        </CreatedAt>
+      </BottomSide>
+    </Card>
+
+  );
+};
 
 export default UpdateCard;

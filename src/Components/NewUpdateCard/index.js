@@ -9,13 +9,13 @@ import {
 import colors from '../../Constants/colors';
 
 const NewUpdateCard = ({
-  demand, userName, getDemandApi, changeState, setChangeState,
+  demand, user, getDemandApi, changeState, setChangeState,
 }) => {
   const [description, setDescription] = useState('');
   const [visibilityRestriction, setVisibilityRestriction] = useState(false);
 
   const submit = () => {
-    createDemandUpdate(userName, description, visibilityRestriction, demand._id);
+    createDemandUpdate(user.name, user._id, description, visibilityRestriction, demand._id);
     getDemandApi();
     setDescription('');
   };

@@ -144,10 +144,17 @@ export async function forwardDemand(sectorID, id) {
   }
 }
 
-export async function createDemandUpdate(userName, description, visibilityRestriction, id) {
+export async function createDemandUpdate(
+  userName,
+  userSector,
+  description,
+  visibilityRestriction,
+  id,
+) {
   try {
     const response = await APIDemands.put(`demand/create-demand-update/${id}`, {
       userName,
+      userSector,
       description,
       visibilityRestriction,
     });

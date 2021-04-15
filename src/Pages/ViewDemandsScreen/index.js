@@ -113,7 +113,7 @@ const ViewDemandsScreen = () => {
               <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
             </TimelineSeparator>
             <TimelineContent style={{ width: '100%' }}>
-              <UpdateCard demand={value} />
+              <UpdateCard demand={value} sector={sectorsResponse} />
             </TimelineContent>
           </TimelineItem>
         );
@@ -166,7 +166,7 @@ const ViewDemandsScreen = () => {
             <div style={{ width: '90%', marginLeft: '8%' }}>
               <NewUpdateCard
                 demand={demand}
-                userName={user.name}
+                user={user}
                 showUpdates={showUpdates}
                 getDemandApi={getDemandApi}
                 setChangeState={setChangeState}
@@ -215,7 +215,7 @@ const ViewDemandsScreen = () => {
           <div style={{ width: '90%', marginLeft: '5%' }}>
             <NewUpdateCard
               demand={demand}
-              userName={user.name}
+              user={user}
               getDemandApi={getDemandApi}
               changeState={changeState}
               setChangeState={setChangeState}

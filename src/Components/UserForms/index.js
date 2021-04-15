@@ -16,6 +16,7 @@ const UserForms = ({
   inputRole,
   setInputSector,
   inputSector,
+  setSectorID,
   setInputPassword,
   inputPassword,
   setInputConfirmPassword,
@@ -28,7 +29,13 @@ const UserForms = ({
     await getSectors()
       .then((response) => {
         setSectors(response.data);
+        setInputSector(response.data[0].name);
       });
+  };
+
+  const sectorIDtoAPI = () => {
+    const sectorID = filterSector?.filter((sectorByName) => sectorByName.name === inputSector);
+    setSectorID(sectorID[0]?._id);
   };
 
   useEffect(() => {
@@ -38,6 +45,10 @@ const UserForms = ({
   useEffect(() => {
     setFilterSector(sectors);
   }, [sectors]);
+
+  useEffect(() => {
+    sectorIDtoAPI();
+  }, [inputSector]);
 
   return (
     <UserFormsColumnText>

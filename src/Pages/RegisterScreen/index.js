@@ -10,7 +10,8 @@ const RegisterScreen = () => {
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
   const [inputRegisterUserRole, setRegisterUserInputRole] = useState('Administrador(a)');
-  const [inputRegisterUserSector, setRegisterUserInputSector] = useState('Assistência Social');
+  const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
+  const [inputRegisterUserSectorID, setRegisterUserInputSectorID] = useState('');
   const [inputRegisterUserPassword, setRegisterUserInputPassword] = useState('');
   const [inputRegisterUserConfirmPassword, setRegisterUserInputConfirmPassword] = useState('');
   const [englishRole, setEnglishRole] = useState('admin');
@@ -23,7 +24,7 @@ const RegisterScreen = () => {
       postUser(inputRegisterUserName,
         inputRegisterUserEmail,
         englishRole,
-        inputRegisterUserSector,
+        inputRegisterUserSectorID,
         inputRegisterUserPassword);
       return history.push('/usuarios');
     }
@@ -75,6 +76,7 @@ const RegisterScreen = () => {
         inputRole={inputRegisterUserRole}
         setInputSector={setRegisterUserInputSector}
         inputSector={inputRegisterUserSector}
+        setSectorID={setRegisterUserInputSectorID}
         setInputPassword={setRegisterUserInputPassword}
         inputPassword={inputRegisterUserPassword}
         setInputConfirmPassword={setRegisterUserInputConfirmPassword}
