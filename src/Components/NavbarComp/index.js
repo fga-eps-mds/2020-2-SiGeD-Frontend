@@ -7,17 +7,16 @@ import { useProfileUser } from '../../Context';
 import { APIUsers } from '../../Services/Axios/baseService';
 
 const NavbarComp = () => {
-  const { role, token, setToken } = useProfileUser();
+  const { user, token, setToken } = useProfileUser();
   const [loading, setLoading] = useState(false);
-  console.log(token);
-  console.log(localStorage.getItem('@App:token'));
+
   useEffect(() => {
-    if (role) {
+    if (user) {
       setLoading(true);
     } else {
       setLoading(false);
     }
-  }, [role]);
+  }, [user]);
 
   if (loading) {
     const logoutUser = () => {
@@ -30,7 +29,7 @@ const NavbarComp = () => {
         console.error(error);
       }
     };
-    if (role === 'admin') {
+    if (user.role === 'admin') {
       return (
 
         <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>
