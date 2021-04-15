@@ -94,8 +94,6 @@ const ViewDemandsScreen = () => {
     getDemandApi();
   }, [changeState]);
 
-  console.log(demand, 'AKI', user, 'AKI', client);
-
   const showUpdates = () => {
     let list = demand.sectorHistory;
     list = list.concat(demand.updateList);
@@ -118,7 +116,7 @@ const ViewDemandsScreen = () => {
               <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
             </TimelineSeparator>
             <TimelineContent style={{ width: '100%' }}>
-              <UpdateCard demand={value} />
+              <UpdateCard update={value} demand={demand} getDemandApi={getDemandApi} />
             </TimelineContent>
           </TimelineItem>
         );

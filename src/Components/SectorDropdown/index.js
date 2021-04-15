@@ -34,7 +34,7 @@ const SectorDropdown = ({ setSector, sectorName }) => {
   }));
 
   useEffect(() => {
-    setSector(id.label);
+    setSector(id.value);
   }, [id]);
 
   return (

@@ -159,3 +159,17 @@ export async function createDemandUpdate(userName, description, visibilityRestri
     console.error(`An unexpected error occurred while sending a demand update.${error}`);
   }
 }
+
+export async function deleteDemandUpdate(id, updateListID) {
+  try {
+    const response = await APIDemands.put(`demand/delete-demand-update/${id}`, {
+      updateListID,
+    });
+    if (response.data.status) {
+      alert('Não foi possível deletar a atualização.');
+    }
+  } catch (error) {
+    alert('Não foi possível deletar a atualização da demanda, tente novamente mais tarde.');
+    console.error(`An unexpected error occurred while deleting a demand update.${error}`);
+  }
+}

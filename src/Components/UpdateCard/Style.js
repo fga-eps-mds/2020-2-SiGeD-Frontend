@@ -74,6 +74,7 @@ export const TrashIcon = styled.div`
   float: right;
   font-size: 100%;
   width: 30%;
+  cursor: pointer;
   @media(max-width: 750px){
     font-size: 100%;
 }
