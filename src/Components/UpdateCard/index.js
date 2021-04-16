@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
-import { Link } from 'react-router-dom';
 import { BsPencil } from 'react-icons/bs';
 import { BiTrash, BiLockAlt } from 'react-icons/bi';
-import colors from '../../Constants/colors';
 import { deleteDemandUpdate } from '../../Services/Axios/demandsServices';
+import ModalEditUpdateDemand from '../ModalEditUpdateDemand';
+import { useProfileUser } from '../../Context';
 import {
   Card, TopSide, DemandName, EditIcon,
   DemandDescription, BottomSide, CreatedAt, UserIcon,
@@ -17,6 +17,17 @@ const UpdateCard = ({ update, demand }) => {
   };
   const deleteCall = () => {
     deleteUpdate();
+  };
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const { user } = useProfileUser();
+
+  console.log(demand, 'AKI');
+
+  const catchUser = () => {
+    if(user._id) {
+      console.log(user._id);
+    }
   };
 
   return (
@@ -32,14 +43,8 @@ const UpdateCard = ({ update, demand }) => {
           <LockIcon>
             <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
           </LockIcon>
-          <EditIcon>
-            <Link
-              to="/"
-              id={update._id}
-              style={{ color: colors.primary, textDecorationLine: 'none' }}
-            >
-              <BsPencil style={{ marginRight: '10px' }} />
-            </Link>
+          <EditIcon onClick={() => { setShow(true); console.log('clicou'); }} style={{ cursor: 'pointer' }}>
+            <BsPencil style={{ marginRight: '10px' }} />
           </EditIcon>
           <TrashIcon
             onClick={() => { deleteCall(); }}
@@ -56,6 +61,16 @@ const UpdateCard = ({ update, demand }) => {
           {format(new Date(update.updatedAt), 'dd/MM/yyyy')}
         </CreatedAt>
       </BottomSide>
+      <ModalEditUpdateDemand
+        showModal={show}
+        handleClose={handleClose}
+        name={user.name}
+        description={update.description}
+        visibilityRestriction={update.visibilityRestriction}
+        updateDemandID={update._id}
+        demandID={demand._id}
+        updatedAt={update.CreatedAt}
+      />
     </Card>
   );
 };

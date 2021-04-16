@@ -173,3 +173,23 @@ export async function deleteDemandUpdate(id, updateListID) {
     console.error(`An unexpected error occurred while deleting a demand update.${error}`);
   }
 }
+
+export async function updateDemandUpdate(
+  userName, description, id, updateListID, visibilityRestriction,
+) {
+  console.log(userName, description, id, updateListID, visibilityRestriction, 'NOVO TESTE');
+  try {
+    const response = await APIDemands.put(`demand/update-demand-update/${id}`, {
+      userName,
+      description,
+      visibilityRestriction,
+      updateListID,
+    });
+    if (response.data.status) {
+      alert('Não foi possível editar a atualização.');
+    }
+  } catch (error) {
+    alert('Não foi possível editar a atualização da demanda, tente novamente mais tarde.');
+    console.error(`An unexpected error occurred while updating a demand update.${error}`);
+  }
+}
