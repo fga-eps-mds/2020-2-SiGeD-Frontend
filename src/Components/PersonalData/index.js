@@ -18,7 +18,6 @@ const PersonalData = ({ user, getUsers }) => {
   const [userSector, setUserSector] = useState([]);
 
   const getSectorFromAPI = (id) => {
-    console.log(id);
     getSector(`sector/${id}`)
       .then((response) => setUserSector(response.data));
   };
