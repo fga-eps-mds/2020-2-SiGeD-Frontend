@@ -1,5 +1,5 @@
 import React from 'react';
-import { Background } from './Style';
+import { Background } from '../LoginScreen/Style';
 
 const UnauthorizedScreen = () => {
   const message = 'Acesso negado =(';
