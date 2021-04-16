@@ -52,7 +52,7 @@ const ViewDemandsScreen = () => {
   };
 
   const getCategoryApi = async () => {
-    await getCategories(`/category/${demand.categoryID}`)
+    await getCategories(`/category/${demand.categoryID[0]?._id}`)
       .then((response) => setCategory(response.data));
   };
 
@@ -67,7 +67,7 @@ const ViewDemandsScreen = () => {
   const setButtons = async () => {
     if (demand.open === true) {
       setButtonColor(colors.alertMessages);
-      setButtonTitle('Fechar demanda');
+      setButtonTitle('Concluir demanda');
     } else {
       setButtonColor(colors.primary);
       setButtonTitle('Reabrir demanda');
@@ -113,7 +113,7 @@ const ViewDemandsScreen = () => {
               <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
             </TimelineSeparator>
             <TimelineContent style={{ width: '100%' }}>
-              <UpdateCard demand={value} />
+              <UpdateCard demand={value} sector={sectorsResponse} />
             </TimelineContent>
           </TimelineItem>
         );
@@ -166,7 +166,6 @@ const ViewDemandsScreen = () => {
             <div style={{ width: '90%', marginLeft: '8%' }}>
               <NewUpdateCard
                 demand={demand}
-                userName={user.name}
                 showUpdates={showUpdates}
                 getDemandApi={getDemandApi}
                 setChangeState={setChangeState}
@@ -200,7 +199,7 @@ const ViewDemandsScreen = () => {
         <ViewDemandSidebar
           clientName={client.name}
           userName={user.name}
-          category={category}
+          category={demand.categoryID}
           demand={demand}
           getDemandApi={getDemandApi}
           showUpdates={showUpdates}
@@ -215,7 +214,7 @@ const ViewDemandsScreen = () => {
           <div style={{ width: '90%', marginLeft: '5%' }}>
             <NewUpdateCard
               demand={demand}
-              userName={user.name}
+              user={user}
               getDemandApi={getDemandApi}
               changeState={changeState}
               setChangeState={setChangeState}

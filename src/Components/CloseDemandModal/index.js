@@ -15,7 +15,7 @@ const CloseDemandModal = ({
       setMessage('Você tem certeza que deseja reabrir essa demanda?');
     }
     if (demand.open === true) {
-      setMessage('Você tem certeza que deseja fechar essa demanda?');
+      setMessage('Você tem certeza que deseja concluir essa demanda?');
     }
   };
 

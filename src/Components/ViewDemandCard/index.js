@@ -1,4 +1,4 @@
-// import { format } from 'date-fns';
+import moment from 'moment-timezone';
 import { Link } from 'react-router-dom';
 import { BsPencil } from 'react-icons/bs';
 import colors from '../../Constants/colors';
@@ -9,7 +9,6 @@ import {
 } from './Style';
 
 const ViewDemandCard = ({ demand }) => (
-
   <Card>
     <TopSide>
       <DemandName>
@@ -34,8 +33,7 @@ const ViewDemandCard = ({ demand }) => (
         {demand.process}
       </ProcessNumber>
       <CreatedAt>
-        {/* {format(new Date(demand.createdAt), 'dd/MM/yyyy')} */}
-        01/04/2021
+        { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY HH:mm')}
       </CreatedAt>
     </BottomSide>
   </Card>

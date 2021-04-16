@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { deleteUser } from '../../Services/Axios/userServices';
+import { getSector } from '../../Services/Axios/sectorServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
   TableContainer, ImageUser, DotContent,
@@ -14,6 +15,12 @@ import { useProfileUser } from '../../Context';
 
 const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
+  const [userSector, setUserSector] = useState([]);
+
+  const getSectorFromAPI = (id) => {
+    getSector(`sector/${id}`)
+      .then((response) => setUserSector(response.data));
+  };
 
   const closeBox = () => {
     if (boxState) {
@@ -26,8 +33,11 @@ const PersonalData = ({ user, getUsers }) => {
     getUsers();
   };
 
-  return (
+  useEffect(() => {
+    getSectorFromAPI(user.sector);
+  }, []);
 
+  return (
     <Content onMouseLeave={closeBox} onClick={closeBox}>
       <PersonDataBox>
         <ImageUser>
@@ -47,7 +57,7 @@ const PersonalData = ({ user, getUsers }) => {
           </TableContent>
 
           <TableContent width={15}>
-            <P>{user.sector}</P>
+            <P>{userSector.name}</P>
           </TableContent>
 
           <TableContent width={15}>

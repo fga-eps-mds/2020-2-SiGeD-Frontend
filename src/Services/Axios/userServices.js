@@ -24,7 +24,6 @@ export async function postUser(
       sector: inputSector,
       pass: inputPassword,
     });
-    alert('Usuario cadastrado com sucesso.');
   } catch (error) {
     console.error(`An unexpected error ocourred while registering a new user.${error}`);
   }
@@ -65,7 +64,6 @@ export const updateUser = async (
       sector: inputSector,
       pass: inputPassword,
     });
-    alert('Usuario atualizado');
   } catch (error) {
     alert('Não foi possivel atualizar o usuário. Tente novamente mais tarde.');
     console.error(`An unexpected error occurred while updating the user data.${error}`);

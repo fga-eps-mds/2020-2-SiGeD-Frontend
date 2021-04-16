@@ -12,7 +12,8 @@ export async function getClients(url) {
 }
 
 export async function postClient(
-  inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption,
+  inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
+  inputAddress, officeOption, inputLocation,
 ) {
   try {
     const response = await APIClients.post('clients/create', {
@@ -20,9 +21,10 @@ export async function postClient(
       email: inputEmail,
       cpf: inputCpf,
       phone: inputPhone,
-      city: inputCity,
+      secondaryPhone: inputSecondaryPhone,
+      address: inputAddress,
       office: officeOption,
-      policeStation: policeStationOption,
+      location: inputLocation,
     });
     return response;
   } catch (error) {
@@ -33,16 +35,18 @@ export async function postClient(
 }
 
 export const updateClient = async (
-  inputName, inputEmail, inputCpf, inputPhone, inputCity, officeOption, policeStationOption, id,
+  inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
+  inputAddress, officeOption, locationOption, id,
 ) => {
   await APIClients.put(`/clients/update/${id}`, {
     name: inputName,
     email: inputEmail,
     cpf: inputCpf,
     phone: inputPhone,
-    city: inputCity,
+    secondaryPhone: inputSecondaryPhone,
+    address: inputAddress,
     office: officeOption,
-    policeStation: policeStationOption,
+    location: locationOption,
   })
     .catch((error) => {
       alert('Não foi possivel atualizar o cliente. Tente novamente mais tarde');

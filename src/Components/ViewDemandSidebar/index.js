@@ -118,8 +118,8 @@ const ViewDemandSidebar = ({
                 <p>
                   Categoria:
                 </p>
-                <CategoryName style={{ backgroundColor: category.color }}>
-                  {category.name}
+                <CategoryName style={{ backgroundColor: category[0].color }}>
+                  {category[0].name}
                 </CategoryName>
               </CategoryField>
               )}

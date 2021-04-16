@@ -9,7 +9,7 @@ import colors from '../../Constants/colors';
 import { getClients } from '../../Services/Axios/clientServices';
 import { getCategories } from '../../Services/Axios/demandsServices';
 
-const DemandData = ({ demand }) => {
+const DemandData = ({ demand, sector }) => {
   const [client, setClient] = useState([]);
   const [category, setCategory] = useState([]);
 
@@ -58,8 +58,8 @@ const DemandData = ({ demand }) => {
           </Link>
         </ClientName>
         <SectorName>
-          Setor: Fisioterapia
-          {/* {sector.name} */}
+          Setor:
+          { sector[0]?.name }
         </SectorName>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <ProcessNumber>
