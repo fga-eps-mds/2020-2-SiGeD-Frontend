@@ -21,7 +21,6 @@ const PersonalData = ({ user, getUsers }) => {
     console.log(id);
     getSector(`sector/${id}`)
       .then((response) => setUserSector(response.data));
-    console.log(userSector);
   };
 
   const closeBox = () => {

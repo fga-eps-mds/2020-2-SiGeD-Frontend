@@ -52,7 +52,7 @@ const ViewDemandsScreen = () => {
   };
 
   const getCategoryApi = async () => {
-    await getCategories(`/category/${demand.categoryID}`)
+    await getCategories(`/category/${demand.categoryID[0]?._id}`)
       .then((response) => setCategory(response.data));
   };
 
@@ -199,7 +199,7 @@ const ViewDemandsScreen = () => {
         <ViewDemandSidebar
           clientName={client.name}
           userName={user.name}
-          category={category}
+          category={demand.categoryID}
           demand={demand}
           getDemandApi={getDemandApi}
           showUpdates={showUpdates}

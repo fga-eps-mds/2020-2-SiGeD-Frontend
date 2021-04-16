@@ -45,8 +45,6 @@ const ListScreen = () => {
     return filterUsers?.map((user) => (
       <PersonalData
         user={user}
-        key={user._id}
-        getUsers={getUsers}
       />
     ));
   };
