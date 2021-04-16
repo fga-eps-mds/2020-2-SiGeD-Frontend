@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment-timezone';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { BsPencil } from 'react-icons/bs';
@@ -12,25 +11,12 @@ import {
   LockIcon, TrashIcon, IconsContainer,
 } from './Style';
 
-const UpdateCard = ({ update, demand, getDemandApi }) => {
-  const refreshDemand = async () => {
-    await getDemandApi();
-    getDemandApi();
-  };
-
+const UpdateCard = ({ update, demand }) => {
   const deleteUpdate = async () => {
-    await deleteDemandUpdate(demand._id, update._id)
-      .then(refreshDemand());
+    deleteDemandUpdate(demand._id, update._id);
   };
   const deleteCall = () => {
-    console.log(update, 'AKI');
-    const data = moment.utc(moment.tz('America/Sao_Paulo').format('YYYY-MM-DDTHH:mm:ss')).toDate();
-    const updateData = new Date(update.createdAt);
-    const formatdate = moment.utc(moment.tz('America/Sao_Paulo', (updateData).add(30, 'minutes')).toDate();
-    console.log(formatdate, 'BUAAA');
-    if (data) {
-      deleteUpdate();
-    }
+    deleteUpdate();
   };
 
   return (

@@ -35,11 +35,6 @@ const ViewDemandsScreen = () => {
   const [changeState, setChangeState] = useState(false);
   const { id } = useParams();
 
-  // const getDemandApi = async () => {
-  //   await getDemands(`demand/${id}`)
-  //     .then((response) => setDemand(response.data));
-  // };
-
   const getClientApi = async (clientID) => {
     await getClients(`clients/${clientID}`)
       .then((response) => setClient(response?.data));
@@ -116,7 +111,7 @@ const ViewDemandsScreen = () => {
               <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
             </TimelineSeparator>
             <TimelineContent style={{ width: '100%' }}>
-              <UpdateCard update={value} demand={demand} getDemandApi={getDemandApi} />
+              <UpdateCard update={value} demand={demand} />
             </TimelineContent>
           </TimelineItem>
         );
