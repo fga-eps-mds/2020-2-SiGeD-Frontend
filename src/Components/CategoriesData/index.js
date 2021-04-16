@@ -7,8 +7,10 @@ import {
   P, Content, TableContainer, DotContent,
 } from './Style';
 import ModalComp from '../ModalComp';
+import { useProfileUser } from '../../Context';
 
 const CategoriesData = ({ category, getCategories }) => {
+  const { user } = useProfileUser();
   const [boxState, setBoxState] = useState(false);
   const [modalState, setModalState] = useState(false);
   const toggleBox = () => {
@@ -60,7 +62,7 @@ const CategoriesData = ({ category, getCategories }) => {
         </TableContainer>
       </Personalbox>
 
-      {boxState ? (
+      {boxState && user ? (
         <Box>
           <Ul>
             <Li>
@@ -71,14 +73,16 @@ const CategoriesData = ({ category, getCategories }) => {
                 <BsPencil />
               </Icon>
             </Li>
-            <Li>
-              <Button onClick={DeleteCategory}>
-                Remover
-              </Button>
-              <Icon onClick={DeleteCategory}>
-                <FaRegTrashAlt />
-              </Icon>
-            </Li>
+            {user.role === 'admin' ? (
+              <Li>
+                <Button onClick={DeleteCategory}>
+                  Remover
+                </Button>
+                <Icon onClick={DeleteCategory}>
+                  <FaRegTrashAlt />
+                </Icon>
+              </Li>
+            ) : null}
           </Ul>
         </Box>
       ) : null}
