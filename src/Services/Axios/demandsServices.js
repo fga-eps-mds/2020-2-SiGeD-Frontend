@@ -167,9 +167,9 @@ export async function createDemandUpdate(
   }
 }
 
-export async function getDemandsWithClientsNames() {
+export async function getDemandsWithClientsNames(url) {
   try {
-    const response = await APIDemands.get('clientsNames');
+    const response = await APIDemands.get(url);
     return response;
   } catch (error) {
     alert('Não foi possível carregar as categorias já criadas com os nomes dos clientes, tente novamente mais tarde.');
