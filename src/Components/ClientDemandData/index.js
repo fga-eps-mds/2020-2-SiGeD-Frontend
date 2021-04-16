@@ -6,7 +6,7 @@ import {
 } from './Style';
 import { DemandTitle, ProcessNumber, DemandCreatedAt } from '../DemandData/Style';
 
-const ClientDemandData = ({ demand, sectors }) => {
+const ClientDemandData = ({ demand, sectors, style }) => {
   const history = useHistory();
   const sectorName = sectors?.filter((sectorByID) => (sectorByID._id
     === demand.sectorHistory[demand.sectorHistory.length - 1].sectorID));
@@ -18,7 +18,7 @@ const ClientDemandData = ({ demand, sectors }) => {
   }, [sectorName]);
 
   return (
-    <DemandDiv onClick={() => history.push(`/visualizar/${demand._id}`)}>
+    <DemandDiv onClick={() => history.push(`/visualizar/${demand._id}`)} style={style}>
       <DemandTitle>
         {demand.name}
       </DemandTitle>

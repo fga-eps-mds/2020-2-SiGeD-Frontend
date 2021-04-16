@@ -113,10 +113,23 @@ export const ListDiv = styled.div`
   overflow-y: auto;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 100%;
 
   @media(max-width: 750px){
     height: max-content;
     padding: 5px;
     overflow: auto;
+  }
+`;
+
+export const ContainerDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+
+  @media(max-width: 750px){
+    height: 100vh;
+    margin-top: 0%;
   }
 `;

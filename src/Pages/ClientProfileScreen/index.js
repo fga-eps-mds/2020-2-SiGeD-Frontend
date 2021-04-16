@@ -8,9 +8,9 @@ import SearchInput from '../../Components/SearchInput';
 import RedirectListButton from '../../Components/RedirectButton';
 import {
   Main, RightBox, RightBoxMain, TitleH, SearchDiv,
-  HeaderDiv, ListDiv, ButtonContainer,
+  HeaderDiv, ListDiv, ButtonContainer, ContainerDiv,
 } from './Style';
-import { DropDiv, ContentBox, Container } from '../../Components/GenericListScreen/Style';
+import { DropDiv, ContentBox } from '../../Components/GenericListScreen/Style';
 import { getClients } from '../../Services/Axios/clientServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 
@@ -30,7 +30,7 @@ const ClientProfileScreen = () => {
   const { id } = useParams();
 
   const getDemandsFromApi = async () => {
-    await getDemands('demand?open=true')
+    await getDemands('demand')
       .then((response) => setDemands(response?.data));
   };
 
@@ -80,12 +80,21 @@ const ClientProfileScreen = () => {
       return <h1>Sem resultados</h1>;
     }
     return filterDemands?.map((demand) => {
-      if (demand.clientID === client._id) {
+      if (demand.clientID === client._id && demand.open === true) {
         return (
           <ClientDemandData
             demand={demand}
             key={demand._id}
             sectors={sectors}
+          />
+        );
+      } if (demand.clientID === client._id && demand.open === false) {
+        return (
+          <ClientDemandData
+            demand={demand}
+            key={demand._id}
+            sectors={sectors}
+            style={{ backgroundColor: 'rgb(0, 0, 0, 0.1)' }}
           />
         );
       }
@@ -99,14 +108,14 @@ const ClientProfileScreen = () => {
         && (
           <Main>
             <ProfileSidebarComponent
-              sidebarTitleH="Perfil do Cliente"
+              sidebarTitle="Perfil do Cliente"
               sidebarList={[inputName, inputCpf,
                 inputCity, officeOption, policeStationOption]}
               sidebarFooter={[inputEmail, inputPhone]}
             />
             <RightBox>
               <RightBoxMain>
-                <Container>
+                <ContainerDiv>
                   <TitleH>Prontuário</TitleH>
                   <HeaderDiv>
                     <DropDiv>
@@ -133,7 +142,7 @@ const ClientProfileScreen = () => {
                       {listDemandsForProfile()}
                     </ListDiv>
                   </ContentBox>
-                </Container>
+                </ContainerDiv>
               </RightBoxMain>
             </RightBox>
           </Main>
