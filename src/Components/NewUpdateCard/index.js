@@ -7,15 +7,18 @@ import {
   CheckboxContainer,
 } from './Style';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const NewUpdateCard = ({
-  demand, user, getDemandApi, changeState, setChangeState,
+  demand, getDemandApi, changeState, setChangeState,
 }) => {
   const [description, setDescription] = useState('');
   const [visibilityRestriction, setVisibilityRestriction] = useState(false);
+  const { user } = useProfileUser();
 
   const submit = () => {
-    createDemandUpdate(user.name, user.sector, description, visibilityRestriction, demand._id);
+    createDemandUpdate(user.name, user.sector, description,
+      visibilityRestriction, demand._id);
     getDemandApi();
     setDescription('');
   };

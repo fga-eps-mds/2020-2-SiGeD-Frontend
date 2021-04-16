@@ -18,6 +18,7 @@ const UpdateCard = ({ demand, sector }) => {
           <UserIcon />
           <DemandName>
             {demand.userName}
+            {' '}
             (
             {sectorName[0]?.name}
             )
@@ -46,7 +47,7 @@ const UpdateCard = ({ demand, sector }) => {
           {demand.description}
         </DemandDescription>
         <CreatedAt>
-          { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY HH:mm:ss')}
+          { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY HH:mm')}
         </CreatedAt>
       </BottomSide>
     </Card>

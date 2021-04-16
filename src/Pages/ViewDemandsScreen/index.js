@@ -166,7 +166,6 @@ const ViewDemandsScreen = () => {
             <div style={{ width: '90%', marginLeft: '8%' }}>
               <NewUpdateCard
                 demand={demand}
-                user={user}
                 showUpdates={showUpdates}
                 getDemandApi={getDemandApi}
                 setChangeState={setChangeState}
