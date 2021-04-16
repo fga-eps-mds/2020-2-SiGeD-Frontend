@@ -3,7 +3,7 @@ import SidebarComponent from '../SidebarComponent';
 import TinyButton from '../TinyButton';
 import {
   Main, Container, DivButtom, RightSideContainer,
-} from './style';
+} from './Style';
 
 const GenericRegisterScreen = ({
   sidebarList, children, cancel, submit, buttonTitle, sidebarFooter, visibility,

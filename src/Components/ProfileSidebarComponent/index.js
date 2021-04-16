@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Sidebar, SidebarText, SidebarTitle, Icon, SidebarFooter, FooterText,
   SidebarCardText,
-} from './style';
+} from './Style';
 
 const SidebarComponent = ({
   sidebarTitle, sidebarList, sidebarFooter,

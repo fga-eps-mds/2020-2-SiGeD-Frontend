@@ -1,27 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { deleteUser } from '../../Services/Axios/userServices';
+import { getSector } from '../../Services/Axios/sectorServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
-  TableContainer, ImageUser,
-} from '../PersonData/style';
+  TableContainer, ImageUser, DotContent,
+} from '../PersonData/Style';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
+  const [userSector, setUserSector] = useState([]);
+
+  const getSectorFromAPI = (id) => {
+    getSector(`sector/${id}`)
+      .then((response) => setUserSector(response.data));
+  };
+
+  const closeBox = () => {
+    if (boxState) {
+      setBoxState(false);
+    }
+  };
 
   const ClickDeleteUser = () => {
     deleteUser(user._id);
     getUsers();
   };
 
-  return (
+  useEffect(() => {
+    getSectorFromAPI(user.sector);
+  }, []);
 
-    <Content>
+  return (
+    <Content onMouseLeave={closeBox} onClick={closeBox}>
       <PersonDataBox>
         <ImageUser>
           <IoPersonCircleOutline size="100%" />
@@ -40,16 +57,16 @@ const PersonalData = ({ user, getUsers }) => {
           </TableContent>
 
           <TableContent width={15}>
-            <P>{user.sector}</P>
+            <P>{userSector.name}</P>
           </TableContent>
 
           <TableContent width={15}>
             <P>{format(new Date(user.updatedAt), 'dd/MM/yyyy')}</P>
           </TableContent>
 
-          <TableContent width={5} margin-bottom={0}>
+          <DotContent width={2} justifycontent="flex-end">
             <P><BsThreeDots onClick={() => { setBoxState(!boxState); }} /></P>
-          </TableContent>
+          </DotContent>
         </TableContainer>
       </PersonDataBox>
 
@@ -67,17 +84,26 @@ const PersonalData = ({ user, getUsers }) => {
                 </Link>
               </Button>
               <Icon>
-                <BsPencil />
+                <Link
+                  to={`/usuarios/editar/${user._id}`}
+                  id={user._id}
+                  style={{ color: colors.text, textDecorationLine: 'none', fontFamily: 'Montserrat' }}
+                >
+                  <BsPencil />
+                </Link>
               </Icon>
             </Li>
-            <Li>
-              <Button onClick={ClickDeleteUser}>
-                Desativar
-              </Button>
-              <Icon>
-                <FaRegTrashAlt />
-              </Icon>
-            </Li>
+            { !(useProfileUser().user._id !== user._id)
+              || (
+              <Li>
+                <Button onClick={ClickDeleteUser}>
+                  Desativar
+                </Button>
+                <Icon onClick={ClickDeleteUser}>
+                  <FaRegTrashAlt />
+                </Icon>
+              </Li>
+              )}
           </Ul>
         </Box>
       ) : null}

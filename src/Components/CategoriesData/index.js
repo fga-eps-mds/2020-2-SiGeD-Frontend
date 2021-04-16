@@ -5,8 +5,8 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import {
   Personalbox, TableContent, Name, Box, Ul, Li, Icon, Button,
   P, Content, TableContainer, DotContent,
-} from './style';
-import ReactModal from '../ReactModal';
+} from './Style';
+import ModalComp from '../ModalComp';
 
 const CategoriesData = ({ category, getCategories }) => {
   const [boxState, setBoxState] = useState(false);
@@ -19,11 +19,17 @@ const CategoriesData = ({ category, getCategories }) => {
     setModalState(!modalState);
   };
 
+  const closeBox = () => {
+    if (boxState) {
+      setBoxState(false);
+    }
+  };
+
   const CategoryDelete = async () => {
     try {
       await axios.delete(`http://localhost:3003/category/delete/${category._id}`);
     } catch (error) {
-      alert('Não foi possível deletar a categoria, tente novamente.');
+      alert('Não foi possível deletar a categoria, tente novamente mais tarde.');
     }
   };
 
@@ -33,7 +39,7 @@ const CategoriesData = ({ category, getCategories }) => {
   };
 
   return (
-    <Content>
+    <Content onMouseLeave={closeBox} onClick={closeBox}>
       <Personalbox>
         <TableContainer>
           <TableContent width={24}>
@@ -61,7 +67,7 @@ const CategoriesData = ({ category, getCategories }) => {
               <Button onClick={() => { toggleBox(); }}>
                 Editar
               </Button>
-              <Icon>
+              <Icon onClick={() => { toggleBox(); }}>
                 <BsPencil />
               </Icon>
             </Li>
@@ -69,14 +75,14 @@ const CategoriesData = ({ category, getCategories }) => {
               <Button onClick={DeleteCategory}>
                 Remover
               </Button>
-              <Icon>
+              <Icon onClick={DeleteCategory}>
                 <FaRegTrashAlt />
               </Icon>
             </Li>
           </Ul>
         </Box>
       ) : null}
-      {modalState ? <ReactModal type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} toggleModal={toggleModal} id={category._id} idColor={category.color} /> : null}
+      {modalState ? <ModalComp show={modalState} type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} handleClose={toggleModal} id={category._id} idColor={category.color} /> : null}
     </Content>
   );
 };

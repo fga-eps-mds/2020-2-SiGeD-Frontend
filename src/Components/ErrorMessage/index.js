@@ -1,4 +1,4 @@
-import styles from './style';
+import styles from './Style';
 import {
   validateName, validateEmail, validatePassword, confirmPassword,
 } from '../../Utils/validations';
