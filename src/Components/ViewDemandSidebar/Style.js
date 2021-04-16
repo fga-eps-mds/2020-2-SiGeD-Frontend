@@ -13,6 +13,7 @@ export const RightBox = styled.div`
     position: absolute;
     right: 0;
     color: white;
+    overflow: hidden;
     @media(max-width: 750px){
         position: relative;
         width: 100%;
