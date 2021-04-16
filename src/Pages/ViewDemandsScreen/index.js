@@ -35,11 +35,6 @@ const ViewDemandsScreen = () => {
   const [changeState, setChangeState] = useState(false);
   const { id } = useParams();
 
-  // const getDemandApi = async () => {
-  //   await getDemands(`demand/${id}`)
-  //     .then((response) => setDemand(response.data));
-  // };
-
   const getClientApi = async (clientID) => {
     await getClients(`clients/${clientID}`)
       .then((response) => setClient(response?.data));
@@ -79,18 +74,18 @@ const ViewDemandsScreen = () => {
   };
 
   useEffect(() => {
-    if (demand && !flag) {
+    if (id) {
+      getDemandApi();
+    }
+  }, [changeState]);
+
+  useEffect(() => {
+    if (demand) {
       getSectorsApi();
       setButtons();
       setFlag(true);
-    } else {
-      getDemandApi();
     }
   }, [demand && flag]);
-
-  useEffect(() => {
-    getDemandApi();
-  }, [changeState]);
 
   const showUpdates = () => {
     let list = demand.sectorHistory;
