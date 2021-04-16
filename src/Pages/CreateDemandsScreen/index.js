@@ -10,6 +10,7 @@ import UserDropdown from '../../Components/UserDropdown';
 import { getClients } from '../../Services/Axios/clientServices';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
+import { useProfileUser } from '../../Context';
 
 const CreateDemandsScreen = () => {
   const [show, setShow] = useState(false);
@@ -20,11 +21,11 @@ const CreateDemandsScreen = () => {
   const [process, setProcess] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [clients, setClients] = useState([]);
-  const userID = '605cfd4dfdcb2a006d7b0cb3';
   const [sectorID, setSectorID] = useState('');
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientID, setClientID] = useState('');
   const [clientName, setClientName] = useState('');
+  const { user } = useProfileUser();
 
   const getClientsFromApi = async () => {
     await getClients('clients')
@@ -63,7 +64,7 @@ const CreateDemandsScreen = () => {
 
   const submit = () => {
     if (validateInputs()) {
-      createDemand(name, description, process, categoriesIDs, sectorID, userID, clientID);
+      createDemand(name, description, process, categoriesIDs, sectorID, user._id, clientID);
       alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
