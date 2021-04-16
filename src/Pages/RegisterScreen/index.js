@@ -8,7 +8,6 @@ import { useProfileUser } from '../../Context';
 
 const RegisterScreen = () => {
   const { user } = useProfileUser();
-  const [role, setRole] = useState('admin');
   const history = useHistory();
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
@@ -39,12 +38,6 @@ const RegisterScreen = () => {
     setRegisterUserInputConfirmPassword('');
     return undefined;
   };
-
-  useEffect(() => {
-    if (user) {
-      setRole(user.role);
-    }
-  }, [user]);
 
   useEffect(() => {
     if (inputRegisterUserRole === 'Administrador(a)') {

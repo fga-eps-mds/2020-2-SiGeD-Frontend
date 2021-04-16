@@ -12,8 +12,7 @@ import DataList from '../../Components/DataList';
 import { useProfileUser } from '../../Context';
 
 const ListSectors = () => {
-  const { user, token } = useProfileUser();
-  const [role, setRole] = useState('admin');
+  const { user } = useProfileUser();
   const [filterSectors, setFilterSectors] = useState([]);
   const [sectors, setSectors] = useState([]);
   const [word, setWord] = useState();
@@ -31,11 +30,7 @@ const ListSectors = () => {
 
   useEffect(() => {
     listSectors();
-    if (user) {
-      setRole(user.role);
-      console.log(user.role);
-    }
-  }, [role, token]);
+  }, [user]);
 
   useEffect(() => {
     setFilterSectors(
@@ -70,33 +65,40 @@ const ListSectors = () => {
   }
   return (
     <>
-      {role === 'admin' ? (
-        <GenericListScreen
-          ButtonTitle="Novo setor"
-          ButtonFunction={toggleModal}
-          PageTitle="Setor"
-          SearchWord={word}
-          setWord={setWord}
-          ListType={renderSectors()}
-          redirectTo="/setores"
-        >
-          <TableHeader>
-            <TableTitle width={24}>
-              <P>Nome</P>
-            </TableTitle>
-            <Bar />
-            <TableTitle width={50}>
-              <P>Descrição</P>
-            </TableTitle>
-            <Bar />
-            <TableTitle width={24}>
-              <P>Ult. Atualização</P>
-            </TableTitle>
-            <TableTitle width={2} />
-          </TableHeader>
-          { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listSectors} handleClose={toggleModal} createContent={postSectors} /> : null}
-        </GenericListScreen>
-      ) : <Redirect to="/nao-autorizado" />}
+      {user ? (
+        <>
+          {user.role === 'admin'
+            ? (
+              <GenericListScreen
+                ButtonTitle="Novo setor"
+                ButtonFunction={toggleModal}
+                PageTitle="Setor"
+                SearchWord={word}
+                setWord={setWord}
+                ListType={renderSectors()}
+                redirectTo="/setores"
+              >
+                <TableHeader>
+                  <TableTitle width={24}>
+                    <P>Nome</P>
+                  </TableTitle>
+                  <Bar />
+                  <TableTitle width={50}>
+                    <P>Descrição</P>
+                  </TableTitle>
+                  <Bar />
+                  <TableTitle width={24}>
+                    <P>Ult. Atualização</P>
+                  </TableTitle>
+                  <TableTitle width={2} />
+                </TableHeader>
+                { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listSectors} handleClose={toggleModal} createContent={postSectors} /> : null}
+              </GenericListScreen>
+            )
+            : <Redirect to="/nao-autorizado" />}
+        </>
+      )
+        : <h1>Carregando...</h1>}
     </>
   );
 };
