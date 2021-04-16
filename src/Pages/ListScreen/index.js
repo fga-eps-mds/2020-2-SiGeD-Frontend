@@ -12,7 +12,6 @@ const newUser = () => { };
 
 const ListScreen = () => {
   const { user } = useProfileUser();
-  const [role, setRole] = useState('admin');
   const [word, setWord] = useState();
   const [filterUsers, setFilterUsers] = useState([]);
   const [users, setUsers] = useState([]);
@@ -26,9 +25,6 @@ const ListScreen = () => {
   };
 
   useEffect(() => {
-    if (user) {
-      setRole(user.role);
-    }
     getUsers();
   }, [user]);
 
@@ -63,41 +59,49 @@ const ListScreen = () => {
   }
   return (
     <>
-      {role === 'admin' ? (
-        <GenericListScreen
-          ButtonTitle="Novo Usuário"
-          ButtonFunction={newUser}
-          PageTitle="Usuários"
-          SearchWord={word}
-          setWord={setWord}
-          ListType={listUsers()}
-          redirectTo="/cadastro"
-        >
-          <TableHeader>
-            <TableTitle width={25}>
-              <P>Nome</P>
-            </TableTitle>
-            <Bar />
-            <TableTitle width={25}>
-              <P>Email</P>
-            </TableTitle>
-            <Bar />
+      {user ? (
+        <>
+          {user.role === 'admin'
+            ? (
+              <GenericListScreen
+                ButtonTitle="Novo Usuário"
+                ButtonFunction={newUser}
+                PageTitle="Usuários"
+                SearchWord={word}
+                setWord={setWord}
+                ListType={listUsers()}
+                redirectTo="/cadastro"
+              >
+                <TableHeader>
+                  <TableTitle width={25}>
+                    <P>Nome</P>
+                  </TableTitle>
+                  <Bar />
+                  <TableTitle width={25}>
+                    <P>Email</P>
+                  </TableTitle>
+                  <Bar />
 
-            <TableTitle width={20}>
-              <P>Cargo</P>
-            </TableTitle>
-            <Bar />
+                  <TableTitle width={20}>
+                    <P>Cargo</P>
+                  </TableTitle>
+                  <Bar />
 
-            <TableTitle width={15}>
-              <P>Setor</P>
-            </TableTitle>
-            <Bar />
-            <TableTitle width={15}>
-              <P>Ult. Atualização</P>
-            </TableTitle>
-          </TableHeader>
-        </GenericListScreen>
-      ) : <Redirect to="/nao-autorizado" />}
+                  <TableTitle width={15}>
+                    <P>Setor</P>
+                  </TableTitle>
+                  <Bar />
+                  <TableTitle width={15}>
+                    <P>Ult. Atualização</P>
+                  </TableTitle>
+                </TableHeader>
+                <div style={{ display: 'none' }} />
+              </GenericListScreen>
+            )
+            : <Redirect to="/nao-autorizado" />}
+        </>
+      )
+        : <h1>Carregando...</h1>}
     </>
   );
 };

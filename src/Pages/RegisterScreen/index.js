@@ -8,7 +8,6 @@ import { useProfileUser } from '../../Context';
 
 const RegisterScreen = () => {
   const { user } = useProfileUser();
-  const [role, setRole] = useState('admin');
   const history = useHistory();
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
@@ -41,12 +40,6 @@ const RegisterScreen = () => {
   };
 
   useEffect(() => {
-    if (user) {
-      setRole(user.role);
-    }
-  }, [user]);
-
-  useEffect(() => {
     if (inputRegisterUserRole === 'Administrador(a)') {
       setEnglishRole('admin');
     } else if (inputRegisterUserRole === 'Recepcionista') {
@@ -70,32 +63,39 @@ const RegisterScreen = () => {
   }
   return (
     <>
-      {role === 'admin' ? (
-        <GenericRegisterScreen
-          sidebarList={[inputRegisterUserName,
-            inputRegisterUserEmail,
-            inputRegisterUserRole,
-            inputRegisterUserSector]}
-          cancel={cancel}
-          submit={submit}
-          buttonTitle="Cadastrar"
-        >
-          <UserForms
-            setInputName={setRegisterUserInputName}
-            inputName={inputRegisterUserName}
-            setInputEmail={setRegisterUserInputEmail}
-            inputEmail={inputRegisterUserEmail}
-            setInputRole={setRegisterUserInputRole}
-            inputRole={inputRegisterUserRole}
-            setInputSector={setRegisterUserInputSector}
-            inputSector={inputRegisterUserSector}
-            setInputPassword={setRegisterUserInputPassword}
-            inputPassword={inputRegisterUserPassword}
-            setInputConfirmPassword={setRegisterUserInputConfirmPassword}
-            inputConfirmPassword={inputRegisterUserConfirmPassword}
-          />
-        </GenericRegisterScreen>
-      ) : <Redirect to="/nao-autorizado" /> }
+      {user ? (
+        <>
+          {user.role === 'admin'
+            ? (
+              <GenericRegisterScreen
+                sidebarList={[inputRegisterUserName,
+                  inputRegisterUserEmail,
+                  inputRegisterUserRole,
+                  inputRegisterUserSector]}
+                cancel={cancel}
+                submit={submit}
+                buttonTitle="Cadastrar"
+              >
+                <UserForms
+                  setInputName={setRegisterUserInputName}
+                  inputName={inputRegisterUserName}
+                  setInputEmail={setRegisterUserInputEmail}
+                  inputEmail={inputRegisterUserEmail}
+                  setInputRole={setRegisterUserInputRole}
+                  inputRole={inputRegisterUserRole}
+                  setInputSector={setRegisterUserInputSector}
+                  inputSector={inputRegisterUserSector}
+                  setInputPassword={setRegisterUserInputPassword}
+                  inputPassword={inputRegisterUserPassword}
+                  setInputConfirmPassword={setRegisterUserInputConfirmPassword}
+                  inputConfirmPassword={inputRegisterUserConfirmPassword}
+                />
+              </GenericRegisterScreen>
+            )
+            : <Redirect to="/nao-autorizado" />}
+        </>
+      )
+        : <h1>Carregando...</h1>}
     </>
   );
 };
