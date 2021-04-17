@@ -34,20 +34,6 @@ const ViewDemandSidebar = ({
     }
   }, [actualSector]);
 
-  // const renderSelectedCategories = () => {
-  //   if (selectedCategories?.length === 0) {
-  //     return <P>Carregando...</P>;
-  //   }
-  //   return selectedCategories?.map((selectedCategory) => (
-  //     <CategoryName
-  //       style={{ backgroundColor: selectedCategory.color }}
-  //       key={selectedCategory._id}
-  //     >
-  //       {selectedCategory.name}
-  //     </CategoryName>
-  //   ));
-  // };
-
   return (
     <RightBox>
       <ContentBox>
@@ -127,18 +113,20 @@ const ViewDemandSidebar = ({
               />
             </div>
           )}
+        {sidebarState && (
+          <SelectionBox>
+            {sidebarState
+              && (
+                <CategoryField>
+                  <p>
+                    Categoria:
+                  </p>
+                  <SelectedCategories selectedCategories={selectedCategories} />
+                </CategoryField>
+              )}
+          </SelectionBox>
+        )}
       </ContentBox>
-      <SelectionBox>
-        {sidebarState
-          && (
-            <CategoryField>
-              <p>
-                Categoria:
-              </p>
-              <SelectedCategories selectedCategories={selectedCategories} />
-            </CategoryField>
-          )}
-      </SelectionBox>
     </RightBox>
   );
 };
