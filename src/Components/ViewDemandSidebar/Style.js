@@ -105,7 +105,7 @@ export const UserP = styled.p`
 
 export const ContentBox = styled.div`
     width: 100%;
-    height: 25%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     margin-top: 5vh;
@@ -113,6 +113,19 @@ export const ContentBox = styled.div`
     padding: 5%;
     @media(max-width: 750px){
         margin-top: 5vh;
+        height: min-content;
+    }
+`;
+
+export const SelectionBox = styled.div`
+    width: 100%;
+    display: flex;
+    margin-top: 8%;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+    @media(max-width: 750px){
+        margin-top: 0;
         height: min-content;
     }
 `;
@@ -145,9 +158,8 @@ export const P = styled.div`
 `;
 
 export const CategoryField = styled.div`
-    width: 40%;
-    height: 40%;
-    margin-right: 50%;
+    width: 100%;
+    height: 100%;
 `;
 
 export const CategoryName = styled.div`
