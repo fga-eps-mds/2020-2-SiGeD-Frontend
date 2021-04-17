@@ -68,7 +68,7 @@ const ViewDemandsScreen = () => {
   const setButtons = async () => {
     if (demand?.open === true) {
       setButtonColor(colors.alertMessages);
-      setButtonTitle('Concluir demanda');
+      setButtonTitle('Fechar demanda');
     } else {
       setButtonColor(colors.primary);
       setButtonTitle('Reabrir demanda');
@@ -152,7 +152,6 @@ const ViewDemandsScreen = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-
   return (
     <>
       { demand && client && userDemand
@@ -176,6 +175,7 @@ const ViewDemandsScreen = () => {
             <div style={{ width: '90%', marginLeft: '8%' }}>
               <NewUpdateCard
                 demand={demand}
+                userName={user.name}
                 showUpdates={showUpdates}
                 getDemandApi={getDemandApi}
                 setChangeState={setChangeState}
@@ -224,7 +224,7 @@ const ViewDemandsScreen = () => {
           <div style={{ width: '90%', marginLeft: '5%' }}>
             <NewUpdateCard
               demand={demand}
-              user={user}
+              userName={user.name}
               getDemandApi={getDemandApi}
               changeState={changeState}
               setChangeState={setChangeState}

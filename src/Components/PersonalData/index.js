@@ -57,7 +57,7 @@ const PersonalData = ({ user, getUsers }) => {
           </TableContent>
 
           <TableContent width={15}>
-            <P>{userSector.name}</P>
+            <P>{userSector?.name}</P>
           </TableContent>
 
           <TableContent width={15}>

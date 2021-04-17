@@ -28,8 +28,8 @@ const ListDemandsScreen = () => {
   const getSectorsFromApi = async () => {
     await getSectors()
       .then((response) => {
-        setSectors(response.data);
-        setSectorActive(response.data[0].name);
+        setSectors(response?.data);
+        setSectorActive(response?.data[0]?.name);
       });
   };
 
