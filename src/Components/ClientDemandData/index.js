@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import moment from 'moment-timezone';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
@@ -34,7 +34,7 @@ const ClientDemandData = ({ demand, sectors, style }) => {
           {demand.process}
         </ProcessNumber>
         <DemandCreatedAt>
-          {format(new Date(demand.createdAt), 'dd/MM/yyyy')}
+          { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY')}
         </DemandCreatedAt>
       </div>
       <CategoriesDiv>
