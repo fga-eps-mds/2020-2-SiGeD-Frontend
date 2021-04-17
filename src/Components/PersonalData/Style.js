@@ -122,27 +122,6 @@ export const Ul = styled.ul`
   margin: 0;
 `;
 
-export const Li = styled.li`
-  list-style-type: none;
-  padding: 3px;
-`;
-
-export const Icon = styled.div`
-  float: right;
-  margin: 0 1%;
-  font-size: 80%;
-`;
-
-export const Button = styled.button`
-  border: none;
-  background-color: #FFF;
-  font-size: 1.5vh;
-
-  @media(max-width: 750px){
-    font-size: 1.3vh;
-  }
-`;
-
 export const Content = styled.div`
   position: relative;
 `;

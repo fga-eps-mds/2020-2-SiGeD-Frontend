@@ -25,7 +25,7 @@ const ClientListScreen = () => {
 
   useEffect(() => {
     getClientsFromApi();
-  }, [token]);
+  }, [token, query, active]);
 
   useEffect(() => {
     setFilterClients(
@@ -42,10 +42,6 @@ const ClientListScreen = () => {
   }, [active]);
 
   useEffect(() => {
-    getClientsFromApi();
-  }, [query]);
-
-  useEffect(() => {
     setFilterClients(clients);
   }, [clients]);
 
@@ -60,7 +56,7 @@ const ClientListScreen = () => {
       <ClientProfileData
         client={client}
         key={client.email}
-        getClients={getClients}
+        getClientsFromAPI={getClientsFromApi}
         query={query}
       />
     ));
