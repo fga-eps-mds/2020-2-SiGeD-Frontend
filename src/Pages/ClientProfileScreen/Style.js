@@ -13,14 +13,14 @@ export const Main = styled.div`
 
     @media(max-width: 750px){
         flex-direction: column;
-        margin-top: 8vh;
+        height: max-content;
     }
 
 `;
 
 export const RightBox = styled.div` 
 
-    width: 70%;
+    width: 80%;
     height: 100%;
     background-color: ${colors.secondary};
     display: flex;
@@ -29,107 +29,107 @@ export const RightBox = styled.div`
 
     @media(max-width: 750px){
         width: 100%;
-        height: 80%;
     }
 `;
 
-export const Label = styled.div`
-
-    width: 100%;
-    height: 25%;
-    background-color: blue;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-content: center;
-    align-items: center;
-
-
+export const RightBoxMain = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: ${colors.background};
+  width: 100%;
+  height: 100vh;
+  padding: 5%;
+  @media(max-width: 750px){
+    height: max-content;
+  }
 `;
 
-export const ContentBox = styled.div`
+export const HeaderDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
-    width: 100%;
-    height: 75%;
-    background-color: green;
-    display: flex;
+  @media(max-width: 750px){
+    height: max-content;
+    width: 85%;
+    justify-content: space-between;
+    align-items: center;
     flex-direction: column;
-    align-items: center;
-
-`;
-
-export const TableHeader = styled.div`
-    background-color: ${colors.primary};
-    color: ${colors.secondary};
-    height: 5vh;
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 10px 10px 0px 0px;
-    
-    @media(max-width: 750px){
-        visibility: hidden;
-    }
-`;
-
-export const TableTitle = styled.div`
-    flex-direction: row;
-    height: 100%;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+    justify-self: center;
+    align-self: center;
     flex-wrap: wrap;
-    width: ${(props) => `${props.width}%`}
+
+  }
 `;
 
-export const P = styled.div`
-    color: ${colors.secondary};
-    font-weight: 700;
-    font-size: 75%;
-    padding: 0;
-    left: 0;
-    @media(max-width: 750px){
-      font-size: 1.6vh;
-    }
+export const TitleH = styled.h2`
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 4vh;
+  margin: 0;
+  margin-bottom: 7vh;
+
+  @media(max-width: 750px){
+    width: 100%;
+    margin-top: 0vh;
+    text-align: center;
+    margin-bottom: 1vh;
+  }
 `;
 
-export const Header = styled.div`
-    margin: 2vh 0;
-    @media(max-width: 750px){
-        margin-top: 0;
-        height: 4%;
-    }
+export const ButtonContainer = styled.div`
+  float: right;
+  width: 150px;
+  height: 50px;
+  border-radius: 15px;
+
+  @media(max-width: 750px){
+    width: 100%;
+    height: 30px;
+    float: none;
+}
 `;
 
-export const Bar = styled.div`
+export const SearchDiv = styled.div`
+  float: left;
+  height: 50px;
 
-    width: 0.5%;
-    height: 70%;
-    background-color: ${colors.secondary};
-    border-radius: 10px 10px 10px 10px;
-
+  @media(max-width: 750px){
+    width: 100%;
+    height: min-content;
+    margin-bottom: 5%;
+  }
 `;
 
-export const DemandsList = styled.div`
+export const ListDiv = styled.div`
+  display: flex;
+  height: 50vh;
+  padding: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 
-    width: 80%;
-    height: 90%;
-    background-color: ${colors.background};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-y: scroll;
-
+  @media(max-width: 750px){
+    height: max-content;
+    padding: 5px;
+    overflow: auto;
+  }
 `;
 
-export const Search = styled.div`
-    float: left;
-    @media(max-width: 750px){
-        margin-top: -8%;
-        left: 100%;
-    }
+export const ContainerDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+
+  @media(max-width: 750px){
+    height: 100vh;
+    margin-top: 0%;
+  }
 `;

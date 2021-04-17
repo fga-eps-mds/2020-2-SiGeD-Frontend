@@ -15,8 +15,10 @@ const Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     float: right;
     text-decoration-line: none;
+    padding: 0% 2% 0% 2%;
 
     @media(max-width: 750px){
       text-align: center;
