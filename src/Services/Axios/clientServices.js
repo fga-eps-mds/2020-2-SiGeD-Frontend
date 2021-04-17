@@ -5,9 +5,9 @@ export async function getClients(url) {
     const response = await APIClients.get(url);
     return response;
   } catch (error) {
-    if (error.response.status === 500) {
+    if (error.response?.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else if (error.response.status !== 401) {
+    } else if (error.response?.status !== 401) {
       alert('Não foi possível obter a lista de clientes, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while retrieving the clients list.${error}`);

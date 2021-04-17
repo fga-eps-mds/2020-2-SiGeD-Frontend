@@ -5,8 +5,10 @@ import { validateSignUp } from '../../Utils/validations';
 import { getUser, updateUser } from '../../Services/Axios/userServices';
 import { getSector } from '../../Services/Axios/sectorServices';
 import UserForms from '../../Components/UserForms';
+import { useProfileUser } from '../../Context';
 
 const UserUpdateScreen = () => {
+  const { user } = useProfileUser();
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputRole, setInputRole] = useState('');
@@ -19,7 +21,7 @@ const UserUpdateScreen = () => {
 
   const getSectorFromApi = async (sectorID) => {
     await getSector(`sector/${sectorID}`)
-      .then((response) => setInputSector(response.data.name));
+      .then((response) => setInputSector(response?.data?.name));
   };
 
   const getUserFromApi = async () => {
@@ -57,31 +59,41 @@ const UserUpdateScreen = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-
   return (
-    <GenericRegisterScreen
-      sidebarList={[inputName, inputEmail, inputRole, inputSector]}
-      cancel={cancel}
-      submit={submit}
-      buttonTitle="Atualizar"
-    >
-      <UserForms
-        setInputName={setInputName}
-        inputName={inputName}
-        setInputEmail={setInputEmail}
-        inputEmail={inputEmail}
-        setInputRole={setInputRole}
-        inputRole={inputRole}
-        sectors={sectors}
-        setSectors={setSectors}
-        setInputSector={setInputSector}
-        inputSector={inputSector}
-        setInputPassword={setInputPassword}
-        inputPassword={inputPassword}
-        setInputConfirmPassword={setInputConfirmPassword}
-        inputConfirmPassword={inputConfirmPassword}
-      />
-    </GenericRegisterScreen>
+    <>
+      {user ? (
+        <>
+          {user.role === 'admin'
+            ? (
+              <GenericRegisterScreen
+                sidebarList={[inputName, inputEmail, inputRole, inputSector]}
+                cancel={cancel}
+                submit={submit}
+                buttonTitle="Atualizar"
+              >
+                <UserForms
+                  setInputName={setInputName}
+                  inputName={inputName}
+                  setInputEmail={setInputEmail}
+                  inputEmail={inputEmail}
+                  setInputRole={setInputRole}
+                  inputRole={inputRole}
+                  sectors={sectors}
+                  setSectors={setSectors}
+                  setInputSector={setInputSector}
+                  inputSector={inputSector}
+                  setInputPassword={setInputPassword}
+                  inputPassword={inputPassword}
+                  setInputConfirmPassword={setInputConfirmPassword}
+                  inputConfirmPassword={inputConfirmPassword}
+                />
+              </GenericRegisterScreen>
+            )
+            : <Redirect to="/nao-autorizado" />}
+        </>
+      )
+        : <h1>Carregando...</h1>}
+    </>
   );
 };
 

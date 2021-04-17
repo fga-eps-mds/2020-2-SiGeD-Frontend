@@ -5,7 +5,7 @@ import {
   Timeline, TimelineOppositeContent, TimelineItem, TimelineSeparator,
   TimelineConnector, TimelineContent, TimelineDot,
 } from '@material-ui/lab';
-import { getDemands, getCategories } from '../../Services/Axios/demandsServices';
+import { getDemands } from '../../Services/Axios/demandsServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import ViewDemandSidebar from '../../Components/ViewDemandSidebar';
 import ViewDemandCard from '../../Components/ViewDemandCard';
@@ -13,6 +13,7 @@ import UpdateCard from '../../Components/UpdateCard';
 import NewUpdateCard from '../../Components/NewUpdateCard';
 import TinyButton from '../../Components/TinyButton';
 import CloseDemandModal from '../../Components/CloseDemandModal';
+import { useProfileUser } from '../../Context';
 import {
   Main, CardsContainer, MobileButtonDiv, ButtonDiv, TimelineDiv, MobileTimeline,
   ForwardedDemandDiv,
@@ -24,8 +25,7 @@ import colors from '../../Constants/colors';
 const ViewDemandsScreen = () => {
   const [client, setClient] = useState('');
   const [demand, setDemand] = useState('');
-  const [category, setCategory] = useState([]);
-  const [user, setUser] = useState('');
+  const [userDemand, setUserDemand] = useState('');
   const [buttonColor, setButtonColor] = useState('');
   const [buttonTitle, setButtonTitle] = useState('');
   const [show, setShow] = useState(false);
@@ -34,26 +34,27 @@ const ViewDemandsScreen = () => {
   const [sectorsResponse, setSectorsResponse] = useState([]);
   const [flag, setFlag] = useState(false);
   const [changeState, setChangeState] = useState(false);
+  const { user } = useProfileUser();
   const { id } = useParams();
+
+  const getClientApi = async (clientID) => {
+    await getClients(`clients/${clientID}`)
+      .then((response) => setClient(response?.data));
+  };
+
+  const getUserApi = async (paramUserID) => {
+    await getUser(`users/${paramUserID}`)
+      .then((response) => { setUserDemand(response?.data); });
+  };
 
   const getDemandApi = async () => {
     await getDemands(`demand/${id}`)
-      .then((response) => setDemand(response.data));
-  };
-
-  const getClientApi = async () => {
-    await getClients(`clients/${demand.clientID}`)
-      .then((response) => setClient(response.data));
-  };
-
-  const getUserApi = async () => {
-    await getUser(`users/${demand.userID}`)
-      .then((response) => { setUser(response.data); });
-  };
-
-  const getCategoryApi = async () => {
-    await getCategories(`/category/${demand.categoryID[0]?._id}`)
-      .then((response) => setCategory(response.data));
+      .then((response) => {
+        const { data } = response;
+        setDemand(data);
+        getClientApi(data?.clientID);
+        getUserApi(data?.userID);
+      });
   };
 
   const getSectorsApi = async () => {
@@ -65,9 +66,9 @@ const ViewDemandsScreen = () => {
   };
 
   const setButtons = async () => {
-    if (demand.open === true) {
+    if (demand?.open === true) {
       setButtonColor(colors.alertMessages);
-      setButtonTitle('Concluir demanda');
+      setButtonTitle('Fechar demanda');
     } else {
       setButtonColor(colors.primary);
       setButtonTitle('Reabrir demanda');
@@ -75,21 +76,18 @@ const ViewDemandsScreen = () => {
   };
 
   useEffect(() => {
-    if (demand && !flag) {
-      getClientApi();
-      getUserApi();
-      getCategoryApi();
+    if (id) {
+      getDemandApi();
+    }
+  }, [changeState]);
+
+  useEffect(() => {
+    if (demand) {
       getSectorsApi();
       setButtons();
       setFlag(true);
-    } else {
-      getDemandApi();
     }
   }, [demand && flag]);
-
-  useEffect(() => {
-    getDemandApi();
-  }, [changeState]);
 
   const showUpdates = () => {
     let list = demand.sectorHistory;
@@ -104,7 +102,8 @@ const ViewDemandsScreen = () => {
       return 0;
     });
     return list.map((value, index) => {
-      if (value.userName) {
+      if ((value.userName && value.visibilityRestriction === false)
+        || (value.userName && (value.sectorID === user.sector))) {
         return (
           <TimelineItem style={{ marginLeft: '8%' }} key={index}>
             <TimelineOppositeContent style={{ display: 'none' }} />
@@ -113,14 +112,15 @@ const ViewDemandsScreen = () => {
               <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
             </TimelineSeparator>
             <TimelineContent style={{ width: '100%' }}>
-              <UpdateCard demand={value} sector={sectorsResponse} />
+              <UpdateCard demand={value} />
             </TimelineContent>
           </TimelineItem>
         );
+      } if (value.userName) {
+        return false;
       }
 
       const sectorName = sectorsResponse?.filter((sectorByID) => sectorByID._id === value.sectorID);
-
       return (
         <TimelineItem style={{ marginLeft: '8%' }} key={index}>
           <TimelineOppositeContent style={{ display: 'none' }} />
@@ -146,10 +146,9 @@ const ViewDemandsScreen = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
-
   return (
     <>
-      { demand && client && user && category
+      { demand && client && userDemand
       && (
       <Main>
         <CardsContainer>
@@ -170,6 +169,7 @@ const ViewDemandsScreen = () => {
             <div style={{ width: '90%', marginLeft: '8%' }}>
               <NewUpdateCard
                 demand={demand}
+                userName={user.name}
                 showUpdates={showUpdates}
                 getDemandApi={getDemandApi}
                 setChangeState={setChangeState}
@@ -202,8 +202,8 @@ const ViewDemandsScreen = () => {
         </CardsContainer>
         <ViewDemandSidebar
           clientName={client.name}
-          userName={user.name}
-          category={demand.categoryID}
+          userName={userDemand.name}
+          selectedCategories={demand.categoryID}
           demand={demand}
           getDemandApi={getDemandApi}
           showUpdates={showUpdates}
@@ -218,7 +218,7 @@ const ViewDemandsScreen = () => {
           <div style={{ width: '90%', marginLeft: '5%' }}>
             <NewUpdateCard
               demand={demand}
-              user={user}
+              userName={user.name}
               getDemandApi={getDemandApi}
               changeState={changeState}
               setChangeState={setChangeState}

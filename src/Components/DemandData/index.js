@@ -8,7 +8,7 @@ import {
 import colors from '../../Constants/colors';
 import { getClients } from '../../Services/Axios/clientServices';
 
-const DemandData = ({ demand, sector }) => {
+const DemandData = ({ demand, sectors }) => {
   const [client, setClient] = useState([]);
   const sectorName = sectors?.filter((sectorByID) => (sectorByID._id
     === demand.sectorHistory[demand.sectorHistory.length - 1].sectorID));
@@ -57,7 +57,7 @@ const DemandData = ({ demand, sector }) => {
         </ClientName>
         <SectorName>
           Setor:
-          { sector[0]?.name }
+          {sectorName[0].name}
         </SectorName>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <ProcessNumber>

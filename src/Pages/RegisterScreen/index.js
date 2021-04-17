@@ -12,20 +12,22 @@ const RegisterScreen = () => {
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
   const [inputRegisterUserRole, setRegisterUserInputRole] = useState('Administrador(a)');
-  const [inputRegisterUserSector, setRegisterUserInputSector] = useState('Assistência Social');
+  const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
   const [inputRegisterUserPassword, setRegisterUserInputPassword] = useState('');
   const [inputRegisterUserConfirmPassword, setRegisterUserInputConfirmPassword] = useState('');
+  const [sectors, setSectors] = useState([]);
   const [englishRole, setEnglishRole] = useState('admin');
 
-  const submit = () => {
+  const submit = async () => {
     if (validateSignUp(inputRegisterUserEmail,
       inputRegisterUserName,
       inputRegisterUserPassword,
       inputRegisterUserConfirmPassword)) {
+      const userSectorID = sectors?.find((sector) => sector.name === inputRegisterUserSector)._id;
       postUser(inputRegisterUserName,
         inputRegisterUserEmail,
         englishRole,
-        inputRegisterUserSector,
+        userSectorID,
         inputRegisterUserPassword);
       return history.push('/usuarios');
     }
@@ -84,6 +86,8 @@ const RegisterScreen = () => {
                   setInputRole={setRegisterUserInputRole}
                   inputRole={inputRegisterUserRole}
                   setInputSector={setRegisterUserInputSector}
+                  sectors={sectors}
+                  setSectors={setSectors}
                   inputSector={inputRegisterUserSector}
                   setInputPassword={setRegisterUserInputPassword}
                   inputPassword={inputRegisterUserPassword}

@@ -28,8 +28,8 @@ const UserForms = ({
   const getSectorsFromApi = async () => {
     await getSectors()
       .then((response) => {
-        setSectors(response.data);
-        setInputSector(response.data[0].name);
+        setSectors(response?.data);
+        setInputSector(response?.data[0]?.name);
       });
   };
 
