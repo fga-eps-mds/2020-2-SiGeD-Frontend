@@ -7,7 +7,7 @@ import {
 } from './Style';
 import SearchInput from '../../Components/SearchInput';
 import DemandData from '../../Components/DemandData';
-import { getDemandsWithClientsNames } from '../../Services/Axios/demandsServices';
+import { getDemandsWithClientsNames, getCategories } from '../../Services/Axios/demandsServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
@@ -18,11 +18,14 @@ const ListDemandsScreen = () => {
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [filterSector, setFilterSector] = useState([]);
+  const [filterCategory, setFilterCategory] = useState(['Todas']);
   const [demands, setDemands] = useState([]);
   const [sectors, setSectors] = useState([]);
   const [dropdownYears, setDropdownYears] = useState([]);
   const [filterYear, setFilterYear] = useState('Sem filtro');
+  const [categories, setCategories] = useState([]);
   const [sectorActive, setSectorActive] = useState('');
+  const [categoryActive, setCategoryActive] = useState('Todas');
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
 
@@ -36,6 +39,12 @@ const ListDemandsScreen = () => {
       .then((response) => {
         setSectors(response?.data);
         setSectorActive(response?.data[0]?.name);
+      });
+  };
+  const getCategoriesFromApi = async () => {
+    await getCategories('category')
+      .then((response) => {
+        setCategories(response.data);
       });
   };
 
@@ -67,6 +76,7 @@ const ListDemandsScreen = () => {
     if (token && user) {
       getDemandsFromApi();
       getSectorsFromApi();
+      getCategoriesFromApi();
     }
   }, [token, user]);
 
@@ -115,6 +125,10 @@ const ListDemandsScreen = () => {
     }
   }, [filterYear]);
 
+  useEffect(() => {
+    setFilterCategory([...filterCategory, ...categories]);
+  }, [categories]);
+
   const listDemands = () => {
     if (demands?.length === 0 || filterDemands?.length === 0) {
       return <h1>Sem resultados</h1>;
@@ -125,6 +139,14 @@ const ListDemandsScreen = () => {
       );
       if (demand.sectorHistory[demand.sectorHistory.length - 1].sectorID !== sector[0]?._id) {
         return false;
+      }
+      if (categoryActive !== 'Todas') {
+        const results = demand.categoryID.filter(
+          (demandCategory) => (demandCategory.name === categoryActive ? demandCategory : false),
+        );
+        if (results.length === 0) {
+          return false;
+        }
       }
       return (
         <DemandData
@@ -197,6 +219,29 @@ const ListDemandsScreen = () => {
                     backgroundColor: `${colors.secondary}`,
                   }}
                   optionList={filterSector?.map((sector) => sector.name)}
+                />
+              </DropdownField>
+              <DropdownField width={25}>
+                <p style={{ marginBottom: '0' }}>Categoria: </p>
+                <DropdownComponent
+                  OnChangeFunction={(Option) => setCategoryActive(Option.target.value)}
+                  style={{
+                    display: 'flex',
+                    color: `${colors.text}`,
+                    width: '100%',
+                    height: '100%',
+                    alignItems: 'center',
+                    boxSizing: 'border-box',
+                    borderRadius: '8px',
+                    border: '1px solid black',
+                    justifyContent: 'center',
+                  }}
+                  optionStyle={{
+                    backgroundColor: `${colors.secondary}`,
+                  }}
+                  optionList={filterCategory?.map(
+                    (category) => (category.name ? category.name : category),
+                  )}
                 />
               </DropdownField>
               <DropdownField>
