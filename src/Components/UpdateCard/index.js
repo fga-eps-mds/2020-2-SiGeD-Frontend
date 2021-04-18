@@ -6,6 +6,7 @@ import { FcHighPriority } from 'react-icons/fc';
 import ModalEditUpdateDemand from '../ModalEditUpdateDemand';
 import { deleteDemandUpdate } from '../../Services/Axios/demandsServices';
 import { useProfileUser } from '../../Context';
+import ConfirmDemandModal from '../ConfirmDemandModal';
 import {
   Card, TopSide, DemandName, EditIcon,
   DemandDescription, BottomSide, CreatedAt, UserIcon,
@@ -17,7 +18,9 @@ const UpdateCard = ({
 }) => {
   const sectorName = sector?.filter((sectorByID) => sectorByID?._id === update.userSector);
   const [show, setShow] = useState(false);
+  const [confirm, setConfirm] = useState(false);
   const handleClose = () => setShow(false);
+  const handleConfirm = () => setConfirm(false);
   const { user } = useProfileUser();
 
   const deleteUpdate = async () => {
@@ -34,7 +37,7 @@ const UpdateCard = ({
     if (moment(dataNow).isAfter(dateFormatTimeLimitData)) {
       alert('Não é possível apagar essa atualização.');
     } else {
-      deleteUpdate();
+      setConfirm(true);
     }
   };
 
@@ -112,6 +115,12 @@ const UpdateCard = ({
         setChangeState={setChangeState}
         changeState={changeState}
         important={update.important}
+      />
+      <ConfirmDemandModal
+        show={confirm}
+        handleClose={handleConfirm}
+        submit={deleteUpdate}
+        actionName="deletar essa atualização d"
       />
     </Card>
   );
