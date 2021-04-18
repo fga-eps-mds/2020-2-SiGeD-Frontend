@@ -177,3 +177,37 @@ export async function getDemandsWithClientsNames(url) {
   }
   return false;
 }
+
+export async function deleteDemandUpdate(id, updateListID) {
+  try {
+    const response = await APIDemands.put(`demand/delete-demand-update/${id}`, {
+      updateListID,
+    });
+    if (response.data.status) {
+      alert('Não foi possível deletar a atualização.');
+    }
+  } catch (error) {
+    alert('Não foi possível deletar a atualização da demanda, tente novamente mais tarde.');
+    console.error(`An unexpected error occurred while deleting a demand update.${error}`);
+  }
+}
+
+export async function updateDemandUpdate(
+  userName, userSector, description, id, updateListID, visibilityRestriction,
+) {
+  try {
+    const response = await APIDemands.put(`demand/update-demand-update/${id}`, {
+      userName,
+      userSector,
+      description,
+      visibilityRestriction,
+      updateListID,
+    });
+    if (response.data.status) {
+      alert('Não foi possível editar a atualização.');
+    }
+  } catch (error) {
+    alert('Não foi possível editar a atualização da demanda, tente novamente mais tarde.');
+    console.error(`An unexpected error occurred while updating a demand update.${error}`);
+  }
+}

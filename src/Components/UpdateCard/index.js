@@ -1,23 +1,48 @@
+import React, { useState } from 'react';
 import moment from 'moment-timezone';
-import { Link } from 'react-router-dom';
 import { BsPencil } from 'react-icons/bs';
 import { BiTrash, BiLockAlt } from 'react-icons/bi';
-import colors from '../../Constants/colors';
+import ModalEditUpdateDemand from '../ModalEditUpdateDemand';
+import { deleteDemandUpdate } from '../../Services/Axios/demandsServices';
+import { useProfileUser } from '../../Context';
 import {
   Card, TopSide, DemandName, EditIcon,
   DemandDescription, BottomSide, CreatedAt, UserIcon,
   LockIcon, TrashIcon, IconsContainer,
 } from './Style';
 
-const UpdateCard = ({ demand, sector }) => {
-  const sectorName = sector?.filter((sectorByID) => sectorByID?._id === demand.userSector);
+const UpdateCard = ({
+  update, sector, demand, setChangeState, changeState,
+}) => {
+  const sectorName = sector?.filter((sectorByID) => sectorByID?._id === update.userSector);
+  const deleteUpdate = async () => {
+    deleteDemandUpdate(demand._id, update._id);
+  };
+  const deleteCall = () => {
+    deleteUpdate();
+  };
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const { user } = useProfileUser();
+
+  // console.log(demand, 'AKI');
+
+  const catchUser = () => {
+    if (user._id === demand.userID) {
+      // console.log(user._id);
+      setShow(true);
+    } else {
+      alert('Você não pode editar essa atualização.');
+    }
+  };
+
   return (
     <Card>
       <TopSide>
         <div style={{ display: 'flex', width: '70%' }}>
           <UserIcon />
           <DemandName>
-            {demand.userName}
+            {update.userName}
             {' '}
             (
             {sectorName[0]?.name}
@@ -28,30 +53,41 @@ const UpdateCard = ({ demand, sector }) => {
           <LockIcon>
             <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
           </LockIcon>
-          <EditIcon>
-            <Link
-              to="/"
-              id={demand._id}
-              style={{ color: colors.primary, textDecorationLine: 'none' }}
-            >
-              <BsPencil style={{ marginRight: '10px' }} />
-            </Link>
+          <EditIcon
+            onClick={() => { catchUser(); }}
+            style={{ cursor: 'pointer' }}
+          >
+            <BsPencil style={{ marginRight: '10px' }} />
           </EditIcon>
-          <TrashIcon>
+          <TrashIcon
+            onClick={() => { deleteCall(); }}
+          >
             <BiTrash style={{ marginRight: '5px', color: 'red' }} />
           </TrashIcon>
         </IconsContainer>
       </TopSide>
       <BottomSide>
         <DemandDescription>
-          {demand.description}
+          {update.description}
         </DemandDescription>
         <CreatedAt>
-          { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY HH:mm')}
+          { moment.parseZone(update.createdAt).local(true).format('DD/MM/YYYY HH:mm')}
         </CreatedAt>
       </BottomSide>
+      <ModalEditUpdateDemand
+        showModal={show}
+        handleClose={handleClose}
+        name={user.name}
+        description={update.description}
+        visibilityRestriction={update.visibilityRestriction}
+        updateDemandID={update._id}
+        demandID={demand._id}
+        createdAt={update.createdAt}
+        userSector={update.userSector}
+        setChangeState={setChangeState}
+        changeState={changeState}
+      />
     </Card>
-
   );
 };
 

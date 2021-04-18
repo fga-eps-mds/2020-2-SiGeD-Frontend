@@ -109,7 +109,13 @@ const ViewDemandsScreen = () => {
               <TimelineConnector style={{ backgroundColor: colors.navHeaders }} />
             </TimelineSeparator>
             <TimelineContent style={{ width: '100%' }}>
-              <UpdateCard demand={value} sector={sectorsResponse} />
+              <UpdateCard
+                update={value}
+                sector={sectorsResponse}
+                demand={demand}
+                setChangeState={setChangeState}
+                changeState={changeState}
+              />
             </TimelineContent>
           </TimelineItem>
         );
