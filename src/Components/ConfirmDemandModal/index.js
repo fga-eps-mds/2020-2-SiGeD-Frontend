@@ -26,7 +26,7 @@ const ConfirmDemandModal = ({
         }}
       />
       <TinyButton
-        type="secondary"
+        type="primary"
         title="Confirmar"
         click={() => { handleClose(); submit(); }}
         style={{
