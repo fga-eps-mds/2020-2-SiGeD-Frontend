@@ -35,7 +35,6 @@ const ModalEditUpdateDemand = ({
     );
     setUpdateVisibility(true);
     handleClose();
-    console.log(updateVisibility);
   };
 
   const validateEdit = async () => {
