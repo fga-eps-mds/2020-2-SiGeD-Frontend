@@ -157,7 +157,11 @@ export async function updateDemandSector(sectorID, id) {
       alert('Selecione um dos setores disponíveis');
     }
   } catch (error) {
-    alert('Não foi possível atualizar o setor da demanda, tente novamente mais tarde.');
+    if (error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      alert('Não foi possível atualizar o setor da demanda, tente novamente mais tarde.');
+    }
     console.error(`An unexpected error occurred while updating a demand's sector.${error}`);
   }
 }
@@ -171,7 +175,11 @@ export async function forwardDemand(sectorID, id) {
       alert('Não foi possível encaminhar a demanda');
     }
   } catch (error) {
-    alert('Não foi possível encaminhar a demanda para o setor desejado, tente novamente mais tarde.');
+    if (error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      alert('Não foi possível encaminhar a demanda para o setor desejado, tente novamente mais tarde.');
+    }
     console.error(`An unexpected error occurred while forwarding a demand to another sector.${error}`);
   }
 }
@@ -198,7 +206,11 @@ export async function createDemandUpdate(
       alert('Preencha o campo de descrição da atualização para ser possível o envio.');
     }
   } catch (error) {
-    alert('Não foi possível enviar a atualização da demanda, tente novamente mais tarde.');
+    if (error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      alert('Não foi possível enviar a atualização da demanda, tente novamente mais tarde.');
+    }
     console.error(`An unexpected error occurred while sending a demand update.${error}`);
   }
 }
@@ -223,7 +235,11 @@ export async function deleteDemandUpdate(id, updateListID) {
       alert('Não foi possível deletar a atualização.');
     }
   } catch (error) {
-    alert('Não foi possível deletar a atualização da demanda, tente novamente mais tarde.');
+    if (error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      alert('Não foi possível deletar a atualização da demanda, tente novamente mais tarde.');
+    }
     console.error(`An unexpected error occurred while deleting a demand update.${error}`);
   }
 }
@@ -245,7 +261,11 @@ export async function updateDemandUpdate(
       alert('Não foi possível editar a atualização.');
     }
   } catch (error) {
-    alert('Não foi possível editar a atualização da demanda, tente novamente mais tarde.');
+    if (error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      alert('Não foi possível editar a atualização da demanda, tente novamente mais tarde.');
+    }
     console.error(`An unexpected error occurred while updating a demand update.${error}`);
   }
 }

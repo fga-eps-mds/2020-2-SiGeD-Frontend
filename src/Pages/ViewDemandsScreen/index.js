@@ -13,7 +13,6 @@ import UpdateCard from '../../Components/UpdateCard';
 import NewUpdateCard from '../../Components/NewUpdateCard';
 import TinyButton from '../../Components/TinyButton';
 import CloseDemandModal from '../../Components/CloseDemandModal';
-import { useProfileUser } from '../../Context';
 import {
   Main, CardsContainer, MobileButtonDiv, ButtonDiv, TimelineDiv, MobileTimeline,
   ForwardedDemandDiv,
@@ -33,9 +32,9 @@ const ViewDemandsScreen = () => {
   const handleClose = () => setShow(false);
   const [sectorsResponse, setSectorsResponse] = useState([]);
   const [flag, setFlag] = useState(false);
-  const [changeState, setChangeState] = useState(false);
-  const { user } = useProfileUser();
   const { id } = useParams();
+  const [user, setUser] = useState('');
+  const [changeState, setChangeState] = useState(false);
 
   const getClientApi = async (clientID) => {
     await getClients(`clients/${clientID}`)
@@ -68,7 +67,7 @@ const ViewDemandsScreen = () => {
   const setButtons = async () => {
     if (demand?.open === true) {
       setButtonColor(colors.alertMessages);
-      setButtonTitle('Fechar demanda');
+      setButtonTitle('Concluir demanda');
     } else {
       setButtonColor(colors.primary);
       setButtonTitle('Reabrir demanda');
@@ -122,11 +121,10 @@ const ViewDemandsScreen = () => {
             </TimelineContent>
           </TimelineItem>
         );
-      } if (value.userName) {
-        return false;
       }
 
       const sectorName = sectorsResponse?.filter((sectorByID) => sectorByID._id === value.sectorID);
+
       return (
         <TimelineItem style={{ marginLeft: '8%' }} key={index}>
           <TimelineOppositeContent style={{ display: 'none' }} />
@@ -152,6 +150,7 @@ const ViewDemandsScreen = () => {
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
   }
+
   return (
     <>
       { demand && client && userDemand
@@ -175,7 +174,6 @@ const ViewDemandsScreen = () => {
             <div style={{ width: '90%', marginLeft: '8%' }}>
               <NewUpdateCard
                 demand={demand}
-                userName={user.name}
                 showUpdates={showUpdates}
                 getDemandApi={getDemandApi}
                 setChangeState={setChangeState}
@@ -224,7 +222,7 @@ const ViewDemandsScreen = () => {
           <div style={{ width: '90%', marginLeft: '5%' }}>
             <NewUpdateCard
               demand={demand}
-              userName={user.name}
+              user={user}
               getDemandApi={getDemandApi}
               changeState={changeState}
               setChangeState={setChangeState}

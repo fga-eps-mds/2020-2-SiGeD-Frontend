@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { createDemandUpdate } from '../../Services/Axios/demandsServices';
 import TinyButton from '../TinyButton';
-import { useProfileUser } from '../../Context';
 import {
   Card, TopSide, BottomSide, TextareaComp,
   CheckboxContainer, CheckboxDiv,
 } from './Style';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const NewUpdateCard = ({
-  demand, userName, getDemandApi, changeState, setChangeState,
+  demand, getDemandApi, changeState, setChangeState,
 }) => {
   const [description, setDescription] = useState('');
   const [visibilityRestriction, setVisibilityRestriction] = useState(true);
   const [important, setImportant] = useState(false);
   const { user } = useProfileUser();
+
   const submit = () => {
     createDemandUpdate(user.name, user.sector, user._id, description,
       visibilityRestriction, demand._id, important);
