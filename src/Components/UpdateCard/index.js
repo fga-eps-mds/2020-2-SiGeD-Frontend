@@ -2,37 +2,55 @@ import React, { useState } from 'react';
 import moment from 'moment-timezone';
 import { BsPencil } from 'react-icons/bs';
 import { BiTrash, BiLockAlt } from 'react-icons/bi';
+import { FcHighPriority } from 'react-icons/fc';
 import ModalEditUpdateDemand from '../ModalEditUpdateDemand';
 import { deleteDemandUpdate } from '../../Services/Axios/demandsServices';
 import { useProfileUser } from '../../Context';
 import {
   Card, TopSide, DemandName, EditIcon,
   DemandDescription, BottomSide, CreatedAt, UserIcon,
-  LockIcon, TrashIcon, IconsContainer,
+  LockIcon, TrashIcon, IconsContainer, HighPriorityIcon,
 } from './Style';
 
 const UpdateCard = ({
   update, sector, demand, setChangeState, changeState,
 }) => {
   const sectorName = sector?.filter((sectorByID) => sectorByID?._id === update.userSector);
-  const deleteUpdate = async () => {
-    deleteDemandUpdate(demand._id, update._id);
-  };
-  const deleteCall = () => {
-    deleteUpdate();
-  };
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const { user } = useProfileUser();
 
-  // console.log(demand, 'AKI');
+  const deleteUpdate = async () => {
+    deleteDemandUpdate(demand._id, update._id);
+    setChangeState(!changeState);
+  };
+
+  const validateDelete = () => {
+    const dataNow = moment(moment.tz('America/Sao_Paulo').format('YYYY-MM-DDTHH:mm:ss')).toDate();
+    const deleteData = moment(update.createdAt, 'YYYY-MM-DDTHH:mm:ss').toDate();
+    const timeLimitData = moment(deleteData).add(30, 'minutes').format('YYYY-MM-DDTHH:mm:ss');
+    const dateFormatTimeLimitData = moment(timeLimitData, 'YYYY-MM-DDTHH:mm:ss').toDate();
+
+    if (moment(dataNow).isAfter(dateFormatTimeLimitData)) {
+      alert('Não é possível apagar essa atualização.');
+    } else {
+      deleteUpdate();
+    }
+  };
 
   const catchUser = () => {
-    if (user._id === demand.userID) {
-      // console.log(user._id);
+    if (user._id === update.userID) {
       setShow(true);
     } else {
       alert('Você não pode editar essa atualização.');
+    }
+  };
+
+  const deleteCall = () => {
+    if (user._id === update.userID) {
+      validateDelete();
+    } else {
+      alert('Você não pode apagar essa atualização.');
     }
   };
 
@@ -50,6 +68,13 @@ const UpdateCard = ({
           </DemandName>
         </div>
         <IconsContainer>
+          { update.important
+            ? (
+              <HighPriorityIcon>
+                <FcHighPriority style={{ marginRight: '10px', color: 'black' }} />
+              </HighPriorityIcon>
+            )
+            : null }
           <LockIcon>
             <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
           </LockIcon>
@@ -86,6 +111,7 @@ const UpdateCard = ({
         userSector={update.userSector}
         setChangeState={setChangeState}
         changeState={changeState}
+        important={update.important}
       />
     </Card>
   );

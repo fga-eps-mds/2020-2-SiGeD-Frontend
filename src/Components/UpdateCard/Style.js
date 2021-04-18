@@ -43,17 +43,28 @@ export const DemandName = styled.div`
 
 export const IconsContainer = styled.div`
   float: right;
-  width: max-content;
+  width: 30%;
   @media(max-width: 750px){
     margin-right: 2%;
     margin-top: 2%;
 }
 `;
 
+export const HighPriorityIcon = styled.div`
+    float: left;
+    font-size: 100%;
+    width: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
+    @media(max-width: 750px){
+    font-size: 100%;
+    }
+`;
+
 export const EditIcon = styled.div`
   float: right;
   font-size: 100%;
-  width: 30%;
+  width: 20%;
   margin-left: 5%;
   margin-right: 5%;
   @media(max-width: 750px){
@@ -64,7 +75,7 @@ export const EditIcon = styled.div`
 export const LockIcon = styled.div`
   float: right;
   font-size: 100%;
-  width: 30%;
+  width: 20%;
   @media(max-width: 750px){
     font-size: 100%;
 }
@@ -73,7 +84,8 @@ export const LockIcon = styled.div`
 export const TrashIcon = styled.div`
   float: right;
   font-size: 100%;
-  width: 30%;
+  width: 20%;
+  cursor: pointer;
   @media(max-width: 750px){
     font-size: 100%;
 }
