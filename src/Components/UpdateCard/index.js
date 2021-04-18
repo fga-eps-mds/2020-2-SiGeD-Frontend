@@ -120,7 +120,7 @@ const UpdateCard = ({
         show={confirm}
         handleClose={handleConfirm}
         submit={deleteUpdate}
-        actionName="deletar essa atualização d"
+        actionName=" deletar essa atualização d"
       />
     </Card>
   );
