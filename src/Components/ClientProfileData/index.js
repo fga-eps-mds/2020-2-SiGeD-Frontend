@@ -11,7 +11,9 @@ import {
 } from '../PersonData/Style';
 import colors from '../../Constants/colors';
 
-const ClientProfileData = ({ client, query }) => {
+const ClientProfileData = ({
+  client, query, pageState, setPageState,
+}) => {
   const [boxState, setBoxState] = useState(false);
   const [text, setText] = useState('Desativar');
   const [textColor, setTextColor] = useState('');
@@ -37,6 +39,7 @@ const ClientProfileData = ({ client, query }) => {
 
   const DeactivateClient = () => {
     toggleStatus(client._id);
+    setPageState(!pageState);
   };
 
   return (
