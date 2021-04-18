@@ -117,7 +117,7 @@ const ModalEditUpdateDemand = ({
               type="primary"
               title="Editar"
               style={{
-                backgroundColor: 'blue',
+                backgroundColor: `${colors.primary}`,
                 borderColor: 'white',
               }}
             />
