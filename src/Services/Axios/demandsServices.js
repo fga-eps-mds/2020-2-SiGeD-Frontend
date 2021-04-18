@@ -147,16 +147,20 @@ export async function forwardDemand(sectorID, id) {
 export async function createDemandUpdate(
   userName,
   userSector,
+  userID,
   description,
   visibilityRestriction,
   id,
+  important,
 ) {
   try {
     const response = await APIDemands.put(`demand/create-demand-update/${id}`, {
       userName,
       userSector,
+      userID,
       description,
       visibilityRestriction,
+      important,
     });
     if (response.data.status) {
       alert('Preencha o campo de descrição da atualização para ser possível o envio.');
@@ -176,4 +180,40 @@ export async function getDemandsWithClientsNames(url) {
     console.error(`An unexpected error ocourred while getting demands with clients names.${error}`);
   }
   return false;
+}
+
+export async function deleteDemandUpdate(id, updateListID) {
+  try {
+    const response = await APIDemands.put(`demand/delete-demand-update/${id}`, {
+      updateListID,
+    });
+    if (response.data.status) {
+      alert('Não foi possível deletar a atualização.');
+    }
+  } catch (error) {
+    alert('Não foi possível deletar a atualização da demanda, tente novamente mais tarde.');
+    console.error(`An unexpected error occurred while deleting a demand update.${error}`);
+  }
+}
+
+export async function updateDemandUpdate(
+  userName, userSector, userID, description, id, updateListID, visibilityRestriction, important,
+) {
+  try {
+    const response = await APIDemands.put(`demand/update-demand-update/${id}`, {
+      userName,
+      userSector,
+      userID,
+      description,
+      visibilityRestriction,
+      updateListID,
+      important,
+    });
+    if (response.data.status) {
+      alert('Não foi possível editar a atualização.');
+    }
+  } catch (error) {
+    alert('Não foi possível editar a atualização da demanda, tente novamente mais tarde.');
+    console.error(`An unexpected error occurred while updating a demand update.${error}`);
+  }
 }
