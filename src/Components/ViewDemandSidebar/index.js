@@ -115,29 +115,15 @@ const ViewDemandSidebar = ({
           )}
         {sidebarState && (
           <SelectionBox>
-            {sidebarState
-              && (
-                <CategoryField>
-                  <p>
-                    Categoria:
-                  </p>
-                  <SelectedCategories selectedCategories={selectedCategories} />
-                </CategoryField>
-              )}
-          </SelectionBox>
-        )}
-      </ContentBox>
-      <SelectionBox>
-        {sidebarState
-          && (
             <CategoryField>
               <p>
                 Categoria:
               </p>
               <SelectedCategories selectedCategories={selectedCategories} />
             </CategoryField>
-          )}
-      </SelectionBox>
+          </SelectionBox>
+        )}
+      </ContentBox>
     </RightBox>
   );
 };

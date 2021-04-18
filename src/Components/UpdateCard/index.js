@@ -78,13 +78,13 @@ const UpdateCard = ({
               </HighPriorityIcon>
             )
             : null }
-          { demand.visibilityRestriction
-          ? (
-            <LockIcon>
-              <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
-            </LockIcon>
-          )
-          : null }
+          { update.visibilityRestriction
+            ? (
+              <LockIcon>
+                <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
+              </LockIcon>
+            )
+            : null }
           <EditIcon
             onClick={() => { catchUser(); }}
             style={{ cursor: 'pointer' }}

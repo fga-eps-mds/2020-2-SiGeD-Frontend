@@ -16,7 +16,6 @@ const ModalEditUpdateDemand = ({
   handleClose,
   name,
   description,
-  visibilityRestriction,
   updateDemandID,
   demandID,
   createdAt,
@@ -26,7 +25,7 @@ const ModalEditUpdateDemand = ({
   important,
 }) => {
   const [updateDescription, setUpdateDescription] = useState(description);
-  const [updateVisibility, setUpdateVisibility] = useState(visibilityRestriction);
+  const [updateVisibility, setUpdateVisibility] = useState(true);
   const { user } = useProfileUser();
   const [editedImportant, seteditedImportant] = useState(important);
   const editUpdate = async () => {
@@ -34,7 +33,9 @@ const ModalEditUpdateDemand = ({
       name, userSector, user._id, updateDescription,
       demandID, updateDemandID, updateVisibility, editedImportant,
     );
+    setUpdateVisibility(true);
     handleClose();
+    console.log(updateVisibility);
   };
 
   const validateEdit = async () => {
@@ -74,7 +75,8 @@ const ModalEditUpdateDemand = ({
                 control={
                   (
                     <Checkbox
-                      value="checked"
+                      value={updateVisibility}
+                      defaultChecked
                       inputProps={{ 'aria-label': 'Checkbox A' }}
                       style={{ color: `${colors.navHeaders}` }}
                       onClick={() => setUpdateVisibility(!updateVisibility)}
@@ -108,7 +110,7 @@ const ModalEditUpdateDemand = ({
               title="Fechar"
               style={{
                 backgroundColor: 'red',
-                borderColor: 'black',
+                borderColor: 'white',
               }}
             />
             <TinyButton
@@ -117,7 +119,7 @@ const ModalEditUpdateDemand = ({
               title="Editar"
               style={{
                 backgroundColor: 'blue',
-                borderColor: 'black',
+                borderColor: 'white',
               }}
             />
           </ButtomDiv>

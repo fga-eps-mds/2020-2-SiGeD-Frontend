@@ -103,7 +103,7 @@ const ViewDemandsScreen = () => {
     });
     return list.map((value, index) => {
       if ((value.userName && value.visibilityRestriction === false)
-        || (value.userName && (value.sectorID === user.sector))) {
+        || (value.userName && (value.userSector === user.sector))) {
         return (
           <TimelineItem style={{ marginLeft: '8%' }} key={index}>
             <TimelineOppositeContent style={{ display: 'none' }} />

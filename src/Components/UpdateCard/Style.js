@@ -43,7 +43,9 @@ export const DemandName = styled.div`
 
 export const IconsContainer = styled.div`
   float: right;
-  width: 30%;
+  width: max-content;
+  display: flex;
+  justify-content: space-between;
   @media(max-width: 750px){
     margin-right: 2%;
     margin-top: 2%;
