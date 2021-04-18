@@ -24,8 +24,8 @@ const UpdateCard = ({
   const { user } = useProfileUser();
 
   const deleteUpdate = async () => {
-    deleteDemandUpdate(demand._id, update._id);
-    setChangeState(!changeState);
+    await deleteDemandUpdate(demand._id, update._id)
+      .then(() => setChangeState(!changeState));
   };
 
   const validateDelete = () => {

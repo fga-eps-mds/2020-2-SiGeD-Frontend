@@ -37,7 +37,7 @@ const ModalEditUpdateDemand = ({
     handleClose();
   };
 
-  const validateEdit = () => {
+  const validateEdit = async () => {
     const data = moment(moment.tz('America/Sao_Paulo').format('YYYY-MM-DDTHH:mm:ss')).toDate();
     const updateData = moment(createdAt, 'YYYY-MM-DDTHH:mm:ss').toDate();
     const stringDate = moment(updateData).add(30, 'minutes').format('YYYY-MM-DDTHH:mm:ss');
@@ -47,8 +47,8 @@ const ModalEditUpdateDemand = ({
       alert('Não é possível editar essa atualização.');
       handleClose();
     } else {
-      editUpdate();
-      setChangeState(!changeState);
+      await editUpdate()
+        .then(() => setChangeState(!changeState));
     }
   };
 
