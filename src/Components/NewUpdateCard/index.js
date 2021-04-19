@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { createDemandUpdate } from '../../Services/Axios/demandsServices';
 import TinyButton from '../TinyButton';
+import { useProfileUser } from '../../Context';
 import {
   Card, TopSide, BottomSide, TextareaComp,
   CheckboxContainer, CheckboxDiv,
 } from './Style';
 import colors from '../../Constants/colors';
-import { useProfileUser } from '../../Context';
 
 const NewUpdateCard = ({
   demand, getDemandApi, changeState, setChangeState,
 }) => {
   const [description, setDescription] = useState('');
-  const [visibilityRestriction, setVisibilityRestriction] = useState(false);
+  const [visibilityRestriction, setVisibilityRestriction] = useState(true);
   const [important, setImportant] = useState(false);
   const { user } = useProfileUser();
 
@@ -44,6 +44,7 @@ const NewUpdateCard = ({
                 (
                   <Checkbox
                     value={visibilityRestriction}
+                    defaultChecked
                     onClick={() => setVisibilityRestriction(!visibilityRestriction)}
                     inputProps={{ 'aria-label': 'Checkbox A' }}
                     style={{ color: `${colors.navHeaders}` }}

@@ -13,6 +13,7 @@ import UpdateCard from '../../Components/UpdateCard';
 import NewUpdateCard from '../../Components/NewUpdateCard';
 import TinyButton from '../../Components/TinyButton';
 import CloseDemandModal from '../../Components/CloseDemandModal';
+import { useProfileUser } from '../../Context';
 import {
   Main, CardsContainer, MobileButtonDiv, ButtonDiv, TimelineDiv, MobileTimeline,
   ForwardedDemandDiv,
@@ -24,7 +25,7 @@ import colors from '../../Constants/colors';
 const ViewDemandsScreen = () => {
   const [client, setClient] = useState('');
   const [demand, setDemand] = useState('');
-  const [user, setUser] = useState('');
+  const [userDemand, setUserDemand] = useState('');
   const [buttonColor, setButtonColor] = useState('');
   const [buttonTitle, setButtonTitle] = useState('');
   const [show, setShow] = useState(false);
@@ -33,6 +34,7 @@ const ViewDemandsScreen = () => {
   const [sectorsResponse, setSectorsResponse] = useState([]);
   const [flag, setFlag] = useState(false);
   const [changeState, setChangeState] = useState(false);
+  const { user } = useProfileUser();
   const { id } = useParams();
 
   const getClientApi = async (clientID) => {
@@ -42,7 +44,7 @@ const ViewDemandsScreen = () => {
 
   const getUserApi = async (paramUserID) => {
     await getUser(`users/${paramUserID}`)
-      .then((response) => { setUser(response?.data); });
+      .then((response) => { setUserDemand(response?.data); });
   };
 
   const getDemandApi = async () => {
@@ -100,7 +102,8 @@ const ViewDemandsScreen = () => {
       return 0;
     });
     return list.map((value, index) => {
-      if (value.userName) {
+      if ((value.userName && value.visibilityRestriction === false)
+        || (value.userName && (value.userSector === user.sector))) {
         return (
           <TimelineItem style={{ marginLeft: '8%' }} key={index}>
             <TimelineOppositeContent style={{ display: 'none' }} />
@@ -119,10 +122,11 @@ const ViewDemandsScreen = () => {
             </TimelineContent>
           </TimelineItem>
         );
+      } if (value.userName) {
+        return false;
       }
 
       const sectorName = sectorsResponse?.filter((sectorByID) => sectorByID._id === value.sectorID);
-
       return (
         <TimelineItem style={{ marginLeft: '8%' }} key={index}>
           <TimelineOppositeContent style={{ display: 'none' }} />
@@ -147,7 +151,7 @@ const ViewDemandsScreen = () => {
 
   return (
     <>
-      { demand && client && user
+      { demand && client && userDemand
       && (
       <Main>
         <CardsContainer>
@@ -200,7 +204,7 @@ const ViewDemandsScreen = () => {
         </CardsContainer>
         <ViewDemandSidebar
           clientName={client.name}
-          userName={user.name}
+          userName={userDemand.name}
           selectedCategories={demand.categoryID}
           demand={demand}
           getDemandApi={getDemandApi}

@@ -16,7 +16,7 @@ const ViewDemandCard = ({ demand }) => (
       </DemandName>
       <EditIcon>
         <Link
-          to="/"
+          to={`/demandas/editar/${demand._id}`}
           id={demand._id}
           style={{ color: colors.primary, textDecorationLine: 'none' }}
         >
