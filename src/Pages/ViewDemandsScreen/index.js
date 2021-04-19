@@ -13,6 +13,7 @@ import UpdateCard from '../../Components/UpdateCard';
 import NewUpdateCard from '../../Components/NewUpdateCard';
 import TinyButton from '../../Components/TinyButton';
 import CloseDemandModal from '../../Components/CloseDemandModal';
+import { useProfileUser } from '../../Context';
 import {
   Main, CardsContainer, MobileButtonDiv, ButtonDiv, TimelineDiv, MobileTimeline,
   ForwardedDemandDiv,
@@ -32,9 +33,9 @@ const ViewDemandsScreen = () => {
   const handleClose = () => setShow(false);
   const [sectorsResponse, setSectorsResponse] = useState([]);
   const [flag, setFlag] = useState(false);
-  const { id } = useParams();
-  const [user, setUser] = useState('');
   const [changeState, setChangeState] = useState(false);
+  const { user } = useProfileUser();
+  const { id } = useParams();
 
   const getClientApi = async (clientID) => {
     await getClients(`clients/${clientID}`)
@@ -121,10 +122,11 @@ const ViewDemandsScreen = () => {
             </TimelineContent>
           </TimelineItem>
         );
+      } if (value.userName) {
+        return false;
       }
 
       const sectorName = sectorsResponse?.filter((sectorByID) => sectorByID._id === value.sectorID);
-
       return (
         <TimelineItem style={{ marginLeft: '8%' }} key={index}>
           <TimelineOppositeContent style={{ display: 'none' }} />
