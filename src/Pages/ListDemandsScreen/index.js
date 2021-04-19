@@ -16,6 +16,8 @@ const ListDemandsScreen = () => {
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [filterSector, setFilterSector] = useState([]);
+  // const [dropdownYears, setDropdownYears] = useState([]);
+  const [filterYear, setFilterYear] = useState([]);
   const [demands, setDemands] = useState([]);
   const [sectors, setSectors] = useState([]);
   const [sectorActive, setSectorActive] = useState('');
@@ -31,6 +33,13 @@ const ListDemandsScreen = () => {
         setSectors(response?.data);
         setSectorActive(response?.data[0]?.name);
       });
+  };
+
+  const listYears = async () => {
+    const firstYear = new Date(demands[0]?.createdAt)?.getFullYear();
+    const lastYear = new Date(demands[demands.length - 1]?.createdAt)?.getFullYear();
+    const teste = Array(lastYear - firstYear + 1).fill().map((_, idx) => firstYear + idx);
+    console.log(teste);
   };
 
   useEffect(() => {
@@ -60,11 +69,16 @@ const ListDemandsScreen = () => {
 
   useEffect(() => {
     setFilterDemands(demands);
+    listYears();
   }, [demands]);
 
   useEffect(() => {
     setFilterSector(sectors);
   }, [sectors]);
+
+  useEffect(() => {
+    setFilterYear(filterYear);
+  }, [filterYear]);
 
   const listDemands = () => {
     if (demands?.length === 0) {
@@ -127,6 +141,24 @@ const ListDemandsScreen = () => {
                 backgroundColor: `${colors.secondary}`,
               }}
               optionList={['Ativas', 'Inativas']}
+            />
+            <DropdownComponent
+              OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
+              style={{
+                display: 'flex',
+                color: `${colors.text}`,
+                width: '45%',
+                height: '100%',
+                alignItems: 'center',
+                boxSizing: 'border-box',
+                borderRadius: '8px',
+                border: '1px solid black',
+                justifyContent: 'center',
+              }}
+              optionStyle={{
+                backgroundColor: `${colors.secondary}`,
+              }}
+              optionList={['Ano', 'Inativas']}
             />
             <DropdownComponent
               OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
