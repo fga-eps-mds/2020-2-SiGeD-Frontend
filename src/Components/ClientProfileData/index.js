@@ -10,10 +10,12 @@ import {
   TableContainer, ImageUser, DotContent,
 } from '../PersonData/Style';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const ClientProfileData = ({
   client, query, pageState, setPageState,
 }) => {
+  const { user } = useProfileUser();
   const [boxState, setBoxState] = useState(false);
   const [text, setText] = useState('Desativar');
   const [textColor, setTextColor] = useState('');
@@ -86,7 +88,7 @@ const ClientProfileData = ({
         </TableContainer>
       </PersonDataBox>
 
-      {boxState ? (
+      {boxState && user ? (
         <Box>
           <Ul>
             <Li>
@@ -109,14 +111,16 @@ const ClientProfileData = ({
                 </Link>
               </Icon>
             </Li>
-            <Li>
-              <Button onClick={DeactivateClient} style={{ color: textColor }}>
-                {text}
-              </Button>
-              <Icon onClick={DeactivateClient}>
-                {icon}
-              </Icon>
-            </Li>
+            {user.role === 'admin' ? (
+              <Li>
+                <Button onClick={DeactivateClient} style={{ color: textColor }}>
+                  {text}
+                </Button>
+                <Icon onClick={DeactivateClient}>
+                  {icon}
+                </Icon>
+              </Li>
+            ) : null}
           </Ul>
         </Box>
       ) : null}

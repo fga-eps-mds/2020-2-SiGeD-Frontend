@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { FaSistrix } from 'react-icons/fa';
 import {
   Main, ScreenContainer, ScreenTitle, ScreenSearch, ScreenContentBox,
@@ -20,7 +21,6 @@ const ListDemandsScreen = () => {
   const [sectorActive, setSectorActive] = useState('');
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
-
   const getDemandsFromApi = async () => {
     await getDemandsWithClientsNames(`clientsNames?open=${query}`)
       .then((response) => setDemands(response.data));
@@ -28,8 +28,8 @@ const ListDemandsScreen = () => {
   const getSectorsFromApi = async () => {
     await getSectors()
       .then((response) => {
-        setSectors(response.data);
-        setSectorActive(response.data[0].name);
+        setSectors(response?.data);
+        setSectorActive(response?.data[0]?.name);
       });
   };
 
@@ -90,6 +90,10 @@ const ListDemandsScreen = () => {
       );
     });
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <Main>

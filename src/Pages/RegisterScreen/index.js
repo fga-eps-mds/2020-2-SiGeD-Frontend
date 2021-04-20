@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
 import { postUser } from '../../Services/Axios/userServices';
 import UserForms from '../../Components/UserForms';
+import { useProfileUser } from '../../Context';
 
 const RegisterScreen = () => {
+  const { user } = useProfileUser();
   const history = useHistory();
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
@@ -58,33 +60,47 @@ const RegisterScreen = () => {
     setRegisterUserInputConfirmPassword('');
   };
 
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
   return (
-    <GenericRegisterScreen
-      sidebarList={[inputRegisterUserName,
-        inputRegisterUserEmail,
-        inputRegisterUserRole,
-        inputRegisterUserSector]}
-      cancel={cancel}
-      submit={submit}
-      buttonTitle="Cadastrar"
-    >
-      <UserForms
-        setInputName={setRegisterUserInputName}
-        inputName={inputRegisterUserName}
-        setInputEmail={setRegisterUserInputEmail}
-        inputEmail={inputRegisterUserEmail}
-        setInputRole={setRegisterUserInputRole}
-        inputRole={inputRegisterUserRole}
-        setInputSector={setRegisterUserInputSector}
-        sectors={sectors}
-        setSectors={setSectors}
-        inputSector={inputRegisterUserSector}
-        setInputPassword={setRegisterUserInputPassword}
-        inputPassword={inputRegisterUserPassword}
-        setInputConfirmPassword={setRegisterUserInputConfirmPassword}
-        inputConfirmPassword={inputRegisterUserConfirmPassword}
-      />
-    </GenericRegisterScreen>
+    <>
+      {user ? (
+        <>
+          {user.role === 'admin'
+            ? (
+              <GenericRegisterScreen
+                sidebarList={[inputRegisterUserName,
+                  inputRegisterUserEmail,
+                  inputRegisterUserRole,
+                  inputRegisterUserSector]}
+                cancel={cancel}
+                submit={submit}
+                buttonTitle="Cadastrar"
+              >
+                <UserForms
+                  setInputName={setRegisterUserInputName}
+                  inputName={inputRegisterUserName}
+                  setInputEmail={setRegisterUserInputEmail}
+                  inputEmail={inputRegisterUserEmail}
+                  setInputRole={setRegisterUserInputRole}
+                  inputRole={inputRegisterUserRole}
+                  setInputSector={setRegisterUserInputSector}
+                  sectors={sectors}
+                  setSectors={setSectors}
+                  inputSector={inputRegisterUserSector}
+                  setInputPassword={setRegisterUserInputPassword}
+                  inputPassword={inputRegisterUserPassword}
+                  setInputConfirmPassword={setRegisterUserInputConfirmPassword}
+                  inputConfirmPassword={inputRegisterUserConfirmPassword}
+                />
+              </GenericRegisterScreen>
+            )
+            : <Redirect to="/nao-autorizado" />}
+        </>
+      )
+        : <h1>Carregando...</h1>}
+    </>
   );
 };
 

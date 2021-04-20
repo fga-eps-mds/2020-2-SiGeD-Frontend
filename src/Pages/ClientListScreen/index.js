@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import ClientProfileData from '../../Components/ClientProfileData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
@@ -7,9 +8,11 @@ import {
 import { getClients } from '../../Services/Axios/clientServices';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const ClientListScreen = () => {
-  const [word, setWord] = useState('');
+  const { token } = useProfileUser();
+  const [word, setWord] = useState();
   const [filterClients, setFilterClients] = useState([]);
   const [clients, setClients] = useState([]);
   const [active, setActive] = useState('Ativos');
@@ -23,7 +26,7 @@ const ClientListScreen = () => {
 
   useEffect(() => {
     getClientsFromApi();
-  }, [pageState]);
+  }, [pageState, token]);
 
   useEffect(() => {
     setFilterClients(
@@ -65,6 +68,10 @@ const ClientListScreen = () => {
       />
     ));
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <GenericListScreen

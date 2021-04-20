@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { createDemandUpdate } from '../../Services/Axios/demandsServices';
 import TinyButton from '../TinyButton';
-import { useProfileUser } from '../../Context';
 import {
   Card, TopSide, BottomSide, TextareaComp,
   CheckboxContainer, CheckboxDiv,
 } from './Style';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const NewUpdateCard = ({
   demand, getDemandApi, changeState, setChangeState,

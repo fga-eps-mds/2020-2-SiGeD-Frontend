@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import ModalComp from '../../Components/ModalComp';
 import {
   TableHeader, TableTitle, P, Bar,
@@ -9,8 +10,10 @@ import {
 } from '../../Services/Axios/demandsServices';
 import DataList from '../../Components/DataList';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const ListCategories = () => {
+  const { token } = useProfileUser();
   const [filterCategories, setFilterCategories] = useState([]);
   const [categories, setCategories] = useState([]);
   const [word, setWord] = useState();
@@ -28,7 +31,7 @@ const ListCategories = () => {
 
   useEffect(() => {
     listCategories();
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     setFilterCategories(
@@ -60,6 +63,10 @@ const ListCategories = () => {
     ));
   };
 
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <GenericListScreen
       ButtonTitle="Nova Categoria"
@@ -84,8 +91,7 @@ const ListCategories = () => {
         </TableTitle>
         <TableTitle width={2} />
       </TableHeader>
-      { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null }
-      <div style={{ display: 'none' }} />
+      { statusModal ? <ModalComp show={statusModal} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null}
     </GenericListScreen>
   );
 };

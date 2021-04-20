@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import {
   Timeline, TimelineOppositeContent, TimelineItem, TimelineSeparator,
   TimelineConnector, TimelineContent, TimelineDot,
@@ -148,6 +148,10 @@ const ViewDemandsScreen = () => {
       );
     });
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <>
