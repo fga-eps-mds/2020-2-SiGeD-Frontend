@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     display: flex;
     overflow: auto;
     @media(max-width: 750px){
-        overflow: auto;
         flex-direction: column;
     }
 `;

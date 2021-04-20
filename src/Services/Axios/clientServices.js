@@ -5,7 +5,11 @@ export async function getClients(url) {
     const response = await APIClients.get(url);
     return response;
   } catch (error) {
-    alert('Não foi possível obter a lista de clientes, tente novamente mais tarde.');
+    if (error.response?.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response?.status !== 401) {
+      alert('Não foi possível obter a lista de clientes, tente novamente mais tarde.');
+    }
     console.error(`An unexpected error ocourred while retrieving the clients list.${error}`);
   }
   return false;
@@ -28,7 +32,11 @@ export async function postClient(
     });
     return response;
   } catch (error) {
-    alert('Não foi possivel criar o cliente. Tente novamente mais tarde');
+    if (error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      alert('Não foi possivel criar o cliente. Tente novamente mais tarde');
+    }
     console.error(`An unexpected error ocourred while creating a new client.${error}`);
   }
   return false;
@@ -49,7 +57,11 @@ export const updateClient = async (
     location: locationOption,
   })
     .catch((error) => {
-      alert('Não foi possivel atualizar o cliente. Tente novamente mais tarde');
+      if (error.response.status === 500) {
+        alert('O tempo da sua sessão expirou, faça o login novamente');
+      } else if (error.response.status !== 401) {
+        alert('Não foi possivel atualizar o cliente. Tente novamente mais tarde');
+      }
       console.error(`An unexpected error ocourred while updating the client data.${error}`);
     });
 };

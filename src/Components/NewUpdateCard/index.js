@@ -4,7 +4,7 @@ import { createDemandUpdate } from '../../Services/Axios/demandsServices';
 import TinyButton from '../TinyButton';
 import {
   Card, TopSide, BottomSide, TextareaComp,
-  CheckboxContainer,
+  CheckboxContainer, CheckboxDiv,
 } from './Style';
 import colors from '../../Constants/colors';
 import { useProfileUser } from '../../Context';
@@ -13,12 +13,13 @@ const NewUpdateCard = ({
   demand, getDemandApi, changeState, setChangeState,
 }) => {
   const [description, setDescription] = useState('');
-  const [visibilityRestriction, setVisibilityRestriction] = useState(false);
+  const [visibilityRestriction, setVisibilityRestriction] = useState(true);
+  const [important, setImportant] = useState(false);
   const { user } = useProfileUser();
 
   const submit = () => {
-    createDemandUpdate(user.name, user.sector, description,
-      visibilityRestriction, demand._id);
+    createDemandUpdate(user.name, user.sector, user._id, description,
+      visibilityRestriction, demand._id, important);
     getDemandApi();
     setDescription('');
   };
@@ -36,21 +37,39 @@ const NewUpdateCard = ({
         />
       </TopSide>
       <BottomSide>
-        <CheckboxContainer>
-          <FormControlLabel
-            control={
-              (
-                <Checkbox
-                  value="checked"
-                  onClick={() => setVisibilityRestriction(!visibilityRestriction)}
-                  inputProps={{ 'aria-label': 'Checkbox A' }}
-                  style={{ color: `${colors.navHeaders}` }}
-                />
-              )
-            }
-            label="Visível somente para o meu setor"
-          />
-        </CheckboxContainer>
+        <CheckboxDiv>
+          <CheckboxContainer>
+            <FormControlLabel
+              control={
+                (
+                  <Checkbox
+                    value={visibilityRestriction}
+                    defaultChecked
+                    onClick={() => setVisibilityRestriction(!visibilityRestriction)}
+                    inputProps={{ 'aria-label': 'Checkbox A' }}
+                    style={{ color: `${colors.navHeaders}` }}
+                  />
+                )
+              }
+              label="Visível somente para o meu setor"
+            />
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <FormControlLabel
+              control={
+                (
+                  <Checkbox
+                    value={important}
+                    onClick={() => setImportant(!important)}
+                    inputProps={{ 'aria-label': 'Checkbox A' }}
+                    style={{ color: `${colors.navHeaders}` }}
+                  />
+                )
+              }
+              label="Importante"
+            />
+          </CheckboxContainer>
+        </CheckboxDiv>
         <TinyButton
           type="primary"
           title="Adicionar Atualização"

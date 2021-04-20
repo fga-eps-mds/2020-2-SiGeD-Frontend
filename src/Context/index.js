@@ -32,8 +32,9 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       localStorage.setItem('@App:token', token);
+      localStorage.setItem('@App:user', user);
     }
-  }, [token]);
+  }, [token, user]);
 
   useEffect(() => {
     if (user) {

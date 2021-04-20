@@ -33,6 +33,7 @@ export const Tag = styled.div`
   font-size: 100%;
   text-align: center;
   word-break: break-word;
+  cursor: pointer;
 
 `;
 

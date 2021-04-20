@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import { Main, Footer } from './Style';
 import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
 import RightBoxComponent from '../../Components/RightBoxComponent';
 import { updateDemand, getDemands } from '../../Services/Axios/demandsServices';
+import { getSector } from '../../Services/Axios/sectorServices';
 import { getClients } from '../../Services/Axios/clientServices';
 import DemandsDescription from '../../Components/DemandsDescription';
 import SelectedCategories from '../../Components/SelectedCategories';
@@ -35,6 +36,14 @@ const UpdateDemandsScreen = () => {
       });
   };
 
+  const getSectorFromApi = async (sector) => {
+    await getSector(`sector/${sector}`)
+      .then((response) => {
+        const { data } = response;
+        setSectorName(data?.name);
+      });
+  };
+
   const getDemandsFromApi = async () => {
     await getDemands(`demand/${id}`)
       .then((response) => {
@@ -42,10 +51,10 @@ const UpdateDemandsScreen = () => {
         setName(data?.name);
         setDescription(data?.description);
         setProcess(data?.process);
-        setSectorID(data?.sectorHistory[0]._id);
         setSelectedCategories(data?.categoryID);
         setClientID(data?.clientID);
-        setSectorName(data?.sectorHistory[0].sectorID);
+        setSectorID(data?.sectorHistory[0].sectorID);
+        getSectorFromApi(data?.sectorHistory[0].sectorID);
         setUserID(data?.userID);
         getClientFromApi(data?.clientID);
       });
@@ -100,6 +109,10 @@ const UpdateDemandsScreen = () => {
     setSectorID('');
     setCategoriesIDs([]);
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <Main>

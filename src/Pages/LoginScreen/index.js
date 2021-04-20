@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import BigButton from '../../Components/BigButton';
 import LoginInput from '../../Components/LoginInput';
@@ -9,6 +10,10 @@ const LoginScreen = () => {
   const [emailReceived, setEmailReceived] = useState();
   const [passwordReceived, setPasswordReceived] = useState();
   const { handleLogin } = useProfileUser();
+
+  if (localStorage.getItem('@App:token')) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <Background>

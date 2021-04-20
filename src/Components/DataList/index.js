@@ -6,10 +6,12 @@ import {
   P, Content, TableContainer, DotContent,
 } from './Style';
 import ModalComp from '../ModalComp';
+import { useProfileUser } from '../../Context';
 
 const DataList = ({
   content, getContent, axiosDelete, updateContent, backgroundColor, color, type,
 }) => {
+  const { user } = useProfileUser();
   const [optionsMenuState, setOptionsMenuState] = useState(false);
   const [modalState, setModalState] = useState(false);
   // Abrir modal e fechar menu
@@ -68,14 +70,16 @@ const DataList = ({
                 </Icon>
               </Button>
             </Li>
-            <Li>
-              <Button color="red" onClick={deleteContent}>
-                Remover
-                <Icon color="red">
-                  <FaRegTrashAlt />
-                </Icon>
-              </Button>
-            </Li>
+            {user.role === 'admin' ? (
+              <Li>
+                <Button color="red" onClick={deleteContent}>
+                  Remover
+                  <Icon color="red">
+                    <FaRegTrashAlt />
+                  </Icon>
+                </Button>
+              </Li>
+            ) : null}
           </Ul>
         </Box>
       ) : null}

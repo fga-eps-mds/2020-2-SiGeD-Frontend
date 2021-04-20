@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import ClientProfileData from '../../Components/ClientProfileData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
@@ -7,13 +8,16 @@ import {
 import { getClients } from '../../Services/Axios/clientServices';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const ClientListScreen = () => {
+  const { token } = useProfileUser();
   const [word, setWord] = useState();
   const [filterClients, setFilterClients] = useState([]);
   const [clients, setClients] = useState([]);
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
+  const [pageState, setPageState] = useState(true);
 
   const getClientsFromApi = async () => {
     await getClients(`clients?active=${query}`)
@@ -22,7 +26,7 @@ const ClientListScreen = () => {
 
   useEffect(() => {
     getClientsFromApi();
-  }, [clients]);
+  }, [pageState, token]);
 
   useEffect(() => {
     setFilterClients(
@@ -59,9 +63,15 @@ const ClientListScreen = () => {
         key={client.email}
         getClients={getClients}
         query={query}
+        pageState={pageState}
+        setPageState={setPageState}
       />
     ));
   };
+
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <GenericListScreen
@@ -95,7 +105,9 @@ const ClientListScreen = () => {
       </TableHeader>
       <Dropdown>
         <DropdownComponent
-          OnChangeFunction={(Option) => setActive(Option.target.value)}
+          OnChangeFunction={(Option) => {
+            setActive(Option.target.value); setPageState(!pageState);
+          }}
           style={{
             display: 'flex',
             color: `${colors.text}`,

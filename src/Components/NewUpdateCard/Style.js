@@ -3,7 +3,7 @@ import { TextareaAutosize } from '@material-ui/core';
 import colors from '../../Constants/colors';
 
 export const Card = styled.div`
-    width: 90%;
+    width: 100%;
     height: max-content;
     background-color: ${colors.secondary};
     border-radius: 15px;
@@ -25,6 +25,7 @@ export const TopSide = styled.div`
 export const BottomSide = styled.div`
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     align-items: flex-end;
     margin-top: 2%;
     width: 100%;
@@ -51,4 +52,19 @@ export const CheckboxContainer = styled.div`
     height: max-content;
     display: flex;
 
+`;
+
+export const CheckboxDiv = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const ButtomDiv = styled.div`
+    width: 100%;
+    height: max-height;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 `;

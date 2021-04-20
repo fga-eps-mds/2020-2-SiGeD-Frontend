@@ -7,7 +7,7 @@ import { getSectors } from '../../Services/Axios/sectorServices';
 
 const SectorDropdown = ({ setSector, sectorName }) => {
   const [id, setId] = useState('');
-  const [placeholder, setPlaceholder] = useState(sectorName);
+  const [placeholder, setPlaceholder] = useState('Setor');
   const [listOfSectors, setListOfSectors] = useState([]);
 
   const listSectors = async () => {
@@ -34,7 +34,7 @@ const SectorDropdown = ({ setSector, sectorName }) => {
   }));
 
   useEffect(() => {
-    setSector(id.label);
+    setSector(id.value);
   }, [id]);
 
   return (

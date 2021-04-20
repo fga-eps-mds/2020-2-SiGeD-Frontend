@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import ModalComp from '../../Components/ModalComp';
 import {
   TableHeader, TableTitle, P, Bar,
@@ -8,8 +9,10 @@ import {
   getSectors, postSectors, updateSectors, deleteSector,
 } from '../../Services/Axios/sectorServices';
 import DataList from '../../Components/DataList';
+import { useProfileUser } from '../../Context';
 
 const ListSectors = () => {
+  const { user } = useProfileUser();
   const [filterSectors, setFilterSectors] = useState([]);
   const [sectors, setSectors] = useState([]);
   const [word, setWord] = useState();
@@ -27,7 +30,7 @@ const ListSectors = () => {
 
   useEffect(() => {
     listSectors();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     setFilterSectors(
@@ -57,33 +60,46 @@ const ListSectors = () => {
     ));
   };
 
+  if (!localStorage.getItem('@App:token')) {
+    return <Redirect to="/login" />;
+  }
   return (
-    <GenericListScreen
-      ButtonTitle="Novo setor"
-      ButtonFunction={toggleModal}
-      PageTitle="Setor"
-      SearchWord={word}
-      setWord={setWord}
-      ListType={renderSectors()}
-      redirectTo="/setores"
-    >
-      <TableHeader>
-        <TableTitle width={24}>
-          <P>Nome</P>
-        </TableTitle>
-        <Bar />
-        <TableTitle width={50}>
-          <P>Descrição</P>
-        </TableTitle>
-        <Bar />
-        <TableTitle width={24}>
-          <P>Ult. Atualização</P>
-        </TableTitle>
-        <TableTitle width={2} />
-      </TableHeader>
-      { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listSectors} handleClose={toggleModal} createContent={postSectors} /> : null }
-      <div style={{ display: 'none' }} />
-    </GenericListScreen>
+    <>
+      {user ? (
+        <>
+          {user.role === 'admin'
+            ? (
+              <GenericListScreen
+                ButtonTitle="Novo setor"
+                ButtonFunction={toggleModal}
+                PageTitle="Setor"
+                SearchWord={word}
+                setWord={setWord}
+                ListType={renderSectors()}
+                redirectTo="/setores"
+              >
+                <TableHeader>
+                  <TableTitle width={24}>
+                    <P>Nome</P>
+                  </TableTitle>
+                  <Bar />
+                  <TableTitle width={50}>
+                    <P>Descrição</P>
+                  </TableTitle>
+                  <Bar />
+                  <TableTitle width={24}>
+                    <P>Ult. Atualização</P>
+                  </TableTitle>
+                  <TableTitle width={2} />
+                </TableHeader>
+                { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listSectors} handleClose={toggleModal} createContent={postSectors} /> : null}
+              </GenericListScreen>
+            )
+            : <Redirect to="/nao-autorizado" />}
+        </>
+      )
+        : <h1>Carregando...</h1>}
+    </>
   );
 };
 
