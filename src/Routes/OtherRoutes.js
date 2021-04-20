@@ -20,6 +20,7 @@ import UnauthorizedScreen from '../Pages/Unauthorized';
 import RecoverPasswordScreen from '../Pages/RecoverPasswordScreen';
 import ChangePasswordScreen from '../Pages/ChangePasswordScreen';
 import { useProfileUser } from '../Context';
+import StatisticScreen from '../Pages/StatisticsScreen';
 
 const OtherRoutes = () => {
   const { user } = useProfileUser();
@@ -52,6 +53,7 @@ const OtherRoutes = () => {
               <Route path="/login" exact component={LoginScreen} />
               <Route path="/nao-autorizado" exact component={UnauthorizedScreen} />
               <Route path="/recuperar-senha" exact component={RecoverPasswordScreen} />
+              <Route path="/estatisticas/" exact component={StatisticScreen} />
               <Redirect path="*" to="/" />
             </Switch>
           )
