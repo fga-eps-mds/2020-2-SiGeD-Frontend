@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip,
   BarChart, CartesianGrid, XAxis, Bar, YAxis,
 } from 'recharts';
+import { getDemandsStatistics } from '../../Services/Axios/demandsServices';
 import {
   Main, Title, Container, Card, CardTitle, TopDiv, MiddleDiv, BottomDiv, FiltersDiv, DropdownDiv,
   BoldText, DataDiv, TextDiv,
@@ -13,6 +14,16 @@ import colors from '../../Constants/colors';
 const StatisticScreen = () => {
   const [sector, setSector] = useState('');
   const [pageState, setPageState] = useState(true);
+  const [demands, setDemands] = useState([]);
+
+  const getStatistics = async () => {
+    await getDemandsStatistics('statistic')
+      .then((response) => setDemands(response.data));
+  };
+
+  useEffect(() => {
+    getStatistics();
+  }, []);
 
   const data = [
     { name: 'Group A', value: 100 },
@@ -25,58 +36,6 @@ const StatisticScreen = () => {
     { name: 'Group H', value: 200 },
   ];
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-  const dataBar = [
-    {
-      name: 'Page A',
-      uv: 4000,
-      demandas: 2400,
-      amt: 2400,
-      color: '#0088FE',
-    },
-    {
-      name: 'Page B',
-      uv: 3000,
-      demandas: 1398,
-      amt: 2210,
-      color: '#00C49F',
-    },
-    {
-      name: 'Page C',
-      uv: 2000,
-      demandas: 9800,
-      amt: 2290,
-      color: '#FFBB28',
-    },
-    {
-      name: 'Page D',
-      uv: 2780,
-      demandas: 3908,
-      amt: 2000,
-      color: '#FF8042',
-    },
-    {
-      name: 'Page E',
-      uv: 1890,
-      demandas: 4800,
-      amt: 2181,
-      color: '#0088FE',
-    },
-    {
-      name: 'Page F',
-      uv: 2390,
-      demandas: 3800,
-      amt: 2500,
-      color: '#00C49F',
-    },
-    {
-      name: 'Page G',
-      uv: 3490,
-      demandas: 4300,
-      amt: 2100,
-      color: '#FFBB28',
-    },
-  ];
 
   return (
     <Main>
@@ -211,7 +170,7 @@ const StatisticScreen = () => {
             <CardTitle>Demandas por categoria</CardTitle>
             <ResponsiveContainer width="100%" height="90%">
               <BarChart
-                data={dataBar}
+                data={demands}
                 margin={{
                   top: 5,
                   right: 30,
@@ -220,13 +179,13 @@ const StatisticScreen = () => {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="categorires[0].name" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="demandas">
-                  {dataBar.map((entry, index) => (
-                    <Cell key={index} fill={entry.color} />
+                <Bar dataKey="count">
+                  {demands.map((entry, index) => (
+                    <Cell key={index} fill={entry.categorires[0].color} />
                   ))}
                 </Bar>
               </BarChart>

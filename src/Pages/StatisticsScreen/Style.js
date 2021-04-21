@@ -161,7 +161,7 @@ export const Card = styled.div`
 
   display: flex;
   flex-direction: column;
-  width: 670px;
+  width: 700px;
   height:400px;
   border-radius:15px;
   border: 2px solid black;
