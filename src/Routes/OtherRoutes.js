@@ -16,6 +16,7 @@ import ListDemandsScreen from '../Pages/ListDemandsScreen';
 import UpdateDemandsScreen from '../Pages/UpdateDemandScreen';
 import LoginScreen from '../Pages/LoginScreen';
 import UnauthorizedScreen from '../Pages/Unauthorized';
+import RecoverPasswordScreen from '../Pages/RecoverPasswordScreen';
 
 const OtherRoutes = () => (
   <Router>
@@ -36,6 +37,7 @@ const OtherRoutes = () => (
     <Route path="/" exact component={ClientListScreen} />
     <Route path="/login" exact component={LoginScreen} />
     <Route path="/nao-autorizado" exact component={UnauthorizedScreen} />
+    <Route path="/recuperar-senha" exact component={RecoverPasswordScreen} />
   </Router>
 );
 

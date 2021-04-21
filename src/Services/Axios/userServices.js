@@ -94,3 +94,22 @@ export async function deleteUser(id) {
     console.error(error);
   }
 }
+
+export async function recoverPassword(
+  inputEmail,
+) {
+  try {
+    await APIUsers.post('recover-password', {
+      email: inputEmail,
+    });
+    alert('Senha enviada para o email.');
+  } catch (error) {
+    if (error.response.status === 400) {
+      alert('Não foi possivel enviar o email de recuperação de senha. Tente novamente mais tarde.');
+      console.error(error);
+    } else if (error.response.status === 404) {
+      alert('Não foi possivel encontrar um usuário cadastrado com este email.');
+      console.error(error);
+    }
+  }
+}
