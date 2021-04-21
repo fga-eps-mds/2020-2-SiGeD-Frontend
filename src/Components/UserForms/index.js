@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import RegisterInput from '../RegisterInput';
-import { PassMatches } from '../ErrorMessage';
 import { UserFormsColumnText, Dropdown } from './Style';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import DropdownComponent from '../DropdownComponent';
@@ -18,10 +17,6 @@ const UserForms = ({
   inputSector,
   setSectors,
   sectors,
-  setInputPassword,
-  inputPassword,
-  setInputConfirmPassword,
-  inputConfirmPassword,
 }) => {
   const [filterSector, setFilterSector] = useState([]);
 
@@ -90,9 +85,6 @@ const UserForms = ({
           />
         </div>
       </Form.Group>
-      <RegisterInput long type="password" title="Senha" setText={setInputPassword} value={inputPassword} />
-      <RegisterInput long type="password" title="Confirmar senha" setText={setInputConfirmPassword} value={inputConfirmPassword} />
-      <PassMatches pass={inputPassword} confPass={inputConfirmPassword} />
     </UserFormsColumnText>
   );
 };

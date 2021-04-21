@@ -32,11 +32,9 @@ export const confirmPassword = (pass1, pass2) => {
   return false;
 };
 
-export const validateSignUp = (email, name, pass1, pass2) => {
+export const validateSignUp = (email, name) => {
   if (validateName(name)
-    && validateEmail(email)
-    && validatePassword(pass1)
-    && confirmPassword(pass1, pass2)) {
+    && validateEmail(email)) {
     return true;
   }
   return false;
