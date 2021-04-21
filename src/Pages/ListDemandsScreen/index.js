@@ -16,17 +16,24 @@ const ListDemandsScreen = () => {
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [filterSector, setFilterSector] = useState([]);
-  // const [dropdownYears, setDropdownYears] = useState([]);
-  const [filterYear, setFilterYear] = useState([]);
+  const [dropdownYears, setDropdownYears] = useState([]);
+  const [filterYear, setFilterYear] = useState('Sem filtro');
   const [demands, setDemands] = useState([]);
   const [sectors, setSectors] = useState([]);
   const [sectorActive, setSectorActive] = useState('');
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
+
   const getDemandsFromApi = async () => {
     await getDemandsWithClientsNames(`clientsNames?open=${query}`)
       .then((response) => setDemands(response.data));
   };
+
+  const getDemandsByYear = async () => {
+    await getFilterYearDemands(`demand/year/${filterYear}?open=${query}`)
+      .then((response) => setFilterDemands(response.data));
+  };
+
   const getSectorsFromApi = async () => {
     await getSectors()
       .then((response) => {
@@ -38,13 +45,13 @@ const ListDemandsScreen = () => {
   const listYears = async () => {
     const firstYear = new Date(demands[0]?.createdAt)?.getFullYear();
     const lastYear = new Date(demands[demands.length - 1]?.createdAt)?.getFullYear();
-    const teste = Array(lastYear - firstYear + 1).fill().map((_, idx) => firstYear + idx);
-    console.log(teste);
+    if (firstYear && lastYear) {
+      setDropdownYears([...['Sem filtro'], ...Array(lastYear - firstYear + 1).fill().map((_, idx) => firstYear + idx)]);
+    }
   };
 
   useEffect(() => {
     getSectorsFromApi();
-    getDemandsFromApi();
   }, []);
 
   useEffect(() => {
@@ -64,7 +71,13 @@ const ListDemandsScreen = () => {
   }, [active]);
 
   useEffect(() => {
+    if (!dropdownYears.find((ano) => (ano === filterYear))) {
+      setFilterYear('Sem filtro');
+    }
     getDemandsFromApi();
+    if (filterYear !== 'Sem filtro') {
+      getDemandsByYear();
+    }
   }, [query]);
 
   useEffect(() => {
@@ -73,18 +86,19 @@ const ListDemandsScreen = () => {
   }, [demands]);
 
   useEffect(() => {
+    if (filterYear !== 'Sem filtro') {
+      getDemandsByYear();
+    } else {
+      getDemandsFromApi();
+    }
+  }, [filterYear]);
+
+  useEffect(() => {
     setFilterSector(sectors);
   }, [sectors]);
 
-  useEffect(() => {
-    setFilterYear(filterYear);
-  }, [filterYear]);
-
   const listDemands = () => {
-    if (demands?.length === 0) {
-      return <h1>Sem resultados</h1>;
-    }
-    if (filterDemands?.length === 0) {
+    if (demands?.length === 0 || filterDemands?.length === 0) {
       return <h1>Sem resultados</h1>;
     }
     return filterDemands?.map((demand) => {
@@ -158,7 +172,7 @@ const ListDemandsScreen = () => {
               optionStyle={{
                 backgroundColor: `${colors.secondary}`,
               }}
-              optionList={['Ano', 'Inativas']}
+              optionList={dropdownYears}
             />
             <DropdownComponent
               OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
