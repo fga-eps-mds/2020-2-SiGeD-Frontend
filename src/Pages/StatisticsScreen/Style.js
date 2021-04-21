@@ -3,9 +3,6 @@ import colors from '../../Constants/colors';
 
 export const Main = styled.div`
   display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
   background-color: ${colors.background};
   width: 100vw;
   height: 100vh;
@@ -16,15 +13,16 @@ export const Main = styled.div`
 `;
 
 export const Container = styled.div`
-  height:80vh;
-  width: 90vw;
+  height: 95vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 10%;
+  margin-top: 80px;
+  align-items: center;
 
   @media(max-width: 750px){
     height: 100vh;
-    margin-top: 0%;
+    margin-top: 55px;
   }
 `;
 
@@ -50,13 +48,8 @@ export const Title = styled.h2`
   font-family: 'Montserrat';
   font-weight: 400;
   font-size: 4vh;
-  margin: 0;
-  margin-bottom: 7vh;
 
   @media(max-width: 750px){
-    width: 25%;
-    margin-top: 10vh;
-    margin-bottom: 1vh;
   }
 `;
 
@@ -192,6 +185,105 @@ export const CardTitle = styled.h2`
     height:10%;
     margin: 10px;
     font-size: 3vh;
+
+  }
+`;
+
+export const TopDiv = styled.div`
+  height: 25%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media(max-width: 750px){
+
+  }
+`;
+
+export const MiddleDiv = styled.div`
+  height: max-content;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media(max-width: 750px){
+    justify-content: center;
+  }
+`;
+
+export const BottomDiv = styled.div`
+  height: 10%;
+  width: 90%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  @media(max-width: 750px){
+
+  }
+`;
+
+export const FiltersDiv = styled.div`
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  
+  @media(max-width: 750px){
+
+  }
+`;
+
+export const DropdownDiv = styled.div`
+  height: max-content;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 10px;
+  
+  @media(max-width: 750px){
+
+  }
+`;
+
+export const DataDiv = styled.div`
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  justify-self: flex-end;
+  @media(max-width: 750px){
+
+  }
+`;
+
+export const BoldText = styled.h2`
+  font-weight: bold;
+  font-size: large;
+  margin-bottom: 0;
+  
+  @media(max-width: 750px){
+
+  }
+`;
+
+export const TextDiv = styled.p`
+  width: 100%;
+  height: 25%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  
+  @media(max-width: 750px){
 
   }
 `;
