@@ -82,17 +82,6 @@ export async function getDemands(url) {
   return false;
 }
 
-export async function getFilterYearDemands(url) {
-  try {
-    const response = await APIDemands.get(url);
-    return response;
-  } catch (error) {
-    alert('Não foi possível filtrar as demandas pelo ano, tente novamente mais tarde.');
-    console.error(`An unexpected error ocourred while getting demands by year.${error}`);
-  }
-  return false;
-}
-
 export async function createDemand(
   name, description, process, categoryID, sectorID, userID, clientID,
 ) {

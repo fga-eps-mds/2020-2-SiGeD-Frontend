@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { FaSistrix } from 'react-icons/fa';
 import {
   Main, ScreenContainer, ScreenTitle, ScreenSearch, ScreenContentBox,
-  ScreenHeader, ScreenList, Dropdown,
+  ScreenHeader, ScreenList, Dropdown, DropdownField,
 } from './Style';
 import SearchInput from '../../Components/SearchInput';
 import DemandData from '../../Components/DemandData';
@@ -16,10 +16,10 @@ const ListDemandsScreen = () => {
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [filterSector, setFilterSector] = useState([]);
-  const [dropdownYears, setDropdownYears] = useState([]);
-  const [filterYear, setFilterYear] = useState('Sem filtro');
   const [demands, setDemands] = useState([]);
   const [sectors, setSectors] = useState([]);
+  const [dropdownYears, setDropdownYears] = useState([]);
+  const [filterYear, setFilterYear] = useState('Sem filtro');
   const [sectorActive, setSectorActive] = useState('');
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
@@ -27,11 +27,6 @@ const ListDemandsScreen = () => {
   const getDemandsFromApi = async () => {
     await getDemandsWithClientsNames(`clientsNames?open=${query}`)
       .then((response) => setDemands(response.data));
-  };
-
-  const getDemandsByYear = async () => {
-    await getFilterYearDemands(`demand/year/${filterYear}?open=${query}`)
-      .then((response) => setFilterDemands(response.data));
   };
 
   const getSectorsFromApi = async () => {
@@ -42,15 +37,32 @@ const ListDemandsScreen = () => {
       });
   };
 
+  const filterDemandByYear = () => {
+    const filteredDemands = [];
+    demands.filter((demand) => {
+      const year = new Date(demand.createdAt).getFullYear().toString();
+      if (year === filterYear) {
+        filteredDemands.push(demand);
+      }
+      return undefined;
+    });
+    setFilterDemands(filteredDemands);
+  };
+
   const listYears = async () => {
-    const firstYear = new Date(demands[0]?.createdAt)?.getFullYear();
-    const lastYear = new Date(demands[demands.length - 1]?.createdAt)?.getFullYear();
-    if (firstYear && lastYear) {
-      setDropdownYears([...['Sem filtro'], ...Array(lastYear - firstYear + 1).fill().map((_, idx) => firstYear + idx)]);
-    }
+    const years = ['Sem filtro'];
+    demands.map((demand) => {
+      const year = new Date(demand.createdAt).getFullYear();
+      if (!years.find((y) => y === year)) {
+        years.push(year);
+      }
+      return undefined;
+    });
+    setDropdownYears(years);
   };
 
   useEffect(() => {
+    getDemandsFromApi();
     getSectorsFromApi();
   }, []);
 
@@ -76,7 +88,9 @@ const ListDemandsScreen = () => {
     }
     getDemandsFromApi();
     if (filterYear !== 'Sem filtro') {
-      getDemandsByYear();
+      filterDemandByYear();
+    } else {
+      setFilterDemands(demands);
     }
   }, [query]);
 
@@ -86,16 +100,16 @@ const ListDemandsScreen = () => {
   }, [demands]);
 
   useEffect(() => {
-    if (filterYear !== 'Sem filtro') {
-      getDemandsByYear();
-    } else {
-      getDemandsFromApi();
-    }
-  }, [filterYear]);
-
-  useEffect(() => {
     setFilterSector(sectors);
   }, [sectors]);
+
+  useEffect(() => {
+    if (filterYear !== 'Sem filtro') {
+      filterDemandByYear();
+    } else {
+      setFilterDemands(demands);
+    }
+  }, [filterYear]);
 
   const listDemands = () => {
     if (demands?.length === 0 || filterDemands?.length === 0) {
@@ -138,60 +152,69 @@ const ListDemandsScreen = () => {
             />
           </ScreenSearch>
           <Dropdown>
-            <DropdownComponent
-              OnChangeFunction={(Option) => setActive(Option.target.value)}
-              style={{
-                display: 'flex',
-                color: `${colors.text}`,
-                width: '45%',
-                height: '100%',
-                alignItems: 'center',
-                boxSizing: 'border-box',
-                borderRadius: '8px',
-                border: '1px solid black',
-                justifyContent: 'center',
-              }}
-              optionStyle={{
-                backgroundColor: `${colors.secondary}`,
-              }}
-              optionList={['Ativas', 'Inativas']}
-            />
-            <DropdownComponent
-              OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
-              style={{
-                display: 'flex',
-                color: `${colors.text}`,
-                width: '45%',
-                height: '100%',
-                alignItems: 'center',
-                boxSizing: 'border-box',
-                borderRadius: '8px',
-                border: '1px solid black',
-                justifyContent: 'center',
-              }}
-              optionStyle={{
-                backgroundColor: `${colors.secondary}`,
-              }}
-              optionList={dropdownYears}
-            />
-            <DropdownComponent
-              OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
-              style={{
-                display: 'flex',
-                color: `${colors.text}`,
-                width: '45%',
-                height: '100%',
-                alignItems: 'center',
-                boxSizing: 'border-box',
-                borderRadius: '8px',
-                border: '1px solid black',
-                justifyContent: 'center',
-              }}
-              optionStyle={{
-                backgroundColor: `${colors.secondary}`,
-              }}
-              optionList={filterSector?.map((sector) => sector.name)}
-            />
+            <DropdownField>
+              <p style={{ marginBottom: '0' }}>Status: </p>
+              <DropdownComponent
+                OnChangeFunction={(Option) => setActive(Option.target.value)}
+                style={{
+                  display: 'flex',
+                  color: `${colors.text}`,
+                  width: '100%',
+                  height: '100%',
+                  alignItems: 'center',
+                  boxSizing: 'border-box',
+                  borderRadius: '8px',
+                  border: '1px solid black',
+                  justifyContent: 'center',
+                }}
+                optionStyle={{
+                  backgroundColor: `${colors.secondary}`,
+                }}
+                optionList={['Ativas', 'Inativas']}
+              />
+            </DropdownField>
+            <DropdownField width={25}>
+              <p style={{ marginBottom: '0' }}>Setores: </p>
+              <DropdownComponent
+                OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
+                style={{
+                  display: 'flex',
+                  color: `${colors.text}`,
+                  width: '100%',
+                  height: '100%',
+                  alignItems: 'center',
+                  boxSizing: 'border-box',
+                  borderRadius: '8px',
+                  border: '1px solid black',
+                  justifyContent: 'center',
+                }}
+                optionStyle={{
+                  backgroundColor: `${colors.secondary}`,
+                }}
+                optionList={filterSector?.map((sector) => sector.name)}
+              />
+            </DropdownField>
+            <DropdownField>
+              <p style={{ marginBottom: '0' }}>Anos: </p>
+              <DropdownComponent
+                OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
+                style={{
+                  display: 'flex',
+                  color: `${colors.text}`,
+                  width: '100%',
+                  height: '100%',
+                  alignItems: 'center',
+                  boxSizing: 'border-box',
+                  borderRadius: '8px',
+                  border: '1px solid black',
+                  justifyContent: 'center',
+                }}
+                optionStyle={{
+                  backgroundColor: `${colors.secondary}`,
+                }}
+                optionList={dropdownYears}
+              />
+            </DropdownField>
           </Dropdown>
         </ScreenHeader>
         <ScreenContentBox>

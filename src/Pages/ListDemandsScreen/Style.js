@@ -20,9 +20,8 @@ export const ScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 5%;
-
   @media(max-width: 750px){
-    height: 100vh;
+    height: 100%;
     margin-top: 0%;
   }
 `;
@@ -31,14 +30,13 @@ export const ScreenHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-
   @media(max-width: 750px){
+    margin-bottom: 200px;
     height: max-content;
     width: 100%;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-  }
+    flex-direction: column;
 `;
 
 export const ScreenTitle = styled.h2`
@@ -47,7 +45,6 @@ export const ScreenTitle = styled.h2`
   font-size: 4vh;
   margin: 0;
   margin-bottom: 7vh;
-
   @media(max-width: 750px){
     width: 25%;
     margin-top: 10vh;
@@ -62,14 +59,10 @@ export const ScreenContentBox = styled.div`
   border-radius: 0.5rem;
   margin: 1% auto;
   overflow: hidden;
-
   @media(max-width: 750px){
-    width: 100%;
     height: max-content;
     box-sizing: border-box;
     border-radius: 0.5rem;
-    margin-top: 20px;
-    margin: 1% auto;
     overflow: auto;
   }
 `;
@@ -77,9 +70,8 @@ export const ScreenContentBox = styled.div`
 export const ScreenSearch = styled.div`
   float: left;
   width: 35%;
-
   @media(max-width: 750px){
-    width: 100%;
+    width: 90%;
   }
 `;
 
@@ -90,26 +82,34 @@ export const ScreenList = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-
   @media(max-width: 750px){
     height: max-content;
-    overflow: auto;
     flex-direction: column;
   }
 `;
 
 export const Dropdown = styled.div`
-width: 450px;
-height: 50px;
-border-radius: 15px;
-display: flex;
-justify-content: space-between;
-
-@media(max-width: 750px){
-  width: 60%;
+  width: 500px;
   height: 50px;
-  float: none;
-  justify-self: center;
-  margin-left: 5%;
-}
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin: 1%;
+  @media(max-width: 750px){
+    width: 100%;
+    height: 50px;
+    float: none;
+    justify-self: center;
+    margin-top: 5%;
+    flex-direction: column;
+  }
+`;
+
+export const DropdownField = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: ${(props) => `${props.width}%`};
+  @media(max-width: 750px) {
+    width: 100%;
+  }  
 `;
