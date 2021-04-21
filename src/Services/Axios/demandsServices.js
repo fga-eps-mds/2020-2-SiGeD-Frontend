@@ -220,8 +220,12 @@ export async function getDemandsWithClientsNames(url) {
     const response = await APIDemands.get(url);
     return response;
   } catch (error) {
-    alert('Não foi possível carregar as categorias já criadas com os nomes dos clientes, tente novamente mais tarde.');
-    console.error(`An unexpected error ocourred while getting demands with clients names.${error}`);
+    if (error.response.status === 500) {
+      alert('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      alert('Não foi possível carregar as demandas já criadas, tente novamente mais tarde.');
+    }
+    console.error(`An unexpected error ocourred while getting demands.${error}`);
   }
   return false;
 }

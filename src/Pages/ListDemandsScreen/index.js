@@ -11,8 +11,10 @@ import { getDemandsWithClientsNames } from '../../Services/Axios/demandsServices
 import { getSectors } from '../../Services/Axios/sectorServices';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const ListDemandsScreen = () => {
+  const { token, user } = useProfileUser();
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [filterSector, setFilterSector] = useState([]);
@@ -62,9 +64,11 @@ const ListDemandsScreen = () => {
   };
 
   useEffect(() => {
-    getDemandsFromApi();
-    getSectorsFromApi();
-  }, []);
+    if (token && user) {
+      getDemandsFromApi();
+      getSectorsFromApi();
+    }
+  }, [token, user]);
 
   useEffect(() => {
     setFilterDemands(
@@ -139,90 +143,92 @@ const ListDemandsScreen = () => {
 
   return (
     <Main>
-      <ScreenContainer>
-        <ScreenTitle>Demandas</ScreenTitle>
-        <ScreenHeader>
-          <ScreenSearch>
-            <SearchInput
-              type="text"
-              icon={<FaSistrix />}
-              value={word}
-              setWord={(value) => setWord(value)}
-              style={{ width: '100%' }}
-            />
-          </ScreenSearch>
-          <Dropdown>
-            <DropdownField>
-              <p style={{ marginBottom: '0' }}>Status: </p>
-              <DropdownComponent
-                OnChangeFunction={(Option) => setActive(Option.target.value)}
-                style={{
-                  display: 'flex',
-                  color: `${colors.text}`,
-                  width: '100%',
-                  height: '100%',
-                  alignItems: 'center',
-                  boxSizing: 'border-box',
-                  borderRadius: '8px',
-                  border: '1px solid black',
-                  justifyContent: 'center',
-                }}
-                optionStyle={{
-                  backgroundColor: `${colors.secondary}`,
-                }}
-                optionList={['Ativas', 'Inativas']}
+      {user && demands ? (
+        <ScreenContainer>
+          <ScreenTitle>Demandas</ScreenTitle>
+          <ScreenHeader>
+            <ScreenSearch>
+              <SearchInput
+                type="text"
+                icon={<FaSistrix />}
+                value={word}
+                setWord={(value) => setWord(value)}
+                style={{ width: '100%' }}
               />
-            </DropdownField>
-            <DropdownField width={25}>
-              <p style={{ marginBottom: '0' }}>Setores: </p>
-              <DropdownComponent
-                OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
-                style={{
-                  display: 'flex',
-                  color: `${colors.text}`,
-                  width: '100%',
-                  height: '100%',
-                  alignItems: 'center',
-                  boxSizing: 'border-box',
-                  borderRadius: '8px',
-                  border: '1px solid black',
-                  justifyContent: 'center',
-                }}
-                optionStyle={{
-                  backgroundColor: `${colors.secondary}`,
-                }}
-                optionList={filterSector?.map((sector) => sector.name)}
-              />
-            </DropdownField>
-            <DropdownField>
-              <p style={{ marginBottom: '0' }}>Anos: </p>
-              <DropdownComponent
-                OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
-                style={{
-                  display: 'flex',
-                  color: `${colors.text}`,
-                  width: '100%',
-                  height: '100%',
-                  alignItems: 'center',
-                  boxSizing: 'border-box',
-                  borderRadius: '8px',
-                  border: '1px solid black',
-                  justifyContent: 'center',
-                }}
-                optionStyle={{
-                  backgroundColor: `${colors.secondary}`,
-                }}
-                optionList={dropdownYears}
-              />
-            </DropdownField>
-          </Dropdown>
-        </ScreenHeader>
-        <ScreenContentBox>
-          <ScreenList>
-            {listDemands()}
-          </ScreenList>
-        </ScreenContentBox>
-      </ScreenContainer>
+            </ScreenSearch>
+            <Dropdown>
+              <DropdownField>
+                <p style={{ marginBottom: '0' }}>Status: </p>
+                <DropdownComponent
+                  OnChangeFunction={(Option) => setActive(Option.target.value)}
+                  style={{
+                    display: 'flex',
+                    color: `${colors.text}`,
+                    width: '100%',
+                    height: '100%',
+                    alignItems: 'center',
+                    boxSizing: 'border-box',
+                    borderRadius: '8px',
+                    border: '1px solid black',
+                    justifyContent: 'center',
+                  }}
+                  optionStyle={{
+                    backgroundColor: `${colors.secondary}`,
+                  }}
+                  optionList={['Ativas', 'Inativas']}
+                />
+              </DropdownField>
+              <DropdownField width={25}>
+                <p style={{ marginBottom: '0' }}>Setores: </p>
+                <DropdownComponent
+                  OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
+                  style={{
+                    display: 'flex',
+                    color: `${colors.text}`,
+                    width: '100%',
+                    height: '100%',
+                    alignItems: 'center',
+                    boxSizing: 'border-box',
+                    borderRadius: '8px',
+                    border: '1px solid black',
+                    justifyContent: 'center',
+                  }}
+                  optionStyle={{
+                    backgroundColor: `${colors.secondary}`,
+                  }}
+                  optionList={filterSector?.map((sector) => sector.name)}
+                />
+              </DropdownField>
+              <DropdownField>
+                <p style={{ marginBottom: '0' }}>Anos: </p>
+                <DropdownComponent
+                  OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
+                  style={{
+                    display: 'flex',
+                    color: `${colors.text}`,
+                    width: '100%',
+                    height: '100%',
+                    alignItems: 'center',
+                    boxSizing: 'border-box',
+                    borderRadius: '8px',
+                    border: '1px solid black',
+                    justifyContent: 'center',
+                  }}
+                  optionStyle={{
+                    backgroundColor: `${colors.secondary}`,
+                  }}
+                  optionList={dropdownYears}
+                />
+              </DropdownField>
+            </Dropdown>
+          </ScreenHeader>
+          <ScreenContentBox>
+            <ScreenList>
+              {listDemands()}
+            </ScreenList>
+          </ScreenContentBox>
+        </ScreenContainer>
+      ) : <h1>Carregando...</h1>}
     </Main>
   );
 };
