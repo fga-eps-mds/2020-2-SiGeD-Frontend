@@ -37,7 +37,6 @@ export const ScreenHeader = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
 `;
 
 export const ScreenTitle = styled.h2`
