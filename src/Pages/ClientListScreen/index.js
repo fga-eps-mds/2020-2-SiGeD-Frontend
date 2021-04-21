@@ -17,7 +17,6 @@ const ClientListScreen = () => {
   const [clients, setClients] = useState([]);
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
-  const [pageState, setPageState] = useState(true);
 
   const getClientsFromApi = async () => {
     await getClients(`clients?active=${query}`)
@@ -26,7 +25,7 @@ const ClientListScreen = () => {
 
   useEffect(() => {
     getClientsFromApi();
-  }, [pageState, token]);
+  }, [token, query, active]);
 
   useEffect(() => {
     setFilterClients(
@@ -43,10 +42,6 @@ const ClientListScreen = () => {
   }, [active]);
 
   useEffect(() => {
-    getClientsFromApi();
-  }, [query]);
-
-  useEffect(() => {
     setFilterClients(clients);
   }, [clients]);
 
@@ -61,10 +56,8 @@ const ClientListScreen = () => {
       <ClientProfileData
         client={client}
         key={client.email}
-        getClients={getClients}
+        getClientsFromAPI={getClientsFromApi}
         query={query}
-        pageState={pageState}
-        setPageState={setPageState}
       />
     ));
   };
@@ -105,9 +98,7 @@ const ClientListScreen = () => {
       </TableHeader>
       <Dropdown>
         <DropdownComponent
-          OnChangeFunction={(Option) => {
-            setActive(Option.target.value); setPageState(!pageState);
-          }}
+          OnChangeFunction={(Option) => setActive(Option.target.value)}
           style={{
             display: 'flex',
             color: `${colors.text}`,

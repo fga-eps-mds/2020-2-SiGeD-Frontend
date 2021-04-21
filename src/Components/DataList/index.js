@@ -62,17 +62,17 @@ const DataList = ({
       {optionsMenuState ? (
         <Box>
           <Ul>
-            <Li>
-              <Button onClick={() => { toggleMenu(); }}>
+            <Li onClick={() => { toggleMenu(); }}>
+              <Button>
                 Editar
-                <Icon onClick={() => { toggleMenu(); }}>
+                <Icon>
                   <BsPencil />
                 </Icon>
               </Button>
             </Li>
             {user.role === 'admin' ? (
-              <Li>
-                <Button color="red" onClick={deleteContent}>
+              <Li onClick={deleteContent}>
+                <Button color="red">
                   Remover
                   <Icon color="red">
                     <FaRegTrashAlt />

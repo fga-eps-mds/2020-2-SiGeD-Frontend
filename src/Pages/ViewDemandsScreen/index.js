@@ -34,6 +34,7 @@ const ViewDemandsScreen = () => {
   const [sectorsResponse, setSectorsResponse] = useState([]);
   const [flag, setFlag] = useState(false);
   const [changeState, setChangeState] = useState(false);
+  const [message, setMessage] = useState('');
   const { user } = useProfileUser();
   const { id } = useParams();
 
@@ -65,6 +66,15 @@ const ViewDemandsScreen = () => {
       });
   };
 
+  const setMessageLocal = () => {
+    if (demand.open === false) {
+      setMessage('Você tem certeza que deseja reabrir essa demanda?');
+    }
+    if (demand.open === true) {
+      setMessage('Você tem certeza que deseja concluir essa demanda?');
+    }
+  };
+
   const setButtons = async () => {
     if (demand?.open === true) {
       setButtonColor(colors.alertMessages);
@@ -80,6 +90,10 @@ const ViewDemandsScreen = () => {
       getDemandApi();
     }
   }, [changeState]);
+
+  useEffect(() => {
+    setMessageLocal();
+  }, [handleClose]);
 
   useEffect(() => {
     if (demand) {
@@ -203,6 +217,7 @@ const ViewDemandsScreen = () => {
               id={id}
               show={show}
               handleClose={handleClose}
+              message={message}
             />
           </ButtonDiv>
         </CardsContainer>
@@ -251,6 +266,7 @@ const ViewDemandsScreen = () => {
             id={id}
             show={show}
             handleClose={handleClose}
+            message={message}
           />
         </MobileButtonDiv>
       </Main>

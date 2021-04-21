@@ -29,9 +29,9 @@ export async function postUser(
       pass: inputPassword,
     });
   } catch (error) {
-    if (error.response.status === 500) {
+    if (error.response?.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else if (error.response.status !== 401) {
+    } else if (error.response?.status !== 401) {
       console.error(`An unexpected error ocourred while registering a new user.${error}`);
       alert('Email já cadastrado.');
     }

@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { format } from 'date-fns';
 import { deleteUser } from '../../Services/Axios/userServices';
 import { getSector } from '../../Services/Axios/sectorServices';
 import {
-  PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
+  PersonDataBox, TableContent, Box, Ul, Content, P,
   TableContainer, ImageUser, DotContent,
-} from '../PersonData/Style';
-import colors from '../../Constants/colors';
+} from './Style';
+import { Li, Button, Icon } from '../DataList/Style';
 import { useProfileUser } from '../../Context';
 
 const PersonalData = ({ user, getUsers }) => {
+  const history = useHistory();
   const [boxState, setBoxState] = useState(false);
   const [userSector, setUserSector] = useState([]);
 
@@ -73,36 +74,24 @@ const PersonalData = ({ user, getUsers }) => {
       {boxState ? (
         <Box>
           <Ul>
-            <Li>
+            <Li onClick={() => history.push(`/usuarios/editar/${user._id}`)}>
               <Button>
-                <Link
-                  to={`/usuarios/editar/${user._id}`}
-                  id={user._id}
-                  style={{ color: colors.text, textDecorationLine: 'none', fontFamily: 'Montserrat' }}
-                >
-                  Editar
-                </Link>
-              </Button>
-              <Icon>
-                <Link
-                  to={`/usuarios/editar/${user._id}`}
-                  id={user._id}
-                  style={{ color: colors.text, textDecorationLine: 'none', fontFamily: 'Montserrat' }}
-                >
+                Editar
+                <Icon>
                   <BsPencil />
-                </Link>
-              </Icon>
-            </Li>
-            { !(useProfileUser().user._id !== user._id)
-              || (
-              <Li>
-                <Button onClick={ClickDeleteUser}>
-                  Desativar
-                </Button>
-                <Icon onClick={ClickDeleteUser}>
-                  <FaRegTrashAlt />
                 </Icon>
-              </Li>
+              </Button>
+            </Li>
+            {!(useProfileUser().user._id !== user._id)
+              || (
+                <Li onClick={ClickDeleteUser}>
+                  <Button color="red">
+                    Desativar
+                    <Icon color="red">
+                      <FaRegTrashAlt />
+                    </Icon>
+                  </Button>
+                </Li>
               )}
           </Ul>
         </Box>

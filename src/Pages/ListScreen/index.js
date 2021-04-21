@@ -26,7 +26,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     getUsers();
-  }, [user]);
+  }, [users]);
 
   useEffect(() => {
     setFilterUsers(
