@@ -38,7 +38,7 @@ const LoginScreen = () => {
         />
 
         <BigButton title="Entrar" type="primary" changeButton={() => handleLogin(emailReceived, passwordReceived)} />
-        <Link to="/recuperar-senha" style={{ color: colors.navHeaders, textDecorationLine: 'none' }}>Recuperar senha</Link>
+        <Link to="/recuperar-senha" style={{ color: colors.navHeaders }}>Recuperar senha</Link>
       </Center>
     </Background>
   );

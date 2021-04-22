@@ -28,7 +28,7 @@ const RecoverPasswordScreen = () => {
         />
 
         <BigButton title="Enviar" type="primary" changeButton={() => recoverPassword(emailReceived)} />
-        <Link to="/login" style={{ color: colors.navHeaders, textDecorationLine: 'none' }}>Voltar</Link>
+        <Link to="/login" style={{ color: colors.navHeaders }}>Voltar</Link>
       </CenterBlock>
     </BackgroundBlock>
   );
