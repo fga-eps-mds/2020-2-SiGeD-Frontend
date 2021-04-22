@@ -52,7 +52,6 @@ const ModalEditUpdateDemand = ({
     if (moment(data).isAfter(formatDate)) {
       setMessage('Não é possível editar essa atualização.');
       handleShowMessage();
-      handleClose();
     } else {
       await editUpdate()
         .then(() => setChangeState(!changeState));
