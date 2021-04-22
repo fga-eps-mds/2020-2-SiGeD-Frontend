@@ -4,6 +4,7 @@ import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
 import { postClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
+import ModalMessage from '../../Components/ModalMessage';
 
 const ClientRegisterScreen = () => {
   const history = useHistory();
@@ -15,13 +16,16 @@ const ClientRegisterScreen = () => {
   const [registerClientInputSecondaryPhone, setregisterClientInputSecondaryPhone] = useState('');
   const [officeOption, setOfficeOption] = useState('Policial');
   const [registerLocation, setRegisterLocation] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState('');
+  const handleCloseMessage = () => setShowMessage(false);
+  const handleShowMessage = () => setShowMessage(true);
 
   const submit = async () => {
-    const message = validateFields(registerClientInputName,
+    const validMessage = validateFields(registerClientInputName,
       registerClientInputEmail, registerClientInputCpf,
       registerClientInputPhone, registerClientInputSecondaryPhone);
-
-    if (!message.length) {
+    if (!validMessage.length) {
       const data = await postClient(
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
@@ -30,15 +34,8 @@ const ClientRegisterScreen = () => {
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }
-    alert(message.join('\n'));
-    setRegisterClientInputName('');
-    setRegisterClientInputCpf('');
-    setRegisterClientInputEmail('');
-    setRegisterClientInputPhone('');
-    setregisterClientInputSecondaryPhone('');
-    setRegisterClientInputAddress('');
-    setOfficeOption('');
-    setRegisterLocation('');
+    setMessage(validMessage.join('\n'));
+    handleShowMessage();
     return undefined;
   };
 
@@ -81,6 +78,11 @@ const ClientRegisterScreen = () => {
         setOfficeOption={setOfficeOption}
         setLocationOption={setRegisterLocation}
         locationOption={registerLocation}
+      />
+      <ModalMessage
+        show={showMessage}
+        handleClose={handleCloseMessage}
+        message={message}
       />
     </GenericRegisterScreen>
   );

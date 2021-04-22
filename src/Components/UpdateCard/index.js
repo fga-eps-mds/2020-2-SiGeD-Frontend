@@ -12,6 +12,7 @@ import {
   DemandDescription, BottomSide, CreatedAt, UserIcon,
   LockIcon, TrashIcon, IconsContainer, HighPriorityIcon,
 } from './Style';
+import ModalMessage from '../ModalMessage';
 
 const UpdateCard = ({
   update, sector, demand, setChangeState, changeState,
@@ -21,6 +22,10 @@ const UpdateCard = ({
   const [confirm, setConfirm] = useState(false);
   const handleClose = () => setShow(false);
   const handleConfirm = () => setConfirm(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState('');
+  const handleCloseMessage = () => setShowMessage(false);
+  const handleShowMessage = () => setShowMessage(true);
   const { user } = useProfileUser();
 
   const deleteUpdate = async () => {
@@ -35,7 +40,8 @@ const UpdateCard = ({
     const dateFormatTimeLimitData = moment(timeLimitData, 'YYYY-MM-DDTHH:mm:ss').toDate();
 
     if (moment(dataNow).isAfter(dateFormatTimeLimitData)) {
-      alert('Não é possível apagar essa atualização.');
+      setMessage('Não é possível apagar essa atualização.');
+      handleShowMessage();
     } else {
       setConfirm(true);
     }
@@ -45,7 +51,8 @@ const UpdateCard = ({
     if (user._id === update.userID) {
       setShow(true);
     } else {
-      alert('Você não pode editar essa atualização.');
+      setMessage('Você não pode editar essa atualização.');
+      handleShowMessage();
     }
   };
 
@@ -53,7 +60,8 @@ const UpdateCard = ({
     if (user._id === update.userID) {
       validateDelete();
     } else {
-      alert('Você não pode apagar essa atualização.');
+      setMessage('Você não pode apagar essa atualização.');
+      handleShowMessage();
     }
   };
 
@@ -125,6 +133,11 @@ const UpdateCard = ({
         handleClose={handleConfirm}
         submit={deleteUpdate}
         actionName=" deletar essa atualização d"
+      />
+      <ModalMessage
+        show={showMessage}
+        handleClose={handleCloseMessage}
+        message={message}
       />
     </Card>
   );

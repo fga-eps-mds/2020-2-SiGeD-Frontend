@@ -5,6 +5,7 @@ import { validateSignUp } from '../../Utils/validations';
 import { postUser } from '../../Services/Axios/userServices';
 import UserForms from '../../Components/UserForms';
 import { useProfileUser } from '../../Context';
+import ModalMessage from '../../Components/ModalMessage';
 
 const RegisterScreen = () => {
   const { user } = useProfileUser();
@@ -15,6 +16,10 @@ const RegisterScreen = () => {
   const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
   const [sectors, setSectors] = useState([]);
   const [englishRole, setEnglishRole] = useState('admin');
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState('');
+  const handleCloseMessage = () => setShowMessage(false);
+  const handleShowMessage = () => setShowMessage(true);
 
   const submit = async () => {
     if (validateSignUp(inputRegisterUserEmail,
@@ -23,14 +28,14 @@ const RegisterScreen = () => {
       postUser(inputRegisterUserName,
         inputRegisterUserEmail,
         englishRole,
-        userSectorID);
+        userSectorID,
+        inputRegisterUserPassword);
+      setMessage('Usuário cadastrado com sucesso!');
+      handleShowMessage();
       return history.push('/usuarios');
     }
-    alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
-    setRegisterUserInputName('');
-    setRegisterUserInputEmail('');
-    setRegisterUserInputRole('');
-    setRegisterUserInputSector('');
+    setMessage("Nome deve ser completo, sem números. Email deve conter o formato 'nome@email.com'. Senha deve conter no minimo 6 caracteres. As senhas devem ser iguais!");
+    handleShowMessage();
     return undefined;
   };
 
@@ -84,6 +89,11 @@ const RegisterScreen = () => {
               </GenericRegisterScreen>
             )
             : <Redirect to="/nao-autorizado" />}
+          <ModalMessage
+            show={showMessage}
+            handleClose={handleCloseMessage}
+            message={message}
+          />
         </>
       )
         : <h1>Carregando...</h1>}

@@ -10,6 +10,7 @@ import {
 import { updateDemandUpdate } from '../../Services/Axios/demandsServices';
 import TinyButton from '../TinyButton';
 import colors from '../../Constants/colors';
+import ModalMessage from '../ModalMessage';
 
 const ModalEditUpdateDemand = ({
   showModal,
@@ -28,6 +29,11 @@ const ModalEditUpdateDemand = ({
   const [updateVisibility, setUpdateVisibility] = useState(true);
   const { user } = useProfileUser();
   const [editedImportant, seteditedImportant] = useState(important);
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState('');
+  const handleCloseMessage = () => setShowMessage(false);
+  const handleShowMessage = () => setShowMessage(true);
+
   const editUpdate = async () => {
     updateDemandUpdate(
       name, userSector, user._id, updateDescription,
@@ -44,7 +50,8 @@ const ModalEditUpdateDemand = ({
     const formatDate = moment(stringDate, 'YYYY-MM-DDTHH:mm:ss').toDate();
 
     if (moment(data).isAfter(formatDate)) {
-      alert('Não é possível editar essa atualização.');
+      setMessage('Não é possível editar essa atualização.');
+      handleShowMessage();
       handleClose();
     } else {
       await editUpdate()
@@ -124,6 +131,11 @@ const ModalEditUpdateDemand = ({
           </ButtomDiv>
         </BottomSide>
       </Card>
+      <ModalMessage
+        show={showMessage}
+        handleClose={handleCloseMessage}
+        message={message}
+      />
     </Modal>
   );
 };

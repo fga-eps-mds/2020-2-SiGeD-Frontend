@@ -57,7 +57,8 @@ const CreateDemandsScreen = () => {
     if (!alreadySelected) {
       setSelectedCategories([...selectedCategories, category]);
     } else {
-      alert('A categoria escolhida ja foi selecionada');
+      setMessage('A categoria escolhida ja foi selecionada');
+      handleShowMessage();
     }
   };
 

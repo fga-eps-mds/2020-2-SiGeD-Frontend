@@ -11,6 +11,7 @@ import DemandsDescription from '../../Components/DemandsDescription';
 import SelectedCategories from '../../Components/SelectedCategories';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
+import ModalMessage from '../../Components/ModalMessage';
 
 const UpdateDemandsScreen = () => {
   const [show, setShow] = useState(false);
@@ -26,6 +27,10 @@ const UpdateDemandsScreen = () => {
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientName, setClientName] = useState('');
   const [sectorName, setSectorName] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState('');
+  const handleCloseMessage = () => setShowMessage(false);
+  const handleShowMessage = () => setShowMessage(true);
   const { id } = useParams();
 
   const getClientFromApi = async (client) => {
@@ -79,7 +84,8 @@ const UpdateDemandsScreen = () => {
     if (!alreadySelected) {
       setSelectedCategories([...selectedCategories, category]);
     } else {
-      alert('A categoria escolhida ja foi selecionada');
+      setMessage('A categoria escolhida ja foi selecionada.');
+      handleShowMessage();
     }
   };
 
@@ -95,9 +101,11 @@ const UpdateDemandsScreen = () => {
       updateDemand(
         name, description, process, categoriesIDs, sectorID, userID, clientID, id,
       );
-      alert('Demanda editada com sucesso!');
+      setMessage('Demanda editada com sucesso!');
+      handleShowMessage();
     } else {
-      alert('Preencha todos os campos antes de cadastrar uma nova demanda');
+      setMessage('Preencha todos os campos antes de cadastrar uma nova demanda.');
+      handleShowMessage();
     }
   };
 
@@ -153,6 +161,11 @@ const UpdateDemandsScreen = () => {
         handleClose={handleClose}
         submit={submit}
         actionName=" editar "
+      />
+      <ModalMessage
+        show={showMessage}
+        handleClose={handleCloseMessage}
+        message={message}
       />
     </Main>
   );
