@@ -6,23 +6,36 @@ import {
 import { getDemandsStatistics } from '../../Services/Axios/demandsServices';
 import {
   Main, Title, Container, Card, CardTitle, TopDiv, MiddleDiv, BottomDiv, FiltersDiv, DropdownDiv,
-  BoldText, DataDiv, TextDiv,
+  BoldText, SearchDiv, TextLabel, DateInput,
 } from './Style';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
+import { getSectors } from '../../Services/Axios/sectorServices';
 
 const StatisticScreen = () => {
-  const [sector, setSector] = useState('');
+  const [sectors, setSectors] = useState([]);
   const [pageState, setPageState] = useState(true);
   const [demands, setDemands] = useState([]);
+  // const [startDate, setStartDate] = useState(new Date());
+  // const [finalDate, setFinalDate] = useState(new Date());
+  const [sector, setSector] = useState('');
+
+  const getSectorsFromApi = async () => {
+    await getSectors()
+      .then((response) => {
+        console.log(response.data);
+        setSectors(response.data);
+      });
+  };
 
   const getStatistics = async () => {
-    await getDemandsStatistics('statistic')
-      .then((response) => setDemands(response.data));
+    await getDemandsStatistics('statistic/category')
+      .then((response) => setDemands(response?.data));
   };
 
   useEffect(() => {
     getStatistics();
+    getSectorsFromApi();
   }, []);
 
   const data = [
@@ -43,103 +56,79 @@ const StatisticScreen = () => {
         <TopDiv>
           <Title>Estatísticas</Title>
           <FiltersDiv>
-            <DropdownDiv>
-              <TextDiv>
-                Categoria:
-              </TextDiv>
-              <DropdownComponent
-                style={{
-                  display: 'flex',
-                  color: `${colors.text}`,
-                  width: '100%',
-                  height: '40px',
-                  alignItems: 'center',
-                  boxSizing: 'border-box',
-                  borderRadius: '8px',
-                  border: '1px solid black',
-                  justifyContent: 'center',
-                  backgroundColor: 'white',
-                }}
-                optionStyle={{
-                  backgroundColor: `${colors.secondary}`,
-                }}
-                optionList={['Geral', 'InGeral']}
-              />
-            </DropdownDiv>
-            <DropdownDiv>
-              <TextDiv>
-                Categoria:
-              </TextDiv>
-              <DropdownComponent
-                OnChangeFunction={(Option) => {
-                  setSector(Option.target.value); setPageState(!pageState);
-                }}
-                style={{
-                  display: 'flex',
-                  color: `${colors.text}`,
-                  width: '100%',
-                  height: '40px',
-                  alignItems: 'center',
-                  boxSizing: 'border-box',
-                  borderRadius: '8px',
-                  border: '1px solid black',
-                  justifyContent: 'center',
-                  backgroundColor: 'white',
-                }}
-                optionStyle={{
-                  backgroundColor: `${colors.secondary}`,
-                }}
-                optionList={['Geral', 'InGeral']}
-              />
-            </DropdownDiv>
-            <DataDiv>
+            <SearchDiv style={{ justifyContent: 'flex-start' }}>
               <DropdownDiv>
-                <TextDiv>
+                <TextLabel>
+                  Setor:
+                </TextLabel>
+                <DropdownComponent
+                  style={{
+                    display: 'flex',
+                    color: `${colors.text}`,
+                    width: '100%',
+                    height: '40px',
+                    alignItems: 'center',
+                    boxSizing: 'border-box',
+                    borderRadius: '8px',
+                    border: '1px solid black',
+                    justifyContent: 'center',
+                    backgroundColor: 'white',
+                  }}
+                  optionStyle={{
+                    backgroundColor: `${colors.secondary}`,
+                  }}
+                  optionList={sectors.map((sectorx) => sectorx.name)}
+                />
+              </DropdownDiv>
+              <DropdownDiv>
+                <TextLabel>
+                  Categoria:
+                </TextLabel>
+                <DropdownComponent
+                  OnChangeFunction={(Option) => {
+                    setSector(Option.target.value); setPageState(!pageState);
+                  }}
+                  style={{
+                    display: 'flex',
+                    color: `${colors.text}`,
+                    width: '100%',
+                    height: '40px',
+                    alignItems: 'center',
+                    boxSizing: 'border-box',
+                    borderRadius: '8px',
+                    border: '1px solid black',
+                    justifyContent: 'center',
+                    backgroundColor: 'white',
+                  }}
+                  optionStyle={{
+                    backgroundColor: `${colors.secondary}`,
+                  }}
+                  optionList={['Geral', 'InGeral']}
+                />
+              </DropdownDiv>
+            </SearchDiv>
+            <SearchDiv>
+              <DropdownDiv
+                style={{ width: '40%' }}
+              >
+                <TextLabel>
                   Data de Inicio:
-                </TextDiv>
-                <DropdownComponent
-                  style={{
-                    display: 'flex',
-                    color: `${colors.text}`,
-                    width: '100%',
-                    height: '40px',
-                    alignItems: 'center',
-                    boxSizing: 'border-box',
-                    borderRadius: '8px',
-                    border: '1px solid black',
-                    justifyContent: 'center',
-                    backgroundColor: 'white',
-                  }}
-                  optionStyle={{
-                    backgroundColor: `${colors.secondary}`,
-                  }}
-                  optionList={['Geral', 'InGeral']}
+                </TextLabel>
+                <DateInput
+                  type="date"
                 />
               </DropdownDiv>
-              <DropdownDiv>
-                <TextDiv>
+              <DropdownDiv
+                style={{ width: '40' }}
+              >
+                <TextLabel>
                   Data final:
-                </TextDiv>
-                <DropdownComponent
-                  style={{
-                    display: 'flex',
-                    color: `${colors.text}`,
-                    width: '100%',
-                    height: '40px',
-                    alignItems: 'center',
-                    boxSizing: 'border-box',
-                    borderRadius: '8px',
-                    border: '1px solid black',
-                    justifyContent: 'center',
-                    backgroundColor: 'white',
-                  }}
-                  optionStyle={{
-                    backgroundColor: `${colors.secondary}`,
-                  }}
-                  optionList={['Geral', 'InGeral']}
+                </TextLabel>
+                <DateInput
+                  type="date"
                 />
               </DropdownDiv>
-            </DataDiv>
+            </SearchDiv>
           </FiltersDiv>
         </TopDiv>
         <MiddleDiv>
@@ -184,7 +173,7 @@ const StatisticScreen = () => {
                 <Tooltip />
                 <Legend />
                 <Bar dataKey="count">
-                  {demands.map((entry, index) => (
+                  {demands?.map((entry, index) => (
                     <Cell key={index} fill={entry.categorires[0].color} />
                   ))}
                 </Bar>
