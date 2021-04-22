@@ -3,7 +3,7 @@ import {
   PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip,
   BarChart, CartesianGrid, XAxis, Bar, YAxis,
 } from 'recharts';
-import { getDemandsStatistics } from '../../Services/Axios/demandsServices';
+import { getDemandsStatistics, getCategories } from '../../Services/Axios/demandsServices';
 import {
   Main, Title, Container, Card, CardTitle, TopDiv, MiddleDiv, BottomDiv, FiltersDiv, DropdownDiv,
   BoldText, SearchDiv, TextLabel, DateInput,
@@ -13,31 +13,70 @@ import colors from '../../Constants/colors';
 import { getSectors } from '../../Services/Axios/sectorServices';
 
 const StatisticScreen = () => {
-  const [sectors, setSectors] = useState([]);
-  const [pageState, setPageState] = useState(true);
+  const [sectors, setSectors] = useState(['Todas']);
+  const [sectorActive, setSectorActive] = useState('Todas');
+  const [sectorID, setSectorID] = useState('');
+  // const [pageState, setPageState] = useState(true);
   const [demands, setDemands] = useState([]);
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [finalDate, setFinalDate] = useState(new Date());
-  const [sector, setSector] = useState('');
+  const [categories, setCategories] = useState(['Todas']);
+  const [categoryActive, setCategoryActive] = useState('Todas');
+  const [categoryID, setCategoryID] = useState('');
+  const [startDate, setStartDate] = useState(new Date());
+  const [finalDate, setFinalDate] = useState(new Date());
 
+  // Set Sectors
   const getSectorsFromApi = async () => {
     await getSectors()
       .then((response) => {
-        console.log(response.data);
-        setSectors(response.data);
+        setSectors([...sectors, ...response.data]);
       });
   };
 
-  const getStatistics = async () => {
-    await getDemandsStatistics('statistic/category')
-      .then((response) => setDemands(response?.data));
+  // Set Categories
+  const getCategoriesFromApi = async () => {
+    await getCategories('category')
+      .then((response) => setCategories(response.data))
+      .catch((error) => {
+        console.error(`An unexpected error ocourred while getting categories.${error}`);
+      });
   };
 
+  // Find Sector by name
+  useEffect(() => {
+    if (sectorActive !== 'Todas') {
+      const results = sectors.find((element) => element.name === sectorActive);
+      setSectorID(results._id);
+    } else {
+      setSectorID(null);
+    }
+  }, [sectorActive]);
+
+  // Find Category by name
+  useEffect(() => {
+    if (categoryActive !== 'Todas') {
+      const results = categories.find((element) => element.name === categoryActive);
+      setCategoryID(results._id);
+    } else {
+      setCategoryID(null);
+    }
+  }, [categoryActive]);
+
+  // Get statistics
+  const getStatistics = async () => {
+    await getDemandsStatistics('statistic/category')
+      .then((response) => {
+        setDemands(response?.data);
+      });
+  };
+
+  // Call All API's
   useEffect(() => {
     getStatistics();
     getSectorsFromApi();
+    getCategoriesFromApi();
   }, []);
 
+  // Temporary consts
   const data = [
     { name: 'Group A', value: 100 },
     { name: 'Group B', value: 100 },
@@ -62,6 +101,7 @@ const StatisticScreen = () => {
                   Setor:
                 </TextLabel>
                 <DropdownComponent
+                  OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
                   style={{
                     display: 'flex',
                     color: `${colors.text}`,
@@ -77,7 +117,9 @@ const StatisticScreen = () => {
                   optionStyle={{
                     backgroundColor: `${colors.secondary}`,
                   }}
-                  optionList={sectors.map((sectorx) => sectorx.name)}
+                  optionList={sectors?.map(
+                    (sectorx) => (sectorx.name ? sectorx.name : sectorx),
+                  )}
                 />
               </DropdownDiv>
               <DropdownDiv>
@@ -85,9 +127,7 @@ const StatisticScreen = () => {
                   Categoria:
                 </TextLabel>
                 <DropdownComponent
-                  OnChangeFunction={(Option) => {
-                    setSector(Option.target.value); setPageState(!pageState);
-                  }}
+                  OnChangeFunction={(Option) => setCategoryActive(Option.target.value)}
                   style={{
                     display: 'flex',
                     color: `${colors.text}`,
@@ -103,7 +143,9 @@ const StatisticScreen = () => {
                   optionStyle={{
                     backgroundColor: `${colors.secondary}`,
                   }}
-                  optionList={['Geral', 'InGeral']}
+                  optionList={categories?.map(
+                    (categoryx) => (categoryx.name ? categoryx.name : categoryx),
+                  )}
                 />
               </DropdownDiv>
             </SearchDiv>
@@ -116,6 +158,7 @@ const StatisticScreen = () => {
                 </TextLabel>
                 <DateInput
                   type="date"
+                  onChange={(e) => setStartDate(e.target.value)}
                 />
               </DropdownDiv>
               <DropdownDiv
@@ -126,6 +169,7 @@ const StatisticScreen = () => {
                 </TextLabel>
                 <DateInput
                   type="date"
+                  onChange={(e) => setFinalDate(e.target.value)}
                 />
               </DropdownDiv>
             </SearchDiv>
@@ -183,8 +227,12 @@ const StatisticScreen = () => {
         </MiddleDiv>
         <BottomDiv>
           <BoldText>
-            Total de demands filtradas: 5.956
-            {sector}
+            Total de demands filtradas: 5.956 _
+            {sectorID}
+            ,
+            {categoryID}
+            {console.log(finalDate)}
+            {console.log(startDate)}
           </BoldText>
         </BottomDiv>
       </Container>
