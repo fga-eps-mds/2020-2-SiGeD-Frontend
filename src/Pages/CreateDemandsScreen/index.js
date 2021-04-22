@@ -11,12 +11,17 @@ import UserDropdown from '../../Components/UserDropdown';
 import { getClients } from '../../Services/Axios/clientServices';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
+import ModalMessage from '../../Components/ModalMessage';
 import { useProfileUser } from '../../Context';
 
 const CreateDemandsScreen = () => {
   const [show, setShow] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState('');
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const handleCloseMessage = () => setShowMessage(false);
+  const handleShowMessage = () => setShowMessage(true);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [process, setProcess] = useState('');
@@ -65,8 +70,9 @@ const CreateDemandsScreen = () => {
 
   const submit = () => {
     if (validateInputs()) {
+      setMessage('Demanda criada com sucesso!');
+      handleShowMessage();
       createDemand(name, description, process, categoriesIDs, sectorID, user._id, clientID);
-      alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
       setName('');
@@ -75,7 +81,8 @@ const CreateDemandsScreen = () => {
       setClientID('');
       setCategoriesIDs([]);
     } else {
-      alert('Preencha todos os campos antes de cadastrar uma nova demanda');
+      setMessage('Preencha todos os campos antes de cadastrar uma nova demanda.');
+      handleShowMessage();
     }
   };
 
@@ -134,6 +141,11 @@ const CreateDemandsScreen = () => {
         handleClose={handleClose}
         submit={submit}
         actionName=" criar "
+      />
+      <ModalMessage
+        show={showMessage}
+        handleClose={handleCloseMessage}
+        message={message}
       />
     </Main>
   );
