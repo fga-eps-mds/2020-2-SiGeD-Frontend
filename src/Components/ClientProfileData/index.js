@@ -12,22 +12,29 @@ import {
 import { Li, Button, Icon } from '../DataList/Style';
 import colors from '../../Constants/colors';
 import { useProfileUser } from '../../Context';
+import ConfirmDemandModal from '../ConfirmDemandModal';
 
 const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
   const history = useHistory();
   const { user } = useProfileUser();
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
   const [boxState, setBoxState] = useState(false);
   const [text, setText] = useState('Desativar');
+  const [modalText, setModalText] = useState('Você tem certeza que quer desativar este cliente?');
   const [textColor, setTextColor] = useState('');
   const [icon, setIcon] = useState('');
 
   useEffect(() => {
     if (query) {
       setText('Desativar');
+      setModalText('Você tem certeza que quer desativar este cliente?');
       setTextColor('red');
       setIcon(<FaRegTrashAlt color="red" />);
     } else {
       setText('Ativar');
+      setModalText('Você tem certeza que quer ativar este cliente?');
       setTextColor('green');
       setIcon(<BsPersonCheckFill color="green" />);
     }
@@ -87,7 +94,12 @@ const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
           </DotContent>
         </TableContainer>
       </PersonDataBox>
-
+      <ConfirmDemandModal
+        show={show}
+        handleClose={handleClose}
+        submit={DeactivateClient}
+        actionName={modalText}
+      />
       {boxState && user ? (
         <Box>
           <Ul>
@@ -100,7 +112,7 @@ const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
               </Button>
             </Li>
             {user.role === 'admin' ? (
-              <Li onClick={DeactivateClient}>
+              <Li onClick={handleShow}>
                 <Button color={textColor}>
                   {text}
                   <Icon color={textColor}>

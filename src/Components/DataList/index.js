@@ -7,23 +7,28 @@ import {
 } from './Style';
 import ModalComp from '../ModalComp';
 import { useProfileUser } from '../../Context';
+import ConfirmDemandModal from '../ConfirmDemandModal';
 
 const DataList = ({
   content, getContent, axiosDelete, updateContent, backgroundColor, color, type,
 }) => {
   const { user } = useProfileUser();
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
   const [optionsMenuState, setOptionsMenuState] = useState(false);
   const [modalState, setModalState] = useState(false);
-  // Abrir modal e fechar menu
+  const modalText = `Tem certeza que quer deletar essa ${type?.toLowerCase()}?`;
+
   const toggleMenu = () => {
     setModalState(true);
     setOptionsMenuState(false);
   };
-  // Muda atual estado da modal
+
   const toggleModal = () => {
     setModalState(!modalState);
   };
-  // Fecha o menu
+
   const closeMenu = () => {
     if (optionsMenuState) {
       setOptionsMenuState(false);
@@ -58,7 +63,12 @@ const DataList = ({
           </DotContent>
         </TableContainer>
       </Personalbox>
-
+      <ConfirmDemandModal
+        show={show}
+        handleClose={handleClose}
+        submit={deleteContent}
+        actionName={modalText}
+      />
       {optionsMenuState ? (
         <Box>
           <Ul>
@@ -71,7 +81,7 @@ const DataList = ({
               </Button>
             </Li>
             {user.role === 'admin' ? (
-              <Li onClick={deleteContent}>
+              <Li onClick={handleShow}>
                 <Button color="red">
                   Remover
                   <Icon color="red">

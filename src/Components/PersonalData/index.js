@@ -12,9 +12,13 @@ import {
 } from './Style';
 import { Li, Button, Icon } from '../DataList/Style';
 import { useProfileUser } from '../../Context';
+import ConfirmDemandModal from '../ConfirmDemandModal';
 
 const PersonalData = ({ user, getUsers }) => {
   const history = useHistory();
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
   const [boxState, setBoxState] = useState(false);
   const [userSector, setUserSector] = useState([]);
 
@@ -70,7 +74,12 @@ const PersonalData = ({ user, getUsers }) => {
           </DotContent>
         </TableContainer>
       </PersonDataBox>
-
+      <ConfirmDemandModal
+        show={show}
+        handleClose={handleClose}
+        submit={ClickDeleteUser}
+        actionName="Você tem certeza que quer desativar este usuário?"
+      />
       {boxState ? (
         <Box>
           <Ul>
@@ -84,7 +93,7 @@ const PersonalData = ({ user, getUsers }) => {
             </Li>
             {!(useProfileUser().user._id !== user._id)
               || (
-                <Li onClick={ClickDeleteUser}>
+                <Li onClick={handleShow}>
                   <Button color="red">
                     Desativar
                     <Icon color="red">

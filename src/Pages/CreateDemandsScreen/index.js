@@ -141,7 +141,7 @@ const CreateDemandsScreen = () => {
         show={show}
         handleClose={handleClose}
         submit={submit}
-        actionName=" criar "
+        actionName="Você tem certeza que gostaria de criar essa demanda?"
       />
       <ModalMessage
         show={showMessage}
