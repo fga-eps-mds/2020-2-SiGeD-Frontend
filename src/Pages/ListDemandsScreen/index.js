@@ -51,9 +51,9 @@ const ListDemandsScreen = () => {
     setFilterDemands(filteredDemands);
   };
 
-  const listYears = async () => {
+  const listYears = () => {
     const years = ['Sem filtro'];
-    demands.map((demand) => {
+    demands?.map((demand) => {
       const year = new Date(demand.createdAt).getFullYear();
       if (!years.find((y) => y === year)) {
         years.push(year);
