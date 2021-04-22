@@ -17,7 +17,15 @@ const LoginScreen = () => {
   }
 
   return (
-    <Background>
+    <Background
+      onKeyPress={
+        (event) => {
+          if (event.key === 'Enter') {
+            handleLogin(emailReceived, passwordReceived);
+          }
+        }
+      }
+    >
       <Center>
         <h1 style={styles.access}>Entrar</h1>
 
