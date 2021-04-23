@@ -232,7 +232,7 @@ export async function getDemandsWithClientsNames(url, startModal) {
 }
 
 export async function deleteDemandUpdate(id, updateListID, startModal) {
-  try {alert('O tempo da sua sessão expirou, faça o login novamente');
+  try {
     const response = await APIDemands.put(`demand/delete-demand-update/${id}`, {
       updateListID,
     });
