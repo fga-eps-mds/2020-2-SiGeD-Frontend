@@ -5,5 +5,5 @@ const SONAR_URL = `https://sonarcloud.io/api/measures/search_history?component=$
 module.exports = {
   SONAR_URL,
   REPO,
-  OWNER
-}
+  OWNER,
+};
