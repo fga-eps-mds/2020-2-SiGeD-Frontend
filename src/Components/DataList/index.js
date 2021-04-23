@@ -49,7 +49,7 @@ const DataList = ({
           </TableContent>
 
           <TableContent width={24}>
-            <P>{ moment.parseZone(content.createdAt).local(true).format('DD/MM/YYYY') }</P>
+            <P>{ moment.parseZone(content.updatedAt).local(true).format('DD/MM/YYYY') }</P>
           </TableContent>
 
           <DotContent width={2}>
