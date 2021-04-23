@@ -8,9 +8,7 @@ import {
 import { getUser } from '../../Services/Axios/userServices';
 import { useProfileUser } from '../../Context';
 
-const newUser = () => { };
-
-const ListScreen = () => {
+const ListScreen = ({ newUser }) => {
   const { user, startModal } = useProfileUser();
   const [word, setWord] = useState();
   const [filterUsers, setFilterUsers] = useState([]);
@@ -26,7 +24,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     getUsers();
-  }, [user]);
+  }, [user, newUser]);
 
   useEffect(() => {
     setFilterUsers(
@@ -65,7 +63,6 @@ const ListScreen = () => {
             ? (
               <GenericListScreen
                 ButtonTitle="Novo Usuário"
-                ButtonFunction={newUser}
                 PageTitle="Usuários"
                 SearchWord={word}
                 setWord={setWord}

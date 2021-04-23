@@ -20,14 +20,14 @@ const RegisterScreen = () => {
     if (validateSignUp(inputRegisterUserEmail,
       inputRegisterUserName)) {
       const userSectorID = sectors?.find((sector) => sector.name === inputRegisterUserSector)._id;
-      postUser(inputRegisterUserName,
+      await postUser(inputRegisterUserName,
         inputRegisterUserEmail,
         englishRole,
         userSectorID,
         inputRegisterUserPassword,
         startModal);
       startModal('Usuário cadastrado com sucesso!');
-      return history.push('/usuarios');
+      return history.push({ pathname: '/usuarios', state: { newUser: 'new' } });
     }
     startModal("Nome deve ser completo, sem números. Email deve conter o formato 'nome@email.com'. Senha deve conter no minimo 6 caracteres. As senhas devem ser iguais!");
     return undefined;
