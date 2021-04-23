@@ -19,17 +19,12 @@ const StatisticScreen = () => {
   const [loading, setLoading] = useState(true);
   const [sectorActive, setSectorActive] = useState('Todos');
   const [sectorID, setSectorID] = useState('');
-  // const [pageState, setPageState] = useState(true);
   const [categoryStatistics, setCategoryStatistics] = useState([]);
   const [sectorGraphData, setSectorGraphData] = useState([]);
-  // const [sectorStatistics, setSectorStatistics] = useState([]);
   const [categories, setCategories] = useState(['Todas']);
   const [categoryActive, setCategoryActive] = useState('Todas');
   const [categoryID, setCategoryID] = useState('');
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [finalDate, setFinalDate] = useState(new Date());
 
-  // Set Sectors
   const getSectorsFromApi = async () => {
     await getSectors()
       .then((response) => {
@@ -38,7 +33,6 @@ const StatisticScreen = () => {
       });
   };
 
-  // Set Categories
   const getCategoriesFromApi = async () => {
     await getCategories('category')
       .then((response) => {
@@ -49,7 +43,6 @@ const StatisticScreen = () => {
       });
   };
 
-  // Find Sector by name
   useEffect(() => {
     if (sectorActive !== 'Todos') {
       const results = sectors.find((element) => element.name === sectorActive);
@@ -59,7 +52,6 @@ const StatisticScreen = () => {
     }
   }, [sectorActive]);
 
-  // Find Category by name
   useEffect(() => {
     if (categoryActive !== 'Todas') {
       const results = categories.find((element) => element.name === categoryActive);
@@ -69,7 +61,6 @@ const StatisticScreen = () => {
     }
   }, [categoryActive]);
 
-  // Get statistics
   const getCategoriesStatistics = async (id) => {
     await getDemandsStatistics(`statistic/category?id=${id}`)
       .then((response) => {
@@ -99,7 +90,6 @@ const StatisticScreen = () => {
       });
   };
 
-  // Call All API's
   useEffect(() => {
     if (user && token) {
       getSectorsFromApi();
@@ -193,7 +183,6 @@ const StatisticScreen = () => {
                   </TextLabel>
                   <DateInput
                     type="date"
-                  // onChange={(e) => setStartDate(e.target.value)}
                   />
                 </DropdownDiv>
                 <DropdownDiv
@@ -204,7 +193,6 @@ const StatisticScreen = () => {
                   </TextLabel>
                   <DateInput
                     type="date"
-                  // onChange={(e) => setFinalDate(e.target.value)}
                   />
                 </DropdownDiv>
               </SearchDiv>
