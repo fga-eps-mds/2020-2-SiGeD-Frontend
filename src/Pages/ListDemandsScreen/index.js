@@ -28,14 +28,15 @@ const ListDemandsScreen = () => {
   const [categoryActive, setCategoryActive] = useState('Todas');
   const [active, setActive] = useState('Ativos');
   const [query, setQuery] = useState(true);
+  const { startModal } = useProfileUser();
 
   const getDemandsFromApi = async () => {
-    await getDemandsWithClientsNames(`clientsNames?open=${query}`)
+    await getDemandsWithClientsNames(`clientsNames?open=${query}`, startModal)
       .then((response) => setDemands(response.data));
   };
 
   const getSectorsFromApi = async () => {
-    await getSectors()
+    await getSectors(startModal)
       .then((response) => {
         setSectors(response?.data);
         setSectorActive(response?.data[0]?.name);

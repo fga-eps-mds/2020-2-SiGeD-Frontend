@@ -31,10 +31,10 @@ const CreateDemandsScreen = () => {
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientID, setClientID] = useState('');
   const [clientName, setClientName] = useState('');
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
 
   const getClientsFromApi = async () => {
-    await getClients('clients')
+    await getClients('clients', startModal)
       .then((response) => setClients(response.data));
   };
 

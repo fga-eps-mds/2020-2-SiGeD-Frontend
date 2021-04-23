@@ -26,10 +26,10 @@ const UpdateCard = ({
   const [message, setMessage] = useState('');
   const handleCloseMessage = () => setShowMessage(false);
   const handleShowMessage = () => setShowMessage(true);
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
 
   const deleteUpdate = async () => {
-    await deleteDemandUpdate(demand._id, update._id)
+    await deleteDemandUpdate(demand._id, update._id, startModal)
       .then(() => setChangeState(!changeState));
   };
 

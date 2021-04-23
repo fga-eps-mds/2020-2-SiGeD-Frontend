@@ -5,6 +5,7 @@ import { validateFields } from '../../Utils/validations';
 import { postClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
 import ModalMessage from '../../Components/ModalMessage';
+import { useProfileUser } from '../../Context';
 
 const ClientRegisterScreen = () => {
   const history = useHistory();
@@ -20,6 +21,7 @@ const ClientRegisterScreen = () => {
   const [message, setMessage] = useState('');
   const handleCloseMessage = () => setShowMessage(false);
   const handleShowMessage = () => setShowMessage(true);
+  const { startModal } = useProfileUser();
 
   const submit = async () => {
     const validMessage = validateFields(registerClientInputName,
@@ -30,7 +32,7 @@ const ClientRegisterScreen = () => {
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
         registerClientInputSecondaryPhone, registerClientInputAddress,
-        officeOption, registerLocation,
+        officeOption, registerLocation, startModal,
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }

@@ -11,7 +11,7 @@ import colors from '../../Constants/colors';
 import { useProfileUser } from '../../Context';
 
 const ClientListScreen = () => {
-  const { token } = useProfileUser();
+  const { token, startModal } = useProfileUser();
   const [word, setWord] = useState();
   const [filterClients, setFilterClients] = useState([]);
   const [clients, setClients] = useState([]);
@@ -19,7 +19,7 @@ const ClientListScreen = () => {
   const [query, setQuery] = useState(true);
 
   const getClientsFromApi = async () => {
-    await getClients(`clients?active=${query}`)
+    await getClients(`clients?active=${query}`, startModal)
       .then((response) => setClients(response.data));
   };
 

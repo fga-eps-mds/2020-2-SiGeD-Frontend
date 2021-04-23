@@ -9,7 +9,7 @@ import { useProfileUser } from '../../Context';
 import ModalMessage from '../../Components/ModalMessage';
 
 const UserUpdateScreen = () => {
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const history = useHistory();
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
@@ -24,12 +24,12 @@ const UserUpdateScreen = () => {
   const { id } = useParams();
 
   const getSectorFromApi = async (sectorID) => {
-    await getSector(`sector/${sectorID}`)
+    await getSector(`sector/${sectorID}`, startModal)
       .then((response) => setInputSector(response?.data?.name));
   };
 
   const getUserFromApi = async () => {
-    await getUser(`users/${id}`)
+    await getUser(`users/${id}`, startModal)
       .then((response) => {
         const { data } = response;
         setInputName(data.name);

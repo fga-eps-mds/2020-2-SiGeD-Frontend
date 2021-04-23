@@ -27,7 +27,7 @@ const ModalEditUpdateDemand = ({
 }) => {
   const [updateDescription, setUpdateDescription] = useState(description);
   const [updateVisibility, setUpdateVisibility] = useState(true);
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const [editedImportant, seteditedImportant] = useState(important);
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState('');
@@ -36,8 +36,8 @@ const ModalEditUpdateDemand = ({
 
   const editUpdate = async () => {
     updateDemandUpdate(
-      name, userSector, user._id, updateDescription,
-      demandID, updateDemandID, updateVisibility, editedImportant,
+      name, userSector, user._id, updateDescription, demandID,
+      updateDemandID, updateVisibility, editedImportant, startModal,
     );
     setUpdateVisibility(true);
     handleClose();

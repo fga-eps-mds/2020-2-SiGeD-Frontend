@@ -1,21 +1,21 @@
 import { APIDemands } from './baseService';
 
-export async function getCategories(url) {
+export async function getCategories(url, startModal) {
   try {
     const response = await APIDemands.get(url);
     return response;
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível carregar as categorias já criadas, tente novamente mais tarde.');
+      startModal('Não foi possível carregar as categorias já criadas, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while getting categories.${error}`);
   }
   return false;
 }
 
-export async function createCategory(name, description, color) {
+export async function createCategory(name, description, color, startModal) {
   try {
     const response = await APIDemands.post('category/create', {
       name,
@@ -23,19 +23,19 @@ export async function createCategory(name, description, color) {
       color,
     });
     if (response.data.status) {
-      alert('Preencha todos os campos para poder criar uma nova categoria');
+      startModal('Preencha todos os campos para poder criar uma nova categoria');
     }
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível criar a nova categoria, tente novamente mais tarde.');
+      startModal('Não foi possível criar a nova categoria, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while creating a new category.${error}`);
   }
 }
 
-export async function updateCategory(name, description, color, id) {
+export async function updateCategory(name, description, color, id, startModal) {
   try {
     const response = await APIDemands.put(`category/update/${id}`, {
       name,
@@ -43,39 +43,39 @@ export async function updateCategory(name, description, color, id) {
       color,
     });
     if (response.data.status) {
-      alert('Preencha todos os campos para poder editar uma categoria');
+      startModal('Preencha todos os campos para poder editar uma categoria');
     }
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível atualizar a categoria, tente novamente mais tarde.');
+      startModal('Não foi possível atualizar a categoria, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while updating an already created category.${error}`);
   }
 }
 
-export const deleteCategory = async (id) => {
+export const deleteCategory = async (id, startModal) => {
   try {
     await APIDemands.delete(`/category/delete/${id}`);
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert(`Não foi possivel deletar a categoria.\n${error}`);
+      startModal(`Não foi possivel deletar a categoria.\n${error}`);
     }
     console.error(error);
   }
 };
-export async function getDemands(url) {
+export async function getDemands(url, startModal) {
   try {
     const response = await APIDemands.get(url);
     return response;
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível carregar as demandas já criadas, tente novamente mais tarde.');
+      startModal('Não foi possível carregar as demandas já criadas, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while getting demands.${error}`);
   }
@@ -83,7 +83,7 @@ export async function getDemands(url) {
 }
 
 export async function createDemand(
-  name, description, process, categoryID, sectorID, userID, clientID,
+  name, description, process, categoryID, sectorID, userID, clientID, startModal,
 ) {
   try {
     const response = await APIDemands.post('demand/create', {
@@ -96,20 +96,20 @@ export async function createDemand(
       clientID,
     });
     if (response.data.status) {
-      alert('Preencha todos os campos para poder criar uma nova categoria');
+      startModal('Preencha todos os campos para poder criar uma nova categoria');
     }
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível criar a nova demanda, tente novamente mais tarde.');
+      startModal('Não foi possível criar a nova demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while creating a new demand.${error}`);
   }
 }
 
 export async function updateDemand(
-  name, description, process, categoryID, sectorID, userID, clientID, id,
+  name, description, process, categoryID, sectorID, userID, clientID, id, startModal,
 ) {
   try {
     const response = await APIDemands.put(`demand/update/${id}`, {
@@ -123,62 +123,62 @@ export async function updateDemand(
 
     });
     if (response.data.status) {
-      alert('Preencha todos os campos para poder editar uma categoria');
+      startModal('Preencha todos os campos para poder editar uma categoria');
     }
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível atualizar a demanda, tente novamente mais tarde.');
+      startModal('Não foi possível atualizar a demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while updating an already created demand.${error}`);
   }
 }
 
-export async function toggleDemand(id) {
+export async function toggleDemand(id, startModal) {
   try {
     await APIDemands.put(`demand/toggle/${id}`);
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível encerrar a demanda, tente novamente mais tarde.');
+      startModal('Não foi possível encerrar a demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while closing an already created demand.${error}`);
   }
 }
 
-export async function updateDemandSector(sectorID, id) {
+export async function updateDemandSector(sectorID, id, startModal) {
   try {
     const response = await APIDemands.put(`demand/sectorupdate/${id}`, {
       sectorID,
     });
     if (response.data.status) {
-      alert('Selecione um dos setores disponíveis');
+      startModal('Selecione um dos setores disponíveis');
     }
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível atualizar o setor da demanda, tente novamente mais tarde.');
+      startModal('Não foi possível atualizar o setor da demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error occurred while updating a demand's sector.${error}`);
   }
 }
 
-export async function forwardDemand(sectorID, id) {
+export async function forwardDemand(sectorID, id, startModal) {
   try {
     const response = await APIDemands.put(`demand/forward/${id}`, {
       sectorID,
     });
     if (response.data.status) {
-      alert('Não foi possível encaminhar a demanda');
+      startModal('Não foi possível encaminhar a demanda');
     }
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível encaminhar a demanda para o setor desejado, tente novamente mais tarde.');
+      startModal('Não foi possível encaminhar a demanda para o setor desejado, tente novamente mais tarde.');
     }
     console.error(`An unexpected error occurred while forwarding a demand to another sector.${error}`);
   }
@@ -192,6 +192,7 @@ export async function createDemandUpdate(
   visibilityRestriction,
   id,
   important,
+  startModal,
 ) {
   try {
     const response = await APIDemands.put(`demand/create-demand-update/${id}`, {
@@ -203,53 +204,61 @@ export async function createDemandUpdate(
       important,
     });
     if (response.data.status) {
-      alert('Preencha o campo de descrição da atualização para ser possível o envio.');
+      startModal('Preencha o campo de descrição da atualização para ser possível o envio.');
     }
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível enviar a atualização da demanda, tente novamente mais tarde.');
+      startModal('Não foi possível enviar a atualização da demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error occurred while sending a demand update.${error}`);
   }
 }
 
-export async function getDemandsWithClientsNames(url) {
+export async function getDemandsWithClientsNames(url, startModal) {
   try {
     const response = await APIDemands.get(url);
     return response;
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível carregar as demandas já criadas, tente novamente mais tarde.');
+      startModal('Não foi possível carregar as categorias já criadas com os nomes dos clientes, tente novamente mais tarde.');
     }
-    console.error(`An unexpected error ocourred while getting demands.${error}`);
+    console.error(`An unexpected error ocourred while getting demands with clients names.${error}`);
   }
   return false;
 }
 
-export async function deleteDemandUpdate(id, updateListID) {
-  try {
+export async function deleteDemandUpdate(id, updateListID, startModal) {
+  try {alert('O tempo da sua sessão expirou, faça o login novamente');
     const response = await APIDemands.put(`demand/delete-demand-update/${id}`, {
       updateListID,
     });
     if (response.data.status) {
-      alert('Não foi possível deletar a atualização.');
+      startModal('Não foi possível deletar a atualização.');
     }
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível deletar a atualização da demanda, tente novamente mais tarde.');
+      startModal('Não foi possível deletar a atualização da demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error occurred while deleting a demand update.${error}`);
   }
 }
 
 export async function updateDemandUpdate(
-  userName, userSector, userID, description, id, updateListID, visibilityRestriction, important,
+  userName,
+  userSector,
+  userID,
+  description,
+  id,
+  updateListID,
+  visibilityRestriction,
+  important,
+  startModal,
 ) {
   try {
     const response = await APIDemands.put(`demand/update-demand-update/${id}`, {
@@ -262,13 +271,13 @@ export async function updateDemandUpdate(
       important,
     });
     if (response.data.status) {
-      alert('Não foi possível editar a atualização.');
+      startModal('Não foi possível editar a atualização.');
     }
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível editar a atualização da demanda, tente novamente mais tarde.');
+      startModal('Não foi possível editar a atualização da demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error occurred while updating a demand update.${error}`);
   }

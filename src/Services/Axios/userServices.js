@@ -2,15 +2,15 @@ import {
   APIUsers, APIDemands, APIClients, APISectors,
 } from './baseService/index';
 
-export async function getUser(url) {
+export async function getUser(url, startModal) {
   try {
     const response = await APIUsers.get(url);
     return response;
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível carregar o usuário, tente novamente mais tarde.');
+      startModal('Não foi possível carregar o usuário, tente novamente mais tarde.');
     }
     console.error(error);
   }
@@ -18,7 +18,7 @@ export async function getUser(url) {
 }
 
 export async function postUser(
-  inputName, inputEmail, inputRole, inputSector, inputPassword,
+  inputName, inputEmail, inputRole, inputSector, inputPassword, startModal,
 ) {
   try {
     await APIUsers.post('signup', {
@@ -30,7 +30,7 @@ export async function postUser(
     });
   } catch (error) {
     if (error.response?.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response?.status !== 401) {
       console.error(`An unexpected error ocourred while registering a new user.${error}`);
       alert('Email já cadastrado.');
@@ -39,7 +39,7 @@ export async function postUser(
 }
 
 export async function loginUser(
-  inputEmail, inputPassword,
+  inputEmail, inputPassword, startModal,
 ) {
   try {
     const response = await APIUsers.post('login', {
@@ -47,7 +47,7 @@ export async function loginUser(
       pass: inputPassword,
     });
     if (response.data.message) {
-      alert('Email e/ou senha inválidos.');
+      startModal('Email e/ou senha inválidos.');
     } else {
       APIUsers.defaults.headers = { 'x-access-token': response.data.token };
       APIClients.defaults.headers = { 'x-access-token': response.data.token };
@@ -56,14 +56,14 @@ export async function loginUser(
     }
     return response.data;
   } catch (error) {
-    alert('Não foi possivel fazer login. Tente novamente mais tarde.');
+    startModal('Não foi possivel fazer login. Tente novamente mais tarde.');
     console.error(error);
     return null;
   }
 }
 
 export const updateUser = async (
-  inputName, inputEmail, inputRole, inputSector, id,
+  inputName, inputEmail, inputRole, inputSector, id, startModal,
 ) => {
   try {
     await APIUsers.put(`/users/update/${id}`, {
@@ -75,22 +75,22 @@ export const updateUser = async (
     alert('Usuário atualizado com sucesso!');
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possivel atualizar o usuário. Tente novamente mais tarde.');
+      startModal('Não foi possivel atualizar o usuário. Tente novamente mais tarde.');
     }
     console.error(`An unexpected error occurred while updating the user data.${error}`);
   }
 };
 
-export async function deleteUser(id) {
+export async function deleteUser(id, startModal) {
   try {
     await APIUsers.delete(`/users/delete/${id}`);
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert(`Não foi possivel deletar o usuário.\n${error}`);
+      startModal(`Não foi possivel deletar o usuário.\n${error}`);
     }
     console.error(error);
   }

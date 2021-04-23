@@ -12,6 +12,7 @@ import SelectedCategories from '../../Components/SelectedCategories';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 import ModalMessage from '../../Components/ModalMessage';
+import { useProfileUser } from '../../Context';
 
 const UpdateDemandsScreen = () => {
   const [show, setShow] = useState(false);
@@ -32,9 +33,10 @@ const UpdateDemandsScreen = () => {
   const handleCloseMessage = () => setShowMessage(false);
   const handleShowMessage = () => setShowMessage(true);
   const { id } = useParams();
+  const { startModal } = useProfileUser();
 
   const getClientFromApi = async (client) => {
-    await getClients(`clients/${client}`)
+    await getClients(`clients/${client}`, startModal)
       .then((response) => {
         const { data } = response;
         setClientName(data?.name);
@@ -42,7 +44,7 @@ const UpdateDemandsScreen = () => {
   };
 
   const getSectorFromApi = async (sector) => {
-    await getSector(`sector/${sector}`)
+    await getSector(`sector/${sector}`, startModal)
       .then((response) => {
         const { data } = response;
         setSectorName(data?.name);
@@ -50,7 +52,7 @@ const UpdateDemandsScreen = () => {
   };
 
   const getDemandsFromApi = async () => {
-    await getDemands(`demand/${id}`)
+    await getDemands(`demand/${id}`, startModal)
       .then((response) => {
         const { data } = response;
         setName(data?.name);
@@ -99,7 +101,7 @@ const UpdateDemandsScreen = () => {
   const submit = () => {
     if (validateInputs()) {
       updateDemand(
-        name, description, process, categoriesIDs, sectorID, userID, clientID, id,
+        name, description, process, categoriesIDs, sectorID, userID, clientID, id, startModal,
       );
       setMessage('Demanda editada com sucesso!');
       handleShowMessage();

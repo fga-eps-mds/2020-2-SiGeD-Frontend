@@ -16,7 +16,7 @@ import ConfirmDemandModal from '../ConfirmDemandModal';
 
 const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
   const history = useHistory();
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -47,7 +47,7 @@ const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
   };
 
   const DeactivateClient = async () => {
-    await toggleStatus(client._id);
+    await toggleStatus(client._id, startModal);
     getClientsFromAPI();
   };
 

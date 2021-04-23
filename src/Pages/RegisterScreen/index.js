@@ -8,7 +8,7 @@ import { useProfileUser } from '../../Context';
 import ModalMessage from '../../Components/ModalMessage';
 
 const RegisterScreen = () => {
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const history = useHistory();
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
@@ -29,7 +29,8 @@ const RegisterScreen = () => {
         inputRegisterUserEmail,
         englishRole,
         userSectorID,
-        inputRegisterUserPassword);
+        inputRegisterUserPassword,
+        startModal);
       setMessage('Usuário cadastrado com sucesso!');
       handleShowMessage();
       return history.push('/usuarios');

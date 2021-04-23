@@ -12,7 +12,7 @@ import ConfirmDemandModal from '../ConfirmDemandModal';
 const DataList = ({
   content, getContent, axiosDelete, updateContent, backgroundColor, color, type,
 }) => {
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -36,7 +36,7 @@ const DataList = ({
   };
 
   const deleteContent = async () => {
-    await axiosDelete(content._id);
+    await axiosDelete(content._id, startModal);
     getContent();
   };
 

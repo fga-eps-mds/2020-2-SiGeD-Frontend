@@ -5,6 +5,7 @@ import { UserFormsColumnText, Dropdown } from './Style';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import DropdownComponent from '../DropdownComponent';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const UserForms = ({
   setInputName,
@@ -19,9 +20,10 @@ const UserForms = ({
   sectors,
 }) => {
   const [filterSector, setFilterSector] = useState([]);
+  const { startModal } = useProfileUser();
 
   const getSectorsFromApi = async () => {
-    await getSectors()
+    await getSectors(startModal)
       .then((response) => {
         setSectors(response?.data);
         setInputSector(response?.data[0]?.name);

@@ -5,6 +5,7 @@ import colors from '../../Constants/colors';
 import TinyButton from '../TinyButton';
 import { ForwardDiv, ForwardIcon } from './Style';
 import ModalMessage from '../ModalMessage';
+import { useProfileUser } from '../../Context';
 
 const SendDemandModal = ({
   sectorOption, demand, getDemandApi, sectorsResponse, changeState, setChangeState,
@@ -16,6 +17,7 @@ const SendDemandModal = ({
   const [message, setMessage] = useState('');
   const handleCloseMessage = () => setShowMessage(false);
   const handleShowMessage = () => setShowMessage(true);
+  const { startModal } = useProfileUser();
 
   const sectorOptionByID = sectorsResponse?.filter(
     (sectorByID) => sectorByID.name === sectorOption,
@@ -32,7 +34,7 @@ const SendDemandModal = ({
   };
 
   const submit = () => {
-    forwardDemand(sectorOptionByID[0]?._id, demand._id);
+    forwardDemand(sectorOptionByID[0]?._id, demand._id, startModal);
     getDemandApi();
     setChangeState(!changeState);
   };

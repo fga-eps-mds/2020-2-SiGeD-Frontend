@@ -13,6 +13,7 @@ import {
 import { DropDiv, ContentBox } from '../../Components/GenericListScreen/Style';
 import { getClients } from '../../Services/Axios/clientServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
+import { useProfileUser } from '../../Context';
 
 const ClientProfileScreen = () => {
   const [sectors, setSectors] = useState([]);
@@ -28,14 +29,15 @@ const ClientProfileScreen = () => {
   const [demands, setDemands] = useState([]);
   const [client, setClient] = useState('');
   const { id } = useParams();
+  const { startModal } = useProfileUser();
 
   const getDemandsFromApi = async () => {
-    await getDemands('demand')
+    await getDemands('demand', startModal)
       .then((response) => setDemands(response?.data));
   };
 
   const getClientFromApi = async () => {
-    getClients(`clients/${id}`)
+    getClients(`clients/${id}`, startModal)
       .then((response) => {
         const { data } = response;
         setInputName(data.name);
@@ -50,7 +52,7 @@ const ClientProfileScreen = () => {
   };
 
   const getSectorsFromApi = async () => {
-    await getSectors()
+    await getSectors(startModal)
       .then((response) => {
         setSectors(response.data);
       });

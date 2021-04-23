@@ -35,21 +35,21 @@ const ViewDemandsScreen = () => {
   const [flag, setFlag] = useState(false);
   const [changeState, setChangeState] = useState(false);
   const [message, setMessage] = useState('');
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const { id } = useParams();
 
   const getClientApi = async (clientID) => {
-    await getClients(`clients/${clientID}`)
+    await getClients(`clients/${clientID}`, startModal)
       .then((response) => setClient(response?.data));
   };
 
   const getUserApi = async (paramUserID) => {
-    await getUser(`users/${paramUserID}`)
+    await getUser(`users/${paramUserID}`, startModal)
       .then((response) => { setUserDemand(response?.data); });
   };
 
   const getDemandApi = async () => {
-    await getDemands(`demand/${id}`)
+    await getDemands(`demand/${id}`, startModal)
       .then((response) => {
         const { data } = response;
         setDemand(data);
@@ -59,7 +59,7 @@ const ViewDemandsScreen = () => {
   };
 
   const getSectorsApi = async () => {
-    await getSectors()
+    await getSectors(startModal)
       .then((response) => setSectorsResponse(response.data))
       .catch((err) => {
         console.error(`An unexpected error ocourred while getting sectors. ${err}`);
@@ -218,6 +218,7 @@ const ViewDemandsScreen = () => {
               show={show}
               handleClose={handleClose}
               message={message}
+              startModal={startModal}
             />
           </ButtonDiv>
         </CardsContainer>
@@ -267,6 +268,7 @@ const ViewDemandsScreen = () => {
             show={show}
             handleClose={handleClose}
             message={message}
+            startModal={startModal}
           />
         </MobileButtonDiv>
       </Main>

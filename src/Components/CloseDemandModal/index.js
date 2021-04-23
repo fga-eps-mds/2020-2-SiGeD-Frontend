@@ -5,7 +5,7 @@ import TinyButton from '../TinyButton';
 import RedirectListButton from '../RedirectButton';
 
 const CloseDemandModal = ({
-  id, show, handleClose, message,
+  id, show, handleClose, message, startModal,
 }) => (
   <Modal show={show} onHide={handleClose}>
     <Modal.Header closeButton>
@@ -28,7 +28,7 @@ const CloseDemandModal = ({
         redirectTo="/demandas"
         type="primary"
         title="Confirmar"
-        click={() => { toggleDemand(id); handleClose(); }}
+        click={() => { toggleDemand(id, startModal); handleClose(); }}
         style={{
           backgroundColor: colors.primary,
           width: '20%',

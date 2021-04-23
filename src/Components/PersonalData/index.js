@@ -21,9 +21,10 @@ const PersonalData = ({ user, getUsers }) => {
   const handleClose = () => setShow(false);
   const [boxState, setBoxState] = useState(false);
   const [userSector, setUserSector] = useState([]);
+  const { startModal } = useProfileUser();
 
   const getSectorFromAPI = (id) => {
-    getSector(`sector/${id}`)
+    getSector(`sector/${id}`, startModal)
       .then((response) => setUserSector(response.data));
   };
 
@@ -34,8 +35,8 @@ const PersonalData = ({ user, getUsers }) => {
   };
 
   const ClickDeleteUser = () => {
-    deleteUser(user._id);
-    getUsers();
+    deleteUser(user._id, startModal);
+    getUsers(startModal);
   };
 
   useEffect(() => {

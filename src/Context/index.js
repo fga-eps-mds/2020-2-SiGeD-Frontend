@@ -14,6 +14,10 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [token, setToken] = useState();
   const [user, setUser] = useState();
+  const [message, setMessage] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
+  const handleCloseMessage = () => setShowMessage(false);
+  const handleShowMessage = () => setShowMessage(true);
 
   useEffect(() => {
     const storagedToken = localStorage.getItem('@App:token');
@@ -55,12 +59,22 @@ const UserProvider = ({ children }) => {
     }
   };
 
+  const startModal = (text) => {
+    setMessage(text);
+    handleShowMessage();
+  };
+
   return (
     <UserContext.Provider value={{
-      token, setToken, user, setUser, handleLogin, handleChangePassword,
+      token, setToken, user, setUser, handleLogin, startModal, handleChangePassword,
     }}
     >
       { children }
+      <ModalMessage
+        show={showMessage}
+        handleClose={handleCloseMessage}
+        message={message}
+      />
     </UserContext.Provider>
   );
 };

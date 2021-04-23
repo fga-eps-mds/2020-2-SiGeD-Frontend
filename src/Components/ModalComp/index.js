@@ -4,6 +4,7 @@ import {
   Line, DivName, DivColor, DivDescription, P1, Input, TextArea, Footer, Title,
 } from './Style';
 import TinyButton from '../TinyButton';
+import { useProfileUser } from '../../Context';
 
 const ModalComp = ({
   show, operation, idName, idDescription, idColor, id, getContent, handleClose, type,
@@ -13,6 +14,7 @@ const ModalComp = ({
   const [description, setDescription] = useState(idDescription);
   const [color, setColor] = useState(idColor);
   const [valid, setValid] = useState(true);
+  const { startModal } = useProfileUser();
 
   useEffect(() => {
     if (!name || !description) {
@@ -28,14 +30,14 @@ const ModalComp = ({
     // Criar
     if (operation === 'Nova ') {
       if (color) {
-        await createContent(name, description, color);
+        await createContent(name, description, color, startModal);
       } else {
-        await createContent(name, description);
+        await createContent(name, description, startModal);
       }
     } else if (color) {
-      await updateContent(name, description, color, id);
+      await updateContent(name, description, color, id, startModal);
     } else {
-      await updateContent(name, description, id);
+      await updateContent(name, description, id, startModal);
     }
 
     if (valid) {
