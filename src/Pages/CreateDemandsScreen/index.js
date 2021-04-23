@@ -11,17 +11,12 @@ import UserDropdown from '../../Components/UserDropdown';
 import { getClients } from '../../Services/Axios/clientServices';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
-import ModalMessage from '../../Components/ModalMessage';
 import { useProfileUser } from '../../Context';
 
 const CreateDemandsScreen = () => {
   const [show, setShow] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const [message, setMessage] = useState('');
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const handleCloseMessage = () => setShowMessage(false);
-  const handleShowMessage = () => setShowMessage(true);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [process, setProcess] = useState('');
@@ -57,8 +52,7 @@ const CreateDemandsScreen = () => {
     if (!alreadySelected) {
       setSelectedCategories([...selectedCategories, category]);
     } else {
-      setMessage('A categoria escolhida ja foi selecionada');
-      handleShowMessage();
+      startModal('A categoria escolhida ja foi selecionada');
     }
   };
 
@@ -71,8 +65,7 @@ const CreateDemandsScreen = () => {
 
   const submit = () => {
     if (validateInputs()) {
-      setMessage('Demanda criada com sucesso!');
-      handleShowMessage();
+      startModal('Demanda criada com sucesso!');
       createDemand(name, description, process, categoriesIDs, sectorID, user._id, clientID);
       setProcess('');
       setDescription('');
@@ -82,8 +75,7 @@ const CreateDemandsScreen = () => {
       setClientID('');
       setCategoriesIDs([]);
     } else {
-      setMessage('Preencha todos os campos antes de cadastrar uma nova demanda.');
-      handleShowMessage();
+      startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
     }
   };
 
@@ -142,11 +134,6 @@ const CreateDemandsScreen = () => {
         handleClose={handleClose}
         submit={submit}
         actionName="Você tem certeza que gostaria de criar essa demanda?"
-      />
-      <ModalMessage
-        show={showMessage}
-        handleClose={handleCloseMessage}
-        message={message}
       />
     </Main>
   );

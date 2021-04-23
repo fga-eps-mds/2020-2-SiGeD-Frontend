@@ -6,7 +6,6 @@ import { getUser, updateUser } from '../../Services/Axios/userServices';
 import { getSector } from '../../Services/Axios/sectorServices';
 import UserForms from '../../Components/UserForms';
 import { useProfileUser } from '../../Context';
-import ModalMessage from '../../Components/ModalMessage';
 
 const UserUpdateScreen = () => {
   const { user, startModal } = useProfileUser();
@@ -17,10 +16,6 @@ const UserUpdateScreen = () => {
   const [inputSector, setInputSector] = useState('');
   const [inputSectorID, setInputSectorID] = useState('');
   const [sectors, setSectors] = useState([]);
-  const [showMessage, setShowMessage] = useState(false);
-  const [message, setMessage] = useState('');
-  const handleCloseMessage = () => setShowMessage(false);
-  const handleShowMessage = () => setShowMessage(true);
   const { id } = useParams();
 
   const getSectorFromApi = async (sectorID) => {
@@ -48,14 +43,13 @@ const UserUpdateScreen = () => {
     setInputSectorID(sectors?.find((sector) => sector.name === inputSector)?._id);
   }, [inputSector]);
 
-  const submit = () => {
+  const submit = async () => {
     if (validateSignUp(inputEmail, inputName)) {
-      updateUser(inputName, inputEmail, inputRole, inputSectorID, id);
-    } else {
-      alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
+      await updateUser(inputName, inputEmail, inputRole, inputSectorID, id, startModal);
+      startModal('Usuário atualizado com sucesso!');
+      return history.push('/usuarios');
     }
-    setMessage("Nome deve ser completo, sem números. Email deve conter o formato 'nome@email.com'. Senha deve conter no minimo 6 caracteres. As senhas devem ser iguais!");
-    handleShowMessage();
+    startModal("Nome deve ser completo, sem números. Email deve conter o formato 'nome@email.com'. Senha deve conter no minimo 6 caracteres. As senhas devem ser iguais!");
     return undefined;
   };
 
@@ -93,11 +87,6 @@ const UserUpdateScreen = () => {
               </GenericRegisterScreen>
             )
             : <Redirect to="/nao-autorizado" />}
-          <ModalMessage
-            show={showMessage}
-            handleClose={handleCloseMessage}
-            message={message}
-          />
         </>
       )
         : <h1>Carregando...</h1>}

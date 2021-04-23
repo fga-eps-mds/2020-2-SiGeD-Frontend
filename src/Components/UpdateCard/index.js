@@ -12,7 +12,6 @@ import {
   DemandDescription, BottomSide, CreatedAt, UserIcon,
   LockIcon, TrashIcon, IconsContainer, HighPriorityIcon,
 } from './Style';
-import ModalMessage from '../ModalMessage';
 
 const UpdateCard = ({
   update, sector, demand, setChangeState, changeState,
@@ -22,10 +21,6 @@ const UpdateCard = ({
   const [confirm, setConfirm] = useState(false);
   const handleClose = () => setShow(false);
   const handleConfirm = () => setConfirm(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const [message, setMessage] = useState('');
-  const handleCloseMessage = () => setShowMessage(false);
-  const handleShowMessage = () => setShowMessage(true);
   const { user, startModal } = useProfileUser();
 
   const deleteUpdate = async () => {
@@ -40,8 +35,7 @@ const UpdateCard = ({
     const dateFormatTimeLimitData = moment(timeLimitData, 'YYYY-MM-DDTHH:mm:ss').toDate();
 
     if (moment(dataNow).isAfter(dateFormatTimeLimitData)) {
-      setMessage('Não é possível apagar essa atualização.');
-      handleShowMessage();
+      startModal('Não é possível apagar essa atualização.');
     } else {
       setConfirm(true);
     }
@@ -51,8 +45,7 @@ const UpdateCard = ({
     if (user._id === update.userID) {
       setShow(true);
     } else {
-      setMessage('Você não pode editar essa atualização.');
-      handleShowMessage();
+      startModal('Você não pode editar essa atualização.');
     }
   };
 
@@ -60,8 +53,7 @@ const UpdateCard = ({
     if (user._id === update.userID) {
       validateDelete();
     } else {
-      setMessage('Você não pode apagar essa atualização.');
-      handleShowMessage();
+      startModal('Você não pode apagar essa atualização.');
     }
   };
 
@@ -133,11 +125,6 @@ const UpdateCard = ({
         handleClose={handleConfirm}
         submit={deleteUpdate}
         actionName=" deletar essa atualização d"
-      />
-      <ModalMessage
-        show={showMessage}
-        handleClose={handleCloseMessage}
-        message={message}
       />
     </Card>
   );

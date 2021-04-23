@@ -5,7 +5,6 @@ import { validateSignUp } from '../../Utils/validations';
 import { postUser } from '../../Services/Axios/userServices';
 import UserForms from '../../Components/UserForms';
 import { useProfileUser } from '../../Context';
-import ModalMessage from '../../Components/ModalMessage';
 
 const RegisterScreen = () => {
   const { user, startModal } = useProfileUser();
@@ -16,10 +15,6 @@ const RegisterScreen = () => {
   const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
   const [sectors, setSectors] = useState([]);
   const [englishRole, setEnglishRole] = useState('admin');
-  const [showMessage, setShowMessage] = useState(false);
-  const [message, setMessage] = useState('');
-  const handleCloseMessage = () => setShowMessage(false);
-  const handleShowMessage = () => setShowMessage(true);
 
   const submit = async () => {
     if (validateSignUp(inputRegisterUserEmail,
@@ -31,12 +26,10 @@ const RegisterScreen = () => {
         userSectorID,
         inputRegisterUserPassword,
         startModal);
-      setMessage('Usuário cadastrado com sucesso!');
-      handleShowMessage();
+      startModal('Usuário cadastrado com sucesso!');
       return history.push('/usuarios');
     }
-    setMessage("Nome deve ser completo, sem números. Email deve conter o formato 'nome@email.com'. Senha deve conter no minimo 6 caracteres. As senhas devem ser iguais!");
-    handleShowMessage();
+    startModal("Nome deve ser completo, sem números. Email deve conter o formato 'nome@email.com'. Senha deve conter no minimo 6 caracteres. As senhas devem ser iguais!");
     return undefined;
   };
 
@@ -90,11 +83,6 @@ const RegisterScreen = () => {
               </GenericRegisterScreen>
             )
             : <Redirect to="/nao-autorizado" />}
-          <ModalMessage
-            show={showMessage}
-            handleClose={handleCloseMessage}
-            message={message}
-          />
         </>
       )
         : <h1>Carregando...</h1>}

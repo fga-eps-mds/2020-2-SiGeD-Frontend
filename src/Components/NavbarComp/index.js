@@ -5,15 +5,12 @@ import { FiLogOut } from 'react-icons/fi';
 import styles from './Style';
 import { useProfileUser } from '../../Context';
 import { APIUsers } from '../../Services/Axios/baseService';
-import ModalMessage from '../ModalMessage';
 
 const NavbarComp = () => {
-  const { user, token, setToken } = useProfileUser();
+  const {
+    user, token, setToken, startModal,
+  } = useProfileUser();
   const [loading, setLoading] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const [message, setMessage] = useState('');
-  const handleCloseMessage = () => setShowMessage(false);
-  const handleShowMessage = () => setShowMessage(true);
 
   useEffect(() => {
     if (user) {
@@ -30,8 +27,7 @@ const NavbarComp = () => {
         setToken(localStorage.getItem('@App:token'));
         APIUsers.defaults.headers = null;
       } catch (error) {
-        setMessage('Não foi possivel realizar o logout.');
-        handleShowMessage();
+        startModal('Não foi possivel realizar o logout.');
         console.error(error);
       }
     };
@@ -77,11 +73,6 @@ const NavbarComp = () => {
                 </Nav>
               </Navbar.Collapse>
             )}
-          <ModalMessage
-            show={showMessage}
-            handleClose={handleCloseMessage}
-            message={message}
-          />
         </Navbar>
       );
     }
@@ -117,11 +108,6 @@ const NavbarComp = () => {
               </Nav>
             </Navbar.Collapse>
           )}
-        <ModalMessage
-          show={showMessage}
-          handleClose={handleCloseMessage}
-          message={message}
-        />
       </Navbar>
     );
   }

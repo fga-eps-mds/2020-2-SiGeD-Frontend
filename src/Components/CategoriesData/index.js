@@ -8,16 +8,11 @@ import {
 } from './Style';
 import ModalComp from '../ModalComp';
 import { useProfileUser } from '../../Context';
-import ModalMessage from '../ModalMessage';
 
 const CategoriesData = ({ category, getCategories }) => {
   const { user, startModal } = useProfileUser();
   const [boxState, setBoxState] = useState(false);
   const [modalState, setModalState] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const [message, setMessage] = useState('');
-  const handleCloseMessage = () => setShowMessage(false);
-  const handleShowMessage = () => setShowMessage(true);
 
   const toggleBox = () => {
     setModalState(true);
@@ -37,8 +32,7 @@ const CategoriesData = ({ category, getCategories }) => {
     try {
       await axios.delete(`http://localhost:3003/category/delete/${category._id}`, startModal);
     } catch (error) {
-      setMessage('Não foi possível deletar a categoria, tente novamente mais tarde.');
-      handleShowMessage();
+      startModal('Não foi possível deletar a categoria, tente novamente mais tarde.');
     }
   };
 
@@ -94,11 +88,6 @@ const CategoriesData = ({ category, getCategories }) => {
         </Box>
       ) : null}
       {modalState ? <ModalComp show={modalState} type="Editar " idName={category.name} idDescription={category.description} getCategories={getCategories} handleClose={toggleModal} id={category._id} idColor={category.color} /> : null}
-      <ModalMessage
-        show={showMessage}
-        handleClose={handleCloseMessage}
-        message={message}
-      />
     </Content>
   );
 };

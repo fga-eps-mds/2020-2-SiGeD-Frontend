@@ -11,7 +11,6 @@ import DemandsDescription from '../../Components/DemandsDescription';
 import SelectedCategories from '../../Components/SelectedCategories';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
-import ModalMessage from '../../Components/ModalMessage';
 import { useProfileUser } from '../../Context';
 
 const UpdateDemandsScreen = () => {
@@ -28,10 +27,6 @@ const UpdateDemandsScreen = () => {
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientName, setClientName] = useState('');
   const [sectorName, setSectorName] = useState('');
-  const [showMessage, setShowMessage] = useState(false);
-  const [message, setMessage] = useState('');
-  const handleCloseMessage = () => setShowMessage(false);
-  const handleShowMessage = () => setShowMessage(true);
   const { id } = useParams();
   const { startModal } = useProfileUser();
 
@@ -86,8 +81,7 @@ const UpdateDemandsScreen = () => {
     if (!alreadySelected) {
       setSelectedCategories([...selectedCategories, category]);
     } else {
-      setMessage('A categoria escolhida ja foi selecionada.');
-      handleShowMessage();
+      startModal('A categoria escolhida ja foi selecionada.');
     }
   };
 
@@ -103,11 +97,9 @@ const UpdateDemandsScreen = () => {
       updateDemand(
         name, description, process, categoriesIDs, sectorID, userID, clientID, id, startModal,
       );
-      setMessage('Demanda editada com sucesso!');
-      handleShowMessage();
+      startModal('Demanda editada com sucesso!');
     } else {
-      setMessage('Preencha todos os campos antes de cadastrar uma nova demanda.');
-      handleShowMessage();
+      startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
     }
   };
 
@@ -163,11 +155,6 @@ const UpdateDemandsScreen = () => {
         handleClose={handleClose}
         submit={submit}
         actionName=" editar "
-      />
-      <ModalMessage
-        show={showMessage}
-        handleClose={handleCloseMessage}
-        message={message}
       />
     </Main>
   );

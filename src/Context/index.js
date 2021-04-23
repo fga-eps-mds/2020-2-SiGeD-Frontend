@@ -64,6 +64,12 @@ const UserProvider = ({ children }) => {
     handleShowMessage();
   };
 
+  const handleLogin = async (email, password) => {
+    const userInfo = await loginUser(email, password, startModal);
+    setToken(userInfo.token);
+    setUser(userInfo.profile);
+  };
+
   return (
     <UserContext.Provider value={{
       token, setToken, user, setUser, handleLogin, startModal, handleChangePassword,

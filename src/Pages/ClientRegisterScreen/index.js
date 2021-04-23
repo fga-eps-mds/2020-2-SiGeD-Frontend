@@ -4,7 +4,6 @@ import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
 import { postClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
-import ModalMessage from '../../Components/ModalMessage';
 import { useProfileUser } from '../../Context';
 
 const ClientRegisterScreen = () => {
@@ -17,10 +16,6 @@ const ClientRegisterScreen = () => {
   const [registerClientInputSecondaryPhone, setregisterClientInputSecondaryPhone] = useState('');
   const [officeOption, setOfficeOption] = useState('Policial');
   const [registerLocation, setRegisterLocation] = useState('');
-  const [showMessage, setShowMessage] = useState(false);
-  const [message, setMessage] = useState('');
-  const handleCloseMessage = () => setShowMessage(false);
-  const handleShowMessage = () => setShowMessage(true);
   const { startModal } = useProfileUser();
 
   const submit = async () => {
@@ -36,8 +31,7 @@ const ClientRegisterScreen = () => {
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }
-    setMessage(validMessage.join('\n'));
-    handleShowMessage();
+    startModal(validMessage.join('\n'));
     return undefined;
   };
 
@@ -80,11 +74,6 @@ const ClientRegisterScreen = () => {
         setOfficeOption={setOfficeOption}
         setLocationOption={setRegisterLocation}
         locationOption={registerLocation}
-      />
-      <ModalMessage
-        show={showMessage}
-        handleClose={handleCloseMessage}
-        message={message}
       />
     </GenericRegisterScreen>
   );

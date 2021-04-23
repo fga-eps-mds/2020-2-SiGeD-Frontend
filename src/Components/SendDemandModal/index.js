@@ -4,7 +4,6 @@ import { forwardDemand } from '../../Services/Axios/demandsServices';
 import colors from '../../Constants/colors';
 import TinyButton from '../TinyButton';
 import { ForwardDiv, ForwardIcon } from './Style';
-import ModalMessage from '../ModalMessage';
 import { useProfileUser } from '../../Context';
 
 const SendDemandModal = ({
@@ -13,10 +12,6 @@ const SendDemandModal = ({
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [showMessage, setShowMessage] = useState(false);
-  const [message, setMessage] = useState('');
-  const handleCloseMessage = () => setShowMessage(false);
-  const handleShowMessage = () => setShowMessage(true);
   const { startModal } = useProfileUser();
 
   const sectorOptionByID = sectorsResponse?.filter(
@@ -26,8 +21,7 @@ const SendDemandModal = ({
   const forwardDemandFunct = () => {
     if (demand.sectorHistory[demand.sectorHistory.length - 1].sectorID
       === sectorOptionByID[0]?._id) {
-      setMessage('A demanda não pode ser encaminhada para o setor atual dela.');
-      handleShowMessage();
+      startModal('A demanda não pode ser encaminhada para o setor atual dela.');
     } else {
       handleShow();
     }
@@ -83,11 +77,6 @@ const SendDemandModal = ({
           />
         </Modal.Footer>
       </Modal>
-      <ModalMessage
-        show={showMessage}
-        handleClose={handleCloseMessage}
-        message={message}
-      />
     </>
   );
 };
