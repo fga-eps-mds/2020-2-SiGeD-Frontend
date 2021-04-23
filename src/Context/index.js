@@ -7,7 +7,7 @@ import React, {
 import {
   APIClients, APIUsers, APIDemands, APISectors,
 } from '../Services/Axios/baseService';
-import { loginUser } from '../Services/Axios/userServices';
+import { loginUser, changePassword } from '../Services/Axios/userServices';
 
 const UserContext = createContext();
 
@@ -48,9 +48,16 @@ const UserProvider = ({ children }) => {
     setUser(userInfo?.profile);
   };
 
+  const handleChangePassword = async (password) => {
+    const userInfo = await changePassword(user._id, password);
+    if (userInfo) {
+      setUser(userInfo);
+    }
+  };
+
   return (
     <UserContext.Provider value={{
-      token, setToken, user, setUser, handleLogin,
+      token, setToken, user, setUser, handleLogin, handleChangePassword,
     }}
     >
       { children }

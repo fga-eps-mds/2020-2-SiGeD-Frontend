@@ -1,46 +1,17 @@
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
-export const styles = {
-  background: {
-    width: '100vw',
-    height: '100vh',
-    backgroundColor: colors.background,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
+export const Title = styled.div`
+    font-family: Montserrat;
+    font-size: 30px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
 
-  center: {
-    width: '55vh',
-    height: '55vh',
-    backgroundColor: 'white',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    boxShadow: '0px 4px 4px rgba(0,0,0,0.25)',
-    borderRadius: '15px',
-    marginTop: '15vh',
-    marginBottom: '10vh',
-
-  },
-
-  access: {
-    fontFamily: 'Montserrat',
-    fontSize: '48px',
-    textAlign: 'center',
-    fontStyle: 'normal',
-    fontWeight: 400,
-    letterSpacing: 0,
-    marginBottom: '5vh',
-    marginTop: '5vh',
-    textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-  },
-};
-
-export const Background = styled.div` 
+export const BackgroundContainer = styled.div` 
   width: 100vw;
   height: 100vh;
   background-color: ${colors.background};
@@ -59,7 +30,7 @@ export const Background = styled.div`
   }
 `;
 
-export const Center = styled.div`
+export const CenterContainer = styled.div`
     width: 55vh;
     height: 55vh;
     background-color: ${colors.secondary};
@@ -79,4 +50,33 @@ export const Center = styled.div`
     box-shadow: 0;
     border-radius: 0;
   }
+`;
+
+export const InputDiv = styled.div`
+  border: 2px solid #1F3541;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 77%;
+  height: 5vh;
+  margin: 6px;
+  outline: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: Montserrat;
+`;
+
+export const InputIcon = styled.div`
+  height: 50%;
+  display: flex;
+  margin-left: 0%;
+`;
+
+export const Input = styled.input`
+  outline: 0;
+  width: 80%;
+  display: flex;
+  border: none;
+  margin-left: 5%;
 `;

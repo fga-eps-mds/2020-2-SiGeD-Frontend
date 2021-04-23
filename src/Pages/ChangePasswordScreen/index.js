@@ -1,43 +1,50 @@
 import { React, useState } from 'react';
 import { FaLock } from 'react-icons/fa';
 import BigButton from '../../Components/BigButton';
-import LoginInput from '../../Components/LoginInput';
-import { styles, Background, Center } from './Style';
+import { useProfileUser } from '../../Context';
+import {
+  Title, BackgroundContainer, CenterContainer, InputDiv, InputIcon, Input,
+} from './Style';
 
 const ChangePasswordScreen = () => {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
-
-  function changePassword(a, b) {
-    console.log(a, b);
-  }
+  const { handleChangePassword } = useProfileUser();
 
   return (
-    <Background>
-      <Center>
-        <h1 style={{ ...styles.access, marginBottom: '4vh' }}>Altere sua senha</h1>
+    <BackgroundContainer>
+      <CenterContainer>
+        <Title>Altere sua senha</Title>
 
         <p style={{ color: 'red', padding: 0, visibility: password === confirmPassword && 'hidden' }}>As senhas são diferentes</p>
 
-        <LoginInput
-          title="Senha"
-          type="password"
-          icon={<FaLock />}
-          onChange={(text) => setPassword(text.target.value)}
-          value={password}
-        />
+        <InputDiv>
+          <InputIcon>
+            <FaLock />
+          </InputIcon>
+          <Input
+            placeholder="Senha"
+            type="password"
+            onChange={(text) => setPassword(text.target.value)}
+            value={password || ''}
+          />
+        </InputDiv>
 
-        <LoginInput
-          title="Confirmar Senha"
-          type="password"
-          icon={<FaLock />}
-          onChange={(text) => setConfirmPassword(text.target.value)}
-          value={confirmPassword}
-        />
+        <InputDiv>
+          <InputIcon>
+            <FaLock />
+          </InputIcon>
+          <Input
+            placeholder="Confirmar Senha"
+            type="password"
+            onChange={(text) => setConfirmPassword(text.target.value)}
+            value={confirmPassword || ''}
+          />
+        </InputDiv>
 
-        <BigButton title="Salvar" type="primary" changeButton={() => changePassword(password, confirmPassword)} />
-      </Center>
-    </Background>
+        <BigButton title="Salvar" type="primary" changeButton={() => handleChangePassword(password, confirmPassword)} />
+      </CenterContainer>
+    </BackgroundContainer>
   );
 };
 

@@ -113,3 +113,29 @@ export async function recoverPassword(
     }
   }
 }
+
+export async function changePassword(
+  id, pass,
+) {
+  try {
+    const response = await APIUsers.put(`change-password/${id}`, {
+      pass,
+    });
+    if (response.status === 400) {
+      alert('A senha deve conter pelo menos 6 caracteres');
+      console.error(response.data.error);
+      return null;
+    }
+    if (response.status === 404) {
+      alert('Houve um erro ao tentar alterar a senha. Tente novamente mais tarde.');
+      console.error(response.data.error);
+      return null;
+    }
+    alert('Senha alterada com sucesso.');
+    return response.data;
+  } catch (error) {
+    alert('Houve um erro ao tentar alterar a senha. Tente novamente mais tarde.');
+    console.error(error);
+    return null;
+  }
+}
