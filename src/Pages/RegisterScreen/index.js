@@ -24,7 +24,6 @@ const RegisterScreen = () => {
         inputRegisterUserEmail,
         englishRole,
         userSectorID,
-        inputRegisterUserPassword,
         startModal);
       startModal('Usuário cadastrado com sucesso!');
       return history.push({ pathname: '/usuarios', state: { newUser: 'new' } });

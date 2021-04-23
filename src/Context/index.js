@@ -8,6 +8,7 @@ import {
   APIClients, APIUsers, APIDemands, APISectors,
 } from '../Services/Axios/baseService';
 import { loginUser, changePassword } from '../Services/Axios/userServices';
+import ModalMessage from '../Components/ModalMessage';
 
 const UserContext = createContext();
 
@@ -46,12 +47,6 @@ const UserProvider = ({ children }) => {
     }
   }, [user]);
 
-  const handleLogin = async (email, password) => {
-    const userInfo = await loginUser(email, password);
-    setToken(userInfo?.token);
-    setUser(userInfo?.profile);
-  };
-
   const handleChangePassword = async (password) => {
     const userInfo = await changePassword(user._id, password);
     if (userInfo) {
@@ -66,8 +61,8 @@ const UserProvider = ({ children }) => {
 
   const handleLogin = async (email, password) => {
     const userInfo = await loginUser(email, password, startModal);
-    setToken(userInfo.token);
-    setUser(userInfo.profile);
+    setToken(userInfo?.token);
+    setUser(userInfo?.profile);
   };
 
   return (
