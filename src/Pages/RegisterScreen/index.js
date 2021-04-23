@@ -13,22 +13,17 @@ const RegisterScreen = () => {
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
   const [inputRegisterUserRole, setRegisterUserInputRole] = useState('Administrador(a)');
   const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
-  const [inputRegisterUserPassword, setRegisterUserInputPassword] = useState('');
-  const [inputRegisterUserConfirmPassword, setRegisterUserInputConfirmPassword] = useState('');
   const [sectors, setSectors] = useState([]);
   const [englishRole, setEnglishRole] = useState('admin');
 
   const submit = async () => {
     if (validateSignUp(inputRegisterUserEmail,
-      inputRegisterUserName,
-      inputRegisterUserPassword,
-      inputRegisterUserConfirmPassword)) {
+      inputRegisterUserName)) {
       const userSectorID = sectors?.find((sector) => sector.name === inputRegisterUserSector)._id;
       postUser(inputRegisterUserName,
         inputRegisterUserEmail,
         englishRole,
-        userSectorID,
-        inputRegisterUserPassword);
+        userSectorID);
       return history.push('/usuarios');
     }
     alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
@@ -36,8 +31,6 @@ const RegisterScreen = () => {
     setRegisterUserInputEmail('');
     setRegisterUserInputRole('');
     setRegisterUserInputSector('');
-    setRegisterUserInputPassword('');
-    setRegisterUserInputConfirmPassword('');
     return undefined;
   };
 
@@ -56,8 +49,6 @@ const RegisterScreen = () => {
     setRegisterUserInputEmail('');
     setRegisterUserInputRole('');
     setRegisterUserInputSector('');
-    setRegisterUserInputPassword('');
-    setRegisterUserInputConfirmPassword('');
   };
 
   if (!localStorage.getItem('@App:token')) {
@@ -89,10 +80,6 @@ const RegisterScreen = () => {
                   sectors={sectors}
                   setSectors={setSectors}
                   inputSector={inputRegisterUserSector}
-                  setInputPassword={setRegisterUserInputPassword}
-                  inputPassword={inputRegisterUserPassword}
-                  setInputConfirmPassword={setRegisterUserInputConfirmPassword}
-                  inputConfirmPassword={inputRegisterUserConfirmPassword}
                 />
               </GenericRegisterScreen>
             )

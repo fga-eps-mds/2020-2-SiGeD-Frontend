@@ -1,10 +1,11 @@
 import { React, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import BigButton from '../../Components/BigButton';
 import LoginInput from '../../Components/LoginInput';
 import { styles, Background, Center } from './Style';
 import { useProfileUser } from '../../Context';
+import colors from '../../Constants/colors';
 
 const LoginScreen = () => {
   const [emailReceived, setEmailReceived] = useState();
@@ -37,6 +38,7 @@ const LoginScreen = () => {
         />
 
         <BigButton title="Entrar" type="primary" changeButton={() => handleLogin(emailReceived, passwordReceived)} />
+        <Link to="/recuperar-senha" style={{ color: colors.navHeaders }}>Recuperar senha</Link>
       </Center>
     </Background>
   );
