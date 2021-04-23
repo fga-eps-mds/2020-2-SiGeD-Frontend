@@ -5,8 +5,8 @@ import {
 } from 'recharts';
 import { getDemandsStatistics, getCategories } from '../../Services/Axios/demandsServices';
 import {
-  Main, Title, Container, Card, CardTitle, TopDiv, MiddleDiv, BottomDiv, FiltersDiv, DropdownDiv,
-  BoldText, SearchDiv, TextLabel, DateInput,
+  Main, Title, Container, Card, CardTitle, TopDiv, MiddleDiv, FiltersDiv, DropdownDiv,
+  SearchDiv, TextLabel, DateInput,
 } from './Style';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
@@ -39,7 +39,9 @@ const StatisticScreen = () => {
   // Set Categories
   const getCategoriesFromApi = async () => {
     await getCategories('category')
-      .then((response) => setCategories([...categories, ...response.data]))
+      .then((response) => {
+        setCategories([...categories, ...response.data]);
+      })
       .catch((error) => {
         console.error(`An unexpected error ocourred while getting categories.${error}`);
       });
@@ -73,8 +75,8 @@ const StatisticScreen = () => {
       });
   };
 
-  const getSectorStatistics = async () => {
-    await getDemandsStatistics('statistic/sector')
+  const getSectorStatistics = async (id) => {
+    await getDemandsStatistics(`statistic/sector?id=${id}`)
       .then((response) => {
         const sectorGraph = [];
         response?.data.map((item) => {
@@ -97,15 +99,23 @@ const StatisticScreen = () => {
 
   // Call All API's
   useEffect(() => {
-    getCategoriesStatistics();
     getSectorsFromApi();
     getCategoriesFromApi();
-    getSectorStatistics();
+    getCategoriesStatistics(null);
+    getSectorStatistics(null);
   }, []);
 
   useEffect(() => {
-    getSectorStatistics();
+    getSectorStatistics(null);
   }, [loading]);
+
+  useEffect(() => {
+    getCategoriesStatistics(sectorID);
+  }, [sectorID]);
+
+  useEffect(() => {
+    getSectorStatistics(categoryID);
+  }, [categoryID]);
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -245,15 +255,6 @@ const StatisticScreen = () => {
             </ResponsiveContainer>
           </Card>
         </MiddleDiv>
-        <BottomDiv>
-          <BoldText>
-            Total de demands filtradas:
-            {console.log(sectorID)}
-            {console.log(categoryID)}
-            {/* {console.log(finalDate)} */}
-            {/* {console.log(startDate)} */}
-          </BoldText>
-        </BottomDiv>
       </Container>
     </Main>
   );
