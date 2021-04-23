@@ -14,28 +14,32 @@ import { getSectors } from '../../Services/Axios/sectorServices';
 
 const StatisticScreen = () => {
   const [sectors, setSectors] = useState(['Todas']);
+  const [loading, setLoading] = useState(true);
   const [sectorActive, setSectorActive] = useState('Todas');
   const [sectorID, setSectorID] = useState('');
   // const [pageState, setPageState] = useState(true);
-  const [demands, setDemands] = useState([]);
+  const [categoryStatistics, setCategoryStatistics] = useState([]);
+  const [sectorGraphData, setSectorGraphData] = useState([]);
+  // const [sectorStatistics, setSectorStatistics] = useState([]);
   const [categories, setCategories] = useState(['Todas']);
   const [categoryActive, setCategoryActive] = useState('Todas');
   const [categoryID, setCategoryID] = useState('');
-  const [startDate, setStartDate] = useState(new Date());
-  const [finalDate, setFinalDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
+  // const [finalDate, setFinalDate] = useState(new Date());
 
   // Set Sectors
   const getSectorsFromApi = async () => {
     await getSectors()
       .then((response) => {
         setSectors([...sectors, ...response.data]);
+        setLoading(false);
       });
   };
 
   // Set Categories
   const getCategoriesFromApi = async () => {
     await getCategories('category')
-      .then((response) => setCategories(response.data))
+      .then((response) => setCategories([...categories, ...response.data]))
       .catch((error) => {
         console.error(`An unexpected error ocourred while getting categories.${error}`);
       });
@@ -62,31 +66,47 @@ const StatisticScreen = () => {
   }, [categoryActive]);
 
   // Get statistics
-  const getStatistics = async () => {
-    await getDemandsStatistics('statistic/category')
+  const getCategoriesStatistics = async (id) => {
+    await getDemandsStatistics(`statistic/category?id=${id}`)
       .then((response) => {
-        setDemands(response?.data);
+        setCategoryStatistics(response?.data);
+      });
+  };
+
+  const getSectorStatistics = async () => {
+    await getDemandsStatistics('statistic/sector')
+      .then((response) => {
+        const sectorGraph = [];
+        response?.data.map((item) => {
+          sectors.map((sector) => {
+            if (item._id === sector?._id) {
+              const data = {
+                _id: sector._id,
+                name: sector.name,
+                total: item.total,
+              };
+              sectorGraph.push(data);
+            }
+            return true;
+          });
+          return true;
+        });
+        setSectorGraphData(sectorGraph);
       });
   };
 
   // Call All API's
   useEffect(() => {
-    getStatistics();
+    getCategoriesStatistics();
     getSectorsFromApi();
     getCategoriesFromApi();
+    getSectorStatistics();
   }, []);
 
-  // Temporary consts
-  const data = [
-    { name: 'Group A', value: 100 },
-    { name: 'Group B', value: 100 },
-    { name: 'Group C', value: 100 },
-    { name: 'Group D', value: 100 },
-    { name: 'Group E', value: 100 },
-    { name: 'Group F', value: 100 },
-    { name: 'Group G', value: 100 },
-    { name: 'Group H', value: 200 },
-  ];
+  useEffect(() => {
+    getSectorStatistics();
+  }, [loading]);
+
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
   return (
@@ -158,7 +178,7 @@ const StatisticScreen = () => {
                 </TextLabel>
                 <DateInput
                   type="date"
-                  onChange={(e) => setStartDate(e.target.value)}
+                  // onChange={(e) => setStartDate(e.target.value)}
                 />
               </DropdownDiv>
               <DropdownDiv
@@ -169,7 +189,7 @@ const StatisticScreen = () => {
                 </TextLabel>
                 <DateInput
                   type="date"
-                  onChange={(e) => setFinalDate(e.target.value)}
+                  // onChange={(e) => setFinalDate(e.target.value)}
                 />
               </DropdownDiv>
             </SearchDiv>
@@ -181,16 +201,16 @@ const StatisticScreen = () => {
             <ResponsiveContainer width="100%" height="90%">
               <PieChart width={400} height={300}>
                 <Pie
-                  data={data}
+                  data={sectorGraphData}
                   cx="50%"
                   cy="50%"
                   labelLine={false}
                   outerRadius={100}
                   fill="#8884d8"
-                  dataKey="value"
+                  dataKey="total"
                   label
                 >
-                  {data.map((entry, index) => (
+                  {sectorGraphData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
@@ -203,22 +223,22 @@ const StatisticScreen = () => {
             <CardTitle>Demandas por categoria</CardTitle>
             <ResponsiveContainer width="100%" height="90%">
               <BarChart
-                data={demands}
+                data={categoryStatistics}
                 margin={{
                   top: 5,
-                  right: 30,
-                  left: 20,
+                  right: 10,
+                  left: 2,
                   bottom: 5,
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="categorires[0].name" />
+                <XAxis dataKey="categories[0].name" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="count">
-                  {demands?.map((entry, index) => (
-                    <Cell key={index} fill={entry.categorires[0].color} />
+                <Bar dataKey="demandas">
+                  {categoryStatistics?.map((entry, index) => (
+                    <Cell key={index} fill={entry.categories[0].color} />
                   ))}
                 </Bar>
               </BarChart>
@@ -227,12 +247,11 @@ const StatisticScreen = () => {
         </MiddleDiv>
         <BottomDiv>
           <BoldText>
-            Total de demands filtradas: 5.956 _
-            {sectorID}
-            ,
-            {categoryID}
-            {console.log(finalDate)}
-            {console.log(startDate)}
+            Total de demands filtradas:
+            {console.log(sectorID)}
+            {console.log(categoryID)}
+            {/* {console.log(finalDate)} */}
+            {/* {console.log(startDate)} */}
           </BoldText>
         </BottomDiv>
       </Container>
