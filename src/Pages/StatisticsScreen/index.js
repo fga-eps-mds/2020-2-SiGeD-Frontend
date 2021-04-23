@@ -79,7 +79,7 @@ const StatisticScreen = () => {
     await getDemandsStatistics(`statistic/sector?id=${id}`)
       .then((response) => {
         const sectorGraph = [];
-        response?.data.map((item) => {
+        response.data?.map((item) => {
           sectors.map((sector) => {
             if (item._id === sector?._id) {
               const data = {

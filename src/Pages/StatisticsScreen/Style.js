@@ -152,7 +152,6 @@ export const DropdownDiv = styled.div`
   margin: 10px;
   
   @media(max-width: 750px){
-    width:100%;
   }
 `;
 
