@@ -33,6 +33,7 @@ export async function postUser(
       alert('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
       console.error(`An unexpected error ocourred while registering a new user.${error}`);
+      alert('Email já cadastrado.');
     }
   }
 }
@@ -62,7 +63,7 @@ export async function loginUser(
 }
 
 export const updateUser = async (
-  inputName, inputEmail, inputRole, inputSector, inputPassword, id,
+  inputName, inputEmail, inputRole, inputSector, id,
 ) => {
   try {
     await APIUsers.put(`/users/update/${id}`, {
@@ -70,8 +71,8 @@ export const updateUser = async (
       email: inputEmail,
       role: inputRole,
       sector: inputSector,
-      pass: inputPassword,
     });
+    alert('Usuário atualizado com sucesso!');
   } catch (error) {
     if (error.response.status === 500) {
       alert('O tempo da sua sessão expirou, faça o login novamente');

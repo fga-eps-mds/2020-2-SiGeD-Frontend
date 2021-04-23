@@ -13,9 +13,7 @@ const UserUpdateScreen = () => {
   const [inputEmail, setInputEmail] = useState('');
   const [inputRole, setInputRole] = useState('');
   const [inputSector, setInputSector] = useState('');
-  const [inputPassword, setInputPassword] = useState('');
   const [inputSectorID, setInputSectorID] = useState('');
-  const [inputConfirmPassword, setInputConfirmPassword] = useState('');
   const [sectors, setSectors] = useState([]);
   const { id } = useParams();
 
@@ -45,8 +43,8 @@ const UserUpdateScreen = () => {
   }, [inputSector]);
 
   const submit = () => {
-    if (validateSignUp(inputEmail, inputName, inputPassword, inputConfirmPassword)) {
-      updateUser(inputName, inputEmail, inputRole, inputSectorID, inputPassword, id);
+    if (validateSignUp(inputEmail, inputName)) {
+      updateUser(inputName, inputEmail, inputRole, inputSectorID, id);
     } else {
       alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
     }
@@ -82,10 +80,6 @@ const UserUpdateScreen = () => {
                   setSectors={setSectors}
                   setInputSector={setInputSector}
                   inputSector={inputSector}
-                  setInputPassword={setInputPassword}
-                  inputPassword={inputPassword}
-                  setInputConfirmPassword={setInputConfirmPassword}
-                  inputConfirmPassword={inputConfirmPassword}
                 />
               </GenericRegisterScreen>
             )
