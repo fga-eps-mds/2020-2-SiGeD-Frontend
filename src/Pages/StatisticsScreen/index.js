@@ -14,7 +14,7 @@ import { getSectors } from '../../Services/Axios/sectorServices';
 import { useProfileUser } from '../../Context';
 
 const StatisticScreen = () => {
-  const { token, user } = useProfileUser();
+  const { token, user, startModal } = useProfileUser();
   const [sectors, setSectors] = useState(['Todos']);
   const [loading, setLoading] = useState(true);
   const [sectorActive, setSectorActive] = useState('Todos');
@@ -26,7 +26,7 @@ const StatisticScreen = () => {
   const [categoryID, setCategoryID] = useState('');
 
   const getSectorsFromApi = async () => {
-    await getSectors()
+    await getSectors(startModal)
       .then((response) => {
         setSectors([...sectors, ...response.data]);
         setLoading(false);
@@ -34,7 +34,7 @@ const StatisticScreen = () => {
   };
 
   const getCategoriesFromApi = async () => {
-    await getCategories('category')
+    await getCategories('category', startModal)
       .then((response) => {
         setCategories([...categories, ...response.data]);
       })
@@ -62,14 +62,14 @@ const StatisticScreen = () => {
   }, [categoryActive]);
 
   const getCategoriesStatistics = async (id) => {
-    await getDemandsStatistics(`statistic/category?id=${id}`)
+    await getDemandsStatistics(`statistic/category?id=${id}`, startModal)
       .then((response) => {
         setCategoryStatistics(response?.data);
       });
   };
 
   const getSectorStatistics = async (id) => {
-    await getDemandsStatistics(`statistic/sector?id=${id}`)
+    await getDemandsStatistics(`statistic/sector?id=${id}`, startModal)
       .then((response) => {
         const sectorGraph = [];
         response.data?.map((item) => {
