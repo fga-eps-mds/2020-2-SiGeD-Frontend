@@ -2,34 +2,41 @@ import React, { useEffect, useState } from 'react';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil, BsPersonCheckFill } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { toggleStatus } from '../../Services/Axios/clientServices';
 import {
-  PersonDataBox, TableContent, Box, Ul, Li, Icon, Button, Content, P,
+  PersonDataBox, TableContent, Box, Ul, Content, P,
   TableContainer, ImageUser, DotContent,
-} from '../PersonData/Style';
+} from '../PersonalData/Style';
+import { Li, Button, Icon } from '../DataList/Style';
 import colors from '../../Constants/colors';
 import { useProfileUser } from '../../Context';
+import ConfirmDemandModal from '../ConfirmDemandModal';
 
-const ClientProfileData = ({
-  client, query, pageState, setPageState,
-}) => {
-  const { user } = useProfileUser();
+const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
+  const history = useHistory();
+  const { user, startModal } = useProfileUser();
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
   const [boxState, setBoxState] = useState(false);
   const [text, setText] = useState('Desativar');
+  const [modalText, setModalText] = useState('Você tem certeza que quer desativar este cliente?');
   const [textColor, setTextColor] = useState('');
   const [icon, setIcon] = useState('');
 
   useEffect(() => {
-    if (query === true) {
+    if (query) {
       setText('Desativar');
-      setTextColor(`${colors.alertMessages}`);
+      setModalText('Você tem certeza que quer desativar este cliente?');
+      setTextColor('red');
       setIcon(<FaRegTrashAlt color="red" />);
     } else {
       setText('Ativar');
-      setTextColor(`${colors.navHeaders}`);
-      setIcon(<BsPersonCheckFill />);
+      setModalText('Você tem certeza que quer ativar este cliente?');
+      setTextColor('green');
+      setIcon(<BsPersonCheckFill color="green" />);
     }
   }, [query]);
 
@@ -39,9 +46,9 @@ const ClientProfileData = ({
     }
   };
 
-  const DeactivateClient = () => {
-    toggleStatus(client._id);
-    setPageState(!pageState);
+  const DeactivateClient = async () => {
+    await toggleStatus(client._id, startModal);
+    getClientsFromAPI();
   };
 
   return (
@@ -87,38 +94,31 @@ const ClientProfileData = ({
           </DotContent>
         </TableContainer>
       </PersonDataBox>
-
+      <ConfirmDemandModal
+        show={show}
+        handleClose={handleClose}
+        submit={DeactivateClient}
+        actionName={modalText}
+      />
       {boxState && user ? (
         <Box>
           <Ul>
-            <Li>
+            <Li onClick={() => history.push(`/editar/${client._id}`)}>
               <Button>
-                <Link
-                  to={`/editar/${client._id}`}
-                  id={client._id}
-                  style={{ color: colors.text, textDecorationLine: 'none' }}
-                >
-                  Editar
-                </Link>
-              </Button>
-              <Icon>
-                <Link
-                  to={`/editar/${client._id}`}
-                  id={client._id}
-                  style={{ color: colors.text, textDecorationLine: 'none' }}
-                >
+                Editar
+                <Icon>
                   <BsPencil />
-                </Link>
-              </Icon>
+                </Icon>
+              </Button>
             </Li>
             {user.role === 'admin' ? (
-              <Li>
-                <Button onClick={DeactivateClient} style={{ color: textColor }}>
+              <Li onClick={handleShow}>
+                <Button color={textColor}>
                   {text}
+                  <Icon color={textColor}>
+                    {icon}
+                  </Icon>
                 </Button>
-                <Icon onClick={DeactivateClient}>
-                  {icon}
-                </Icon>
               </Li>
             ) : null}
           </Ul>

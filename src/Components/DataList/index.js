@@ -8,23 +8,28 @@ import {
 } from './Style';
 import ModalComp from '../ModalComp';
 import { useProfileUser } from '../../Context';
+import ConfirmDemandModal from '../ConfirmDemandModal';
 
 const DataList = ({
   content, getContent, axiosDelete, updateContent, backgroundColor, color, type,
 }) => {
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
   const [optionsMenuState, setOptionsMenuState] = useState(false);
   const [modalState, setModalState] = useState(false);
-  // Abrir modal e fechar menu
+  const modalText = `Tem certeza que quer deletar essa ${type?.toLowerCase()}?`;
+
   const toggleMenu = () => {
     setModalState(true);
     setOptionsMenuState(false);
   };
-  // Muda atual estado da modal
+
   const toggleModal = () => {
     setModalState(!modalState);
   };
-  // Fecha o menu
+
   const closeMenu = () => {
     if (optionsMenuState) {
       setOptionsMenuState(false);
@@ -32,7 +37,7 @@ const DataList = ({
   };
 
   const deleteContent = async () => {
-    await axiosDelete(content._id);
+    await axiosDelete(content._id, startModal);
     getContent();
   };
 
@@ -59,21 +64,26 @@ const DataList = ({
           </DotContent>
         </TableContainer>
       </Personalbox>
-
+      <ConfirmDemandModal
+        show={show}
+        handleClose={handleClose}
+        submit={deleteContent}
+        actionName={modalText}
+      />
       {optionsMenuState ? (
         <Box>
           <Ul>
-            <Li>
-              <Button onClick={() => { toggleMenu(); }}>
+            <Li onClick={() => { toggleMenu(); }}>
+              <Button>
                 Editar
-                <Icon onClick={() => { toggleMenu(); }}>
+                <Icon>
                   <BsPencil />
                 </Icon>
               </Button>
             </Li>
             {user.role === 'admin' ? (
-              <Li>
-                <Button color="red" onClick={deleteContent}>
+              <Li onClick={handleShow}>
+                <Button color="red">
                   Remover
                   <Icon color="red">
                     <FaRegTrashAlt />

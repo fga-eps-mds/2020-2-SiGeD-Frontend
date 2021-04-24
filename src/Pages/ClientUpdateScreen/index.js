@@ -4,6 +4,7 @@ import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
 import { getClients, updateClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
+import { useProfileUser } from '../../Context';
 
 const ClientUpdateScreen = () => {
   const [inputName, setInputName] = useState('');
@@ -14,9 +15,10 @@ const ClientUpdateScreen = () => {
   const [officeOption, setOfficeOption] = useState('');
   const [policeStationOption, setPoliceStationOption] = useState('');
   const { id } = useParams();
+  const { startModal } = useProfileUser();
 
   const getClientFromApi = async () => {
-    getClients(`clients/${id}`)
+    getClients(`clients/${id}`, startModal)
       .then((response) => {
         const { data } = response;
         setInputName(data.name);
@@ -40,7 +42,7 @@ const ClientUpdateScreen = () => {
     if (!message) {
       updateClient(
         inputName, inputEmail, inputCpf, inputPhone,
-        inputCity, officeOption, policeStationOption, id,
+        inputCity, officeOption, policeStationOption, id, startModal,
       );
     }
   };

@@ -7,7 +7,7 @@ import UserForms from '../../Components/UserForms';
 import { useProfileUser } from '../../Context';
 
 const RegisterScreen = () => {
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const history = useHistory();
   const [inputRegisterUserName, setRegisterUserInputName] = useState('');
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
@@ -20,17 +20,14 @@ const RegisterScreen = () => {
     if (validateSignUp(inputRegisterUserEmail,
       inputRegisterUserName)) {
       const userSectorID = sectors?.find((sector) => sector.name === inputRegisterUserSector)._id;
-      postUser(inputRegisterUserName,
+      await postUser(inputRegisterUserName,
         inputRegisterUserEmail,
         englishRole,
-        userSectorID);
-      return history.push('/usuarios');
+        userSectorID,
+        startModal);
+      return history.push({ pathname: '/usuarios', state: { newUser: 'new' } });
     }
-    alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
-    setRegisterUserInputName('');
-    setRegisterUserInputEmail('');
-    setRegisterUserInputRole('');
-    setRegisterUserInputSector('');
+    startModal("Nome deve ser completo, sem números e o email deve conter o formato 'nome@email.com'.");
     return undefined;
   };
 

@@ -34,21 +34,22 @@ const ViewDemandsScreen = () => {
   const [sectorsResponse, setSectorsResponse] = useState([]);
   const [flag, setFlag] = useState(false);
   const [changeState, setChangeState] = useState(false);
-  const { user } = useProfileUser();
+  const [message, setMessage] = useState('');
+  const { user, startModal } = useProfileUser();
   const { id } = useParams();
 
   const getClientApi = async (clientID) => {
-    await getClients(`clients/${clientID}`)
+    await getClients(`clients/${clientID}`, startModal)
       .then((response) => setClient(response?.data));
   };
 
   const getUserApi = async (paramUserID) => {
-    await getUser(`users/${paramUserID}`)
+    await getUser(`users/${paramUserID}`, startModal)
       .then((response) => { setUserDemand(response?.data); });
   };
 
   const getDemandApi = async () => {
-    await getDemands(`demand/${id}`)
+    await getDemands(`demand/${id}`, startModal)
       .then((response) => {
         const { data } = response;
         setDemand(data);
@@ -58,11 +59,20 @@ const ViewDemandsScreen = () => {
   };
 
   const getSectorsApi = async () => {
-    await getSectors()
+    await getSectors(startModal)
       .then((response) => setSectorsResponse(response.data))
       .catch((err) => {
         console.error(`An unexpected error ocourred while getting sectors. ${err}`);
       });
+  };
+
+  const setMessageLocal = () => {
+    if (demand.open === false) {
+      setMessage('Você tem certeza que deseja reabrir essa demanda?');
+    }
+    if (demand.open === true) {
+      setMessage('Você tem certeza que deseja concluir essa demanda?');
+    }
   };
 
   const setButtons = async () => {
@@ -80,6 +90,10 @@ const ViewDemandsScreen = () => {
       getDemandApi();
     }
   }, [changeState]);
+
+  useEffect(() => {
+    setMessageLocal();
+  }, [handleClose]);
 
   useEffect(() => {
     if (demand) {
@@ -203,6 +217,8 @@ const ViewDemandsScreen = () => {
               id={id}
               show={show}
               handleClose={handleClose}
+              message={message}
+              startModal={startModal}
             />
           </ButtonDiv>
         </CardsContainer>
@@ -251,6 +267,8 @@ const ViewDemandsScreen = () => {
             id={id}
             show={show}
             handleClose={handleClose}
+            message={message}
+            startModal={startModal}
           />
         </MobileButtonDiv>
       </Main>

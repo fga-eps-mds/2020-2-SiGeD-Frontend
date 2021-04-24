@@ -15,11 +15,11 @@ const NewUpdateCard = ({
   const [description, setDescription] = useState('');
   const [visibilityRestriction, setVisibilityRestriction] = useState(true);
   const [important, setImportant] = useState(false);
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
 
   const submit = () => {
     createDemandUpdate(user.name, user.sector, user._id, description,
-      visibilityRestriction, demand._id, important);
+      visibilityRestriction, demand._id, important, startModal);
     getDemandApi();
     setDescription('');
   };

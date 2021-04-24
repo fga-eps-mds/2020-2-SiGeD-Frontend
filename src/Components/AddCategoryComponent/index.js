@@ -6,18 +6,20 @@ import {
 import { getCategories, createCategory } from '../../Services/Axios/demandsServices';
 import CategoriesToAdd from '../CategoriesToAdd';
 import ModalComp from '../ModalComp';
+import { useProfileUser } from '../../Context';
 
 const CategoryDiv = ({ pushCategory }) => {
   const [statusBox, setStatusBox] = useState(false);
   const [categories, setCategories] = useState([]);
   const [modalState, setModalState] = useState(false);
+  const { startModal } = useProfileUser();
 
   const toggleModal = () => {
     setModalState(!modalState);
   };
 
   const listCategories = async () => {
-    await getCategories('category')
+    await getCategories('category', startModal)
       .then((response) => setCategories(response.data))
       .catch((error) => {
         console.error(`An unexpected error ocourred while getting categories.${error}`);

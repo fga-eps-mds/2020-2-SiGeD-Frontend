@@ -21,10 +21,10 @@ const UpdateCard = ({
   const [confirm, setConfirm] = useState(false);
   const handleClose = () => setShow(false);
   const handleConfirm = () => setConfirm(false);
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
 
   const deleteUpdate = async () => {
-    await deleteDemandUpdate(demand._id, update._id)
+    await deleteDemandUpdate(demand._id, update._id, startModal)
       .then(() => setChangeState(!changeState));
   };
 
@@ -35,7 +35,7 @@ const UpdateCard = ({
     const dateFormatTimeLimitData = moment(timeLimitData, 'YYYY-MM-DDTHH:mm:ss').toDate();
 
     if (moment(dataNow).isAfter(dateFormatTimeLimitData)) {
-      alert('Não é possível apagar essa atualização.');
+      startModal('Não é possível apagar essa atualização.');
     } else {
       setConfirm(true);
     }
@@ -45,7 +45,7 @@ const UpdateCard = ({
     if (user._id === update.userID) {
       setShow(true);
     } else {
-      alert('Você não pode editar essa atualização.');
+      startModal('Você não pode editar essa atualização.');
     }
   };
 
@@ -53,7 +53,7 @@ const UpdateCard = ({
     if (user._id === update.userID) {
       validateDelete();
     } else {
-      alert('Você não pode apagar essa atualização.');
+      startModal('Você não pode apagar essa atualização.');
     }
   };
 

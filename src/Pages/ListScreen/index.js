@@ -8,16 +8,14 @@ import {
 import { getUser } from '../../Services/Axios/userServices';
 import { useProfileUser } from '../../Context';
 
-const newUser = () => { };
-
-const ListScreen = () => {
-  const { user } = useProfileUser();
+const ListScreen = ({ newUser }) => {
+  const { user, startModal } = useProfileUser();
   const [word, setWord] = useState();
   const [filterUsers, setFilterUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
   const getUsers = async () => {
-    await getUser('users')
+    await getUser('users', startModal)
       .then((response) => setUsers(response.data))
       .catch((err) => {
         console.error(`An unexpected error ocourred while getting users. ${err}`);
@@ -26,7 +24,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     getUsers();
-  }, [user]);
+  }, [user, newUser]);
 
   useEffect(() => {
     setFilterUsers(
@@ -65,7 +63,6 @@ const ListScreen = () => {
             ? (
               <GenericListScreen
                 ButtonTitle="Novo Usuário"
-                ButtonFunction={newUser}
                 PageTitle="Usuários"
                 SearchWord={word}
                 setWord={setWord}

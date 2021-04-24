@@ -1,14 +1,14 @@
 import { APIClients } from './baseService/index';
 
-export async function getClients(url) {
+export async function getClients(url, startModal) {
   try {
     const response = await APIClients.get(url);
     return response;
   } catch (error) {
     if (error.response?.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response?.status !== 401) {
-      alert('Não foi possível obter a lista de clientes, tente novamente mais tarde.');
+      startModal('Não foi possível obter a lista de clientes, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while retrieving the clients list.${error}`);
   }
@@ -17,7 +17,7 @@ export async function getClients(url) {
 
 export async function postClient(
   inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
-  inputAddress, officeOption, inputLocation,
+  inputAddress, officeOption, inputLocation, startModal,
 ) {
   try {
     const response = await APIClients.post('clients/create', {
@@ -33,9 +33,9 @@ export async function postClient(
     return response;
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possivel criar o cliente. Tente novamente mais tarde');
+      startModal('Não foi possivel criar o cliente. Tente novamente mais tarde');
     }
     console.error(`An unexpected error ocourred while creating a new client.${error}`);
   }
@@ -44,7 +44,7 @@ export async function postClient(
 
 export const updateClient = async (
   inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
-  inputAddress, officeOption, locationOption, id,
+  inputAddress, officeOption, locationOption, id, startModal,
 ) => {
   await APIClients.put(`/clients/update/${id}`, {
     name: inputName,
@@ -58,19 +58,19 @@ export const updateClient = async (
   })
     .catch((error) => {
       if (error.response.status === 500) {
-        alert('O tempo da sua sessão expirou, faça o login novamente');
+        startModal('O tempo da sua sessão expirou, faça o login novamente');
       } else if (error.response.status !== 401) {
-        alert('Não foi possivel atualizar o cliente. Tente novamente mais tarde');
+        startModal('Não foi possivel atualizar o cliente. Tente novamente mais tarde');
       }
       console.error(`An unexpected error ocourred while updating the client data.${error}`);
     });
 };
 
-export const toggleStatus = async (id) => {
+export const toggleStatus = async (id, startModal) => {
   try {
     await APIClients.put(`/clients/toggleStatus/${id}`);
   } catch (error) {
     console.error(error);
-    alert('Não foi possivel desativar/reativar o cliente, tente novamente mais tarde.');
+    startModal('Não foi possivel desativar/reativar o cliente, tente novamente mais tarde.');
   }
 };

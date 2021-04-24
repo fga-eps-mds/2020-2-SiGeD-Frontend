@@ -4,6 +4,7 @@ import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
 import { postClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
+import { useProfileUser } from '../../Context';
 
 const ClientRegisterScreen = () => {
   const history = useHistory();
@@ -15,30 +16,22 @@ const ClientRegisterScreen = () => {
   const [registerClientInputSecondaryPhone, setregisterClientInputSecondaryPhone] = useState('');
   const [officeOption, setOfficeOption] = useState('Policial');
   const [registerLocation, setRegisterLocation] = useState('');
+  const { startModal } = useProfileUser();
 
   const submit = async () => {
-    const message = validateFields(registerClientInputName,
+    const validMessage = validateFields(registerClientInputName,
       registerClientInputEmail, registerClientInputCpf,
       registerClientInputPhone, registerClientInputSecondaryPhone);
-
-    if (!message.length) {
+    if (!validMessage.length) {
       const data = await postClient(
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
         registerClientInputSecondaryPhone, registerClientInputAddress,
-        officeOption, registerLocation,
+        officeOption, registerLocation, startModal,
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }
-    alert(message.join('\n'));
-    setRegisterClientInputName('');
-    setRegisterClientInputCpf('');
-    setRegisterClientInputEmail('');
-    setRegisterClientInputPhone('');
-    setregisterClientInputSecondaryPhone('');
-    setRegisterClientInputAddress('');
-    setOfficeOption('');
-    setRegisterLocation('');
+    startModal(validMessage.join('\n'));
     return undefined;
   };
 

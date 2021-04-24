@@ -12,7 +12,7 @@ import DataList from '../../Components/DataList';
 import { useProfileUser } from '../../Context';
 
 const ListSectors = () => {
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const [filterSectors, setFilterSectors] = useState([]);
   const [sectors, setSectors] = useState([]);
   const [word, setWord] = useState();
@@ -21,7 +21,7 @@ const ListSectors = () => {
   const toggleModal = () => setStatusModal(!statusModal);
 
   const listSectors = async () => {
-    await getSectors()
+    await getSectors(startModal)
       .then((response) => setSectors(response.data))
       .catch((error) => {
         console.error(`An unexpected error ocourred while getting sectors.${error}`);

@@ -11,6 +11,7 @@ import DemandsDescription from '../../Components/DemandsDescription';
 import SelectedCategories from '../../Components/SelectedCategories';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
+import { useProfileUser } from '../../Context';
 
 const UpdateDemandsScreen = () => {
   const [show, setShow] = useState(false);
@@ -27,9 +28,10 @@ const UpdateDemandsScreen = () => {
   const [clientName, setClientName] = useState('');
   const [sectorName, setSectorName] = useState('');
   const { id } = useParams();
+  const { startModal } = useProfileUser();
 
   const getClientFromApi = async (client) => {
-    await getClients(`clients/${client}`)
+    await getClients(`clients/${client}`, startModal)
       .then((response) => {
         const { data } = response;
         setClientName(data?.name);
@@ -37,7 +39,7 @@ const UpdateDemandsScreen = () => {
   };
 
   const getSectorFromApi = async (sector) => {
-    await getSector(`sector/${sector}`)
+    await getSector(`sector/${sector}`, startModal)
       .then((response) => {
         const { data } = response;
         setSectorName(data?.name);
@@ -45,7 +47,7 @@ const UpdateDemandsScreen = () => {
   };
 
   const getDemandsFromApi = async () => {
-    await getDemands(`demand/${id}`)
+    await getDemands(`demand/${id}`, startModal)
       .then((response) => {
         const { data } = response;
         setName(data?.name);
@@ -79,7 +81,7 @@ const UpdateDemandsScreen = () => {
     if (!alreadySelected) {
       setSelectedCategories([...selectedCategories, category]);
     } else {
-      alert('A categoria escolhida ja foi selecionada');
+      startModal('A categoria escolhida ja foi selecionada.');
     }
   };
 
@@ -93,11 +95,11 @@ const UpdateDemandsScreen = () => {
   const submit = () => {
     if (validateInputs()) {
       updateDemand(
-        name, description, process, categoriesIDs, sectorID, userID, clientID, id,
+        name, description, process, categoriesIDs, sectorID, userID, clientID, id, startModal,
       );
-      alert('Demanda editada com sucesso!');
+      startModal('Demanda editada com sucesso!');
     } else {
-      alert('Preencha todos os campos antes de cadastrar uma nova demanda');
+      startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
     }
   };
 

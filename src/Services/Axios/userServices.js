@@ -2,15 +2,15 @@ import {
   APIUsers, APIDemands, APIClients, APISectors,
 } from './baseService/index';
 
-export async function getUser(url) {
+export async function getUser(url, startModal) {
   try {
     const response = await APIUsers.get(url);
     return response;
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possível carregar o usuário, tente novamente mais tarde.');
+      startModal('Não foi possível carregar o usuário, tente novamente mais tarde.');
     }
     console.error(error);
   }
@@ -18,7 +18,7 @@ export async function getUser(url) {
 }
 
 export async function postUser(
-  inputName, inputEmail, inputRole, inputSector, inputPassword,
+  inputName, inputEmail, inputRole, inputSector, startModal,
 ) {
   try {
     await APIUsers.post('signup', {
@@ -26,20 +26,20 @@ export async function postUser(
       email: inputEmail,
       role: inputRole,
       sector: inputSector,
-      pass: inputPassword,
     });
+    startModal('Usuário cadastrado com sucesso!');
   } catch (error) {
-    if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
-    } else if (error.response.status !== 401) {
+    if (error.response?.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response?.status !== 401) {
+      startModal('Email já cadastrado.');
       console.error(`An unexpected error ocourred while registering a new user.${error}`);
-      alert('Email já cadastrado.');
     }
   }
 }
 
 export async function loginUser(
-  inputEmail, inputPassword,
+  inputEmail, inputPassword, startModal,
 ) {
   try {
     const response = await APIUsers.post('login', {
@@ -47,7 +47,7 @@ export async function loginUser(
       pass: inputPassword,
     });
     if (response.data.message) {
-      alert('Email e/ou senha inválidos.');
+      startModal('Email e/ou senha inválidos.');
     } else {
       APIUsers.defaults.headers = { 'x-access-token': response.data.token };
       APIClients.defaults.headers = { 'x-access-token': response.data.token };
@@ -56,14 +56,14 @@ export async function loginUser(
     }
     return response.data;
   } catch (error) {
-    alert('Não foi possivel fazer login. Tente novamente mais tarde.');
+    startModal('Não foi possivel fazer login. Tente novamente mais tarde.');
     console.error(error);
     return null;
   }
 }
 
 export const updateUser = async (
-  inputName, inputEmail, inputRole, inputSector, id,
+  inputName, inputEmail, inputRole, inputSector, id, startModal,
 ) => {
   try {
     await APIUsers.put(`/users/update/${id}`, {
@@ -72,70 +72,70 @@ export const updateUser = async (
       role: inputRole,
       sector: inputSector,
     });
-    alert('Usuário atualizado com sucesso!');
+    startModal('Usuário atualizado com sucesso!');
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert('Não foi possivel atualizar o usuário. Tente novamente mais tarde.');
+      startModal('Não foi possivel atualizar o usuário. Tente novamente mais tarde.');
     }
     console.error(`An unexpected error occurred while updating the user data.${error}`);
   }
 };
 
-export async function deleteUser(id) {
+export async function deleteUser(id, startModal) {
   try {
     await APIUsers.delete(`/users/delete/${id}`);
   } catch (error) {
     if (error.response.status === 500) {
-      alert('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      alert(`Não foi possivel deletar o usuário.\n${error}`);
+      startModal(`Não foi possivel deletar o usuário.\n${error}`);
     }
     console.error(error);
   }
 }
 
 export async function recoverPassword(
-  inputEmail,
+  inputEmail, startModal,
 ) {
   try {
     await APIUsers.post('recover-password', {
       email: inputEmail,
     });
-    alert('Senha enviada para o email.');
+    startModal('Senha enviada para o email.');
   } catch (error) {
     if (error.response.status === 400) {
-      alert('Não foi possivel enviar o email de recuperação de senha. Tente novamente mais tarde.');
+      startModal('Não foi possivel enviar o email de recuperação de senha. Tente novamente mais tarde.');
       console.error(error);
     } else if (error.response.status === 404) {
-      alert('Não foi possivel encontrar um usuário cadastrado com este email.');
+      startModal('Não foi possivel encontrar um usuário cadastrado com este email.');
       console.error(error);
     }
   }
 }
 
 export async function changePassword(
-  id, pass,
+  id, pass, startModal,
 ) {
   try {
     const response = await APIUsers.put(`change-password/${id}`, {
       pass,
     });
     if (response.status === 400) {
-      alert('A senha deve conter pelo menos 6 caracteres');
+      startModal('A senha deve conter pelo menos 6 caracteres');
       console.error(response.data.error);
       return null;
     }
     if (response.status === 404) {
-      alert('Houve um erro ao tentar alterar a senha. Tente novamente mais tarde.');
+      startModal('Houve um erro ao tentar alterar a senha. Tente novamente mais tarde.');
       console.error(response.data.error);
       return null;
     }
-    alert('Senha alterada com sucesso.');
+    startModal('Senha alterada com sucesso.');
     return response.data;
   } catch (error) {
-    alert('Houve um erro ao tentar alterar a senha. Tente novamente mais tarde.');
+    startModal('Houve um erro ao tentar alterar a senha. Tente novamente mais tarde.');
     console.error(error);
     return null;
   }

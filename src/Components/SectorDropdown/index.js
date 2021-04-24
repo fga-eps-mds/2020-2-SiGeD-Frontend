@@ -4,14 +4,16 @@ import RightBoxInputs from './Style';
 import { Label } from '../UserDropdown/Style';
 import customStyles from './dropdownStyle';
 import { getSectors } from '../../Services/Axios/sectorServices';
+import { useProfileUser } from '../../Context';
 
 const SectorDropdown = ({ setSector, sectorName }) => {
   const [id, setId] = useState('');
   const [placeholder, setPlaceholder] = useState('Setor');
   const [listOfSectors, setListOfSectors] = useState([]);
+  const { startModal } = useProfileUser();
 
   const listSectors = async () => {
-    await getSectors()
+    await getSectors(startModal)
       .then((response) => setListOfSectors(response.data))
       .catch((error) => {
         console.error(`An unexpected error ocourred while getting sectors.${error}`);

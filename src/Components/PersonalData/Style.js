@@ -12,7 +12,6 @@ align-items: center;
 margin-top: 1vh;
 border-radius: 8px;
 overflow: auto;
-
 @media(max-width: 750px){
   width: 85%;
   height: 40%;
@@ -29,7 +28,6 @@ justify-content: center;
 width: ${(props) => `${props.width}%`};
 margin: 10px;
 overflow: auto;
-
 @media(max-width: 750px){
   width: 100%;
   height: 4vh;
@@ -44,7 +42,6 @@ overflow: auto;
 `;
 
 export const TableContainer = styled.div`
-
 @media(max-width: 750px){
   display: flex;
   flex-direction: column;
@@ -55,7 +52,6 @@ export const TableContainer = styled.div`
   margin-bottom: 0;
   padding: 2vh;
 }
-
 display: flex;
 flex-direction: row;
 width: 100%;
@@ -95,7 +91,6 @@ export const Box = styled.div`
   right: 0;
   top: 65%;
   z-index: 1;
-
   @media(max-width: 750px){
     top: 15%;
     width: 10vh;
@@ -106,7 +101,6 @@ export const ImageUser = styled.div`
   width: 3vw;
   height: 100%;
   margin-left: 0.5rem;
-
   @media(max-width:750px){
     width: 30%;
     padding: 2%;
@@ -122,27 +116,6 @@ export const Ul = styled.ul`
   margin: 0;
 `;
 
-export const Li = styled.li`
-  list-style-type: none;
-  padding: 3px;
-`;
-
-export const Icon = styled.div`
-  float: right;
-  margin: 0 1%;
-  font-size: 80%;
-`;
-
-export const Button = styled.button`
-  border: none;
-  background-color: #FFF;
-  font-size: 1.5vh;
-
-  @media(max-width: 750px){
-    font-size: 1.3vh;
-  }
-`;
-
 export const Content = styled.div`
   position: relative;
 `;
@@ -153,7 +126,6 @@ justify-content: center;
 width: ${(props) => `${props.width}%`};
 margin: 10px;
 overflow: auto;
-
 @media(max-width: 750px){
   position: absolute;
   top: 5%;

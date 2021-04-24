@@ -26,10 +26,10 @@ const CreateDemandsScreen = () => {
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientID, setClientID] = useState('');
   const [clientName, setClientName] = useState('');
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
 
   const getClientsFromApi = async () => {
-    await getClients('clients')
+    await getClients('clients', startModal)
       .then((response) => setClients(response.data));
   };
 
@@ -52,7 +52,7 @@ const CreateDemandsScreen = () => {
     if (!alreadySelected) {
       setSelectedCategories([...selectedCategories, category]);
     } else {
-      alert('A categoria escolhida ja foi selecionada');
+      startModal('A categoria escolhida ja foi selecionada');
     }
   };
 
@@ -65,8 +65,8 @@ const CreateDemandsScreen = () => {
 
   const submit = () => {
     if (validateInputs()) {
+      startModal('Demanda criada com sucesso!');
       createDemand(name, description, process, categoriesIDs, sectorID, user._id, clientID);
-      alert('Demanda criada com sucesso!');
       setProcess('');
       setDescription('');
       setName('');
@@ -75,7 +75,7 @@ const CreateDemandsScreen = () => {
       setClientID('');
       setCategoriesIDs([]);
     } else {
-      alert('Preencha todos os campos antes de cadastrar uma nova demanda');
+      startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
     }
   };
 
@@ -133,7 +133,7 @@ const CreateDemandsScreen = () => {
         show={show}
         handleClose={handleClose}
         submit={submit}
-        actionName=" criar "
+        actionName="Você tem certeza que gostaria de criar essa demanda?"
       />
     </Main>
   );

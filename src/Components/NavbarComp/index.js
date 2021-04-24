@@ -7,7 +7,9 @@ import { useProfileUser } from '../../Context';
 import { APIUsers } from '../../Services/Axios/baseService';
 
 const NavbarComp = () => {
-  const { user, token, setToken } = useProfileUser();
+  const {
+    user, token, setToken, startModal,
+  } = useProfileUser();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const NavbarComp = () => {
         setToken(localStorage.getItem('@App:token'));
         APIUsers.defaults.headers = null;
       } catch (error) {
-        alert('Não foi possivel realizar o logout.');
+        startModal('Não foi possivel realizar o logout.');
         console.error(error);
       }
     };

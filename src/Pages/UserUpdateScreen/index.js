@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateSignUp } from '../../Utils/validations';
 import { getUser, updateUser } from '../../Services/Axios/userServices';
@@ -8,7 +8,8 @@ import UserForms from '../../Components/UserForms';
 import { useProfileUser } from '../../Context';
 
 const UserUpdateScreen = () => {
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
+  const history = useHistory();
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputRole, setInputRole] = useState('');
@@ -18,12 +19,12 @@ const UserUpdateScreen = () => {
   const { id } = useParams();
 
   const getSectorFromApi = async (sectorID) => {
-    await getSector(`sector/${sectorID}`)
+    await getSector(`sector/${sectorID}`, startModal)
       .then((response) => setInputSector(response?.data?.name));
   };
 
   const getUserFromApi = async () => {
-    await getUser(`users/${id}`)
+    await getUser(`users/${id}`, startModal)
       .then((response) => {
         const { data } = response;
         setInputName(data.name);
@@ -42,12 +43,14 @@ const UserUpdateScreen = () => {
     setInputSectorID(sectors?.find((sector) => sector.name === inputSector)?._id);
   }, [inputSector]);
 
-  const submit = () => {
+  const submit = async () => {
     if (validateSignUp(inputEmail, inputName)) {
-      updateUser(inputName, inputEmail, inputRole, inputSectorID, id);
-    } else {
-      alert("Nome deve ser completo, sem números\nEmail deve conter o formato 'nome@email.com'\nSenha deve conter no minimo 6 caracteres\nAs senhas devem ser iguais!");
+      await updateUser(inputName, inputEmail, inputRole, inputSectorID, id, startModal);
+      startModal('Usuário atualizado com sucesso!');
+      return history.push('/usuarios');
     }
+    startModal("Nome deve ser completo, sem números. Email deve conter o formato 'nome@email.com'. Senha deve conter no minimo 6 caracteres. As senhas devem ser iguais!");
+    return undefined;
   };
 
   const cancel = () => {

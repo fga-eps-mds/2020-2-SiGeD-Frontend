@@ -13,7 +13,7 @@ import colors from '../../Constants/colors';
 import { useProfileUser } from '../../Context';
 
 const ListCategories = () => {
-  const { token } = useProfileUser();
+  const { token, startModal } = useProfileUser();
   const [filterCategories, setFilterCategories] = useState([]);
   const [categories, setCategories] = useState([]);
   const [word, setWord] = useState();
@@ -22,7 +22,7 @@ const ListCategories = () => {
   const toggleModal = () => setStatusModal(!statusModal);
 
   const listCategories = async () => {
-    await getCategories('category')
+    await getCategories('category', startModal)
       .then((response) => setCategories(response.data))
       .catch((error) => {
         console.error(`An unexpected error ocourred while getting categories.${error}`);

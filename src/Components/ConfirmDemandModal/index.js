@@ -11,9 +11,7 @@ const ConfirmDemandModal = ({
       <Modal.Title>Alerta</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      Você tem certeza que deseja
       {actionName}
-      essa demanda?
     </Modal.Body>
     <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
       <TinyButton

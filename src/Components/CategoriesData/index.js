@@ -10,9 +10,10 @@ import ModalComp from '../ModalComp';
 import { useProfileUser } from '../../Context';
 
 const CategoriesData = ({ category, getCategories }) => {
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const [boxState, setBoxState] = useState(false);
   const [modalState, setModalState] = useState(false);
+
   const toggleBox = () => {
     setModalState(true);
     setBoxState(!boxState);
@@ -29,9 +30,9 @@ const CategoriesData = ({ category, getCategories }) => {
 
   const CategoryDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3003/category/delete/${category._id}`);
+      await axios.delete(`http://localhost:3003/category/delete/${category._id}`, startModal);
     } catch (error) {
-      alert('Não foi possível deletar a categoria, tente novamente mais tarde.');
+      startModal('Não foi possível deletar a categoria, tente novamente mais tarde.');
     }
   };
 

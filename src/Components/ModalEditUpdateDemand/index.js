@@ -26,12 +26,13 @@ const ModalEditUpdateDemand = ({
 }) => {
   const [updateDescription, setUpdateDescription] = useState(description);
   const [updateVisibility, setUpdateVisibility] = useState(true);
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
   const [editedImportant, seteditedImportant] = useState(important);
+
   const editUpdate = async () => {
     updateDemandUpdate(
-      name, userSector, user._id, updateDescription,
-      demandID, updateDemandID, updateVisibility, editedImportant,
+      name, userSector, user._id, updateDescription, demandID,
+      updateDemandID, updateVisibility, editedImportant, startModal,
     );
     setUpdateVisibility(true);
     handleClose();
@@ -44,8 +45,7 @@ const ModalEditUpdateDemand = ({
     const formatDate = moment(stringDate, 'YYYY-MM-DDTHH:mm:ss').toDate();
 
     if (moment(data).isAfter(formatDate)) {
-      alert('Não é possível editar essa atualização.');
-      handleClose();
+      startModal('Não é possível editar essa atualização.');
     } else {
       await editUpdate()
         .then(() => setChangeState(!changeState));

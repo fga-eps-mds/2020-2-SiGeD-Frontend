@@ -8,12 +8,17 @@ import {
   APIClients, APIUsers, APIDemands, APISectors,
 } from '../Services/Axios/baseService';
 import { loginUser, changePassword } from '../Services/Axios/userServices';
+import ModalMessage from '../Components/ModalMessage';
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [token, setToken] = useState();
   const [user, setUser] = useState();
+  const [message, setMessage] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
+  const handleCloseMessage = () => setShowMessage(false);
+  const handleShowMessage = () => setShowMessage(true);
 
   useEffect(() => {
     const storagedToken = localStorage.getItem('@App:token');
@@ -42,12 +47,6 @@ const UserProvider = ({ children }) => {
     }
   }, [user]);
 
-  const handleLogin = async (email, password) => {
-    const userInfo = await loginUser(email, password);
-    setToken(userInfo?.token);
-    setUser(userInfo?.profile);
-  };
-
   const handleChangePassword = async (password) => {
     const userInfo = await changePassword(user._id, password);
     if (userInfo) {
@@ -55,12 +54,28 @@ const UserProvider = ({ children }) => {
     }
   };
 
+  const startModal = (text) => {
+    setMessage(text);
+    handleShowMessage();
+  };
+
+  const handleLogin = async (email, password) => {
+    const userInfo = await loginUser(email, password, startModal);
+    setToken(userInfo?.token);
+    setUser(userInfo?.profile);
+  };
+
   return (
     <UserContext.Provider value={{
-      token, setToken, user, setUser, handleLogin, handleChangePassword,
+      token, setToken, user, setUser, handleLogin, startModal, handleChangePassword,
     }}
     >
       { children }
+      <ModalMessage
+        show={showMessage}
+        handleClose={handleCloseMessage}
+        message={message}
+      />
     </UserContext.Provider>
   );
 };
