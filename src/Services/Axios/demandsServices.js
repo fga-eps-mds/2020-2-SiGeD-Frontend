@@ -231,6 +231,21 @@ export async function getDemandsWithClientsNames(url, startModal) {
   return false;
 }
 
+export async function getDemandsStatistics(url, startModal) {
+  try {
+    const response = await APIDemands.get(url);
+    return response;
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possível carregar as estatísticas');
+      console.error(`An unexpected error ocourred while getting demands with clients names.${error}`);
+    }
+  }
+  return false;
+}
+
 export async function deleteDemandUpdate(id, updateListID, startModal) {
   try {
     const response = await APIDemands.put(`demand/delete-demand-update/${id}`, {

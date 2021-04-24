@@ -67,6 +67,9 @@ const NavbarComp = () => {
                   <Nav.Link as={Link} to="/demandas" style={styles.navbarText}>
                     Demandas
                   </Nav.Link>
+                  <Nav.Link as={Link} to="/estatisticas" style={styles.navbarText}>
+                    Estatísticas
+                  </Nav.Link>
                   <Navbar.Brand as={Link} to="/login" onClick={logoutUser}>
                     <FiLogOut />
                   </Navbar.Brand>
