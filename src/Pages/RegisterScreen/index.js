@@ -25,10 +25,9 @@ const RegisterScreen = () => {
         englishRole,
         userSectorID,
         startModal);
-      startModal('Usuário cadastrado com sucesso!');
       return history.push({ pathname: '/usuarios', state: { newUser: 'new' } });
     }
-    startModal("Nome deve ser completo, sem números. Email deve conter o formato 'nome@email.com'. Senha deve conter no minimo 6 caracteres. As senhas devem ser iguais!");
+    startModal("Nome deve ser completo, sem números e o email deve conter o formato 'nome@email.com'.");
     return undefined;
   };
 

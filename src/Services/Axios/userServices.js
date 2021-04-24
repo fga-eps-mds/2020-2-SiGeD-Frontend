@@ -18,7 +18,7 @@ export async function getUser(url, startModal) {
 }
 
 export async function postUser(
-  inputName, inputEmail, inputRole, inputSector, inputPassword, startModal,
+  inputName, inputEmail, inputRole, inputSector, startModal,
 ) {
   try {
     await APIUsers.post('signup', {
@@ -26,14 +26,14 @@ export async function postUser(
       email: inputEmail,
       role: inputRole,
       sector: inputSector,
-      pass: inputPassword,
     });
+    startModal('Usuário cadastrado com sucesso!');
   } catch (error) {
     if (error.response?.status === 500) {
       startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response?.status !== 401) {
-      console.error(`An unexpected error ocourred while registering a new user.${error}`);
       startModal('Email já cadastrado.');
+      console.error(`An unexpected error ocourred while registering a new user.${error}`);
     }
   }
 }
