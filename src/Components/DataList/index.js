@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment-timezone';
 import { BsThreeDotsVertical, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import {
@@ -53,7 +54,7 @@ const DataList = ({
           </TableContent>
 
           <TableContent width={24}>
-            <P>{content.updatedAt.slice(0, 10).replaceAll('-', '/')}</P>
+            <P>{ moment.parseZone(content.updatedAt).local(true).format('DD/MM/YYYY') }</P>
           </TableContent>
 
           <DotContent width={2}>
