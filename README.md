@@ -1,5 +1,6 @@
 # Frontend
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL3-blue.svg)](https://opensource.org/licenses/gpl-3.0.html)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fga-eps-mds_2020-2-G4-Frontend&metric=alert_status)](https://sonarcloud.io/dashboard?id=fga-eps-mds_2020-2-G4-Frontend)
 
 Esse repositório tem o propósito de apresentar um interface web simples e intuitiva do projeto [`SiGeD`](https://github.com/fga-eps-mds/2020-2-SiGeD). 
 
