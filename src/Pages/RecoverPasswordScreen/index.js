@@ -6,9 +6,11 @@ import BigButton from '../../Components/BigButton';
 import LoginInput from '../../Components/LoginInput';
 import { Title, BackgroundBlock, CenterBlock } from './Style';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const RecoverPasswordScreen = () => {
   const [emailReceived, setEmailReceived] = useState();
+  const { startModal } = useProfileUser();
 
   if (localStorage.getItem('@App:token')) {
     return <Redirect to="/" />;
@@ -27,7 +29,7 @@ const RecoverPasswordScreen = () => {
           value={emailReceived}
         />
 
-        <BigButton title="Enviar" type="primary" changeButton={() => recoverPassword(emailReceived)} />
+        <BigButton title="Enviar" type="primary" changeButton={() => recoverPassword(emailReceived, startModal)} />
         <Link to="/login" style={{ color: colors.navHeaders }}>Voltar</Link>
       </CenterBlock>
     </BackgroundBlock>
