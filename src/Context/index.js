@@ -47,16 +47,16 @@ const UserProvider = ({ children }) => {
     }
   }, [user]);
 
-  const handleChangePassword = async (password) => {
-    const userInfo = await changePassword(user._id, password);
-    if (userInfo) {
-      setUser(userInfo);
-    }
-  };
-
   const startModal = (text) => {
     setMessage(text);
     handleShowMessage();
+  };
+
+  const handleChangePassword = async (password) => {
+    const userInfo = await changePassword(user._id, password, startModal);
+    if (userInfo) {
+      setUser(userInfo);
+    }
   };
 
   const handleLogin = async (email, password) => {
