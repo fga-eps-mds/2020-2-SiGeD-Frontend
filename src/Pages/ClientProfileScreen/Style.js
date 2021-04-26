@@ -91,7 +91,7 @@ export const ButtonContainer = styled.div`
     width: 100%;
     height: 30px;
     float: none;
-}
+  }
 `;
 
 export const SearchDiv = styled.div`
@@ -132,4 +132,25 @@ export const ContainerDiv = styled.div`
     height: 100vh;
     margin-top: 0%;
   }
+`;
+
+export const DropdownField = styled.div`
+  display: flex;
+  float: left;
+  flex-direction: column;
+  width: ${(props) => `${props.width}%`};
+  margin-right: 1%;
+
+  @media(max-width: 750px) {
+    width: 100%;
+    padding-bottom: 3%;
+  }  
+`;
+
+export const FilterDiv = styled.div`
+  float: right;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  align-items: flex-end
 `;

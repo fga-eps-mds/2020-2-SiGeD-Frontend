@@ -6,14 +6,16 @@ import { getDemands } from '../../Services/Axios/demandsServices';
 import ClientDemandData from '../../Components/ClientDemandData';
 import SearchInput from '../../Components/SearchInput';
 import RedirectListButton from '../../Components/RedirectButton';
+import DropdownComponent from '../../Components/DropdownComponent';
 import {
-  Main, RightBox, RightBoxMain, TitleH, SearchDiv,
-  HeaderDiv, ListDiv, ButtonContainer, ContainerDiv,
+  Main, RightBox, RightBoxMain, TitleH, SearchDiv, FilterDiv,
+  HeaderDiv, ListDiv, ButtonContainer, ContainerDiv, DropdownField,
 } from './Style';
 import { DropDiv, ContentBox } from '../../Components/GenericListScreen/Style';
 import { getClients } from '../../Services/Axios/clientServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import { useProfileUser } from '../../Context';
+import colors from '../../Constants/colors';
 
 const ClientProfileScreen = () => {
   const [sectors, setSectors] = useState([]);
@@ -27,6 +29,8 @@ const ClientProfileScreen = () => {
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [demands, setDemands] = useState([]);
+  const [dropdownYears, setDropdownYears] = useState([]);
+  const [filterYear, setFilterYear] = useState('Sem filtro');
   const [client, setClient] = useState('');
   const { id } = useParams();
   const { startModal } = useProfileUser();
@@ -58,6 +62,30 @@ const ClientProfileScreen = () => {
       });
   };
 
+  const getYearsList = () => {
+    const years = ['Sem filtro'];
+    demands?.map((demand) => {
+      const year = new Date(demand.createdAt).getFullYear();
+      if (!years.find((y) => y === year)) {
+        years.push(year);
+      }
+      return undefined;
+    });
+    setDropdownYears(years);
+  };
+
+  const filterDemandsByYear = () => {
+    const filteredDemands = [];
+    demands.map((demand) => {
+      const year = new Date(demand.createdAt).getFullYear().toString();
+      if (year === filterYear) {
+        filteredDemands.push(demand);
+      }
+      return undefined;
+    });
+    setFilterDemands(filteredDemands);
+  };
+
   useEffect(() => {
     getSectorsFromApi();
     getClientFromApi();
@@ -72,7 +100,16 @@ const ClientProfileScreen = () => {
 
   useEffect(() => {
     setFilterDemands(demands);
+    getYearsList();
   }, [demands]);
+
+  useEffect(() => {
+    if (filterYear !== 'Sem filtro') {
+      filterDemandsByYear();
+    } else {
+      setFilterDemands(demands);
+    }
+  }, [filterYear]);
 
   const listDemandsForProfile = () => {
     if (demands?.length === 0) {
@@ -123,7 +160,7 @@ const ClientProfileScreen = () => {
                 <ContainerDiv>
                   <TitleH>Prontuário</TitleH>
                   <HeaderDiv>
-                    <DropDiv>
+                    <DropDiv width="260px">
                       <SearchDiv>
                         <SearchInput
                           type="text"
@@ -133,13 +170,36 @@ const ClientProfileScreen = () => {
                         />
                       </SearchDiv>
                     </DropDiv>
-                    <ButtonContainer>
-                      <RedirectListButton
-                        title="Nova Demanda"
-                        redirectTo="/demanda"
-                        style={{ height: '100%', fontSize: '100%' }}
-                      />
-                    </ButtonContainer>
+                    <FilterDiv>
+                      <DropdownField>
+                        <p style={{ marginBottom: '0' }}>Anos: </p>
+                        <DropdownComponent
+                          OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
+                          style={{
+                            display: 'flex',
+                            color: `${colors.text}`,
+                            width: '100%',
+                            height: '100%',
+                            alignItems: 'center',
+                            boxSizing: 'border-box',
+                            borderRadius: '8px',
+                            border: '1px solid black',
+                            justifyContent: 'center',
+                          }}
+                          optionStyle={{
+                            backgroundColor: `${colors.secondary}`,
+                          }}
+                          optionList={dropdownYears}
+                        />
+                      </DropdownField>
+                      <ButtonContainer>
+                        <RedirectListButton
+                          title="Nova Demanda"
+                          redirectTo="/demanda"
+                          style={{ height: '100%', fontSize: '100%' }}
+                        />
+                      </ButtonContainer>
+                    </FilterDiv>
                   </HeaderDiv>
 
                   <ContentBox>
