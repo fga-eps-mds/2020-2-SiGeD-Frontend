@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
 import { getClients, updateClient } from '../../Services/Axios/clientServices';
@@ -7,27 +7,30 @@ import ClientForms from '../../Components/ClientForms';
 import { useProfileUser } from '../../Context';
 
 const ClientUpdateScreen = () => {
-  const [inputName, setInputName] = useState('');
-  const [inputEmail, setInputEmail] = useState('');
-  const [inputCpf, setInputCpf] = useState('');
-  const [inputPhone, setInputPhone] = useState('');
-  const [inputCity, setInputCity] = useState('');
+  const history = useHistory();
+  const [updateClientInputName, setupdateClientInputName] = useState('');
+  const [updateClientInputEmail, setupdateClientInputEmail] = useState('');
+  const [updateClientInputCpf, setupdateClientInputCpf] = useState('');
+  const [updateClientInputAddress, setupdateClientInputAddress] = useState('');
+  const [updateClientInputPhone, setupdateClientInputPhone] = useState('');
+  const [updateClientInputSecondaryPhone, setupdateClientInputSecondaryPhone] = useState('');
   const [officeOption, setOfficeOption] = useState('');
-  const [policeStationOption, setPoliceStationOption] = useState('');
+  const [updateLocation, setupdateLocation] = useState('');
   const { id } = useParams();
-  const { startModal } = useProfileUser();
+  const { startModal, user } = useProfileUser();
 
   const getClientFromApi = async () => {
     getClients(`clients/${id}`, startModal)
       .then((response) => {
         const { data } = response;
-        setInputName(data.name);
-        setInputEmail(data.email);
-        setInputCpf(data.cpf);
-        setInputPhone(data.phone);
-        setInputCity(data.city);
-        setOfficeOption(data.office);
-        setPoliceStationOption(data.policeStation);
+        setupdateClientInputName(data?.name);
+        setupdateClientInputEmail(data?.email);
+        setupdateClientInputCpf(data?.cpf);
+        setupdateClientInputPhone(data?.phone);
+        setupdateClientInputSecondaryPhone(data?.secondaryPhone);
+        setupdateClientInputAddress(data?.address);
+        setOfficeOption(data?.office);
+        setupdateLocation(data?.location);
       });
   };
 
@@ -35,26 +38,32 @@ const ClientUpdateScreen = () => {
     getClientFromApi();
   }, []);
 
-  const submit = () => {
-    const message = validateFields(inputName, inputEmail, inputCpf, inputPhone,
-      inputCity, 'Cadastrado do cliente atualizado com sucesso!');
-
-    if (!message) {
-      updateClient(
-        inputName, inputEmail, inputCpf, inputPhone,
-        inputCity, officeOption, policeStationOption, id, startModal,
-      );
+  const submit = async () => {
+    const validMessage = validateFields(updateClientInputName,
+      updateClientInputEmail, updateClientInputCpf,
+      updateClientInputPhone, updateClientInputSecondaryPhone);
+    if (!validMessage.length) {
+      const data = await updateClient(
+        updateClientInputName, updateClientInputEmail,
+        updateClientInputCpf, updateClientInputPhone,
+        updateClientInputSecondaryPhone, updateClientInputAddress,
+        officeOption, updateLocation, id, startModal, user._id,
+      ).then((response) => response.data);
+      return history.push(`/perfil/${data._id}`);
     }
+    startModal(validMessage.join('\n'));
+    return undefined;
   };
 
   const cancel = () => {
-    setInputName('');
-    setInputEmail('');
-    setInputCpf('');
-    setInputPhone('');
-    setInputCity('');
+    setupdateClientInputName('');
+    setupdateClientInputEmail('');
+    setupdateClientInputCpf('');
+    setupdateClientInputPhone('');
+    setupdateClientInputSecondaryPhone('');
+    setupdateClientInputAddress('');
     setOfficeOption('');
-    setPoliceStationOption('');
+    setupdateLocation('');
   };
 
   if (!localStorage.getItem('@App:token')) {
@@ -63,26 +72,29 @@ const ClientUpdateScreen = () => {
 
   return (
     <GenericRegisterScreen
-      sidebarList={[inputName, inputCpf,
-        inputCity, officeOption, policeStationOption]}
-      sidebarFooter={[inputEmail, inputPhone]}
+      sidebarList={[updateClientInputName, updateClientInputCpf,
+        updateClientInputAddress, officeOption, updateLocation]}
+      sidebarFooter={[updateClientInputEmail, updateClientInputPhone]}
       cancel={cancel}
       submit={submit}
       buttonTitle="Editar"
     >
       <ClientForms
-        setInputName={setInputName}
-        inputName={inputName}
-        setInputEmail={setInputEmail}
-        inputEmail={inputEmail}
-        setInputCpf={setInputCpf}
-        inputCpf={inputCpf}
-        setInputPhone={setInputPhone}
-        inputPhone={inputPhone}
-        setInputCity={setInputCity}
-        inputCity={inputCity}
+        setInputName={setupdateClientInputName}
+        inputName={updateClientInputName}
+        setInputEmail={setupdateClientInputEmail}
+        inputEmail={updateClientInputEmail}
+        setInputCpf={setupdateClientInputCpf}
+        inputCpf={updateClientInputCpf}
+        setInputPhone={setupdateClientInputPhone}
+        inputPhone={updateClientInputPhone}
+        setInputSecondaryPhone={setupdateClientInputSecondaryPhone}
+        secondaryPhone={updateClientInputSecondaryPhone}
+        setInputAddress={setupdateClientInputAddress}
+        inputAddress={updateClientInputAddress}
         setOfficeOption={setOfficeOption}
-        setPoliceStationOption={setPoliceStationOption}
+        setLocationOption={setupdateLocation}
+        locationOption={updateLocation}
       />
     </GenericRegisterScreen>
   );

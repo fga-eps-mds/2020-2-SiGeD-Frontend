@@ -17,7 +17,7 @@ export async function getClients(url, startModal) {
 
 export async function postClient(
   inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
-  inputAddress, officeOption, inputLocation, startModal,
+  inputAddress, officeOption, inputLocation, startModal, userContext,
 ) {
   try {
     const response = await APIClients.post('clients/create', {
@@ -29,6 +29,7 @@ export async function postClient(
       address: inputAddress,
       office: officeOption,
       location: inputLocation,
+      userID: userContext,
     });
     return response;
   } catch (error) {
@@ -42,29 +43,33 @@ export async function postClient(
   return false;
 }
 
-export const updateClient = async (
+export async function updateClient(
   inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
-  inputAddress, officeOption, locationOption, id, startModal,
-) => {
-  await APIClients.put(`/clients/update/${id}`, {
-    name: inputName,
-    email: inputEmail,
-    cpf: inputCpf,
-    phone: inputPhone,
-    secondaryPhone: inputSecondaryPhone,
-    address: inputAddress,
-    office: officeOption,
-    location: locationOption,
-  })
-    .catch((error) => {
-      if (error.response.status === 500) {
-        startModal('O tempo da sua sessão expirou, faça o login novamente');
-      } else if (error.response.status !== 401) {
-        startModal('Não foi possivel atualizar o cliente. Tente novamente mais tarde');
-      }
-      console.error(`An unexpected error ocourred while updating the client data.${error}`);
+  inputAddress, officeOption, locationOption, id, startModal, userContext,
+) {
+  try {
+    const response = await APIClients.put(`/clients/update/${id}`, {
+      name: inputName,
+      email: inputEmail,
+      cpf: inputCpf,
+      phone: inputPhone,
+      secondaryPhone: inputSecondaryPhone,
+      address: inputAddress,
+      office: officeOption,
+      location: locationOption,
+      userID: userContext,
     });
-};
+    return response;
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possivel atualizar o cliente. Tente novamente mais tarde');
+    }
+    console.error(`An unexpected error ocourred while updating the client data.${error}`);
+  }
+  return false;
+}
 
 export const toggleStatus = async (id, startModal) => {
   try {

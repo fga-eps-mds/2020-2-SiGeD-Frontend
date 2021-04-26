@@ -16,7 +16,7 @@ const ClientRegisterScreen = () => {
   const [registerClientInputSecondaryPhone, setregisterClientInputSecondaryPhone] = useState('');
   const [officeOption, setOfficeOption] = useState('Policial');
   const [registerLocation, setRegisterLocation] = useState('');
-  const { startModal } = useProfileUser();
+  const { startModal, user } = useProfileUser();
 
   const submit = async () => {
     const validMessage = validateFields(registerClientInputName,
@@ -27,7 +27,7 @@ const ClientRegisterScreen = () => {
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
         registerClientInputSecondaryPhone, registerClientInputAddress,
-        officeOption, registerLocation, startModal,
+        officeOption, registerLocation, startModal, user._id,
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }
