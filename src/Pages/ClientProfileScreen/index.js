@@ -9,8 +9,9 @@ import RedirectListButton from '../../Components/RedirectButton';
 import DropdownComponent from '../../Components/DropdownComponent';
 import {
   Main, RightBox, RightBoxMain, TitleH, SearchDiv, FilterDiv,
-  HeaderDiv, ListDiv, ButtonContainer, ContainerDiv, DropdownField,
+  HeaderDiv, ListDiv, ButtonContainer, ContainerDiv,
 } from './Style';
+import { DropdownField } from '../ListDemandsScreen/Style';
 import { DropDiv, ContentBox } from '../../Components/GenericListScreen/Style';
 import { getClients } from '../../Services/Axios/clientServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
@@ -171,14 +172,13 @@ const ClientProfileScreen = () => {
                       </SearchDiv>
                     </DropDiv>
                     <FilterDiv>
-                      <DropdownField>
+                      <DropdownField width="35%">
                         <p style={{ marginBottom: '0' }}>Anos: </p>
                         <DropdownComponent
                           OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
                           style={{
                             display: 'flex',
                             color: `${colors.text}`,
-                            width: '100%',
                             height: '100%',
                             alignItems: 'center',
                             boxSizing: 'border-box',

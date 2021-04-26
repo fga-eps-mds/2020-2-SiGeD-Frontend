@@ -82,8 +82,7 @@ export const TitleH = styled.h2`
 `;
 
 export const ButtonContainer = styled.div`
-  float: right;
-  width: 150px;
+  width: 130px;
   height: 50px;
   border-radius: 15px;
 
@@ -134,23 +133,17 @@ export const ContainerDiv = styled.div`
   }
 `;
 
-export const DropdownField = styled.div`
+export const FilterDiv = styled.div`
+  width: 260px;
+  height: 50px;
   display: flex;
-  float: left;
-  flex-direction: column;
-  width: ${(props) => `${props.width}%`};
-  margin-right: 1%;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 2%;
 
   @media(max-width: 750px) {
     width: 100%;
-    padding-bottom: 3%;
-  }  
-`;
-
-export const FilterDiv = styled.div`
-  float: right;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 300px;
-  align-items: flex-end
+    height: 100px;
+    flex-direction: column;
+  }
 `;
