@@ -1,12 +1,13 @@
 import Modal from 'react-bootstrap/Modal';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { format } from 'date-fns';
 import {
   TimelineOppositeContent, TimelineItem, TimelineSeparator,
   TimelineConnector, TimelineContent, TimelineDot,
 } from '@material-ui/lab';
 import colors from '../../Constants/colors';
-import { TimeDiv, UpdateDiv } from './Style';
+import { TimeDiv, UpdateDiv, UserName } from './Style';
 import { getUser } from '../../Services/Axios/userServices';
 import { useProfileUser } from '../../Context';
 
@@ -15,6 +16,7 @@ const ModalHistory = ({
 }) => {
   const { startModal } = useProfileUser();
   const [users, setUsers] = useState([]);
+  const history = useHistory();
 
   const getUserFromApi = async () => {
     await getUser('users', startModal)
@@ -62,15 +64,19 @@ const ModalHistory = ({
             {' - Atualização de '}
             {dictionary(update.label)}
             {' por '}
-            {findedUser[0]?.name}
+            <UserName
+              onClick={() => history.push('/usuarios')}
+            >
+              {findedUser[0]?.name}
+            </UserName>
           </TimeDiv>
           <UpdateDiv>
             <p style={{ color: 'red' }}>
-              Antes:
+              {'Antes: '}
               {update.before}
             </p>
             <p style={{ color: 'blue' }}>
-              Depois:
+              {'Depois: '}
               {update.after}
             </p>
           </UpdateDiv>

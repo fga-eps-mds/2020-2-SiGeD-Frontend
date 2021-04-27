@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsPencil } from 'react-icons/bs';
+import { useHistory } from 'react-router-dom';
 import {
   Sidebar, SidebarText, SidebarTitle, Icon, SidebarFooter, FooterText,
   SidebarCardText, TextButtom,
@@ -7,9 +8,10 @@ import {
 import { useProfileUser } from '../../Context';
 
 const SidebarComponent = ({
-  sidebarTitle, sidebarList, sidebarFooter, edit, handleShow,
+  sidebarTitle, sidebarList, sidebarFooter, edit, handleShow, id,
 }) => {
   const { user } = useProfileUser();
+  const history = useHistory();
 
   return (
     <Sidebar>
@@ -42,7 +44,9 @@ const SidebarComponent = ({
         )}
       { edit
         && (
-          <TextButtom>
+          <TextButtom
+            onClick={() => history.push(`/editar/${id}`)}
+          >
             <BsPencil style={{ cursor: 'pointer', marginRight: '2px' }} />
             Editar
           </TextButtom>
