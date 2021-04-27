@@ -161,6 +161,7 @@ const ClientProfileScreen = () => {
               sidebarFooter={[inputEmail, inputPhone]}
               edit
               handleShow={handleShow}
+              id={client._id}
             />
             <RightBox>
               <RightBoxMain>
