@@ -1,5 +1,6 @@
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsPlusCircle, BsDashCircle } from 'react-icons/bs';
+import { BiStopwatch } from 'react-icons/bi';
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
@@ -119,11 +120,10 @@ export const ContentBox = styled.div`
 
 export const SelectionBox = styled.div`
     width: 100%;
+    height: 100%;
     display: flex;
-    margin-top: 8%;
     flex-direction: column;
     align-items: center;
-    padding: 5%;
     @media(max-width: 750px){
         margin-top: 0;
         height: min-content;
@@ -182,5 +182,46 @@ export const CategoryName = styled.div`
         font-weight: 900;
         align-items: center;
         margin-left: 1vw;
+    }
+`;
+
+export const AlertContainer = styled.div`
+    width: 100%;
+    height: 100%;
+`;
+
+export const AlertTitle = styled.p`
+    width: 100%;
+    height: min-content;
+    margin-top: 5px;
+`;
+
+export const CreateAlertTitle = styled.p`
+    height: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: center;
+`;
+
+export const CreateAlertIcon = styled(BiStopwatch)`
+    height: 35px;
+    width: 35px;
+`;
+
+export const CreateAlertDiv = styled.div`
+    background-color: ${colors.navHeaders};
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid ${colors.secondary};
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    align-items: center;
+    padding: 5px;
+    justify-content: space-between;
+    @media(max-width: 750px){
+        margin-top: 0px;
     }
 `;

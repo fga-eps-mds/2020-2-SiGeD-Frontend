@@ -299,3 +299,41 @@ export async function updateDemandUpdate(
     console.error(`An unexpected error occurred while updating a demand update.${error}`);
   }
 }
+
+export async function createAlert(
+  name, description, date, alertClient, demandID, startModal,
+) {
+  try {
+    await APIDemands.post('alert/create', {
+      name,
+      description,
+      date,
+      alertClient,
+      demandID,
+    });
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.data.status) {
+      startModal('Preencha todos os campos para poder criar um novo alerta');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possível criar um novo alerta, tente novamente mais tarde.');
+    }
+    console.error(`An unexpected error ocourred while creating a new alert.${error}`);
+  }
+}
+
+export async function getAlerts(url, startModal) {
+  try {
+    const response = await APIDemands.get(url);
+    return response;
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possível carregar os alertas já criados, tente novamente mais tarde.');
+    }
+    console.error(`An unexpected error ocourred while getting alerts.${error}`);
+  }
+  return false;
+}
