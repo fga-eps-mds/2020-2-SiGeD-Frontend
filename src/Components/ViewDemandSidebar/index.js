@@ -25,8 +25,7 @@ const ViewDemandSidebar = ({
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const { startModal } = useProfileUser();
-  const { user } = useProfileUser();
+  const { startModal, user } = useProfileUser();
 
   const actualSector = sectorsResponse?.filter(
     (sectorByID) => sectorByID._id
