@@ -72,11 +72,11 @@ const UpdateDemandsScreen = () => {
     setCategoriesIDs(IDs);
   }, [selectedCategories]);
 
-  const removeCategory = (category) => {
-    const newSelectedCategories = selectedCategories.filter(
-      (remove) => remove._id !== category._id,
+  const removeUpdateCategory = (serchCategory) => {
+    const newCategories = selectedCategories.filter(
+      (removeCategory) => removeCategory._id !== serchCategory._id,
     );
-    setSelectedCategories(newSelectedCategories);
+    setSelectedCategories(newCategories);
   };
 
   const pushCategory = (category) => {
@@ -153,7 +153,7 @@ const UpdateDemandsScreen = () => {
         />
         <SelectedCategories
           selectedCategories={selectedCategories}
-          removeCategory={removeCategory}
+          removeCategory={removeUpdateCategory}
         />
       </RightBoxComponent>
       <Footer>
