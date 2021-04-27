@@ -1,16 +1,6 @@
 import styled from 'styled-components';
 import { TextareaAutosize } from '@material-ui/core';
 
-export const ButtonDiv = styled.div`
-display: flex;
-width: 40%;
-margin: 5%;
-@media(max-width: 750px){
-    width: 90%;
-    display: none;
-}
-`;
-
 export const Input = styled.input`
 width: 100%;
 height: 40%;

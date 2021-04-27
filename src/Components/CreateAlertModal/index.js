@@ -15,18 +15,27 @@ const CreateAlertModal = ({
   const [inputDescription, setInputDescription] = useState('');
   const [inputDate, setInputDate] = useState('');
   const [clientAlert, setClientAlert] = useState(true);
-
-  const submit = async () => {
-    await createAlert(inputName, inputDescription, inputDate, clientAlert, demand._id, startModal);
-    setChangeState(!changeState);
+  let response = null;
+  const clearFields = () => {
     setInputName('');
     setInputDescription('');
     setInputDate('');
-    setClientAlert(true);
+  };
+
+  const submit = async () => {
+    response = await createAlert(
+      inputName, inputDescription, inputDate, clientAlert, demand._id, startModal,
+    );
+    if (response) {
+      setChangeState(!changeState);
+      clearFields();
+      setClientAlert(true);
+      handleClose();
+    }
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={() => { clearFields(); handleClose(); }}>
       <Modal.Header closeButton>
         <Modal.Title>Alerta</Modal.Title>
       </Modal.Header>
@@ -93,7 +102,7 @@ const CreateAlertModal = ({
       </Modal.Body>
       <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
         <TinyButton
-          click={handleClose}
+          click={() => { clearFields(); handleClose(); }}
           type="primary"
           title="Cancelar"
           style={{
@@ -103,7 +112,7 @@ const CreateAlertModal = ({
           }}
         />
         <TinyButton
-          click={() => { submit(); handleClose(); }}
+          click={() => submit()}
           type="primary"
           title="Cadastrar"
           style={{

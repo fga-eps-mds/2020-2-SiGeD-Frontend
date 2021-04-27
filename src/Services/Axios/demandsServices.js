@@ -304,22 +304,25 @@ export async function createAlert(
   name, description, date, alertClient, demandID, startModal,
 ) {
   try {
-    await APIDemands.post('alert/create', {
+    const response = await APIDemands.post('alert/create', {
       name,
       description,
       date,
       alertClient,
       demandID,
     });
+    startModal('Alerta criado com sucesso!');
+    return response?.data;
   } catch (error) {
     if (error.response.status === 500) {
-      startModal('O tempo da sua sessão expirou, faça o login novamente');
+      startModal('O tempo da sua sessão expirou, faça o login novamente.');
     } else if (error.response.data.status) {
-      startModal('Preencha todos os campos para poder criar um novo alerta');
+      startModal('Preencha todos os campos para poder criar um novo alerta.');
     } else if (error.response.status !== 401) {
       startModal('Não foi possível criar um novo alerta, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while creating a new alert.${error}`);
+    return null;
   }
 }
 

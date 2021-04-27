@@ -150,15 +150,15 @@ const ViewDemandSidebar = ({
                 <CreateAlertTitle>
                   Adicionar Alerta
                 </CreateAlertTitle>
-                <CreateAlertModal
-                  demand={demand}
-                  show={show}
-                  handleClose={handleClose}
-                  startModal={startModal}
-                  changeState={changeState}
-                  setChangeState={setChangeState}
-                />
               </CreateAlertDiv>
+              <CreateAlertModal
+                demand={demand}
+                show={show}
+                handleClose={handleClose}
+                startModal={startModal}
+                changeState={changeState}
+                setChangeState={setChangeState}
+              />
             </AlertContainer>
           </SelectionBox>
         )}
