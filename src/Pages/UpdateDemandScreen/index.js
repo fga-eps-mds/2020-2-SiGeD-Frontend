@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import { Main, Footer } from './Style';
 import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
@@ -14,6 +14,7 @@ import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 import { useProfileUser } from '../../Context';
 
 const UpdateDemandsScreen = () => {
+  const history = useHistory();
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -71,6 +72,13 @@ const UpdateDemandsScreen = () => {
     setCategoriesIDs(IDs);
   }, [selectedCategories]);
 
+  const removeCategory = (category) => {
+    const newSelectedCategories = selectedCategories.filter(
+      (remove) => remove._id !== category._id,
+    );
+    setSelectedCategories(newSelectedCategories);
+  };
+
   const pushCategory = (category) => {
     let alreadySelected = false;
     selectedCategories.forEach((passCategory) => {
@@ -98,6 +106,7 @@ const UpdateDemandsScreen = () => {
         name, description, process, categoriesIDs, sectorID, userID, clientID, id, startModal,
       );
       startModal('Demanda editada com sucesso!');
+      history.push('/demandas');
     } else {
       startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
     }
@@ -144,6 +153,7 @@ const UpdateDemandsScreen = () => {
         />
         <SelectedCategories
           selectedCategories={selectedCategories}
+          removeCategory={removeCategory}
         />
       </RightBoxComponent>
       <Footer>
@@ -154,7 +164,7 @@ const UpdateDemandsScreen = () => {
         show={show}
         handleClose={handleClose}
         submit={submit}
-        actionName=" editar "
+        actionName="Você deseja editar essa demanda?"
       />
     </Main>
   );

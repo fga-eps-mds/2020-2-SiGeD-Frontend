@@ -10,6 +10,7 @@ import SendDemandModal from '../SendDemandModal';
 import DropdownComponent from '../DropdownComponent';
 import SelectedCategories from '../SelectedCategories';
 import colors from '../../Constants/colors';
+import { useProfileUser } from '../../Context';
 
 const ViewDemandSidebar = ({
   clientName, userName, selectedCategories, demand, getDemandApi, showUpdates, sectorsResponse,
@@ -17,6 +18,7 @@ const ViewDemandSidebar = ({
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
   const [flag, setFlag] = useState(false);
+  const { startModal } = useProfileUser();
 
   const actualSector = sectorsResponse?.filter(
     (sectorByID) => sectorByID._id
@@ -26,6 +28,10 @@ const ViewDemandSidebar = ({
   const [sectorOption, setSectorOption] = useState(actualSector[0]?.name);
 
   const sectorsList = () => sectorsResponse.map((sector) => sector.name);
+
+  const alertMessage = () => {
+    startModal('Você deve editar a demanda para retirar a categoria!');
+  };
 
   useEffect(() => {
     if (actualSector[0] && !flag) {
@@ -119,7 +125,10 @@ const ViewDemandSidebar = ({
               <p>
                 Categoria:
               </p>
-              <SelectedCategories selectedCategories={selectedCategories} />
+              <SelectedCategories
+                selectedCategories={selectedCategories}
+                removeCategory={alertMessage}
+              />
             </CategoryField>
           </SelectionBox>
         )}

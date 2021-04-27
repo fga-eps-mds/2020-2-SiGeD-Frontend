@@ -42,6 +42,13 @@ const CreateDemandsScreen = () => {
     setCategoriesIDs(IDs);
   }, [selectedCategories]);
 
+  const removeCategory = (category) => {
+    const newSelectedCategories = selectedCategories.filter(
+      (remove) => remove._id !== category._id,
+    );
+    setSelectedCategories(newSelectedCategories);
+  };
+
   const pushCategory = (category) => {
     let alreadySelected = false;
     selectedCategories.forEach((passCategory) => {
@@ -123,6 +130,7 @@ const CreateDemandsScreen = () => {
         />
         <SelectedCategories
           selectedCategories={selectedCategories}
+          removeCategory={removeCategory}
         />
       </RightBoxComponent>
       <Footer>

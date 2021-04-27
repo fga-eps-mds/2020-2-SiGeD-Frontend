@@ -32,6 +32,7 @@ export const Tag = styled.div`
   margin-left: 5%;
   margin-bottom: 5%;
   word-break: break-word;
+  cursor: pointer;
 
   @media(max-width: 750px){
     
