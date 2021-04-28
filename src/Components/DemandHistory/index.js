@@ -55,7 +55,7 @@ const DemandHistory = ({ show, handleClose, demand }) => {
     return word;
   };
 
-  const updateCategory = (after, label) => {
+  const updateData = (after, label) => {
     if (label === 'category') {
       const findedCategory = categories?.filter((category) => category?._id === after);
       return (
@@ -93,11 +93,11 @@ const DemandHistory = ({ show, handleClose, demand }) => {
           <UpdateDiv>
             <p style={{ color: 'red' }}>
               {'Antes: '}
-              {update.before}
+              {updateData(update.before, update.label)}
             </p>
             <p style={{ color: 'blue' }}>
               {'Depois: '}
-              {updateCategory(update.after, update.label)}
+              {updateData(update.after, update.label)}
             </p>
           </UpdateDiv>
         </TimelineContent>

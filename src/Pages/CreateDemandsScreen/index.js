@@ -73,7 +73,7 @@ const CreateDemandsScreen = () => {
     if (validateInputs()) {
       startModal('Demanda criada com sucesso!');
       const data = await createDemand(
-        name, description, process, categoriesIDs, sectorID, user._id, clientID,
+        name, description, process, categoriesIDs, sectorID, user._id, clientID, startModal,
       ).then((response) => response.data);
       return history.push(`/visualizar/${data._id}`);
     }
