@@ -61,15 +61,15 @@ const StatisticScreen = () => {
     }
   }, [categoryActive]);
 
-  const getCategoriesStatistics = async (id) => {
-    await getDemandsStatistics(`statistic/category?id=${id}`, startModal)
+  const getCategoriesStatistics = async (idSector, idCategory) => {
+    await getDemandsStatistics(`statistic/category?idSector=${idSector}&idCategory=${idCategory}`, startModal)
       .then((response) => {
         setCategoryStatistics(response?.data);
       });
   };
 
-  const getSectorStatistics = async (id) => {
-    await getDemandsStatistics(`statistic/sector?id=${id}`, startModal)
+  const getSectorStatistics = async (idCategory) => {
+    await getDemandsStatistics(`statistic/sector?idCategory=${idCategory}`, startModal)
       .then((response) => {
         const sectorGraph = [];
         response.data?.map((item) => {
@@ -94,7 +94,7 @@ const StatisticScreen = () => {
     if (user && token) {
       getSectorsFromApi();
       getCategoriesFromApi();
-      getCategoriesStatistics(null);
+      getCategoriesStatistics(null, null);
       getSectorStatistics(null);
     }
   }, [token, user]);
@@ -109,6 +109,7 @@ const StatisticScreen = () => {
 
   useEffect(() => {
     getSectorStatistics(categoryID);
+    getCategoriesStatistics(sectorID, categoryID);
   }, [categoryID]);
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
