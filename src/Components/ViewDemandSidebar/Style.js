@@ -225,3 +225,16 @@ export const CreateAlertDiv = styled.div`
         margin-top: 0px;
     }
 `;
+
+export const TextButtom = styled.div`
+    color: ${colors.primary};
+    font-size: 2vh;
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+
+    @media(max-width: 750px){
+        font-size: 2vh;
+        
+    }
+`;

@@ -17,7 +17,7 @@ import { getClients } from '../../Services/Axios/clientServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import { useProfileUser } from '../../Context';
 import colors from '../../Constants/colors';
-import ModalHistory from '../../Components/ModalHistory';
+import ClientHistory from '../../Components/ClientHistory';
 
 const ClientProfileScreen = () => {
   const [sectors, setSectors] = useState([]);
@@ -217,7 +217,7 @@ const ClientProfileScreen = () => {
                 </ContainerDiv>
               </RightBoxMain>
             </RightBox>
-            <ModalHistory
+            <ClientHistory
               show={show}
               handleClose={handleClose}
               client={client}
