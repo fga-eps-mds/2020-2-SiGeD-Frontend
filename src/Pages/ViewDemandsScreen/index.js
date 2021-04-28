@@ -5,7 +5,7 @@ import {
   Timeline, TimelineOppositeContent, TimelineItem, TimelineSeparator,
   TimelineConnector, TimelineContent, TimelineDot,
 } from '@material-ui/lab';
-import { getDemands } from '../../Services/Axios/demandsServices';
+import { getDemands, getAlertsByDemand } from '../../Services/Axios/demandsServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import ViewDemandSidebar from '../../Components/ViewDemandSidebar';
 import ViewDemandCard from '../../Components/ViewDemandCard';
@@ -41,6 +41,7 @@ const ViewDemandsScreen = () => {
   const [message, setMessage] = useState('');
   const { user, startModal } = useProfileUser();
   const { id } = useParams();
+  const [alerts, setAlerts] = useState([]);
 
   const getClientApi = async (clientID) => {
     await getClients(`clients/${clientID}`, startModal)
@@ -59,6 +60,14 @@ const ViewDemandsScreen = () => {
         setDemand(data);
         getClientApi(data?.clientID);
         getUserApi(data?.userID);
+      });
+  };
+
+  const getAlertsApi = async () => {
+    await getAlertsByDemand(id, startModal)
+      .then((response) => { setAlerts(response); })
+      .catch((err) => {
+        console.error(`An unexpected error ocourred while getting alerts. ${err}`);
       });
   };
 
@@ -103,6 +112,7 @@ const ViewDemandsScreen = () => {
     if (demand) {
       getSectorsApi();
       setButtons();
+      getAlertsApi();
       setFlag(true);
     }
   }, [demand && flag]);
@@ -242,6 +252,7 @@ const ViewDemandsScreen = () => {
           show={showHistory}
           handleClose={handleCloseHistory}
           demand={demand}
+          alerts={alerts}
         />
         <MobileTimeline>
           <Timeline>

@@ -12,20 +12,21 @@ import {
 import SendDemandModal from '../SendDemandModal';
 import DropdownComponent from '../DropdownComponent';
 import SelectedCategories from '../SelectedCategories';
+import AlertByDemandData from '../AlertByDemandData';
 import colors from '../../Constants/colors';
 import CreateAlertModal from '../CreateAlertModal';
 import { useProfileUser } from '../../Context';
 
 const ViewDemandSidebar = ({
   clientName, userName, selectedCategories, demand, getDemandApi, showUpdates, sectorsResponse,
-  changeState, setChangeState, handleShowHistory,
+  changeState, setChangeState, alerts, handleShowHistory,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
   const [flag, setFlag] = useState(false);
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const { startModal, user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
 
   const actualSector = sectorsResponse?.filter(
     (sectorByID) => sectorByID._id
@@ -46,6 +47,10 @@ const ViewDemandSidebar = ({
       setFlag(true);
     }
   }, [actualSector]);
+
+  const ListAlertData = () => alerts?.map((alert) => (
+    <AlertByDemandData alert={alert} />
+  ));
 
   return (
     <RightBox>
@@ -141,6 +146,7 @@ const ViewDemandSidebar = ({
               <AlertTitle>
                 Alertas:
               </AlertTitle>
+              {ListAlertData()}
               <CreateAlertDiv
                 onClick={() => handleShow()}
               >
@@ -158,6 +164,7 @@ const ViewDemandSidebar = ({
                 startModal={startModal}
                 changeState={changeState}
                 setChangeState={setChangeState}
+                user={user}
               />
             </AlertContainer>
           </SelectionBox>

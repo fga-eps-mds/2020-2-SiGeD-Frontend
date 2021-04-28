@@ -301,7 +301,7 @@ export async function updateDemandUpdate(
 }
 
 export async function createAlert(
-  name, description, date, alertClient, demandID, startModal,
+  name, description, date, alertClient, demandID, sectorID, startModal,
 ) {
   try {
     const response = await APIDemands.post('alert/create', {
@@ -310,6 +310,7 @@ export async function createAlert(
       date,
       alertClient,
       demandID,
+      sectorID,
     });
     startModal('Alerta criado com sucesso!');
     return response?.data;
@@ -339,4 +340,34 @@ export async function getAlerts(url, startModal) {
     console.error(`An unexpected error ocourred while getting alerts.${error}`);
   }
   return false;
+}
+
+export async function getAlertsByDemand(id, startModal) {
+  try {
+    const response = await APIDemands.get(`alert/demand/${id}`);
+    return response.data;
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possível carregar os alertas dessa demanda, tente novamente mais tarde.');
+    }
+    console.error(`An unexpected error ocourred while getting alerts by demand.${error}`);
+  }
+  return null;
+}
+
+export async function getAlertsBySector(id, startModal) {
+  try {
+    const response = await APIDemands.get(`alert/sector/${id}`);
+    return response.data;
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possível carregar os alertas desse setor, tente novamente mais tarde.');
+    }
+    console.error(`An unexpected error ocourred while getting alerts by sector.${error}`);
+  }
+  return null;
 }
