@@ -10,7 +10,7 @@ import {
   TimelineDot,
 } from '@material-ui/lab';
 import colors from '../../Constants/colors';
-import { TimeDiv, UpdateDiv, UserName } from '../DemandHistory/Style';
+import { TimeDiv, UpdateDiv, UserName } from './Style';
 import { getUser } from '../../Services/Axios/userServices';
 import { useProfileUser } from '../../Context';
 import ModalHistory from '../ModalHistory';

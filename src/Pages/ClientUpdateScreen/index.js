@@ -56,14 +56,7 @@ const ClientUpdateScreen = () => {
   };
 
   const cancel = () => {
-    setupdateClientInputName('');
-    setupdateClientInputEmail('');
-    setupdateClientInputCpf('');
-    setupdateClientInputPhone('');
-    setupdateClientInputSecondaryPhone('');
-    setupdateClientInputAddress('');
-    setOfficeOption('');
-    setupdateLocation('');
+    history.push(`/perfil/${id}`);
   };
 
   if (!localStorage.getItem('@App:token')) {
