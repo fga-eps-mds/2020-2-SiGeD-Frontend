@@ -2,19 +2,35 @@ import { Navbar, Nav } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
+import { BsBell } from 'react-icons/bs';
 import styles from './Style';
 import { useProfileUser } from '../../Context';
+import { getAlertsBySector } from '../../Services/Axios/demandsServices';
 import { APIUsers } from '../../Services/Axios/baseService';
+import ViewAlertModal from '../ViewAlertModal';
 
 const NavbarComp = () => {
   const {
     user, token, setToken, startModal,
   } = useProfileUser();
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const [alerts, setAlerts] = useState([]);
+
+  const getAlertsApi = async () => {
+    await getAlertsBySector(user?.sector, startModal)
+      .then((response) => { setAlerts(response); console.log('response', response); })
+      .catch((err) => {
+        console.error(`An unexpected error ocourred while getting alerts. ${err}`);
+      });
+  };
 
   useEffect(() => {
     if (user) {
       setLoading(true);
+      getAlertsApi();
     } else {
       setLoading(false);
     }
@@ -70,6 +86,14 @@ const NavbarComp = () => {
                   <Nav.Link as={Link} to="/estatisticas" style={styles.navbarText}>
                     Estatísticas
                   </Nav.Link>
+                  <Navbar.Brand onClick={() => { handleShow(); getAlertsApi(); }}>
+                    <BsBell />
+                  </Navbar.Brand>
+                  <ViewAlertModal
+                    show={show}
+                    handleClose={handleClose}
+                    alerts={alerts}
+                  />
                   <Navbar.Brand as={Link} to="/login" onClick={logoutUser}>
                     <FiLogOut />
                   </Navbar.Brand>
@@ -105,6 +129,14 @@ const NavbarComp = () => {
                 <Nav.Link as={Link} to="/demandas" style={styles.navbarText}>
                   Demandas
                 </Nav.Link>
+                <Navbar.Brand onClick={() => handleShow()}>
+                  <BsBell />
+                </Navbar.Brand>
+                <ViewAlertModal
+                  show={show}
+                  handleClose={handleClose}
+                  alerts={alerts}
+                />
                 <Navbar.Brand as={Link} to="/login" onClick={logoutUser}>
                   <FiLogOut />
                 </Navbar.Brand>
