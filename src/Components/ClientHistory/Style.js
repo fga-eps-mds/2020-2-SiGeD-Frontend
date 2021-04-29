@@ -28,7 +28,7 @@ export const UserName = styled.p`
     font-weight: bold;
     color: ${colors.primary};
     cursor: pointer;
-    width: min-content;
+    width: max-content;
     margin-left: 5px;
 
     @media(max-width: 750px){
