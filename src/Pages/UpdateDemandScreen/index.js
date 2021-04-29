@@ -22,7 +22,7 @@ const UpdateDemandsScreen = () => {
   const [description, setDescription] = useState('');
   const historyDemands = useHistory();
   const [process, setProcess] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [AllselectedCategories, setAllSelectedCategories] = useState([]);
   const [clientID, setClientID] = useState('');
   const [userID, setUserID] = useState('');
   const [sectorID, setSectorID] = useState('');
@@ -55,7 +55,7 @@ const UpdateDemandsScreen = () => {
         setName(data?.name);
         setDescription(data?.description);
         setProcess(data?.process);
-        setSelectedCategories(data?.categoryID);
+        setAllSelectedCategories(data?.categoryID);
         setClientID(data?.clientID);
         setSectorID(data?.sectorHistory[0].sectorID);
         getSectorFromApi(data?.sectorHistory[0].sectorID);
@@ -69,23 +69,23 @@ const UpdateDemandsScreen = () => {
   }, []);
 
   useEffect(() => {
-    const IDs = selectedCategories?.map((selectedCategory) => selectedCategory._id);
+    const IDs = AllselectedCategories?.map((selectedCategory) => selectedCategory._id);
     setCategoriesIDs(IDs);
-  }, [selectedCategories]);
+  }, [AllselectedCategories]);
 
   const categoryDelete = (searchCategory) => {
-    setSelectedCategories(removeCategory(searchCategory, selectedCategories));
+    setAllSelectedCategories(removeCategory(searchCategory, AllselectedCategories));
   };
 
   const pushCategory = (category) => {
     let alreadySelected = false;
-    selectedCategories.forEach((passCategory) => {
+    AllselectedCategories.forEach((passCategory) => {
       if (category._id === passCategory._id) {
         alreadySelected = true;
       }
     });
     if (!alreadySelected) {
-      setSelectedCategories([...selectedCategories, category]);
+      setAllSelectedCategories([...AllselectedCategories, category]);
     } else {
       startModal('A categoria escolhida ja foi selecionada.');
     }
@@ -141,11 +141,11 @@ const UpdateDemandsScreen = () => {
           sectorName={sectorName}
         />
         <CategoryDiv
-          selectedCategories={selectedCategories}
+          selectedCategories={AllselectedCategories}
           pushCategory={pushCategory}
         />
         <SelectedCategories
-          selectedCategories={selectedCategories}
+          selectedCategories={AllselectedCategories}
           removeCategory={categoryDelete}
         />
       </RightBoxComponent>
