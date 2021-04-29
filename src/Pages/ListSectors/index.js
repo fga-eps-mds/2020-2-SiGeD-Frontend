@@ -92,7 +92,7 @@ const ListSectors = () => {
                   </TableTitle>
                   <TableTitle width={2} />
                 </TableHeader>
-                { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listSectors} handleClose={toggleModal} createContent={postSectors} /> : null}
+                { statusModal ? <ModalComp show={statusModal} type="Setor" operation="Nova " idName="" idDescription="" getContent={listSectors} handleClose={toggleModal} createContent={postSectors} /> : null}
               </GenericListScreen>
             )
             : <Redirect to="/nao-autorizado" />}
