@@ -4,6 +4,8 @@ import colors from '../../Constants/colors';
 export const TimeDiv = styled.div`
     width: 100%;
     height: min-content;
+    display: flex;
+    flex-direction: row;
 
     @media(max-width: 750px){
 
@@ -26,6 +28,8 @@ export const UserName = styled.p`
     font-weight: bold;
     color: ${colors.primary};
     cursor: pointer;
+    width: min-content;
+    margin-left: 5px;
 
     @media(max-width: 750px){
 
@@ -44,6 +48,7 @@ export const Tag = styled.p`
   text-align: center;
   font-size: 1rem;
   word-break: break-word;
+  margin-left: 10px;
 
   @media(max-width: 750px){
     

@@ -52,12 +52,22 @@ const DemandHistory = ({ show, handleClose, demand }) => {
     if (wordChanged === 'process') {
       return 'processo';
     }
+    if (wordChanged === 'created') {
+      return 'criada';
+    }
     return wordChanged;
   };
 
-  const updateData = (after, label) => {
+  const titleDemand = (label) => {
+    if (label === 'created') {
+      return ' - Demanda ';
+    }
+    return ' - Atualização de ';
+  };
+
+  const updateData = (update, label) => {
     if (label === 'category') {
-      const findedCategory = categories?.filter((category) => category?._id === after);
+      const findedCategory = categories?.filter((category) => category?._id === update);
       return (
         <Tag
           style={{ backgroundColor: findedCategory[0]?.color, color: 'white' }}
@@ -67,7 +77,7 @@ const DemandHistory = ({ show, handleClose, demand }) => {
         </Tag>
       );
     }
-    return after;
+    return update;
   };
 
   const showHistory = () => demand?.demandHistory.map((updateDemand) => {
@@ -83,7 +93,7 @@ const DemandHistory = ({ show, handleClose, demand }) => {
         <TimelineContent style={{ width: '100%' }}>
           <TimeDiv>
             {format(new Date(updateDemand.date), 'dd/MM/yyyy')}
-            {' - Atualização de '}
+            {titleDemand(updateDemand.label)}
             {dictionaryDemand(updateDemand.label)}
             {' por '}
             <UserName onClick={() => history.push('/usuarios')}>
@@ -91,14 +101,18 @@ const DemandHistory = ({ show, handleClose, demand }) => {
             </UserName>
           </TimeDiv>
           <UpdateDiv>
-            <p style={{ color: 'red' }}>
-              {'Antes: '}
-              {updateData(updateDemand.before, updateDemand.label)}
-            </p>
-            <p style={{ color: 'blue' }}>
-              {'Depois: '}
-              {updateData(updateDemand.after, updateDemand.label)}
-            </p>
+            {updateDemand.before && (
+              <p style={{ color: 'red', display: 'flex' }}>
+                {'Removido: '}
+                {updateData(updateDemand.before, updateDemand.label)}
+              </p>
+            )}
+            {updateDemand.after && (
+              <p style={{ color: '#5289B5', display: 'flex' }}>
+                {'Adicionado: '}
+                {updateData(updateDemand.after, updateDemand.label)}
+              </p>
+            )}
           </UpdateDiv>
         </TimelineContent>
       </TimelineItem>

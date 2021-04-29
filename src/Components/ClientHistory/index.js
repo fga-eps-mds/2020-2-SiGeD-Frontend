@@ -51,9 +51,16 @@ const ClientHistory = ({ show, handleClose, client }) => {
       return 'telefone secundário';
     }
     if (word === 'created') {
-      return 'criação';
+      return 'criado';
     }
     return word;
+  };
+
+  const titleClient = (label) => {
+    if (label === 'created') {
+      return ' - Cliente ';
+    }
+    return ' - Atualização de ';
   };
 
   const showHistory = () => client?.history.map((update) => {
@@ -69,7 +76,7 @@ const ClientHistory = ({ show, handleClose, client }) => {
         <TimelineContent style={{ width: '100%' }}>
           <TimeDiv>
             {format(new Date(update.date), 'dd/MM/yyyy')}
-            {' - Atualização de '}
+            {titleClient(update.label)}
             {dictionary(update.label)}
             {' por '}
             <UserName onClick={() => history.push('/usuarios')}>
@@ -77,14 +84,18 @@ const ClientHistory = ({ show, handleClose, client }) => {
             </UserName>
           </TimeDiv>
           <UpdateDiv>
-            <p style={{ color: 'red' }}>
-              {'Antes: '}
-              {update.before}
-            </p>
-            <p style={{ color: 'blue' }}>
-              {'Depois: '}
-              {update.after}
-            </p>
+            {update.before && (
+              <p style={{ color: 'red' }}>
+                {'Removido: '}
+                {update.before}
+              </p>
+            )}
+            {update.after && (
+              <p style={{ color: '#5289B5' }}>
+                {'Adicionado: '}
+                {update.after}
+              </p>
+            )}
           </UpdateDiv>
         </TimelineContent>
       </TimelineItem>
