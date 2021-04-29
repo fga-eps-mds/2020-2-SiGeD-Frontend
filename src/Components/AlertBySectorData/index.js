@@ -5,6 +5,7 @@ import { Checkbox, FormControlLabel } from '@material-ui/core';
 import colors from '../../Constants/colors';
 import {
   AlertData, WatchIcon, AlertAbout, AlertDemandName, AlertName, AlertDescription, AlertDate,
+  AlertRightSide,
 } from './Style';
 
 const AlertBySectorData = ({ alert }) => (
@@ -14,7 +15,7 @@ const AlertBySectorData = ({ alert }) => (
     </WatchIcon>
     <AlertAbout>
       <AlertDemandName>
-        Nome da demanda
+        Nome da demandaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       </AlertDemandName>
       <AlertName>
         {alert.name}
@@ -22,25 +23,28 @@ const AlertBySectorData = ({ alert }) => (
       <AlertDescription>
         {alert.description}
       </AlertDescription>
+    </AlertAbout>
+    <AlertRightSide>
+      <FormControlLabel
+        control={
+              (
+                <Checkbox
+                  value={alert.alertClient}
+                  defaultChecked={alert.alertClient}
+                  inputProps={{ 'aria-label': 'Checkbox A' }}
+                  style={{ color: `${colors.navHeaders}` }}
+                />
+              )
+            }
+        style={{
+          justifyContent: 'center',
+          margin: '0px',
+        }}
+      />
       <AlertDate>
         { moment.parseZone(alert.date).local(true).format('DD/MM/YYYY')}
       </AlertDate>
-    </AlertAbout>
-    <FormControlLabel
-      control={
-            (
-              <Checkbox
-                value={alert.clientAlert}
-                defaultChecked
-                inputProps={{ 'aria-label': 'Checkbox A' }}
-                style={{ color: `${colors.navHeaders}` }}
-              />
-            )
-          }
-      style={{
-        width: '100%',
-      }}
-    />
+    </AlertRightSide>
   </AlertData>
 );
 

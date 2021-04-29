@@ -19,6 +19,8 @@ const ViewAlertModal = ({
       <Modal.Body
         style={{
           margin: '20px',
+          height: '100%',
+          overflow: 'auto',
         }}
       >
         { listAlertData() }

@@ -21,7 +21,7 @@ const NavbarComp = () => {
 
   const getAlertsApi = async () => {
     await getAlertsBySector(user?.sector, startModal)
-      .then((response) => { setAlerts(response); console.log('response', response); })
+      .then((response) => setAlerts(response))
       .catch((err) => {
         console.error(`An unexpected error ocourred while getting alerts. ${err}`);
       });
