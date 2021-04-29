@@ -36,7 +36,9 @@ export async function postSectors(
     });
     return response;
   } catch (error) {
-    if (error.response.status === 500) {
+    if (error.response.data.error === 11000) {
+      startModal('Setor duplicado');
+    } else if (error.response.status === 500) {
       startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
       startModal('Não foi possivel criar o setor. Tente novamente mais tarde');
@@ -62,7 +64,6 @@ export const updateSectors = async (
     if (error.response.status === 500) {
       startModal('O tempo da sua sessão expirou, faça o login novamente');
     }
-    console.log(error);
   }
 };
 

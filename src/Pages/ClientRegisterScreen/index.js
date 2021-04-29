@@ -29,7 +29,10 @@ const ClientRegisterScreen = () => {
         registerClientInputSecondaryPhone, registerClientInputAddress,
         officeOption, registerLocation, startModal,
       ).then((response) => response.data);
-      return history.push(`/perfil/${data._id}`);
+      if (data) {
+        return history.push(`/perfil/${data._id}`);
+      }
+      return undefined;
     }
     startModal(validMessage.join('\n'));
     return undefined;
