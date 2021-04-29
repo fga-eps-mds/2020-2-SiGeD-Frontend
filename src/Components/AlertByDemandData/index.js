@@ -1,15 +1,15 @@
 import React from 'react';
 import moment from 'moment-timezone';
-import { AlertData, AlertName } from './Style';
+import { AlertData, AlertName, AlertDate } from './Style';
 
 const AlertByDemandData = ({ alert }) => (
   <AlertData>
     <AlertName>
       {alert.name}
     </AlertName>
-    <AlertName>
+    <AlertDate>
       { moment.parseZone(alert.date).local(true).format('DD/MM/YYYY')}
-    </AlertName>
+    </AlertDate>
   </AlertData>
 );
 

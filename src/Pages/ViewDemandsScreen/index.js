@@ -101,6 +101,7 @@ const ViewDemandsScreen = () => {
   useEffect(() => {
     if (id) {
       getDemandApi();
+      getAlertsApi();
     }
   }, [changeState]);
 

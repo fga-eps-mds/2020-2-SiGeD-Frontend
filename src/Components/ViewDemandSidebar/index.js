@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BiStopwatch } from 'react-icons/bi';
+import moment from 'moment-timezone';
 import {
   RightBox, ContentBox, NameDiv, Line,
   CreatedBy, UserIcon, PersonIcon, P,
@@ -7,7 +8,7 @@ import {
   CategoryField, MobileHeader,
   PlusButton, LessButton, ButtonsDiv,
   AlertContainer, AlertTitle, CreateAlertDiv,
-  CreateAlertTitle, CreateAlertIcon, TextButtom,
+  CreateAlertTitle, CreateAlertIcon, ListAlert, TextButtom,
 } from './Style';
 import SendDemandModal from '../SendDemandModal';
 import DropdownComponent from '../DropdownComponent';
@@ -48,7 +49,9 @@ const ViewDemandSidebar = ({
     }
   }, [actualSector]);
 
-  const ListAlertData = () => alerts?.map((alert) => (
+  const sortedAlerts = alerts.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
+
+  const ListAlertData = () => sortedAlerts?.map((alert) => (
     <AlertByDemandData alert={alert} />
   ));
 
@@ -146,7 +149,9 @@ const ViewDemandSidebar = ({
               <AlertTitle>
                 Alertas:
               </AlertTitle>
-              {ListAlertData()}
+              <ListAlert>
+                {ListAlertData()}
+              </ListAlert>
               <CreateAlertDiv
                 onClick={() => handleShow()}
               >
