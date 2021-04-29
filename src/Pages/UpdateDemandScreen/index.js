@@ -14,12 +14,12 @@ import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 import { useProfileUser } from '../../Context';
 
 const UpdateDemandsScreen = () => {
-  const history = useHistory();
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const historyDemands = useHistory();
   const [process, setProcess] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [clientID, setClientID] = useState('');
@@ -106,7 +106,7 @@ const UpdateDemandsScreen = () => {
         name, description, process, categoriesIDs, sectorID, userID, clientID, id, startModal,
       );
       startModal('Demanda editada com sucesso!');
-      history.push('/demandas');
+      historyDemands.push('/demandas');
     } else {
       startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
     }
