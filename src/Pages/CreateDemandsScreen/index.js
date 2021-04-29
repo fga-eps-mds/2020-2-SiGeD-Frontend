@@ -12,6 +12,7 @@ import { getClients } from '../../Services/Axios/clientServices';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 import { useProfileUser } from '../../Context';
+import removeCategory from '../../Utils/functions';
 
 const CreateDemandsScreen = () => {
   const [show, setShow] = useState(false);
@@ -42,11 +43,8 @@ const CreateDemandsScreen = () => {
     setCategoriesIDs(IDs);
   }, [selectedCategories]);
 
-  const removeCategory = (category) => {
-    const newSelectedCategories = selectedCategories.filter(
-      (remove) => remove._id !== category._id,
-    );
-    setSelectedCategories(newSelectedCategories);
+  const deleteCategory = (searchCategory) => {
+    setSelectedCategories(removeCategory(searchCategory, selectedCategories));
   };
 
   const pushCategory = (category) => {
@@ -130,7 +128,7 @@ const CreateDemandsScreen = () => {
         />
         <SelectedCategories
           selectedCategories={selectedCategories}
-          removeCategory={removeCategory}
+          removeCategory={deleteCategory}
         />
       </RightBoxComponent>
       <Footer>

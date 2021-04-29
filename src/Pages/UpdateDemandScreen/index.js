@@ -12,6 +12,7 @@ import SelectedCategories from '../../Components/SelectedCategories';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 import { useProfileUser } from '../../Context';
+import removeCategory from '../../Utils/functions';
 
 const UpdateDemandsScreen = () => {
   const [show, setShow] = useState(false);
@@ -72,11 +73,8 @@ const UpdateDemandsScreen = () => {
     setCategoriesIDs(IDs);
   }, [selectedCategories]);
 
-  const removeUpdateCategory = (serchCategory) => {
-    const newCategories = selectedCategories.filter(
-      (removeCategory) => removeCategory._id !== serchCategory._id,
-    );
-    setSelectedCategories(newCategories);
+  const categoryDelete = (searchCategory) => {
+    setSelectedCategories(removeCategory(searchCategory, selectedCategories));
   };
 
   const pushCategory = (category) => {
@@ -113,12 +111,7 @@ const UpdateDemandsScreen = () => {
   };
 
   const cancel = () => {
-    setName('');
-    setProcess('');
-    setDescription('');
-    setSelectedCategories([]);
-    setSectorID('');
-    setCategoriesIDs([]);
+    historyDemands.push(`/visualizar/${id}`);
   };
 
   if (!localStorage.getItem('@App:token')) {
@@ -153,7 +146,7 @@ const UpdateDemandsScreen = () => {
         />
         <SelectedCategories
           selectedCategories={selectedCategories}
-          removeCategory={removeUpdateCategory}
+          removeCategory={categoryDelete}
         />
       </RightBoxComponent>
       <Footer>
