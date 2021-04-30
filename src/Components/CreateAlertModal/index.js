@@ -1,6 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
-import { Checkbox, FormControlLabel } from '@material-ui/core';
+// import { Checkbox, FormControlLabel } from '@material-ui/core';
 import colors from '../../Constants/colors';
 import TinyButton from '../TinyButton';
 import { createAlert } from '../../Services/Axios/demandsServices';
@@ -80,7 +80,7 @@ const CreateAlertModal = ({
           <DropdownDiv
             style={{ width: '40' }}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={
             (
               <Checkbox
@@ -96,7 +96,7 @@ const CreateAlertModal = ({
             style={{
               width: '100%',
             }}
-          />
+          /> */}
         </BottomSide>
         <div />
       </Modal.Body>
