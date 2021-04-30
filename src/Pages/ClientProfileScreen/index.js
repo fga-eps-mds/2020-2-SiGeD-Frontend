@@ -24,10 +24,9 @@ const ClientProfileScreen = () => {
   const [inputEmail, setInputEmail] = useState('');
   const [inputCpf, setInputCpf] = useState('');
   const [inputPhone, setInputPhone] = useState('');
-  const [inputSecondaryPhone, setInputSecondaryPhone] = useState('');
-  const [inputAddress, setInputAddress] = useState('');
+  const [inputCity, setInputCity] = useState('');
   const [officeOption, setOfficeOption] = useState('');
-  const [location, setLocation] = useState('');
+  const [policeStationOption, setPoliceStationOption] = useState('');
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [demands, setDemands] = useState([]);
@@ -46,15 +45,13 @@ const ClientProfileScreen = () => {
     getClients(`clients/${id}`, startModal)
       .then((response) => {
         const { data } = response;
-        console.log(data);
-        setInputName(data.name); //
-        setInputEmail(data.email); //
-        setInputCpf(data.cpf); //
-        setInputPhone(data.phone); //
-        setInputSecondaryPhone(data.secondaryPhone); //
-        setInputAddress(data.address); //
-        setOfficeOption(data.office); //
-        setLocation(data.location);
+        setInputName(data.name);
+        setInputEmail(data.email);
+        setInputCpf(data.cpf);
+        setInputPhone(data.phone);
+        setInputCity(data.city);
+        setOfficeOption(data.office);
+        setPoliceStationOption(data.policeStation);
         setClient(data);
       });
   };
@@ -156,8 +153,8 @@ const ClientProfileScreen = () => {
             <ProfileSidebarComponent
               sidebarTitle="Perfil do Cliente"
               sidebarList={[inputName, inputCpf,
-                inputAddress, officeOption, location]}
-              sidebarFooter={[inputEmail, inputPhone, inputSecondaryPhone]}
+                inputCity, officeOption, policeStationOption]}
+              sidebarFooter={[inputEmail, inputPhone]}
             />
             <RightBox>
               <RightBoxMain>
