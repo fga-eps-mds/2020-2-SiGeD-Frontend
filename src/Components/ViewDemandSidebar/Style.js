@@ -232,6 +232,7 @@ export const TextButtom = styled.div`
     text-align: center;
     text-decoration: underline;
     cursor: pointer;
+    margin-top: 20px;
 
     @media(max-width: 750px){
         font-size: 2vh;
