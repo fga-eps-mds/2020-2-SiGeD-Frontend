@@ -53,9 +53,7 @@ const UserUpdateScreen = () => {
     return undefined;
   };
 
-  const cancel = () => {
-    getUser();
-  };
+  const cancel = () => history.push('/usuarios');
 
   if (!localStorage.getItem('@App:token')) {
     return <Redirect to="/login" />;
