@@ -150,7 +150,7 @@ export const List = styled.div`
 
 export const DropDiv = styled.div`
   display: flex;
-  width: 475px;
+  width: ${(props) => `${props.width}`};
   justify-content: space-between;
   align-items: center;
 
