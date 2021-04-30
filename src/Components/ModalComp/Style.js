@@ -35,10 +35,14 @@ export const DivName = styled.div`
 `;
 
 export const DivColor = styled.div`
-  margin-right: 10%;
   display: flex;
+  margin-right: 10%;
   margin-top: auto;
   padding: 2vh;
+
+  @media(max-width: 750px) {
+    width: 25%;
+  }
 `;
 
 export const P1 = styled.p`
@@ -56,11 +60,11 @@ export const Input = styled.input`
   text-indent: 3px;
   font-size: 90%;
   width: ${(props) => `${props.Input}`};
+  height: 35px;
   outline: none;
 
   @media(max-width: 1000px) {
     width: 100%;
-    height: 50%;
   }
 `;
 
@@ -81,5 +85,24 @@ export const Title = styled.h1`
 
   @media(max-width: 800px) {
     font-size: 120%;
+  }
+`;
+
+export const ColorInput = styled.input`
+  display: solid;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+`;
+
+export const ColorField = styled.div`
+  border-radius: 50%;
+  width: 4vh;
+  border: 1px solid black;
+  height: 4vh; 
+  background-color: ${(props) => `${props.background}`};
+  display:inline-block;
+  @media(max-width: 750px) {
+    margin-top: 4%;
   }
 `;
