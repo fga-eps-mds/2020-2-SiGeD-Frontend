@@ -82,8 +82,7 @@ export const TitleH = styled.h2`
 `;
 
 export const ButtonContainer = styled.div`
-  float: right;
-  width: 150px;
+  width: 130px;
   height: 50px;
   border-radius: 15px;
 
@@ -91,7 +90,7 @@ export const ButtonContainer = styled.div`
     width: 100%;
     height: 30px;
     float: none;
-}
+  }
 `;
 
 export const SearchDiv = styled.div`
@@ -131,5 +130,20 @@ export const ContainerDiv = styled.div`
   @media(max-width: 750px){
     height: 100vh;
     margin-top: 0%;
+  }
+`;
+
+export const FilterDiv = styled.div`
+  width: 260px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 2%;
+
+  @media(max-width: 750px) {
+    width: 100%;
+    height: 100px;
+    flex-direction: column;
   }
 `;

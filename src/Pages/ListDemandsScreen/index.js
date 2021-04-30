@@ -201,7 +201,7 @@ const ListDemandsScreen = () => {
                   optionList={['Ativas', 'Inativas']}
                 />
               </DropdownField>
-              <DropdownField width={25}>
+              <DropdownField width="25%">
                 <p style={{ marginBottom: '0' }}>Setores: </p>
                 <DropdownComponent
                   OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
@@ -222,7 +222,7 @@ const ListDemandsScreen = () => {
                   optionList={filterSector?.map((sector) => sector.name)}
                 />
               </DropdownField>
-              <DropdownField width={25}>
+              <DropdownField width="25%">
                 <p style={{ marginBottom: '0' }}>Categoria: </p>
                 <DropdownComponent
                   OnChangeFunction={(Option) => setCategoryActive(Option.target.value)}

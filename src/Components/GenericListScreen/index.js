@@ -14,7 +14,7 @@ const GenericListScreen = ({
     <Container>
       <Title>{PageTitle}</Title>
       <Header>
-        <DropDiv>
+        <DropDiv width="475px">
           <Search>
             <SearchInput
               type="text"
