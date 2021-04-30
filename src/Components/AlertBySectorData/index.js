@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BiStopwatch } from 'react-icons/bi';
 import moment from 'moment-timezone';
-import { Checkbox, FormControlLabel } from '@material-ui/core';
-import colors from '../../Constants/colors';
+// import { Checkbox, FormControlLabel } from '@material-ui/core';
+// import colors from '../../Constants/colors';
 import { getDemands } from '../../Services/Axios/demandsServices';
 import { useProfileUser } from '../../Context';
 import {
@@ -40,7 +40,7 @@ const AlertBySectorData = ({ alert }) => {
         </AlertDescription>
       </AlertAbout>
       <AlertRightSide>
-        <FormControlLabel
+        {/* <FormControlLabel
           control={
                 (
                   <Checkbox
@@ -55,7 +55,7 @@ const AlertBySectorData = ({ alert }) => {
             justifyContent: 'center',
             margin: '0px',
           }}
-        />
+        /> */}
         <AlertDate>
           { moment.parseZone(alert.date).local(true).format('DD/MM/YYYY')}
         </AlertDate>

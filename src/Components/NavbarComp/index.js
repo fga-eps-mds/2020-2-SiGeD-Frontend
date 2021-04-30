@@ -86,7 +86,7 @@ const NavbarComp = () => {
                   <Nav.Link as={Link} to="/estatisticas" style={styles.navbarText}>
                     Estatísticas
                   </Nav.Link>
-                  <Navbar.Brand onClick={() => { handleShow(); getAlertsApi(); }}>
+                  <Navbar.Brand style={{ cursor: 'pointer' }} onClick={() => { handleShow(); getAlertsApi(); }}>
                     <BsBell />
                   </Navbar.Brand>
                   <ViewAlertModal
