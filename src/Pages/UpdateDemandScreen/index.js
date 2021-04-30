@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import { Main, Footer } from './Style';
 import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
@@ -12,6 +12,7 @@ import SelectedCategories from '../../Components/SelectedCategories';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 import { useProfileUser } from '../../Context';
+import removeCategory from '../../Utils/functions';
 
 const UpdateDemandsScreen = () => {
   const [show, setShow] = useState(false);
@@ -19,8 +20,9 @@ const UpdateDemandsScreen = () => {
   const handleClose = () => setShow(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const historyDemands = useHistory();
   const [process, setProcess] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [AllselectedCategories, setAllSelectedCategories] = useState([]);
   const [clientID, setClientID] = useState('');
   const [userID, setUserID] = useState('');
   const [sectorID, setSectorID] = useState('');
@@ -53,7 +55,7 @@ const UpdateDemandsScreen = () => {
         setName(data?.name);
         setDescription(data?.description);
         setProcess(data?.process);
-        setSelectedCategories(data?.categoryID);
+        setAllSelectedCategories(data?.categoryID);
         setClientID(data?.clientID);
         setSectorID(data?.sectorHistory[0].sectorID);
         getSectorFromApi(data?.sectorHistory[0].sectorID);
@@ -67,19 +69,23 @@ const UpdateDemandsScreen = () => {
   }, []);
 
   useEffect(() => {
-    const IDs = selectedCategories?.map((selectedCategory) => selectedCategory._id);
+    const IDs = AllselectedCategories?.map((selectedCategory) => selectedCategory._id);
     setCategoriesIDs(IDs);
-  }, [selectedCategories]);
+  }, [AllselectedCategories]);
+
+  const categoryDelete = (searchCategory) => {
+    setAllSelectedCategories(removeCategory(searchCategory, AllselectedCategories));
+  };
 
   const pushCategory = (category) => {
     let alreadySelected = false;
-    selectedCategories.forEach((passCategory) => {
+    AllselectedCategories.forEach((passCategory) => {
       if (category._id === passCategory._id) {
         alreadySelected = true;
       }
     });
     if (!alreadySelected) {
-      setSelectedCategories([...selectedCategories, category]);
+      setAllSelectedCategories([...AllselectedCategories, category]);
     } else {
       startModal('A categoria escolhida ja foi selecionada.');
     }
@@ -98,18 +104,14 @@ const UpdateDemandsScreen = () => {
         name, description, process, categoriesIDs, sectorID, userID, clientID, id, startModal,
       );
       startModal('Demanda editada com sucesso!');
+      historyDemands.push('/demandas');
     } else {
       startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
     }
   };
 
   const cancel = () => {
-    setName('');
-    setProcess('');
-    setDescription('');
-    setSelectedCategories([]);
-    setSectorID('');
-    setCategoriesIDs([]);
+    historyDemands.push(`/visualizar/${id}`);
   };
 
   if (!localStorage.getItem('@App:token')) {
@@ -139,11 +141,12 @@ const UpdateDemandsScreen = () => {
           sectorName={sectorName}
         />
         <CategoryDiv
-          selectedCategories={selectedCategories}
+          selectedCategories={AllselectedCategories}
           pushCategory={pushCategory}
         />
         <SelectedCategories
-          selectedCategories={selectedCategories}
+          selectedCategories={AllselectedCategories}
+          removeCategory={categoryDelete}
         />
       </RightBoxComponent>
       <Footer>
@@ -154,7 +157,7 @@ const UpdateDemandsScreen = () => {
         show={show}
         handleClose={handleClose}
         submit={submit}
-        actionName=" editar "
+        actionName="Você deseja editar essa demanda?"
       />
     </Main>
   );

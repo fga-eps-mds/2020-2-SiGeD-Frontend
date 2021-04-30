@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { Main, Footer } from './Style';
 import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
@@ -12,6 +12,7 @@ import { getClients } from '../../Services/Axios/clientServices';
 import TinyButton from '../../Components/TinyButton';
 import ConfirmDemandModal from '../../Components/ConfirmDemandModal';
 import { useProfileUser } from '../../Context';
+import removeCategory from '../../Utils/functions';
 
 const CreateDemandsScreen = () => {
   const [show, setShow] = useState(false);
@@ -27,6 +28,7 @@ const CreateDemandsScreen = () => {
   const [clientID, setClientID] = useState('');
   const [clientName, setClientName] = useState('');
   const { user, startModal } = useProfileUser();
+  const history = useHistory();
 
   const getClientsFromApi = async () => {
     await getClients('clients', startModal)
@@ -41,6 +43,10 @@ const CreateDemandsScreen = () => {
     const IDs = selectedCategories?.map((selectedCategory) => selectedCategory._id);
     setCategoriesIDs(IDs);
   }, [selectedCategories]);
+
+  const deleteCategory = (searchCategory) => {
+    setSelectedCategories(removeCategory(searchCategory, selectedCategories));
+  };
 
   const pushCategory = (category) => {
     let alreadySelected = false;
@@ -63,30 +69,20 @@ const CreateDemandsScreen = () => {
     return true;
   };
 
-  const submit = () => {
+  const submit = async () => {
     if (validateInputs()) {
       startModal('Demanda criada com sucesso!');
-      createDemand(name, description, process, categoriesIDs, sectorID, user._id, clientID);
-      setProcess('');
-      setDescription('');
-      setName('');
-      setSelectedCategories([]);
-      setSectorID('');
-      setClientID('');
-      setCategoriesIDs([]);
-    } else {
-      startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
+      const data = await createDemand(
+        name, description, process, categoriesIDs, sectorID, user._id, clientID,
+      ).then((response) => response.data);
+      return history.push(`/visualizar/${data._id}`);
     }
+    startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
+    return undefined;
   };
 
   const cancel = () => {
-    setName('');
-    setProcess('');
-    setDescription('');
-    setSelectedCategories([]);
-    setClientID('');
-    setSectorID('');
-    setCategoriesIDs([]);
+    history.push('/demandas');
   };
 
   if (!localStorage.getItem('@App:token')) {
@@ -123,6 +119,7 @@ const CreateDemandsScreen = () => {
         />
         <SelectedCategories
           selectedCategories={selectedCategories}
+          removeCategory={deleteCategory}
         />
       </RightBoxComponent>
       <Footer>

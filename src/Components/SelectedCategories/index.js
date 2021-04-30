@@ -3,7 +3,7 @@ import {
   SelectedBox, Tag, Word,
 } from './Style';
 
-const SelectedCategories = ({ selectedCategories }) => {
+const SelectedCategories = ({ selectedCategories, removeCategory }) => {
   const renderSelectedCategories = () => {
     if (selectedCategories?.length === 0) {
       return <Word>Ainda não há categorias selecionadas...</Word>;
@@ -12,6 +12,7 @@ const SelectedCategories = ({ selectedCategories }) => {
       <Tag
         style={{ backgroundColor: selectedCategory.color }}
         key={selectedCategory._id}
+        onClick={() => removeCategory(selectedCategory)}
       >
         {selectedCategory.name}
       </Tag>

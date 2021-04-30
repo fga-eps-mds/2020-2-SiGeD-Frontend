@@ -98,6 +98,7 @@ export async function createDemand(
     if (response.data.status) {
       startModal('Preencha todos os campos para poder criar uma nova categoria');
     }
+    return response;
   } catch (error) {
     if (error.response.status === 500) {
       startModal('O tempo da sua sessão expirou, faça o login novamente');
@@ -105,6 +106,7 @@ export async function createDemand(
       startModal('Não foi possível criar a nova demanda, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while creating a new demand.${error}`);
+    return false;
   }
 }
 
