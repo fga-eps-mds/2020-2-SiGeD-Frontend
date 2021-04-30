@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { format } from 'date-fns';
+import moment from 'moment-timezone';
 import {
   TimelineItem,
   TimelineConnector,
@@ -92,7 +92,7 @@ const DemandHistory = ({ show, handleClose, demand }) => {
         </TimelineSeparator>
         <TimelineContent style={{ width: '100%' }}>
           <TimeDiv>
-            {format(new Date(updateDemand.date), 'dd/MM/yyyy')}
+            {moment(updateDemand.date, 'YYYY-MM-DDTHH:mm:ss').format('DD/MM/YYYY HH:mm').toString()}
             {titleDemand(updateDemand.label)}
             {dictionaryDemand(updateDemand.label)}
             {' por '}

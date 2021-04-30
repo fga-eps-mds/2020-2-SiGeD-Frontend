@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { format } from 'date-fns';
+import moment from 'moment-timezone';
 import {
   TimelineOppositeContent,
   TimelineItem,
@@ -75,7 +75,7 @@ const ClientHistory = ({ show, handleClose, client }) => {
         </TimelineSeparator>
         <TimelineContent style={{ width: '100%' }}>
           <TimeDiv>
-            {format(new Date(update.date), 'dd/MM/yyyy')}
+            {moment(update.date, 'YYYY-MM-DDTHH:mm:ss').format('DD/MM/YYYY HH:mm').toString()}
             {titleClient(update.label)}
             {dictionary(update.label)}
             {' por '}
