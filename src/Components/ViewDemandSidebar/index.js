@@ -7,7 +7,7 @@ import {
   CategoryField, MobileHeader,
   PlusButton, LessButton, ButtonsDiv,
   AlertContainer, AlertTitle, CreateAlertDiv,
-  CreateAlertTitle, CreateAlertIcon,
+  CreateAlertTitle, CreateAlertIcon, TextButtom,
 } from './Style';
 import SendDemandModal from '../SendDemandModal';
 import DropdownComponent from '../DropdownComponent';
@@ -18,7 +18,7 @@ import { useProfileUser } from '../../Context';
 
 const ViewDemandSidebar = ({
   clientName, userName, selectedCategories, demand, getDemandApi, showUpdates, sectorsResponse,
-  changeState, setChangeState,
+  changeState, setChangeState, handleShowHistory,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
   const [flag, setFlag] = useState(false);
@@ -26,6 +26,7 @@ const ViewDemandSidebar = ({
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const { startModal } = useProfileUser();
+  const { user } = useProfileUser();
 
   const actualSector = sectorsResponse?.filter(
     (sectorByID) => sectorByID._id
@@ -161,6 +162,14 @@ const ViewDemandSidebar = ({
               />
             </AlertContainer>
           </SelectionBox>
+        )}
+        { user.role === 'admin'
+        && (
+          <TextButtom
+            onClick={() => handleShowHistory()}
+          >
+            Histórico de alterações
+          </TextButtom>
         )}
       </ContentBox>
     </RightBox>

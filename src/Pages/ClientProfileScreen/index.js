@@ -17,6 +17,7 @@ import { getClients } from '../../Services/Axios/clientServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import { useProfileUser } from '../../Context';
 import colors from '../../Constants/colors';
+import ClientHistory from '../../Components/ClientHistory';
 
 const ClientProfileScreen = () => {
   const [sectors, setSectors] = useState([]);
@@ -35,6 +36,9 @@ const ClientProfileScreen = () => {
   const [client, setClient] = useState('');
   const { id } = useParams();
   const { startModal } = useProfileUser();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false); // vai para a modal
+  const handleShow = () => setShow(true); // vai para o profile
 
   const getDemandsFromApi = async () => {
     await getDemands('demand', startModal)
@@ -155,6 +159,9 @@ const ClientProfileScreen = () => {
               sidebarList={[inputName, inputCpf,
                 inputCity, officeOption, policeStationOption]}
               sidebarFooter={[inputEmail, inputPhone]}
+              edit
+              handleShow={handleShow}
+              id={client._id}
             />
             <RightBox>
               <RightBoxMain>
@@ -210,6 +217,11 @@ const ClientProfileScreen = () => {
                 </ContainerDiv>
               </RightBoxMain>
             </RightBox>
+            <ClientHistory
+              show={show}
+              handleClose={handleClose}
+              client={client}
+            />
           </Main>
         )}
     </>

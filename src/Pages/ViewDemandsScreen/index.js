@@ -21,6 +21,7 @@ import {
 import { getClients } from '../../Services/Axios/clientServices';
 import { getUser } from '../../Services/Axios/userServices';
 import colors from '../../Constants/colors';
+import DemandHistory from '../../Components/DemandHistory';
 
 const ViewDemandsScreen = () => {
   const [client, setClient] = useState('');
@@ -31,6 +32,9 @@ const ViewDemandsScreen = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const [showHistory, setShowHistory] = useState(false);
+  const handleShowHistory = () => setShowHistory(true);
+  const handleCloseHistory = () => setShowHistory(false);
   const [sectorsResponse, setSectorsResponse] = useState([]);
   const [flag, setFlag] = useState(false);
   const [changeState, setChangeState] = useState(false);
@@ -232,6 +236,12 @@ const ViewDemandsScreen = () => {
           sectorsResponse={sectorsResponse}
           changeState={changeState}
           setChangeState={setChangeState}
+          handleShowHistory={handleShowHistory}
+        />
+        <DemandHistory
+          show={showHistory}
+          handleClose={handleCloseHistory}
+          demand={demand}
         />
         <MobileTimeline>
           <Timeline>

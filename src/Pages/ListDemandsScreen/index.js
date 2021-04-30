@@ -43,7 +43,7 @@ const ListDemandsScreen = () => {
       });
   };
   const getCategoriesFromApi = async () => {
-    await getCategories('category')
+    await getCategories('category', startModal)
       .then((response) => {
         setCategories(response.data);
       });
