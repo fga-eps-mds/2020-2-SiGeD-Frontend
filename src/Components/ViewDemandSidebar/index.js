@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { BiStopwatch } from 'react-icons/bi';
 import {
   RightBox, ContentBox, NameDiv, Line,
   CreatedBy, UserIcon, PersonIcon, P,
   UserName, UserP, SelectionBox,
   CategoryField, MobileHeader,
   PlusButton, LessButton, ButtonsDiv,
+  AlertContainer, AlertTitle, CreateAlertDiv,
+  CreateAlertTitle, CreateAlertIcon,
 } from './Style';
 import SendDemandModal from '../SendDemandModal';
 import DropdownComponent from '../DropdownComponent';
 import SelectedCategories from '../SelectedCategories';
 import colors from '../../Constants/colors';
+import CreateAlertModal from '../CreateAlertModal';
 import { useProfileUser } from '../../Context';
 
 const ViewDemandSidebar = ({
@@ -18,6 +22,9 @@ const ViewDemandSidebar = ({
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
   const [flag, setFlag] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
   const { startModal } = useProfileUser();
 
   const actualSector = sectorsResponse?.filter(
@@ -130,6 +137,29 @@ const ViewDemandSidebar = ({
                 removeCategory={alertMessage}
               />
             </CategoryField>
+            <AlertContainer>
+              <AlertTitle>
+                Alertas:
+              </AlertTitle>
+              <CreateAlertDiv
+                onClick={() => handleShow()}
+              >
+                <CreateAlertIcon>
+                  <BiStopwatch />
+                </CreateAlertIcon>
+                <CreateAlertTitle>
+                  Adicionar Alerta
+                </CreateAlertTitle>
+              </CreateAlertDiv>
+              <CreateAlertModal
+                demand={demand}
+                show={show}
+                handleClose={handleClose}
+                startModal={startModal}
+                changeState={changeState}
+                setChangeState={setChangeState}
+              />
+            </AlertContainer>
           </SelectionBox>
         )}
       </ContentBox>
