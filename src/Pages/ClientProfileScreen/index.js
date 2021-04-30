@@ -24,14 +24,15 @@ const ClientProfileScreen = () => {
   const [inputEmail, setInputEmail] = useState('');
   const [inputCpf, setInputCpf] = useState('');
   const [inputPhone, setInputPhone] = useState('');
-  const [inputCity, setInputCity] = useState('');
+  const [inputSecondaryPhone, setInputSecondaryPhone] = useState('');
+  const [inputAddress, setInputAddress] = useState('');
   const [officeOption, setOfficeOption] = useState('');
-  const [policeStationOption, setPoliceStationOption] = useState('');
+  const [location, setLocation] = useState('');
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [demands, setDemands] = useState([]);
   const [dropdownYears, setDropdownYears] = useState([]);
-  const [filterYear, setFilterYear] = useState('Sem filtro');
+  const [filterYear, setFilterYear] = useState('Todos');
   const [client, setClient] = useState('');
   const { id } = useParams();
   const { startModal } = useProfileUser();
@@ -45,13 +46,15 @@ const ClientProfileScreen = () => {
     getClients(`clients/${id}`, startModal)
       .then((response) => {
         const { data } = response;
-        setInputName(data.name);
-        setInputEmail(data.email);
-        setInputCpf(data.cpf);
-        setInputPhone(data.phone);
-        setInputCity(data.city);
-        setOfficeOption(data.office);
-        setPoliceStationOption(data.policeStation);
+        console.log(data);
+        setInputName(data.name); //
+        setInputEmail(data.email); //
+        setInputCpf(data.cpf); //
+        setInputPhone(data.phone); //
+        setInputSecondaryPhone(data.secondaryPhone); //
+        setInputAddress(data.address); //
+        setOfficeOption(data.office); //
+        setLocation(data.location);
         setClient(data);
       });
   };
@@ -64,7 +67,7 @@ const ClientProfileScreen = () => {
   };
 
   const getYearsList = () => {
-    const years = ['Sem filtro'];
+    const years = ['Todos'];
     demands?.map((demand) => {
       const year = new Date(demand.createdAt).getFullYear();
       if (!years.find((y) => y === year)) {
@@ -105,7 +108,7 @@ const ClientProfileScreen = () => {
   }, [demands]);
 
   useEffect(() => {
-    if (filterYear !== 'Sem filtro') {
+    if (filterYear !== 'Todos') {
       filterDemandsByYear();
     } else {
       setFilterDemands(demands);
@@ -153,8 +156,8 @@ const ClientProfileScreen = () => {
             <ProfileSidebarComponent
               sidebarTitle="Perfil do Cliente"
               sidebarList={[inputName, inputCpf,
-                inputCity, officeOption, policeStationOption]}
-              sidebarFooter={[inputEmail, inputPhone]}
+                inputAddress, officeOption, location]}
+              sidebarFooter={[inputEmail, inputPhone, inputSecondaryPhone]}
             />
             <RightBox>
               <RightBoxMain>
@@ -173,7 +176,7 @@ const ClientProfileScreen = () => {
                     </DropDiv>
                     <FilterDiv>
                       <DropdownField width="35%">
-                        <p style={{ marginBottom: '0' }}>Anos: </p>
+                        <p style={{ marginBottom: '0' }}>Ano: </p>
                         <DropdownComponent
                           OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
                           style={{
