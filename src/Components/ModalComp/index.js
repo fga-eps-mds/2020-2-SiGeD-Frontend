@@ -1,7 +1,8 @@
 import { Modal } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import {
-  Line, DivName, DivColor, DivDescription, P1, Input, TextArea, Footer, Title,
+  Line, DivName, DivColor, DivDescription, P1, Input, TextArea, Footer,
+  Title, ColorInput, ColorField,
 } from './Style';
 import TinyButton from '../TinyButton';
 import { useProfileUser } from '../../Context';
@@ -64,8 +65,10 @@ const ModalComp = ({
               <Input placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
             </DivName>
             <DivColor>
-              <P1>Cor:</P1>
-              <input height="5vh" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+              <p style={{ marginRight: '8px' }}>Cor:</p>
+              <ColorField background={color}>
+                <ColorInput type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+              </ColorField>
             </DivColor>
           </Line>
         ) : (
