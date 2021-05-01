@@ -9,7 +9,7 @@ import {
 } from './Style';
 
 const CreateAlertModal = ({
-  demand, show, handleClose, startModal, changeState, setChangeState,
+  demand, show, handleClose, startModal, changeState, setChangeState, user,
 }) => {
   const [inputName, setInputName] = useState('');
   const [inputDescription, setInputDescription] = useState('');
@@ -24,7 +24,7 @@ const CreateAlertModal = ({
 
   const submit = async () => {
     response = await createAlert(
-      inputName, inputDescription, inputDate, clientAlert, demand._id, startModal,
+      inputName, inputDescription, inputDate, clientAlert, demand._id, user.sector, startModal,
     );
     if (response) {
       setChangeState(!changeState);

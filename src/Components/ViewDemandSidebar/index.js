@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BiStopwatch } from 'react-icons/bi';
+import moment from 'moment-timezone';
 import {
   RightBox, ContentBox, NameDiv, Line,
   CreatedBy, UserIcon, PersonIcon, P,
@@ -7,26 +8,26 @@ import {
   CategoryField, MobileHeader,
   PlusButton, LessButton, ButtonsDiv,
   AlertContainer, AlertTitle, CreateAlertDiv,
-  CreateAlertTitle, CreateAlertIcon, TextButtom,
+  CreateAlertTitle, CreateAlertIcon, ListAlert, TextButton,
 } from './Style';
 import SendDemandModal from '../SendDemandModal';
 import DropdownComponent from '../DropdownComponent';
 import SelectedCategories from '../SelectedCategories';
+import AlertByDemandData from '../AlertByDemandData';
 import colors from '../../Constants/colors';
 import CreateAlertModal from '../CreateAlertModal';
 import { useProfileUser } from '../../Context';
 
 const ViewDemandSidebar = ({
   clientName, userName, selectedCategories, demand, getDemandApi, showUpdates, sectorsResponse,
-  changeState, setChangeState, handleShowHistory,
+  changeState, setChangeState, alerts, handleShowHistory,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
   const [flag, setFlag] = useState(false);
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const { startModal } = useProfileUser();
-  const { user } = useProfileUser();
+  const { user, startModal } = useProfileUser();
 
   const actualSector = sectorsResponse?.filter(
     (sectorByID) => sectorByID._id
@@ -48,6 +49,12 @@ const ViewDemandSidebar = ({
     }
   }, [actualSector]);
 
+  const sortedAlerts = alerts.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
+
+  const ListAlertData = () => sortedAlerts?.map((alert) => (
+    <AlertByDemandData alert={alert} />
+  ));
+
   return (
     <RightBox>
       <ContentBox>
@@ -68,7 +75,7 @@ const ViewDemandSidebar = ({
         {sidebarState
           && (
             <CreatedBy>
-              <p>Criado por:</p>
+              <p style={{ marginBottom: '0px' }}>Criado por:</p>
               <UserName>
                 <UserIcon />
                 <UserP>
@@ -81,7 +88,8 @@ const ViewDemandSidebar = ({
           display: 'flex',
           justifyContent: 'flex-start',
           width: '100%',
-          marginTop: '2vh',
+          marginTop: '2px',
+          marginBottom: '2px',
         }}
         >
           Setor:
@@ -142,6 +150,9 @@ const ViewDemandSidebar = ({
               <AlertTitle>
                 Alertas:
               </AlertTitle>
+              <ListAlert>
+                {ListAlertData()}
+              </ListAlert>
               <CreateAlertDiv
                 onClick={() => handleShow()}
               >
@@ -159,17 +170,18 @@ const ViewDemandSidebar = ({
                 startModal={startModal}
                 changeState={changeState}
                 setChangeState={setChangeState}
+                user={user}
               />
             </AlertContainer>
           </SelectionBox>
         )}
         { user.role === 'admin'
         && (
-          <TextButtom
+          <TextButton
             onClick={() => handleShowHistory()}
           >
             Histórico de alterações
-          </TextButtom>
+          </TextButton>
         )}
       </ContentBox>
     </RightBox>

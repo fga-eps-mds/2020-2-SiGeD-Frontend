@@ -120,7 +120,7 @@ export const ContentBox = styled.div`
 
 export const SelectionBox = styled.div`
     width: 100%;
-    height: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,7 +159,7 @@ export const P = styled.div`
 
 export const CategoryField = styled.div`
     width: 100%;
-    height: 100%;
+    height: 40%;
 `;
 
 export const CategoryName = styled.div`
@@ -187,7 +187,7 @@ export const CategoryName = styled.div`
 
 export const AlertContainer = styled.div`
     width: 100%;
-    height: 100%;
+    height: 50%;
 `;
 
 export const AlertTitle = styled.p`
@@ -220,22 +220,32 @@ export const CreateAlertDiv = styled.div`
     cursor: pointer;
     align-items: center;
     padding: 5px;
+    margin-top: 2%;
     justify-content: space-between;
     @media(max-width: 750px){
         margin-top: 0px;
     }
 `;
 
-export const TextButtom = styled.div`
+export const TextButton = styled.div`
     color: ${colors.primary};
     font-size: 2vh;
     text-align: center;
     text-decoration: underline;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 45px;
 
     @media(max-width: 750px){
         font-size: 2vh;
-        
+    }
+`;
+
+export const ListAlert = styled.div`
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 40%;
+    @media(max-width: 750px){
+        margin-top: 0px;
     }
 `;
