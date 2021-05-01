@@ -8,7 +8,7 @@ import {
   CategoryField, MobileHeader,
   PlusButton, LessButton, ButtonsDiv,
   AlertContainer, AlertTitle, CreateAlertDiv,
-  CreateAlertTitle, CreateAlertIcon, ListAlert, TextButtom,
+  CreateAlertTitle, CreateAlertIcon, ListAlert, TextButton,
 } from './Style';
 import SendDemandModal from '../SendDemandModal';
 import DropdownComponent from '../DropdownComponent';
@@ -75,7 +75,7 @@ const ViewDemandSidebar = ({
         {sidebarState
           && (
             <CreatedBy>
-              <p>Criado por:</p>
+              <p style={{ marginBottom: '0px' }}>Criado por:</p>
               <UserName>
                 <UserIcon />
                 <UserP>
@@ -88,7 +88,8 @@ const ViewDemandSidebar = ({
           display: 'flex',
           justifyContent: 'flex-start',
           width: '100%',
-          marginTop: '2vh',
+          marginTop: '2px',
+          marginBottom: '2px',
         }}
         >
           Setor:
@@ -176,11 +177,11 @@ const ViewDemandSidebar = ({
         )}
         { user.role === 'admin'
         && (
-          <TextButtom
+          <TextButton
             onClick={() => handleShowHistory()}
           >
             Histórico de alterações
-          </TextButtom>
+          </TextButton>
         )}
       </ContentBox>
     </RightBox>

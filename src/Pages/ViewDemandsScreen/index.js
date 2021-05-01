@@ -248,12 +248,12 @@ const ViewDemandsScreen = () => {
           changeState={changeState}
           setChangeState={setChangeState}
           handleShowHistory={handleShowHistory}
+          alerts={alerts}
         />
         <DemandHistory
           show={showHistory}
           handleClose={handleCloseHistory}
           demand={demand}
-          alerts={alerts}
         />
         <MobileTimeline>
           <Timeline>

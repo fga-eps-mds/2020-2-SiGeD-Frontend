@@ -159,7 +159,7 @@ export const P = styled.div`
 
 export const CategoryField = styled.div`
     width: 100%;
-    height: 50%;
+    height: 40%;
 `;
 
 export const CategoryName = styled.div`
@@ -227,13 +227,13 @@ export const CreateAlertDiv = styled.div`
     }
 `;
 
-export const TextButtom = styled.div`
+export const TextButton = styled.div`
     color: ${colors.primary};
     font-size: 2vh;
     text-align: center;
     text-decoration: underline;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 45px;
 
     @media(max-width: 750px){
         font-size: 2vh;
