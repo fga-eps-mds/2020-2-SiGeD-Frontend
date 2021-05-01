@@ -3,6 +3,7 @@ import {
   PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip,
   BarChart, CartesianGrid, XAxis, Bar, YAxis,
 } from 'recharts';
+import moment from 'moment';
 import { getDemandsStatistics, getCategories } from '../../Services/Axios/demandsServices';
 import {
   Main, Title, Container, Card, CardTitle, TopDiv, MiddleDiv, FiltersDiv, DropdownDiv,
@@ -24,6 +25,8 @@ const StatisticScreen = () => {
   const [categories, setCategories] = useState(['Todas']);
   const [categoryActive, setCategoryActive] = useState('Todas');
   const [categoryID, setCategoryID] = useState('');
+  const [initialDate, setInitialDate] = useState(moment('2021-01-01').format('YYYY-MM-DD'));
+  const [finalDate, setFinalDate] = useState(moment().format('YYYY-MM-DD'));
 
   const getSectorsFromApi = async () => {
     await getSectors(startModal)
@@ -61,15 +64,21 @@ const StatisticScreen = () => {
     }
   }, [categoryActive]);
 
-  const getCategoriesStatistics = async (id) => {
-    await getDemandsStatistics(`statistic/category?id=${id}`, startModal)
+  const getCategoriesStatistics = async (idSector, idCategory) => {
+    await getDemandsStatistics(
+      `statistic/category?idSector=${idSector}&idCategory=${idCategory}&initialDate=${initialDate}&finalDate=${finalDate}`,
+      startModal,
+    )
       .then((response) => {
         setCategoryStatistics(response?.data);
       });
   };
 
-  const getSectorStatistics = async (id) => {
-    await getDemandsStatistics(`statistic/sector?id=${id}`, startModal)
+  const getSectorStatistics = async (idCategory) => {
+    await getDemandsStatistics(
+      `statistic/sector?idCategory=${idCategory}&initialDate=${initialDate}&finalDate=${finalDate}`,
+      startModal,
+    )
       .then((response) => {
         const sectorGraph = [];
         response.data?.map((item) => {
@@ -94,7 +103,7 @@ const StatisticScreen = () => {
     if (user && token) {
       getSectorsFromApi();
       getCategoriesFromApi();
-      getCategoriesStatistics(null);
+      getCategoriesStatistics(null, null);
       getSectorStatistics(null);
     }
   }, [token, user]);
@@ -105,11 +114,12 @@ const StatisticScreen = () => {
 
   useEffect(() => {
     getCategoriesStatistics(sectorID);
-  }, [sectorID]);
+  }, [sectorID, finalDate, initialDate]);
 
   useEffect(() => {
     getSectorStatistics(categoryID);
-  }, [categoryID]);
+    getCategoriesStatistics(sectorID, categoryID);
+  }, [categoryID, finalDate, initialDate]);
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -183,6 +193,8 @@ const StatisticScreen = () => {
                   </TextLabel>
                   <DateInput
                     type="date"
+                    value={initialDate}
+                    onChange={(e) => setInitialDate(e.target.value)}
                   />
                 </DropdownDiv>
                 <DropdownDiv
@@ -193,6 +205,8 @@ const StatisticScreen = () => {
                   </TextLabel>
                   <DateInput
                     type="date"
+                    value={finalDate}
+                    onChange={(e) => setFinalDate(e.target.value)}
                   />
                 </DropdownDiv>
               </SearchDiv>
