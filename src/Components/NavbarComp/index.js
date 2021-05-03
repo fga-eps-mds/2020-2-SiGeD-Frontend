@@ -47,7 +47,7 @@ const NavbarComp = () => {
         console.error(error);
       }
     };
-    if (user.role === 'admin') {
+    if (user?.role === 'admin') {
       return (
 
         <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>

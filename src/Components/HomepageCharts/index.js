@@ -142,7 +142,7 @@ const HomepageCharts = () => {
                   <Legend />
                   <Bar dataKey="demandas">
                     {categoryStatistics?.map((entry, index) => (
-                      <Cell key={index} fill={entry.categories[0].color} />
+                      <Cell key={index} fill={entry?.categories[0]?.color} />
                     ))}
                   </Bar>
                 </BarChart>
