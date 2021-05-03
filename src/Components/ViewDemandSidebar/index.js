@@ -53,7 +53,12 @@ const ViewDemandSidebar = ({
   const sortedAlerts = alerts.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
 
   const ListAlertData = () => sortedAlerts?.map((alert) => (
-    <AlertByDemandData alert={alert} />
+    <AlertByDemandData
+      alert={alert}
+      demand={demand}
+      changeState={changeState}
+      setChangeState={setChangeState}
+    />
   ));
 
   return (
@@ -147,6 +152,7 @@ const ViewDemandSidebar = ({
                 changeState={changeState}
                 setChangeState={setChangeState}
                 user={user}
+                title="Cadastrar"
               />
             </AlertContainer>
           </SelectionBox>

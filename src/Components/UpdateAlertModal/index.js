@@ -8,7 +8,7 @@ import {
   Input, TextareaComp, DropdownDiv, TextLabel, DateInput, Title, BottomSide,
 } from './Style';
 
-const CreateAlertModal = ({
+const UpdateAlertModal = ({
   demand, show, handleClose, startModal, changeState,
   setChangeState, user, name, description, date, client, title,
 }) => {
@@ -16,30 +16,11 @@ const CreateAlertModal = ({
   const [inputDescription, setInputDescription] = useState(description);
   const [inputDate, setInputDate] = useState(date);
   const [clientAlert, setClientAlert] = useState(client);
-  console.log(name, description, date);
   let response = null;
   const clearFields = () => {
     setInputName('');
     setInputDescription('');
     setInputDate('');
-  };
-
-  const styles = {
-    modalBody: {
-      margin: '20px',
-    },
-    modalFooter: {
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    tinyButtonCancel: {
-      backgroundColor: colors.secondary,
-      color: colors.text,
-      borderColor: colors.text,
-    },
-    tinyButtonSubmit: {
-      backgroundColor: colors.primary,
-    },
   };
 
   const submit = async () => {
@@ -59,7 +40,11 @@ const CreateAlertModal = ({
       <Modal.Header closeButton>
         <Modal.Title>Alerta</Modal.Title>
       </Modal.Header>
-      <Modal.Body style={styles.modalBody}>
+      <Modal.Body
+        style={{
+          margin: '20px',
+        }}
+      >
         <Title>
           Nome
         </Title>
@@ -116,22 +101,28 @@ const CreateAlertModal = ({
         </BottomSide>
         <div />
       </Modal.Body>
-      <Modal.Footer style={styles.modalFooter}>
+      <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
         <TinyButton
           click={() => { clearFields(); handleClose(); }}
           type="primary"
           title="Cancelar"
-          style={styles.tinyButtonCancel}
+          style={{
+            backgroundColor: colors.secondary,
+            color: colors.text,
+            borderColor: colors.text,
+          }}
         />
         <TinyButton
           click={() => submit()}
           type="primary"
-          title="Cadastrar"
-          style={styles.tinyButtonSubmit}
+          title={title}
+          style={{
+            backgroundColor: colors.primary,
+          }}
         />
       </Modal.Footer>
     </Modal>
   );
 };
 
-export default CreateAlertModal;
+export default UpdateAlertModal;

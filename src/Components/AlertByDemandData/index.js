@@ -1,16 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment-timezone';
-import { AlertData, AlertName, AlertDate } from './Style';
+import { BsPencil } from 'react-icons/bs';
+import { BiTrash } from 'react-icons/bi';
+import {
+  AlertData, AlertName, AlertDate, EditIcon, TrashIcon,
+} from './Style';
+import { useProfileUser } from '../../Context';
+import UpdateAlertModal from '../UpdateAlertModal';
 
-const AlertByDemandData = ({ alert }) => (
-  <AlertData>
-    <AlertName>
-      {alert.name}
-    </AlertName>
-    <AlertDate>
-      { moment.parseZone(alert.date).local(true).format('DD/MM/YYYY')}
-    </AlertDate>
-  </AlertData>
-);
+const AlertByDemandData = ({
+  alert, demand, changeState, setChangeState,
+}) => {
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const { user, startModal } = useProfileUser();
+
+  return (
+    <AlertData>
+      <AlertName>
+        {alert.name}
+      </AlertName>
+      <AlertDate>
+        { moment.parseZone(alert.date).local(true).format('DD/MM/YYYY')}
+      </AlertDate>
+      <EditIcon
+        onClick={() => handleShow()}
+        style={{ cursor: 'pointer' }}
+      >
+        <BsPencil style={{ marginRight: '10px' }} />
+      </EditIcon>
+      <TrashIcon
+        onClick={() => {}}
+      >
+        <BiTrash style={{ marginRight: '5px', color: '#F08080' }} />
+      </TrashIcon>
+      <UpdateAlertModal
+        demand={demand}
+        show={show}
+        handleClose={handleClose}
+        startModal={startModal}
+        changeState={changeState}
+        setChangeState={setChangeState}
+        user={user}
+        name={alert.name}
+        description={alert.description}
+        date={alert.date}
+        client={alert.alertClient}
+        title="Editar"
+      />
+    </AlertData>
+  );
+};
 
 export default AlertByDemandData;
