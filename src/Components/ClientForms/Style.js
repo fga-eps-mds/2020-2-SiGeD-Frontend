@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ClientFormsColumnText = styled.div`
+export const ClientFormsColumnText = styled.div`
     font-family: 'Montserrat';
     width: 90%;
     height: 70%;
@@ -13,10 +13,34 @@ const ClientFormsColumnText = styled.div`
     @media(max-width: 750px){
         align-items: center;
         width: 90%;
-        height: 80%;
+        height: max-content;
         justify-content: space-between;
         align-content: center;
     }
 `;
 
-export default ClientFormsColumnText;
+export const Container = styled.div`
+
+    width: ${(props) => (props.long ? '100%' : '45%')};
+    height: 20%;
+
+    @media(max-width: 750px){
+      height: 20%;
+  }
+`;
+
+export const Label = styled.div`
+
+    font-family: Montserrat;
+    font-size: 100%;
+    height: min-content;
+    align-items: center;
+    align-content:center;
+    justify-content: center;
+
+    @media(max-width: 750px){
+      font-size: 80%;
+      height: min-content;
+    
+  }
+`;
