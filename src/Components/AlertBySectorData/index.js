@@ -3,7 +3,7 @@ import { BiStopwatch } from 'react-icons/bi';
 import moment from 'moment-timezone';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import colors from '../../Constants/colors';
-import { getDemands } from '../../Services/Axios/demandsServices';
+import { getDemands, getAlertsBySector, updateCheckboxAlert } from '../../Services/Axios/demandsServices';
 import { useProfileUser } from '../../Context';
 import {
   AlertData, WatchIcon, AlertAbout, AlertDemandName, AlertName, AlertDescription, AlertDate,
@@ -12,6 +12,7 @@ import {
 
 const AlertBySectorData = ({ alert }) => {
   const [demand, setDemand] = useState('');
+  const [checkbox, setCheckbox] = useState(alert.checkbox);
   const { startModal } = useProfileUser();
 
   const getDemandFromApi = async () => {
@@ -22,6 +23,24 @@ const AlertBySectorData = ({ alert }) => {
   useEffect(() => {
     getDemandFromApi();
   }, []);
+
+  const updateCheck = async () => {
+    console.log(checkbox);
+    setCheckbox(!checkbox);
+    updateCheckboxAlert(
+      alert._id,
+      alert.name,
+      alert.description,
+      alert.date,
+      alert.alertClient,
+      checkbox,
+      alert.demandID,
+      alert.sectorID,
+      startModal,
+    );
+    console.log(checkbox, alert.checkbox);
+    getAlertsBySector();
+  };
 
   return (
     <AlertData>
@@ -44,10 +63,11 @@ const AlertBySectorData = ({ alert }) => {
           control={
                 (
                   <Checkbox
-                    value={alert.alertClient}
-                    defaultChecked={alert.alertClient}
+                    value={checkbox}
+                    defaultChecked={alert.checkbox}
                     inputProps={{ 'aria-label': 'Checkbox A' }}
                     style={{ color: `${colors.navHeaders}` }}
+                    onClick={updateCheck}
                   />
                 )
               }

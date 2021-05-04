@@ -7,6 +7,7 @@ import {
 } from './Style';
 import { useProfileUser } from '../../Context';
 import UpdateAlertModal from '../UpdateAlertModal';
+import { deleteAlert } from '../../Services/Axios/demandsServices';
 
 const AlertByDemandData = ({
   alert, demand, changeState, setChangeState,
@@ -15,6 +16,11 @@ const AlertByDemandData = ({
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const { user, startModal } = useProfileUser();
+
+  const deleteUpdate = () => {
+    deleteAlert(alert._id, startModal)
+      .then(() => setChangeState(!changeState));
+  };
 
   return (
     <AlertData>
@@ -31,7 +37,7 @@ const AlertByDemandData = ({
         <BsPencil style={{ marginRight: '10px' }} />
       </EditIcon>
       <TrashIcon
-        onClick={() => {}}
+        onClick={() => { deleteUpdate(); }}
       >
         <BiTrash style={{ marginRight: '5px', color: '#F08080' }} />
       </TrashIcon>

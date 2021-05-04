@@ -370,6 +370,33 @@ export async function updateAlert(
   }
 }
 
+export async function updateCheckboxAlert(
+  id, name, description, date, alertClient, checkbox,
+  demandID, sectorID, startModal,
+) {
+  try {
+    const response = await APIDemands.put(`alert/updateCheckbox/${id}`, {
+      name,
+      description,
+      date,
+      alertClient,
+      checkbox,
+      demandID,
+      sectorID,
+    });
+    if (response.data.status) {
+      startModal('Preencha todos os campos para poder editar uma categoria');
+    }
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possível atualizar a categoria, tente novamente mais tarde.');
+    }
+    console.error(`An unexpected error ocourred while updating an already created category.${error}`);
+  }
+}
+
 export const deleteAlert = async (id, startModal) => {
   try {
     await APIDemands.delete(`/alert/delete/${id}`);
