@@ -58,7 +58,7 @@ const ProfessionalHomepage = () => {
               <HomepageHeader
                 HeaderTitle="Demandas"
                 LeftIcon="/demandas"
-                RightIcon=""
+                RightIcon="/demanda"
               />
             </PageBox>
             <PageBox width="54%" height="43%">
@@ -72,7 +72,7 @@ const ProfessionalHomepage = () => {
               <HomepageHeader
                 HeaderTitle="Setor"
                 LeftIcon="/setores"
-                RightIcon=""
+                RightIconDisplay="none"
               >
                 {renderSectors()}
               </HomepageHeader>
@@ -105,7 +105,7 @@ const ProfessionalHomepage = () => {
               <HomepageHeader
                 HeaderTitle="Demandas"
                 LeftIcon="/demandas"
-                RightIcon=""
+                RightIcon="/demanda"
               />
             </PageBox>
           </ProfessionalPage>
@@ -138,7 +138,7 @@ const ProfessionalHomepage = () => {
               <HomepageHeader
                 HeaderTitle="Demandas"
                 LeftIcon="/demandas"
-                RightIcon=""
+                RightIcon="/demanda"
               />
             </PageBox>
           </>

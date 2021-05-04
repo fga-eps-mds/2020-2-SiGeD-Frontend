@@ -1,4 +1,4 @@
-import { SectorName, Icon, Main } from './Style';
+import { SectorName, Main } from './Style';
 
 const HomepageSector = ({
   sector,
@@ -7,7 +7,6 @@ const HomepageSector = ({
     <SectorName>
       {sector}
     </SectorName>
-    <Icon />
   </Main>
 );
 
