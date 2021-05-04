@@ -9,14 +9,12 @@ import {
 } from './Style';
 
 const CreateAlertModal = ({
-  demand, show, handleClose, startModal, changeState,
-  setChangeState, user, name, description, date, client, title,
+  demand, show, handleClose, startModal, changeState, setChangeState, user,
 }) => {
-  const [inputName, setInputName] = useState(name);
-  const [inputDescription, setInputDescription] = useState(description);
-  const [inputDate, setInputDate] = useState(date);
-  const [clientAlert, setClientAlert] = useState(client);
-  console.log(name, description, date);
+  const [inputName, setInputName] = useState('');
+  const [inputDescription, setInputDescription] = useState('');
+  const [inputDate, setInputDate] = useState('');
+  const [clientAlert, setClientAlert] = useState(true);
   let response = null;
   const clearFields = () => {
     setInputName('');

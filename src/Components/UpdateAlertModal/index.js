@@ -3,40 +3,34 @@ import { useState } from 'react';
 // import { Checkbox, FormControlLabel } from '@material-ui/core';
 import colors from '../../Constants/colors';
 import TinyButton from '../TinyButton';
-import { createAlert } from '../../Services/Axios/demandsServices';
+import { updateAlert } from '../../Services/Axios/demandsServices';
 import {
   Input, TextareaComp, DropdownDiv, TextLabel, DateInput, Title, BottomSide,
 } from './Style';
+import { useProfileUser } from '../../Context';
 
 const UpdateAlertModal = ({
-  demand, show, handleClose, startModal, changeState,
-  setChangeState, user, name, description, date, client, title,
+  demand, show, handleClose, changeState,
+  setChangeState, alert,
 }) => {
-  const [inputName, setInputName] = useState(name);
-  const [inputDescription, setInputDescription] = useState(description);
-  const [inputDate, setInputDate] = useState(date);
-  const [clientAlert, setClientAlert] = useState(client);
-  let response = null;
-  const clearFields = () => {
-    setInputName('');
-    setInputDescription('');
-    setInputDate('');
-  };
+  const [inputName, setInputName] = useState(alert.name);
+  const [inputDescription, setInputDescription] = useState(alert.description);
+  const [inputDate, setInputDate] = useState(alert.date);
+  const [clientAlert, setClientAlert] = useState(alert.alertClient);
+  const { user, startModal } = useProfileUser();
 
-  const submit = async () => {
-    response = await createAlert(
-      inputName, inputDescription, inputDate, clientAlert, demand._id, user.sector, startModal,
-    );
-    if (response) {
-      setChangeState(!changeState);
-      clearFields();
-      setClientAlert(true);
-      handleClose();
-    }
+  const submit = () => {
+    updateAlert(
+      alert._id, inputName, inputDescription, inputDate,
+      clientAlert, demand._id, user.sector, startModal,
+    )
+      .then(() => setChangeState(!changeState),
+        setClientAlert(true),
+        handleClose());
   };
 
   return (
-    <Modal show={show} onHide={() => { clearFields(); handleClose(); }}>
+    <Modal show={show} onHide={() => { handleClose(); }}>
       <Modal.Header closeButton>
         <Modal.Title>Alerta</Modal.Title>
       </Modal.Header>
@@ -103,7 +97,7 @@ const UpdateAlertModal = ({
       </Modal.Body>
       <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
         <TinyButton
-          click={() => { clearFields(); handleClose(); }}
+          click={() => { handleClose(); }}
           type="primary"
           title="Cancelar"
           style={{
@@ -113,9 +107,9 @@ const UpdateAlertModal = ({
           }}
         />
         <TinyButton
-          click={() => submit()}
+          click={() => { submit(); console.log('entrou'); }}
           type="primary"
-          title={title}
+          title="Editar"
           style={{
             backgroundColor: colors.primary,
           }}

@@ -5,9 +5,10 @@ import { BiTrash } from 'react-icons/bi';
 import {
   AlertData, AlertName, AlertDate, EditIcon, TrashIcon,
 } from './Style';
-import { useProfileUser } from '../../Context';
 import UpdateAlertModal from '../UpdateAlertModal';
 import { deleteAlert } from '../../Services/Axios/demandsServices';
+import { useProfileUser } from '../../Context';
+import ConfirmDemandModal from '../ConfirmDemandModal';
 
 const AlertByDemandData = ({
   alert, demand, changeState, setChangeState,
@@ -15,9 +16,12 @@ const AlertByDemandData = ({
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const { user, startModal } = useProfileUser();
+  const [showCancel, setShowCancel] = useState(false);
+  const handleShowCancel = () => setShowCancel(true);
+  const handleCloseCancel = () => setShowCancel(false);
+  const { startModal } = useProfileUser();
 
-  const deleteUpdate = () => {
+  const submit = () => {
     deleteAlert(alert._id, startModal)
       .then(() => setChangeState(!changeState));
   };
@@ -31,29 +35,27 @@ const AlertByDemandData = ({
         { moment.parseZone(alert.date).local(true).format('DD/MM/YYYY')}
       </AlertDate>
       <EditIcon
-        onClick={() => handleShow()}
+        onClick={() => { handleShow(); }}
         style={{ cursor: 'pointer' }}
       >
         <BsPencil style={{ marginRight: '10px' }} />
       </EditIcon>
-      <TrashIcon
-        onClick={() => { deleteUpdate(); }}
-      >
+      <TrashIcon onClick={() => handleShowCancel()}>
         <BiTrash style={{ marginRight: '5px', color: '#F08080' }} />
       </TrashIcon>
       <UpdateAlertModal
         demand={demand}
+        alert={alert}
         show={show}
         handleClose={handleClose}
-        startModal={startModal}
         changeState={changeState}
         setChangeState={setChangeState}
-        user={user}
-        name={alert.name}
-        description={alert.description}
-        date={alert.date}
-        client={alert.alertClient}
-        title="Editar"
+      />
+      <ConfirmDemandModal
+        show={showCancel}
+        handleClose={handleCloseCancel}
+        submit={submit}
+        actionName="Você deseja apagar esse alerta?"
       />
     </AlertData>
   );

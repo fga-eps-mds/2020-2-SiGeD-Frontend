@@ -360,6 +360,8 @@ export async function updateAlert(
     if (response.data.status) {
       startModal('Preencha todos os campos para poder editar uma categoria');
     }
+    startModal('Alerta editado com sucesso!');
+    return response?.data;
   } catch (error) {
     if (error.response.status === 500) {
       startModal('O tempo da sua sessão expirou, faça o login novamente');
@@ -368,6 +370,7 @@ export async function updateAlert(
     }
     console.error(`An unexpected error ocourred while updating an already created category.${error}`);
   }
+  return null;
 }
 
 export async function updateCheckboxAlert(
