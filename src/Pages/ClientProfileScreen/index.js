@@ -13,7 +13,9 @@ import {
 } from './Style';
 import { DropdownField } from '../ListDemandsScreen/Style';
 import { DropDiv, ContentBox } from '../../Components/GenericListScreen/Style';
-import { getClients } from '../../Services/Axios/clientServices';
+import {
+  getClients, getClientFeatures,
+} from '../../Services/Axios/clientServices';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import { useProfileUser } from '../../Context';
 import colors from '../../Constants/colors';
@@ -25,9 +27,10 @@ const ClientProfileScreen = () => {
   const [inputEmail, setInputEmail] = useState('');
   const [inputCpf, setInputCpf] = useState('');
   const [inputPhone, setInputPhone] = useState('');
-  const [inputCity, setInputCity] = useState('');
+  const [inputSecondaryPhone, setInputSecondaryPhone] = useState('');
+  const [location, setLocation] = useState('');
   const [officeOption, setOfficeOption] = useState('');
-  const [policeStationOption, setPoliceStationOption] = useState('');
+  const [address, setAddress] = useState('');
   const [word, setWord] = useState();
   const [filterDemands, setFilterDemands] = useState([]);
   const [demands, setDemands] = useState([]);
@@ -37,8 +40,11 @@ const ClientProfileScreen = () => {
   const { id } = useParams();
   const { startModal } = useProfileUser();
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false); // vai para a modal
-  const handleShow = () => setShow(true); // vai para o profile
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  // começa
+  const [clientFeatures, setClientFeatures] = useState([]);
+  const [clientFeaturesID, setClientFeaturesID] = useState([]);
 
   const getDemandsFromApi = async () => {
     await getDemands('demand', startModal)
@@ -53,12 +59,25 @@ const ClientProfileScreen = () => {
         setInputEmail(data.email);
         setInputCpf(data.cpf);
         setInputPhone(data.phone);
-        setInputCity(data.city);
+        setInputSecondaryPhone(data.secondaryPhone); // sec phone
         setOfficeOption(data.office);
-        setPoliceStationOption(data.policeStation);
+        setLocation(data.location); // location
+        setAddress(data.address);
         setClient(data);
+        setClientFeaturesID(data?.features);
       });
   };
+
+  // Trabalando aki...
+  const getClientFeaturesList = () => {
+    getClientFeatures(clientFeaturesID, startModal)
+      .then((response) => setClientFeatures(response.data));
+  };
+
+  useEffect(() => {
+    getClientFeaturesList();
+  }, [clientFeaturesID]);
+  // ...ate aki
 
   const getSectorsFromApi = async () => {
     await getSectors(startModal)
@@ -157,11 +176,12 @@ const ClientProfileScreen = () => {
             <ProfileSidebarComponent
               sidebarTitle="Perfil do Cliente"
               sidebarList={[inputName, inputCpf,
-                inputCity, officeOption, policeStationOption]}
-              sidebarFooter={[inputEmail, inputPhone]}
+                address, officeOption, location]}
+              sidebarFooter={[inputEmail, inputPhone, inputSecondaryPhone]}
               edit
               handleShow={handleShow}
               id={client._id}
+              features={clientFeatures}
             />
             <RightBox>
               <RightBoxMain>

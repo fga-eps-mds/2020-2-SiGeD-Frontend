@@ -12,7 +12,7 @@ export const Sidebar = styled.div`
     overflow: hidden;
     @media(max-width: 750px){
         width: 100%;
-        height: 20%;
+        height: 20vh;
         background-color: ${colors.secondary};
         align-content: center;
         justify-content: center;

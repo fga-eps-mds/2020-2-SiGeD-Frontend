@@ -6,9 +6,10 @@ import {
   SidebarCardText, TextButtom,
 } from './Style';
 import { useProfileUser } from '../../Context';
+import SelectedFeatures from '../SelectedFeatures';
 
 const SidebarComponent = ({
-  sidebarTitle, sidebarList, sidebarFooter, edit, handleShow, id,
+  sidebarTitle, sidebarList, sidebarFooter, edit, handleShow, id, features,
 }) => {
   const { user } = useProfileUser();
   const history = useHistory();
@@ -29,6 +30,10 @@ const SidebarComponent = ({
           </SidebarCardText>
         ))}
       </SidebarText>
+      { features
+        && (
+        <SelectedFeatures features={features} />
+        )}
       { sidebarFooter
         && (
           <SidebarFooter
