@@ -3,7 +3,7 @@ import moment from 'moment';
 import AlertBySectorData from '../AlertBySectorData';
 
 const ViewAlertModal = ({
-  show, handleClose, alerts,
+  show, handleClose, alerts, changeState, setChangeState,
 }) => {
   const styles = {
     modalBody: {
@@ -16,7 +16,7 @@ const ViewAlertModal = ({
   const sortedAlerts = alerts?.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
 
   const listAlertData = () => sortedAlerts?.map((alert) => (
-    <AlertBySectorData alert={alert} />
+    <AlertBySectorData alert={alert} changeState={changeState} setChangeState={setChangeState} />
   ));
 
   return (

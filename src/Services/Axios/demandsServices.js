@@ -318,7 +318,7 @@ export async function updateDemandUpdate(
 }
 
 export async function createAlert(
-  name, description, date, alertClient, demandID, sectorID, startModal,
+  name, description, date, alertClient, checkbox, demandID, sectorID, startModal,
 ) {
   try {
     const response = await APIDemands.post('alert/create', {
@@ -326,6 +326,7 @@ export async function createAlert(
       description,
       date,
       alertClient,
+      checkbox,
       demandID,
       sectorID,
     });
@@ -375,7 +376,7 @@ export async function updateAlert(
 
 export async function updateCheckboxAlert(
   id, name, description, date, alertClient, checkbox,
-  demandID, sectorID, startModal,
+  demandID, sectorID, startModal, changeState, setChangeState,
 ) {
   try {
     const response = await APIDemands.put(`alert/updateCheckbox/${id}`, {
@@ -390,6 +391,8 @@ export async function updateCheckboxAlert(
     if (response.data.status) {
       startModal('Preencha todos os campos para poder editar uma categoria');
     }
+    setChangeState(!changeState);
+    return response?.data;
   } catch (error) {
     if (error.response.status === 500) {
       startModal('O tempo da sua sessão expirou, faça o login novamente');
@@ -398,6 +401,7 @@ export async function updateCheckboxAlert(
     }
     console.error(`An unexpected error ocourred while updating an already created category.${error}`);
   }
+  return null;
 }
 
 export const deleteAlert = async (id, startModal) => {

@@ -107,7 +107,7 @@ const UpdateAlertModal = ({
           }}
         />
         <TinyButton
-          click={() => { submit(); console.log('entrou'); }}
+          click={() => { submit(); }}
           type="primary"
           title="Editar"
           style={{

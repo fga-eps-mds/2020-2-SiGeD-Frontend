@@ -15,11 +15,13 @@ const CreateAlertModal = ({
   const [inputDescription, setInputDescription] = useState('');
   const [inputDate, setInputDate] = useState('');
   const [clientAlert, setClientAlert] = useState(true);
+  const [checkbox, setCheckbox] = useState(false);
   let response = null;
   const clearFields = () => {
     setInputName('');
     setInputDescription('');
     setInputDate('');
+    setCheckbox(false);
   };
 
   const styles = {
@@ -42,7 +44,8 @@ const CreateAlertModal = ({
 
   const submit = async () => {
     response = await createAlert(
-      inputName, inputDescription, inputDate, clientAlert, demand._id, user.sector, startModal,
+      inputName, inputDescription, inputDate,
+      clientAlert, checkbox, demand._id, user.sector, startModal,
     );
     if (response) {
       setChangeState(!changeState);
