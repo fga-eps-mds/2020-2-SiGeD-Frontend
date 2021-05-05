@@ -2,26 +2,38 @@ import React, { useState, useEffect } from 'react';
 import HomepageHeader from '../../Components/HomepageHeader';
 import HomepageSector from '../../Components/HomepageSector';
 import HomepageCharts from '../../Components/HomepageCharts';
-import { getSectors } from '../../Services/Axios/sectorServices';
+import { getFourSectors } from '../../Services/Axios/sectorServices';
+import { getFourUsers } from '../../Services/Axios/userServices';
 import {
   Main, PageBox, ProfessionalPage, BlankDiv, ProfessionalDiv, ResponsovePageBox,
 } from './Style';
 import { useProfileUser } from '../../Context';
+import HomepageUsers from '../../Components/HomePageUsers';
 
 const ProfessionalHomepage = () => {
   const { user, startModal } = useProfileUser();
   const [sectors, setSectors] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const listSectors = async () => {
-    await getSectors(startModal)
+    await getFourSectors(startModal)
       .then((response) => setSectors(response.data))
       .catch((error) => {
         console.error(`An unexpected error ocourred while getting sectors.${error}`);
       });
   };
 
+  const listUsers = async () => {
+    await getFourUsers(startModal)
+      .then((response) => setUsers(response.data))
+      .catch((error) => {
+        console.error(`An unexpected error ocourred while getting users.${error}`);
+      });
+  };
+
   useEffect(() => {
     listSectors();
+    listUsers();
   }, [user]);
 
   const renderSectors = () => {
@@ -32,6 +44,19 @@ const ProfessionalHomepage = () => {
       <HomepageSector
         key={idx}
         sector={sector.name}
+      />
+    ));
+  };
+
+  const renderUsers = () => {
+    if (users?.length === 0) {
+      return <h1>Sem resultados</h1>;
+    }
+    return users?.map((User, idx) => (
+      <HomepageUsers
+        key={idx}
+        user={User}
+        startModal={startModal}
       />
     ));
   };
@@ -47,7 +72,9 @@ const ProfessionalHomepage = () => {
                 HeaderTitle="Usuários"
                 LeftIcon="/usuarios"
                 RightIcon="/cadastro"
-              />
+              >
+                {renderUsers()}
+              </HomepageHeader>
             </PageBox>
             <PageBox width="29%" height="43%">
               <HomepageHeader
@@ -74,7 +101,7 @@ const ProfessionalHomepage = () => {
             </PageBox>
             <PageBox width="37%" height="43%">
               <HomepageHeader
-                HeaderTitle="Setor"
+                HeaderTitle="Setores"
                 LeftIcon="/setores"
                 RightIconDisplay="none"
               >
