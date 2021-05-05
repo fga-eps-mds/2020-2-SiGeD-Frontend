@@ -3,11 +3,10 @@ import {
   PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip,
   BarChart, CartesianGrid, XAxis, Bar, YAxis,
 } from 'recharts';
-import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { getDemandsStatistics, getCategories } from '../../Services/Axios/demandsServices';
 import {
-  Main, Card, ChartsDiv, Container, Title, Icon, TopSide,
+  Main, Card, ChartsDiv, Container,
 } from './Style';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import { useProfileUser } from '../../Context';
@@ -21,7 +20,6 @@ const HomepageCharts = () => {
   const [categories, setCategories] = useState(['Todas']);
   const initialDate = (moment('2000-01-01').format('YYYY-MM-DD'));
   const finalDate = (moment().format('YYYY-MM-DD'));
-  const history = useHistory();
 
   const getSectorsFromApi = async () => {
     await getSectors(startModal)
@@ -95,17 +93,9 @@ const HomepageCharts = () => {
     <Main>
       { user ? (
         <Container>
-          <TopSide>
-            <Title>
-              Estatísticas
-            </Title>
-            <Icon
-              onClick={() => history.push('/estatisticas')}
-            />
-          </TopSide>
           <ChartsDiv>
             <Card>
-              <ResponsiveContainer width="100%" height="80%">
+              <ResponsiveContainer width="100%" height="90%">
                 <PieChart width="100%" height="100%">
                   <Pie
                     data={sectorGraphData}

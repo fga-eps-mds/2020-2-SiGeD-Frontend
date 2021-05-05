@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import HomepageHeader from '../../Components/HomepageHeader';
 import HomepageSector from '../../Components/HomepageSector';
+import HomepageCharts from '../../Components/HomepageCharts';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import {
   Main, PageBox, ProfessionalPage,
@@ -66,7 +67,9 @@ const ProfessionalHomepage = () => {
                 HeaderTitle="Estatísticas"
                 LeftIcon="/estatisticas"
                 RightIconDisplay="none"
-              />
+              >
+                <HomepageCharts />
+              </HomepageHeader>
             </PageBox>
             <PageBox width="37%" height="43%">
               <HomepageHeader
