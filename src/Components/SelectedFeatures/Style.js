@@ -9,9 +9,13 @@ export const SelectedBox = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  overflow-y: auto;
+  overflow-y: scroll;
   align-content: flex-start;
   margin-top: 25px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
 
   @media(max-width: 750px){
     flex: auto;

@@ -4,6 +4,7 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import RegisterInput from '../RegisterInput';
 import { Dropdown } from '../UserForms/Style';
 import { ClientFormsColumnText, Container, Label } from './Style';
+import colors from '../../Constants/colors';
 
 const ClientForms = ({
   setInputName,
@@ -77,6 +78,9 @@ const ClientForms = ({
               border: '2px solid black',
               borderRadius: '12px',
               height: 'max-content',
+            },
+            chips: {
+              backgroundColor: colors.navHeaders, // colors.primary,
             },
           }}
           avoidHighlightFirstOption="true"
