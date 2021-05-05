@@ -12,7 +12,7 @@ export const Main = styled.div`
   flex-direction: column;
   align-items: center;
   @media(max-width: 750px){
-    display: none;
+    background-color: ${colors.primary};
   }
 `;
 
@@ -21,7 +21,10 @@ export const Title = styled.p`
   margin-bottom: 0px;
   height: 100%;
   font-size: 140%;
-  
+  @media(max-width: 750px){
+    color: white;
+    font-size: 250%;
+  }
 `;
 
 export const Icon = styled(BiChevronRightCircle)`
@@ -29,6 +32,12 @@ export const Icon = styled(BiChevronRightCircle)`
   width: 22px;
   color: ${colors.primary};
   cursor: pointer;
+  @media(max-width: 750px){
+    color: white;
+    height: 50px;
+    width: 50px;
+    margin-right: 2.5%;
+  }
 `;
 
 export const TopSide = styled.div`
@@ -36,6 +45,9 @@ export const TopSide = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media(max-width: 750px){
+    height: 100%;
+  }
 `;
 
 export const LeftTopSide = styled.div`
@@ -44,6 +56,9 @@ export const LeftTopSide = styled.div`
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
+  @media(max-width: 750px){
+    justify-content: space-between;
+  }
 `;
 
 export const BottomSide = styled.div`
@@ -53,6 +68,9 @@ export const BottomSide = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  @media(max-width: 750px){
+    display: none;
+  }
 `;
 
 export const AddIcon = styled(IoAddCircle)`
@@ -62,4 +80,7 @@ export const AddIcon = styled(IoAddCircle)`
   cursor: pointer;
   margin-right: 15px;
   display: ${(props) => `${props.RightIconDisplay}`};
+  @media(max-width: 750px){
+    display: none;
+  }
 `;

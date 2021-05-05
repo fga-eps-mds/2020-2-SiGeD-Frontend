@@ -9,6 +9,7 @@ export const Main = styled.div`
   height: 100%;
   flex-direction: column;
   align-items: center;
+  border-radius: 12px;
   @media(max-width: 750px){
     display: none;
   }

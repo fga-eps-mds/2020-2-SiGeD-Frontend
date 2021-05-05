@@ -4,7 +4,7 @@ import HomepageSector from '../../Components/HomepageSector';
 import HomepageCharts from '../../Components/HomepageCharts';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import {
-  Main, PageBox, ProfessionalPage,
+  Main, PageBox, ProfessionalPage, BlankDiv, ProfessionalDiv, ResponsovePageBox,
 } from './Style';
 import { useProfileUser } from '../../Context';
 
@@ -38,8 +38,9 @@ const ProfessionalHomepage = () => {
 
   return (
     <Main>
+      <BlankDiv />
       {user?.role === 'admin'
-        && (
+        ? (
           <>
             <PageBox width="29%" height="43%">
               <HomepageHeader
@@ -81,14 +82,24 @@ const ProfessionalHomepage = () => {
               </HomepageHeader>
             </PageBox>
           </>
-        )}
-      {user?.role === 'professional'
-        && (
+        )
+        : (
           <ProfessionalPage>
-            <div style={{
-              width: '60%', marginRight: '3%', marginTop: '1%', marginBottom: '1%',
-            }}
-            >
+            <ResponsovePageBox>
+              <HomepageHeader
+                HeaderTitle="Clientes"
+                LeftIcon="/clientes"
+                RightIcon="/cliente"
+              />
+            </ResponsovePageBox>
+            <ResponsovePageBox>
+              <HomepageHeader
+                HeaderTitle="Estatísticas"
+                LeftIcon="/estatisticas"
+                RightIconDisplay="none"
+              />
+            </ResponsovePageBox>
+            <ProfessionalDiv>
               <PageBox width="100%" height="45%">
                 <HomepageHeader
                   HeaderTitle="Clientes"
@@ -101,9 +112,11 @@ const ProfessionalHomepage = () => {
                   HeaderTitle="Estatísticas"
                   LeftIcon="/estatisticas"
                   RightIconDisplay="none"
-                />
+                >
+                  <HomepageCharts />
+                </HomepageHeader>
               </PageBox>
-            </div>
+            </ProfessionalDiv>
             <PageBox width="32%" height="90%">
               <HomepageHeader
                 HeaderTitle="Demandas"
@@ -112,39 +125,6 @@ const ProfessionalHomepage = () => {
               />
             </PageBox>
           </ProfessionalPage>
-        )}
-      {user?.role === 'receptionist'
-        && (
-          <>
-            <PageBox width="54%" height="43%">
-              <HomepageHeader
-                HeaderTitle="Clientes"
-                LeftIcon="/clientes"
-                RightIcon="/cliente"
-              />
-            </PageBox>
-            <PageBox width="37%" height="43%">
-              <HomepageHeader
-                HeaderTitle="Usuários"
-                LeftIcon="/usuarios"
-                RightIcon="/cadastro"
-              />
-            </PageBox>
-            <PageBox width="54%" height="43%">
-              <HomepageHeader
-                HeaderTitle="Estatísticas"
-                LeftIcon="/estatisticas"
-                RightIconDisplay="none"
-              />
-            </PageBox>
-            <PageBox width="37%" height="43%">
-              <HomepageHeader
-                HeaderTitle="Demandas"
-                LeftIcon="/demandas"
-                RightIcon="/demanda"
-              />
-            </PageBox>
-          </>
         )}
     </Main>
   );
