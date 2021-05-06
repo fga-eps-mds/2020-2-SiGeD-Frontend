@@ -4,16 +4,19 @@ import HomepageSector from '../../Components/HomepageSector';
 import HomepageCharts from '../../Components/HomepageCharts';
 import { getFourSectors } from '../../Services/Axios/sectorServices';
 import { getFourUsers } from '../../Services/Axios/userServices';
+import { getFourClients } from '../../Services/Axios/clientServices';
 import {
   Main, PageBox, ProfessionalPage, BlankDiv, ProfessionalDiv, ResponsovePageBox,
 } from './Style';
 import { useProfileUser } from '../../Context';
 import HomepageUsers from '../../Components/HomePageUsers';
+import HomePageClients from '../../Components/HomePageClients';
 
 const ProfessionalHomepage = () => {
   const { user, startModal } = useProfileUser();
   const [sectors, setSectors] = useState([]);
   const [users, setUsers] = useState([]);
+  const [clients, setClients] = useState([]);
 
   const listSectors = async () => {
     await getFourSectors(startModal)
@@ -31,9 +34,18 @@ const ProfessionalHomepage = () => {
       });
   };
 
+  const listClients = async () => {
+    await getFourClients(startModal)
+      .then((response) => setClients(response.data))
+      .catch((error) => {
+        console.error(`An unexpected error ocourred while getting clients.${error}`);
+      });
+  };
+
   useEffect(() => {
     listSectors();
     listUsers();
+    listClients();
   }, [user]);
 
   const renderSectors = () => {
@@ -61,6 +73,19 @@ const ProfessionalHomepage = () => {
     ));
   };
 
+  const renderClients = () => {
+    if (clients?.length === 0) {
+      return <h1>Sem resultados</h1>;
+    }
+    return clients?.map((client, idx) => (
+      <HomePageClients
+        key={idx}
+        client={client}
+        startModal={startModal}
+      />
+    ));
+  };
+
   return (
     <Main>
       <BlankDiv />
@@ -81,7 +106,9 @@ const ProfessionalHomepage = () => {
                 HeaderTitle="Clientes"
                 LeftIcon="/clientes"
                 RightIcon="/cliente"
-              />
+              >
+                {renderClients()}
+              </HomepageHeader>
             </PageBox>
             <PageBox width="29%" height="43%">
               <HomepageHeader

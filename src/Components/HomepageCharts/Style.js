@@ -40,7 +40,7 @@ export const ChartsDiv = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border-radius:15px;
 `;
 

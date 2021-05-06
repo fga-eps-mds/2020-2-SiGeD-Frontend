@@ -15,6 +15,21 @@ export async function getClients(url, startModal) {
   return false;
 }
 
+export async function getFourClients(startModal) {
+  try {
+    const response = await APIClients.get('/clients/newest-four');
+    return response;
+  } catch (error) {
+    if (error.response?.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response?.status !== 401) {
+      startModal('Não foi possível listar os últimos quatro clientes, tente novamente mais tarde.');
+    }
+    console.error(`An unexpected error ocourred while retrieving newest four clients list.${error}`);
+  }
+  return false;
+}
+
 export async function postClient(
   inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
   inputAddress, officeOption, inputLocation, startModal, userContext,

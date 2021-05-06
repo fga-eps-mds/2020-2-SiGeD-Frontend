@@ -80,6 +80,7 @@ export const Name = styled(P)`
   text-align: center;
   color: ${(props) => `${props.color}`};
   background-color: ${(props) => `${props.backgroundColor}`};
+  font-weight: bold;
   
   @media(max-width: 750px){
     font-weight: 900;

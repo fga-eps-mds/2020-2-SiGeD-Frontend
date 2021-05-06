@@ -6,18 +6,18 @@ export const Main = styled.div`
   background-color: ${colors.background};
   width: 100vw;
   height: 100vh;
-  overflow: auto;
+  overflow: hidden;
   @media(max-width: 750px){
     height: max-content;
   }
 `;
 
 export const Container = styled.div`
-  height: 95vh;
+  margin-top: 18vh;
+  height: 82vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
   align-items: center;
 
   @media(max-width: 750px){

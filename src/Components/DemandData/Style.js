@@ -65,6 +65,7 @@ export const CategoryName = styled.p`
   color: ${colors.secondary};
   background-color: ${(props) => `${props.color}`};
   font-size: 2vh;
+  font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -47,7 +47,10 @@ const CategoryDiv = ({ pushCategory }) => {
     setStatusBox(!statusBox);
   };
   return (
-    <AddCategory>
+    <AddCategory onMouseLeave={() => {
+      setStatusBox(false);
+    }}
+    >
       <P>Categorias:</P>
       <AddIcon onClick={toggleBox} />
       {(statusBox && true) ? (
@@ -61,7 +64,7 @@ const CategoryDiv = ({ pushCategory }) => {
           </List>
         </CategoriesBox>
       ) : null}
-      { modalState ? <ModalComp show={modalState} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null }
+      { modalState ? <ModalComp show={modalState} type="Categoria" operation="Nova " idName="" idDescription="" idColor="#000000" getContent={listCategories} handleClose={toggleModal} createContent={createCategory} /> : null}
     </AddCategory>
   );
 };
