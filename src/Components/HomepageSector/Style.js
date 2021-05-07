@@ -7,13 +7,16 @@ export const Main = styled.div`
   border-radius: 12px;
   border: 2px solid black;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const SectorName = styled.p`
-  margin-bottom: 0px;
-  height: 100%;
-  font-size: 100%;
-  padding: 1% 0 0 2%;
-  
+  font-size: 2vh;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: Montserrat;
 `;

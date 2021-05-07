@@ -5,18 +5,21 @@ import HomepageCharts from '../../Components/HomepageCharts';
 import { getFourSectors } from '../../Services/Axios/sectorServices';
 import { getFourUsers } from '../../Services/Axios/userServices';
 import { getFourClients } from '../../Services/Axios/clientServices';
+import { getFourDemands } from '../../Services/Axios/demandsServices';
 import {
-  Main, PageBox, ProfessionalPage, BlankDiv, ProfessionalDiv, ResponsovePageBox,
+  Main, PageBox, ProfessionalPage, BlankDiv, ProfessionalDiv, ResponsovePageBox, ScrollDiv,
 } from './Style';
 import { useProfileUser } from '../../Context';
 import HomepageUsers from '../../Components/HomePageUsers';
 import HomePageClients from '../../Components/HomePageClients';
+import HomePageDemand from '../../Components/HomePageDemands';
 
 const ProfessionalHomepage = () => {
   const { user, startModal } = useProfileUser();
   const [sectors, setSectors] = useState([]);
   const [users, setUsers] = useState([]);
   const [clients, setClients] = useState([]);
+  const [demands, setDemands] = useState([]);
 
   const listSectors = async () => {
     await getFourSectors(startModal)
@@ -42,10 +45,19 @@ const ProfessionalHomepage = () => {
       });
   };
 
+  const listDemands = async () => {
+    await getFourDemands(startModal)
+      .then((response) => setDemands(response.data))
+      .catch((error) => {
+        console.error(`An unexpected error ocourred while getting demands.${error}`);
+      });
+  };
+
   useEffect(() => {
     listSectors();
     listUsers();
     listClients();
+    listDemands();
   }, [user]);
 
   const renderSectors = () => {
@@ -81,7 +93,22 @@ const ProfessionalHomepage = () => {
       <HomePageClients
         key={idx}
         client={client}
-        startModal={startModal}
+        role={user.role}
+      />
+    ));
+  };
+
+  const renderDemands = () => {
+    if (demands?.length === 0) {
+      return <h1>Sem resultados</h1>;
+    }
+    console.log(demands);
+    return demands?.map((demand, idx) => (
+      <HomePageDemand
+        demand={demand}
+        key={idx}
+        sectors={sectors}
+        style={{ width: '90%' }}
       />
     ));
   };
@@ -115,7 +142,12 @@ const ProfessionalHomepage = () => {
                 HeaderTitle="Demandas"
                 LeftIcon="/demandas"
                 RightIcon="/demanda"
-              />
+              >
+                <ScrollDiv height="80%">
+                  {renderDemands()}
+                </ScrollDiv>
+
+              </HomepageHeader>
             </PageBox>
             <PageBox width="54%" height="43%">
               <HomepageHeader
@@ -159,7 +191,9 @@ const ProfessionalHomepage = () => {
                   HeaderTitle="Clientes"
                   LeftIcon="/clientes"
                   RightIcon="/cliente"
-                />
+                >
+                  {renderClients()}
+                </HomepageHeader>
               </PageBox>
               <PageBox width="100%" height="45%">
                 <HomepageHeader
@@ -176,7 +210,12 @@ const ProfessionalHomepage = () => {
                 HeaderTitle="Demandas"
                 LeftIcon="/demandas"
                 RightIcon="/demanda"
-              />
+              >
+                <ScrollDiv height="90%">
+                  {renderDemands()}
+                </ScrollDiv>
+
+              </HomepageHeader>
             </PageBox>
           </ProfessionalPage>
         )}

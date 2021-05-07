@@ -27,7 +27,6 @@ export const PageBox = styled.div`
   margin-top: 2%;
   margin-right: 2%;
   margin-bottom: 2%;
-  overflow-y: auto;
   @media(max-width: 750px){
     width: 96%;
     height: 16%;
@@ -81,4 +80,11 @@ export const ResponsovePageBox = styled.div`
   @media(max-width: 750px){
     display: flex;
   }
+`;
+
+export const ScrollDiv = styled.div`
+  height: ${(props) => `${props.height}`};
+  width: 90%;
+  overflow: auto;
+  margin-left: 10%;
 `;

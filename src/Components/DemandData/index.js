@@ -42,7 +42,7 @@ const DemandData = ({ demand, sectors }) => {
       </ClientName>
       <SectorName>
         Setor:
-        {sectorName[0].name}
+        {sectorName[0]?.name}
       </SectorName>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <ProcessNumber>

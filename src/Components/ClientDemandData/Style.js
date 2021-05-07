@@ -9,6 +9,7 @@ export const DemandDiv = styled.div`
     border: 1.5px solid black;
     margin: 1.5% 1.5% 1.5% 0;
     textDecorationLine: 'none';
+    cursor: pointer;
     @media(max-width: 750px){
         width: 100%;
     }
@@ -45,6 +46,7 @@ export const CategoryTag = styled.p`
   height: 30%;
   margin-right: 1.5%;
   margin-left: 1.5%;
+  font-weight: bold;
   @media(max-width: 750px){
     font-size: 1.5vh;
     font-weight: 900;
