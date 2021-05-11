@@ -25,7 +25,6 @@ const AlertBySectorData = ({ alert, changeState, setChangeState }) => {
   }, []);
 
   const updateCheck = async () => {
-    setCheckbox(!checkbox);
     await updateCheckboxAlert(
       alert._id,
       alert.name,
@@ -40,6 +39,10 @@ const AlertBySectorData = ({ alert, changeState, setChangeState }) => {
       setChangeState,
     );
   };
+
+  useEffect(() => {
+    updateCheck();
+  }, [checkbox]);
 
   return (
     <AlertData>
@@ -65,7 +68,7 @@ const AlertBySectorData = ({ alert, changeState, setChangeState }) => {
                     checked={alert.checkbox}
                     inputProps={{ 'aria-label': 'Checkbox A' }}
                     style={{ color: `${colors.navHeaders}` }}
-                    onClick={updateCheck}
+                    onClick={() => { updateCheck(); setCheckbox(!checkbox); }}
                   />
                 )
               }

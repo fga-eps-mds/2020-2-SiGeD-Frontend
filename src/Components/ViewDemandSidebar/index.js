@@ -50,16 +50,24 @@ const ViewDemandSidebar = ({
     }
   }, [actualSector]);
 
-  const sortedAlerts = alerts.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
+  const alertList = () => {
+    const sortedAlerts = alerts.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
 
-  const ListAlertData = () => sortedAlerts?.map((alert) => (
-    <AlertByDemandData
-      alert={alert}
-      demand={demand}
-      changeState={changeState}
-      setChangeState={setChangeState}
-    />
-  ));
+    return sortedAlerts?.map((alert) => (
+      <AlertByDemandData
+        alert={alert}
+        demand={demand}
+        changeState={changeState}
+        setChangeState={setChangeState}
+      />
+    ));
+  };
+
+  console.log(alerts);
+
+  useEffect(() => {
+    alertList();
+  }, [alerts]);
 
   return (
     <RightBox>
@@ -132,7 +140,7 @@ const ViewDemandSidebar = ({
                 Alertas:
               </AlertTitle>
               <ListAlert>
-                {ListAlertData()}
+                {alertList()}
               </ListAlert>
               <CreateAlertDiv
                 onClick={() => handleShow()}
