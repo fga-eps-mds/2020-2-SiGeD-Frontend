@@ -11,7 +11,7 @@ import { useProfileUser } from '../../Context';
 import ConfirmDemandModal from '../ConfirmDemandModal';
 
 const AlertByDemandData = ({
-  alert, demand, changeState, setChangeState,
+  alert, demand, changeState, setChangeState, setSorted,
 }) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
@@ -50,6 +50,7 @@ const AlertByDemandData = ({
         handleClose={handleClose}
         changeState={changeState}
         setChangeState={setChangeState}
+        setSorted={setSorted}
       />
       <ConfirmDemandModal
         show={showCancel}

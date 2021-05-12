@@ -11,7 +11,7 @@ import { useProfileUser } from '../../Context';
 
 const UpdateAlertModal = ({
   demand, show, handleClose, changeState,
-  setChangeState, alert,
+  setChangeState, setSorted, alert,
 }) => {
   const [inputName, setInputName] = useState(alert.name);
   const [inputDescription, setInputDescription] = useState(alert.description);
@@ -24,9 +24,12 @@ const UpdateAlertModal = ({
       alert._id, inputName, inputDescription, inputDate,
       clientAlert, demand._id, user.sector, startModal,
     )
-      .then(() => setChangeState(!changeState),
-        setClientAlert(true),
-        handleClose());
+      .then(() => {
+        setChangeState(!changeState);
+        setClientAlert(true);
+        setSorted(false);
+        handleClose();
+      });
   };
 
   return (

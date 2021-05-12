@@ -9,7 +9,7 @@ import {
 } from './Style';
 
 const CreateAlertModal = ({
-  demand, show, handleClose, startModal, changeState, setChangeState, user,
+  demand, show, handleClose, startModal, changeState, setChangeState, setSorted, user,
 }) => {
   const [inputName, setInputName] = useState('');
   const [inputDescription, setInputDescription] = useState('');
@@ -51,6 +51,7 @@ const CreateAlertModal = ({
       setChangeState(!changeState);
       clearFields();
       setClientAlert(true);
+      setSorted(false);
       handleClose();
     }
   };
