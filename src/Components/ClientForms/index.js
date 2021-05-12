@@ -22,10 +22,10 @@ const ClientForms = ({
   setOfficeOption,
   setLocationOption,
   locationOption,
-  featuresList, // lista de caracteristicas
-  setSelectedFeatures, // armazena todo o objeto das caracteristicas (SET)
-  selectedFeatures, // armazena todo o objeto das caracteristicas
-  setSelectedFeaturesID, // armazena os ID's das caracteristicas
+  featuresList,
+  setSelectedFeatures,
+  selectedFeatures,
+  setSelectedFeaturesID,
 }) => {
   const controlarCaracteristicas = (item) => {
     const featuresID = [];
