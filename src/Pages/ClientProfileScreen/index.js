@@ -37,14 +37,14 @@ const ClientProfileScreen = () => {
   const [dropdownYears, setDropdownYears] = useState([]);
   const [filterYear, setFilterYear] = useState('Todos');
   const [client, setClient] = useState('');
-  const { id } = useParams();
-  const { startModal } = useProfileUser();
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  // começa
   const [clientFeatures, setClientFeatures] = useState([]);
   const [clientFeaturesID, setClientFeaturesID] = useState([]);
+  const { id } = useParams();
+  const { startModal } = useProfileUser();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getDemandsFromApi = async () => {
     await getDemands('demand', startModal)
@@ -68,7 +68,6 @@ const ClientProfileScreen = () => {
       });
   };
 
-  // Trabalando aki...
   const getClientFeaturesList = () => {
     getClientFeatures(clientFeaturesID, startModal)
       .then((response) => setClientFeatures(response.data));
@@ -77,7 +76,6 @@ const ClientProfileScreen = () => {
   useEffect(() => {
     getClientFeaturesList();
   }, [clientFeaturesID]);
-  // ...ate aki
 
   const getSectorsFromApi = async () => {
     await getSectors(startModal)

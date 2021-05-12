@@ -6,7 +6,7 @@ import {
 const SelectedFeatures = ({ features }) => {
   const renderSelectedFeatures = () => {
     if (features?.length === 0) {
-      return <Word>Ainda não foi selecionada nenhuma características...</Word>;
+      return <Word>Ainda não foi selecionada nenhuma característica...</Word>;
     }
     return features?.map((selectedFeatures) => (
       <Tag

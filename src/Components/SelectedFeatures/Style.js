@@ -25,7 +25,8 @@ export const SelectedBox = styled.div`
 `;
 
 export const Tag = styled.div`
-
+  color: white;
+  font-weight: bold;
   width: 40%;
   height: min-content;
   border-radius: 15px;
@@ -39,11 +40,6 @@ export const Tag = styled.div`
   margin-bottom: 5%;
   word-break: break-word;
   cursor: pointer;
-
-  @media(max-width: 750px){
-    
-  }
-
 `;
 
 export const Word = styled.p`
