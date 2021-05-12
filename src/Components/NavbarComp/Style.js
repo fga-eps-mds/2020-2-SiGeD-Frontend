@@ -15,10 +15,14 @@ const styles = {
     fontFamily: 'Montserrat',
     fontSize: '2vh',
     marginRight: '2vh',
-    color: colors.background,
+    // color: colors.background,
     fontWeight: 'bold',
   },
 
+  navbarDropdownItem: {
+    backgroundColor: colors.navHeaders,
+    color: colors.background,
+  },
 };
 
 export default styles;

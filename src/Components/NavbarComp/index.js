@@ -1,4 +1,4 @@
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
@@ -59,30 +59,48 @@ const NavbarComp = () => {
             && (
               <Navbar.Collapse id="navbar-police">
                 <Nav className="ml-auto">
-                  <Nav.Link as={Link} to="/cadastro" style={styles.navbarText}>
-                    Cadastro
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/usuarios" style={styles.navbarText}>
-                    Usuários
-                  </Nav.Link>
+                  <NavDropdown title="Usuario" style={styles.navbarText}>
+                    <NavDropdown.Item style={styles.navbarDropdownItem}>
+                      <Nav.Link as={Link} to="/cadastro">
+                        Cadastro
+                      </Nav.Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item style={styles.navbarDropdownItem}>
+                      <Nav.Link as={Link} to="/usuarios">
+                        Usuários
+                      </Nav.Link>
+                    </NavDropdown.Item>
+                  </NavDropdown>
                   <Nav.Link as={Link} to="/setores" style={styles.navbarText}>
                     Setores
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
-                    Novo cliente
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/clientes" style={styles.navbarText}>
-                    Clientes
-                  </Nav.Link>
+                  <NavDropdown title="Cliente" style={styles.navbarText}>
+                    <NavDropdown.Item style={styles.navbarDropdownItem}>
+                      <Nav.Link as={Link} to="/cliente">
+                        Novo cliente
+                      </Nav.Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item style={styles.navbarDropdownItem}>
+                      <Nav.Link as={Link} to="/clientes">
+                        Clientes
+                      </Nav.Link>
+                    </NavDropdown.Item>
+                  </NavDropdown>
                   <Nav.Link as={Link} to="/categorias" style={styles.navbarText}>
                     Categorias
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/demanda" style={styles.navbarText}>
-                    Criar Demandas
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/demandas" style={styles.navbarText}>
-                    Demandas
-                  </Nav.Link>
+                  <NavDropdown title="Demanda" style={styles.navbarText}>
+                    <NavDropdown.Item style={styles.navbarDropdownItem}>
+                      <Nav.Link as={Link} to="/demanda">
+                        Criar Demandas
+                      </Nav.Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item style={styles.navbarDropdownItem}>
+                      <Nav.Link as={Link} to="/demandas">
+                        Demandas
+                      </Nav.Link>
+                    </NavDropdown.Item>
+                  </NavDropdown>
                   <Nav.Link as={Link} to="/estatisticas" style={styles.navbarText}>
                     Estatísticas
                   </Nav.Link>
