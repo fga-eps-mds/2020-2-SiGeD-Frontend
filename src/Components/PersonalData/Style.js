@@ -26,7 +26,9 @@ export const TableContent = styled.div`
 display: flex;
 justify-content: center;
 width: ${(props) => `${props.width}%`};
-margin: 10px;
+text-align: center;
+align-items:center;
+margin: 0 10px 0 10px;
 overflow: auto;
 @media(max-width: 750px){
   width: 100%;

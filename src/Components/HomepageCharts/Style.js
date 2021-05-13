@@ -28,10 +28,10 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   width: 365px; 
-  height:250px;
+  height:180px;
   border-radius:15px;
   border: 2px solid black;
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
   justify-content: space-evenly;
 
 `;

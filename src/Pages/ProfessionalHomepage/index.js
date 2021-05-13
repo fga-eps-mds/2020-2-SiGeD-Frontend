@@ -100,9 +100,8 @@ const ProfessionalHomepage = () => {
 
   const renderDemands = () => {
     if (demands?.length === 0) {
-      return <h1>Sem resultados</h1>;
+      return <h1 style={{ textAlign: 'center', width: '100%' }}>Sem resultados</h1>;
     }
-    console.log(demands);
     return demands?.map((demand, idx) => (
       <HomePageDemand
         demand={demand}
@@ -143,7 +142,7 @@ const ProfessionalHomepage = () => {
                 LeftIcon="/demandas"
                 RightIcon="/demanda"
               >
-                <ScrollDiv height="80%">
+                <ScrollDiv height="70%">
                   {renderDemands()}
                 </ScrollDiv>
 
@@ -211,7 +210,7 @@ const ProfessionalHomepage = () => {
                 LeftIcon="/demandas"
                 RightIcon="/demanda"
               >
-                <ScrollDiv height="90%">
+                <ScrollDiv height="85%">
                   {renderDemands()}
                 </ScrollDiv>
 
