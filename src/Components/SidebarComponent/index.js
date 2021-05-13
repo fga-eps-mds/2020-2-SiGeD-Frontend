@@ -1,25 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
-  Sidebar, SidebarText, SidebarFooter, Icon,
+  Sidebar, SidebarText, SidebarFooter, Icon, Img,
 } from './Style';
 
 const SidebarComponent = ({
   sidebarList, sidebarFooter, inputImage,
 }) => {
-  const [photo, setPhoto] = useState('');
-
-  useEffect(() => {
+  const renderImage = () => {
     if (!inputImage) {
-      setPhoto(<Icon />);
+      return (
+        <Icon />
+      );
     }
-    if (inputImage) {
-      setPhoto(inputImage);
-    }
-  }, [inputImage]);
+    return (
+      <Img
+        src={inputImage}
+        alt="Foto"
+      />
+    );
+  };
 
   return (
     <Sidebar>
-      <img src={photo} alt="Foto" height="200px" />
+      {renderImage()}
       <SidebarText>
         {sidebarList.map((sidebarCardText, index) => <p key={index}>{sidebarCardText}</p>)}
       </SidebarText>

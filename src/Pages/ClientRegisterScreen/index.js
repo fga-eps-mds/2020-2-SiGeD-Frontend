@@ -14,6 +14,7 @@ const ClientRegisterScreen = () => {
   const [registerClientInputAddress, setRegisterClientInputAddress] = useState('');
   const [registerClientInputPhone, setRegisterClientInputPhone] = useState('');
   const [registerClientInputSecondaryPhone, setregisterClientInputSecondaryPhone] = useState('');
+  const [inputRegisterClientImage, setRegisterClientInputImage] = useState('');
   const [officeOption, setOfficeOption] = useState('Policial');
   const [registerLocation, setRegisterLocation] = useState('');
   const [featuresList, setFeaturesList] = useState([]);
@@ -90,6 +91,7 @@ const ClientRegisterScreen = () => {
           setOfficeOption={setOfficeOption}
           setLocationOption={setRegisterLocation}
           locationOption={registerLocation}
+          setInputImage={setRegisterClientInputImage}
           featuresList={featuresList}
           setSelectedFeatures={setSelectedFeatures}
           selectedFeatures={selectedFeatures}

@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 import RegisterInput from '../RegisterInput';
@@ -28,17 +28,45 @@ const ClientForms = ({
   setSelectedFeatures,
   selectedFeatures,
   setSelectedFeaturesID,
+  setInputImage,
 }) => {
+  const [baseImage, setBaseImage] = useState('');
+  
   const controlarCaracteristicas = (item) => {
     const featuresID = [];
     setSelectedFeatures(item);
     item.map((feat) => featuresID.push(feat._id));
     setSelectedFeaturesID(featuresID);
   };
+
+  const convertBase64 = (file) => new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+
+  const uploadImage = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertBase64(file);
+    setBaseImage(base64);
+    setInputImage(baseImage);
+  };
+
+  useEffect(() => {
+    setInputImage(baseImage);
+  }, [baseImage]);
+
   return (
     <ClientFormsColumnText>
-      <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
-      <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
+      <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
+      <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
       <RegisterInput type="text" title="CPF" setText={setInputCpf} value={inputCpf} />
       <RegisterInput type="text" title="Endereco" setText={setInputAddress} value={inputAddress} />
       <RegisterInput type="text" title="Telefone principal" setText={setInputPhone} value={inputPhone} />
@@ -87,6 +115,14 @@ const ClientForms = ({
           closeOnSelect="false"
         />
       </Container>
+      <div>
+        <input
+          type="file"
+          onChange={(e) => {
+            uploadImage(e);
+          }}
+        />
+      </div>
     </ClientFormsColumnText>
   );
 };

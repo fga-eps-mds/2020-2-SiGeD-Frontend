@@ -15,6 +15,7 @@ const UserUpdateScreen = () => {
   const [inputRole, setInputRole] = useState('');
   const [inputSector, setInputSector] = useState('');
   const [inputSectorID, setInputSectorID] = useState('');
+  const [inputRegisterUserImage, setRegisterUserInputImage] = useState('');
   const [sectors, setSectors] = useState([]);
   const { id } = useParams();
 
@@ -69,6 +70,7 @@ const UserUpdateScreen = () => {
                 cancel={cancel}
                 submit={submit}
                 buttonTitle="Atualizar"
+                inputImage={inputRegisterUserImage}
               >
                 <UserForms
                   setInputName={setInputName}
@@ -81,6 +83,7 @@ const UserUpdateScreen = () => {
                   setSectors={setSectors}
                   setInputSector={setInputSector}
                   inputSector={inputSector}
+                  setInputImage={setRegisterUserInputImage}
                 />
               </GenericRegisterScreen>
             )

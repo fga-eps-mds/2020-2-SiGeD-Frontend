@@ -37,8 +37,8 @@ export const SidebarText = styled.div`
 `;
 
 export const Icon = styled(IoPersonCircleOutline)`
-    width: 100%;
-    height: 40%;
+    width: 80%;
+    height: 30%;
     color: ${colors.secondary};
     margin-top: 10px;
     @media(max-width: 750px){
@@ -59,6 +59,20 @@ export const SidebarFooter = styled.div`
     @media(max-width: 750px){
         visibility: hidden;
         height: 0%;
+    }
+
+`;
+
+export const Img = styled.img`
+    border-radius: 50%;
+    margin-top: 15px;
+    width: 50%;
+    height: auto;
+    @media(max-width: 750px){
+        width: auto;
+        height: 100%;
+        padding: 2% 0 0 0;
+        margin: 4% 0 0 0;
     }
 
 `;

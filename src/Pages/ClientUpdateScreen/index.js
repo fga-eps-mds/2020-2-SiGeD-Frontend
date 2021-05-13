@@ -16,6 +16,7 @@ const ClientUpdateScreen = () => {
   const [updateClientInputAddress, setupdateClientInputAddress] = useState('');
   const [updateClientInputPhone, setupdateClientInputPhone] = useState('');
   const [updateClientInputSecondaryPhone, setupdateClientInputSecondaryPhone] = useState('');
+  const [inputRegisterClientImage, setRegisterClientInputImage] = useState('');
   const [officeOption, setOfficeOption] = useState('');
   const [updateLocation, setupdateLocation] = useState('');
   const [featuresList, setFeaturesList] = useState([]);
@@ -115,6 +116,7 @@ const ClientUpdateScreen = () => {
             setOfficeOption={setOfficeOption}
             setLocationOption={setupdateLocation}
             locationOption={updateLocation}
+            setInputImage={setRegisterClientInputImage}
             featuresList={featuresList}
             setSelectedFeatures={setClientFeatures}
             selectedFeatures={clientFeatures}

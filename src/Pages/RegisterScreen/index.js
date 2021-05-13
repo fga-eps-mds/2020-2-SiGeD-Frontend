@@ -17,6 +17,8 @@ const RegisterScreen = () => {
   const [sectors, setSectors] = useState([]);
   const [englishRole, setEnglishRole] = useState('admin');
 
+  console.log('teste');
+
   const submit = async () => {
     if (validateSignUp(inputRegisterUserEmail,
       inputRegisterUserName)) {
