@@ -147,3 +147,20 @@ export const FilterDiv = styled.div`
     flex-direction: column;
   }
 `;
+
+export const styles = {
+  dropdownComponentStyle: {
+    display: 'flex',
+    color: `${colors.text}`,
+    height: '100%',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    borderRadius: '8px',
+    border: '1px solid black',
+    justifyContent: 'center',
+  },
+  redirectListButtonStyle: {
+    height: '100%',
+    fontSize: '100%',
+  },
+};

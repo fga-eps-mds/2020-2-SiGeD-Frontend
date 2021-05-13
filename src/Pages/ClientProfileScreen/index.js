@@ -9,7 +9,7 @@ import RedirectListButton from '../../Components/RedirectButton';
 import DropdownComponent from '../../Components/DropdownComponent';
 import {
   Main, RightBox, RightBoxMain, TitleH, SearchDiv, FilterDiv,
-  HeaderDiv, ListDiv, ButtonContainer, ContainerDiv,
+  HeaderDiv, ListDiv, ButtonContainer, ContainerDiv, styles,
 } from './Style';
 import { DropdownField } from '../ListDemandsScreen/Style';
 import { DropDiv, ContentBox } from '../../Components/GenericListScreen/Style';
@@ -42,7 +42,7 @@ const ClientProfileScreen = () => {
   const [clientFeaturesID, setClientFeaturesID] = useState([]);
   const { id } = useParams();
   const { startModal } = useProfileUser();
-
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -201,16 +201,7 @@ const ClientProfileScreen = () => {
                         <p style={{ marginBottom: '0' }}>Ano: </p>
                         <DropdownComponent
                           OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
-                          style={{
-                            display: 'flex',
-                            color: `${colors.text}`,
-                            height: '100%',
-                            alignItems: 'center',
-                            boxSizing: 'border-box',
-                            borderRadius: '8px',
-                            border: '1px solid black',
-                            justifyContent: 'center',
-                          }}
+                          style={styles.dropdownComponentStyle}
                           optionStyle={{
                             backgroundColor: `${colors.secondary}`,
                           }}
@@ -221,7 +212,7 @@ const ClientProfileScreen = () => {
                         <RedirectListButton
                           title="Nova Demanda"
                           redirectTo="/demanda"
-                          style={{ height: '100%', fontSize: '100%' }}
+                          style={styles.redirectListButtonStyle}
                         />
                       </ButtonContainer>
                     </FilterDiv>

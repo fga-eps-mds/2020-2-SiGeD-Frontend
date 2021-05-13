@@ -29,6 +29,20 @@ const ModalEditUpdateDemand = ({
   const { user, startModal } = useProfileUser();
   const [editedImportant, seteditedImportant] = useState(important);
 
+  const styles = {
+    checkBox: {
+      color: `${colors.navHeaders}`,
+    },
+    tinyButtonFechar: {
+      backgroundColor: 'red',
+      borderColor: 'white',
+    },
+    tinyButtonEditar: {
+      backgroundColor: colors.primary,
+      borderColor: 'white',
+    },
+  };
+
   const editUpdate = async () => {
     updateDemandUpdate(
       name, userSector, user._id, updateDescription, demandID,
@@ -77,7 +91,7 @@ const ModalEditUpdateDemand = ({
                       value={updateVisibility}
                       defaultChecked
                       inputProps={{ 'aria-label': 'Checkbox A' }}
-                      style={{ color: `${colors.navHeaders}` }}
+                      style={styles.checkBox}
                       onClick={() => setUpdateVisibility(!updateVisibility)}
                     />
                   )
@@ -94,7 +108,7 @@ const ModalEditUpdateDemand = ({
                       defaultChecked={important}
                       onClick={() => seteditedImportant(!editedImportant)}
                       inputProps={{ 'aria-label': 'Checkbox A' }}
-                      style={{ color: `${colors.navHeaders}` }}
+                      style={styles.checkBox}
                     />
                   )
                 }
@@ -107,19 +121,13 @@ const ModalEditUpdateDemand = ({
               click={() => handleClose()}
               type="primary"
               title="Fechar"
-              style={{
-                backgroundColor: 'red',
-                borderColor: 'white',
-              }}
+              style={styles.tinyButtonFechar}
             />
             <TinyButton
               click={() => validateEdit()}
               type="primary"
               title="Editar"
-              style={{
-                backgroundColor: `${colors.primary}`,
-                borderColor: 'white',
-              }}
+              style={styles.tinyButtonEditar}
             />
           </ButtomDiv>
         </BottomSide>

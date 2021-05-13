@@ -44,3 +44,18 @@ export const Label = styled.div`
     
   }
 `;
+export const styles = {
+  roleDiv: {
+    boxSizing: 'border-box',
+    borderRadius: '9px',
+    border: '2px solid #000000',
+    justifyContent: 'flex-start',
+    display: 'flex',
+  },
+  formGroup: {
+    width: '45%',
+  },
+  formLabel: {
+    margin: '0',
+  },
+};

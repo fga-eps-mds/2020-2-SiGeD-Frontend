@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import RegisterInput from '../RegisterInput';
-import { UserFormsColumnText, Dropdown } from './Style';
+import { UserFormsColumnText, Dropdown, styles } from './Style';
 import { getSectors } from '../../Services/Axios/sectorServices';
 import DropdownComponent from '../DropdownComponent';
 import colors from '../../Constants/colors';
@@ -44,14 +44,11 @@ const UserForms = ({
       <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
       <Form.Group style={{ width: '45%' }}>
         <Form.Label>Cargo:</Form.Label>
-        <div style={{
-          boxSizing: 'border-box', borderRadius: '9px', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
-        }}
-        >
+        <div style={styles.formGroupDiv}>
           <Dropdown
             as="select"
             value={inputRole}
-            style={{ boxSizing: 'border-box', borderRadius: '9px', border: '0px solid #000000' }}
+            style={styles.dropdownStyle}
             onChange={(Option) => setInputRole(Option.target.value)}
           >
             <option>Administrador(a)</option>
@@ -62,24 +59,12 @@ const UserForms = ({
       </Form.Group>
       <Form.Group style={{ width: '45%' }}>
         <Form.Label>Setor:</Form.Label>
-        <div style={{
-          boxSizing: 'border-box', borderRadius: '9px', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
-        }}
-        >
+        <div style={styles.formGroupDiv}>
           <DropdownComponent
             as="select"
             value={inputSector}
             OnChangeFunction={(Option) => setInputSector(Option.target.value)}
-            style={{
-              display: 'flex',
-              color: `${colors.text}`,
-              width: '100%',
-              height: '100%',
-              alignItems: 'center',
-              boxSizing: 'border-box',
-              borderRadius: '8px',
-              justifyContent: 'center',
-            }}
+            style={styles.dropdownComponentStyle}
             optionStyle={{
               backgroundColor: `${colors.secondary}`,
             }}

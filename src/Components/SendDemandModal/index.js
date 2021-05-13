@@ -14,6 +14,29 @@ const SendDemandModal = ({
   const handleShow = () => setShow(true);
   const { startModal } = useProfileUser();
 
+  const styles = {
+    forwardDivText: {
+      marginRight: '5px',
+      marginBottom: '0px',
+    },
+    forwardIcon: {
+      color: `${colors.secondary}`,
+      backgroundColor: `${colors.navHeaders}`,
+      marginRight: '3%',
+    },
+    modalFooter: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    tinyButtonCancelar: {
+      backgroundColor: colors.alertMessages,
+      borderColor: colors.alertMessages,
+    },
+    tinyButtonConfirmar: {
+      backgroundColor: colors.primary,
+    },
+  };
+
   const sectorOptionByID = sectorsResponse?.filter(
     (sectorByID) => sectorByID.name === sectorOption,
   );
@@ -36,15 +59,11 @@ const SendDemandModal = ({
   return (
     <>
       <ForwardDiv onClick={forwardDemandFunct}>
-        <p style={{ marginRight: '5px', marginBottom: '0px' }}>
+        <p style={styles.forwardDivText}>
           Encaminhar
         </p>
         <ForwardIcon
-          style={{
-            color: `${colors.secondary}`,
-            backgroundColor: `${colors.navHeaders}`,
-            marginRight: '3%',
-          }}
+          style={styles.forwardIcon}
         />
       </ForwardDiv>
       <Modal show={show} onHide={handleClose}>
@@ -57,23 +76,18 @@ const SendDemandModal = ({
           {sectorOption}
           ?
         </Modal.Body>
-        <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
+        <Modal.Footer style={styles.modalFooter}>
           <TinyButton
             type="primary"
             title="Cancelar"
             click={handleClose}
-            style={{
-              backgroundColor: colors.alertMessages,
-              borderColor: colors.alertMessages,
-            }}
+            style={styles.tinyButtonCancelar}
           />
           <TinyButton
             type="primary"
             title="Confirmar"
             click={() => { submit(); handleClose(); }}
-            style={{
-              backgroundColor: colors.primary,
-            }}
+            style={styles.tinyButtonConfirmar}
           />
         </Modal.Footer>
       </Modal>

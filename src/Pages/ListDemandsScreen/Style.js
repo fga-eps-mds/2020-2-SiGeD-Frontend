@@ -113,3 +113,17 @@ export const DropdownField = styled.div`
     width: 100%;
   }  
 `;
+
+export const styles = {
+  dropdownComponentStyle: {
+    display: 'flex',
+    color: `${colors.text}`,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    borderRadius: '8px',
+    border: '1px solid black',
+    justifyContent: 'center',
+  },
+};

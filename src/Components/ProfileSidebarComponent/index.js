@@ -14,6 +14,16 @@ const SidebarComponent = ({
   const { user } = useProfileUser();
   const history = useHistory();
 
+  const styles = {
+    sidebarFooter: {
+      marginTop: '3vh',
+    },
+    icon: {
+      cursor: 'pointer',
+      marginRight: '2px',
+    },
+  };
+
   return (
     <Sidebar>
       {sidebarTitle
@@ -37,7 +47,7 @@ const SidebarComponent = ({
       { sidebarFooter
         && (
           <SidebarFooter
-            style={{ marginTop: '3vh' }}
+            style={styles.sidebarFooter}
           >
             {sidebarFooter.map((sidebarCardFooterText) => (
               (
@@ -52,7 +62,7 @@ const SidebarComponent = ({
           <TextButtom
             onClick={() => history.push(`/editar/${id}`)}
           >
-            <BsPencil style={{ cursor: 'pointer', marginRight: '2px' }} />
+            <BsPencil style={styles.icon} />
             Editar
           </TextButtom>
         )}

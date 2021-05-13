@@ -7,7 +7,7 @@ import moment from 'moment';
 import { getDemandsStatistics, getCategories } from '../../Services/Axios/demandsServices';
 import {
   Main, Title, Container, Card, CardTitle, TopDiv, MiddleDiv, FiltersDiv, DropdownDiv,
-  SearchDiv, TextLabel, DateInput,
+  SearchDiv, TextLabel, DateInput, styles,
 } from './Style';
 import DropdownComponent from '../../Components/DropdownComponent';
 import colors from '../../Constants/colors';
@@ -137,18 +137,7 @@ const StatisticScreen = () => {
                   </TextLabel>
                   <DropdownComponent
                     OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
-                    style={{
-                      display: 'flex',
-                      color: `${colors.text}`,
-                      width: '100%',
-                      height: '40px',
-                      alignItems: 'center',
-                      boxSizing: 'border-box',
-                      borderRadius: '8px',
-                      border: '1px solid black',
-                      justifyContent: 'center',
-                      backgroundColor: 'white',
-                    }}
+                    style={styles.dropdownComponentStyle}
                     optionStyle={{
                       backgroundColor: `${colors.secondary}`,
                     }}
@@ -163,18 +152,7 @@ const StatisticScreen = () => {
                   </TextLabel>
                   <DropdownComponent
                     OnChangeFunction={(Option) => setCategoryActive(Option.target.value)}
-                    style={{
-                      display: 'flex',
-                      color: `${colors.text}`,
-                      width: '100%',
-                      height: '40px',
-                      alignItems: 'center',
-                      boxSizing: 'border-box',
-                      borderRadius: '8px',
-                      border: '1px solid black',
-                      justifyContent: 'center',
-                      backgroundColor: 'white',
-                    }}
+                    style={styles.dropdownComponentStyle}
                     optionStyle={{
                       backgroundColor: `${colors.secondary}`,
                     }}

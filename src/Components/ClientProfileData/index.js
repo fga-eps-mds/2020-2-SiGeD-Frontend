@@ -3,7 +3,7 @@ import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil, BsPersonCheckFill } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { useHistory, Link } from 'react-router-dom';
-import { format } from 'date-fns';
+import moment from 'moment-timezone';
 import { toggleStatus } from '../../Services/Axios/clientServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Content, P,
@@ -25,6 +25,14 @@ const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
   const [modalText, setModalText] = useState('Você tem certeza que quer desativar este cliente?');
   const [textColor, setTextColor] = useState('');
   const [icon, setIcon] = useState('');
+
+  const styles = {
+    tableContent: {
+      color: colors.text,
+      textDecorationLine: 'none',
+      marginRight: '1.5vw',
+    },
+  };
 
   useEffect(() => {
     if (query) {
@@ -64,11 +72,7 @@ const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
             as={Link}
             to={`/perfil/${client._id}`}
             id={client._id}
-            style={{
-              color: colors.text,
-              textDecorationLine: 'none',
-              marginRight: '1.5vw',
-            }}
+            style={styles.tableContent}
           >
             <P>{client.name}</P>
           </TableContent>
@@ -86,7 +90,7 @@ const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
           </TableContent>
 
           <TableContent width={15} justifycontent="center">
-            <P>{format(new Date(client.updatedAt), 'dd/MM/yyyy')}</P>
+            <P>{ moment.parseZone(alert.date).local(true).format('DD/MM/YYYY') }</P>
           </TableContent>
 
           <DotContent width={2} justifycontent="flex-end">

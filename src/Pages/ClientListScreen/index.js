@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import ClientProfileData from '../../Components/ClientProfileData';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
-  TableHeader, P, Bar, TableTitle, Dropdown,
+  TableHeader, P, Bar, TableTitle, Dropdown, styles,
 } from './Style';
 import { getClients } from '../../Services/Axios/clientServices';
 import DropdownComponent from '../../Components/DropdownComponent';
@@ -47,10 +47,10 @@ const ClientListScreen = () => {
 
   const listClients = () => {
     if (clients?.length === 0) {
-      return <h1 style={{ fontSize: '1.5rem', font: 'Montserrat' }}>Sem resultados</h1>;
+      return <h1 style={styles.headerStyle}>Sem resultados</h1>;
     }
     if (filterClients?.length === 0) {
-      return <h1 style={{ fontSize: '1.5rem', font: 'Montserrat' }}>Sem resultados</h1>;
+      return <h1 style={styles.headerStyle}>Sem resultados</h1>;
     }
     return filterClients?.map((client) => (
       <ClientProfileData
@@ -99,17 +99,7 @@ const ClientListScreen = () => {
       <Dropdown>
         <DropdownComponent
           OnChangeFunction={(Option) => setActive(Option.target.value)}
-          style={{
-            display: 'flex',
-            color: `${colors.text}`,
-            width: '100%',
-            height: '100%',
-            alignItems: 'center',
-            boxSizing: 'border-box',
-            borderRadius: '8px',
-            border: '1px solid black',
-            justifyContent: 'center',
-          }}
+          style={styles.dropdownComponentStyle}
           optionStyle={{
             backgroundColor: `${colors.secondary}`,
           }}

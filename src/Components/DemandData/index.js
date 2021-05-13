@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { format } from 'date-fns';
+import moment from 'moment-timezone';
 import {
   DemandCard, DemandTitle, ClientName, SectorName, ProcessNumber,
   DemandCreatedAt, CategoryField, CategoryName,
@@ -14,14 +14,27 @@ const DemandData = ({ demand, sectors }) => {
     <CategoryName color={category.color}>{category.name}</CategoryName>
   )));
 
+  const styles = {
+    demandCard: {
+      textDecorationLine: 'none',
+      color: colors.text,
+    },
+    link: {
+      color: colors.primary,
+      textDecorationLine: 'none',
+      fontWeight: 'bold',
+    },
+    divStyle: {
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
+  };
+
   return (
     <DemandCard
       as={Link}
       to={`/visualizar/${demand._id}`}
-      style={{
-        textDecorationLine: 'none',
-        color: colors.text,
-      }}
+      style={styles.demandCard}
     >
       <DemandTitle>
         {demand.name}
@@ -31,11 +44,7 @@ const DemandData = ({ demand, sectors }) => {
         <Link
           to={`/perfil/${demand.clientID}`}
           id={demand.clientID}
-          style={{
-            color: colors.primary,
-            textDecorationLine: 'none',
-            fontWeight: 'bold',
-          }}
+          style={styles.link}
         >
           {demand.clientName}
         </Link>
@@ -44,13 +53,13 @@ const DemandData = ({ demand, sectors }) => {
         Setor:
         {sectorName[0]?.name}
       </SectorName>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div style={styles.divStyle}>
         <ProcessNumber>
           Nº do Processo:
           {demand.process}
         </ProcessNumber>
         <DemandCreatedAt>
-          {format(new Date(demand.createdAt), 'dd/MM/yyyy')}
+          { moment.parseZone(demand.createdAt).local(true).format('DD/MM/YYYY')}
         </DemandCreatedAt>
       </div>
       <CategoryField>

@@ -14,6 +14,14 @@ const ClientDemandData = ({ demand, sectors, style }) => {
     <CategoryTag color={category.color}>{category.name}</CategoryTag>
   )));
 
+  const styles = {
+    divStyle: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: '1.5%',
+    },
+  };
+
   useEffect(() => {
   }, [sectorName]);
 
@@ -27,14 +35,14 @@ const ClientDemandData = ({ demand, sectors, style }) => {
         {'\t'}
         {sectorName[sectorName.length - 1]?.name}
       </SectorNameDiv>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5%' }}>
+      <div style={styles.divStyle}>
         <ProcessNumber>
           Nº do Processo:
           {'\t'}
           {demand.process}
         </ProcessNumber>
         <DemandCreatedAt>
-          { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY')}
+          { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY') }
         </DemandCreatedAt>
       </div>
       <CategoriesDiv>

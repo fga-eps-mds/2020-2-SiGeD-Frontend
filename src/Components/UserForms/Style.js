@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Form } from 'react-bootstrap';
+import colors from '../../Constants/colors';
 
 export const UserFormsColumnText = styled.div`
     width: 90%;
@@ -42,3 +43,28 @@ export const Dropdown = styled(Form.Control)`
         border: 2px solid #000000;
     }
 `;
+
+export const styles = {
+  formGroupDiv: {
+    boxSizing: 'border-box',
+    borderRadius: '9px',
+    border: '2px solid #000000',
+    justifyContent: 'flex-start',
+    display: 'flex',
+  },
+  dropdownStyle: {
+    boxSizing: 'border-box',
+    borderRadius: '9px',
+    border: '0px solid #000000',
+  },
+  dropdownComponentStyle: {
+    display: 'flex',
+    color: `${colors.text}`,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    borderRadius: '8px',
+    justifyContent: 'center',
+  },
+};
