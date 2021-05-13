@@ -108,21 +108,17 @@ const NavbarComp = () => {
           && (
             <Navbar.Collapse id="navbar-police">
               <Nav className="ml-auto">
-                <Nav.Link as={Link} to="/cliente" style={styles.navbarText}>
-                  Novo cliente
-                </Nav.Link>
-                <Nav.Link as={Link} to="/clientes" style={styles.navbarText}>
-                  Clientes
-                </Nav.Link>
+                <NavDropdown title="Clientes" style={styles.navbarText}>
+                  <NavDropdown.Item><Nav.Link as={Link} to="/cliente" style={{ color: 'black' }}>Novo Cliente</Nav.Link></NavDropdown.Item>
+                  <NavDropdown.Item><Nav.Link as={Link} to="/clientes" style={{ color: 'black' }}>Lista de Clientes</Nav.Link></NavDropdown.Item>
+                </NavDropdown>
                 <Nav.Link as={Link} to="/categorias" style={styles.navbarText}>
                   Categorias
                 </Nav.Link>
-                <Nav.Link as={Link} to="/demanda" style={styles.navbarText}>
-                  Criar Demandas
-                </Nav.Link>
-                <Nav.Link as={Link} to="/demandas" style={styles.navbarText}>
-                  Demandas
-                </Nav.Link>
+                <NavDropdown title="Demandas" style={styles.navbarText}>
+                  <NavDropdown.Item><Nav.Link as={Link} to="/demanda" style={{ color: 'black' }}>Criar Demanda</Nav.Link></NavDropdown.Item>
+                  <NavDropdown.Item><Nav.Link as={Link} to="/demandas" style={{ color: 'black' }}>Lista de Demandas</Nav.Link></NavDropdown.Item>
+                </NavDropdown>
                 <Navbar.Brand onClick={() => handleShow()}>
                   <BsBell />
                 </Navbar.Brand>
