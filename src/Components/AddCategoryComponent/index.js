@@ -57,7 +57,7 @@ const CategoryDiv = ({ pushCategory }) => {
         <CategoriesBox>
           <List>
             <CreateCategory>
-              <P2>Criar nova categoria</P2>
+              <P2 onClick={toggleModal} style={{ cursor: 'pointer' }}>Criar nova categoria</P2>
               <BsPencil color="#5289B5" onClick={toggleModal} style={{ cursor: 'pointer' }} />
             </CreateCategory>
             {renderCategories()}
