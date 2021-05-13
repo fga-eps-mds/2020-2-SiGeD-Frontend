@@ -61,8 +61,10 @@ const UserProvider = ({ children }) => {
 
   const handleLogin = async (email, password) => {
     const userInfo = await loginUser(email, password, startModal);
-    setToken(userInfo?.token);
-    setUser(userInfo?.profile);
+    if (!userInfo.message) {
+      setToken(userInfo?.token);
+      setUser(userInfo?.profile);
+    }
   };
 
   return (
