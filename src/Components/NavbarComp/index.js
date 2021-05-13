@@ -59,47 +59,23 @@ const NavbarComp = () => {
             && (
               <Navbar.Collapse id="navbar-police">
                 <Nav className="ml-auto">
-                  <NavDropdown title="Usuario" style={styles.navbarText}>
-                    <NavDropdown.Item style={styles.navbarDropdownItem}>
-                      <Nav.Link as={Link} to="/cadastro">
-                        Cadastro
-                      </Nav.Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item style={styles.navbarDropdownItem}>
-                      <Nav.Link as={Link} to="/usuarios">
-                        Usuários
-                      </Nav.Link>
-                    </NavDropdown.Item>
+                  <NavDropdown title="Usuários" style={styles.navbarText}>
+                    <NavDropdown.Item><Nav.Link as={Link} to="/cadastro" style={{ color: 'black' }}>Cadastro</Nav.Link></NavDropdown.Item>
+                    <NavDropdown.Item><Nav.Link as={Link} to="/usuarios" style={{ color: 'black' }}>Lista de Usuários</Nav.Link></NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link as={Link} to="/setores" style={styles.navbarText}>
                     Setores
                   </Nav.Link>
-                  <NavDropdown title="Cliente" style={styles.navbarText}>
-                    <NavDropdown.Item style={styles.navbarDropdownItem}>
-                      <Nav.Link as={Link} to="/cliente">
-                        Novo cliente
-                      </Nav.Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item style={styles.navbarDropdownItem}>
-                      <Nav.Link as={Link} to="/clientes">
-                        Clientes
-                      </Nav.Link>
-                    </NavDropdown.Item>
+                  <NavDropdown title="Clientes" style={styles.navbarText}>
+                    <NavDropdown.Item><Nav.Link as={Link} to="/cliente" style={{ color: 'black' }}>Novo Cliente</Nav.Link></NavDropdown.Item>
+                    <NavDropdown.Item><Nav.Link as={Link} to="/clientes" style={{ color: 'black' }}>Lista de Clientes</Nav.Link></NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link as={Link} to="/categorias" style={styles.navbarText}>
                     Categorias
                   </Nav.Link>
-                  <NavDropdown title="Demanda" style={styles.navbarText}>
-                    <NavDropdown.Item style={styles.navbarDropdownItem}>
-                      <Nav.Link as={Link} to="/demanda">
-                        Criar Demandas
-                      </Nav.Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item style={styles.navbarDropdownItem}>
-                      <Nav.Link as={Link} to="/demandas">
-                        Demandas
-                      </Nav.Link>
-                    </NavDropdown.Item>
+                  <NavDropdown title="Demandas" style={styles.navbarText}>
+                    <NavDropdown.Item><Nav.Link as={Link} to="/demanda" style={{ color: 'black' }}>Criar Demanda</Nav.Link></NavDropdown.Item>
+                    <NavDropdown.Item><Nav.Link as={Link} to="/demandas" style={{ color: 'black' }}>Lista de Demandas</Nav.Link></NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link as={Link} to="/estatisticas" style={styles.navbarText}>
                     Estatísticas

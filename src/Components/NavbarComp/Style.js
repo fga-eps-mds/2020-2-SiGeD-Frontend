@@ -15,7 +15,6 @@ const styles = {
     fontFamily: 'Montserrat',
     fontSize: '2vh',
     marginRight: '2vh',
-    // color: colors.background,
     fontWeight: 'bold',
   },
 
