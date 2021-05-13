@@ -13,6 +13,7 @@ const RegisterScreen = () => {
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
   const [inputRegisterUserRole, setRegisterUserInputRole] = useState('Administrador(a)');
   const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
+  const [inputRegisterUserImage, setRegisterUserInputImage] = useState('');
   const [sectors, setSectors] = useState([]);
   const [englishRole, setEnglishRole] = useState('admin');
 
@@ -65,6 +66,7 @@ const RegisterScreen = () => {
                 cancel={cancel}
                 submit={submit}
                 buttonTitle="Cadastrar"
+                inputImage={inputRegisterUserImage}
               >
                 <UserForms
                   setInputName={setRegisterUserInputName}
@@ -74,6 +76,7 @@ const RegisterScreen = () => {
                   setInputRole={setRegisterUserInputRole}
                   inputRole={inputRegisterUserRole}
                   setInputSector={setRegisterUserInputSector}
+                  setInputImage={setRegisterUserInputImage}
                   sectors={sectors}
                   setSectors={setSectors}
                   inputSector={inputRegisterUserSector}
