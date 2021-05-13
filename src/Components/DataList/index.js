@@ -11,7 +11,7 @@ import { useProfileUser } from '../../Context';
 import ConfirmDemandModal from '../ConfirmDemandModal';
 
 const DataList = ({
-  content, getContent, axiosDelete, updateContent, backgroundColor, color, type,
+  content, getContent, axiosDelete, updateContent, backgroundColor, color, type, demands,
 }) => {
   const { user, startModal } = useProfileUser();
   const [show, setShow] = useState(false);
@@ -41,6 +41,26 @@ const DataList = ({
     getContent();
   };
 
+  console.log(content._id);
+
+  const verifyDeletion = () => {
+    const findcategory = demands.map(
+      (demand) => {
+        console.log(demand);
+        return demand.categoryID.filter((category) => category._id === content._id);
+      },
+    );
+
+    console.log(findcategory);
+
+    if (findcategory[1].length === 0 && findcategory[0] === 0) {
+      alert('nao achei');
+      deleteContent();
+    } else {
+      alert('achei');
+    }
+  };
+
   return (
     <Content onMouseLeave={closeMenu} onClick={closeMenu}>
       <Personalbox>
@@ -67,7 +87,7 @@ const DataList = ({
       <ConfirmDemandModal
         show={show}
         handleClose={handleClose}
-        submit={deleteContent}
+        submit={verifyDeletion}
         actionName={modalText}
       />
       {optionsMenuState ? (

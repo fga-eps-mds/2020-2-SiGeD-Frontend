@@ -6,7 +6,7 @@ import {
 } from './Style';
 import GenericListScreen from '../../Components/GenericListScreen';
 import {
-  getCategories, createCategory, updateCategory, deleteCategory,
+  getCategories, createCategory, updateCategory, deleteCategory, getDemands,
 } from '../../Services/Axios/demandsServices';
 import DataList from '../../Components/DataList';
 import colors from '../../Constants/colors';
@@ -18,6 +18,12 @@ const ListCategories = () => {
   const [categories, setCategories] = useState([]);
   const [word, setWord] = useState();
   const [statusModal, setStatusModal] = useState(false);
+  const [demands, setDemands] = useState([]);
+
+  const getDemandFromApi = async () => {
+    await getDemands('demand', startModal)
+      .then((response) => setDemands(response?.data));
+  };
 
   const toggleModal = () => setStatusModal(!statusModal);
 
@@ -31,6 +37,7 @@ const ListCategories = () => {
 
   useEffect(() => {
     listCategories();
+    getDemandFromApi();
   }, [token]);
 
   useEffect(() => {
@@ -59,6 +66,7 @@ const ListCategories = () => {
         axiosDelete={deleteCategory}
         updateContent={updateCategory}
         type="Categoria"
+        demands={demands}
       />
     ));
   };
