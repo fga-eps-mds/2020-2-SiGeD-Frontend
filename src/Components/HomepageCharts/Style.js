@@ -42,6 +42,7 @@ export const ChartsDiv = styled.div`
   display: flex;
   justify-content: space-evenly;
   border-radius:15px;
+  align-items: center;
 `;
 
 export const Icon = styled(BiChevronRightCircle)`

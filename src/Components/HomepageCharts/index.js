@@ -16,12 +16,12 @@ const HomepageCharts = () => {
   const [sectors, setSectors] = useState(['Todos']);
   const [loading, setLoading] = useState(true);
   const [categoryStatistics, setCategoryStatistics] = useState([]);
-  const [sectorGraphData, setSectorGraphData] = useState([]);
+  const [sectorChartData, setSectorChartData] = useState([]);
   const [categories, setCategories] = useState(['Todas']);
   const initialDate = (moment('2000-01-01').format('YYYY-MM-DD'));
   const finalDate = (moment().format('YYYY-MM-DD'));
 
-  const getSectorsFromApi = async () => {
+  const getSectorsApi = async () => {
     await getSectors(startModal)
       .then((response) => {
         setSectors([...sectors, ...response.data]);
@@ -29,7 +29,7 @@ const HomepageCharts = () => {
       });
   };
 
-  const getCategoriesFromApi = async () => {
+  const getCategoriesApi = async () => {
     await getCategories('category', startModal)
       .then((response) => {
         setCategories([...categories, ...response.data]);
@@ -39,7 +39,7 @@ const HomepageCharts = () => {
       });
   };
 
-  const getCategoriesStatistics = async (idSector, idCategory) => {
+  const getStatisticsCategories = async (idSector, idCategory) => {
     await getDemandsStatistics(
       `statistic/category?idSector=${idSector}&idCategory=${idCategory}&initialDate=${initialDate}&finalDate=${finalDate}`,
       startModal,
@@ -49,13 +49,13 @@ const HomepageCharts = () => {
       });
   };
 
-  const getSectorStatistics = async (idCategory) => {
+  const getStatisticsSectors = async (idCategory) => {
     await getDemandsStatistics(
       `statistic/sector?idCategory=${idCategory}&initialDate=${initialDate}&finalDate=${finalDate}`,
       startModal,
     )
       .then((response) => {
-        const sectorGraph = [];
+        const sectorChart = [];
         response.data?.map((item) => {
           sectors.map((sector) => {
             if (item._id === sector?._id) {
@@ -64,27 +64,27 @@ const HomepageCharts = () => {
                 name: sector.name,
                 total: item.total,
               };
-              sectorGraph.push(data);
+              sectorChart.push(data);
             }
             return true;
           });
           return true;
         });
-        setSectorGraphData(sectorGraph);
+        setSectorChartData(sectorChart);
       });
   };
 
   useEffect(() => {
     if (user && token) {
-      getSectorsFromApi();
-      getCategoriesFromApi();
-      getCategoriesStatistics(null, null);
-      getSectorStatistics(null);
+      getSectorsApi();
+      getCategoriesApi();
+      getStatisticsCategories(null, null);
+      getStatisticsSectors(null);
     }
   }, [token, user]);
 
   useEffect(() => {
-    getSectorStatistics(null);
+    getStatisticsSectors(null);
   }, [loading]);
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -98,14 +98,14 @@ const HomepageCharts = () => {
               <ResponsiveContainer width="100%" height="90%">
                 <PieChart width="100%" height="100%">
                   <Pie
-                    data={sectorGraphData}
+                    data={sectorChartData}
                     cx="50%"
                     cy="50%"
                     labelLine={false}
                     fill="#8884d8"
                     dataKey="total"
                   >
-                    {sectorGraphData.map((entry, index) => (
+                    {sectorChartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
