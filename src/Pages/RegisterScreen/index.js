@@ -16,6 +16,7 @@ const RegisterScreen = () => {
   const [inputRegisterUserImage, setRegisterUserInputImage] = useState('');
   const [sectors, setSectors] = useState([]);
   const [englishRole, setEnglishRole] = useState('admin');
+  const [baseImage, setBaseImage] = useState('');
 
   console.log('teste');
 
@@ -27,6 +28,7 @@ const RegisterScreen = () => {
         inputRegisterUserEmail,
         englishRole,
         userSectorID,
+        baseImage,
         startModal);
       return history.push({ pathname: '/usuarios', state: { newUser: 'new' } });
     }
@@ -49,6 +51,7 @@ const RegisterScreen = () => {
     setRegisterUserInputEmail('');
     setRegisterUserInputRole('');
     setRegisterUserInputSector('');
+    setBaseImage('');
   };
 
   if (!localStorage.getItem('@App:token')) {
@@ -82,6 +85,8 @@ const RegisterScreen = () => {
                   sectors={sectors}
                   setSectors={setSectors}
                   inputSector={inputRegisterUserSector}
+                  baseImage={baseImage}
+                  setBaseImage={setBaseImage}
                 />
               </GenericRegisterScreen>
             )

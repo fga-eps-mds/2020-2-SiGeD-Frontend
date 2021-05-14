@@ -19,10 +19,11 @@ const UserForms = ({
   setInputImage,
   setSectors,
   sectors,
+  baseImage,
+  setBaseImage,
 }) => {
   const [filterSector, setFilterSector] = useState([]);
   const { startModal } = useProfileUser();
-  const [baseImage, setBaseImage] = useState('');
 
   const convertBase64 = (file) => new Promise((resolve, reject) => {
     const fileReader = new FileReader();
