@@ -20,6 +20,7 @@ const ClientRegisterScreen = () => {
   const [featuresList, setFeaturesList] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
   const [selectedFeaturesID, setSelectedFeaturesID] = useState([]);
+  const [baseImage, setBaseImage] = useState('');
   const { startModal, user } = useProfileUser();
 
   const getFeaturesFromAPI = () => {
@@ -40,7 +41,7 @@ const ClientRegisterScreen = () => {
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
         registerClientInputSecondaryPhone, registerClientInputAddress,
-        officeOption, registerLocation, selectedFeaturesID, startModal, user._id,
+        officeOption, registerLocation, selectedFeaturesID, startModal, user._id, baseImage,
       ).then((response) => response.data);
       if (data) {
         return history.push(`/perfil/${data._id}`);
@@ -92,6 +93,8 @@ const ClientRegisterScreen = () => {
           setLocationOption={setRegisterLocation}
           locationOption={registerLocation}
           setInputImage={setRegisterClientInputImage}
+          baseImage={baseImage}
+          setBaseImage={setBaseImage}
           featuresList={featuresList}
           setSelectedFeatures={setSelectedFeatures}
           selectedFeatures={selectedFeatures}

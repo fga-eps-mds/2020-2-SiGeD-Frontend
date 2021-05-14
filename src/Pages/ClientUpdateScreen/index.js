@@ -23,6 +23,7 @@ const ClientUpdateScreen = () => {
   const [clientFeaturesID, setClientFeaturesID] = useState([]);
   const [clientFeatures, setClientFeatures] = useState([]);
   const [selectedFeaturesID, setSelectedFeaturesID] = useState([]);
+  const [baseImage, setBaseImage] = useState('');
   const { id } = useParams();
   const { startModal, user, token } = useProfileUser();
 
@@ -39,6 +40,7 @@ const ClientUpdateScreen = () => {
         setOfficeOption(data?.office);
         setupdateLocation(data?.location);
         setClientFeaturesID(data?.features);
+        setRegisterClientInputImage(data?.image);
       });
   };
 
@@ -73,7 +75,8 @@ const ClientUpdateScreen = () => {
         updateClientInputName, updateClientInputEmail,
         updateClientInputCpf, updateClientInputPhone,
         updateClientInputSecondaryPhone, updateClientInputAddress,
-        officeOption, updateLocation, selectedFeaturesID, id, startModal, user._id,
+        officeOption, updateLocation, selectedFeaturesID, id, startModal, user._id, 
+        baseImage,
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }
@@ -117,6 +120,8 @@ const ClientUpdateScreen = () => {
             setLocationOption={setupdateLocation}
             locationOption={updateLocation}
             setInputImage={setRegisterClientInputImage}
+            baseImage={baseImage}
+            setBaseImage={setBaseImage}
             featuresList={featuresList}
             setSelectedFeatures={setClientFeatures}
             selectedFeatures={clientFeatures}

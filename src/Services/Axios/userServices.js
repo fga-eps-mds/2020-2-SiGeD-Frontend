@@ -35,7 +35,6 @@ export async function getFourUsers(startModal) {
 export async function postUser(
   inputName, inputEmail, inputRole, inputSector, baseImage, startModal,
 ) {
-  console.log('axios', baseImage);
   try {
     await APIUsers.post('signup', {
       name: inputName,

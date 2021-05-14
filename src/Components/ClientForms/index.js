@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 import RegisterInput from '../RegisterInput';
@@ -29,6 +29,8 @@ const ClientForms = ({
   selectedFeatures,
   setSelectedFeaturesID,
   setInputImage,
+  baseImage,
+  setBaseImage,
 }) => {
   const [baseImage, setBaseImage] = useState('');
   

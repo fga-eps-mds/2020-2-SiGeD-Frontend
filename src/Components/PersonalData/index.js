@@ -8,7 +8,7 @@ import { deleteUser } from '../../Services/Axios/userServices';
 import { getSector } from '../../Services/Axios/sectorServices';
 import {
   PersonDataBox, TableContent, Box, Ul, Content, P,
-  TableContainer, ImageUser, DotContent,
+  TableContainer, ImageUser, DotContent, Img,
 } from './Style';
 import { Li, Button, Icon } from '../DataList/Style';
 import { useProfileUser } from '../../Context';
@@ -22,6 +22,20 @@ const PersonalData = ({ user, getUsers }) => {
   const [boxState, setBoxState] = useState(false);
   const [userSector, setUserSector] = useState([]);
   const { startModal } = useProfileUser();
+
+  const renderImage = () => {
+    if (!user.image) {
+      return (
+        <IoPersonCircleOutline size="100%" />
+      );
+    }
+    return (
+      <Img
+        src={user.image}
+        alt="Foto"
+      />
+    );
+  };
 
   const getSectorFromAPI = (id) => {
     getSector(`sector/${id}`, startModal)
@@ -47,7 +61,7 @@ const PersonalData = ({ user, getUsers }) => {
     <Content onMouseLeave={closeBox} onClick={closeBox}>
       <PersonDataBox>
         <ImageUser>
-          <IoPersonCircleOutline size="100%" />
+          {renderImage()}
         </ImageUser>
         <TableContainer>
           <TableContent width={20}>

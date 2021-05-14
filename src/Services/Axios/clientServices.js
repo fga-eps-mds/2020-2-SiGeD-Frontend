@@ -33,7 +33,7 @@ export async function getFourClients(startModal) {
 export async function postClient(
   inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
   inputAddress, officeOption, inputLocation, selectedFeatures,
-  startModal, userContext,
+  startModal, userContext, baseImage,
 ) {
   try {
     const response = await APIClients.post('clients/create', {
@@ -47,6 +47,7 @@ export async function postClient(
       location: inputLocation,
       features: selectedFeatures,
       userID: userContext,
+      image: baseImage,
     });
     return response;
   } catch (error) {
@@ -65,6 +66,7 @@ export async function postClient(
 export async function updateClient(
   inputName, inputEmail, inputCpf, inputPhone, inputSecondaryPhone,
   inputAddress, officeOption, locationOption, features, id, startModal, userContext,
+  baseImage,
 ) {
   try {
     const response = await APIClients.put(`/clients/update/${id}`, {
@@ -78,6 +80,7 @@ export async function updateClient(
       location: locationOption,
       userID: userContext,
       features,
+      image: baseImage,
     });
     return response;
   } catch (error) {
