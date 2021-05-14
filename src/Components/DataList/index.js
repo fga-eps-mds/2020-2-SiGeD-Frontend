@@ -41,23 +41,22 @@ const DataList = ({
     getContent();
   };
 
-  console.log(content._id);
-
   const verifyDeletion = () => {
+    let flag = false;
     const findcategory = demands.map(
-      (demand) => {
-        console.log(demand);
-        return demand.categoryID.filter((category) => category._id === content._id);
-      },
+      (demand) => demand.categoryID.filter((category) => category._id === content._id),
     );
 
-    console.log(findcategory);
+    findcategory.forEach((element) => {
+      if (element.length !== 0) {
+        flag = true;
+      }
+    });
 
-    if (findcategory[1].length === 0 && findcategory[0] === 0) {
-      alert('nao achei');
+    if (!flag) {
       deleteContent();
     } else {
-      alert('achei');
+      startModal('Essa categoria está em uso por uma demanda, não é possível deleta-la');
     }
   };
 
