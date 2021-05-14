@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Tests check
-      run: docker-compose run frontend bash -c  "yarn && yarn jest --coverage --passWithNoTests --forceExit"
+      run: docker-compose run frontend bash -c  "yarn && yarn run test"
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
