@@ -238,6 +238,7 @@ const ViewDemandsScreen = () => {
           </ButtonDiv>
         </CardsContainer>
         <ViewDemandSidebar
+          clientImage={client.image}
           clientName={client.name}
           userName={userDemand.name}
           selectedCategories={demand.categoryID}

@@ -1,4 +1,3 @@
-import { IoPersonCircleOutline } from 'react-icons/io5';
 import styled from 'styled-components';
 import colors from '../../Constants/colors';
 
@@ -51,14 +50,21 @@ export const NameDiv = styled.div`
 
 `;
 
-export const PersonIcon = styled(IoPersonCircleOutline)`
-    width: 30%;
-    height: 100%;
-    color: white;
-
+export const Img = styled.img`
+    border-radius: 50%;
+    width: 38%;
+    height: auto;
+    margin: 0 0 0 1px;
+    align-content: center;
+    justify-content: center;
+    margin-left: 10%;
     @media(max-width: 750px){
-        display: none;
+        width: auto;
+        height: 100%;
+        padding: 2% 0 0 0;
+        margin: 4% 0 0 0;
     }
+
 `;
 
 export const Name = styled.p` 

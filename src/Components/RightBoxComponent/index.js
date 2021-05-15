@@ -1,31 +1,64 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { IoPersonCircleOutline } from 'react-icons/io5';
 import {
-  RightBox, ContentBox, NameDiv, Line, PersonIcon, Name, CenterName,
+  RightBox, ContentBox, NameDiv, Line, Name, CenterName, Img,
 } from './Style';
+import { getClients } from '../../Services/Axios/clientServices';
+import { useProfileUser } from '../../Context';
 
-const RightBoxComponent = ({ children, clientName }) => (
-  <RightBox>
-    <ContentBox>
-      <NameDiv>
-        <PersonIcon />
-        <CenterName>
-          <Name>
-            {clientName}
-          </Name>
-        </CenterName>
-      </NameDiv>
-      <Line />
-    </ContentBox>
-    <>
-      {children[0]}
+const RightBoxComponent = ({ children, clientID, clientName }) => {
+  const [client, setClient] = useState('');
+  const { startModal } = useProfileUser();
 
-      {children[1]}
+  const getClientApi = async () => {
+    await getClients(`clients/${clientID}`, startModal)
+      .then((response) => setClient(response?.data));
+  };
 
-      {children[2]}
+  useEffect(() => {
+    if (clientID) {
+      getClientApi(clientID);
+    }
+  }, [clientName]);
 
-      {children[3]}
-    </>
-  </RightBox>
-);
+  const renderImage = () => {
+    if (!client?.image) {
+      return (
+        <IoPersonCircleOutline size="100%" />
+      );
+    }
+    return (
+      <Img
+        src={client?.image}
+        alt="Foto"
+      />
+    );
+  };
+
+  return (
+    <RightBox>
+      <ContentBox>
+        <NameDiv>
+          {renderImage()}
+          <CenterName>
+            <Name>
+              {clientName}
+            </Name>
+          </CenterName>
+        </NameDiv>
+        <Line />
+      </ContentBox>
+      <>
+        {children[0]}
+
+        {children[1]}
+
+        {children[2]}
+
+        {children[3]}
+      </>
+    </RightBox>
+  );
+};
 
 export default RightBoxComponent;

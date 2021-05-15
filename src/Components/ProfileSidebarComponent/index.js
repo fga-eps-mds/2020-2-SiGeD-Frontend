@@ -1,15 +1,16 @@
 import React from 'react';
+import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsPencil } from 'react-icons/bs';
 import { useHistory } from 'react-router-dom';
 import {
-  Sidebar, SidebarText, SidebarTitle, Icon, SidebarFooter, FooterText,
+  Sidebar, SidebarText, SidebarTitle, Img, SidebarFooter, FooterText,
   SidebarCardText, TextButtom,
 } from './Style';
 import { useProfileUser } from '../../Context';
 import SelectedFeatures from '../SelectedFeatures';
 
 const SidebarComponent = ({
-  sidebarTitle, sidebarList, sidebarFooter, edit, handleShow, id, features,
+  sidebarTitle, sidebarList, sidebarFooter, edit, handleShow, id, features, client,
 }) => {
   const { user } = useProfileUser();
   const history = useHistory();
@@ -24,6 +25,20 @@ const SidebarComponent = ({
     },
   };
 
+  const renderImage = () => {
+    if (!client.image) {
+      return (
+        <IoPersonCircleOutline size="100%" />
+      );
+    }
+    return (
+      <Img
+        src={client.image}
+        alt="Foto"
+      />
+    );
+  };
+  
   return (
     <Sidebar>
       {sidebarTitle
@@ -32,7 +47,7 @@ const SidebarComponent = ({
             {sidebarTitle}
           </SidebarTitle>
         )}
-      <Icon />
+      {renderImage()}
       <SidebarText>
         {sidebarList.map((sidebarCardText, index) => (
           <SidebarCardText key={index}>
