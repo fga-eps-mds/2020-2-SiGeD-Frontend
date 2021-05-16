@@ -67,6 +67,7 @@ export const deleteCategory = async (id, startModal) => {
     console.error(error);
   }
 };
+
 export async function getDemands(url, startModal) {
   try {
     const response = await APIDemands.get(url);
@@ -78,6 +79,21 @@ export async function getDemands(url, startModal) {
       startModal('Não foi possível carregar as demandas já criadas, tente novamente mais tarde.');
     }
     console.error(`An unexpected error ocourred while getting demands.${error}`);
+  }
+  return false;
+}
+
+export async function getFourDemands(startModal) {
+  try {
+    const response = await APIDemands.get('/demand/newest-four');
+    return response;
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possível listar as úultimas quatro demandas, tente novamente mais tarde.');
+    }
+    console.error(`An unexpected error ocourred while getting the last four demands.${error}`);
   }
   return false;
 }

@@ -22,19 +22,17 @@ export const Demandbox = styled.div`
 
 export const Tag = styled.div`
 
-  width: 60%;
-  height: 100%;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 100%;
-  text-align: center;
-  word-break: break-word;
-  cursor: pointer;
+border-radius: 12px;
+padding: 2%;
+text-align: center;
+color: ${(props) => `${props.color}`};
+background-color: ${(props) => `${props.backgroundColor}`};
+font-weight: bold;
 
+@media(max-width: 750px){
+  font-weight: 900;
+  font-size: 2vh;
+}
 `;
 
 export const Line = styled.div` 

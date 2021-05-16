@@ -17,6 +17,21 @@ export async function getUser(url, startModal) {
   return false;
 }
 
+export async function getFourUsers(startModal) {
+  try {
+    const response = await APIUsers.get('/users/newest-four');
+    return response;
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possível listar os últimos quatro usuários, tente novamente mais tarde.');
+    }
+    console.error(error);
+  }
+  return false;
+}
+
 export async function postUser(
   inputName, inputEmail, inputRole, inputSector, startModal,
 ) {

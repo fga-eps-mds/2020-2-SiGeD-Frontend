@@ -21,6 +21,7 @@ import RecoverPasswordScreen from '../Pages/RecoverPasswordScreen';
 import ChangePasswordScreen from '../Pages/ChangePasswordScreen';
 import { useProfileUser } from '../Context';
 import StatisticScreen from '../Pages/StatisticsScreen';
+import ProfessionalHomepage from '../Pages/ProfessionalHomepage';
 
 const OtherRoutes = () => {
   const { user } = useProfileUser();
@@ -49,7 +50,7 @@ const OtherRoutes = () => {
               <Route path="/visualizar/:id" exact component={ViewDemandsScreen} />
               <Route path="/demandas" exact component={ListDemandsScreen} />
               <Route path="/demandas/editar/:id" exact component={UpdateDemandsScreen} />
-              <Route path="/" exact component={ClientListScreen} />
+              <Route path="/" exact component={ProfessionalHomepage} />
               <Route path="/login" exact component={LoginScreen} />
               <Route path="/nao-autorizado" exact component={UnauthorizedScreen} />
               <Route path="/recuperar-senha" exact component={RecoverPasswordScreen} />
