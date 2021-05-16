@@ -59,6 +59,9 @@ const NavbarComp = () => {
             && (
               <Navbar.Collapse id="navbar-police">
                 <Nav className="ml-auto">
+                  <Nav.Link as={Link} to="/" style={styles.navbarText}>
+                    Home
+                  </Nav.Link>
                   <NavDropdown title="Usuários" style={styles.navbarText}>
                     <NavDropdown.Item><Nav.Link as={Link} to="/cadastro" style={{ color: 'black' }}>Cadastro</Nav.Link></NavDropdown.Item>
                     <NavDropdown.Item><Nav.Link as={Link} to="/usuarios" style={{ color: 'black' }}>Lista de Usuários</Nav.Link></NavDropdown.Item>
@@ -108,6 +111,9 @@ const NavbarComp = () => {
           && (
             <Navbar.Collapse id="navbar-police">
               <Nav className="ml-auto">
+                <Nav.Link as={Link} to="/" style={styles.navbarText}>
+                  Home
+                </Nav.Link>
                 <NavDropdown title="Clientes" style={styles.navbarText}>
                   <NavDropdown.Item><Nav.Link as={Link} to="/cliente" style={{ color: 'black' }}>Novo Cliente</Nav.Link></NavDropdown.Item>
                   <NavDropdown.Item><Nav.Link as={Link} to="/clientes" style={{ color: 'black' }}>Lista de Clientes</Nav.Link></NavDropdown.Item>
