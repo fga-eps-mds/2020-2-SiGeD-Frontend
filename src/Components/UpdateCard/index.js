@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IoPersonCircleOutline } from 'react-icons/io5';
 import moment from 'moment-timezone';
 import { BsPencil } from 'react-icons/bs';
 import { BiTrash, BiLockAlt } from 'react-icons/bi';
@@ -9,7 +10,7 @@ import { useProfileUser } from '../../Context';
 import ConfirmDemandModal from '../ConfirmDemandModal';
 import {
   Card, TopSide, DemandName, EditIcon,
-  DemandDescription, BottomSide, CreatedAt, UserIcon,
+  DemandDescription, BottomSide, CreatedAt, Img,
   LockIcon, TrashIcon, IconsContainer, HighPriorityIcon,
 } from './Style';
 
@@ -72,11 +73,25 @@ const UpdateCard = ({
     }
   };
 
+  const renderImageUser = () => {
+    if (!user.image) {
+      return (
+        <IoPersonCircleOutline size="100%" />
+      );
+    }
+    return (
+      <Img
+        src={user.image}
+        alt="Foto"
+      />
+    );
+  };
+
   return (
     <Card>
       <TopSide>
         <div style={styles.topSideDiv}>
-          <UserIcon />
+          {renderImageUser()}
           <DemandName>
             {update.userName}
             {' '}

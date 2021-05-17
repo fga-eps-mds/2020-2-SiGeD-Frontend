@@ -52,7 +52,7 @@ export const NameDiv = styled.div`
 
 export const Img = styled.img`
     border-radius: 50%;
-    width: 38%;
+    width: 29%;
     height: auto;
     margin: 0 0 0 1px;
     align-content: center;

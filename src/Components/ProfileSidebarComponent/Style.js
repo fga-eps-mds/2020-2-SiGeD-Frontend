@@ -53,7 +53,7 @@ export const Img = styled.img`
     align-content: center;
     justify-content: center;
     @media(max-width: 750px){
-        width: auto;
+        width: 30%;
         height: 100%;
         padding: 2% 0 0 0;
         margin: 4% 0 0 0;

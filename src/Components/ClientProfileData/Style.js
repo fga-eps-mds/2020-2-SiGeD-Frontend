@@ -8,8 +8,8 @@ const Img = styled.img`
     align-content: center;
     justify-content: center;
     @media(max-width: 750px){
-        width: auto;
-        height: 100%;
+        width: 100%;
+        height: 40%;
         padding: 2% 0 0 0;
         margin: 4% 0 0 0;
     }
