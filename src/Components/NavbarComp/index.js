@@ -8,6 +8,7 @@ import { useProfileUser } from '../../Context';
 import { getAlertsBySector } from '../../Services/Axios/demandsServices';
 import { APIUsers } from '../../Services/Axios/baseService';
 import ViewAlertModal from '../ViewAlertModal';
+import Logo from '../../Logo/SiGeD_Logo.png';
 
 const NavbarComp = () => {
   const {
@@ -51,8 +52,8 @@ const NavbarComp = () => {
       return (
 
         <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>
-          <Navbar.Brand>
-            <h1 style={styles.navbarText}>Logo</h1>
+          <Navbar.Brand style={{ marginLeft: 25 }}>
+            <img src={Logo} alt="Logo SiGeD" height={60} width={120} />
           </Navbar.Brand>
           { token && <Navbar.Toggle aria-controls="navbar-police" />}
           { token
