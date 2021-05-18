@@ -5,6 +5,14 @@ import AlertBySectorData from '../AlertBySectorData';
 const ViewAlertModal = ({
   show, handleClose, alerts,
 }) => {
+  const styles = {
+    modalBody: {
+      margin: '20px',
+      height: '100%',
+      overflow: 'auto',
+    },
+  };
+
   const sortedAlerts = alerts?.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
 
   const listAlertData = () => sortedAlerts?.map((alert) => (
@@ -17,11 +25,7 @@ const ViewAlertModal = ({
         <Modal.Title>Alertas</Modal.Title>
       </Modal.Header>
       <Modal.Body
-        style={{
-          margin: '20px',
-          height: '100%',
-          overflow: 'auto',
-        }}
+        style={styles.modalBody}
       >
         { listAlertData() }
       </Modal.Body>

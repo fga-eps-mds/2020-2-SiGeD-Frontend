@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { format } from 'date-fns';
+import moment from 'moment-timezone';
 import { useParams, Redirect } from 'react-router-dom';
 import {
   Timeline, TimelineOppositeContent, TimelineItem, TimelineSeparator,
@@ -170,7 +170,7 @@ const ViewDemandsScreen = () => {
                 {' '}
                 {sectorName[0]?.name}
               </p>
-              <p style={{ marginRight: '12%' }}>{ format(new Date(value.createdAt), 'dd/MM/yyyy') }</p>
+              <p style={{ marginRight: '12%' }}>{ moment.parseZone(value.createdAt).local(true).format('DD/MM/YYYY')}</p>
             </ForwardedDemandDiv>
           </TimelineContent>
         </TimelineItem>

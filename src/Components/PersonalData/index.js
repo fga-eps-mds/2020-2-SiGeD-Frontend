@@ -3,7 +3,7 @@ import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BsThreeDots, BsPencil } from 'react-icons/bs';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
-import { format } from 'date-fns';
+import moment from 'moment-timezone';
 import { deleteUser } from '../../Services/Axios/userServices';
 import { getSector } from '../../Services/Axios/sectorServices';
 import {
@@ -67,7 +67,7 @@ const PersonalData = ({ user, getUsers }) => {
           </TableContent>
 
           <TableContent width={15}>
-            <P>{format(new Date(user.updatedAt), 'dd/MM/yyyy')}</P>
+            <P>{moment.parseZone(user.updatedAt).local(true).format('DD/MM/YYYY')}</P>
           </TableContent>
 
           <DotContent width={2} justifycontent="flex-end">

@@ -23,6 +23,21 @@ const UpdateCard = ({
   const handleConfirm = () => setConfirm(false);
   const { user, startModal } = useProfileUser();
 
+  const styles = {
+    topSideDiv: {
+      display: 'flex',
+      width: '70%',
+    },
+    iconStyle: {
+      marginRight: '10px',
+      color: 'black',
+    },
+    deleteIconStyle: {
+      marginRight: '5px',
+      color: 'red',
+    },
+  };
+
   const deleteUpdate = async () => {
     await deleteDemandUpdate(demand._id, update._id, startModal)
       .then(() => setChangeState(!changeState));
@@ -60,7 +75,7 @@ const UpdateCard = ({
   return (
     <Card>
       <TopSide>
-        <div style={{ display: 'flex', width: '70%' }}>
+        <div style={styles.topSideDiv}>
           <UserIcon />
           <DemandName>
             {update.userName}
@@ -74,14 +89,14 @@ const UpdateCard = ({
           { update.important
             ? (
               <HighPriorityIcon>
-                <FcHighPriority style={{ marginRight: '10px', color: 'black' }} />
+                <FcHighPriority style={styles.iconStyle} />
               </HighPriorityIcon>
             )
             : null }
           { update.visibilityRestriction
             ? (
               <LockIcon>
-                <BiLockAlt style={{ marginRight: '10px', color: 'black' }} />
+                <BiLockAlt style={styles.iconStyle} />
               </LockIcon>
             )
             : null }
@@ -94,7 +109,7 @@ const UpdateCard = ({
           <TrashIcon
             onClick={() => { deleteCall(); }}
           >
-            <BiTrash style={{ marginRight: '5px', color: 'red' }} />
+            <BiTrash style={styles.deleteIconStyle} />
           </TrashIcon>
         </IconsContainer>
       </TopSide>
@@ -103,7 +118,7 @@ const UpdateCard = ({
           {update.description}
         </DemandDescription>
         <CreatedAt>
-          { moment.parseZone(update.createdAt).local(true).format('DD/MM/YYYY HH:mm')}
+          {moment.parseZone(update.createdAt).local(true).format('DD/MM/YYYY HH:mm')}
         </CreatedAt>
       </BottomSide>
       <ModalEditUpdateDemand

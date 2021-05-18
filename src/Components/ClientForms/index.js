@@ -3,7 +3,9 @@ import { Form } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 import RegisterInput from '../RegisterInput';
 import { Dropdown } from '../UserForms/Style';
-import { ClientFormsColumnText, Container, Label } from './Style';
+import {
+  ClientFormsColumnText, Container, Label, styles,
+} from './Style';
 import colors from '../../Constants/colors';
 
 const ClientForms = ({
@@ -41,12 +43,9 @@ const ClientForms = ({
       <RegisterInput type="text" title="Endereco" setText={setInputAddress} value={inputAddress} />
       <RegisterInput type="text" title="Telefone principal" setText={setInputPhone} value={inputPhone} />
       <RegisterInput type="text" title="Telefone secundario" setText={setInputSecondaryPhone} value={secondaryPhone} />
-      <Form.Group style={{ width: '45%' }}>
-        <Form.Label style={{ borderRadius: '0', margin: '0' }}>Cargo:</Form.Label>
-        <div style={{
-          boxSizing: 'border-box', borderRadius: '9px', border: '2px solid #000000', justifyContent: 'flex-start', display: 'flex',
-        }}
-        >
+      <Form.Group style={styles.formGroup}>
+        <Form.Label style={styles.formLabel}>Cargo:</Form.Label>
+        <div style={styles.roleDiv}>
           <Dropdown
             as="select"
             onChange={(Option) => setOfficeOption(Option.target.value)}

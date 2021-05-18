@@ -50,3 +50,21 @@ border-radius: 15px;
   margin-left: 5%;
 }
 `;
+
+export const styles = {
+  headerStyle: {
+    fontSize: '1.5rem',
+    font: 'Montserrat',
+  },
+  dropdownComponentStyle: {
+    display: 'flex',
+    color: `${colors.text}`,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    borderRadius: '8px',
+    border: '1px solid black',
+    justifyContent: 'center',
+  },
+};

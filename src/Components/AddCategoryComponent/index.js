@@ -14,6 +14,16 @@ const CategoryDiv = ({ pushCategory }) => {
   const [modalState, setModalState] = useState(false);
   const { startModal } = useProfileUser();
 
+  const styles = {
+    editIconStyle: {
+      cursor: 'pointer',
+    },
+    textStyle: {
+      color: 'black',
+      fontSize: '1rem',
+    },
+  };
+
   const toggleModal = () => {
     setModalState(!modalState);
   };
@@ -32,7 +42,7 @@ const CategoryDiv = ({ pushCategory }) => {
 
   const renderCategories = () => {
     if (categories?.length === 0) {
-      return <p style={{ color: 'black', fontSize: '1rem' }}>Ainda não há categorias cadastradas</p>;
+      return <p style={styles.textStyle}>Ainda não há categorias cadastradas</p>;
     } if (categories?.length === 1) {
       return <CategoriesToAdd category={categories[0]} key={categories[0]._id} pushCategory={pushCategory} height="50%" />;
     }
@@ -60,8 +70,8 @@ const CategoryDiv = ({ pushCategory }) => {
         <CategoriesBox>
           <List>
             <CreateCategory>
-              <P2 onClick={toggleModal} style={{ cursor: 'pointer' }}>Criar nova categoria</P2>
-              <BsPencil color="#5289B5" onClick={toggleModal} style={{ cursor: 'pointer' }} />
+              <P2 onClick={toggleModal} style={styles.editIconStyle}>Criar nova categoria</P2>
+              <BsPencil color="#5289B5" onClick={toggleModal} style={styles.editIconStyle} />
             </CreateCategory>
             {renderCategories()}
           </List>

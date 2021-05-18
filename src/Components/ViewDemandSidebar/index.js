@@ -8,7 +8,8 @@ import {
   CategoryField, MobileHeader,
   PlusButton, LessButton, ButtonsDiv,
   AlertContainer, AlertTitle, CreateAlertDiv,
-  CreateAlertTitle, CreateAlertIcon, ListAlert, TextButton,
+  CreateAlertTitle, CreateAlertIcon, ListAlert,
+  TextButton, styles,
 } from './Style';
 import SendDemandModal from '../SendDemandModal';
 import DropdownComponent from '../DropdownComponent';
@@ -84,29 +85,12 @@ const ViewDemandSidebar = ({
               </UserName>
             </CreatedBy>
           )}
-        <p style={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          width: '100%',
-          marginTop: '2px',
-          marginBottom: '2px',
-        }}
-        >
+        <p style={styles.textStyle}>
           Setor:
         </p>
         <DropdownComponent
           OnChangeFunction={(Option) => setSectorOption(Option.target.value)}
-          style={{
-            display: 'flex',
-            color: `${colors.secondary}`,
-            width: '90%',
-            height: 'min-content',
-            flexDirection: 'column',
-            alignItems: 'center',
-            boxSizing: 'border-box',
-            borderRadius: '8px',
-            border: '1px solid #ffffff',
-          }}
+          style={styles.dropdownComponentStyle}
           optionStyle={{
             backgroundColor: `${colors.navHeaders}`,
           }}
@@ -115,15 +99,7 @@ const ViewDemandSidebar = ({
         />
         {sidebarState
           && (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                paddingRight: '3%',
-                width: '100%',
-                marginTop: '5%',
-              }}
-            >
+            <div style={styles.sidebarStateDiv}>
               <SendDemandModal
                 sectorOption={sectorOption}
                 getDemandApi={getDemandApi}

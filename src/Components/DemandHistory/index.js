@@ -24,6 +24,17 @@ const DemandHistory = ({ show, handleClose, demand }) => {
   const history = useHistory();
   const [categories, setCategories] = useState([]);
 
+  const styles = {
+    updateDivPBefore: {
+      color: 'red',
+      display: 'flex',
+    },
+    updateDivPAfter: {
+      color: colors.primary,
+      display: 'flex',
+    },
+  };
+
   const getUserFromApi = async () => {
     await getUser('users', startModal)
       .then((response) => setUsers(response.data));
@@ -102,13 +113,13 @@ const DemandHistory = ({ show, handleClose, demand }) => {
           </TimeDiv>
           <UpdateDiv>
             {updateDemand.before && (
-              <p style={{ color: 'red', display: 'flex' }}>
+              <p style={styles.updateDivPBefore}>
                 {'Removido: '}
                 {updateData(updateDemand.before, updateDemand.label)}
               </p>
             )}
             {updateDemand.after && (
-              <p style={{ color: '#5289B5', display: 'flex' }}>
+              <p style={styles.updateDivPAfter}>
                 {'Adicionado: '}
                 {updateData(updateDemand.after, updateDemand.label)}
               </p>

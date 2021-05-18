@@ -197,3 +197,18 @@ export const DateInput = styled.input`
 
   }
 `;
+
+export const styles = {
+  dropdownComponentStyle: {
+    display: 'flex',
+    color: `${colors.text}`,
+    width: '100%',
+    height: '40px',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    borderRadius: '8px',
+    border: '1px solid black',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+};

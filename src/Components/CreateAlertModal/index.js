@@ -22,6 +22,24 @@ const CreateAlertModal = ({
     setInputDate('');
   };
 
+  const styles = {
+    modalBody: {
+      margin: '20px',
+    },
+    modalFooter: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    tinyButtonCancel: {
+      backgroundColor: colors.secondary,
+      color: colors.text,
+      borderColor: colors.text,
+    },
+    tinyButtonSubmit: {
+      backgroundColor: colors.primary,
+    },
+  };
+
   const submit = async () => {
     response = await createAlert(
       inputName, inputDescription, inputDate, clientAlert, demand._id, user.sector, startModal,
@@ -39,11 +57,7 @@ const CreateAlertModal = ({
       <Modal.Header closeButton>
         <Modal.Title>Alerta</Modal.Title>
       </Modal.Header>
-      <Modal.Body
-        style={{
-          margin: '20px',
-        }}
-      >
+      <Modal.Body style={styles.modalBody}>
         <Title>
           Nome
         </Title>
@@ -100,24 +114,18 @@ const CreateAlertModal = ({
         </BottomSide>
         <div />
       </Modal.Body>
-      <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
+      <Modal.Footer style={styles.modalFooter}>
         <TinyButton
           click={() => { clearFields(); handleClose(); }}
           type="primary"
           title="Cancelar"
-          style={{
-            backgroundColor: colors.secondary,
-            color: colors.text,
-            borderColor: colors.text,
-          }}
+          style={styles.tinyButtonCancel}
         />
         <TinyButton
           click={() => submit()}
           type="primary"
           title="Cadastrar"
-          style={{
-            backgroundColor: colors.primary,
-          }}
+          style={styles.tinyButtonSubmit}
         />
       </Modal.Footer>
     </Modal>

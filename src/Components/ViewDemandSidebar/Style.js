@@ -249,3 +249,32 @@ export const ListAlert = styled.div`
         margin-top: 0px;
     }
 `;
+
+export const styles = {
+  textStyle: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    width: '100%',
+    marginTop: '2px',
+    marginBottom: '2px',
+  },
+  dropdownComponentStyle: {
+    display: 'flex',
+    color: `${colors.secondary}`,
+    width: '90%',
+    height: 'min-content',
+    flexDirection: 'column',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    borderRadius: '8px',
+    border: '1px solid #ffffff',
+  },
+  sidebarStateDiv: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    paddingRight: '3%',
+    width: '100%',
+    marginTop: '5%',
+  },
+
+};

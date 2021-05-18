@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { FaSistrix } from 'react-icons/fa';
 import {
   Main, ScreenContainer, ScreenTitle, ScreenSearch, ScreenContentBox,
-  ScreenHeader, ScreenList, Dropdown, DropdownField,
+  ScreenHeader, ScreenList, Dropdown, DropdownField, styles,
 } from './Style';
 import SearchInput from '../../Components/SearchInput';
 import DemandData from '../../Components/DemandData';
@@ -184,17 +184,7 @@ const ListDemandsScreen = () => {
                 <p style={{ marginBottom: '0' }}>Status: </p>
                 <DropdownComponent
                   OnChangeFunction={(Option) => setActive(Option.target.value)}
-                  style={{
-                    display: 'flex',
-                    color: `${colors.text}`,
-                    width: '100%',
-                    height: '100%',
-                    alignItems: 'center',
-                    boxSizing: 'border-box',
-                    borderRadius: '8px',
-                    border: '1px solid black',
-                    justifyContent: 'center',
-                  }}
+                  style={styles.dropdownComponentStyle}
                   optionStyle={{
                     backgroundColor: `${colors.secondary}`,
                   }}
@@ -205,17 +195,7 @@ const ListDemandsScreen = () => {
                 <p style={{ marginBottom: '0' }}>Setores: </p>
                 <DropdownComponent
                   OnChangeFunction={(Option) => setSectorActive(Option.target.value)}
-                  style={{
-                    display: 'flex',
-                    color: `${colors.text}`,
-                    width: '100%',
-                    height: '100%',
-                    alignItems: 'center',
-                    boxSizing: 'border-box',
-                    borderRadius: '8px',
-                    border: '1px solid black',
-                    justifyContent: 'center',
-                  }}
+                  style={styles.dropdownComponentStyle}
                   optionStyle={{
                     backgroundColor: `${colors.secondary}`,
                   }}
@@ -226,17 +206,7 @@ const ListDemandsScreen = () => {
                 <p style={{ marginBottom: '0' }}>Categoria: </p>
                 <DropdownComponent
                   OnChangeFunction={(Option) => setCategoryActive(Option.target.value)}
-                  style={{
-                    display: 'flex',
-                    color: `${colors.text}`,
-                    width: '100%',
-                    height: '100%',
-                    alignItems: 'center',
-                    boxSizing: 'border-box',
-                    borderRadius: '8px',
-                    border: '1px solid black',
-                    justifyContent: 'center',
-                  }}
+                  style={styles.dropdownComponentStyle}
                   optionStyle={{
                     backgroundColor: `${colors.secondary}`,
                   }}
@@ -249,17 +219,7 @@ const ListDemandsScreen = () => {
                 <p style={{ marginBottom: '0' }}>Anos: </p>
                 <DropdownComponent
                   OnChangeFunction={(Option) => setFilterYear(Option.target.value)}
-                  style={{
-                    display: 'flex',
-                    color: `${colors.text}`,
-                    width: '100%',
-                    height: '100%',
-                    alignItems: 'center',
-                    boxSizing: 'border-box',
-                    borderRadius: '8px',
-                    border: '1px solid black',
-                    justifyContent: 'center',
-                  }}
+                  style={styles.dropdownComponentStyle}
                   optionStyle={{
                     backgroundColor: `${colors.secondary}`,
                   }}
