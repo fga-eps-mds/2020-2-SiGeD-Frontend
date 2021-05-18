@@ -7,7 +7,7 @@ export const ClientFormsColumnText = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin-top: 5%;
+    margin-top: 2%;
     flex-wrap: wrap;
     justify-content: space-between;
     @media(max-width: 750px){

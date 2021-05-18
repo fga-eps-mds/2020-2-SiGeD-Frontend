@@ -53,6 +53,7 @@ const ClientForms = ({
   });
 
   const uploadImage = async (e) => {
+    console.log('clicou');
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
     setBaseImage(base64);
