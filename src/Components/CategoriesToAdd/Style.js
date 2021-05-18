@@ -21,18 +21,18 @@ export const Demandbox = styled.div`
 `;
 
 export const Tag = styled.div`
-
-border-radius: 12px;
-padding: 2%;
-text-align: center;
-color: ${(props) => `${props.color}`};
-background-color: ${(props) => `${props.backgroundColor}`};
-font-weight: bold;
-
-@media(max-width: 750px){
-  font-weight: 900;
-  font-size: 2vh;
-}
+  width: 60%;
+  height: ${(props) => `${props.height}`};
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 100%;
+  text-align: center;
+  word-break: break-word;
+  cursor: pointer;
 `;
 
 export const Line = styled.div` 

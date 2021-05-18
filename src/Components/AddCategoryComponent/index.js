@@ -33,12 +33,15 @@ const CategoryDiv = ({ pushCategory }) => {
   const renderCategories = () => {
     if (categories?.length === 0) {
       return <p style={{ color: 'black', fontSize: '1rem' }}>Ainda não há categorias cadastradas</p>;
+    } if (categories?.length === 1) {
+      return <CategoriesToAdd category={categories[0]} key={categories[0]._id} pushCategory={pushCategory} height="50%" />;
     }
     return categories?.map((category) => (
       <CategoriesToAdd
         category={category}
         key={category._id}
         pushCategory={pushCategory}
+        height="100%"
       />
     ));
   };
