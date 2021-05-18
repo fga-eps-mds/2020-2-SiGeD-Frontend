@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 import RegisterInput from '../RegisterInput';
 import { Dropdown } from '../UserForms/Style';
-import { 
+import {
   ClientFormsColumnText, Container, Label, styles,
 } from './Style';
 import colors from '../../Constants/colors';
