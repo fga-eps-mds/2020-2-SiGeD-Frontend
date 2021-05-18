@@ -2,9 +2,10 @@ import { React } from 'react';
 import { Form } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 import RegisterInput from '../RegisterInput';
-import { ClientFormsColumnText, styles } from './Style';
 import { Dropdown } from '../UserForms/Style';
-import { ClientFormsColumnText, Container, Label } from './Style';
+import { 
+  ClientFormsColumnText, Container, Label, styles,
+} from './Style';
 import colors from '../../Constants/colors';
 
 const ClientForms = ({

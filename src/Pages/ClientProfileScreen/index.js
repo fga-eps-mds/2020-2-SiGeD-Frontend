@@ -37,7 +37,6 @@ const ClientProfileScreen = () => {
   const [dropdownYears, setDropdownYears] = useState([]);
   const [filterYear, setFilterYear] = useState('Todos');
   const [client, setClient] = useState('');
-  const [show, setShow] = useState(false);
   const [clientFeatures, setClientFeatures] = useState([]);
   const [clientFeaturesID, setClientFeaturesID] = useState([]);
   const { id } = useParams();
