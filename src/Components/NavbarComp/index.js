@@ -136,7 +136,7 @@ const NavbarComp = () => {
                   <NavDropdown.Item><Nav.Link as={Link} to="/demanda" style={{ color: 'black' }}>Criar Demanda</Nav.Link></NavDropdown.Item>
                   <NavDropdown.Item><Nav.Link as={Link} to="/demandas" style={{ color: 'black' }}>Lista de Demandas</Nav.Link></NavDropdown.Item>
                 </NavDropdown>
-                <Navbar.Brand onClick={() =>  { handleShow(); getAlertsApi(); }}>
+                <Navbar.Brand onClick={() => { handleShow(); getAlertsApi(); }}>
                   <BsBell />
                 </Navbar.Brand>
                 <ViewAlertModal
