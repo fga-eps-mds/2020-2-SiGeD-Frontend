@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Redirect, useHistory } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
-import { getClients, updateClient } from '../../Services/Axios/clientServices';
+import {
+  getClients, updateClient, getFeatures, getClientFeatures,
+} from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
 import { useProfileUser } from '../../Context';
 
@@ -16,8 +18,12 @@ const ClientUpdateScreen = () => {
   const [updateClientInputSecondaryPhone, setupdateClientInputSecondaryPhone] = useState('');
   const [officeOption, setOfficeOption] = useState('');
   const [updateLocation, setupdateLocation] = useState('');
+  const [featuresList, setFeaturesList] = useState([]);
+  const [clientFeaturesID, setClientFeaturesID] = useState([]);
+  const [clientFeatures, setClientFeatures] = useState([]);
+  const [selectedFeaturesID, setSelectedFeaturesID] = useState([]);
   const { id } = useParams();
-  const { startModal, user } = useProfileUser();
+  const { startModal, user, token } = useProfileUser();
 
   const getClientFromApi = async () => {
     getClients(`clients/${id}`, startModal)
@@ -31,12 +37,31 @@ const ClientUpdateScreen = () => {
         setupdateClientInputAddress(data?.address);
         setOfficeOption(data?.office);
         setupdateLocation(data?.location);
+        setClientFeaturesID(data?.features);
       });
   };
 
+  const getFeaturesFromAPI = () => {
+    getFeatures('/features')
+      .then((response) => setFeaturesList(response.data));
+  };
+
+  const getClientFeaturesList = () => {
+    getClientFeatures(clientFeaturesID, startModal)
+      .then((response) => setClientFeatures(response.data));
+  };
+
   useEffect(() => {
-    getClientFromApi();
-  }, []);
+    if (token && user) {
+      getClientFromApi();
+      getFeaturesFromAPI();
+    }
+  }, [token, user]);
+
+  useEffect(() => {
+    getClientFeaturesList();
+    setSelectedFeaturesID(clientFeaturesID);
+  }, [clientFeaturesID]);
 
   const submit = async () => {
     const validMessage = validateFields(updateClientInputName,
@@ -47,7 +72,7 @@ const ClientUpdateScreen = () => {
         updateClientInputName, updateClientInputEmail,
         updateClientInputCpf, updateClientInputPhone,
         updateClientInputSecondaryPhone, updateClientInputAddress,
-        officeOption, updateLocation, id, startModal, user._id,
+        officeOption, updateLocation, selectedFeaturesID, id, startModal, user._id,
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }
@@ -64,32 +89,40 @@ const ClientUpdateScreen = () => {
   }
 
   return (
-    <GenericRegisterScreen
-      sidebarList={[updateClientInputName, updateClientInputCpf,
-        updateClientInputAddress, officeOption, updateLocation]}
-      sidebarFooter={[updateClientInputEmail, updateClientInputPhone]}
-      cancel={cancel}
-      submit={submit}
-      buttonTitle="Editar"
-    >
-      <ClientForms
-        setInputName={setupdateClientInputName}
-        inputName={updateClientInputName}
-        setInputEmail={setupdateClientInputEmail}
-        inputEmail={updateClientInputEmail}
-        setInputCpf={setupdateClientInputCpf}
-        inputCpf={updateClientInputCpf}
-        setInputPhone={setupdateClientInputPhone}
-        inputPhone={updateClientInputPhone}
-        setInputSecondaryPhone={setupdateClientInputSecondaryPhone}
-        secondaryPhone={updateClientInputSecondaryPhone}
-        setInputAddress={setupdateClientInputAddress}
-        inputAddress={updateClientInputAddress}
-        setOfficeOption={setOfficeOption}
-        setLocationOption={setupdateLocation}
-        locationOption={updateLocation}
-      />
-    </GenericRegisterScreen>
+    <div>
+      { user && token ? (
+        <GenericRegisterScreen
+          sidebarList={[updateClientInputName, updateClientInputCpf,
+            updateClientInputAddress, officeOption, updateLocation]}
+          sidebarFooter={[updateClientInputEmail, updateClientInputPhone]}
+          cancel={cancel}
+          submit={submit}
+          buttonTitle="Editar"
+        >
+          <ClientForms
+            setInputName={setupdateClientInputName}
+            inputName={updateClientInputName}
+            setInputEmail={setupdateClientInputEmail}
+            inputEmail={updateClientInputEmail}
+            setInputCpf={setupdateClientInputCpf}
+            inputCpf={updateClientInputCpf}
+            setInputPhone={setupdateClientInputPhone}
+            inputPhone={updateClientInputPhone}
+            setInputSecondaryPhone={setupdateClientInputSecondaryPhone}
+            secondaryPhone={updateClientInputSecondaryPhone}
+            setInputAddress={setupdateClientInputAddress}
+            inputAddress={updateClientInputAddress}
+            setOfficeOption={setOfficeOption}
+            setLocationOption={setupdateLocation}
+            locationOption={updateLocation}
+            featuresList={featuresList}
+            setSelectedFeatures={setClientFeatures}
+            selectedFeatures={clientFeatures}
+            setSelectedFeaturesID={setSelectedFeaturesID}
+          />
+        </GenericRegisterScreen>
+      ) : null}
+    </div>
   );
 };
 

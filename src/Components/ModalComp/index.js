@@ -28,7 +28,6 @@ const ModalComp = ({
   }, [name, description, color]);
 
   const submit = async () => {
-    // Criar
     if (operation === 'Nova ') {
       if (color) {
         await createContent(name, description, color, startModal);
@@ -57,8 +56,15 @@ const ModalComp = ({
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Body>
-        {type === 'Categoria' ? <Title>Nova Categoria</Title> : <Title>Novo Setor</Title>}
-        {type === 'Categoria' ? (
+        {type === 'Setor' ? <Title>Novo Setor</Title>
+          : (
+            <Title>
+              Nova
+              {' '}
+              {type}
+            </Title>
+          )}
+        {type === 'Categoria' || type === 'Caracteristica' ? (
           <Line flexDirection="row">
             <DivName>
               <P1>Nome:</P1>

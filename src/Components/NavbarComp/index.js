@@ -83,6 +83,9 @@ const NavbarComp = () => {
                   <Nav.Link as={Link} to="/estatisticas" style={styles.navbarText}>
                     Estatísticas
                   </Nav.Link>
+                  <Nav.Link as={Link} to="/caracteristicas" style={styles.navbarText}>
+                    Caracteristicas
+                  </Nav.Link>
                   <Navbar.Brand style={{ cursor: 'pointer' }} onClick={() => { handleShow(); getAlertsApi(); }}>
                     <BsBell />
                   </Navbar.Brand>

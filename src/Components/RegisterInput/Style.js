@@ -39,8 +39,13 @@ export const Label = styled.div`
     justify-content: center;
 
     @media(max-width: 750px){
-      font-size: 80%;
+      font-size: 100%;
       height: min-content;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      word-break: break-word;
+
     
   }
 `;

@@ -75,6 +75,7 @@ export const P = styled.p`
 `;
 
 export const Name = styled(P)`
+  font-weight: bold;
   border-radius: 12px;
   padding: 2%;
   text-align: center;

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import GenericRegisterScreen from '../../Components/GenericRegisterScreen';
 import { validateFields } from '../../Utils/validations';
-import { postClient } from '../../Services/Axios/clientServices';
 import ClientForms from '../../Components/ClientForms';
 import { useProfileUser } from '../../Context';
+import { postClient, getFeatures } from '../../Services/Axios/clientServices';
 
 const ClientRegisterScreen = () => {
   const history = useHistory();
@@ -16,7 +16,19 @@ const ClientRegisterScreen = () => {
   const [registerClientInputSecondaryPhone, setregisterClientInputSecondaryPhone] = useState('');
   const [officeOption, setOfficeOption] = useState('Policial');
   const [registerLocation, setRegisterLocation] = useState('');
+  const [featuresList, setFeaturesList] = useState([]);
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
+  const [selectedFeaturesID, setSelectedFeaturesID] = useState([]);
   const { startModal, user } = useProfileUser();
+
+  const getFeaturesFromAPI = () => {
+    getFeatures('/features')
+      .then((response) => setFeaturesList(response.data));
+  };
+
+  useEffect(() => {
+    getFeaturesFromAPI();
+  }, []);
 
   const submit = async () => {
     const validMessage = validateFields(registerClientInputName,
@@ -27,7 +39,7 @@ const ClientRegisterScreen = () => {
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
         registerClientInputSecondaryPhone, registerClientInputAddress,
-        officeOption, registerLocation, startModal, user._id,
+        officeOption, registerLocation, selectedFeaturesID, startModal, user._id,
       ).then((response) => response.data);
       if (data) {
         return history.push(`/perfil/${data._id}`);
@@ -53,32 +65,38 @@ const ClientRegisterScreen = () => {
   }
 
   return (
-    <GenericRegisterScreen
-      sidebarList={[registerClientInputName, registerClientInputCpf,
-        registerClientInputAddress, officeOption, registerLocation]}
-      sidebarFooter={[registerClientInputEmail, registerClientInputPhone]}
-      cancel={cancel}
-      submit={submit}
-      buttonTitle="Cadastrar"
-    >
-      <ClientForms
-        setInputName={setRegisterClientInputName}
-        inputName={registerClientInputName}
-        setInputEmail={setRegisterClientInputEmail}
-        inputEmail={registerClientInputEmail}
-        setInputCpf={setRegisterClientInputCpf}
-        inputCpf={registerClientInputCpf}
-        setInputPhone={setRegisterClientInputPhone}
-        inputPhone={registerClientInputPhone}
-        setInputSecondaryPhone={setregisterClientInputSecondaryPhone}
-        secondaryPhone={registerClientInputSecondaryPhone}
-        setInputAddress={setRegisterClientInputAddress}
-        inputAddress={registerClientInputAddress}
-        setOfficeOption={setOfficeOption}
-        setLocationOption={setRegisterLocation}
-        locationOption={registerLocation}
-      />
-    </GenericRegisterScreen>
+    <div>
+      <GenericRegisterScreen
+        sidebarList={[registerClientInputName, registerClientInputCpf,
+          registerClientInputAddress, officeOption, registerLocation]}
+        sidebarFooter={[registerClientInputEmail, registerClientInputPhone]}
+        cancel={cancel}
+        submit={submit}
+        buttonTitle="Cadastrar"
+      >
+        <ClientForms
+          setInputName={setRegisterClientInputName}
+          inputName={registerClientInputName}
+          setInputEmail={setRegisterClientInputEmail}
+          inputEmail={registerClientInputEmail}
+          setInputCpf={setRegisterClientInputCpf}
+          inputCpf={registerClientInputCpf}
+          setInputPhone={setRegisterClientInputPhone}
+          inputPhone={registerClientInputPhone}
+          setInputSecondaryPhone={setregisterClientInputSecondaryPhone}
+          secondaryPhone={registerClientInputSecondaryPhone}
+          setInputAddress={setRegisterClientInputAddress}
+          inputAddress={registerClientInputAddress}
+          setOfficeOption={setOfficeOption}
+          setLocationOption={setRegisterLocation}
+          locationOption={registerLocation}
+          featuresList={featuresList}
+          setSelectedFeatures={setSelectedFeatures}
+          selectedFeatures={selectedFeatures}
+          setSelectedFeaturesID={setSelectedFeaturesID}
+        />
+      </GenericRegisterScreen>
+    </div>
   );
 };
 

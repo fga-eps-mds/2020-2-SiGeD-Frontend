@@ -47,8 +47,8 @@ export const SidebarCardText = styled.div`
 `;
 
 export const Icon = styled(IoPersonCircleOutline)`
-    width: 100%;
-    height: 40%;
+    width: 70%;
+    height: 20%;
     color: ${colors.secondary};
     margin-top: 10px;
     @media(max-width: 750px){

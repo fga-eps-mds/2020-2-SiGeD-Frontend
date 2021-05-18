@@ -21,12 +21,12 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    overflow: hidden;
+    overflow: visible;
     border-radius: 1.5vw;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     @media(max-width: 750px){
         width: 100%;
-        height: 100%;
+        height: max-content;
         flex-direction: column;
         justify-content: flex-start;
         padding-top: 10vh;
