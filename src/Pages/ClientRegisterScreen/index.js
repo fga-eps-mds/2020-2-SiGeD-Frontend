@@ -76,6 +76,9 @@ const ClientRegisterScreen = () => {
         submit={submit}
         buttonTitle="Cadastrar"
         inputImage={inputRegisterClientImage}
+        setInputImage={setRegisterClientInputImage}
+        baseImage={baseImage}
+        setBaseImage={setBaseImage}
       >
         <ClientForms
           setInputName={setRegisterClientInputName}
@@ -93,9 +96,6 @@ const ClientRegisterScreen = () => {
           setOfficeOption={setOfficeOption}
           setLocationOption={setRegisterLocation}
           locationOption={registerLocation}
-          setInputImage={setRegisterClientInputImage}
-          baseImage={baseImage}
-          setBaseImage={setBaseImage}
           featuresList={featuresList}
           setSelectedFeatures={setSelectedFeatures}
           selectedFeatures={selectedFeatures}

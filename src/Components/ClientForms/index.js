@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Form } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 import RegisterInput from '../RegisterInput';
@@ -28,9 +28,6 @@ const ClientForms = ({
   setSelectedFeatures,
   selectedFeatures,
   setSelectedFeaturesID,
-  setInputImage,
-  baseImage,
-  setBaseImage,
 }) => {
   const controlarCaracteristicas = (item) => {
     const featuresID = [];
@@ -38,31 +35,6 @@ const ClientForms = ({
     item.map((feat) => featuresID.push(feat._id));
     setSelectedFeaturesID(featuresID);
   };
-
-  const convertBase64 = (file) => new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-
-    fileReader.onload = () => {
-      resolve(fileReader.result);
-    };
-
-    fileReader.onerror = (error) => {
-      reject(error);
-    };
-  });
-
-  const uploadImage = async (e) => {
-    console.log('clicou');
-    const file = e.target.files[0];
-    const base64 = await convertBase64(file);
-    setBaseImage(base64);
-    setInputImage(baseImage);
-  };
-
-  useEffect(() => {
-    setInputImage(baseImage);
-  }, [baseImage]);
 
   return (
     <ClientFormsColumnText>
@@ -116,14 +88,6 @@ const ClientForms = ({
           closeOnSelect="false"
         />
       </Container>
-      <div>
-        <input
-          type="file"
-          onChange={(e) => {
-            uploadImage(e);
-          }}
-        />
-      </div>
     </ClientFormsColumnText>
   );
 };

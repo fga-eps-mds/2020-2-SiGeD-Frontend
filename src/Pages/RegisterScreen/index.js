@@ -70,6 +70,9 @@ const RegisterScreen = () => {
                 submit={submit}
                 buttonTitle="Cadastrar"
                 inputImage={inputRegisterUserImage}
+                setInputImage={setRegisterUserInputImage}
+                baseImage={baseImage}
+                setBaseImage={setBaseImage}
               >
                 <UserForms
                   setInputName={setRegisterUserInputName}

@@ -48,6 +48,50 @@ export const Icon = styled(IoPersonCircleOutline)`
     }
 `;
 
+export const ButtonPhoto = styled.button`
+    background-color: yellow;
+    width: 80%;
+    height: 30%;
+    color: ${colors.secondary};
+    margin-top: 10px;
+    @media(max-width: 750px){
+        width: 100%;
+        height: 100%;
+        color: ${colors.text};
+    }
+`;
+
+export const ChoosePhoto = styled.div`
+    width: 70%;
+    height: 30%;
+    color: ${colors.secondary};
+    margin-top: 10px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid;
+    @media(max-width: 750px){
+        width: 100%;
+        height: 100%;
+        color: ${colors.text};
+    }
+`;
+
+export const InputPhoto = styled.input`
+    width: 70%;
+    height: 30%;
+    color: ${colors.secondary};
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    @media(max-width: 750px){
+        width: 100%;
+        height: 100%;
+        color: ${colors.text};
+    }
+`;
+
 export const SidebarFooter = styled.div`
 
     color: ${colors.secondary};

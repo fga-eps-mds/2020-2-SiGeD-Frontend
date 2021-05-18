@@ -8,7 +8,7 @@ import {
 const GenericRegisterScreen = ({
   sidebarList, children, cancel, submit, buttonTitle, sidebarFooter, visibility,
   sidebarFooterHeight, sidebarTextHeight, mobileBackgroundColor, mobileIconColor,
-  sidebarTitleHeight, inputImage,
+  sidebarTitleHeight, inputImage, setInputImage, baseImage, setBaseImage,
 }) => (
   <Main>
     <Container>
@@ -22,6 +22,9 @@ const GenericRegisterScreen = ({
         mobileIconColor={mobileIconColor}
         sidebarTitleHeight={sidebarTitleHeight}
         inputImage={inputImage}
+        setInputImage={setInputImage}
+        baseImage={baseImage}
+        setBaseImage={setBaseImage}
       />
       <RightSideContainer>
         {children}
