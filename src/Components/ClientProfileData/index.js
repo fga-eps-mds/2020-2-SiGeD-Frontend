@@ -34,7 +34,7 @@ const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
       marginRight: '1.5vw',
     },
   };
-  
+
   const renderImage = () => {
     if (!client.image) {
       return (

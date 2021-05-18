@@ -38,7 +38,7 @@ const SidebarComponent = ({
       />
     );
   };
-  
+
   return (
     <Sidebar>
       {sidebarTitle

@@ -32,8 +32,6 @@ const ClientForms = ({
   baseImage,
   setBaseImage,
 }) => {
-  const [baseImage, setBaseImage] = useState('');
-  
   const controlarCaracteristicas = (item) => {
     const featuresID = [];
     setSelectedFeatures(item);

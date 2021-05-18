@@ -75,6 +75,7 @@ const ClientRegisterScreen = () => {
         cancel={cancel}
         submit={submit}
         buttonTitle="Cadastrar"
+        inputImage={inputRegisterClientImage}
       >
         <ClientForms
           setInputName={setRegisterClientInputName}

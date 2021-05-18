@@ -75,7 +75,7 @@ const ClientUpdateScreen = () => {
         updateClientInputName, updateClientInputEmail,
         updateClientInputCpf, updateClientInputPhone,
         updateClientInputSecondaryPhone, updateClientInputAddress,
-        officeOption, updateLocation, selectedFeaturesID, id, startModal, user._id, 
+        officeOption, updateLocation, selectedFeaturesID, id, startModal, user._id,
         baseImage,
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
@@ -102,6 +102,7 @@ const ClientUpdateScreen = () => {
           cancel={cancel}
           submit={submit}
           buttonTitle="Editar"
+          inputImage={inputRegisterClientImage}
         >
           <ClientForms
             setInputName={setupdateClientInputName}
