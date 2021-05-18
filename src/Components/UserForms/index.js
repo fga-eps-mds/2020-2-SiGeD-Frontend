@@ -16,34 +16,11 @@ const UserForms = ({
   inputRole,
   setInputSector,
   inputSector,
-  setInputImage,
   setSectors,
   sectors,
-  baseImage,
-  setBaseImage,
 }) => {
   const [filterSector, setFilterSector] = useState([]);
   const { startModal } = useProfileUser();
-
-  const convertBase64 = (file) => new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-
-    fileReader.onload = () => {
-      resolve(fileReader.result);
-    };
-
-    fileReader.onerror = (error) => {
-      reject(error);
-    };
-  });
-
-  const uploadImage = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertBase64(file);
-    setBaseImage(base64);
-    setInputImage(baseImage);
-  };
 
   const getSectorsFromApi = async () => {
     await getSectors(startModal)
@@ -52,10 +29,6 @@ const UserForms = ({
         setInputSector(response?.data[0]?.name);
       });
   };
-
-  useEffect(() => {
-    setInputImage(baseImage);
-  }, [baseImage]);
 
   useEffect(() => {
     getSectorsFromApi();
@@ -99,14 +72,6 @@ const UserForms = ({
           />
         </div>
       </Form.Group>
-      <div>
-        <input
-          type="file"
-          onChange={(e) => {
-            uploadImage(e);
-          }}
-        />
-      </div>
     </UserFormsColumnText>
   );
 };

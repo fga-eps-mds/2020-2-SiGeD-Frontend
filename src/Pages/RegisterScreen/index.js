@@ -82,7 +82,6 @@ const RegisterScreen = () => {
                   setInputRole={setRegisterUserInputRole}
                   inputRole={inputRegisterUserRole}
                   setInputSector={setRegisterUserInputSector}
-                  setInputImage={setRegisterUserInputImage}
                   sectors={sectors}
                   setSectors={setSectors}
                   inputSector={inputRegisterUserSector}

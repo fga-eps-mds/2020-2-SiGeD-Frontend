@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IoPersonCircleOutline } from 'react-icons/io5';
+import { MdAddAPhoto } from 'react-icons/md';
 import colors from '../../Constants/colors';
 
 export const Sidebar = styled.div`
@@ -36,8 +36,8 @@ export const SidebarText = styled.div`
     }
 `;
 
-export const Icon = styled(IoPersonCircleOutline)`
-    width: 80%;
+export const Icon = styled(MdAddAPhoto)`
+    width: 1000%;
     height: 30%;
     color: ${colors.secondary};
     margin-top: 10px;
@@ -49,11 +49,12 @@ export const Icon = styled(IoPersonCircleOutline)`
 `;
 
 export const ButtonPhoto = styled.button`
-    background-color: yellow;
+    background-color: ${colors.navHeaders};
+    border: none;
     width: 80%;
     height: 30%;
     color: ${colors.secondary};
-    margin-top: 10px;
+    margin-top: 30px;
     @media(max-width: 750px){
         width: 100%;
         height: 100%;
@@ -61,11 +62,12 @@ export const ButtonPhoto = styled.button`
     }
 `;
 
-export const ChoosePhoto = styled.div`
+export const ChooseContainerPhoto = styled.div`
+    background-color: ${colors.navHeaders};
     width: 70%;
     height: 30%;
     color: ${colors.secondary};
-    margin-top: 10px;
+    margin-top: 20px;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -82,7 +84,7 @@ export const InputPhoto = styled.input`
     width: 70%;
     height: 30%;
     color: ${colors.secondary};
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     @media(max-width: 750px){

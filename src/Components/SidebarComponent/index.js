@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MdAddAPhoto } from 'react-icons/md';
 import {
-  Sidebar, SidebarText, SidebarFooter, Img, ButtonPhoto, ChoosePhoto, InputPhoto,
+  Sidebar, SidebarText, SidebarFooter, Img, ButtonPhoto, ChooseContainerPhoto, InputPhoto,
 } from './Style';
 
 const SidebarComponent = ({
@@ -35,24 +35,32 @@ const SidebarComponent = ({
   const renderImage = () => {
     if (!inputImage) {
       return (
-        <ChoosePhoto>
+        <ChooseContainerPhoto>
+          <ButtonPhoto className="submit-lente" type="submit">
+            <MdAddAPhoto size="100%" />
+          </ButtonPhoto>
           <InputPhoto
             type="file"
             onChange={(e) => {
               uploadImage(e);
             }}
           />
-          <ButtonPhoto className="submit-lente" type="submit">
-            <MdAddAPhoto />
-          </ButtonPhoto>
-        </ChoosePhoto>
+        </ChooseContainerPhoto>
       );
     }
     return (
-      <Img
-        src={inputImage}
-        alt="Foto"
-      />
+      <div>
+        <Img
+          src={inputImage}
+          alt="Foto"
+        />
+        <InputPhoto
+          type="file"
+          onChange={(e) => {
+            uploadImage(e);
+          }}
+        />
+      </div>
     );
   };
 
