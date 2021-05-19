@@ -3,7 +3,7 @@ import { BiStopwatch } from 'react-icons/bi';
 import moment from 'moment-timezone';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import colors from '../../Constants/colors';
-import { getDemands, updateCheckboxAlert } from '../../Services/Axios/demandsServices';
+import { getDemands, updateAlert } from '../../Services/Axios/demandsServices';
 import { useProfileUser } from '../../Context';
 import {
   AlertData, WatchIcon, AlertAbout, AlertDemandName, AlertName, AlertDescription, AlertDate,
@@ -25,7 +25,7 @@ const AlertBySectorData = ({ alert, changeState, setChangeState }) => {
   }, []);
 
   const updateCheck = async () => {
-    await updateCheckboxAlert(
+    await updateAlert(
       alert._id,
       alert.name,
       alert.description,

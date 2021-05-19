@@ -1,5 +1,5 @@
 import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { Checkbox, FormControlLabel } from '@material-ui/core';
 import colors from '../../Constants/colors';
 import TinyButton from '../TinyButton';
@@ -10,21 +10,28 @@ import {
 import { useProfileUser } from '../../Context';
 
 const UpdateAlertModal = ({
-  demand, show, handleClose, changeState,
-  setChangeState, setSorted, alert,
+  demand, alert, show, handleClose, changeState,
+  setChangeState, setSorted,
 }) => {
-  const [inputName, setInputName] = useState(alert.name);
-  const [inputDescription, setInputDescription] = useState(alert.description);
-  const [inputDate, setInputDate] = useState(alert.date);
-  const [clientAlert, setClientAlert] = useState(alert.alertClient);
+  const [inputName, setInputName] = useState(alert?.name);
+  const [inputDescription, setInputDescription] = useState(alert?.description);
+  const [inputDate, setInputDate] = useState(alert?.date);
+  const [clientAlert, setClientAlert] = useState(alert?.alertClient);
   const { user, startModal } = useProfileUser();
+
+  useEffect(() => {
+    setInputName(alert?.name);
+    setInputDescription(alert?.description);
+    setInputDate(alert?.date);
+  }, [alert]);
 
   const submit = () => {
     updateAlert(
-      alert._id, inputName, inputDescription, inputDate,
-      clientAlert, demand._id, user.sector, startModal,
+      alert?._id, inputName, inputDescription, inputDate,
+      clientAlert, alert?.checkbox, demand?._id, user.sector, startModal,
     )
       .then(() => {
+        startModal('Alerta editado com sucesso!');
         setChangeState(!changeState);
         setClientAlert(true);
         setSorted(false);

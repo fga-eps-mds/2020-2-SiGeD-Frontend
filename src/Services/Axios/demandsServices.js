@@ -346,40 +346,11 @@ export async function createAlert(
 }
 
 export async function updateAlert(
-  id, name, description, date, alertClient,
+  id, name, description, date, alertClient, checkbox,
   demandID, sectorID, startModal,
 ) {
   try {
     const response = await APIDemands.put(`alert/update/${id}`, {
-      name,
-      description,
-      date,
-      alertClient,
-      demandID,
-      sectorID,
-    });
-    if (response.data.status) {
-      startModal('Preencha todos os campos para poder editar uma categoria');
-    }
-    startModal('Alerta editado com sucesso!');
-    return response?.data;
-  } catch (error) {
-    if (error.response.status === 500) {
-      startModal('O tempo da sua sessão expirou, faça o login novamente');
-    } else if (error.response.status !== 401) {
-      startModal('Não foi possível atualizar a categoria, tente novamente mais tarde.');
-    }
-    console.error(`An unexpected error ocourred while updating an already created category.${error}`);
-  }
-  return null;
-}
-
-export async function updateCheckboxAlert(
-  id, name, description, date, alertClient, checkbox,
-  demandID, sectorID, startModal, changeState, setChangeState,
-) {
-  try {
-    const response = await APIDemands.put(`alert/updateCheckbox/${id}`, {
       name,
       description,
       date,
@@ -389,17 +360,16 @@ export async function updateCheckboxAlert(
       sectorID,
     });
     if (response.data.status) {
-      startModal('Preencha todos os campos para poder editar uma categoria');
+      startModal('Preencha todos os campos para poder editar um alerta');
     }
-    setChangeState(!changeState);
     return response?.data;
   } catch (error) {
     if (error.response.status === 500) {
       startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      startModal('Não foi possível atualizar a categoria, tente novamente mais tarde.');
+      startModal('Não foi possível atualizar o alerta, tente novamente mais tarde.');
     }
-    console.error(`An unexpected error ocourred while updating an already created category.${error}`);
+    console.error(`An unexpected error ocourred while updating an already created alert.${error}`);
   }
   return null;
 }
@@ -411,7 +381,7 @@ export const deleteAlert = async (id, startModal) => {
     if (error.response.status === 500) {
       startModal('O tempo da sua sessão expirou, faça o login novamente');
     } else if (error.response.status !== 401) {
-      startModal(`Não foi possivel deletar a categoria.\n${error}`);
+      startModal(`Não foi possivel deletar o alerta.\n${error}`);
     }
     console.error(error);
   }

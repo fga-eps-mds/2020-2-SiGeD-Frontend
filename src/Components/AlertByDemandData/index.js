@@ -20,6 +20,7 @@ const AlertByDemandData = ({
   const handleShowCancel = () => setShowCancel(true);
   const handleCloseCancel = () => setShowCancel(false);
   const { startModal } = useProfileUser();
+  console.log('antes', alert);
 
   const submit = () => {
     deleteAlert(alert._id, startModal)

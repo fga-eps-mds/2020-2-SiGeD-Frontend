@@ -18,7 +18,7 @@ import AlertByDemandData from '../AlertByDemandData';
 import colors from '../../Constants/colors';
 import CreateAlertModal from '../CreateAlertModal';
 import { useProfileUser } from '../../Context';
-// import { getAlertsByDemand } from '../../Services/Axios/demandsServices';
+import { getAlertsByDemand } from '../../Services/Axios/demandsServices';
 
 const ViewDemandSidebar = ({
   clientName, userName, selectedCategories, demand, getDemandApi, showUpdates, sectorsResponse,
@@ -59,20 +59,19 @@ const ViewDemandSidebar = ({
     console.log(sortedAlerts);
   };
 
-  // const getAlertsApi = async () => {
-  //   await getAlertsByDemand(demand._id, startModal)
-  //     .then((response) => {
-  //       setAlerts(response.sort((a, b) =>
-  //        moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD')));
-  //     })
-  //     .catch((err) => {
-  //       console.error(`An unexpected error ocourred while getting alerts. ${err}`);
-  //     });
-  // };
+  const getAlertsApi = async () => {
+    await getAlertsByDemand(demand?._id, startModal)
+      .then((response) => {
+        setAlerts(response.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD')));
+      })
+      .catch((err) => {
+        console.error(`An unexpected error ocourred while getting alerts. ${err}`);
+      });
+  };
 
   useEffect(() => {
     if (!sorted) {
-      // getAlertsApi();
+      getAlertsApi();
       sortList();
     }
   }, [sorted, alerts]);

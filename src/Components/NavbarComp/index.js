@@ -40,7 +40,7 @@ const NavbarComp = () => {
 
   useEffect(() => {
     getAlertsApi();
-  }, [changeState]);
+  }, [changeState, alerts]);
 
   if (loading) {
     const logoutUser = () => {
