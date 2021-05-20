@@ -13,21 +13,21 @@ const UpdateAlertModal = ({
   demand, alert, show, handleClose, changeState,
   setChangeState, setSorted,
 }) => {
-  const [inputName, setInputName] = useState(alert?.name);
-  const [inputDescription, setInputDescription] = useState(alert?.description);
-  const [inputDate, setInputDate] = useState(alert?.date);
+  const [inputAlertName, setInputAlertName] = useState(alert?.name);
+  const [inputAlertDescription, setInputAlertDescription] = useState(alert?.description);
+  const [inputAlertDate, setInputAlertDate] = useState(alert?.date);
   const [clientAlert, setClientAlert] = useState(alert?.alertClient);
   const { user, startModal } = useProfileUser();
 
   useEffect(() => {
-    setInputName(alert?.name);
-    setInputDescription(alert?.description);
-    setInputDate(alert?.date);
+    setInputAlertName(alert?.name);
+    setInputAlertDescription(alert?.description);
+    setInputAlertDate(alert?.date);
   }, [alert]);
 
   const submit = () => {
     updateAlert(
-      alert?._id, inputName, inputDescription, inputDate,
+      alert?._id, inputAlertName, inputAlertDescription, inputAlertDate,
       clientAlert, alert?.checkbox, demand?._id, user.sector, startModal,
     )
       .then(() => {
@@ -55,8 +55,8 @@ const UpdateAlertModal = ({
         <Input
           placeholder="Nome"
           type="text"
-          onChange={(e) => setInputName(e.target.value)}
-          value={inputName || ''}
+          onChange={(e) => setInputAlertName(e.target.value)}
+          value={inputAlertName || ''}
         />
         <Title>
           Descrição
@@ -66,8 +66,8 @@ const UpdateAlertModal = ({
           rowsMin={2}
           aria-label="maximum height"
           placeholder="Descrição"
-          onChange={(e) => setInputDescription(e.target.value)}
-          value={inputDescription}
+          onChange={(e) => setInputAlertDescription(e.target.value)}
+          value={inputAlertDescription}
         />
         <BottomSide>
           <DropdownDiv
@@ -78,8 +78,8 @@ const UpdateAlertModal = ({
             </TextLabel>
             <DateInput
               type="date"
-              value={inputDate}
-              onChange={(e) => setInputDate(e.target.value)}
+              value={inputAlertDate}
+              onChange={(e) => setInputAlertDate(e.target.value)}
             />
           </DropdownDiv>
           <DropdownDiv

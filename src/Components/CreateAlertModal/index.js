@@ -11,16 +11,16 @@ import {
 const CreateAlertModal = ({
   demand, show, handleClose, startModal, changeState, setChangeState, setSorted, user,
 }) => {
-  const [inputName, setInputName] = useState('');
-  const [inputDescription, setInputDescription] = useState('');
-  const [inputDate, setInputDate] = useState('');
+  const [inputCreateAlertName, setInputCreateAlertName] = useState('');
+  const [inputCreateAlertDescription, setInputCreateAlertDescription] = useState('');
+  const [inputCreateAlertDate, setInputCreateAlertDate] = useState('');
   const [clientAlert, setClientAlert] = useState(true);
   const [checkbox, setCheckbox] = useState(false);
   let response = null;
   const clearFields = () => {
-    setInputName('');
-    setInputDescription('');
-    setInputDate('');
+    setInputCreateAlertName('');
+    setInputCreateAlertDescription('');
+    setInputCreateAlertDate('');
     setCheckbox(false);
   };
 
@@ -44,7 +44,7 @@ const CreateAlertModal = ({
 
   const submit = async () => {
     response = await createAlert(
-      inputName, inputDescription, inputDate,
+      inputCreateAlertName, inputCreateAlertDescription, inputCreateAlertDate,
       clientAlert, checkbox, demand._id, user.sector, startModal,
     );
     if (response) {
@@ -68,8 +68,8 @@ const CreateAlertModal = ({
         <Input
           placeholder="Nome"
           type="text"
-          onChange={(e) => setInputName(e.target.value)}
-          value={inputName || ''}
+          onChange={(e) => setInputCreateAlertName(e.target.value)}
+          value={inputCreateAlertName || ''}
         />
         <Title>
           Descrição
@@ -79,8 +79,8 @@ const CreateAlertModal = ({
           rowsMin={2}
           aria-label="maximum height"
           placeholder="Descrição"
-          onChange={(e) => setInputDescription(e.target.value)}
-          value={inputDescription}
+          onChange={(e) => setInputCreateAlertDescription(e.target.value)}
+          value={inputCreateAlertDescription}
         />
         <BottomSide>
           <DropdownDiv
@@ -91,8 +91,8 @@ const CreateAlertModal = ({
             </TextLabel>
             <DateInput
               type="date"
-              value={inputDate}
-              onChange={(e) => setInputDate(e.target.value)}
+              value={inputCreateAlertDate}
+              onChange={(e) => setInputCreateAlertDate(e.target.value)}
             />
           </DropdownDiv>
           <DropdownDiv
