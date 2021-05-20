@@ -53,7 +53,7 @@ const NavbarComp = () => {
 
         <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>
           <Navbar.Brand style={{ marginLeft: 25 }}>
-            <img src={Logo} alt="Logo SiGeD" height={60} width={120} />
+            <img src={Logo} alt="Logo SiGeD" height={50} width={120} />
           </Navbar.Brand>
           { token && <Navbar.Toggle aria-controls="navbar-police" />}
           { token
@@ -108,7 +108,7 @@ const NavbarComp = () => {
 
       <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>
         <Navbar.Brand>
-          <img src={Logo} alt="Logo SiGeD" height={60} width={120} />
+          <img src={Logo} alt="Logo SiGeD" height={50} width={120} />
         </Navbar.Brand>
         { token && <Navbar.Toggle aria-controls="navbar-police" />}
         { token
