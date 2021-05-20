@@ -17,7 +17,7 @@ const RightBoxComponent = ({ children, clientID, clientName }) => {
 
   useEffect(() => {
     if (clientID) {
-      getClientApi(clientID);
+      getClientApi();
     }
   }, [clientName]);
 
