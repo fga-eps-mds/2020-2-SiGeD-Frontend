@@ -108,7 +108,7 @@ const NavbarComp = () => {
 
       <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>
         <Navbar.Brand>
-          <h1 style={styles.navbarText}>Logo</h1>
+          <img src={Logo} alt="Logo SiGeD" height={60} width={120} />
         </Navbar.Brand>
         { token && <Navbar.Toggle aria-controls="navbar-police" />}
         { token
