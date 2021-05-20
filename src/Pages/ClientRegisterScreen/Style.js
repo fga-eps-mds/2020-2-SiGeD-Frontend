@@ -35,7 +35,6 @@ export const Container = styled.div`
         height: 100%;
         flex-direction: column;
         justify-content: flex-start;
-        padding-top: 10vh;
     }
 `;
 

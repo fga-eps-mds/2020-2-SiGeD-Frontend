@@ -103,6 +103,9 @@ const ClientUpdateScreen = () => {
           submit={submit}
           buttonTitle="Editar"
           inputImage={inputRegisterClientImage}
+          setInputImage={setRegisterClientInputImage}
+          baseImage={baseImage}
+          setBaseImage={setBaseImage}
         >
           <ClientForms
             setInputName={setupdateClientInputName}
@@ -120,9 +123,6 @@ const ClientUpdateScreen = () => {
             setOfficeOption={setOfficeOption}
             setLocationOption={setupdateLocation}
             locationOption={updateLocation}
-            setInputImage={setRegisterClientInputImage}
-            baseImage={baseImage}
-            setBaseImage={setBaseImage}
             featuresList={featuresList}
             setSelectedFeatures={setClientFeatures}
             selectedFeatures={clientFeatures}

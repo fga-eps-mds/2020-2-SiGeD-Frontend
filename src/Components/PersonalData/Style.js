@@ -137,9 +137,9 @@ overflow: auto;
 `;
 
 export const Img = styled.img`
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    width: 87%;
-    height: auto;
     margin: 0 0 0 1px;
     align-content: center;
     justify-content: center;

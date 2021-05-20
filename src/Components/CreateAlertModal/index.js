@@ -104,7 +104,7 @@ const CreateAlertModal = ({
                 inputProps={{ 'aria-label': 'Checkbox A' }}
                 style={{ color: `${colors.navHeaders}` }}
               />
-            )
+            )]
           }
             label="Alertar cliente"
             style={{

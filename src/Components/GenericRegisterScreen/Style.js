@@ -29,7 +29,6 @@ export const Container = styled.div`
         height: max-content;
         flex-direction: column;
         justify-content: flex-start;
-        padding-top: 10vh;
     }
 `;
 

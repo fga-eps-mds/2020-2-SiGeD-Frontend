@@ -52,17 +52,13 @@ export const NameDiv = styled.div`
 
 export const Img = styled.img`
     border-radius: 50%;
-    width: 29%;
-    height: auto;
+    width: 150px;
+    height: 150px;
     margin: 0 0 0 1px;
     align-content: center;
     justify-content: center;
     margin-left: 10%;
     @media(max-width: 750px){
-        width: auto;
-        height: 100%;
-        padding: 2% 0 0 0;
-        margin: 4% 0 0 0;
     }
 
 `;

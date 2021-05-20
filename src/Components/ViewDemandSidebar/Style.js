@@ -24,17 +24,12 @@ export const RightBox = styled.div`
 
 export const Img = styled.img`
     border-radius: 50%;
-    width: 20%;
-    height: auto;
+    width: 100px;
+    height: 100px;
     margin: 0 0 0 1px;
-    padding-right: 2%;
     align-content: center;
     justify-content: center;
     @media(max-width: 750px){
-        width: 25%;
-        height: 80%;
-        padding: 2% 0 0 0;
-        margin: 4% 0 0 0;
     }
 
 `;

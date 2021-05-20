@@ -12,7 +12,7 @@ export const Sidebar = styled.div`
     overflow: hidden;
     @media(max-width: 750px){
         width: 100%;
-        height: 20vh;
+        height: 30vh;
         background-color: ${colors.secondary};
         align-content: center;
         justify-content: center;
@@ -54,18 +54,20 @@ export const ButtonPhoto = styled.button`
     width: 80%;
     height: 30%;
     color: ${colors.secondary};
-    margin-top: 30px;
+    margin-top: 50px;
     @media(max-width: 750px){
-        width: 100%;
-        height: 100%;
+        background-color: white;
+        width: 80%;
+        height: 50%;
         color: ${colors.text};
+        margin-top: 30px;
     }
 `;
 
 export const ChooseContainerPhoto = styled.div`
     background-color: ${colors.navHeaders};
-    width: 70%;
-    height: 30%;
+    width: 50%;
+    height: 60%;
     color: ${colors.secondary};
     margin-top: 20px;
     border-radius: 50%;
@@ -74,15 +76,16 @@ export const ChooseContainerPhoto = styled.div`
     align-items: center;
     border: 2px solid;
     @media(max-width: 750px){
-        width: 100%;
-        height: 100%;
+        background-color: white;
+        width: 50%;
+        height: 60%;
         color: ${colors.text};
     }
 `;
 
 export const InputPhoto = styled.input`
-    width: 70%;
-    height: 30%;
+    width: 90%;
+    height: 15%;
     color: ${colors.secondary};
     margin-top: 30px;
     display: flex;
@@ -110,15 +113,26 @@ export const SidebarFooter = styled.div`
 `;
 
 export const Img = styled.img`
-    border-radius: 50%;
-    margin-top: 15px;
-    width: 50%;
+    max-width:200px;
+    max-height:150px;
+    width: auto;
     height: auto;
+    margin-top: 4%;
     @media(max-width: 750px){
         width: auto;
         height: 100%;
         padding: 2% 0 0 0;
         margin: 4% 0 0 0;
+    }
+
+`;
+
+export const TopPart = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    @media(max-width: 750px){
+        margin-top: 0%;
     }
 
 `;

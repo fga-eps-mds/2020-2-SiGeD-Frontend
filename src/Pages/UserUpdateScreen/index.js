@@ -73,6 +73,9 @@ const UserUpdateScreen = () => {
                 submit={submit}
                 buttonTitle="Atualizar"
                 inputImage={inputRegisterUserImage}
+                setInputImage={setRegisterUserInputImage}
+                baseImage={baseImage}
+                setBaseImage={setBaseImage}
               >
                 <UserForms
                   setInputName={setInputName}
@@ -85,9 +88,6 @@ const UserUpdateScreen = () => {
                   setSectors={setSectors}
                   setInputSector={setInputSector}
                   inputSector={inputSector}
-                  setInputImage={setRegisterUserInputImage}
-                  baseImage={baseImage}
-                  setBaseImage={setBaseImage}
                 />
               </GenericRegisterScreen>
             )
