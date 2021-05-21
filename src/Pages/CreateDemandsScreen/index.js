@@ -85,7 +85,9 @@ const CreateDemandsScreen = () => {
         startModal,
         demandDate,
       ).then((response) => response.data);
-      return history.push(`/visualizar/${data._id}`);
+      if (data) {
+        return history.push(`/visualizar/${data._id}`);
+      }
     }
     startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
     return undefined;
