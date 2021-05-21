@@ -40,7 +40,7 @@ const PersonalData = ({ user, getUsers }) => {
   };
 
   const translateRole = (role) => {
-    const rolesDict = { admin: 'administrador', professional: 'profissional', receptionist: 'recepcionista' };
+    const rolesDict = { admin: 'Administrador', professional: 'Profissional', receptionist: 'Recepcionista' };
     return rolesDict[role];
   };
 
