@@ -46,13 +46,14 @@ export const SidebarCardText = styled.div`
 `;
 
 export const Img = styled.img`
-    max-width:350px;
-    max-height:200px;
-    width: auto;
-    height: auto;
+    border-radius: 50%;
+    max-width:200px;
+    max-height:150px;
+    width: 150px;
+    height: 150px;
     @media(max-width: 750px){
-        width: auto;
-        height: 100%;
+        width: 150px;
+        height: 150px;
         padding: 2% 0 0 0;
         margin: 4% 0 0 0;
     }
