@@ -15,6 +15,8 @@ const UserUpdateScreen = () => {
   const [inputRole, setInputRole] = useState('');
   const [inputSector, setInputSector] = useState('');
   const [inputSectorID, setInputSectorID] = useState('');
+  const [inputRegisterUserImage, setRegisterUserInputImage] = useState('');
+  const [baseImage, setBaseImage] = useState('');
   const [sectors, setSectors] = useState([]);
   const { id } = useParams();
 
@@ -31,6 +33,7 @@ const UserUpdateScreen = () => {
         setInputEmail(data.email);
         setInputRole(data.role);
         setInputSectorID(data.sector);
+        setRegisterUserInputImage(data.image);
         getSectorFromApi(data.sector);
       });
   };
@@ -45,7 +48,7 @@ const UserUpdateScreen = () => {
 
   const submit = async () => {
     if (validateSignUp(inputEmail, inputName)) {
-      await updateUser(inputName, inputEmail, inputRole, inputSectorID, id, startModal);
+      await updateUser(inputName, inputEmail, inputRole, inputSectorID, baseImage, id, startModal);
       startModal('Usuário atualizado com sucesso!');
       return history.push('/usuarios');
     }
@@ -69,6 +72,10 @@ const UserUpdateScreen = () => {
                 cancel={cancel}
                 submit={submit}
                 buttonTitle="Atualizar"
+                inputImage={inputRegisterUserImage}
+                setInputImage={setRegisterUserInputImage}
+                baseImage={baseImage}
+                setBaseImage={setBaseImage}
               >
                 <UserForms
                   setInputName={setInputName}

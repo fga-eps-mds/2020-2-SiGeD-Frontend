@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { IoPersonCircleOutline } from 'react-icons/io5';
 import colors from '../../Constants/colors';
 
 export const Card = styled.div`
@@ -22,6 +21,20 @@ export const TopSide = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+`;
+
+export const Img = styled.img`
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 0 0 0 1px;
+    align-content: center;
+    justify-content: center;
+    @media(max-width: 750px){
+        width: 75px;
+        height: 75px;
+    }
+
 `;
 
 export const DemandName = styled.div`
@@ -127,10 +140,4 @@ export const CreatedAt = styled.div`
         font-size: 18px;
         margin-right: 2%;
     }
-`;
-
-export const UserIcon = styled(IoPersonCircleOutline)`
-    width: 60px;
-    height: 60px;
-    justify-content: flex-start;
 `;

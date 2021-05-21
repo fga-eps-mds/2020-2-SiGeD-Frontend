@@ -22,6 +22,18 @@ export const RightBox = styled.div`
     }
 `;
 
+export const Img = styled.img`
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 0 0 0 1px;
+    align-content: center;
+    justify-content: center;
+    @media(max-width: 750px){
+    }
+
+`;
+
 export const PlusButton = styled(BsPlusCircle)`
     visibility: hidden;
     @media(max-width: 750px){

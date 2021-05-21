@@ -16,12 +16,14 @@ const ClientUpdateScreen = () => {
   const [updateClientInputAddress, setupdateClientInputAddress] = useState('');
   const [updateClientInputPhone, setupdateClientInputPhone] = useState('');
   const [updateClientInputSecondaryPhone, setupdateClientInputSecondaryPhone] = useState('');
+  const [inputRegisterClientImage, setRegisterClientInputImage] = useState('');
   const [officeOption, setOfficeOption] = useState('');
   const [updateLocation, setupdateLocation] = useState('');
   const [featuresList, setFeaturesList] = useState([]);
   const [clientFeaturesID, setClientFeaturesID] = useState([]);
   const [clientFeatures, setClientFeatures] = useState([]);
   const [selectedFeaturesID, setSelectedFeaturesID] = useState([]);
+  const [baseImage, setBaseImage] = useState('');
   const { id } = useParams();
   const { startModal, user, token } = useProfileUser();
 
@@ -38,6 +40,7 @@ const ClientUpdateScreen = () => {
         setOfficeOption(data?.office);
         setupdateLocation(data?.location);
         setClientFeaturesID(data?.features);
+        setRegisterClientInputImage(data?.image);
       });
   };
 
@@ -73,6 +76,7 @@ const ClientUpdateScreen = () => {
         updateClientInputCpf, updateClientInputPhone,
         updateClientInputSecondaryPhone, updateClientInputAddress,
         officeOption, updateLocation, selectedFeaturesID, id, startModal, user._id,
+        baseImage,
       ).then((response) => response.data);
       return history.push(`/perfil/${data._id}`);
     }
@@ -98,6 +102,10 @@ const ClientUpdateScreen = () => {
           cancel={cancel}
           submit={submit}
           buttonTitle="Editar"
+          inputImage={inputRegisterClientImage}
+          setInputImage={setRegisterClientInputImage}
+          baseImage={baseImage}
+          setBaseImage={setBaseImage}
         >
           <ClientForms
             setInputName={setupdateClientInputName}

@@ -13,8 +13,10 @@ const RegisterScreen = () => {
   const [inputRegisterUserEmail, setRegisterUserInputEmail] = useState('');
   const [inputRegisterUserRole, setRegisterUserInputRole] = useState('Administrador(a)');
   const [inputRegisterUserSector, setRegisterUserInputSector] = useState('');
+  const [inputRegisterUserImage, setRegisterUserInputImage] = useState('');
   const [sectors, setSectors] = useState([]);
   const [englishRole, setEnglishRole] = useState('admin');
+  const [baseImage, setBaseImage] = useState('');
 
   const submit = async () => {
     if (validateSignUp(inputRegisterUserEmail,
@@ -24,6 +26,7 @@ const RegisterScreen = () => {
         inputRegisterUserEmail,
         englishRole,
         userSectorID,
+        baseImage,
         startModal);
       return history.push({ pathname: '/usuarios', state: { newUser: 'new' } });
     }
@@ -46,6 +49,7 @@ const RegisterScreen = () => {
     setRegisterUserInputEmail('');
     setRegisterUserInputRole('');
     setRegisterUserInputSector('');
+    setBaseImage('');
   };
 
   if (!localStorage.getItem('@App:token')) {
@@ -65,6 +69,10 @@ const RegisterScreen = () => {
                 cancel={cancel}
                 submit={submit}
                 buttonTitle="Cadastrar"
+                inputImage={inputRegisterUserImage}
+                setInputImage={setRegisterUserInputImage}
+                baseImage={baseImage}
+                setBaseImage={setBaseImage}
               >
                 <UserForms
                   setInputName={setRegisterUserInputName}
@@ -77,6 +85,8 @@ const RegisterScreen = () => {
                   sectors={sectors}
                   setSectors={setSectors}
                   inputSector={inputRegisterUserSector}
+                  baseImage={baseImage}
+                  setBaseImage={setBaseImage}
                 />
               </GenericRegisterScreen>
             )

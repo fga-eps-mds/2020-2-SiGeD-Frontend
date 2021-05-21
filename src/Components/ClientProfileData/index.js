@@ -9,6 +9,7 @@ import {
   PersonDataBox, TableContent, Box, Ul, Content, P,
   TableContainer, ImageUser, DotContent,
 } from '../PersonalData/Style';
+import Img from './Style';
 import { Li, Button, Icon } from '../DataList/Style';
 import colors from '../../Constants/colors';
 import { useProfileUser } from '../../Context';
@@ -32,6 +33,20 @@ const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
       textDecorationLine: 'none',
       marginRight: '1.5vw',
     },
+  };
+
+  const renderImage = () => {
+    if (!client.image) {
+      return (
+        <IoPersonCircleOutline size="100%" />
+      );
+    }
+    return (
+      <Img
+        src={client.image}
+        alt="Foto"
+      />
+    );
   };
 
   useEffect(() => {
@@ -63,7 +78,7 @@ const ClientProfileData = ({ client, query, getClientsFromAPI }) => {
     <Content onMouseLeave={closeBox} onClick={closeBox}>
       <PersonDataBox>
         <ImageUser>
-          <IoPersonCircleOutline size="100%" />
+          {renderImage()}
         </ImageUser>
         <TableContainer>
           <TableContent

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { IoPersonCircleOutline } from 'react-icons/io5';
 import { BiStopwatch } from 'react-icons/bi';
 import moment from 'moment-timezone';
 import {
   RightBox, ContentBox, NameDiv, Line,
-  CreatedBy, UserIcon, PersonIcon, P,
+  CreatedBy, Img, P,
   UserName, UserP, SelectionBox,
   CategoryField, MobileHeader,
   PlusButton, LessButton, ButtonsDiv,
@@ -21,7 +22,8 @@ import { useProfileUser } from '../../Context';
 import { getAlertsByDemand } from '../../Services/Axios/demandsServices';
 
 const ViewDemandSidebar = ({
-  clientName, userName, selectedCategories, demand, getDemandApi, showUpdates, sectorsResponse,
+  clientImage, clientName, userName, selectedCategories, demand,
+  getDemandApi, showUpdates, sectorsResponse,
   changeState, setChangeState, alerts, setAlerts, handleShowHistory,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
@@ -76,6 +78,34 @@ const ViewDemandSidebar = ({
     }
   }, [sorted, alerts]);
 
+  const renderImageClient = () => {
+    if (!clientImage) {
+      return (
+        <IoPersonCircleOutline size="100%" />
+      );
+    }
+    return (
+      <Img
+        src={clientImage}
+        alt="Foto"
+      />
+    );
+  };
+
+  const renderImageUser = () => {
+    if (!user.image) {
+      return (
+        <IoPersonCircleOutline size="20%" />
+      );
+    }
+    return (
+      <Img
+        src={user.image}
+        alt="Foto"
+      />
+    );
+  };
+
   return (
     <RightBox>
       <ContentBox>
@@ -87,7 +117,7 @@ const ViewDemandSidebar = ({
           Cliente:
         </MobileHeader>
         <NameDiv>
-          <PersonIcon />
+          {renderImageClient()}
           <P>
             {clientName}
           </P>
@@ -98,7 +128,7 @@ const ViewDemandSidebar = ({
             <CreatedBy>
               <p style={{ marginBottom: '0px' }}>Criado por:</p>
               <UserName>
-                <UserIcon />
+                {renderImageUser()}
                 <UserP>
                   {userName}
                 </UserP>

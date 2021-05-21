@@ -117,6 +117,7 @@ const CreateDemandsScreen = () => {
         buttomName="Cadastrar"
       />
       <RightBoxComponent
+        clientID={clientID}
         clientName={clientName}
       >
         <UserDropdown

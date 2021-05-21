@@ -179,6 +179,7 @@ const ClientProfileScreen = () => {
               handleShow={handleShow}
               id={client._id}
               features={clientFeatures}
+              client={client}
             />
             <RightBox>
               <RightBoxMain>

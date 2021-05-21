@@ -14,11 +14,13 @@ const ClientRegisterScreen = () => {
   const [registerClientInputAddress, setRegisterClientInputAddress] = useState('');
   const [registerClientInputPhone, setRegisterClientInputPhone] = useState('');
   const [registerClientInputSecondaryPhone, setregisterClientInputSecondaryPhone] = useState('');
+  const [inputRegisterClientImage, setRegisterClientInputImage] = useState('');
   const [officeOption, setOfficeOption] = useState('Policial');
   const [registerLocation, setRegisterLocation] = useState('');
   const [featuresList, setFeaturesList] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
   const [selectedFeaturesID, setSelectedFeaturesID] = useState([]);
+  const [baseImage, setBaseImage] = useState('');
   const { startModal, user } = useProfileUser();
 
   const getFeaturesFromAPI = () => {
@@ -39,7 +41,7 @@ const ClientRegisterScreen = () => {
         registerClientInputName, registerClientInputEmail,
         registerClientInputCpf, registerClientInputPhone,
         registerClientInputSecondaryPhone, registerClientInputAddress,
-        officeOption, registerLocation, selectedFeaturesID, startModal, user._id,
+        officeOption, registerLocation, selectedFeaturesID, startModal, user._id, baseImage,
       ).then((response) => response.data);
       if (data) {
         return history.push(`/perfil/${data._id}`);
@@ -73,6 +75,10 @@ const ClientRegisterScreen = () => {
         cancel={cancel}
         submit={submit}
         buttonTitle="Cadastrar"
+        inputImage={inputRegisterClientImage}
+        setInputImage={setRegisterClientInputImage}
+        baseImage={baseImage}
+        setBaseImage={setBaseImage}
       >
         <ClientForms
           setInputName={setRegisterClientInputName}

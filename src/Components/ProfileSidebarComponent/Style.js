@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { IoPersonCircleOutline } from 'react-icons/io5';
 import colors from '../../Constants/colors';
 
 export const Sidebar = styled.div`
@@ -46,15 +45,32 @@ export const SidebarCardText = styled.div`
 
 `;
 
-export const Icon = styled(IoPersonCircleOutline)`
-    width: 70%;
-    height: 20%;
-    color: ${colors.secondary};
-    margin-top: 10px;
+export const Img = styled.img`
+    border-radius: 50%;
+    max-width:200px;
+    max-height:150px;
+    width: 150px;
+    height: 150px;
     @media(max-width: 750px){
-        height: 200%;
-        width: 15vh;
+        width: 150px;
+        height: 150px;
+        padding: 2% 0 0 0;
+        margin: 4% 0 0 0;
     }
+
+`;
+
+export const ImageUser = styled.div`
+  width: 3vw;
+  height: 100%;
+  margin-left: 0.5rem;
+  @media(max-width:750px){
+    width: 30%;
+    padding: 2%;
+    height: 50vh;
+    margin-left: 0;
+    background-color: ${colors.primary};
+  }
 `;
 
 export const SidebarFooter = styled.div`

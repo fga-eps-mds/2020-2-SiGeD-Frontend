@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React from 'react';
 import { Form } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 import RegisterInput from '../RegisterInput';
@@ -35,10 +35,11 @@ const ClientForms = ({
     item.map((feat) => featuresID.push(feat._id));
     setSelectedFeaturesID(featuresID);
   };
+
   return (
     <ClientFormsColumnText>
-      <RegisterInput type="text" title="Nome" setText={setInputName} value={inputName} />
-      <RegisterInput type="text" title="Email" setText={setInputEmail} value={inputEmail} />
+      <RegisterInput long type="text" title="Nome" setText={setInputName} value={inputName} />
+      <RegisterInput long type="text" title="Email" setText={setInputEmail} value={inputEmail} />
       <RegisterInput type="text" title="CPF" setText={setInputCpf} value={inputCpf} />
       <RegisterInput type="text" title="Endereco" setText={setInputAddress} value={inputAddress} />
       <RegisterInput type="text" title="Telefone principal" setText={setInputPhone} value={inputPhone} />

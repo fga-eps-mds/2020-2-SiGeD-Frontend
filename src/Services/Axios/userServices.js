@@ -33,7 +33,7 @@ export async function getFourUsers(startModal) {
 }
 
 export async function postUser(
-  inputName, inputEmail, inputRole, inputSector, startModal,
+  inputName, inputEmail, inputRole, inputSector, baseImage, startModal,
 ) {
   try {
     await APIUsers.post('signup', {
@@ -41,6 +41,7 @@ export async function postUser(
       email: inputEmail,
       role: inputRole,
       sector: inputSector,
+      image: baseImage,
     });
     startModal('Usuário cadastrado com sucesso!');
   } catch (error) {
@@ -78,7 +79,7 @@ export async function loginUser(
 }
 
 export const updateUser = async (
-  inputName, inputEmail, inputRole, inputSector, id, startModal,
+  inputName, inputEmail, inputRole, inputSector, baseImage, id, startModal,
 ) => {
   try {
     await APIUsers.put(`/users/update/${id}`, {
@@ -86,6 +87,7 @@ export const updateUser = async (
       email: inputEmail,
       role: inputRole,
       sector: inputSector,
+      image: baseImage,
     });
     startModal('Usuário atualizado com sucesso!');
   } catch (error) {
