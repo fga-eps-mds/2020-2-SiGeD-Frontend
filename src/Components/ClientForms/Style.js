@@ -10,6 +10,7 @@ export const ClientFormsColumnText = styled.div`
     margin-top: 2%;
     flex-wrap: wrap;
     justify-content: space-between;
+    overflow: auto;
     @media(max-width: 750px){
         align-items: center;
         width: 90%;
