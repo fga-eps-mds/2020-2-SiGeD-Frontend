@@ -39,6 +39,11 @@ const PersonalData = ({ user, getUsers }) => {
     getUsers(startModal);
   };
 
+  const translateRole = (role) => {
+    const rolesDict = { admin: 'Administrador', professional: 'Profissional', receptionist: 'Recepcionista' };
+    return rolesDict[role];
+  };
+
   useEffect(() => {
     getSectorFromAPI(user.sector);
   }, []);
@@ -59,7 +64,7 @@ const PersonalData = ({ user, getUsers }) => {
           </TableContent>
 
           <TableContent width={20}>
-            <P>{user.role}</P>
+            <P>{translateRole(user.role)}</P>
           </TableContent>
 
           <TableContent width={15}>
