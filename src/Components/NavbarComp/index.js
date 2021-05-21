@@ -20,6 +20,7 @@ const NavbarComp = () => {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const [alerts, setAlerts] = useState([]);
+  const { alertState } = useProfileUser();
 
   const getAlertsApi = async () => {
     await getAlertsBySector(user?.sector, startModal)
@@ -40,7 +41,7 @@ const NavbarComp = () => {
 
   useEffect(() => {
     getAlertsApi();
-  }, [changeState]);
+  }, [alertState, changeState]);
 
   if (loading) {
     const logoutUser = () => {

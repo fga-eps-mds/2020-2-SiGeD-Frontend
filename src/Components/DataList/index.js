@@ -43,8 +43,8 @@ const DataList = ({
 
   const verifyDeletion = () => {
     let flag = false;
-    const findcategory = demands.map(
-      (demand) => demand.categoryID.filter((category) => category._id === content._id),
+    const findcategory = demands?.map(
+      (demand) => demand?.categoryID.filter((category) => category?._id === content._id),
     );
 
     findcategory.forEach((element) => {
