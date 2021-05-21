@@ -99,7 +99,7 @@ export async function getFourDemands(startModal) {
 }
 
 export async function createDemand(
-  name, description, process, categoryID, sectorID, userID, clientID, startModal,
+  name, description, process, categoryID, sectorID, userID, clientID, startModal, demandDate,
 ) {
   try {
     const response = await APIDemands.post('demand/create', {
@@ -110,6 +110,7 @@ export async function createDemand(
       sectorID,
       userID,
       clientID,
+      demandDate,
     });
     if (response.data.status) {
       startModal('Preencha todos os campos para poder criar uma nova categoria');
