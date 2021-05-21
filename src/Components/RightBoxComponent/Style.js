@@ -52,12 +52,12 @@ export const NameDiv = styled.div`
 
 export const Img = styled.img`
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     margin: 0 0 0 1px;
     align-content: center;
     justify-content: center;
-    margin-left: 10%;
+    margin-left: 15%;
     @media(max-width: 750px){
     }
 
