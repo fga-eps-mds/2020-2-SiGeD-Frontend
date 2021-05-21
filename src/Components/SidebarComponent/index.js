@@ -24,9 +24,11 @@ const SidebarComponent = ({
 
   const uploadImage = async (e) => {
     const file = e?.target?.files[0];
-    const base64 = await convertBase64(file);
-    setBaseImage(base64);
-    setInputImage(baseImage);
+    if (file) {
+      const base64 = await convertBase64(file);
+      setBaseImage(base64);
+      setInputImage(baseImage);
+    }
   };
 
   useEffect(() => {

@@ -76,7 +76,7 @@ const UpdateCard = ({
   const renderImageUser = () => {
     if (!user.image) {
       return (
-        <IoPersonCircleOutline size="100%" />
+        <IoPersonCircleOutline size="60px" />
       );
     }
     return (

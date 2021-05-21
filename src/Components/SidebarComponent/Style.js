@@ -120,6 +120,7 @@ export const Img = styled.img`
     width: auto;
     height: auto;
     margin-top: 4%;
+    border-radius: 50%;
     @media(max-width: 750px){
         width: auto;
         height: 100%;
