@@ -40,6 +40,7 @@ export const RightSideContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    border-radius: 0px 15px 15px 0px;
     @media(max-width: 750px){
         width: 100%;
         height: 100%;

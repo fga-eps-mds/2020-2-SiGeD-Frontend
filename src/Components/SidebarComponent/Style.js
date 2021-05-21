@@ -3,16 +3,17 @@ import { MdAddAPhoto } from 'react-icons/md';
 import colors from '../../Constants/colors';
 
 export const Sidebar = styled.div`
-    width: 30%;
+    width: 40%;
     height: 100%;
     background: ${colors.navHeaders};
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    border-radius: 15px 0px 0px 15px;
     @media(max-width: 750px){
         width: 100%;
-        height: 30vh;
+        height: 25vh;
         background-color: ${colors.secondary};
         align-content: center;
         justify-content: center;
@@ -66,10 +67,11 @@ export const ButtonPhoto = styled.button`
 
 export const ChooseContainerPhoto = styled.div`
     background-color: ${colors.navHeaders};
-    width: 50%;
-    height: 60%;
+    width: 150px;
+    height: 150px;
     color: ${colors.secondary};
-    margin-top: 20px;
+    margin-top: 15%;
+    margin-bottom: 15%;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -115,15 +117,18 @@ export const SidebarFooter = styled.div`
 `;
 
 export const Img = styled.img`
-    max-width:200px;
+    max-width:150px;
     max-height:150px;
-    width: auto;
-    height: auto;
-    margin-top: 4%;
+    width: 150px;
+    height: 150px;
+    margin-top: 15%;
+    margin-bottom: 15%;
     border-radius: 50%;
+    cursor: pointer;
     @media(max-width: 750px){
-        width: auto;
-        height: 100%;
+        width: 150px;
+        height: 150px;
+        margin-bottom: 0%;
         padding: 2% 0 0 0;
         margin: 4% 0 0 0;
     }
