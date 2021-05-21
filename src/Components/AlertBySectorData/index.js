@@ -26,18 +26,16 @@ const AlertBySectorData = ({ alert, changeState, setChangeState }) => {
 
   const updateCheck = async () => {
     await updateAlert(
-      alert._id,
-      alert.name,
-      alert.description,
-      alert.date,
-      alert.alertClient,
+      alert?._id,
+      alert?.name,
+      alert?.description,
+      alert?.date,
+      alert?.alertClient,
       checkbox,
-      alert.demandID,
-      alert.sectorID,
+      alert?.demandID,
+      alert?.sectorID,
       startModal,
-      changeState,
-      setChangeState,
-    );
+    ).then(setChangeState(!changeState));
   };
 
   useEffect(() => {

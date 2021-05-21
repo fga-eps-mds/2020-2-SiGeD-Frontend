@@ -1,12 +1,13 @@
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
-// import { Checkbox, FormControlLabel } from '@material-ui/core';
 import colors from '../../Constants/colors';
 import TinyButton from '../TinyButton';
 import { createAlert } from '../../Services/Axios/demandsServices';
 import {
   Input, TextareaComp, DropdownDiv, TextLabel, DateInput, Title, BottomSide,
 } from './Style';
+
+import { useProfileUser } from '../../Context';
 
 const CreateAlertModal = ({
   demand, show, handleClose, startModal, changeState, setChangeState, setSorted, user,
@@ -23,6 +24,7 @@ const CreateAlertModal = ({
     setInputCreateAlertDate('');
     setCheckbox(false);
   };
+  const { changeAlertState } = useProfileUser();
 
   const styles = {
     modalBody: {
@@ -52,6 +54,7 @@ const CreateAlertModal = ({
       clearFields();
       setClientAlert(true);
       setSorted(false);
+      changeAlertState();
       handleClose();
     }
   };
@@ -98,23 +101,6 @@ const CreateAlertModal = ({
           <DropdownDiv
             style={{ width: '40' }}
           />
-          {/* <FormControlLabel
-            control={
-            (
-              <Checkbox
-                value={clientAlert}
-                defaultChecked
-                onClick={() => setClientAlert(!clientAlert)}
-                inputProps={{ 'aria-label': 'Checkbox A' }}
-                style={{ color: `${colors.navHeaders}` }}
-              />
-            )]
-          }
-            label="Alertar cliente"
-            style={{
-              width: '100%',
-            }}
-          /> */}
         </BottomSide>
         <div />
       </Modal.Body>

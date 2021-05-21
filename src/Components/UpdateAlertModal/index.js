@@ -1,6 +1,5 @@
 import Modal from 'react-bootstrap/Modal';
 import { useEffect, useState } from 'react';
-// import { Checkbox, FormControlLabel } from '@material-ui/core';
 import colors from '../../Constants/colors';
 import TinyButton from '../TinyButton';
 import { updateAlert } from '../../Services/Axios/demandsServices';
@@ -17,7 +16,7 @@ const UpdateAlertModal = ({
   const [inputAlertDescription, setInputAlertDescription] = useState(alert?.description);
   const [inputAlertDate, setInputAlertDate] = useState(alert?.date);
   const [clientAlert, setClientAlert] = useState(alert?.alertClient);
-  const { user, startModal } = useProfileUser();
+  const { user, startModal, changeAlertState } = useProfileUser();
 
   useEffect(() => {
     setInputAlertName(alert?.name);
@@ -35,6 +34,7 @@ const UpdateAlertModal = ({
         setChangeState(!changeState);
         setClientAlert(true);
         setSorted(false);
+        changeAlertState();
         handleClose();
       });
   };

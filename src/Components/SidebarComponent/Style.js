@@ -27,6 +27,7 @@ export const SidebarText = styled.div`
     flex-direction: column;
     align-items: center;
     font-family: Montserrat;
+    text-align: center;
     @media(max-width: 750px){
         visibility: hidden;
         height: 0%;

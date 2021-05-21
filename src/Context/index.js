@@ -19,6 +19,7 @@ const UserProvider = ({ children }) => {
   const [showMessage, setShowMessage] = useState(false);
   const handleCloseMessage = () => setShowMessage(false);
   const handleShowMessage = () => setShowMessage(true);
+  const [alertState, setAlertState] = useState(true);
 
   useEffect(() => {
     const storagedToken = localStorage.getItem('@App:token');
@@ -52,6 +53,10 @@ const UserProvider = ({ children }) => {
     handleShowMessage();
   };
 
+  const changeAlertState = () => {
+    setAlertState(!alertState);
+  };
+
   const handleChangePassword = async (password) => {
     const userInfo = await changePassword(user._id, password, startModal);
     if (userInfo) {
@@ -69,7 +74,15 @@ const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{
-      token, setToken, user, setUser, handleLogin, startModal, handleChangePassword,
+      token,
+      setToken,
+      user,
+      setUser,
+      handleLogin,
+      startModal,
+      handleChangePassword,
+      changeAlertState,
+      alertState,
     }}
     >
       { children }

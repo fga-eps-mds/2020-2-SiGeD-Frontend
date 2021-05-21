@@ -51,7 +51,9 @@ export async function postClient(
     });
     return response;
   } catch (error) {
-    if (error.response.status === 400) {
+    if (error.response.status === 400 && error.response.data.message.email) {
+      startModal('Email já cadastrado');
+    } else if (error.response.status === 400 && error.response.data.message.cpf) {
       startModal('CPF já cadastrado');
     } else if (error.response.status === 500) {
       startModal('O tempo da sua sessão expirou, faça o login novamente');

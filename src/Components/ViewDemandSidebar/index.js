@@ -58,7 +58,6 @@ const ViewDemandSidebar = ({
     const sortedAlerts = alerts.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
     setAlerts(sortedAlerts);
     setSorted(true);
-    console.log(sortedAlerts);
   };
 
   const getAlertsApi = async () => {
