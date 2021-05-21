@@ -6,7 +6,7 @@ import colors from '../../Constants/colors';
 
 export const RightBox = styled.div` 
     width: 35%;
-    height: 100%;
+    height: min-content;
     background-color: ${colors.navHeaders};
     display: flex;
     align-items: center;
@@ -121,7 +121,6 @@ export const ContentBox = styled.div`
     height: 50%;
     display: flex;
     flex-direction: column;
-    margin-top: 5vh;
     align-items: center;
     padding: 5%;
     @media(max-width: 750px){
@@ -160,10 +159,9 @@ export const PersonIcon = styled(IoPersonCircleOutline)`
 `;
 
 export const P = styled.div`
-    margin-top: 20%;
     width: 100%;
-    height: 100%;
     text-align: center;
+    align-items: center;
     @media(max-width: 750px){
         margin-top: 8vh;
     }
