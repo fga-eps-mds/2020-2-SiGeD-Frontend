@@ -75,6 +75,8 @@ export const ChooseContainerPhoto = styled.div`
     flex-direction: column;
     align-items: center;
     border: 2px solid;
+    cursor: pointer;
+
     @media(max-width: 750px){
         background-color: white;
         width: 50%;
@@ -88,7 +90,7 @@ export const InputPhoto = styled.input`
     height: 15%;
     color: ${colors.secondary};
     margin-top: 30px;
-    display: flex;
+    display: none;
     flex-direction: column;
     @media(max-width: 750px){
         width: 100%;
@@ -131,6 +133,7 @@ export const TopPart = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+
     @media(max-width: 750px){
         margin-top: 0%;
     }

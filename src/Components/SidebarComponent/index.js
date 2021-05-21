@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { MdAddAPhoto } from 'react-icons/md';
 import {
   Sidebar, SidebarText, SidebarFooter, Img, ButtonPhoto,
@@ -8,6 +8,7 @@ import {
 const SidebarComponent = ({
   sidebarList, sidebarFooter, inputImage, setInputImage, baseImage, setBaseImage,
 }) => {
+  const fileTest = useRef(null);
   const convertBase64 = (file) => new Promise((resolve, reject) => {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
@@ -22,7 +23,7 @@ const SidebarComponent = ({
   });
 
   const uploadImage = async (e) => {
-    const file = e.target.files[0];
+    const file = e?.target?.files[0];
     const base64 = await convertBase64(file);
     setBaseImage(base64);
     setInputImage(baseImage);
@@ -36,13 +37,16 @@ const SidebarComponent = ({
     if (!inputImage) {
       return (
         <TopPart>
-          <ChooseContainerPhoto>
+          <ChooseContainerPhoto
+            onClick={() => { fileTest.current.click(); }}
+          >
             <ButtonPhoto className="submit-lente" type="submit">
               <MdAddAPhoto size="100%" />
             </ButtonPhoto>
           </ChooseContainerPhoto>
           <InputPhoto
             type="file"
+            ref={fileTest}
             onChange={(e) => {
               uploadImage(e);
             }}
@@ -55,9 +59,11 @@ const SidebarComponent = ({
         <Img
           src={inputImage}
           alt="Foto"
+          onClick={() => { fileTest.current.click(); }}
         />
         <InputPhoto
           type="file"
+          ref={fileTest}
           onChange={(e) => {
             uploadImage(e);
           }}
