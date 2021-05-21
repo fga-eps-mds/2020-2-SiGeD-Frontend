@@ -22,11 +22,23 @@ export const RightBox = styled.div`
     }
 `;
 
-export const Img = styled.img`
+export const ImgUser = styled.img`
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin: 0 20px 0 1px;
+    align-content: center;
+    justify-content: center;
+    @media(max-width: 750px){
+    }
+
+`;
+
+export const ImgClient = styled.img`
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    margin: 0 0 0 1px;
+    margin: 0 20px 10px 1px;
     align-content: center;
     justify-content: center;
     @media(max-width: 750px){
@@ -118,12 +130,13 @@ export const UserP = styled.p`
 
 export const ContentBox = styled.div`
     width: 100%;
-    height: 50%;
+    height: max-content;
     display: flex;
     flex-direction: column;
-    margin-top: 5vh;
     align-items: center;
     padding: 5%;
+    margin-top: 100px;
+    overflow: auto;
     @media(max-width: 750px){
         margin-top: 5vh;
         height: min-content;
@@ -132,7 +145,7 @@ export const ContentBox = styled.div`
 
 export const SelectionBox = styled.div`
     width: 100%;
-    height: 80%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -160,10 +173,9 @@ export const PersonIcon = styled(IoPersonCircleOutline)`
 `;
 
 export const P = styled.div`
-    margin-top: 20%;
     width: 100%;
-    height: 100%;
     text-align: center;
+    align-items: center;
     @media(max-width: 750px){
         margin-top: 8vh;
     }
@@ -171,7 +183,7 @@ export const P = styled.div`
 
 export const CategoryField = styled.div`
     width: 100%;
-    height: 40%;
+    height: 50%;
 `;
 
 export const CategoryName = styled.div`
@@ -232,7 +244,7 @@ export const CreateAlertDiv = styled.div`
     cursor: pointer;
     align-items: center;
     padding: 5px;
-    margin-top: 2%;
+    margin-top: 5%;
     justify-content: space-between;
     @media(max-width: 750px){
         margin-top: 0px;
@@ -245,7 +257,7 @@ export const TextButton = styled.div`
     text-align: center;
     text-decoration: underline;
     cursor: pointer;
-    margin-top: 45px;
+    margin-top: 75px;
 
     @media(max-width: 750px){
         font-size: 2vh;

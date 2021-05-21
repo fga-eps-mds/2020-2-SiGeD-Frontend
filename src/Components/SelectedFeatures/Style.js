@@ -50,7 +50,7 @@ export const Word = styled.p`
   margin-left: 10%;
 
   @media(max-width: 750px){
-    color: black;
+    color: white;
     margin-left: 9%;
   }
 `;

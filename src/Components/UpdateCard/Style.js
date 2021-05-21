@@ -25,14 +25,14 @@ export const TopSide = styled.div`
 
 export const Img = styled.img`
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     margin: 0 0 0 1px;
     align-content: center;
     justify-content: center;
     @media(max-width: 750px){
-        width: 75px;
-        height: 75px;
+        width: 40px;
+        height: 40px;
     }
 
 `;

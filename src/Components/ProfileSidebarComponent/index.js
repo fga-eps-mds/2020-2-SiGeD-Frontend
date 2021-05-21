@@ -28,7 +28,7 @@ const SidebarComponent = ({
   const renderImage = () => {
     if (!client.image) {
       return (
-        <IoPersonCircleOutline size="100%" />
+        <IoPersonCircleOutline size="200px" color="#FFFFFF" />
       );
     }
     return (

@@ -4,7 +4,7 @@ import { BiStopwatch } from 'react-icons/bi';
 import moment from 'moment-timezone';
 import {
   RightBox, ContentBox, NameDiv, Line,
-  CreatedBy, Img, P,
+  CreatedBy, ImgClient, ImgUser, P,
   UserName, UserP, SelectionBox,
   CategoryField, MobileHeader,
   PlusButton, LessButton, ButtonsDiv,
@@ -80,11 +80,11 @@ const ViewDemandSidebar = ({
   const renderImageClient = () => {
     if (!clientImage) {
       return (
-        <IoPersonCircleOutline size="100%" />
+        <IoPersonCircleOutline size="100px" />
       );
     }
     return (
-      <Img
+      <ImgClient
         src={clientImage}
         alt="Foto"
       />
@@ -98,7 +98,7 @@ const ViewDemandSidebar = ({
       );
     }
     return (
-      <Img
+      <ImgUser
         src={user.image}
         alt="Foto"
       />
