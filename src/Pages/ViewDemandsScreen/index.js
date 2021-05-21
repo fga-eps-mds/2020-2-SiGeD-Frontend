@@ -249,6 +249,7 @@ const ViewDemandsScreen = () => {
           setChangeState={setChangeState}
           handleShowHistory={handleShowHistory}
           alerts={alerts}
+          setAlerts={setAlerts}
         />
         <DemandHistory
           show={showHistory}

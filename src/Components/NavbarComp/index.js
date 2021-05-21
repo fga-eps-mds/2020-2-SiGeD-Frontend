@@ -15,6 +15,7 @@ const NavbarComp = () => {
     user, token, setToken, startModal,
   } = useProfileUser();
   const [loading, setLoading] = useState(false);
+  const [changeState, setChangeState] = useState(false);
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -36,6 +37,10 @@ const NavbarComp = () => {
       setLoading(false);
     }
   }, [user]);
+
+  useEffect(() => {
+    getAlertsApi();
+  }, [changeState, alerts]);
 
   if (loading) {
     const logoutUser = () => {
@@ -94,6 +99,8 @@ const NavbarComp = () => {
                     show={show}
                     handleClose={handleClose}
                     alerts={alerts}
+                    changeState={changeState}
+                    setChangeState={setChangeState}
                   />
                   <Navbar.Brand as={Link} to="/login" onClick={logoutUser}>
                     <FiLogOut />
@@ -129,13 +136,15 @@ const NavbarComp = () => {
                   <NavDropdown.Item><Nav.Link as={Link} to="/demanda" style={{ color: 'black' }}>Criar Demanda</Nav.Link></NavDropdown.Item>
                   <NavDropdown.Item><Nav.Link as={Link} to="/demandas" style={{ color: 'black' }}>Lista de Demandas</Nav.Link></NavDropdown.Item>
                 </NavDropdown>
-                <Navbar.Brand onClick={() => handleShow()}>
+                <Navbar.Brand onClick={() => { handleShow(); getAlertsApi(); }}>
                   <BsBell />
                 </Navbar.Brand>
                 <ViewAlertModal
                   show={show}
                   handleClose={handleClose}
                   alerts={alerts}
+                  changeState={changeState}
+                  setChangeState={setChangeState}
                 />
                 <Navbar.Brand as={Link} to="/login" onClick={logoutUser}>
                   <FiLogOut />
