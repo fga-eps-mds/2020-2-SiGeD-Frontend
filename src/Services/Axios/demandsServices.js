@@ -99,7 +99,7 @@ export async function getFourDemands(startModal) {
 }
 
 export async function createDemand(
-  name, description, process, categoryID, sectorID, userID, clientID, startModal,
+  name, description, process, categoryID, sectorID, userID, clientID, startModal, demandDate,
 ) {
   try {
     const response = await APIDemands.post('demand/create', {
@@ -110,6 +110,7 @@ export async function createDemand(
       sectorID,
       userID,
       clientID,
+      demandDate,
     });
     if (response.data.status) {
       startModal('Preencha todos os campos para poder criar uma nova categoria');
@@ -317,7 +318,7 @@ export async function updateDemandUpdate(
 }
 
 export async function createAlert(
-  name, description, date, alertClient, demandID, sectorID, startModal,
+  name, description, date, alertClient, checkbox, demandID, sectorID, startModal,
 ) {
   try {
     const response = await APIDemands.post('alert/create', {
@@ -325,6 +326,7 @@ export async function createAlert(
       description,
       date,
       alertClient,
+      checkbox,
       demandID,
       sectorID,
     });
@@ -342,6 +344,48 @@ export async function createAlert(
     return null;
   }
 }
+
+export async function updateAlert(
+  id, name, description, date, alertClient, checkbox,
+  demandID, sectorID, startModal,
+) {
+  try {
+    const response = await APIDemands.put(`alert/update/${id}`, {
+      name,
+      description,
+      date,
+      alertClient,
+      checkbox,
+      demandID,
+      sectorID,
+    });
+    if (response.data.status) {
+      startModal('Preencha todos os campos para poder editar um alerta');
+    }
+    return response?.data;
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal('Não foi possível atualizar o alerta, tente novamente mais tarde.');
+    }
+    console.error(`An unexpected error ocourred while updating an already created alert.${error}`);
+  }
+  return null;
+}
+
+export const deleteAlert = async (id, startModal) => {
+  try {
+    await APIDemands.delete(`/alert/delete/${id}`);
+  } catch (error) {
+    if (error.response.status === 500) {
+      startModal('O tempo da sua sessão expirou, faça o login novamente');
+    } else if (error.response.status !== 401) {
+      startModal(`Não foi possivel deletar o alerta.\n${error}`);
+    }
+    console.error(error);
+  }
+};
 
 export async function getAlerts(url, startModal) {
   try {

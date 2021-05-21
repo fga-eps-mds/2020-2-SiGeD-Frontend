@@ -33,7 +33,7 @@ const ViewDemandCard = ({ demand }) => (
         {demand.process}
       </ProcessNumber>
       <CreatedAt>
-        { moment.parseZone(demand.updatedAt).local(true).format('DD/MM/YYYY HH:mm')}
+        { moment.parseZone(demand.createdAt).local(true).format('DD/MM/YYYY HH:mm')}
       </CreatedAt>
     </BottomSide>
   </Card>

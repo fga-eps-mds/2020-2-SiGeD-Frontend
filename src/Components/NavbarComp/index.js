@@ -8,12 +8,14 @@ import { useProfileUser } from '../../Context';
 import { getAlertsBySector } from '../../Services/Axios/demandsServices';
 import { APIUsers } from '../../Services/Axios/baseService';
 import ViewAlertModal from '../ViewAlertModal';
+import Logo from '../../Logo/SiGeD_Logo.png';
 
 const NavbarComp = () => {
   const {
     user, token, setToken, startModal,
   } = useProfileUser();
   const [loading, setLoading] = useState(false);
+  const [changeState, setChangeState] = useState(false);
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -36,6 +38,10 @@ const NavbarComp = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    getAlertsApi();
+  }, [changeState, alerts]);
+
   if (loading) {
     const logoutUser = () => {
       try {
@@ -51,8 +57,8 @@ const NavbarComp = () => {
       return (
 
         <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>
-          <Navbar.Brand>
-            <h1 style={styles.navbarText}>Logo</h1>
+          <Navbar.Brand style={{ marginLeft: 25 }}>
+            <img src={Logo} alt="Logo SiGeD" height={50} width={120} />
           </Navbar.Brand>
           { token && <Navbar.Toggle aria-controls="navbar-police" />}
           { token
@@ -93,6 +99,8 @@ const NavbarComp = () => {
                     show={show}
                     handleClose={handleClose}
                     alerts={alerts}
+                    changeState={changeState}
+                    setChangeState={setChangeState}
                   />
                   <Navbar.Brand as={Link} to="/login" onClick={logoutUser}>
                     <FiLogOut />
@@ -107,7 +115,7 @@ const NavbarComp = () => {
 
       <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>
         <Navbar.Brand>
-          <h1 style={styles.navbarText}>Logo</h1>
+          <img src={Logo} alt="Logo SiGeD" height={50} width={120} />
         </Navbar.Brand>
         { token && <Navbar.Toggle aria-controls="navbar-police" />}
         { token
@@ -128,13 +136,15 @@ const NavbarComp = () => {
                   <NavDropdown.Item><Nav.Link as={Link} to="/demanda" style={{ color: 'black' }}>Criar Demanda</Nav.Link></NavDropdown.Item>
                   <NavDropdown.Item><Nav.Link as={Link} to="/demandas" style={{ color: 'black' }}>Lista de Demandas</Nav.Link></NavDropdown.Item>
                 </NavDropdown>
-                <Navbar.Brand onClick={() => handleShow()}>
+                <Navbar.Brand onClick={() => { handleShow(); getAlertsApi(); }}>
                   <BsBell />
                 </Navbar.Brand>
                 <ViewAlertModal
                   show={show}
                   handleClose={handleClose}
                   alerts={alerts}
+                  changeState={changeState}
+                  setChangeState={setChangeState}
                 />
                 <Navbar.Brand as={Link} to="/login" onClick={logoutUser}>
                   <FiLogOut />
@@ -148,7 +158,7 @@ const NavbarComp = () => {
   return (
     <Navbar expand="lg" variant="dark" clickfixed="top" fixed="top" style={styles.navbar}>
       <Navbar.Brand>
-        <h1 style={styles.navbarText}>Logo</h1>
+        <img src={Logo} alt="Logo SiGeD" height={50} width={120} />
       </Navbar.Brand>
     </Navbar>
   );

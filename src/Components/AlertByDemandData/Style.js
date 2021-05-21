@@ -35,3 +35,24 @@ export const AlertDate = styled.p`
         width: 100%;
     }
 `;
+
+export const EditIcon = styled.div`
+  float: right;
+  font-size: 100%;
+  width: 8%;
+  margin-left: 5%;
+  cursor: pointer;
+  @media(max-width: 750px){
+    font-size: 100%;
+}
+`;
+
+export const TrashIcon = styled.div`
+  float: right;
+  font-size: 100%;
+  width: 5%;
+  cursor: pointer;
+  @media(max-width: 750px){
+    font-size: 100%;
+}
+`;

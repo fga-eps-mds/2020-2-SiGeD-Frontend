@@ -52,11 +52,17 @@ const ClientForms = ({
             onChange={(Option) => setOfficeOption(Option.target.value)}
             style={{ border: '0' }}
           >
-            <option>Policial</option>
-            <option>Enfermeiro(a)</option>
-            <option>Secretário(a)</option>
-            <option>Servidor(a)</option>
-            <option>Administrador(a)</option>
+            <option>Administrativo Comissionado(a)</option>
+            <option>Administrativo Efetivo(a)</option>
+            <option>Agente Auxiliar Policial</option>
+            <option>Agente de Polícia</option>
+            <option>Agente Policial</option>
+            <option>Dactiloscopista</option>
+            <option>Delegado(a) de Polícia</option>
+            <option>Escrevente Policial</option>
+            <option>Escrivã(o) de Polícia</option>
+            <option>Estagiário(a)</option>
+            <option>Servidor(a) Voluntário(a)</option>
           </Dropdown>
         </div>
       </Form.Group>

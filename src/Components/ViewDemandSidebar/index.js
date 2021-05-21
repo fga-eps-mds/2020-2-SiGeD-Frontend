@@ -19,15 +19,17 @@ import AlertByDemandData from '../AlertByDemandData';
 import colors from '../../Constants/colors';
 import CreateAlertModal from '../CreateAlertModal';
 import { useProfileUser } from '../../Context';
+import { getAlertsByDemand } from '../../Services/Axios/demandsServices';
 
 const ViewDemandSidebar = ({
   clientImage, clientName, userName, selectedCategories, demand,
   getDemandApi, showUpdates, sectorsResponse,
-  changeState, setChangeState, alerts, handleShowHistory,
+  changeState, setChangeState, alerts, setAlerts, handleShowHistory,
 }) => {
   const [sidebarState, setSidebarState] = useState(true);
   const [flag, setFlag] = useState(false);
   const [show, setShow] = useState(false);
+  const [sorted, setSorted] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const { user, startModal } = useProfileUser();
@@ -52,11 +54,29 @@ const ViewDemandSidebar = ({
     }
   }, [actualSector]);
 
-  const sortedAlerts = alerts.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
+  const sortList = () => {
+    const sortedAlerts = alerts.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD'));
+    setAlerts(sortedAlerts);
+    setSorted(true);
+    console.log(sortedAlerts);
+  };
 
-  const ListAlertData = () => sortedAlerts?.map((alert) => (
-    <AlertByDemandData alert={alert} />
-  ));
+  const getAlertsApi = async () => {
+    await getAlertsByDemand(demand?._id, startModal)
+      .then((response) => {
+        setAlerts(response.sort((a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD')));
+      })
+      .catch((err) => {
+        console.error(`An unexpected error ocourred while getting alerts. ${err}`);
+      });
+  };
+
+  useEffect(() => {
+    if (!sorted) {
+      getAlertsApi();
+      sortList();
+    }
+  }, [sorted, alerts]);
 
   const renderImageClient = () => {
     if (!clientImage) {
@@ -157,7 +177,15 @@ const ViewDemandSidebar = ({
                 Alertas:
               </AlertTitle>
               <ListAlert>
-                {ListAlertData()}
+                { alerts && alerts?.map((alert) => (
+                  <AlertByDemandData
+                    alert={alert}
+                    demand={demand}
+                    changeState={changeState}
+                    setChangeState={setChangeState}
+                    setSorted={setSorted}
+                  />
+                )) }
               </ListAlert>
               <CreateAlertDiv
                 onClick={() => handleShow()}
@@ -176,7 +204,9 @@ const ViewDemandSidebar = ({
                 startModal={startModal}
                 changeState={changeState}
                 setChangeState={setChangeState}
+                setSorted={setSorted}
                 user={user}
+                title="Cadastrar"
               />
             </AlertContainer>
           </SelectionBox>

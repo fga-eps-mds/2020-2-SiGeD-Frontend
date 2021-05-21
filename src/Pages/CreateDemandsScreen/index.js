@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
+import moment from 'moment';
 import { Main, Footer } from './Style';
 import SectorDropdown from '../../Components/SectorDropdown';
 import CategoryDiv from '../../Components/AddCategoryComponent';
@@ -27,6 +28,7 @@ const CreateDemandsScreen = () => {
   const [categoriesIDs, setCategoriesIDs] = useState([]);
   const [clientID, setClientID] = useState('');
   const [clientName, setClientName] = useState('');
+  const [demandDate, setDemandDate] = useState(moment().format('YYYY-MM-DD'));
   const { user, startModal } = useProfileUser();
   const history = useHistory();
 
@@ -81,8 +83,11 @@ const CreateDemandsScreen = () => {
         user._id,
         clientID,
         startModal,
+        demandDate,
       ).then((response) => response.data);
-      return history.push(`/visualizar/${data._id}`);
+      if (data) {
+        return history.push(`/visualizar/${data._id}`);
+      }
     }
     startModal('Preencha todos os campos antes de cadastrar uma nova demanda.');
     return undefined;
@@ -105,6 +110,8 @@ const CreateDemandsScreen = () => {
         setProcess={setProcess}
         description={description}
         setDescription={setDescription}
+        demandDate={demandDate}
+        setDemandDate={setDemandDate}
         submit={handleShow}
         cancel={cancel}
         buttomName="Cadastrar"

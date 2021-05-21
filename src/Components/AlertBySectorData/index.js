@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { BiStopwatch } from 'react-icons/bi';
 import moment from 'moment-timezone';
-// import { Checkbox, FormControlLabel } from '@material-ui/core';
-// import colors from '../../Constants/colors';
-import { getDemands } from '../../Services/Axios/demandsServices';
+import { Checkbox, FormControlLabel } from '@material-ui/core';
+import colors from '../../Constants/colors';
+import { getDemands, updateAlert } from '../../Services/Axios/demandsServices';
 import { useProfileUser } from '../../Context';
 import {
   AlertData, WatchIcon, AlertAbout, AlertDemandName, AlertName, AlertDescription, AlertDate,
   AlertRightSide,
 } from './Style';
 
-const AlertBySectorData = ({ alert }) => {
+const AlertBySectorData = ({ alert, changeState, setChangeState }) => {
   const [demand, setDemand] = useState('');
+  const [checkbox, setCheckbox] = useState(alert.checkbox);
   const { startModal } = useProfileUser();
 
   const getDemandFromApi = async () => {
@@ -22,6 +23,26 @@ const AlertBySectorData = ({ alert }) => {
   useEffect(() => {
     getDemandFromApi();
   }, []);
+
+  const updateCheck = async () => {
+    await updateAlert(
+      alert._id,
+      alert.name,
+      alert.description,
+      alert.date,
+      alert.alertClient,
+      checkbox,
+      alert.demandID,
+      alert.sectorID,
+      startModal,
+      changeState,
+      setChangeState,
+    );
+  };
+
+  useEffect(() => {
+    updateCheck();
+  }, [checkbox]);
 
   return (
     <AlertData>
@@ -40,14 +61,14 @@ const AlertBySectorData = ({ alert }) => {
         </AlertDescription>
       </AlertAbout>
       <AlertRightSide>
-        {/* <FormControlLabel
+        <FormControlLabel
           control={
                 (
                   <Checkbox
-                    value={alert.alertClient}
-                    defaultChecked={alert.alertClient}
+                    checked={alert.checkbox}
                     inputProps={{ 'aria-label': 'Checkbox A' }}
                     style={{ color: `${colors.navHeaders}` }}
+                    onClick={() => { updateCheck(); setCheckbox(!checkbox); }}
                   />
                 )
               }
@@ -55,7 +76,7 @@ const AlertBySectorData = ({ alert }) => {
             justifyContent: 'center',
             margin: '0px',
           }}
-        /> */}
+        />
         <AlertDate>
           { moment.parseZone(alert.date).local(true).format('DD/MM/YYYY')}
         </AlertDate>

@@ -2,11 +2,21 @@ import React from 'react';
 import TinyButton from '../TinyButton';
 import {
   InputField, DescriptionField, FieldsDiv, P, Footer, Title, InputDiv,
-  InputsDiv, DescriptionDiv, CenterDiv,
+  InputsDiv, DescriptionDiv, CenterDiv, DateInput, DateView,
 } from './Style';
 
 const DemandsDescription = ({
-  name, setName, process, setProcess, description, setDescription, submit, cancel, buttomName,
+  name,
+  setName,
+  process,
+  setProcess,
+  description,
+  setDescription,
+  submit,
+  cancel,
+  buttomName,
+  demandDate,
+  setDemandDate,
 }) => (
 
   <FieldsDiv>
@@ -34,6 +44,17 @@ const DemandsDescription = ({
         </P>
         <DescriptionField rows="5" cols="30" name="text" placeholder="Descrição" value={description} onChange={(e) => setDescription(e.target.value)} />
       </DescriptionDiv>
+      {buttomName === 'Cadastrar'
+        && (
+          <DateView>
+            <P>Data:</P>
+            <DateInput
+              type="date"
+              value={demandDate}
+              onChange={(e) => setDemandDate(e.target.value)}
+            />
+          </DateView>
+        )}
       <Footer>
         <TinyButton type="secondary" title="Cancelar" click={cancel} />
         <TinyButton type="primary" title={buttomName} click={submit} />
