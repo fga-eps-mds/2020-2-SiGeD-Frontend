@@ -79,6 +79,7 @@ const NavbarComp = () => {
                   <NavDropdown title="Clientes" style={styles.navbarText}>
                     <NavDropdown.Item><Nav.Link as={Link} to="/cliente" style={{ color: 'black' }}>Novo Cliente</Nav.Link></NavDropdown.Item>
                     <NavDropdown.Item><Nav.Link as={Link} to="/clientes" style={{ color: 'black' }}>Lista de Clientes</Nav.Link></NavDropdown.Item>
+                    <NavDropdown.Item><Nav.Link as={Link} to="/caracteristicas" style={{ color: 'black' }}>Caracteristicas</Nav.Link></NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link as={Link} to="/categorias" style={styles.navbarText}>
                     Categorias
@@ -89,9 +90,6 @@ const NavbarComp = () => {
                   </NavDropdown>
                   <Nav.Link as={Link} to="/estatisticas" style={styles.navbarText}>
                     Estatísticas
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/caracteristicas" style={styles.navbarText}>
-                    Caracteristicas
                   </Nav.Link>
                   <Navbar.Brand style={{ cursor: 'pointer' }} onClick={() => { handleShow(); getAlertsApi(); }}>
                     <BsBell />
