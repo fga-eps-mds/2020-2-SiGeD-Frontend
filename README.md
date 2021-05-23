@@ -27,5 +27,4 @@ O frontend estará rodando na [porta 3000](http://localhost:3000).
 - [API de Clientes](https://github.com/fga-eps-mds/2020-2-SiGeD-Clients)
 - [API de Usuários](https://github.com/fga-eps-mds/2020-2-SiGeD-Users)
 - [API de Demandas](https://github.com/fga-eps-mds/2020-2-SiGeD-Demands)
-
-
+- [API de Setores](https://github.com/fga-eps-mds/2020-2-SiGeD-Sectors)
