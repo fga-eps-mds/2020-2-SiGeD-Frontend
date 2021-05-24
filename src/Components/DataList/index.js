@@ -60,6 +60,14 @@ const DataList = ({
     }
   };
 
+  const verifyType = () => {
+    if (type === 'Category') {
+      verifyDeletion();
+    } else {
+      deleteContent();
+    }
+  };
+
   return (
     <Content onMouseLeave={closeMenu} onClick={closeMenu}>
       <Personalbox>
@@ -86,7 +94,7 @@ const DataList = ({
       <ConfirmDemandModal
         show={show}
         handleClose={handleClose}
-        submit={verifyDeletion}
+        submit={verifyType}
         actionName={modalText}
       />
       {optionsMenuState ? (
