@@ -61,7 +61,7 @@ const DataList = ({
   };
 
   const verifyType = () => {
-    if (type === 'Category') {
+    if (type === 'Categoria') {
       verifyDeletion();
     } else {
       deleteContent();

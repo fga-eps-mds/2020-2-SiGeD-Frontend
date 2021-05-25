@@ -65,7 +65,7 @@ const ListCategories = () => {
         color={colors.secondary}
         axiosDelete={deleteCategory}
         updateContent={updateCategory}
-        type="Category"
+        type="Categoria"
         demands={demands}
       />
     ));
