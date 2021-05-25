@@ -57,7 +57,7 @@ const ClientFeaturesScreen = () => {
         color={colors.secondary}
         axiosDelete={deleteFeature}
         updateContent={updateFeature}
-        type="Categoria"
+        type="característica"
       />
     ));
   };
